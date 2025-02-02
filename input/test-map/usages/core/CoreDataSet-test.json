@@ -1,0 +1,21 @@
+{
+  "resourceType": "CoreDataSet",
+  "patient": {
+    "patientNi": 1,
+    "vip": "no",
+    "name": "doe",
+    "firstName": "john",
+    "gender": "h",
+    "birthDate": "1948-07-16"
+  },
+  "encounter": [{
+    "encounterNi": 1,
+    "patientNi": 1,
+    "encounterType": "1"
+  },
+  {
+    "encounterNi": 2,
+    "patientNi": 1,
+    "encounterType": "1"
+  }]
+}

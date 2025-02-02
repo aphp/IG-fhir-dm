@@ -1,0 +1,71 @@
+id: aphp.fhir.fr.dm
+canonical: https://aphp.fr/ig/fhir/dm
+name: DM
+title: Guide d'implémentation pour le Data Management
+description: "Ce guide d'implémentation décrit: (i) le processus d'alimentation d'un hub de données de santé, (ii) les cas d'usages traités et, in fine, (iii) la liste des données présentes dans le hub de données de santé d'un SIH."
+status: draft
+version: 0.1.0
+jurisdiction: urn:iso:std:iso:3166#FR "France"
+fhirVersion: 4.0.1
+copyrightYear: 2023+
+releaseLabel: ci-build
+# license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
+publisher:
+  name: AP-HP
+  url: https://aphp.fr
+  # email: test@example.org
+
+dependencies:
+  hl7.fhir.fr.core: 2.0.1
+  ans.fhir.fr.annuaire: 1.1.0-snapshot-3
+
+pages:
+  index.md:
+    title: Accueil
+  dm-context.md:
+    title: Contexte
+  dm-reconciliation.md:
+    title: Gestion des sources multiples
+  dm-delivery-process.md:
+    title: Processus de livraison des usages
+  dm-versioning.md:
+    title: Gestion des versions
+  data-dictionary.md:
+    title: Dictionnaire des données
+  dm-core.md:
+    title: Variables du socles pour les EDSH
+  change_log.md:
+    title: Notes de version
+  downloads.md:
+    title: Télécharger les spécifications
+  glossary.md:
+    title: Glossaire
+
+menu:
+  Accueil: index.html
+  Dictionnaire des données: data-dictionary.html
+  Usages:
+    Variables socles: dm-core.html
+  Gestion des données: 
+    Contexte: dm-context.html
+    Sources multiples: dm-reconciliation.html
+    Gestion des versions: dm-versioning.html
+    Processus de livraison: dm-delivery-process.html
+  Ressources de conformité: artifacts.html
+  Notes de version: change_log.html
+  Plus:
+    Glossaire: glossary.html
+    Télécharger spécifications: downloads.html
+
+parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
+  shownav: false
+  path-resource:
+    - input/resources/usages/core
+    - input/fml/usages/core
+
+#  logging:
+#    - tx #tx: Messages describing the use of the terminology server (for debugging)
+#    - html #html: Log when validating a html page (troubleshooting only - leave off)
+#    - generate #generate: Log when producing an individual resource (troubleshooting only - leave off)
+#    - init #init: Messages describing the start up process (for debugging)
+#    - progress #progress: Overall progress messages

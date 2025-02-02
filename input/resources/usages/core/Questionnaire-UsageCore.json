@@ -1,0 +1,561 @@
+{
+  "item": [
+    {
+      "item": [
+        {
+          "linkId": "8093603385856",
+          "text": "Poids",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "462464903374",
+              "text": "Date de mesure",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "2511015835627",
+              "text": "Valeur",
+              "type": "quantity",
+              "repeats": false
+            },
+            {
+              "type": "dateTime",
+              "linkId": "8258139600415",
+              "text": "Date d'annulation",
+              "required": false
+            }
+          ]
+        },
+        {
+          "linkId": "3087681516367",
+          "text": "Taille",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "8709708157814",
+              "text": "Date de mesure",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "3914344246507",
+              "text": "Valeur",
+              "type": "quantity",
+              "repeats": false
+            },
+            {
+              "type": "dateTime",
+              "linkId": "4066699723565",
+              "text": "Date d'annulation",
+              "required": false
+            }
+          ]
+        },
+        {
+          "linkId": "2453501684219",
+          "text": "Périmètre cranien",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "4753056500439",
+              "text": "Date de mesure",
+              "type": "dateTime",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "4019792370936",
+              "text": "Valeur",
+              "type": "quantity",
+              "repeats": false
+            },
+            {
+              "type": "dateTime",
+              "linkId": "6726598795046",
+              "text": "Date d'annulation",
+              "required": false
+            }
+          ]
+        }
+      ],
+      "type": "group",
+      "linkId": "4272730093623",
+      "text": "Données anthropométriques",
+      "required": false,
+      "repeats": true,
+      "readOnly": false
+    },
+    {
+      "linkId": "2954567069766",
+      "text": "Résultats de biologie",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "4716132954193",
+          "text": "Mutation du gène CTNS",
+          "type": "boolean",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "2138598295647",
+              "text": "Date de l'analyse",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "9172819280601",
+          "text": "Mutation du gène NPHP",
+          "type": "boolean",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "9003654221560",
+              "text": "Date de l'analyse",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "7739800807412",
+          "text": "Taux de cystéinémie",
+          "type": "quantity",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "7379591199579",
+              "text": "Date de l'analyse",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "6073238398608",
+          "text": "Taux d’IGF-1",
+          "type": "quantity",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "6112721747465",
+              "text": "Date de l'analyse",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "9800400154855",
+          "text": "IgA anti-transglutaminase",
+          "type": "quantity",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "9128478318971",
+              "text": "Date de l'analyse",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "5648365423742",
+          "text": "Typage HLA",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "3582644598489",
+              "text": "Date de l'analyse",
+              "type": "dateTime",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "2726438365419",
+          "text": "Caryotypage",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "5609881801898",
+              "text": "Date de l'analyse",
+              "type": "dateTime",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "5006605540696",
+      "text": "Diagnostics",
+      "type": "group",
+      "required": false,
+      "repeats": true,
+      "readOnly": false,
+      "item": [
+        {
+          "linkId": "2188577322049",
+          "text": "Diagnostic",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Maladie coeliaque"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Maladie de Crohn"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Craniopharyngiome"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Nephrophtise juvénile"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Cystinose infantile"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Syndrome de Turner"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Déficit en hormone de croissance"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Astrocytome hypothalamo-opto-chiasmatique"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "4082719456146",
+          "text": "Date de diagnostic",
+          "type": "dateTime",
+          "enableBehavior": "any",
+          "required": false,
+          "repeats": false,
+          "readOnly": false
+        },
+        {
+          "linkId": "1878915391292",
+          "text": "Adresse au diagnostic",
+          "type": "group",
+          "enableBehavior": "any",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "490472384625",
+              "text": "Code postal",
+              "type": "integer",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "5792844251540",
+              "text": "Ville",
+              "type": "string",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "5570044092468",
+          "text": "Premier cas dans la fratrie",
+          "type": "boolean",
+          "enableBehavior": "any",
+          "required": false,
+          "repeats": false,
+          "readOnly": false
+        },
+        {
+          "linkId": "6833280629917",
+          "text": "Diagnostic fortuit",
+          "type": "boolean",
+          "enableBehavior": "any",
+          "required": false,
+          "repeats": false,
+          "readOnly": false
+        },
+        {
+          "linkId": "4628676671079",
+          "text": "Anatomo-pathologie",
+          "type": "group",
+          "enableBehavior": "any",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "889028632853",
+              "text": "Diagnostic confirmé en anatomo-pathologie",
+              "type": "boolean",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "923778209563",
+              "text": "Date de confirmation",
+              "type": "dateTime",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "1221857512803",
+      "text": "Chirurgie",
+      "type": "group",
+      "required": false,
+      "repeats": true,
+      "readOnly": false,
+      "item": [
+        {
+          "linkId": "6443455866418",
+          "text": "Acte réalisé",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "9627823444607",
+              "text": "Date de l'opération",
+              "type": "dateTime",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "3198286219711",
+          "text": "Constatation opératoire",
+          "type": "choice",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "1273804536920",
+              "text": "Présente",
+              "type": "boolean",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "3154565660892",
+              "text": "Code",
+              "type": "choice",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "588128245348",
+              "text": "Quantité",
+              "type": "quantity",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "9009235757085",
+              "text": "Entier",
+              "type": "integer",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "2323379451954",
+              "text": "Texte libre",
+              "type": "text",
+              "enableBehavior": "any"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "7172847870794",
+      "text": "Imagerie",
+      "type": "group",
+      "required": false,
+      "repeats": true,
+      "readOnly": false,
+      "item": [
+        {
+          "linkId": "3774444110540",
+          "text": "Acte réalisé",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "7660121507242",
+              "text": "Date de l'acte",
+              "type": "dateTime",
+              "required": true,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        },
+        {
+          "linkId": "5542253045115",
+          "text": "Constatation à l'imagerie",
+          "type": "choice",
+          "required": false,
+          "repeats": true,
+          "readOnly": false,
+          "item": [
+            {
+              "linkId": "3712890763272",
+              "text": "Présente",
+              "type": "boolean",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "5575461355065",
+              "text": "Code",
+              "type": "choice",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "6676814784733",
+              "text": "Quantité",
+              "type": "quantity",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "9474246613817",
+              "text": "Entier",
+              "type": "integer",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            },
+            {
+              "linkId": "4067624394950",
+              "text": "Texte libre",
+              "type": "text",
+              "enableBehavior": "any",
+              "required": false,
+              "repeats": false,
+              "readOnly": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resourceType": "Questionnaire",
+  "id": "UsageCore",
+  "name": "UsageCore",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2024-04-08T12:46:24.719+00:00",
+    "source": "https://aphp.fr/ig/fhir/Endpoint/form-builder"
+  },
+  "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "title": "Questionnaire usage Core",
+  "status": "draft",
+  "description": "Arborescence des variables du socle des EDSH."
+}

@@ -1,0 +1,19 @@
+@startuml
+
+skinparam Shadowing 1.0
+
+title
+Modéle métier de l'usage
+end title
+
+class CorePatient {
+  - {field} patientNi: integer 1..1
+  - {field} vip: string 1..1
+  - {field} name: string 0..1
+  - {field} firstName: string 0..1
+  - {field} gender: string 0..1
+  - {field} birthDate: date 0..1
+}
+
+
+@enduml

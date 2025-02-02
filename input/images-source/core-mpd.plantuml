@@ -1,0 +1,69 @@
+@startuml
+
+skinparam Shadowing 1.0
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+title
+Périmètre initial de l'usage
+end title
+
+entity CORE.PATIENT {
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} VIP CHAR (1) NOT NULL
+  * {field} NAME VARCHAR2 (50) NULL
+  * {field} FIRST_NAME VARCHAR2 (50) NULL
+  * {field} GENDER CHAR (1) NULL
+  * {field} BIRTH_DATE DATE NULL
+}
+
+entity CORE.ENCOUNTER {
+  * {field} ENCOUNTER_NI NUMBER (38, 0) NOT NULL
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} ENCOUNTER_TYPE VARCHAR2 (50) NOT NULL
+}
+
+entity CORE.BIOLOGY {
+  * {field} BIOLOGY_NI NUMBER (38, 0) NOT NULL
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} ENCOUNTER_NI NUMBER (38, 0) NOT NULL
+  * {field} DATE_CREAT DATE NOT NULL
+  * {field} DATE_MODIF DATE NOT NULL
+  * {field} DATE_REMOVE DATE NULL
+}
+
+entity CORE.CLINICAL {
+  * {field} CLINICAL_NI NUMBER (38, 0) NOT NULL
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} ENCOUNTER_NI NUMBER (38, 0) NOT NULL
+}
+
+entity CORE.MEDICATION_ADM {
+  * {field} MEDICATION_ADM_NI NUMBER (38, 0) NOT NULL
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} ENCOUNTER_NI NUMBER (38, 0) NOT NULL
+}
+
+entity CORE.MEDICATION_PRE {
+  * {field} MEDICATION_PRE_NI NUMBER (38, 0) NOT NULL
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} ENCOUNTER_NI NUMBER (38, 0) NOT NULL
+}
+
+
+
+CORE.ENCOUNTER }o..o| CORE.PATIENT
+
+CORE.BIOLOGY }o..o| CORE.PATIENT
+CORE.BIOLOGY }o..o| CORE.ENCOUNTER
+
+CORE.CLINICAL }o..o| CORE.PATIENT
+CORE.CLINICAL }o..o| CORE.ENCOUNTER
+
+CORE.MEDICATION_ADM }o..o| CORE.PATIENT
+CORE.MEDICATION_ADM }o..o| CORE.ENCOUNTER
+
+CORE.MEDICATION_PRE }o..o| CORE.PATIENT
+CORE.MEDICATION_PRE }o..o| CORE.ENCOUNTER
+
+@enduml

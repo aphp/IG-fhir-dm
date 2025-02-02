@@ -1,0 +1,29 @@
+@startuml
+
+skinparam Shadowing 1.0
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+title
+Périmètre final de l'usage
+end title
+
+entity CORE.PATIENT {
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} NAME VARCHAR2 (50) NULL
+  * {field} FIRST_NAME VARCHAR2 (50) NULL
+  * {field} GENDER CHAR (1) NULL
+  * {field} BIRTH_DATE DATE NULL
+}
+
+entity CORE.ENCOUNTER {
+  * {field} ENCOUNTER_NI NUMBER (38, 0) NOT NULL
+  * {field} PATIENT_NI NUMBER (38, 0) NOT NULL
+  * {field} ENCOUNTER_TYPE VARCHAR2 (50) NOT NULL
+}
+
+
+
+CORE.ENCOUNTER }o..o| CORE.PATIENT
+
+@enduml
