@@ -1,16 +1,11 @@
-# AP-HP - EDS : Entrepôt de Données de Santé
+# AP-HP - DM : Data Management with FHIR
 
-[![pipeline status](https://gitlab.data.aphp.fr/ID/ed/dm/ig/fig-eds/badges/main/pipeline.svg)](https://gitlab.data.aphp.fr/ID/ed/dm/ig/fig-eds/-/commits/main)
-[![Latest Release](https://gitlab.data.aphp.fr/ID/ed/dm/ig/fig-eds/-/badges/release.svg)](https://gitlab.data.aphp.fr/ID/ed/dm/ig/fig-eds/-/releases)
+Le **AP-HP - DM** (acronyme pour Data Management) est une initiative visant à rassembler l'ensemble des connaissances 
+sur la couche sémantique du Hub de donnée de santé.
 
-Le **AP-HP - EDS** (acronyme pour Entrepôt de Données de Santé de l'AP-HP) est une initiative visant à rassembler
-l'ensemble des connaissances sur les services FHIR de l'EDS de l'AP-HP dans un espace commun afin de partager.
-
-Ce référentiel contient le **AP-HP - EDS Implementation Guide (IG)**. Un IG est "un ensemble de règles sur comment les
+Ce référentiel contient le **AP-HP - DM Implementation Guide (IG)**. Un IG est "un ensemble de règles sur comment les
 ressources FHIR sont utilisées (ou devraient être utilisées) pour résoudre un problème particulier, avec la
 documentation associée pour supporter et clarifier les usages" ([source](https://www.hl7.org/fhir/implementationguide.html)).
-
-L'adresse de publication CI est : https://id.pages.data.aphp.fr/ed/dm/ig/fig-eds
 
 Pour plus d'information :
 
@@ -24,7 +19,7 @@ Pour plus d'information :
 
 ### Contexte technique du projet
 
-Ce guide d'implémentation présente les spécifications techniques du serveur FHIR de l'EDS de l'AP-HP.
+Ce guide d'implémentation présente la couche sémantique d'un Hub de donnée de santé.
 
 [A COMPLETER : doit expliquer brièvement quelles ressources / profils sont utilisés, exemple implémentation où IG est utilisé]
 
@@ -80,14 +75,6 @@ propre :
     - Il existe une [extension de coloration syntaxique FSH](https://marketplace.visualstudio.com/items?itemName=MITRE-Health.vscode-language-fsh)
       pour [VSCode](https://code.visualstudio.com).
       Les fichiers FSH sont préfixés en fonction de ce qu'ils contiennent.
-
-| Prefix | Description          |
-|--------|----------------------|
-| 'AL'   | Aliases              |
-| 'DEF'  | Autres définitions   |
-| 'EX'   | Exemples             |
-| 'SD'   | StructureDefinitions |
-
 - Les pages principales de l'IG construit sont générées à partir de [Markdown](https://daringfireball.net/projects/markdown/)
   trouvé dans `input/pagecontent/`. Ces pages doivent également être incluses dans `sushi-config.yaml` pour être compilées
   en HTML par l'IG Publisher.
@@ -110,31 +97,27 @@ propre :
 
 Vous trouverez la liste des dépendances dans `sushi-config.yaml` dans la section `dependencies` du fichier.
 
-## CI/CD
+## Recueil des besoins
 
-Pour la CI, il a été mis en place un environnement de build qui contient toutes les dépendances nécessaires pour lancer les étapes du build local.
-Cet environnement est décrit dans un [Dockerfile](https://gitlab.eds.aphp.fr/ID/pfm/portails-et-apis/dev/devops-images/-/blob/main/fhir-ig-builder/Dockerfile?ref_type=heads) et est publié sur l'espace harbor de cohort 360.
--> Il faudrait le publier sur l'espace publique.
+TODO FormBuilder
 
-La ci (configurée par le fichier `.gitlab-ci.yml`) défini la réalisation des étapes du build local en deux temps pour produire l'IG sous forme de gitlab pages et d'artifact stocké dans gitlab.
+## Conception de formulaire
 
-La résolution des dépendances (avant la phase de build "sushi") entre IGs internes et réalisée en récupérant l'artifact de build (le `output/package.tar.gz` des projets des autres IGs) via l'API gitlab. Pour cela il est nécessaire de récupérer le projet ID gitlab et d'autoriser les projets dépendants (https://docs.gitlab.com/ee/ci/jobs/ci_job_token.html#add-a-project-to-the-job-token-scope-allowlist)
--> Il n'y a pour le moment aucune gestion de version / branches, le script récupere le dernier build de la branche main
--> Ce n'est pas automatisé vis à vis des dépendances décrites dans `sushi-config.yaml`, cette résolution de dépendance est manuellement ajoutée dans le process de build.
+TODO FormBuilder
 
-## validation des structures map
+## Validation des alignements de structures (StructureMap)
 
-From https://github.com/ahdis/matchbox/blob/main/matchbox-server/fml.http
+TODO MapBuilder
 
 ### Prérequis
 
-Prérequis: Installation d'un client REST, par exemple [RESTClient (identifiant: humao.rest-client)](https://marketplace.visualstudio.com/items?itemName=humao.rest-client#:~:text=Once%20you%20prepared%20a%20request,press%20F1%20and%20then%20select%2F)
+Prérequis : installation d'un client REST, par exemple [RESTClient (identifiant: humao.rest-client)](https://marketplace.visualstudio.com/items?itemName=humao.rest-client#:~:text=Once%20you%20prepared%20a%20request,press%20F1%20and%20then%20select%2F)
 
 ### Fichier /input/test-map/test_fml.http.example
 
 Ce fichier contient la documentation et les commandes permettant de tester les maps
 
-Il convient de ne pas le modifier mais d'en faire une copy dans le dossier /input/test-map/local/
+Il convient de ne pas le modifier, mais d'en faire une copy dans le dossier /input/test-map/local/
 
 Pour lancer une commande, ouvrir ce fichier et cliquer sur le lien `Send Request` au niveau de la commande correspondante (Attention aux paramètres de la requête) : 
 
@@ -142,27 +125,8 @@ Pour lancer une commande, ouvrir ce fichier et cliquer sur le lien `Send Request
 
 ### Convention d'utilisation 
 
-Le paramétrage du fichier test_fml.http fait en local pour ses besoins propres n'a pas vocation a être poussé sur le repo distant. 
+Le paramétrage du fichier test_fml.http fait en local pour ses besoins propres n'a pas vocation à être poussé sur le repo distant. 
 
-Les ressources de test et les structuremap le doivent, respectivement dans les dossier /input/test-map/ et /input/fml/ d'usage correspondant. 
+Les ressources de test et les structuremap le doivent, respectivement dans les dossiers /input/test-map/ et /input/fml/ d'usage correspondant. 
 
-Si les ressources sont partagées, les conventions usuelles de classement et de nommage s'appliquePour les structuremap, les conventions de l'IG s'appliquent. 
-
-## Dépannage
-
-### Structure Definition is Missing Snapshot Error
-
-Some non-HL7 FHIR packages are distributed without snapshot elements in their profiles. If your IG uses one of these profiles, SUSHI will report an error like the following:
-Certains packages FHIR non HL7 sont distribués sans snapshot dans leurs profils. Si votre IG utilise l'un de ces profils, SUSHI signalera une erreur comme la suivante :
-
-Structure Definition http://interopsante.org/fhir/StructureDefinition/FrPatient is missing snapshot. Snapshot is required for import.
-
-Since SUSHI does not implement its own snapshot generator, you must update the package in your FHIR cache so that its profiles include snapshot elements. Fortunately, the [Firely Terminal](https://fire.ly/products/firely-terminal/) provides a way to do this.
-Étant donné que SUSHI n'implémente pas son propre générateur de snapshot, vous devez mettre à jour le package dans votre cache FHIR afin que ses profils incluent les snapshots. Heureusement, le [Firely Terminal](https://fire.ly/products/firely-terminal/) fournit un moyen de le faire.
-
-Tout d'abord, vous devez installer [Firely Terminal](https://docs.fire.ly/projects/Firely-Terminal/getting_started/InstallingFirelyTerminal.html). Utilisez ensuite Firely Terminal pour remplir les éléments du snapshot dans le package des dépendances.
-
-1. Lancer la commande : fhir install <package> (<version>), remplacer <package> par l'ID du package dépendant.
-   Par exemple, fhir install hl7.fhir.fr.core 1.1.0
-2. Lancer sushi une nouvelle fois. L'erreur à propos des snapshot manquant ne devrait plus être affiché.
-
+Si les ressources sont partagées, les conventions usuelles de classement et de nommage s'appliquent pour les structuremap, les conventions de l'IG s'appliquent. 
