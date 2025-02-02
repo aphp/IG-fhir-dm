@@ -53,7 +53,7 @@ val igPackageManager = tasks.register<JavaExec>("igPackageManager") {
   classpath(igPackageManagerPath)
   args = listOf(
     "-ig",
-    "."
+    projectDir.absolutePath
   )
   /*dependsOn(
           igPackageManagerInstall
@@ -76,7 +76,7 @@ val ddlBuild = tasks.register<JavaExec>("ddlBuild") {
     "-m",
     "ddl",
     "-ig",
-    "."
+    projectDir.absolutePath
   )
   /*dependsOn(
       usageSynchroInstall
@@ -92,7 +92,7 @@ val usageBusinessBuild = tasks.register<JavaExec>("usageBusinessBuild") {
     "-m",
     "business",
     "-ig",
-    "."
+    projectDir.absolutePath
   )
   /*dependsOn(
       usageSynchroInstall
@@ -118,7 +118,7 @@ val sushiBuild = tasks.register<NpxTask>("sushiBuild") {
   args.set(
     listOf(
       "build",
-      "."
+      projectDir.absolutePath
     )
   )
   dependsOn(
@@ -143,7 +143,7 @@ val igPublisherBuild = tasks.register<JavaExec>("igPublisherBuild") {
     "-no-sushi",
     "-tx ${properties["tx"]}",
     "-ig",
-    "."
+    projectDir.absolutePath
   )
   dependsOn(
     igPublisherInstall
