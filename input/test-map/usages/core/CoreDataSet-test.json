@@ -10,7 +10,7 @@
   },
   "encounter": [{
     "encounterNi": 1,
-    "patientNi": 1,
+    "patientNi": { "reference": "PatientCore/1" },
     "encounterType": "1",
     "dateCreat": "2025-02-04",
     "dateModif": "2025-02-04",
@@ -19,7 +19,7 @@
   },
   {
     "encounterNi": 2,
-    "patientNi": 1,
+    "patientNi": { "reference": "PatientCore/1" },
     "encounterType": "1",
     "dateCreat": "2025-02-04",
     "dateModif": "2025-02-04",
@@ -27,8 +27,8 @@
   }],
   "biology": [{
     "biologyNi": 1,
-    "encounterNi": 1,
-    "patientNi": 1,
+    "encounterNi": { "reference": "EncounterCore/1" },
+    "patientNi": { "reference": "PatientCore/1" },
     "dateCreat": "2025-02-04",
     "dateModif": "2025-02-04",
     "biologyDate": "2025-02-04",
