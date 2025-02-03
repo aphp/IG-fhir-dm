@@ -1,561 +1,510 @@
 {
-  "item": [
-    {
-      "item": [
-        {
-          "linkId": "8093603385856",
-          "text": "Poids",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "462464903374",
-              "text": "Date de mesure",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "2511015835627",
-              "text": "Valeur",
-              "type": "quantity",
-              "repeats": false
-            },
-            {
-              "type": "dateTime",
-              "linkId": "8258139600415",
-              "text": "Date d'annulation",
-              "required": false
-            }
-          ]
-        },
-        {
-          "linkId": "3087681516367",
-          "text": "Taille",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "8709708157814",
-              "text": "Date de mesure",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "3914344246507",
-              "text": "Valeur",
-              "type": "quantity",
-              "repeats": false
-            },
-            {
-              "type": "dateTime",
-              "linkId": "4066699723565",
-              "text": "Date d'annulation",
-              "required": false
-            }
-          ]
-        },
-        {
-          "linkId": "2453501684219",
-          "text": "Périmètre cranien",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "4753056500439",
-              "text": "Date de mesure",
-              "type": "dateTime",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "4019792370936",
-              "text": "Valeur",
-              "type": "quantity",
-              "repeats": false
-            },
-            {
-              "type": "dateTime",
-              "linkId": "6726598795046",
-              "text": "Date d'annulation",
-              "required": false
-            }
-          ]
-        }
-      ],
-      "type": "group",
-      "linkId": "4272730093623",
-      "text": "Données anthropométriques",
-      "required": false,
-      "repeats": true,
-      "readOnly": false
-    },
-    {
-      "linkId": "2954567069766",
-      "text": "Résultats de biologie",
-      "type": "group",
-      "item": [
-        {
-          "linkId": "4716132954193",
-          "text": "Mutation du gène CTNS",
-          "type": "boolean",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "2138598295647",
-              "text": "Date de l'analyse",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "9172819280601",
-          "text": "Mutation du gène NPHP",
-          "type": "boolean",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "9003654221560",
-              "text": "Date de l'analyse",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "7739800807412",
-          "text": "Taux de cystéinémie",
-          "type": "quantity",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "7379591199579",
-              "text": "Date de l'analyse",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "6073238398608",
-          "text": "Taux d’IGF-1",
-          "type": "quantity",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "6112721747465",
-              "text": "Date de l'analyse",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "9800400154855",
-          "text": "IgA anti-transglutaminase",
-          "type": "quantity",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "9128478318971",
-              "text": "Date de l'analyse",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "5648365423742",
-          "text": "Typage HLA",
-          "type": "choice",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "3582644598489",
-              "text": "Date de l'analyse",
-              "type": "dateTime",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "2726438365419",
-          "text": "Caryotypage",
-          "type": "choice",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "5609881801898",
-              "text": "Date de l'analyse",
-              "type": "dateTime",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "5006605540696",
-      "text": "Diagnostics",
-      "type": "group",
-      "required": false,
-      "repeats": true,
-      "readOnly": false,
-      "item": [
-        {
-          "linkId": "2188577322049",
-          "text": "Diagnostic",
-          "type": "choice",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "answerOption": [
-            {
-              "valueCoding": {
-                "display": "Maladie coeliaque"
-              }
-            },
-            {
-              "valueCoding": {
-                "display": "Maladie de Crohn"
-              }
-            },
-            {
-              "valueCoding": {
-                "display": "Craniopharyngiome"
-              }
-            },
-            {
-              "valueCoding": {
-                "display": "Nephrophtise juvénile"
-              }
-            },
-            {
-              "valueCoding": {
-                "display": "Cystinose infantile"
-              }
-            },
-            {
-              "valueCoding": {
-                "display": "Syndrome de Turner"
-              }
-            },
-            {
-              "valueCoding": {
-                "display": "Déficit en hormone de croissance"
-              }
-            },
-            {
-              "valueCoding": {
-                "display": "Astrocytome hypothalamo-opto-chiasmatique"
-              }
-            }
-          ]
-        },
-        {
-          "linkId": "4082719456146",
-          "text": "Date de diagnostic",
-          "type": "dateTime",
-          "enableBehavior": "any",
-          "required": false,
-          "repeats": false,
-          "readOnly": false
-        },
-        {
-          "linkId": "1878915391292",
-          "text": "Adresse au diagnostic",
-          "type": "group",
-          "enableBehavior": "any",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "490472384625",
-              "text": "Code postal",
-              "type": "integer",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "5792844251540",
-              "text": "Ville",
-              "type": "string",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "5570044092468",
-          "text": "Premier cas dans la fratrie",
-          "type": "boolean",
-          "enableBehavior": "any",
-          "required": false,
-          "repeats": false,
-          "readOnly": false
-        },
-        {
-          "linkId": "6833280629917",
-          "text": "Diagnostic fortuit",
-          "type": "boolean",
-          "enableBehavior": "any",
-          "required": false,
-          "repeats": false,
-          "readOnly": false
-        },
-        {
-          "linkId": "4628676671079",
-          "text": "Anatomo-pathologie",
-          "type": "group",
-          "enableBehavior": "any",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "889028632853",
-              "text": "Diagnostic confirmé en anatomo-pathologie",
-              "type": "boolean",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "923778209563",
-              "text": "Date de confirmation",
-              "type": "dateTime",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "1221857512803",
-      "text": "Chirurgie",
-      "type": "group",
-      "required": false,
-      "repeats": true,
-      "readOnly": false,
-      "item": [
-        {
-          "linkId": "6443455866418",
-          "text": "Acte réalisé",
-          "type": "choice",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "9627823444607",
-              "text": "Date de l'opération",
-              "type": "dateTime",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "3198286219711",
-          "text": "Constatation opératoire",
-          "type": "choice",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "1273804536920",
-              "text": "Présente",
-              "type": "boolean",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "3154565660892",
-              "text": "Code",
-              "type": "choice",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "588128245348",
-              "text": "Quantité",
-              "type": "quantity",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "9009235757085",
-              "text": "Entier",
-              "type": "integer",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "2323379451954",
-              "text": "Texte libre",
-              "type": "text",
-              "enableBehavior": "any"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "7172847870794",
-      "text": "Imagerie",
-      "type": "group",
-      "required": false,
-      "repeats": true,
-      "readOnly": false,
-      "item": [
-        {
-          "linkId": "3774444110540",
-          "text": "Acte réalisé",
-          "type": "choice",
-          "required": false,
-          "repeats": false,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "7660121507242",
-              "text": "Date de l'acte",
-              "type": "dateTime",
-              "required": true,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        },
-        {
-          "linkId": "5542253045115",
-          "text": "Constatation à l'imagerie",
-          "type": "choice",
-          "required": false,
-          "repeats": true,
-          "readOnly": false,
-          "item": [
-            {
-              "linkId": "3712890763272",
-              "text": "Présente",
-              "type": "boolean",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "5575461355065",
-              "text": "Code",
-              "type": "choice",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "6676814784733",
-              "text": "Quantité",
-              "type": "quantity",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "9474246613817",
-              "text": "Entier",
-              "type": "integer",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            },
-            {
-              "linkId": "4067624394950",
-              "text": "Texte libre",
-              "type": "text",
-              "enableBehavior": "any",
-              "required": false,
-              "repeats": false,
-              "readOnly": false
-            }
-          ]
-        }
-      ]
-    }
-  ],
   "resourceType": "Questionnaire",
   "id": "UsageCore",
-  "name": "UsageCore",
   "meta": {
-    "versionId": "1",
-    "lastUpdated": "2024-04-08T12:46:24.719+00:00",
+    "versionId": "2",
+    "lastUpdated": "2025-02-03T13:54:18.750+00:00",
     "source": "https://aphp.fr/ig/fhir/Endpoint/form-builder"
   },
   "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "name": "UsageCore",
   "title": "Questionnaire usage Core",
-  "status": "draft",
-  "description": "Arborescence des variables du socle des EDSH."
+  "status": "active",
+  "date": "2025-02-03",
+  "description": "Arborescence des variables du socle des EDSH.",
+  "item": [ {
+    "linkId": "4647259356106",
+    "text": "Patient",
+    "type": "group",
+    "repeats": true,
+    "item": [ {
+      "linkId": "3764723550987",
+      "text": "NSS",
+      "type": "string",
+      "item": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [ {
+              "system": "http://hl7.org/fhir/questionnaire-item-control",
+              "code": "help",
+              "display": "Help-Button"
+            } ],
+            "text": "Intention"
+          }
+        } ],
+        "linkId": "3764723550987_intention",
+        "text": "NIR de l'ouvrant droit",
+        "type": "display"
+      } ]
+    }, {
+      "linkId": "5711960356160",
+      "text": "INS-NIR",
+      "type": "string",
+      "item": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+          "valueCodeableConcept": {
+            "coding": [ {
+              "system": "http://hl7.org/fhir/questionnaire-item-control",
+              "code": "help",
+              "display": "Help-Button"
+            } ],
+            "text": "Intention"
+          }
+        } ],
+        "linkId": "5711960356160_intention",
+        "text": "NIR de l'ayant droit",
+        "type": "display"
+      } ]
+    }, {
+      "linkId": "3894630481120",
+      "text": "Sexe",
+      "type": "choice",
+      "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/SexeToDo"
+    }, {
+      "linkId": "7403180550717",
+      "text": "naissance",
+      "type": "group",
+      "item": [ {
+        "linkId": "5036133558154",
+        "text": "Date de naissance",
+        "type": "date"
+      }, {
+        "linkId": "6931296968515",
+        "text": "rang gémellaire du bénéficiaire",
+        "type": "integer"
+      } ]
+    }, {
+      "linkId": "6860948998011",
+      "text": "décès",
+      "type": "group",
+      "item": [ {
+        "linkId": "5633552097315",
+        "text": "date de décès",
+        "type": "date"
+      }, {
+        "linkId": "9098810065693",
+        "text": "source de la date de décès",
+        "type": "choice",
+        "answerOption": [ {
+          "valueCoding": {
+            "display": "INSEE"
+          }
+        }, {
+          "valueCoding": {
+            "display": "CepiDc"
+          }
+        }, {
+          "valueCoding": {
+            "display": "SIH"
+          }
+        } ]
+      } ]
+    }, {
+      "linkId": "1502724922216",
+      "text": "Adresse",
+      "type": "group",
+      "item": [ {
+        "linkId": "3816475533472",
+        "text": "Géocodage",
+        "type": "decimal",
+        "repeats": true,
+        "item": [ {
+          "linkId": "1185653257776",
+          "text": "date de recueil du géocodage",
+          "type": "date"
+        }, {
+          "linkId": "7651448032665",
+          "text": "longitude",
+          "type": "decimal"
+        }, {
+          "linkId": "3709843054556",
+          "text": "latitude",
+          "type": "decimal"
+        }, {
+          "extension": [ {
+            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+            "valueCodeableConcept": {
+              "coding": [ {
+                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                "code": "help",
+                "display": "Help-Button"
+              } ],
+              "text": "Intention"
+            }
+          } ],
+          "linkId": "3816475533472_intention",
+          "text": "coordonnées géographique conformément à WGS84",
+          "type": "display"
+        } ]
+      }, {
+        "linkId": "7621032273792",
+        "text": "IRIS",
+        "type": "choice",
+        "repeats": true,
+        "answerValueSet": "https://hl7.fr/ig/fhir/core/ValueSet/fr-core-vs-insee-code",
+        "item": [ {
+          "linkId": "4999580038872",
+          "text": "date de recueil de l'IRIS",
+          "type": "date"
+        } ]
+      } ]
+    } ]
+  }, {
+    "linkId": "1693164086678",
+    "text": "Mode de vie",
+    "type": "group",
+    "repeats": true,
+    "item": [ {
+      "linkId": "8594428846762",
+      "text": "Lien patient",
+      "type": "reference"
+    }, {
+      "linkId": "6516656388671",
+      "text": "Consommation de tabac (à détailler)",
+      "type": "display"
+    }, {
+      "linkId": "8218964737490",
+      "text": "Consommation d'alcool (à détailler",
+      "type": "display"
+    }, {
+      "linkId": "604442013287",
+      "text": "Consommation d'autres drogues (à détailler)",
+      "type": "display"
+    }, {
+      "linkId": "485428113240",
+      "text": "Activité physique (à détailler)",
+      "type": "display"
+    } ]
+  }, {
+    "linkId": "2825244231605",
+    "text": "Données PMSI",
+    "type": "group",
+    "repeats": true,
+    "item": [ {
+      "linkId": "9141889976036",
+      "text": "Lien patient",
+      "type": "reference"
+    }, {
+      "linkId": "9004984884823",
+      "text": "Séjour",
+      "type": "group",
+      "item": [ {
+        "linkId": "5991443718282",
+        "text": "Date de début de séjour",
+        "type": "date"
+      }, {
+        "linkId": "6172398101212",
+        "text": "Mode d'entrée",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/METoDo"
+      }, {
+        "linkId": "6114780320846",
+        "text": "Date de fin de séjour",
+        "type": "date"
+      }, {
+        "linkId": "3354867075704",
+        "text": "Mode de sortie",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/MSToDo"
+      } ]
+    }, {
+      "linkId": "9391816419630",
+      "text": "Diagnostics",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "6427586743735",
+        "text": "Type de diagnostic",
+        "type": "choice",
+        "answerOption": [ {
+          "valueCoding": {
+            "display": "DP"
+          }
+        }, {
+          "valueCoding": {
+            "display": "DA"
+          }
+        }, {
+          "valueCoding": {
+            "display": "DR"
+          }
+        } ]
+      }, {
+        "linkId": "2703037944969",
+        "text": "Code diagnostic",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CIM10_ATIHToDo"
+      } ]
+    }, {
+      "linkId": "591926901726",
+      "text": "Actes",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "5066866286682",
+        "text": "Date de l'acte",
+        "type": "dateTime"
+      }, {
+        "linkId": "2435829260291",
+        "text": "Code acte",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CCAM_descriptiveToDo"
+      } ]
+    } ]
+  }, {
+    "linkId": "305831246173",
+    "text": "Signes vitaux",
+    "type": "group",
+    "repeats": true,
+    "item": [ {
+      "linkId": "8105658220638",
+      "text": "Lien patient",
+      "type": "reference"
+    }, {
+      "linkId": "4846902346416",
+      "text": "Taille",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "941821315470",
+        "text": "Date de la mesure",
+        "type": "date"
+      }, {
+        "linkId": "3017914601461",
+        "text": "Taille",
+        "type": "quantity"
+      } ]
+    }, {
+      "linkId": "451513217936",
+      "text": "Poids",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "151269044052",
+        "text": "Date de la mesure",
+        "type": "date"
+      }, {
+        "linkId": "529016167174",
+        "text": "Poids",
+        "type": "quantity"
+      } ]
+    }, {
+      "linkId": "574291105122",
+      "text": "Pression artérielle",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "820981783585",
+        "text": "Date de la mesure",
+        "type": "date"
+      }, {
+        "linkId": "848797127998",
+        "text": "Pression artérielle diastolique",
+        "type": "quantity"
+      }, {
+        "linkId": "4160905247955",
+        "text": "Pression artérielle systolique",
+        "type": "quantity"
+      } ]
+    } ]
+  }, {
+    "linkId": "817801935685",
+    "text": "Exposition médicamenteuse",
+    "type": "group",
+    "repeats": true,
+    "item": [ {
+      "linkId": "2895397931337",
+      "text": "Lien patient",
+      "type": "reference"
+    }, {
+      "linkId": "9077158123347",
+      "text": "Prescription médicamenteuse",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "156631794800",
+        "text": "Médicament",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/ATC-UCD-CIP-DCI-commercial_labelToDo"
+      }, {
+        "linkId": "387026794874",
+        "text": "Voie d'administration",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/StandardTermsToDo"
+      }, {
+        "linkId": "6348237104421",
+        "text": "Posologie (à détailler)",
+        "type": "display"
+      } ]
+    }, {
+      "linkId": "3341868154617",
+      "text": "Administration médicamenteuse",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "2946504042239",
+        "text": "Médicament",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/ATC-UCD-CIP-DCI-commercial_labelToDo"
+      }, {
+        "linkId": "9752763809045",
+        "text": "Voie d'administration",
+        "type": "choice",
+        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/StandardTermsToDo"
+      }, {
+        "linkId": "5720103839343",
+        "text": "Dosage",
+        "type": "group",
+        "item": [ {
+          "linkId": "4765772671997",
+          "text": "Quantité administrée",
+          "type": "quantity"
+        }, {
+          "linkId": "1443558617577",
+          "text": "Date et heure de début d'administration",
+          "type": "dateTime"
+        }, {
+          "linkId": "780829110731",
+          "text": "Date et heure de fin d'administration",
+          "type": "dateTime"
+        } ]
+      } ]
+    } ]
+  }, {
+    "linkId": "7702944131447",
+    "text": "Biologie",
+    "type": "group",
+    "repeats": true,
+    "item": [ {
+      "linkId": "3448623221348",
+      "text": "Lien patient",
+      "type": "reference"
+    }, {
+      "linkId": "5241323453538",
+      "text": "Résultat de biologie",
+      "type": "group",
+      "repeats": true,
+      "item": [ {
+        "linkId": "8712072639576",
+        "text": "Analyse biologique",
+        "type": "choice",
+        "answerOption": [ {
+          "valueCoding": {
+            "display": "Urémie"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Créatininémie"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Débit de Filtration Glomérulaire"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Leucocytes (dans le sang)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Hémoglobinémie"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Hématocrite"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Globules rouges"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Volume Globulaire Moyen (VGM)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Plaquettes (dans le sang)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Neutrophiles (dans les sang)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Lymphocytes (dans le sang)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Eosinophiles (dans le sang)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Monocytes (dans le sang)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Taux de prothrombine (TP)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Temps de céphaline activée (TCA)"
+          }
+        }, {
+          "valueCoding": {
+            "display": "ASAT"
+          }
+        }, {
+          "valueCoding": {
+            "display": "ALAT"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Gamma gt"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Phosphatases alcalines"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Bilirubine totale"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Bilirubine conjuguée"
+          }
+        }, {
+          "valueCoding": {
+            "display": "Glycémie à jeûn"
+          }
+        }, {
+          "valueCoding": {
+            "display": "HbA1C"
+          }
+        } ]
+      }, {
+        "linkId": "554606544143",
+        "text": "Date et heure du prélèvement",
+        "type": "dateTime"
+      }, {
+        "linkId": "397980461207",
+        "text": "Résultat de l'analyse",
+        "type": "quantity"
+      }, {
+        "linkId": "5827729311488",
+        "text": "Valeurs normales",
+        "type": "group",
+        "item": [ {
+          "linkId": "3753371809615",
+          "text": "Borne basse",
+          "type": "quantity"
+        }, {
+          "linkId": "7284688712273",
+          "text": "Borne haute",
+          "type": "quantity"
+        } ]
+      } ]
+    } ]
+  } ]
 }

@@ -11,5 +11,5 @@ Nous nous permettons d'attirer l'attention des utilisateurs sur les éléments d
 manière dont les données ont été produites.
 
 Même s'il s'agit d'une description d'assez haut niveau, qui peut être déclinée de manière très variable au niveau des 
-hôpitaux, pôles, services et équipes de soins de l'AP-HP, elle permet de mieux apprécier l'usage qui peut être fait des 
-données de l'EDS. 
+hôpitaux, pôles, services et équipes de soins, elle permet de mieux apprécier l'usage qui peut être fait des 
+données présentes dans le Hub de données. 

@@ -2,7 +2,7 @@ Le processus d'instruction se compose en 4 étapes :
 
 #### Modèle métier
 
-À l'aide du [FormBuilder](), une ressource "Questionnaire" est produite en tenant compte des exigences.
+À l'aide du [FormBuilder](), une ressource `Questionnaire` est produite en tenant compte des exigences.
 
 #### Data discovery
 
@@ -50,7 +50,7 @@ ses données, en garantissant transparence, qualité et conformité.
 ##### Supports
 
 Afin de construire la preuve résultant du processus de "Data Discovery", un alignement est réalisé entre les modèles 
-physiques des sources identifiées et la ressource `Questionnaire`. Cette preuve à deux vertus :
+physiques des sources identifiées et une ressource `QuestionnaireResponse` correspondant [au `Questionnaire`des exigences](dm-delivery-process.html#mod%C3%A8le-m%C3%A9tier). Cette preuve à deux vertus :
 1. Documenter ce qui a été découvert,
 2. Valider, car cette preuve s'appuie sur un langage formel et standard permettant le calcul de couverture (PKI).
 
@@ -60,6 +60,8 @@ physiques des sources identifiées et la ressource `Questionnaire`. Cette preuve
 ressources compatibles avec l'écosystème français (guides d'implémentation de l'ANS et d'Interop'santé). Récemment, de 
 nombreux efforts ont été réalisés au niveau européen et par conséquent et de plus en plus, nous devons également tenir 
 compte des guides d'implémentation FHIR européen, nous préparant ainsi à l'European Health Data Space (EHDS).
+
+Un alignement est réalisé entre le `QuestionnaireResponse` créé lors de la data discovery et les ressource FHIR pertinente identifiées. Cela permet de formaliser les règles d'alimentation des ressources FHIR.
 
 #### Validation
 

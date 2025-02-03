@@ -11,14 +11,14 @@
 - name : identique à l'id (PascalCase sans espace donc).
 - url : [base]/[ResourceType]/[id] 
 
-On nommera les fichiers selon la convention suivante : <ResourceType>-<Id>.<extension qui va bien>.
+On nommera les fichiers selon la convention suivante : [ResourceType]-[Id].[extension fsh/json].
 
 Par exemple, pour le questionnaire de représentation du modèle métier de l'usage "variables socles", on aura : 
 -	id = name = UsageCore
--	url = https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore
+-	url = [base]/Questionnaire/UsageCore
 -	nom du fichier = Questionnaire-UsageCore.fsh
 
-à noter que nos règles ne sont pas conformes [aux conventions préconisées par l'ANS](https://interop.esante.gouv.fr/ig/documentation/bonnes_pratiques_modeler.html#r%C3%A8gles-de-nommage-des-ressources-de-conformit%C3%A9)
+à noter que ces règles ne sont pas conformes [aux conventions préconisées par l'ANS](https://interop.esante.gouv.fr/ig/documentation/bonnes_pratiques_modeler.html#r%C3%A8gles-de-nommage-des-ressources-de-conformit%C3%A9)
 
 ##### Cas particulier des StructureDefinition
 
@@ -27,7 +27,7 @@ Par exemple, pour le questionnaire de représentation du modèle métier de l'us
 Par exemple pour le profil dédié au poids : 
 -	id = name = DMObservationBodyWeight
 -	nom du fichier est : StructureDefinition-DMObservationBodyWeight.fsh
--	url = https://aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBodyWeight
+-	url = [base]/StructureDefinition/DMObservationBodyWeight
 
 #### Autres ressources (exemples, ou instances)
 Id est un UUID. 
@@ -37,16 +37,11 @@ On pourra colliger les ressources afférentes à un cas d'usage dans un fichier 
 On décide, pour chaque ressource FHIR intégrée dans le Hub de donnée, de préciser l'application source de cette ressource via l'attribut `meta.source`. Cet attribut attend une uri qui sera, autant que possible, créée selon la convention suivante :
 1. https://
 2. nom de domaine de l'éditeur
-3. nom de l'application (autant que possible issue de [la liste maintenue par la DSN](https://vision360.aphp.fr/)).
+3. nom de l'application (autant que possible issue de la liste maintenue par l'urbanisme).
 4. detail dans l'application
 
 Par exemple :
 - https://editeur.com/DPI
-
-#### namespace
-Les namespace sont construits de la manière suivante :
-- préfixe : https://aphp.fr/fhir/
-- suffixe : précisé par l'équipe cadrage
 
 ### Description des processus de production des données sources
 La description des processus de production des données sources est systématisée pour l'ensemble des ressources intégrées dans le Hub de données. 

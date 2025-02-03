@@ -14,12 +14,12 @@ Cette page documente le jeu de données correspondant à la **taille du patient*
 
 <table style="width: 100%">
   <tr><th>Processus</th><th>Nombre d'enregistrements (11/2024)</th><th>Date du premier enregistrement</th><th>Taux de rafraichissement (dans l'EDS)</th></tr>
-  <tr><td>Formulaire Orbis courbe de croissance</td><td>≈ 800 000</td><td>2016</td><td>Quotidien</td></tr>
-  <tr><td>Autres formulaires Orbis</td><td>≈ 1 140 000</td><td>2016</td><td>Quotidien</td></tr>
+  <tr><td>Formulaire courbe de croissance</td><td>≈ 800 000</td><td>2016</td><td>Quotidien</td></tr>
+  <tr><td>Autres formulaires</td><td>≈ 1 140 000</td><td>2016</td><td>Quotidien</td></tr>
   <tr><td><b>Total</b></td><td><b>≈ 1 940 000</b></td><td><b>2016</b></td><td><b>Quotidien</b></td></tr>
 </table>
 
-#### Via le formulaire 'Courbe de Croissance' d'Orbis
+#### Via le formulaire 'Courbe de Croissance'
 
 C'est le processus correspondant au cas 1 dans [la figure ci-dessus](#processus).
 
@@ -27,13 +27,13 @@ C'est le processus correspondant au cas 1 dans [la figure ci-dessus](#processus)
   <tr><th colspan="2">Caractéristiques de l'enregistrement</th></tr>
   <tr><td>Agent</td><td>Les agents des services d'accueil (IDE, externe, interne...) réalisent les mesures et les saisissent</td></tr>
   <tr><td>Nature</td><td>Mesures de taille (valeur et unité), datées</td></tr>
-  <tr><td>Lieu</td><td>Les mesures sont prises dans les services de pédiatrie de l'AP-HP</td></tr>
-  <tr><td>Temps</td><td>Les mesures sont prises lors des visites à l'AP-HP et saisies dans la foulée</td></tr>
+  <tr><td>Lieu</td><td>Les mesures sont prises dans les services de pédiatrie</td></tr>
+  <tr><td>Temps</td><td>Les mesures sont prises lors des visites et saisies dans la foulée</td></tr>
   <tr><td>Modalité</td><td>Les données sont enregistrées via le formulaire 'Courbe de Croissance' d'Orbis</td></tr>
   <tr><td>Raison d'être</td><td>La mesure de la taille, et son suivi dans le temps, corrélativement à d'autres données anthropométriques, permettent de détecter un problème de croissance</td></tr>
 </table>
 
-#### Via un autre formulaire Orbis
+#### Via un autre formulaire
 
 C'est le processus correspondant au cas 2 dans [la figure ci-dessus](#processus).
 

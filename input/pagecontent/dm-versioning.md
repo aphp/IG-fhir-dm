@@ -6,15 +6,16 @@ La gestion des versions s’appuie sur le mécanisme proposé par HL7 FHIR. En F
 Références : [ici](http://hl7.org/fhir/R4/resource.html#versions)
 
 ### Version FHIR
-Pour ce qui est de la version FHIR, la version promue actuellement en France et utilisée majoritairement à l'APHP est la version R4. Seuls l'IG Requirements est en R5. 
+Pour ce qui est de la version FHIR, [la version promue actuellement en France est la version R4](https://interop.esante.gouv.fr/ig/documentation/bonnes_pratiques_modeler.html#choix-de-la-version-de-fhir).  
 
 ### Business version
-Pour ce qui est de la version métier (business version), portée par l'attribut `Questionnaire.version` par exemple, elle sera directement reprise du système de production (Orbis par exemple). 
-Chaque version integrée dans l'EDS donnera lieu à la création d'une nouvelle instance de Questionnaire avec : 
+Pour ce qui est de la version métier (business version), portée par l'attribut `Questionnaire.version` par exemple, elle sera directement reprise du SI de production. 
+Chaque version integrée dans le Hub de données donnera lieu à la création d'une nouvelle instance de Questionnaire avec : 
  - le même nom
  - la même url
  - une version différente
-La gestion des versions doit suivre un algorithme documenté pour permettre à un utilisateur d'être sur qu'il utilise la dernière version
+
+La gestion des versions doit suivre un algorithme documenté pour permettre à un utilisateur d'être sur qu'il utilise la dernière version.
 
 **En l'état actuel de la situation, l'IG publisher ne permet pas d'intégrer dans un FHIR IG deux ressources de même id (l'url étant construite sur la base de l'id).** 
 il n'est donc pas possible de publier plusieurs business version dans le FIG. Le serveur HAPI n'a pas cette contrainte.  
