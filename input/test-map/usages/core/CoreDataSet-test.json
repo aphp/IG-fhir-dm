@@ -11,11 +11,29 @@
   "encounter": [{
     "encounterNi": 1,
     "patientNi": 1,
-    "encounterType": "1"
+    "encounterType": "1",
+    "dateCreat": "2025-02-04",
+    "dateModif": "2025-02-04",
+    "encounterStart": "2025-02-04",
+    "encounterEnd": "2025-02-05"
   },
   {
     "encounterNi": 2,
     "patientNi": 1,
-    "encounterType": "1"
+    "encounterType": "1",
+    "dateCreat": "2025-02-04",
+    "dateModif": "2025-02-04",
+    "encounterStart": "2025-03-04"
+  }],
+  "biology": [{
+    "biologyNi": 1,
+    "encounterNi": 1,
+    "patientNi": 1,
+    "dateCreat": "2025-02-04",
+    "dateModif": "2025-02-04",
+    "biologyDate": "2025-02-04",
+    "biologyCode": "29463-7",
+    "biologyValue": "45.5",
+    "biologyUnit": "kg"
   }]
 }

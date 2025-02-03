@@ -12,3 +12,7 @@ Table CORE.BIOLOGY (DDL)
 * dateCreat 1..1 date "DATE_CREAT"
 * dateModif 1..1 date "DATE_MODIF"
 * dateRemove 0..1 date "DATE_REMOVE"
+* biologyCode 0..1 string "null"
+* biologyValue 0..1 decimal "null"
+* biologyUnit 0..1 string "null"
+* biologyDate 0..1 date "null"

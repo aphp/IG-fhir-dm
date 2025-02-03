@@ -1,7 +1,7 @@
 id: aphp.fhir.fr.dm
 canonical: https://aphp.fr/ig/fhir/dm
 name: DM
-title: Guide d'implémentation pour le Data Management
+title: Data Management with FHIR
 description: "Ce guide d'implémentation décrit: (i) le processus d'alimentation d'un hub de données de santé, (ii) les cas d'usages traités et, in fine, (iii) la liste des données présentes dans le hub de données de santé d'un SIH."
 status: draft
 version: 0.1.0
