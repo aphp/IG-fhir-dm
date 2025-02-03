@@ -1,4 +1,4 @@
-Le processus d'instruction se compose en 4 étapes :
+Le processus d'instruction se compose de 5 étapes :
 
 #### Modèle métier
 
@@ -54,17 +54,30 @@ physiques des sources identifiées et une ressource `QuestionnaireResponse` corr
 1. Documenter ce qui a été découvert,
 2. Valider, car cette preuve s'appuie sur un langage formel et standard permettant le calcul de couverture (PKI).
 
-#### Conception de la couche sémantique
-
-À l'issue de la "Data Discovery", l'identification des ressources FHIR peut se faire. En priorité, nous choisissons les 
-ressources compatibles avec l'écosystème français (guides d'implémentation de l'ANS et d'Interop'santé). Récemment, de 
-nombreux efforts ont été réalisés au niveau européen et par conséquent et de plus en plus, nous devons également tenir 
-compte des guides d'implémentation FHIR européen, nous préparant ainsi à l'European Health Data Space (EHDS).
-
-Un alignement est réalisé entre le `QuestionnaireResponse` créé lors de la data discovery et les ressource FHIR pertinente identifiées. Cela permet de formaliser les règles d'alimentation des ressources FHIR.
-
 #### Validation
 
 Le processus de "Validation" consiste à s'assurer sur un échantillon représentatif que la collecte des données va 
 permettre de répondre aux exigences du cas d'usage. En fonction du résultat, les étapes suivantes peuvent différer à tel 
 point que le résultat peut provoquer l'abandon du cas d'usage.
+
+#### Conception de la couche sémantique
+
+À l'issue de la "Data Discovery" et une fois avoir apporter la preuve que le cas d'usage peut se faire, l'identification 
+des ressources FHIR est réalisé. En priorité, nous choisissons les ressources compatibles avec l'écosystème français 
+(guides d'implémentation de l'ANS et d'Interop'santé). Récemment, de nombreux efforts ont été réalisés au niveau européen 
+et par conséquent et de plus en plus, nous devons également tenir compte des guides d'implémentation FHIR européen, nous 
+préparant ainsi à l'European Health Data Space (EHDS).
+
+##### Alignement liste de variables (modèle métier) vers FHIR
+
+Un alignement est réalisé entre le `QuestionnaireResponse` créé lors de la data discovery et les ressource FHIR pertinentes 
+identifiées. Cela permet de formaliser les preuves que l'ensemble des variables d'un usage a été traitée.
+
+##### Alignement modèle physique vers FHIR
+
+Un alignement est réalisé entre les élements du modèle physique des source de données et et les ressource FHIR pertinentes 
+identifiées. Cela permet de formaliser les règles d'alimentation du Hub de données de santé (couche sémantique).
+
+#### Publication dans le catalogue des données
+
+TODO à définir

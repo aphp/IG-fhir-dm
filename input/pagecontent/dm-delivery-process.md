@@ -1,4 +1,4 @@
-Cette page décrit le processus de livraison de données en lien avec un cas d'usage.
+Cette page décrit le processus de livraison de données faisant suite aux traitement d'un cas d'usage (expression de besoins).
 
 ### Qualification
 
@@ -21,3 +21,13 @@ l'étape d'instruction.
 La description du processus de "Recette" est hors sujet pour le moment. Néanmoins, nous pouvons préciser que
 l'objectif de ce processus est de vérifier que la mise en œuvre issue du processus de "Réalisation" est conforme à la 
 spécification issue du processus d'"Instruction".
+
+### Mise en production
+
+La description du processus de "Mise en production" est hors sujet pour le moment. Néanmoins, nous pouvons préciser que
+l'objectif de ce processus est de suivre les procédures de mise en production.
+
+### Amélioration continue
+
+La description du processus de "Amélioration continue" est hors sujet pour le moment. Néanmoins, nous pouvons préciser que
+l'objectif de ce processus est d'assurer que les données livrées soient conformes aux exigences de nos utilisateurs.
