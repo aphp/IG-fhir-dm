@@ -6,14 +6,37 @@ title
 Modéle métier de l'usage
 end title
 
-class CorePatient {
-  - {field} patientNi: integer 1..1
-  - {field} vip: string 1..1
-  - {field} name: string 0..1
-  - {field} firstName: string 0..1
-  - {field} gender: string 0..1
-  - {field} birthDate: date 0..1
+class UseCorePatient {
+  - {field} identifier: Identifier 0..1
+  - {field} active: boolean 1..1
+  - {field} deceased[x]: boolean | dateTime 0..1
+  - {field} birthDate: date 1..1
+  - {field} gender: CodeableConcept 1..1
 }
 
+
+class UseCoreHopital {
+  - {field} name: string 1..1
+}
+
+
+class UseCoreContactSystemeSante {
+  - {field} patient: Reference([[StructureDefinition-UseCorePatient.html https://aphp.fr/ig/fhir/dm/StructureDefinition/UseCorePatient]]) 1..1
+  - {field} hospital: Reference([[StructureDefinition-UseCoreHopital.html https://aphp.fr/ig/fhir/dm/StructureDefinition/UseCoreHopital]]) 1..1
+  - {field} status: CodeableConcept 1..1
+  - {field} identifier: Identifier 1..1
+  - {field} contactType: CodeableConcept 1..1
+  - {field} period: Period 1..1
+}
+
+UseCoreContactSystemeSante "1" o-- "1" UseCorePatient
+UseCoreContactSystemeSante "1" o-- "1" UseCoreHopital
+
+class UseCoreQuestionnaire {
+  - {field} episode: Reference([[StructureDefinition-UseCoreContactSystemeSante.html https://aphp.fr/ig/fhir/dm/StructureDefinition/UseCoreContactSystemeSante]]) 1..1
+  - {field} questionnaire: Reference([[Questionnaire-UsageCore.html Questionnaire/UsageCore]]) 1..1
+}
+
+UseCoreQuestionnaire "1" o-- "1" UseCoreContactSystemeSante
 
 @enduml

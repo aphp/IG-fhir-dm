@@ -24,8 +24,7 @@ usage:
       target:
         definition:
           files:
-            - fsh-generated/resources/StructureDefinition-CorePatient.json
-            - fsh-generated/resources/StructureDefinition-CoreHopital.json
-            - fsh-generated/resources/StructureDefinition-CoreContactSystemeSante.json
-            - fsh-generated/resources/StructureDefinition-CoreQuestionnaire.json
-            - fsh-generated/resources/StructureDefinition-aphp-eds-questionnaire-response.json
+            - fsh-generated/resources/StructureDefinition-UseCorePatient.json
+            - fsh-generated/resources/StructureDefinition-UseCoreHopital.json
+            - fsh-generated/resources/StructureDefinition-UseCoreContactSystemeSante.json
+            - fsh-generated/resources/StructureDefinition-UseCoreQuestionnaire.json

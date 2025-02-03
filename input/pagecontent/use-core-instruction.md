@@ -9,8 +9,6 @@ d’usage sont portées par le questionnaire. En effet, dans notre approche, nou
 d’usage en créant une ressource `Questionnaire`, car celle-ci possède la flexibilité nécessaire pour représenter 
 l’ensemble des variables d’un cas d’usage tout en les structurant en groupes logiques (groupes métier ?).
 
-TODO : faire la ressource Questionnaire pour les variables socles
-
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
 <div style="text-align: center;">{%include core-logical.svg%}</div>
 
