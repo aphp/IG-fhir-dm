@@ -13,15 +13,7 @@ Pour plus d'information :
 
 ## Contexte
 
-### Contexte métier du projet
-
-[A COMPLETER : doit contenir la description fonctionnelle du projet destinée à un profil non technique]
-
-### Contexte technique du projet
-
-Ce guide d'implémentation présente la couche sémantique d'un Hub de donnée de santé.
-
-[A COMPLETER : doit expliquer brièvement quelles ressources / profils sont utilisés, exemple implémentation où IG est utilisé]
+Ce guide d'implémentation présente une méthodlogie visant la construction d'une couche sémantique pour un Hub de donnée de santé en utilisant comme langage commun : ***FHIR**.
 
 ## Construction de l'IG
 
@@ -105,15 +97,37 @@ TODO FormBuilder
 
 TODO FormBuilder
 
-## Validation des alignements de structures (StructureMap)
+## Execution des ressources StructureMap
 
-TODO MapBuilder
+Les ressources StructureMap écrites à l'aide du FML peuvent être exécutées afin de vérifier que les attendus du processus de transformation soient conforme aux spécifications.
+
+### Mise en oeuvre de l'environnement d'execution des fichiers FML
 
 ### Prérequis
 
+#### Mise en oeuvre du moteur d'execution du FML
+
+Il existe de nombreuses solutions permettant l'execution d'un fichier FML. Nous nous proposons de décrire l'installation et l'utilisation de la solution [Matchbox](https://github.com/ahdis/matchbox).
+
+Par la suite, nous considerons que les notions relatives à l'utilisation de l'outil `git` sont connues du lecteur. La première étape que nous recommandons est de créer un fork du projet [Matchbox](https://github.com/ahdis/matchbox) et de se positionner sur le commit de la dernière release. La gestion des dépendances de ce projet est réalisée par maven, nous précisons cela car ce projet est multimodule et va nécéssiter de modifier deux sous-modules. Comme précisé précédement ce projet est composé de trois sous-module :
+
+1. matchbox-engine
+2. matchbox-frontend
+3. matchbox-server
+
+Dans le sous-module matchbox-engine, nous devons ajouter dans le répertoire `src/main/resources` les packages de ce guide d'implémentation et de toutes ses dépendances, y compris le packages du standard FHIR.
+
+Puis dans le sous-module matchbox-server, nous devons ajouter ces packages dans le fichier `src/main/resources/application.yml` à la section `hapi.fhir.implementationguides`. Aussi dans la section `matchbox.fhir.context.onlyOneEngine` fixer à `true`.
+
+Une fois ces deux étapes de spécialisation au contexte du contenu de ce guide d'implémentation, nous devons constuire le projet, puis l'image Docker et enfin créer le conteneur. Comme pour l'utilisation de l'outil git, nous considérons que le lecteur est au fait de l'installation et de l'utilisation de `maven` et de `docker`.
+
+La construction du projet peut se faire à l'aide de maven et plus précisement à l'aide de la commande suivante : `mvn clean package -DskipTests`. Une fois cette étape réalisée, nous devons lancer la création de l'image Docker. Dans le sous-module matchbox-server, lancer la commande : `docker build -t matchbox .` pour construire l'image. Enfin toujours dans le sous-module matchbox-server, se positionner dans le répertoire with-postgres pour lancer la commande `docker-compose up -d` pour créer et executer l'image précédement construite associée à une base de donnée PostgreSQL.
+
+#### Ajout de l'extension RESTClient
+
 Prérequis : installation d'un client REST, par exemple [RESTClient (identifiant: humao.rest-client)](https://marketplace.visualstudio.com/items?itemName=humao.rest-client#:~:text=Once%20you%20prepared%20a%20request,press%20F1%20and%20then%20select%2F)
 
-### Fichier /input/test-map/test_fml.http.example
+##### Fichier /input/test-map/test_fml.http.example
 
 Ce fichier contient la documentation et les commandes permettant de tester les maps
 
@@ -123,10 +137,15 @@ Pour lancer une commande, ouvrir ce fichier et cliquer sur le lien `Send Request
 
 ![lancer une requête](input/images/RESTQuery.png)
 
-### Convention d'utilisation 
+##### Convention d'utilisation 
 
 Le paramétrage du fichier test_fml.http fait en local pour ses besoins propres n'a pas vocation à être poussé sur le repo distant. 
 
 Les ressources de test et les structuremap le doivent, respectivement dans les dossiers /input/test-map/ et /input/fml/ d'usage correspondant. 
 
 Si les ressources sont partagées, les conventions usuelles de classement et de nommage s'appliquent pour les structuremap, les conventions de l'IG s'appliquent. 
+
+
+### Validation des alignements de structures 
+
+TODO MapBuilder
