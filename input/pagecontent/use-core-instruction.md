@@ -50,7 +50,7 @@ L'alignement entre le modèle "physique" (modèle de l'application DPI) et le mo
 
 Vous pouvez trouver l'alignement formel entre le modèle physique et les profils FHIR : [Modèle physique vers FHIR](StructureMap-CorePhysical2FHIR.html)
 
-##### Profilage
+##### Profilage des données
 
 Le profilage des données permet de découvrir, de comprendre et d'organiser les données en identifiant leurs caractéristiques et en évaluant leur qualité. 
 Cette opération permet de savoir si les données sont complètes ou uniques, de détecter les erreurs et les schémas inhabituels, et de déterminer si elles peuvent être exploitées facilement.

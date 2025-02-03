@@ -1,6 +1,6 @@
 Instance: CoreExigences
 InstanceOf: DocumentReference
-Title: "Exigences des variables socles pour les EDSH"
+Title: "Exigences des variables socles pour les Entrepôts de Données de Santé Hospitalier (EDSH)"
 Description: """
 Fichier Excel ...
 """

@@ -6,13 +6,13 @@ skinparam actorStyle awesome
 
 actor :Professionnel de santé: as pds
 
-package Orbis{
+package DPI{
   usecase "Cas 2 : Saisie via un autre formulaire" as form
   usecase "Cas 1 : Saisie via le formulaire\n'Courbe de Croissance'" as cdc
-  usecase "Enrichissement de la table <i>Messungen</i>" as mess
+  usecase "Table de centralisation des mesures standardisées" as mess
 }
 
-usecase "Alimentation de l'Entrepôt de Données de Santé" as eds
+usecase "Alimentation du Hub de données" as eds
 
 pds --> form
 pds --> cdc

@@ -23,11 +23,13 @@ pour toute organisation souhaitant exploiter pleinement la valeur de ses donnée
 
 Ce guide d’implémentation constitue le support à la gestion des données. Plus spécifiquement, il est dédié à la mise en 
 œuvre d'une couche sémantique dans le cadre de la construction du Hub de données d’un système d’information hospitalier (SIH). 
-L’objectif de ce Hub est de permettre à une organisation de données de déployer efficacement sa gouvernance des données 
+L’objectif de ce Hub est de permettre à une organisation de déployer efficacement sa gouvernance des données 
 par la mise en œuvre d'une couche sémantique afin que l'ensemble du SIH utilise le même langage : **FHIR**.
 
 Il a été démontré que le modèle **hub-and-spoke** est le plus efficace pour optimiser les efforts d’interopérabilité 
 des systèmes.
+
+[//]: # ("Il a été démontré que le modèle **hub-and-spoke** est le plus efficace" <== ça mériterait une référence)
 
 ### Gouvernance
 
