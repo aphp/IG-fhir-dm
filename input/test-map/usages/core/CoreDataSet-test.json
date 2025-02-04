@@ -33,7 +33,7 @@
     "dateModif": "2025-02-04",
     "biologyDate": "2025-02-04",
     "biologyCode": "29463-7",
-    "biologyValue": "45.5",
+    "biologyValue": 45.5,
     "biologyUnit": "kg"
   }]
 }
