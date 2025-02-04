@@ -44,7 +44,7 @@ construit localement.
 
 ### Dépendances pour la construction de l'IG
 
-1. Vous avez besoin d'[installer java](https://adoptium.net/)
+1. Vous avez besoin d'[installer java](https://adoptium.net/) 21
 2. Vous avez besoin d'[installer jekyll](https://jekyllrb.com/docs/installation/)
 
 ### Exécution de SUSHI indépendamment de l'IG Publisher
