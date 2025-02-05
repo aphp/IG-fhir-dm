@@ -1,8 +1,8 @@
 ### Définitions de base
 
-| Concept | Définition | Description additionnelle |
-|---------|------------|---------------------------|
-|         |            |                           |
+| Concept      | Définition                                                                                                                                                                                                                                                              |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ConceptMap` | Une ressource `ConceptMap` est un patron de conception standard **FHIR**. Il permet de formaliser des alignements entre deux `ValueSet` afin de supporter la tâche de traduction notamment dans le cadre d'un échange de donnée impliquant une normalisation des codes. |
 
 ### Conventions de nommage
 
