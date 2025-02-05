@@ -21,20 +21,19 @@ Avec l’essor du **Big Data**, de l’**intelligence artificielle** et de l’*
 devenu un levier stratégique pour l’innovation et la compétitivité. Maîtriser ces enjeux est aujourd’hui indispensable 
 pour toute organisation souhaitant exploiter pleinement la valeur de ses données.
 
-Ce guide d’implémentation constitue le support à la gestion des données. Plus spécifiquement, il est dédié à la mise en 
-œuvre d'une couche sémantique dans le cadre de la construction du Hub de données d’un système d’information hospitalier (SIH). 
-L’objectif de ce Hub est de permettre à une organisation de déployer efficacement sa gouvernance des données 
-par la mise en œuvre d'une couche sémantique afin que l'ensemble du SIH utilise le même langage : **FHIR**.
+Ce guide d’implémentation sert de référence pour la gestion des données. Plus précisément, il accompagne la mise en place 
+d’une couche sémantique dans le cadre de la construction du Hub de données d’un système d’information hospitalier (SIH).
 
-Il a été démontré que le modèle **hub-and-spoke** est le plus efficace pour optimiser les efforts d’interopérabilité 
-des systèmes.
+L’objectif de ce Hub est de permettre à une organisation de renforcer sa gouvernance des données en instaurant une couche 
+sémantique homogène, garantissant ainsi que l’ensemble du SIH adopte un langage commun : **FHIR**.
 
-[//]: # ("Il a été démontré que le modèle **hub-and-spoke** est le plus efficace" <== ça mériterait une référence)
+Des études ont démontré que le modèle d’interaction **hub-and-spoke** est le plus efficace pour optimiser les efforts 
+d’interopérabilité des systèmes, notamment en comparaison avec le modèle **point-à-point** [1].
 
 ### Gouvernance
 
 Le guide d'implémentation AP-HP Data Management est géré par le Domaine Management Stratégique des Données au sein de 
-la Direction des Services Numériques (DSN) de l'AP-HP.
+la Direction des Services Numériques (DSN) de l'AP-HP. Ce guide est le support de la stratégie de le DSN en matière de gestion des données.
 
 ### Auteurs et contributeurs
 
@@ -46,3 +45,7 @@ la Direction des Services Numériques (DSN) de l'AP-HP.
 ### Dépendances
 
 {% include dependency-table.xhtml %}
+
+### Références
+
+[1] Dama International. 2017. DAMA-DMBOK: Data Management Body of Knowledge (2nd Edition). Technics Publications, LLC, Denville, NJ, USA.
