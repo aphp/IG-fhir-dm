@@ -2,509 +2,2403 @@
   "resourceType": "Questionnaire",
   "id": "UsageCore",
   "meta": {
-    "versionId": "2",
-    "lastUpdated": "2025-02-03T13:54:18.750+00:00",
-    "source": "https://aphp.fr/ig/fhir/Endpoint/form-builder"
+    "versionId": "5",
+    "lastUpdated": "2025-02-18T08:40:12.343+00:00",
+    "source": "https://aphp.fr/ig/fhir/eds/Endpoint/form-builder"
   },
   "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "name": "UsageCore",
   "title": "Questionnaire usage Core",
   "status": "active",
   "date": "2025-02-03",
-  "description": "Arborescence des variables du socle des EDSH.",
-  "item": [ {
-    "linkId": "4647259356106",
-    "text": "Patient",
-    "type": "group",
-    "repeats": true,
-    "item": [ {
-      "linkId": "3764723550987",
-      "text": "NSS",
-      "type": "string",
-      "item": [ {
-        "extension": [ {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [ {
-              "system": "http://hl7.org/fhir/questionnaire-item-control",
-              "code": "help",
-              "display": "Help-Button"
-            } ],
-            "text": "Intention"
-          }
-        } ],
-        "linkId": "3764723550987_intention",
-        "text": "NIR de l'ouvrant droit",
-        "type": "display"
-      } ]
-    }, {
-      "linkId": "5711960356160",
-      "text": "INS-NIR",
-      "type": "string",
-      "item": [ {
-        "extension": [ {
-          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-          "valueCodeableConcept": {
-            "coding": [ {
-              "system": "http://hl7.org/fhir/questionnaire-item-control",
-              "code": "help",
-              "display": "Help-Button"
-            } ],
-            "text": "Intention"
-          }
-        } ],
-        "linkId": "5711960356160_intention",
-        "text": "NIR de l'ayant droit",
-        "type": "display"
-      } ]
-    }, {
-      "linkId": "3894630481120",
-      "text": "Sexe",
-      "type": "choice",
-      "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/SexeToDo"
-    }, {
-      "linkId": "7403180550717",
-      "text": "naissance",
+  "description": "Variables du socle des EDSH.",
+  "item": [
+    {
+      "linkId": "4647259356106",
+      "text": "Données socio-démographiques",
       "type": "group",
-      "item": [ {
-        "linkId": "5036133558154",
-        "text": "Date de naissance",
-        "type": "date"
-      }, {
-        "linkId": "6931296968515",
-        "text": "rang gémellaire du bénéficiaire",
-        "type": "integer"
-      } ]
-    }, {
-      "linkId": "6860948998011",
-      "text": "décès",
-      "type": "group",
-      "item": [ {
-        "linkId": "5633552097315",
-        "text": "date de décès",
-        "type": "date"
-      }, {
-        "linkId": "9098810065693",
-        "text": "source de la date de décès",
-        "type": "choice",
-        "answerOption": [ {
-          "valueCoding": {
-            "display": "INSEE"
-          }
-        }, {
-          "valueCoding": {
-            "display": "CepiDc"
-          }
-        }, {
-          "valueCoding": {
-            "display": "SIH"
-          }
-        } ]
-      } ]
-    }, {
-      "linkId": "1502724922216",
-      "text": "Adresse",
-      "type": "group",
-      "item": [ {
-        "linkId": "3816475533472",
-        "text": "Géocodage",
-        "type": "decimal",
-        "repeats": true,
-        "item": [ {
-          "linkId": "1185653257776",
-          "text": "date de recueil du géocodage",
-          "type": "date"
-        }, {
-          "linkId": "7651448032665",
-          "text": "longitude",
-          "type": "decimal"
-        }, {
-          "linkId": "3709843054556",
-          "text": "latitude",
-          "type": "decimal"
-        }, {
-          "extension": [ {
-            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-            "valueCodeableConcept": {
-              "coding": [ {
-                "system": "http://hl7.org/fhir/questionnaire-item-control",
-                "code": "help",
-                "display": "Help-Button"
-              } ],
-              "text": "Intention"
+      "repeats": false,
+      "item": [
+        {
+          "linkId": "2958000860428",
+          "text": "Identité patient",
+          "type": "group",
+          "item": [
+            {
+              "linkId": "5711960356160",
+              "text": "Numéro d'inscription au Répertoire (NIR)",
+              "type": "string",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "5711960356160_intention",
+                  "text": "Numéro unique attribué à chaque personne à sa naissance sur la base d’éléments d’état civil transmis par les mairies à l’INSEE",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "3764723550987",
+              "text": "Identité Nationale de Santé (INS)",
+              "type": "string",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "3764723550987_intention",
+                  "text": "Numéro d'identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "5036133558154",
+              "text": "Date de naissance",
+              "type": "date",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "5036133558154_intention",
+                  "text": "Date de naissance des papiers d'identité utilisés pour la production de l'INS ",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "5633552097315",
+              "text": "Date de décès",
+              "type": "date",
+              "item": [
+                {
+                  "linkId": "9098810065693",
+                  "text": "Source de la date de décès",
+                  "type": "choice",
+                  "answerOption": [
+                    {
+                      "valueCoding": {
+                        "display": "INSEE"
+                      }
+                    },
+                    {
+                      "valueCoding": {
+                        "display": "CepiDc"
+                      }
+                    },
+                    {
+                      "valueCoding": {
+                        "display": "SIH"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "5633552097315_intention",
+                  "text": "Date de décès à l'hopital, ou date de décès collectée par chaînage avec une base externe comme l'INSEE ou le CepiDc",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "6931296968515",
+              "text": "Rang gémellaire du bénéficiaire",
+              "type": "integer",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "6931296968515_intention",
+                  "text": "Pour le régime général, il permet de distinguer les naissances gémellaires de même sexe",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "2958000860428_intention",
+              "text": "Identitologie. Clé d'appariement unique pouvant permettre le chaînage direct du socle avec d'autres bases",
+              "type": "display"
             }
-          } ],
-          "linkId": "3816475533472_intention",
-          "text": "coordonnées géographique conformément à WGS84",
+          ]
+        },
+        {
+          "linkId": "5491974639955",
+          "text": "Environnement",
+          "type": "group",
+          "item": [
+            {
+              "linkId": "3816475533472",
+              "text": "Géocodage",
+              "type": "decimal",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "3709843054556",
+                  "text": "Latitude",
+                  "type": "decimal"
+                },
+                {
+                  "linkId": "7651448032665",
+                  "text": "Longitude",
+                  "type": "decimal"
+                },
+                {
+                  "linkId": "1185653257776",
+                  "text": "Date du recueil de l'information",
+                  "type": "date"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "3816475533472_intention",
+                  "text": "Coordonnées géographiques (latitude et longitude) de l'adresse du patient",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "7621032273792",
+              "text": "IRIS",
+              "type": "choice",
+              "repeats": true,
+              "answerValueSet": "IRIS",
+              "item": [
+                {
+                  "linkId": "4999580038872",
+                  "text": "Date du recueil de l'information",
+                  "type": "date"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "7621032273792_intention",
+                  "text": "Codage de l'adresse du patient selon la méthode d'Ilots Regroupés pour l'Information Statistique de l'INSEE. Si adresse géocodée non disponible",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "5491974639955_intention",
+              "text": "Clé d'appariement avec les bases de données environnementales. Données essentielles pour la conduite de recherches et d'études liées aux déterminants de santé",
+              "type": "display"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2825244231605",
+      "text": "Données PMSI",
+      "type": "group",
+      "repeats": true,
+      "item": [
+        {
+          "linkId": "8164976487070",
+          "text": "Age",
+          "type": "integer",
+          "item": [
+            {
+              "linkId": "1690778867802",
+              "text": "Date du recueil de l'information",
+              "type": "date"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "8164976487070_intention",
+              "text": "Age lors de la venue à l'hôpital tel que défini dans le PMSI. Si date de naissance (1.a.3) ou date de début du séjour (2.8) non disponibles",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "3894630481120",
+          "text": "Sexe",
+          "type": "choice",
+          "answerValueSet": "TO DO"
+        },
+        {
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence",
+          "type": "choice",
+          "answerValueSet": "TO DO",
+          "item": [
+            {
+              "linkId": "1537511139540",
+              "text": "Date du recueil de l'information",
+              "type": "date"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "2446369196222_intention",
+              "text": "Code de la commune de résidence du patient selon la classification PMSI",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "type": "group",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information",
+              "type": "date"
+            },
+            {
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic ?",
+              "type": "choice",
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "display": "DP"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "display": "DAS"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "display": "DR"
+                  }
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "9391816419630_intention",
+              "text": "L'ensemble des diagnostics (qu'il s'agisse de diagnostics principaux, diagnostics reliés, ou diagnostics associés significatifs) selon la classification CIM-10, à l'échelle du séjour",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "type": "group",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information",
+              "type": "date"
+            },
+            {
+              "linkId": "5066866286682",
+              "text": "Date de l'acte ?",
+              "type": "dateTime"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "591926901726_intention",
+              "text": "Ensemble des actes médicotechniques réalisés par les médecins, selon la classification utilisée dans chaque PMSI",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "5991443718282",
+          "text": "Date de début de séjour",
+          "type": "date",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "5991443718282_intention",
+              "text": "Date de début du séjour",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "6114780320846",
+          "text": "Date de fin de séjour",
+          "type": "date",
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "6114780320846_intention",
+              "text": "Date de fin du séjour",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour",
+          "type": "integer",
+          "item": [
+            {
+              "linkId": "6567394304650",
+              "text": "Libellé",
+              "type": "string"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "6172398101212_intention",
+              "text": "Mode d'entrée pendant le séjour ; dans le cas d'un séjour avec passage dans plusieurs unités médicales, il s'agit du mode d'entrée dans la première unité médicale dans l’ordre chronologique pendant le séjour",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour",
+          "type": "integer",
+          "item": [
+            {
+              "linkId": "896083568884",
+              "text": "Copy of Libellé",
+              "type": "string"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "3354867075704_intention",
+              "text": "Mode de sortie pendant le séjour ; dans le cas d'un séjour avec passage dans plusieurs unités médicales, il s'agit du mode de sortie de la dernière unité médicale dans l’ordre chronologique pendant le séjour",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "help",
+                    "display": "Help-Button"
+                  }
+                ],
+                "text": "Intention"
+              }
+            }
+          ],
+          "linkId": "2825244231605_intention",
+          "text": "Description générale du patient et de la venue à l'hôpital,dans les différents PMSI (MCO, SSR, HAD, Psy)",
           "type": "display"
-        } ]
-      }, {
-        "linkId": "7621032273792",
-        "text": "IRIS",
-        "type": "choice",
-        "repeats": true,
-        "answerValueSet": "https://hl7.fr/ig/fhir/core/ValueSet/fr-core-vs-insee-code",
-        "item": [ {
-          "linkId": "4999580038872",
-          "text": "date de recueil de l'IRIS",
-          "type": "date"
-        } ]
-      } ]
-    } ]
-  }, {
-    "linkId": "1693164086678",
-    "text": "Mode de vie",
-    "type": "group",
-    "repeats": true,
-    "item": [ {
-      "linkId": "8594428846762",
-      "text": "Lien patient",
-      "type": "reference"
-    }, {
-      "linkId": "6516656388671",
-      "text": "Consommation de tabac (à détailler)",
-      "type": "display"
-    }, {
-      "linkId": "8218964737490",
-      "text": "Consommation d'alcool (à détailler",
-      "type": "display"
-    }, {
-      "linkId": "604442013287",
-      "text": "Consommation d'autres drogues (à détailler)",
-      "type": "display"
-    }, {
-      "linkId": "485428113240",
-      "text": "Activité physique (à détailler)",
-      "type": "display"
-    } ]
-  }, {
-    "linkId": "2825244231605",
-    "text": "Données PMSI",
-    "type": "group",
-    "repeats": true,
-    "item": [ {
-      "linkId": "9141889976036",
-      "text": "Lien patient",
-      "type": "reference"
-    }, {
-      "linkId": "9004984884823",
-      "text": "Séjour",
+        }
+      ]
+    },
+    {
+      "linkId": "7702944131447",
+      "text": "Biologie",
       "type": "group",
-      "item": [ {
-        "linkId": "5991443718282",
-        "text": "Date de début de séjour",
-        "type": "date"
-      }, {
-        "linkId": "6172398101212",
-        "text": "Mode d'entrée",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/METoDo"
-      }, {
-        "linkId": "6114780320846",
-        "text": "Date de fin de séjour",
-        "type": "date"
-      }, {
-        "linkId": "3354867075704",
-        "text": "Mode de sortie",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/MSToDo"
-      } ]
-    }, {
-      "linkId": "9391816419630",
-      "text": "Diagnostics",
+      "repeats": false,
+      "item": [
+        {
+          "linkId": "5241323453538",
+          "text": "Fonction rénale",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "7169026818760",
+              "text": "Dosage de l'urée dans le sang",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "8712072639576",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "554606544143",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "5827729311488",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "3753371809615",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "7284688712273",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "7169026818760_intention",
+                  "text": "Dosage sanguin de l'urée qui permet d'évaluer la fonction rénale",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "500408205043",
+              "text": "Créatininémie",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "977768150991",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "279176538278",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "271848662924",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "488869963230",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "984480974142",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "272068880657",
+                  "text": "Dosage sanguin de la créatinine qui permet d'évaluer la fonction rénale",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "786621340679",
+              "text": "Débit de filtration glomérulaire (DFG)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "974417569313",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "600008092136",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "288013601711",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "809916645548",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "323493215684",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "195685944623",
+                  "text": "Le débit de filtration par les glomérules rénaux permet d'évaluer la fonction rénale en dehors des épisodes aigus",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "419282985970",
+          "text": "Hémogramme",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "210077225604",
+              "text": "Leucocytes",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "695484403752",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "578695171519",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "844270911527",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "147832677057",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "175377691907",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "382375729527",
+                  "text": "Dosage sanguin des globules blancs",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "304159088493",
+              "text": "Hémoglobine",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "597082091886",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "471894150678",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "958333284757",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "404489113722",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "849522090945",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "420718626675",
+                  "text": "Dosage sanguin de l'hémoglobine permettant le diagnostic de l'anémie",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "813863316705",
+              "text": "Hématocrite",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "814457693114",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "717817548701",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "379339292477",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "728299430368",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "296878978572",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "826231994103",
+                  "text": "Volume occupé par les globules rouges dans le sang, par rapport au volume sanguin total. Utile pour évaluer l'état d'hydratation du patient et poser de nombreux diagnostics",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "459731866614",
+              "text": "Globules rouges",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "274747215145",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "394008758803",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "536131874715",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "823112437353",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "567971363132",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "332414288877",
+                  "text": "Dosage sanguin des globules rouges",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "163624088831",
+              "text": "Volume Globulaire Moyen (VGM)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "117718572179",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "766800452654",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "490513081670",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "472419988966",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "781499407274",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "258348056463",
+                  "text": "Volume moyen des globules rouges, qui est une valeur centrale pour le diagnostic des anémies",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "794156787471",
+              "text": "Plaquettes",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "555876654291",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "504411027287",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "639812945465",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "491138393211",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "859081902103",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "466904505570",
+                  "text": "Dosage sanguin des plaquettes, utile pour toute pathologie faisant intervenir le système immunitaire / hématologique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "961905168477",
+              "text": "Neutrophiles",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "971737782589",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "255457777106",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "473989322417",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "501223312827",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "454392779990",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "664900547119",
+                  "text": "Dosage sanguin des globules blancs de type polynucléaires neutrophiles, utile pour toute pathologie faisant intervenir le système immunitaire / hématologique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "695150914696",
+              "text": "Lymphocytes",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "663015267867",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "548571990081",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "357661538905",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "217415906562",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "719012554421",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "613857432608",
+                  "text": "Dosage sanguin des globules blancs de type lymphocytes, utile pour toute pathologie faisant intervenir le système immunitaire / hématologique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "700490326748",
+              "text": "Eosinophiles",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "283372872777",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "732609383475",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "427000822533",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "162927062211",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "801523695037",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "607091164403",
+                  "text": "Dosage sanguin des globules blancs de type éosinophiles, utile pour toute pathologie faisant intervenir le système immunitaire  / hématologique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "168661900522",
+              "text": "Monocytes",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "651849853076",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "773480648641",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "335226309641",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "693935514182",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "241118076478",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "757972628934",
+                  "text": "Dosage sanguin des globules blancs de type monocytes, utile pour toute pathologie faisant intervenir le système immunitaire / hématologique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "658898841893",
+              "text": "Taux de prothrombine (TP)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "219513623269",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "379165914699",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "429387291763",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "253311419093",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "706043904552",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "772627508475",
+                  "text": "Le taux de prothrombine permet d'évaluer la coagulation du sang",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "795145096241",
+              "text": "Temps de céphaline activée (TCA)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "664804454505",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "339688288601",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "754581131140",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "680824187549",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "293820463780",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "391959403634",
+                  "text": "Le temps de céphaline activée permet d'évaluer la coagulation du sang",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "796308115381",
+          "text": "Bilan hépatique",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "715226319725",
+              "text": "Aspartate aminotransférase (AST)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "757363598159",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "884511824515",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "899626356193",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "584123691679",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "935082505777",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "155300271843",
+                  "text": "Dosage sanguin d'une enzyme permettant d'évaluer la fonction hépatique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "876439410327",
+              "text": "Alanine aminotransférase (ALT)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "698926487710",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "881040341675",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "914082125507",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "581883215378",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "594636277238",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "805019270382",
+                  "text": "Dosage sanguin d'une enzyme permettant d'évaluer la fonction hépatique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "287545455976",
+              "text": "Gamma-glutamyl transférase (GGT)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "688754894578",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "191793018592",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "554823851678",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "529114499294",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "930639734905",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "455354251362",
+                  "text": "Dosage sanguin d'une enzyme permettant d'évaluer la fonction hépatique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "508269571594",
+              "text": "Phosphatases alcalines (PAL)",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "726897332003",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "576101241859",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "650432942630",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "334934131934",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "989367019315",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "977709314949",
+                  "text": "Dosage sanguin d'une enzyme permettant d'évaluer la fonction hépatique ou certaines maladies osseuses ou métaboliques",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "927344090061",
+              "text": "Bilirubine totale",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "657001208566",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "943765996333",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "510595115954",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "439478297194",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "363409811810",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "783113311620",
+                  "text": "Dosage sanguin de la bilirubine, produit de dégradation de l'hémoglobine, permettant d'évaluer la fonction hépatique",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "208196328453",
+              "text": "Bilirubine conjuguée",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "572609665342",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "481261763129",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "711131346437",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "454797820953",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "741523817402",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "321386539842",
+                  "text": "Dosage sanguin de la bilirubine conjuguée, produit de dégradation de l'hémoglobine, permettant d'évaluer la fonction hépatique",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "334039497382",
+          "text": "Autres",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "273778921448",
+              "text": "Glycémie à jeun",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "398039571990",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "632111374848",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "844988086697",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "228927847562",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "269189312131",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "977261815970",
+                  "text": "Dosage sanguin pour diagnostic du diabète",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "632894677152",
+              "text": "Hémoglobine glyquée",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "305948197507",
+                  "text": "code loinc",
+                  "type": "choice",
+                  "answerValueSet": "http://loinc.org"
+                },
+                {
+                  "linkId": "249760336391",
+                  "text": "Date et heure du prélèvement",
+                  "type": "dateTime"
+                },
+                {
+                  "linkId": "255050517895",
+                  "text": "Statut de validation",
+                  "type": "string"
+                },
+                {
+                  "linkId": "804046966782",
+                  "text": "Borne inférieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "linkId": "703927692674",
+                  "text": "Borne supérieure de normalité du résultat",
+                  "type": "quantity"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "138957204850",
+                  "text": "Dosage sanguin de l'hémoglobine glyquée, qui est la part de l'hémoglobine qui capte le sucre dans le sang et est un reflet cumulé de la glycémie sur les derniers mois. Permet le diagnostic et le suivi du diabète",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "help",
+                    "display": "Help-Button"
+                  }
+                ],
+                "text": "Intention"
+              }
+            }
+          ],
+          "linkId": "7702944131447_intention",
+          "text": "Les données de biologie contribuent au diagnostic, à l’évaluation de la sévérité, de la tolérance des produits de santé, au suivi des patients, etc., et constituent en tant que tels des indicateurs d’intérêt scientifique  Données cliniques non disponibles dans la base principale du SNDS  Les variables de biologie proposées constituent un socle minimal pour fournir une vision de l'état général du patient",
+          "type": "display"
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
       "type": "group",
       "repeats": true,
-      "item": [ {
-        "linkId": "6427586743735",
-        "text": "Type de diagnostic",
-        "type": "choice",
-        "answerOption": [ {
-          "valueCoding": {
-            "display": "DP"
-          }
-        }, {
-          "valueCoding": {
-            "display": "DA"
-          }
-        }, {
-          "valueCoding": {
-            "display": "DR"
-          }
-        } ]
-      }, {
-        "linkId": "2703037944969",
-        "text": "Code diagnostic",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CIM10_ATIHToDo"
-      } ]
-    }, {
-      "linkId": "591926901726",
-      "text": "Actes",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "type": "string",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "1923143398283",
+              "text": "codification",
+              "type": "choice",
+              "repeats": true,
+              "answerValueSet": "ATC/UCD/CIP/DCI/libellé_commercial"
+            },
+            {
+              "linkId": "387026794874",
+              "text": "Voie d'administration",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "Standard terms"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "156631794800_intention",
+              "text": "Libellé du médicament prescrit",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "6348237104421_intention",
+              "text": "Posologie quantitative de la prescription. Métadonnées en cours de définition par l'ANS (livraison fin 2023)",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "type": "string",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "631972144976",
+              "text": "codification",
+              "type": "choice",
+              "repeats": true,
+              "answerValueSet": "ATC/UCD/CIP/DCI/libellé_commercial"
+            },
+            {
+              "linkId": "811931484859",
+              "text": "Voie d'administration",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "Standard terms"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "380392928278",
+              "text": "Libellé du médicament administré",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "type": "group",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "4765772671997",
+              "text": "Quantité administrée",
+              "type": "quantity",
+              "repeats": false
+            },
+            {
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration",
+              "type": "dateTime",
+              "repeats": false
+            },
+            {
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration",
+              "type": "dateTime",
+              "repeats": false
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "5720103839343_intention",
+              "text": "Dosage du médicament administré par prise",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                    "code": "help",
+                    "display": "Help-Button"
+                  }
+                ],
+                "text": "Intention"
+              }
+            }
+          ],
+          "linkId": "817801935685_intention",
+          "text": "L'exposition médicamenteuse est essentielle pour la caractérisation et l’étude des pathologies médicales et de leurs facteurs de risque, l’évaluation et l’amélioration de leur prise en charge, ainsi que pour les études (notamment de pharmacovigilance) en vie réelle.  Données cliniques non disponibles dans la base principale du SNDS",
+          "type": "display"
+        }
+      ]
+    },
+    {
+      "linkId": "214880328197",
+      "text": "Examen clinique",
       "type": "group",
-      "repeats": true,
-      "item": [ {
-        "linkId": "5066866286682",
-        "text": "Date de l'acte",
-        "type": "dateTime"
-      }, {
-        "linkId": "2435829260291",
-        "text": "Code acte",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CCAM_descriptiveToDo"
-      } ]
-    } ]
-  }, {
-    "linkId": "305831246173",
-    "text": "Signes vitaux",
-    "type": "group",
-    "repeats": true,
-    "item": [ {
-      "linkId": "8105658220638",
-      "text": "Lien patient",
-      "type": "reference"
-    }, {
-      "linkId": "4846902346416",
-      "text": "Taille",
-      "type": "group",
-      "repeats": true,
-      "item": [ {
-        "linkId": "941821315470",
-        "text": "Date de la mesure",
-        "type": "date"
-      }, {
-        "linkId": "3017914601461",
-        "text": "Taille",
-        "type": "quantity"
-      } ]
-    }, {
-      "linkId": "451513217936",
-      "text": "Poids",
-      "type": "group",
-      "repeats": true,
-      "item": [ {
-        "linkId": "151269044052",
-        "text": "Date de la mesure",
-        "type": "date"
-      }, {
-        "linkId": "529016167174",
-        "text": "Poids",
-        "type": "quantity"
-      } ]
-    }, {
-      "linkId": "574291105122",
-      "text": "Pression artérielle",
-      "type": "group",
-      "repeats": true,
-      "item": [ {
-        "linkId": "820981783585",
-        "text": "Date de la mesure",
-        "type": "date"
-      }, {
-        "linkId": "848797127998",
-        "text": "Pression artérielle diastolique",
-        "type": "quantity"
-      }, {
-        "linkId": "4160905247955",
-        "text": "Pression artérielle systolique",
-        "type": "quantity"
-      } ]
-    } ]
-  }, {
-    "linkId": "817801935685",
-    "text": "Exposition médicamenteuse",
-    "type": "group",
-    "repeats": true,
-    "item": [ {
-      "linkId": "2895397931337",
-      "text": "Lien patient",
-      "type": "reference"
-    }, {
-      "linkId": "9077158123347",
-      "text": "Prescription médicamenteuse",
-      "type": "group",
-      "repeats": true,
-      "item": [ {
-        "linkId": "156631794800",
-        "text": "Médicament",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/ATC-UCD-CIP-DCI-commercial_labelToDo"
-      }, {
-        "linkId": "387026794874",
-        "text": "Voie d'administration",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/StandardTermsToDo"
-      }, {
-        "linkId": "6348237104421",
-        "text": "Posologie (à détailler)",
-        "type": "display"
-      } ]
-    }, {
-      "linkId": "3341868154617",
-      "text": "Administration médicamenteuse",
-      "type": "group",
-      "repeats": true,
-      "item": [ {
-        "linkId": "2946504042239",
-        "text": "Médicament",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/ATC-UCD-CIP-DCI-commercial_labelToDo"
-      }, {
-        "linkId": "9752763809045",
-        "text": "Voie d'administration",
-        "type": "choice",
-        "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/StandardTermsToDo"
-      }, {
-        "linkId": "5720103839343",
-        "text": "Dosage",
-        "type": "group",
-        "item": [ {
-          "linkId": "4765772671997",
-          "text": "Quantité administrée",
-          "type": "quantity"
-        }, {
-          "linkId": "1443558617577",
-          "text": "Date et heure de début d'administration",
-          "type": "dateTime"
-        }, {
-          "linkId": "780829110731",
-          "text": "Date et heure de fin d'administration",
-          "type": "dateTime"
-        } ]
-      } ]
-    } ]
-  }, {
-    "linkId": "7702944131447",
-    "text": "Biologie",
-    "type": "group",
-    "repeats": true,
-    "item": [ {
-      "linkId": "3448623221348",
-      "text": "Lien patient",
-      "type": "reference"
-    }, {
-      "linkId": "5241323453538",
-      "text": "Résultat de biologie",
-      "type": "group",
-      "repeats": true,
-      "item": [ {
-        "linkId": "8712072639576",
-        "text": "Analyse biologique",
-        "type": "choice",
-        "answerOption": [ {
-          "valueCoding": {
-            "display": "Urémie"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Créatininémie"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Débit de Filtration Glomérulaire"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Leucocytes (dans le sang)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Hémoglobinémie"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Hématocrite"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Globules rouges"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Volume Globulaire Moyen (VGM)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Plaquettes (dans le sang)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Neutrophiles (dans les sang)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Lymphocytes (dans le sang)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Eosinophiles (dans le sang)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Monocytes (dans le sang)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Taux de prothrombine (TP)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Temps de céphaline activée (TCA)"
-          }
-        }, {
-          "valueCoding": {
-            "display": "ASAT"
-          }
-        }, {
-          "valueCoding": {
-            "display": "ALAT"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Gamma gt"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Phosphatases alcalines"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Bilirubine totale"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Bilirubine conjuguée"
-          }
-        }, {
-          "valueCoding": {
-            "display": "Glycémie à jeûn"
-          }
-        }, {
-          "valueCoding": {
-            "display": "HbA1C"
-          }
-        } ]
-      }, {
-        "linkId": "554606544143",
-        "text": "Date et heure du prélèvement",
-        "type": "dateTime"
-      }, {
-        "linkId": "397980461207",
-        "text": "Résultat de l'analyse",
-        "type": "quantity"
-      }, {
-        "linkId": "5827729311488",
-        "text": "Valeurs normales",
-        "type": "group",
-        "item": [ {
-          "linkId": "3753371809615",
-          "text": "Borne basse",
-          "type": "quantity"
-        }, {
-          "linkId": "7284688712273",
-          "text": "Borne haute",
-          "type": "quantity"
-        } ]
-      } ]
-    } ]
-  } ]
+      "item": [
+        {
+          "linkId": "305831246173",
+          "text": "Dossier de soins",
+          "type": "group",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "4846902346416",
+              "text": "Taille",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "941821315470",
+                  "text": "Date de la mesure",
+                  "type": "date"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "4846902346416_intention",
+                  "text": "Taille du patient telle que relevée à un instant donné lors de sa venue à l'hôpital",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "451513217936",
+              "text": "Poids",
+              "type": "quantity",
+              "repeats": true,
+              "item": [
+                {
+                  "linkId": "151269044052",
+                  "text": "Date de la mesure",
+                  "type": "date"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "451513217936_intention",
+                  "text": "Poids du patient tel que relevé à un instant donné lors de sa venue à l'hôpital",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "4160905247955",
+              "text": "Pression artérielle systolique",
+              "type": "quantity",
+              "item": [
+                {
+                  "linkId": "987654638442",
+                  "text": "Date de la mesure",
+                  "type": "date"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "4160905247955_intention",
+                  "text": "Pression artérielle systolique mesurée à un instant donné de la venue du patient à l'hôpital",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "848797127998",
+              "text": "Pression artérielle diastolique",
+              "type": "quantity",
+              "item": [
+                {
+                  "linkId": "820981783585",
+                  "text": "Date de la mesure",
+                  "type": "date"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "848797127998_intention",
+                  "text": "Pression artérielle diastolique mesurée à un instant donné de la venue du patient à l'hôpital",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "305831246173_intention",
+              "text": "Caractérisation générale du patient et facteurs de risque. Données cliniques non disponibles dans la base principale du SNDS",
+              "type": "display"
+            }
+          ]
+        },
+        {
+          "linkId": "1693164086678",
+          "text": "Style de vie",
+          "type": "group",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "6516656388671",
+              "text": "Consommation de tabac (A définir dans des travaux complémentaires)",
+              "type": "group",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "6516656388671_intention",
+                  "text": "Consommation de tabac par le patient. ",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "8218964737490",
+              "text": "Consommation d'alcool (A définir dans des travaux complémentaires)",
+              "type": "group",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "8218964737490_intention",
+                  "text": "Consommation d'alcool par le patient. ",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "7063448155344",
+              "text": "Consommation d'autres drogues (A définir dans des travaux complémentaires)",
+              "type": "group",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "7063448155344_intention",
+                  "text": "Nom des autres drogues consommées régulièrement le cas échéant",
+                  "type": "display"
+                }
+              ]
+            },
+            {
+              "linkId": "485428113240",
+              "text": "Activité physique (A définir dans des travaux complémentaires)",
+              "type": "group",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "485428113240_intention",
+                  "text": "Activité physique du patient",
+                  "type": "display"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
