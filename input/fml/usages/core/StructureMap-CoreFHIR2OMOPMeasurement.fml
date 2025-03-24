@@ -1,0 +1,31 @@
+map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPMeasurement" = "CoreFHIR2OMOPMeasurement"
+
+/// name = 'CoreFHIR2OMOPMeasurement'
+/// title = 'Mapping Observation laboratory resources to Measurement OMOP Domain'
+/// status = 'draft'
+
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias LabObs as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPMeasurement" alias MeasurementTable as target
+
+imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreSimpleObservation2OMOPMeasurement"
+// imports "https://aphp.fr/ig/fhir/dm/StructureMap/ComplexMeasurement"
+// imports "https://aphp.fr/ig/fhir/dm/StructureMap/*Measurement"
+
+group Observation(source src: LabObs, target tgtBundle : LogicalBundle) {
+    src -> tgtBundle.id = uuid() "setId";
+    src -> tgtBundle.type = 'transaction' "setType";
+    src where code.coding.code in ('14682-9'|'22664-7'|'77147-7') -> tgtBundle.entry as newEntry then {
+        src -> newEntry.measurement = create("MeasurementTable") as newMeasurement then {
+            src then SimpleObservation(src, newMeasurement) "transformSimpleObservation";
+        } "createSimpleObservation";
+    } "newEntrySimpleObservation";
+
+/*
+    src where code.coding.code in ('50197-3') -> tgtBundle.entry as newEntry then {
+        src -> newEntry.measurement = create("MeasurementTable") as newMeasurement then {
+            src then ComplexMeasurement(src, newMeasurement) "transformComplexMeasurement";
+        } "createComplexMeasurement";
+    } "newEntryComplexMeasurement";
+*/
+}

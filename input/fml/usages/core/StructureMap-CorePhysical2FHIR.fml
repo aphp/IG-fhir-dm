@@ -8,7 +8,7 @@ map "https://aphp.fr/ig/fhir/dm/StructureMap/CorePhysical2FHIR" = "CorePhysical2
 
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreDataSet" alias DataSet as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CorePatient" alias PatientTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreEncounter" alias EncounterTable as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreSejour" alias SejourTable as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreBiology" alias BiologyTable as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreClinical" alias ClinicalTable as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationAdm" alias MedicationAdmTable as source
@@ -17,14 +17,15 @@ uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias FHIRBundle as target
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias FHIRPatient as target
 uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias FHIREncounter as target
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias FHIRObservation as target
+uses "http://hl7.org/fhir/StructureDefinition/Meta" alias FHIRMeta as target
 
 group dataSet(source srcDataSet : DataSet, target tgtBundle : FHIRBundle) <<types>> {
   srcDataSet -> tgtBundle.id = uuid() "setId";
   srcDataSet.patient as srcPatient -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Patient") as newPatient then {
     srcPatient then patient(srcPatient, newPatient) "setPatient";
-    srcDataSet.encounter as srcEncounter -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Encounter") as newEncounter then {
-      srcEncounter then encounter(srcEncounter, newPatient, newEncounter) "setEncounter";
-      srcDataSet.biology as srcBiology where encounterNi.reference = ('EncounterCore/' + %srcEncounter.encounterNi.toString()) -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Observation") as newObservation then {
+    srcDataSet.sejour as srcSejour -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Encounter") as newEncounter then {
+      srcSejour then encounter(srcSejour, newPatient, newEncounter) "setEncounter";
+      srcDataSet.biology as srcBiology where sejourNi.reference = ('SejourCore/' + %srcSejour.sejourNi.toString()) -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Observation") as newObservation then {
         srcBiology then observation(srcBiology, newPatient, newEncounter, newObservation) "setBiology";
       } "createObservation";
     } "createEncounter";
@@ -39,7 +40,7 @@ group patient(source srcPatient : PatientTable, target tgtPatient : FHIRPatient)
   srcPatient.birthDate as srcPatientBirthDate -> tgtPatient.birthDate = srcPatientBirthDate "setBirthDate"; // copie la valeur du champ birthDate de la table Patient dans l'élément birthDate de la ressource FHIR Patient
 }
 
-group setPatientMeta(source srcNi, target tgtMeta) {
+group setPatientMeta(source srcNi, target tgtMeta : FHIRMeta) {
   srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/PatientTable' + '/' + srcNi.toString()) "setSource";
 }
 
@@ -50,21 +51,21 @@ group setHumainName(source srcPatient : PatientTable, target tgtPatientName) {
   srcPatient.firstName as srcPatientFirstName -> tgtPatientName.given = srcPatientFirstName "setFirstName";
 }
 
-group encounter(source srcEncounter : EncounterTable, source srcPatient : FHIRPatient, target tgtEncounter : FHIREncounter) {
-  srcEncounter -> tgtEncounter.id = uuid() "setId";
-  srcEncounter.encounterNi as srcNi -> tgtEncounter.meta as tgtMeta then setEncounterMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
-  srcEncounter -> tgtEncounter.status = c('http://hl7.org/fhir/encounter-status', 'completed') "setStatus";
-  srcEncounter.encounterType as srcEncounterType -> tgtEncounter.type = translate(srcEncounterType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterType', 'CodeableConcept') "setEncounterType";
+group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient, target tgtEncounter : FHIREncounter) {
+  srcSejour -> tgtEncounter.id = uuid() "setId";
+  srcSejour.sejourNi as srcNi -> tgtEncounter.meta as tgtMeta then setEncounterMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
+  srcSejour -> tgtEncounter.status = c('http://hl7.org/fhir/encounter-status', 'completed') "setStatus";
+  srcSejour.sejourType as srcSejourType -> tgtEncounter.type = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterType', 'CodeableConcept') "setEncounterType";
   srcPatient.id as patientId -> tgtEncounter.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference"; 
-  srcEncounter.patientNi "patientNi";// fk vers le patient
-  srcEncounter -> tgtEncounter.period = create("Period") as newActualPeriod then {
-    srcEncounter.encounterStart as srcPeriodStart -> newActualPeriod.start = srcPeriodStart "setStart";
-    srcEncounter.encounterEnd as srcPeriodEnd -> newActualPeriod.end = srcPeriodEnd "setEnd";
+  srcSejour.patientNi "patientNi";// fk vers le patient
+  srcSejour -> tgtEncounter.period = create("Period") as newActualPeriod then {
+    srcSejour.sejourStart as srcPeriodStart -> newActualPeriod.start = srcPeriodStart "setStart";
+    srcSejour.sejourEnd as srcPeriodEnd -> newActualPeriod.end = srcPeriodEnd "setEnd";
   } "setPeriod";
 }
 
-group setEncounterMeta(source srcNi, target tgtMeta) {
-  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/EncounterTable' + '/' + srcNi.toString()) "setSource";
+group setEncounterMeta(source srcNi, target tgtMeta : FHIRMeta) {
+  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/SejourTable' + '/' + srcNi.toString()) "setSource";
 }
 
 group setSubjectReference(source srcPatientId , target newSubject) {
@@ -84,7 +85,7 @@ group observation(source srcBiology : BiologyTable, source srcPatient : FHIRPati
   } "setQuantity";
 }
 
-group setBiologyMeta(source srcNi, target tgtMeta) {
+group setBiologyMeta(source srcNi, target tgtMeta : FHIRMeta) {
   srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/BiologyTable' + '/' + srcNi.toString()) "setSource";
 }
 

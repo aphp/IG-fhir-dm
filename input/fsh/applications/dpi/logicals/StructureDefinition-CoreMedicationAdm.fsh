@@ -8,4 +8,4 @@ Table CORE.MEDICATION_ADM (DDL)
 
 * medicationAdmNi 1..1 integer "MEDICATION_ADM_NI"
 * patientNi 1..1 Reference(CorePatient) "PATIENT_NI"
-* encounterNi 1..1 Reference(CoreEncounter) "ENCOUNTER_NI"
+* sejourNi 1..1 Reference(CoreSejour) "null"

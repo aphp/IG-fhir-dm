@@ -8,7 +8,8 @@ usage:
         ddl:
           files:
             - input/sql/applications/dpi/CORE.PATIENT.sql
-            - input/sql/applications/dpi/CORE.ENCOUNTER.sql
+            - input/sql/applications/dpi/CORE.SEJOUR.sql
+            - input/sql/applications/dpi/CORE.MOUV.sql
             - input/sql/applications/dpi/CORE.BIOLOGY.sql
             - input/sql/applications/dpi/CORE.CLINICAL.sql
             - input/sql/applications/dpi/CORE.MEDICATION_ADM.sql
@@ -16,15 +17,9 @@ usage:
         definition:
           files:
             - fsh-generated/resources/StructureDefinition-CorePatient.json
-            - fsh-generated/resources/StructureDefinition-CoreEncounter.json
+            - fsh-generated/resources/StructureDefinition-CoreSejour.json
+            - fsh-generated/resources/StructureDefinition-CoreMouv.json
             - fsh-generated/resources/StructureDefinition-CoreBiology.json
             - fsh-generated/resources/StructureDefinition-CoreClinical.json
             - fsh-generated/resources/StructureDefinition-CoreMedicationAdm.json
             - fsh-generated/resources/StructureDefinition-CoreMedicationPre.json
-      target:
-        definition:
-          files:
-            - fsh-generated/resources/StructureDefinition-UseCorePatient.json
-            - fsh-generated/resources/StructureDefinition-UseCoreHopital.json
-            - fsh-generated/resources/StructureDefinition-UseCoreContactSystemeSante.json
-            - fsh-generated/resources/StructureDefinition-UseCoreQuestionnaire.json

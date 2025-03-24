@@ -1,0 +1,44 @@
+map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreSimpleObservation2OMOPMeasurement" = "CoreSimpleObservation2OMOPMeasurement"
+
+/// name = 'CoreSimpleObservation2OMOPMeasurement'
+/// title = 'Mapping simple Observation laboratory resources to Measurement OMOP Domain'
+/// status = 'draft'
+
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias LabObs as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPMeasurement" alias MeasurementTable as target
+
+group SimpleObservation(source src: LabObs, target tgt : MeasurementTable) {
+    src.subject as srcSubject -> tgt.person_id = srcSubject "setSubject"; // reference impropre dans le monde OMOP mais permet d'illustrer l'information qui doit être utilisée pour retrouver la bonne OMOPPerson
+    src.code as srcCode -> tgt.measurement_concept_id = create('Reference') as tgtReference then {
+        srcCode.coding as srcCoding -> translate(srcCoding, 'https://aphp.fr/ig/fhir/dm/ConceptMap/LabAnalyses', 'code') as measurementCode, 
+          tgtReference.reference = append('Concept/', measurementCode) "setMeasurementConcept";
+    } "createMeasurementConcept";
+    src.effective : dateTime as srcDateTime then {
+        srcDateTime -> tgt.measurement_datetime = srcDateTime "setDateTime";
+        srcDateTime -> tgt.measurement_date = (%srcDateTime.toString().substring(0, 10)) "setDateNotTime";
+    } "SetDate";
+    src.value : Quantity as srcValueQuantity then {
+        srcValueQuantity.value as srcResultValue-> tgt.value_as_number = srcResultValue "setResultValue";
+        srcValueQuantity -> tgt.operator_concept_id = create('Reference') as tgtReference then {
+            srcValueQuantity.comparator as srcValueComparator -> translate(srcValueComparator, 'https://aphp.fr/ig/fhir/dm/ConceptMap/LabComparator', 'code') as comparatorCode,
+              tgtReference.reference = append('Concept/', comparatorCode) "setComparatorConcept";
+        } "createComparatorConcept";
+        srcValueQuantity -> tgt.unit_concept_id = create('Reference') as tgtReference then {
+            srcValueQuantity.code as srcValueCode -> translate(srcValueCode, 'https://aphp.fr/ig/fhir/dm/ConceptMap/LabUnit', 'code') as unitCode,
+              tgtReference.reference = append('Concept/', unitCode) "createUnitConcept";
+        } "setUnitConcept";
+        srcValueQuantity.code as srcValueCode -> tgt.unit_source_value = srcValueCode "setUnitSourceValue";
+    } "SetValue";
+    src.referenceRange as srcRange then {
+        srcRange.low as srcRangeLow then {
+            srcRangeLow.value as srcRangeLowValue -> tgt.range_low = srcRangeLowValue  "setRangeLow1";
+        }  "setRangeLow0";
+        srcRange.high as srcRangeHigh then {
+            srcRangeHigh.value as srcRangeHighValue -> tgt.range_high = srcRangeHighValue  "setRangeHigh1";
+        }  "setRangeHigh0";
+    } "setRange";
+    src.performer as srcPerformer -> tgt.provider_id = srcPerformer "setPerformer"; // reference impropre dans le monde OMOP mais permet d'illustrer l'information qui doit être utilisée pour retrouver le bon OMOPProvider
+}
+
+
+// measurement_type_concept_id ?

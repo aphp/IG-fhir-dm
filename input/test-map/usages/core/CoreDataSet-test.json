@@ -8,26 +8,26 @@
     "gender": "h",
     "birthDate": "1948-07-16"
   },
-  "encounter": [{
-    "encounterNi": 1,
+  "sejour": [{
+    "sejourNi": 1,
     "patientNi": { "reference": "PatientCore/1" },
-    "encounterType": "1",
+    "sejourType": "1",
     "dateCreat": "2025-02-04",
     "dateModif": "2025-02-04",
-    "encounterStart": "2025-02-04",
-    "encounterEnd": "2025-02-05"
+    "sejourStart": "2025-02-04",
+    "sejourEnd": "2025-02-05"
   },
   {
-    "encounterNi": 2,
+    "sejourNi": 2,
     "patientNi": { "reference": "PatientCore/1" },
-    "encounterType": "1",
+    "sejourType": "1",
     "dateCreat": "2025-02-04",
     "dateModif": "2025-02-04",
-    "encounterStart": "2025-03-04"
+    "sejourStart": "2025-03-04"
   }],
   "biology": [{
     "biologyNi": 1,
-    "encounterNi": { "reference": "EncounterCore/1" },
+    "sejourNi": { "reference": "SejourCore/1" },
     "patientNi": { "reference": "PatientCore/1" },
     "dateCreat": "2025-02-04",
     "dateModif": "2025-02-04",

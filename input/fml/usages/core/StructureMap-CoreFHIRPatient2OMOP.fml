@@ -1,0 +1,36 @@
+map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIRPatient2OMOP" = "CoreFHIRPatient2OMOP"
+
+/// name = 'CoreFHIRPatient2OMOP'
+/// title = 'FHIR Patient resource to Tables CDM OMOP'
+/// description = 'Cette ressource présente les spécifications de l\'alignement entre la ressource `Patient` vers les tables correspodantes du CDM OMOP.'
+/// status = 'draft'
+
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPPerson" alias PersonTable as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPLocation" alias LocationTable as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPDeath" alias DeathTable as target
+
+imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPPerson"
+imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPLocation"
+imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPDeath"
+
+group Patient(source src: Patient, target tgtBundle : LogicalBundle) {
+	src -> tgtBundle.id = uuid() "setId";
+	src -> tgtBundle.type = 'transaction' "setType";
+	src -> tgtBundle.entry as newEntry then {
+		src -> newEntry.person = create("PersonTable") as newPerson then {
+			src then Person(src, newPerson) "transformPerson";
+		} "createPerson";
+	} "newEntryPerson";
+	src.address as srcAddress where use = 'home' and period.end.empty() -> tgtBundle.entry as newEntry then {
+		srcAddress -> newEntry.location = create("LocationTable") as newLocation then {
+			srcAddress then Location(srcAddress, newLocation) "transformLocation";
+		} "createLocation";
+	} "newEntryLocation";
+	src where deceased.is(System.DateTime) or deceased.is(System.Boolean) -> tgtBundle.entry as newEntry then {
+		src -> newEntry.death = create("DeathTable") as newDeath then {
+			src then Death(src, newDeath) "transformDeath";
+		} "createDeath";
+	} "newEntryDeath";
+}
