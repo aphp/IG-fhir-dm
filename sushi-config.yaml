@@ -16,7 +16,7 @@ publisher:
   # email: test@example.org
 
 dependencies:
-  hl7.fhir.fr.core: 2.0.1
+  hl7.fhir.fr.core: 2.1.0
   ans.fhir.fr.annuaire: 1.1.0-snapshot-3
 
 pages:
