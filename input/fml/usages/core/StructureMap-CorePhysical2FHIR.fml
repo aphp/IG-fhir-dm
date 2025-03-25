@@ -85,7 +85,7 @@ group observationBiol(source srcBiology : BiologyTable, source srcPatient : FHIR
   srcBiology.biologyNi as srcNi -> tgtObservation.meta as tgtMeta then setBiologyMeta(srcNi, tgtMeta) "setMeta";
   srcPatient.id as patientId -> tgtObservation.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference";
   srcEncounter.id as encounterId -> tgtObservation.encounter = create("Reference") as newEncounter then setEncounterReference(encounterId, newEncounter) "setEncounterReference";
-  srcBiology.biologyDate as biologyDate -> tgtObservation.effective = biologyDate "setDate";
+  srcBiology.biologyDatePrel as biologyDatePrel -> tgtObservation.effective = biologyDatePrel "setDate";
   srcBiology.biologyCode as biologyCode -> tgtObservation.code = cc('http://loinc.org', biologyCode) "setCode";
   srcBiology.biologyValue -> tgtObservation.value = create('Quantity') as tgtObsQuantity then {
     srcBiology.biologyValue as biologyValue -> tgtObsQuantity.value = biologyValue "setValue";
