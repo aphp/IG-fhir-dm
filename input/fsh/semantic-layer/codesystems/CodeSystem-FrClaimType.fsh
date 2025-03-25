@@ -9,5 +9,5 @@ Description: "Typage des claim en France, dans le cadre du PMSI"
 
 * #PMSIMCO "PMSI - MCO"
 * #PMSIHAD "PMSI - HAD"
-* #PMSISSR "PMSI - SSR"
+* #PMSISSR "PMSI - SMR" // anciennement PMSI SSR ?
 * #PMSIPSY "PMSI - PSY"
