@@ -21,12 +21,16 @@ uses "http://hl7.org/fhir/StructureDefinition/Meta" alias FHIRMeta as target
 
 group dataSet(source srcDataSet : DataSet, target tgtBundle : FHIRBundle) <<types>> {
   srcDataSet -> tgtBundle.id = uuid() "setId";
-  srcDataSet.patient as srcPatient -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Patient") as newPatient then {
+  srcDataSet -> tgtBundle.type = 'transaction' "setType";
+  srcDataSet.patient as srcPatient -> tgtBundle.entry as tgtPatientEntry, tgtPatientEntry.resource = create("Patient") as newPatient then {
     srcPatient then patient(srcPatient, newPatient) "setPatient";
-    srcDataSet.sejour as srcSejour -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Encounter") as newEncounter then {
+    srcPatient then setEntryRequestAndFullUrl(newPatient,tgtPatientEntry) "setRequestAndFullUrl";
+    srcDataSet.sejour as srcSejour -> tgtBundle.entry as tgtEncounterEntry, tgtEncounterEntry.resource = create("Encounter") as newEncounter then {
       srcSejour then encounter(srcSejour, newPatient, newEncounter) "setEncounter";
-      srcDataSet.biology as srcBiology where sejourNi.reference = ('SejourCore/' + %srcSejour.sejourNi.toString()) -> tgtBundle.entry as tgtEntry, tgtEntry.resource = create("Observation") as newObservation then {
-        srcBiology then observation(srcBiology, newPatient, newEncounter, newObservation) "setBiology";
+      srcSejour then setEntryRequestAndFullUrl(newEncounter,tgtEncounterEntry) "setRequestAndFullUrl";
+      srcDataSet.biology as srcBiology where sejourNi.reference = ('SejourCore/' + %srcSejour.sejourNi.toString()) -> tgtBundle.entry as tgtBiologyEntry, tgtBiologyEntry.resource = create("Observation") as newObservation then {
+        srcBiology then observationBiol(srcBiology, newPatient, newEncounter, newObservation) "setBiology";
+        srcBiology then setEntryRequestAndFullUrl(newObservation,tgtBiologyEntry) "setRequestAndFullUrl";
       } "createObservation";
     } "createEncounter";
   } "createPatient";
@@ -72,7 +76,7 @@ group setSubjectReference(source srcPatientId , target newSubject) {
   srcPatientId -> newSubject.reference = ('Patient/' + %srcPatientId.toString()) "setReference";
 }
 
-group observation(source srcBiology : BiologyTable, source srcPatient : FHIRPatient, source srcEncounter : FHIREncounter, target tgtObservation : FHIRObservation) {
+group observationBiol(source srcBiology : BiologyTable, source srcPatient : FHIRPatient, source srcEncounter : FHIREncounter, target tgtObservation : FHIRObservation) {
   srcBiology -> tgtObservation.id = uuid() "setId";
   srcBiology.biologyNi as srcNi -> tgtObservation.meta as tgtMeta then setBiologyMeta(srcNi, tgtMeta) "setMeta";
   srcPatient.id as patientId -> tgtObservation.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference";
@@ -91,4 +95,13 @@ group setBiologyMeta(source srcNi, target tgtMeta : FHIRMeta) {
 
 group setEncounterReference(source srcEncounterId, target newEncounter) {
   srcEncounterId -> newEncounter.reference = ('Encounter/' + %srcEncounterId.toString()) "setReference";
+}
+
+group setEntryRequestAndFullUrl(source newRes, target tgtEntry) { 
+  newRes.id as newResId -> (%newRes.type().name) as resourceType then {
+    newResId -> tgtEntry.fullUrl = (%resourceType + '/' + %newResId) "setFullUrl";
+    newResId -> tgtEntry.request as tgtEntryRequest, 
+      tgtEntryRequest.method = 'POST',
+      tgtEntryRequest.url = (%resourceType + '/' + %newResId) "setRequest" ;
+  } "setResourceType" ;
 }
