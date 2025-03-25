@@ -2,7 +2,7 @@ Le processus d'instruction se compose de 5 étapes :
 
 #### Modèle métier
 
-À l'aide du [FormBuilder](), une ressource `Questionnaire` est produite en tenant compte des exigences.
+À l'aide du [FormBuilder](https://formbuilder-prod-ext-k8s.eds.aphp.fr/), une ressource `Questionnaire` est produite en tenant compte des exigences.
 
 #### Data discovery
 
@@ -62,8 +62,8 @@ point que le résultat peut provoquer l'abandon du cas d'usage.
 
 #### Conception de la couche sémantique
 
-À l'issue de la "Data Discovery" et une fois avoir apporter la preuve que le cas d'usage peut se faire, l'identification 
-des ressources FHIR est réalisé. En priorité, nous choisissons les ressources compatibles avec l'écosystème français 
+À l'issue de la "Data Discovery" et une fois avoir apporté la preuve que le cas d'usage peut se faire, l'identification 
+des ressources FHIR est réalisée. En priorité, nous choisissons les ressources compatibles avec l'écosystème français 
 (guides d'implémentation de l'ANS et d'Interop'santé). Récemment, de nombreux efforts ont été réalisés au niveau européen 
 et par conséquent et de plus en plus, nous devons également tenir compte des guides d'implémentation FHIR européen, nous 
 préparant ainsi à l'European Health Data Space (EHDS).
