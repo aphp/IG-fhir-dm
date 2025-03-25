@@ -25,7 +25,7 @@ group dataSet(source srcDataSet : DataSet, target tgtBundle : FHIRBundle) <<type
   srcDataSet.patient as srcPatient -> tgtBundle.entry as tgtPatientEntry, tgtPatientEntry.resource = create("Patient") as newPatient then {
     srcPatient then patient(srcPatient, newPatient) "setPatient";
     srcPatient then setEntryRequestAndFullUrl(newPatient,tgtPatientEntry) "setRequestAndFullUrl";
-    srcDataSet.sejour as srcSejour -> tgtBundle.entry as tgtEncounterEntry, tgtEncounterEntry.resource = create("Encounter") as newEncounter then {
+    srcDataSet.sejour as srcSejour where patientNi.reference = ('PatientCore/' + %srcPatient.patientNi.toString()) -> tgtBundle.entry as tgtEncounterEntry, tgtEncounterEntry.resource = create("Encounter") as newEncounter then {
       srcSejour then encounter(srcSejour, newPatient, newEncounter) "setEncounter";
       srcSejour then setEntryRequestAndFullUrl(newEncounter,tgtEncounterEntry) "setRequestAndFullUrl";
       srcDataSet.biology as srcBiology where sejourNi.reference = ('SejourCore/' + %srcSejour.sejourNi.toString()) -> tgtBundle.entry as tgtBiologyEntry, tgtBiologyEntry.resource = create("Observation") as newObservation then {
