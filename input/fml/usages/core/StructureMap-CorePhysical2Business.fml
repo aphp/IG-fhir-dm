@@ -1,3 +1,4 @@
+/*
 map "https://aphp.fr/ig/fhir/dm/StructureMap/CorePhysical2Business" = "CorePhysical2Business"
 
 /// name = 'CorePhysical2Business'

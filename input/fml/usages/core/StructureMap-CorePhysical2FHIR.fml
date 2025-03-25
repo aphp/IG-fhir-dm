@@ -45,15 +45,19 @@ group patient(source srcPatient : PatientTable, target tgtPatient : FHIRPatient)
 }
 
 group setPatientMeta(source srcNi, target tgtMeta : FHIRMeta) {
-  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/PatientTable' + '/' + srcNi.toString()) "setSource";
+  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/PatientTable' + '/' + %srcNi.toString()) "setSource";
 }
 
 group setHumainName(source srcPatient : PatientTable, target tgtPatientName) {
   srcPatient -> tgtPatientName.use = c('http://hl7.org/fhir/name-use', 'usual') "setUse";
-  srcPatient -> tgtPatientName.text = (%srcPatient.firstName + ' ' + %srcPatient.name) "setText";
-  srcPatient.name as srcPatientName -> tgtPatientName.family = srcPatientName "setName";
-  srcPatient.firstName as srcPatientFirstName -> tgtPatientName.given = srcPatientFirstName "setFirstName";
-}
+//  srcPatient -> tgtPatientName.text = (%srcPatient.firstName + ' ' + %srcPatient.name) "setText";
+//  srcPatient.name as srcPatientName -> tgtPatientName.family = srcPatientName "setName";
+//  srcPatient.firstName as srcPatientFirstName -> tgtPatientName.given = srcPatientFirstName "setFirstName";
+// les trois lignes précédentes marchent dans matchbox mais génèrent une erreur au QA. La solution ci dessous marche dans matchbox et ne génère pas d'erreur au QA.
+srcPatient.name as srcPatientName -> tgtPatientName.family = srcPatientName then {
+  srcPatient.firstName as srcPatientFirstName -> tgtPatientName.given = srcPatientFirstName,
+    tgtPatientName.text = (%srcPatientFirstName + ' ' + %srcPatientName) "setFirstNameAndText";
+} "setName";}
 
 group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient, target tgtEncounter : FHIREncounter) {
   srcSejour -> tgtEncounter.id = uuid() "setId";
@@ -61,7 +65,7 @@ group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient,
   srcSejour -> tgtEncounter.status = c('http://hl7.org/fhir/encounter-status', 'completed') "setStatus";
   srcSejour.sejourType as srcSejourType -> tgtEncounter.type = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterType', 'CodeableConcept') "setEncounterType";
   srcPatient.id as patientId -> tgtEncounter.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference"; 
-  srcSejour.patientNi "patientNi";// fk vers le patient
+  srcSejour.patientNi "patientNi";// fk vers le patient à conserver pour la construction auto du périmètre final
   srcSejour -> tgtEncounter.period = create("Period") as newActualPeriod then {
     srcSejour.sejourStart as srcPeriodStart -> newActualPeriod.start = srcPeriodStart "setStart";
     srcSejour.sejourEnd as srcPeriodEnd -> newActualPeriod.end = srcPeriodEnd "setEnd";
@@ -69,7 +73,7 @@ group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient,
 }
 
 group setEncounterMeta(source srcNi, target tgtMeta : FHIRMeta) {
-  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/SejourTable' + '/' + srcNi.toString()) "setSource";
+  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/SejourTable' + '/' + %srcNi.toString()) "setSource";
 }
 
 group setSubjectReference(source srcPatientId , target newSubject) {
@@ -90,7 +94,7 @@ group observationBiol(source srcBiology : BiologyTable, source srcPatient : FHIR
 }
 
 group setBiologyMeta(source srcNi, target tgtMeta : FHIRMeta) {
-  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/BiologyTable' + '/' + srcNi.toString()) "setSource";
+  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/BiologyTable' + '/' + %srcNi.toString()) "setSource";
 }
 
 group setEncounterReference(source srcEncounterId, target newEncounter) {
