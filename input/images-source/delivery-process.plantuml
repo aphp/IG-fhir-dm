@@ -1,0 +1,66 @@
+@startuml
+
+start
+    floating note
+        Some user need some 
+        data in the CDW
+    end note
+
+group Qualification
+    :Qualification;
+end group
+
+group Instruction
+    :Création du modèle métier; 
+        note right: en utilisant le FormBuilder
+    group Data discovery
+        :Identification et collecte des données;
+            floating note
+                Périmètre initial (Usage-Synchro
+                utilise des ddl pour représenter
+                la source)
+            end note
+        :Profilage et analyse des données;
+            floating note
+                - Data structure analysis;
+                - Column analysis;
+                - Relationship analysis;
+            end note
+        :Visualisation et exploration;
+        :Sécurisation et conformité;
+        group Gestion des données de référence
+            :Spécification de la génération des ressources terminologiques depuis les sources;
+            :Génération des ressources terminologiques;
+            :Intégration dans le Guide d'Implémentation;
+            :Enrichir le modèle métier avec les ressources terminologiques créées;
+        end group
+        :Alignement Source to Métier;
+            floating note
+                Périmètre final (Usage-Synchro
+                utilise la map pour restreindre
+                 le périmètre initial)
+            end note
+            note right: en utilisant le MapBuilder
+    end group
+    :Validation;
+    group Couche sémantique
+        :Élaboration des patrons de conception;
+        :Définition des bindings terminologiques;
+        :Élaboration des alignements sémantiques;
+        :Élaboration de l'alignement syntaxique;
+            note right: en utilisant le MapBuilder
+    end group
+end group
+
+:Réalisation;
+:Recette;
+:Mise en production;
+:Amélioration continue;
+
+stop
+    floating note
+        Requested data are 
+        integrated in CDW
+        with documentation
+    end note
+@enduml

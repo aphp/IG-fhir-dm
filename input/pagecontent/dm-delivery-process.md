@@ -1,5 +1,7 @@
 Cette page décrit le processus de livraison de données faisant suite aux traitement d'un cas d'usage (expression de besoins).
 
+<div style="text-align: center;">{%include delivery-process.svg%}</div>
+
 ### Qualification
 
 La description du processus de "Qualification" est hors sujet pour le moment. Néanmoins, nous pouvons préciser que 

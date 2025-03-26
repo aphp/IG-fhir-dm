@@ -22,7 +22,7 @@ Par exemple, pour le questionnaire de représentation du modèle métier de l'us
 
 ##### Cas particulier des StructureDefinition
 
-- id doit préciser à quel type il s’applique (c’est-à-dire son Base)
+- id doit préciser à quel type il s'applique (c'est-à-dire son Base)
 
 Par exemple pour le profil dédié au poids : 
 -	id = name = DMObservationBodyWeight
@@ -32,6 +32,28 @@ Par exemple pour le profil dédié au poids :
 #### Autres ressources (exemples, ou instances)
 Id est un UUID. 
 On pourra colliger les ressources afférentes à un cas d'usage dans un fichier dont le nom explicitera le cas d'usage. 
+
+#### NammingSystem
+
+La plupart des ressources FHIR propose un attribut `identifier` qui permet de renseigner 0 à n identifiants métiers a une ressource. Ces identifiants permettent notamment de créer des liens logiques entre les ressources (via les attributs de type `reference` et leur attribut `identifier`). 
+
+Cet attribut `identifier` est particulièrement intéressant pour le lineage des ressources, lorsqu'il s'agit de créer une ressource FHIR à partir d'un objet déjà existant, dans un autre format, au sein du système d'information. 
+
+Cela impose néanmoins une gestion rigoureuse des namespace. On part sur le principe que les namespaces seront défini comme suit : 
+
+[base APHP]/[type de ressource FHIR]/[identifiant unique d'un processus de génération d'identifiant unique]
+
+avec : 
+- [base APHP] = `https://aphp.fr/meta`
+- [type de ressource FHIR] appartient au ValueSet [ResourceType](http://hl7.org/fhir/ValueSet/resource-types)
+- [identifiant de processus] est à construire en interne, par exemple : `ipp` (il n'y a qu'un processus de création d'ipp à l'APHP : par le SIU Orbis), `ProduitChimioAVC` (il y a des médicament dans CHIMIO et dans d'autres outils, plusieurs CHIMIO et plusieurs 'type' de médicament dans chaque CHIMIO)
+
+Plusieurs stratégies sont envisageable pour s'assurer de l'unicité des namespace _by design_ :
+- mettre en oeuvre un registre interne des namespace : un serveur FHIR dans lequel chaque responsable de namespace enregistrerait une ressource NamingSystem pour chacun des namespace qu'il gère, en s'assurant qu'il n'existe pas déjà. 
+- fournir à chaque responsable de namespace un code unique qui serait inclus dans l'identifiant de processus du namespace
+- consolider un codesystem contenant tous les namespace utiles, charge à chaque responsable de namespace d'enrichir ce CS en tant que de besoin. 
+
+Une difficulté réside dans le souhait, exprimé par des responsable de namespace, de ne pas publicisé, auprès de partenaires extérieurs, certains namespace. 
 
 #### uri des sources
 On décide, pour chaque ressource FHIR intégrée dans le Hub de donnée, de préciser l'application source de cette ressource via l'attribut `meta.source`. Cet attribut attend une uri qui sera, autant que possible, créée selon la convention suivante :
