@@ -102,10 +102,10 @@ group setEncounterReference(source srcEncounterId, target newEncounter) {
 }
 
 group setEntryRequestAndFullUrl(source newRes, target tgtEntry) { 
-  newRes.id as newResId -> (%newRes.type().name) as resourceType then {
-    newResId -> tgtEntry.fullUrl = (%resourceType + '/' + %newResId) "setFullUrl";
+  newRes.id as newResId then {
+    newResId -> tgtEntry.fullUrl = (%newRes.type().name + '/' + %newResId) "setFullUrl";
     newResId -> tgtEntry.request as tgtEntryRequest, 
       tgtEntryRequest.method = 'POST',
-      tgtEntryRequest.url = (%resourceType + '/' + %newResId) "setRequest" ;
+      tgtEntryRequest.url = (%newRes.type().name + '/' + %newResId) "setRequest" ;
   } "setResourceType" ;
 }
