@@ -1,6 +1,6 @@
 CodeSystem: DpiEncounterType
-Title: "Dpi Encounter type"
-Description: "TODO"
+Title: "DPI Type de séjour"
+Description: "Type de séjour"
 
 * ^status = #active
 * ^content = #complete

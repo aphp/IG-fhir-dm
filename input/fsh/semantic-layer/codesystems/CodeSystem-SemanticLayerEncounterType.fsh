@@ -1,6 +1,6 @@
 CodeSystem: SemanticLayerEncounterType
 Title: "Semantic layer encounter type"
-Description: "TODO"
+Description: "Semantic layer encounter type"
 
 * ^status = #active
 * ^content = #complete

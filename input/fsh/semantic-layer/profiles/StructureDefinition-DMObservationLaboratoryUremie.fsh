@@ -5,7 +5,7 @@ Description: """
 Profil des résultats d'urémie du socle commun des EDS
 """
 
-* code = $loinc#22664-7 "Urea [Moles/volume] in Serum or Plasma" (exactly)
+* code = $loinc#22664-7 "Urée [Moles/Volume] Sérum/Plasma ; Numérique" (exactly)
 
 * value[x] only Quantity
 * valueQuantity.value ^short = "Valeur mesurée"

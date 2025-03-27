@@ -5,7 +5,7 @@ Description: """
 Profil des résultats de TCA - socle commun des EDS
 """
 
-* code = $loinc#50197-3 "aPTT panel - Platelet poor plasma" (exactly)
+* code = $loinc#50197-3 "Temps de céphaline activée panel [-] Plasma pauvre en plaquettes ; Numérique" (exactly)
 
 * component ^slicing.discriminator[0].type = #value
 * component ^slicing.discriminator[=].path = "code"
