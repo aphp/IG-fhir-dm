@@ -15,6 +15,7 @@ entity CORE.PATIENT {
   * {field} FIRST_NAME VARCHAR2 (50) NULL
   * {field} GENDER CHAR (1) NULL
   * {field} BIRTH_DATE DATE NULL
+  * {field} NIR VARCHAR2 (13) NULL
 }
 
 entity CORE.SEJOUR {

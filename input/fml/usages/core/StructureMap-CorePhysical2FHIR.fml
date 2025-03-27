@@ -40,6 +40,7 @@ group patient(source srcPatient : PatientTable, target tgtPatient : FHIRPatient)
   srcPatient -> tgtPatient.id = uuid() "setId";
   srcPatient.patientNi as srcNi -> tgtPatient.meta as tgtMeta then setPatientMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
   srcPatient -> tgtPatient.name as tgtPatientName then setHumainName(srcPatient, tgtPatientName) "setHumainName";
+  srcPatient -> tgtPatient.identifier as tgtPatientIdentifier then setHumainNir(srcPatient, tgtPatientIdentifier) "setHumainNir" ;
   srcPatient.gender as srcPatientGender -> tgtPatient.gender = translate(srcPatientGender, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiGender2Hl7Gender', 'code') "setGender"; // traduit la valeur du champ gender de la table Patient dans l'élément gender de la ressource FHIR Patient
   srcPatient.birthDate as srcPatientBirthDate -> tgtPatient.birthDate = srcPatientBirthDate "setBirthDate"; // copie la valeur du champ birthDate de la table Patient dans l'élément birthDate de la ressource FHIR Patient
 }
@@ -58,6 +59,13 @@ srcPatient.name as srcPatientName -> tgtPatientName.family = srcPatientName then
   srcPatient.firstName as srcPatientFirstName -> tgtPatientName.given = srcPatientFirstName,
     tgtPatientName.text = (%srcPatientFirstName + ' ' + %srcPatientName) "setFirstNameAndText";
 } "setName";}
+
+group setHumainNir(source srcPatient : PatientTable, target tgtPatientIdentifier) {
+  srcPatient.nir as srcPatientNir -> tgtPatientIdentifier.use = 'official',
+    tgtPatientIdentifier.type = cc('https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203', 'INS-NIR'),
+    tgtPatientIdentifier.system = 'urn:oid:1.2.250.1.213.1.4.8', 
+    tgtPatientIdentifier.value = srcPatientNir "setNir" ;
+}
 
 group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient, target tgtEncounter : FHIREncounter) {
   srcSejour -> tgtEncounter.id = uuid() "setId";

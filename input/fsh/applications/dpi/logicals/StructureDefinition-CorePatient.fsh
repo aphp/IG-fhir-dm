@@ -12,3 +12,4 @@ Table CORE.PATIENT (DDL)
 * firstName 0..1 string "FIRST_NAME"
 * gender 0..1 string "GENDER"
 * birthDate 0..1 date "BIRTH_DATE"
+* nir 0..1 string "NIR"
