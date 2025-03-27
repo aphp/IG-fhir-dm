@@ -7,6 +7,7 @@ gradlew
 gradlew.bat
 Thumbs.db
 /fsh-generated
+/fml-generated
 /input-cache
 /output
 /temp
@@ -15,6 +16,3 @@ Thumbs.db
 /node_modules
 package.json
 package-lock.json
-/input/test-map/local
-/fml-generated
-/bin/usage-synchro.jar

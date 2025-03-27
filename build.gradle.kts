@@ -1,10 +1,25 @@
+/**
+ * Copyright © 2023, Assistance Publique - Hôpitaux de Paris
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
+ * (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do
+ * so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to the warranties
+ * of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright
+ * Assistance Publique - Hôpitaux de Paris be liable for any claim, damages or other liability, whether in an action of contract,
+ * tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the Software.
+ * Except as contained in this notice, the name of the Assistance Publique - Hôpitaux de Paris shall not be used in advertising or
+ * otherwise to promote the sale, use or other dealings in this Software without prior written authorization from the
+ * Assistance Publique - Hôpitaux de Paris.
+ */
 import com.github.gradle.node.npm.task.NpmTask
 import com.github.gradle.node.npm.task.NpxTask
 import java.nio.file.Files
 
 plugins {
   id("java")
-  id("com.github.node-gradle.node") version "7.0.2"
+  id("com.github.node-gradle.node") version "7.1.0"
   id("de.undercouch.download") version "5.6.0"
 }
 
@@ -28,7 +43,7 @@ defaultTasks(
 fun installRemoteJar(name: String, path: String, url: String): TaskProvider<Task> {
   return tasks.register<Task>(name + "Install") {
     group = "build setup"
-    doLast{
+    doLast {
       Files.createDirectories(file("input-cache").toPath())
 
       download.run {
@@ -38,65 +53,6 @@ fun installRemoteJar(name: String, path: String, url: String): TaskProvider<Task
       }
     }
   }
-}
-
-val igPackageManagerPath = "bin/manager.jar"
-/*val igPackageManagerInstall = installRemoteJar(
-    "igPackageManager",
-    igPackageManagerPath,
-    "https://gitlab.data.aphp.fr/api/v4/projects/2285/packages/maven/fr/aphp/ig-package-manager/${properties["managerVersion"]}/ig-package-manager-${properties["managerVersion"]}.jar",
-)*/
-
-val igPackageManager = tasks.register<JavaExec>("igPackageManager") {
-  group = "build"
-
-  classpath(igPackageManagerPath)
-  args = listOf(
-    "-ig",
-    projectDir.absolutePath
-  )
-  /*dependsOn(
-          igPackageManagerInstall
-  )*/
-}
-
-val usageSynchroPath = "bin/usage-synchro.jar"
-/*val usageSynchroInstall = installRemoteJar(
-    "usageSynchro",
-    usageSynchroPath,
-    "https://gitlab.data.aphp.fr/api/v4/projects/2098/packages/maven/fr/aphp/usage-synchro/${properties["usageSynchroVersion"]}/usage-synchro-${properties["usageSynchroVersion"]}.jar",
-    )*/
-
-val ddlBuild = tasks.register<JavaExec>("ddlBuild") {
-  group = "build"
-
-  jvmArgs("-Dfile.encoding=UTF-8")
-  classpath(usageSynchroPath)
-  args = listOf(
-    "-m",
-    "ddl",
-    "-ig",
-    projectDir.absolutePath
-  )
-  /*dependsOn(
-      usageSynchroInstall
-  )*/
-}
-
-val usageBusinessBuild = tasks.register<JavaExec>("usageBusinessBuild") {
-  group = "build"
-
-  jvmArgs("-Dfile.encoding=UTF-8")
-  classpath(usageSynchroPath)
-  args = listOf(
-    "-m",
-    "business",
-    "-ig",
-    projectDir.absolutePath
-  )
-  /*dependsOn(
-      usageSynchroInstall
-  )*/
 }
 
 val sushiInstall = tasks.register<NpmTask>("sushiInstall") {
@@ -122,7 +78,6 @@ val sushiBuild = tasks.register<NpxTask>("sushiBuild") {
     )
   )
   dependsOn(
-    igPackageManager,
     sushiInstall
   )
 }
@@ -154,9 +109,7 @@ val buildIG = tasks.register<GradleBuild>("buildIG") {
   group = "build"
 
   tasks = listOf(
-    "ddlBuild",
     "sushiBuild",
-    "usageBusinessBuild",
     "igPublisherBuild"
   )
 }
@@ -174,6 +127,7 @@ val cleanIG = tasks.register<Delete>("cleanIG") {
   group = "build"
 
   delete(
+    "fml-generated",
     "fsh-generated",
     "output",
     "temp",
