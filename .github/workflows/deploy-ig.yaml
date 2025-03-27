@@ -47,6 +47,9 @@ jobs:
         run: |
           gem install jekyll bundler
 
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+
     # Build IG
       - run: gradle buildIG
         continue-on-error: true
