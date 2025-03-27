@@ -62,6 +62,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   path-resource:
     - input/resources/usages/core
     - input/fml/usages/core
+    - input/test-map/usages/core
 
 #  logging:
 #    - tx #tx: Messages describing the use of the terminology server (for debugging)
