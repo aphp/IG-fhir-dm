@@ -1,0 +1,22 @@
+{
+    "resourceType" : "Patient",
+    "id" : "8f005d60-b59b-47f7-b04a-f877378f8d68",
+    "identifier" : [{
+      "use" : "official",
+      "type" : {
+        "coding" : [{
+          "system" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203",
+          "code" : "INS-NIR"
+        }]
+      },
+      "system" : "urn:oid:1.2.250.1.213.1.4.8",
+      "value" : "1234567890123"
+    }],
+    "name" : [{
+      "text" : "john doe",
+      "family" : "doe",
+      "given" : ["john"]
+    }],
+    "gender" : "male",
+    "birthDate" : "1948-07-16"
+  }

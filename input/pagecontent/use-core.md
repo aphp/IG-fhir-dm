@@ -30,3 +30,7 @@ Le processus de livraison des données se compose de la manière suivante :
 #### Conception de la livraison des données (OMOP)
 
 {% include use-core-conception-omop.md %}
+
+#### Exemple de synthèse
+
+{% include use-core-exemple-bout-en-bout.md %}

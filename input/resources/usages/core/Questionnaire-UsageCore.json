@@ -2,8 +2,8 @@
   "resourceType": "Questionnaire",
   "id": "UsageCore",
   "meta": {
-    "versionId": "5",
-    "lastUpdated": "2025-02-18T08:40:12.343+00:00",
+    "versionId": "12",
+    "lastUpdated": "2025-03-27T13:45:07.076+00:00",
     "source": "https://aphp.fr/ig/fhir/eds/Endpoint/form-builder"
   },
   "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
@@ -11,7 +11,7 @@
   "title": "Questionnaire usage Core",
   "status": "active",
   "date": "2025-02-03",
-  "description": "Variables du socle des EDSH.",
+  "description": "Arborescence des variables du socle des EDSH.",
   "item": [
     {
       "linkId": "4647259356106",
@@ -24,6 +24,16 @@
           "text": "Identité patient",
           "type": "group",
           "item": [
+            {
+              "linkId": "8605698058770",
+              "text": "Nom patient",
+              "type": "string"
+            },
+            {
+              "linkId": "6214879623503",
+              "text": "Prénom patient",
+              "type": "string"
+            },
             {
               "linkId": "5711960356160",
               "text": "Numéro d'inscription au Répertoire (NIR)",
@@ -100,7 +110,7 @@
                     }
                   ],
                   "linkId": "5036133558154_intention",
-                  "text": "Date de naissance des papiers d'identité utilisés pour la production de l'INS ",
+                  "text": "Date de naissance des papiers d'identité utilisés pour la production de l'INS",
                   "type": "display"
                 }
               ]
@@ -211,7 +221,7 @@
             {
               "linkId": "3816475533472",
               "text": "Géocodage",
-              "type": "decimal",
+              "type": "group",
               "repeats": true,
               "item": [
                 {
@@ -256,7 +266,7 @@
               "text": "IRIS",
               "type": "choice",
               "repeats": true,
-              "answerValueSet": "IRIS",
+              "answerValueSet": "https://insee.fr/IRIS-vs",
               "item": [
                 {
                   "linkId": "4999580038872",
@@ -351,13 +361,13 @@
           "linkId": "3894630481120",
           "text": "Sexe",
           "type": "choice",
-          "answerValueSet": "TO DO"
+          "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/DpiGender"
         },
         {
           "linkId": "2446369196222",
           "text": "Code géographique de résidence",
           "type": "choice",
-          "answerValueSet": "TO DO",
+          "answerValueSet": "https://atih.sante.fr/CodesGeographiques-vs",
           "item": [
             {
               "linkId": "1537511139540",
@@ -641,7 +651,7 @@
                   "linkId": "8712072639576",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "554606544143",
@@ -695,7 +705,7 @@
                   "linkId": "977768150991",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "279176538278",
@@ -749,7 +759,7 @@
                   "linkId": "974417569313",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "600008092136",
@@ -811,7 +821,7 @@
                   "linkId": "695484403752",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "578695171519",
@@ -865,7 +875,7 @@
                   "linkId": "597082091886",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "471894150678",
@@ -919,7 +929,7 @@
                   "linkId": "814457693114",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "717817548701",
@@ -973,7 +983,7 @@
                   "linkId": "274747215145",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "394008758803",
@@ -1027,7 +1037,7 @@
                   "linkId": "117718572179",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "766800452654",
@@ -1081,7 +1091,7 @@
                   "linkId": "555876654291",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "504411027287",
@@ -1135,7 +1145,7 @@
                   "linkId": "971737782589",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "255457777106",
@@ -1189,7 +1199,7 @@
                   "linkId": "663015267867",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "548571990081",
@@ -1243,7 +1253,7 @@
                   "linkId": "283372872777",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "732609383475",
@@ -1297,7 +1307,7 @@
                   "linkId": "651849853076",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "773480648641",
@@ -1351,7 +1361,7 @@
                   "linkId": "219513623269",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "379165914699",
@@ -1405,7 +1415,7 @@
                   "linkId": "664804454505",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "339688288601",
@@ -1467,7 +1477,7 @@
                   "linkId": "757363598159",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "884511824515",
@@ -1521,7 +1531,7 @@
                   "linkId": "698926487710",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "881040341675",
@@ -1575,7 +1585,7 @@
                   "linkId": "688754894578",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "191793018592",
@@ -1629,7 +1639,7 @@
                   "linkId": "726897332003",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "576101241859",
@@ -1683,7 +1693,7 @@
                   "linkId": "657001208566",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "943765996333",
@@ -1737,7 +1747,7 @@
                   "linkId": "572609665342",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "481261763129",
@@ -1799,7 +1809,7 @@
                   "linkId": "398039571990",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "632111374848",
@@ -1853,7 +1863,7 @@
                   "linkId": "305948197507",
                   "text": "code loinc",
                   "type": "choice",
-                  "answerValueSet": "http://loinc.org"
+                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
                 },
                 {
                   "linkId": "249760336391",
@@ -1938,14 +1948,14 @@
               "text": "codification",
               "type": "choice",
               "repeats": true,
-              "answerValueSet": "ATC/UCD/CIP/DCI/libellé_commercial"
+              "answerValueSet": "https://medicament/ATC-UCD-CIP-DCI-libellé_commercial"
             },
             {
               "linkId": "387026794874",
               "text": "Voie d'administration",
               "type": "choice",
               "repeats": false,
-              "answerValueSet": "Standard terms"
+              "answerValueSet": "https://standardterms.edqm.eu/"
             },
             {
               "extension": [
@@ -2020,14 +2030,14 @@
               "text": "codification",
               "type": "choice",
               "repeats": true,
-              "answerValueSet": "ATC/UCD/CIP/DCI/libellé_commercial"
+              "answerValueSet": "https://medicament/ATC-UCD-CIP-DCI-libellé_commercial"
             },
             {
               "linkId": "811931484859",
               "text": "Voie d'administration",
               "type": "choice",
               "repeats": false,
-              "answerValueSet": "Standard terms"
+              "answerValueSet": "https://standardterms.edqm.eu/"
             },
             {
               "extension": [
@@ -2310,7 +2320,7 @@
                     }
                   ],
                   "linkId": "6516656388671_intention",
-                  "text": "Consommation de tabac par le patient. ",
+                  "text": "Consommation de tabac par le patient.",
                   "type": "display"
                 }
               ]
@@ -2337,7 +2347,7 @@
                     }
                   ],
                   "linkId": "8218964737490_intention",
-                  "text": "Consommation d'alcool par le patient. ",
+                  "text": "Consommation d'alcool par le patient.",
                   "type": "display"
                 }
               ]

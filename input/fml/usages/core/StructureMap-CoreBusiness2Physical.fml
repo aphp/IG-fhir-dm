@@ -1,0 +1,103 @@
+map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreBusiness2Physical" = "CoreBusiness2Physical"
+
+/// name = 'CoreBusiness2Physical'
+/// title = 'Alignement de l\'expression de besoin vers le modèle physique du DPI dans le cadre de l\'usage Core'
+
+// Alignement entre le modèle métier et le ùodèle physique du DPI
+
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreDataSet" alias DataSet as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CorePatient" alias PatientTable as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreSejour" alias SejourTable as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreBiology" alias BiologyTable as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreClinical" alias ClinicalTable as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationAdm" alias MedicationAdmTable as target
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationPre" alias MedicationPreTable as target
+
+
+group init(source srcQR : QR, target tgtDS : DataSet) <<types>> {
+    srcQR -> tgtDS.logicalid = uuid() "setId";
+    srcQR -> tgtDS.patient as tgtPatient,
+        tgtDS.sejour as tgtSejour,
+        tgtDS.biology as tgtBiol,
+        tgtDS.clinical as tgtClin,
+        tgtDS.medicationPre as tgtMedPre,
+        tgtDS.medicationAdm as tgtMedAdm then {
+            srcQR.item as srcSocioDemoDataItem where linkId = '4647259356106' then {
+                srcSocioDemoDataItem.item as srcPatientIdItem where linkId = '2958000860428' then {
+                    srcPatientIdItem.item as srcNomItem where linkId = '8605698058770' then {
+                        srcNomItem.answer as srcNomAnswer then {
+                            srcNomAnswer.value : string as srcNomValue -> tgtPatient.name = srcNomValue "SetNomValue";
+                        } "setNomAnswer" ;
+                    } "setNom" ;
+                    srcPatientIdItem.item as srcPrenomItem where linkId = '6214879623503' then {
+                        srcPrenomItem.answer as srcPrenomAnswer then {
+                            srcPrenomAnswer.value : string as srcPrenomValue -> tgtPatient.firstName = srcPrenomValue "SetPrenomValue";
+                        } "setPrenomAnswer" ;
+                    } "setPrenom" ;
+                    srcPatientIdItem.item as srcNIRItem where linkId = '5711960356160' then {
+                        srcNIRItem.answer as srcNIRAnswer then {
+                            srcNIRAnswer.value : string as srcNIRValue -> tgtPatient.nir = srcNIRValue "SetNIRValue";
+                        } "setNIRAnswer" ;
+                    } "setNIR" ;
+                    srcPatientIdItem.item as srcDDNItem where linkId = '5036133558154' then {
+                        srcDDNItem.answer as srcDDNAnswer then {
+                            srcDDNAnswer.value : date  as srcDDNValue -> tgtPatient.birthDate = srcDDNValue "SetDDNValue";
+                        } "setDDNAnswer" ;
+                    } "setDDN" ;
+                    srcPatientIdItem.item as srcDDDItem where linkId = '5036133558154' then {
+                        srcDDDItem.answer as srcDDDAnswer then {
+                            srcDDDAnswer.value : date  as srcDDDValue "SetDDDValue";
+                        } "setDDDAnswer" ;
+                        srcDDDItem.item as srcDDDSourceItem where linkId = '9098810065693' then {
+                            srcDDDSourceItem.answer as srcDDDSourceAnswer then {
+                                srcDDDSourceAnswer.value : Coding  as srcDDDSourceValue "SetDDDSourceValue";
+                            } "setDDDSourceAnswer" ;
+                        } "setDDDSource" ;
+                    } "setDDD" ;
+                    srcPatientIdItem.item as srcGemRankItem where linkId = '6931296968515' then {
+                        srcGemRankItem.answer as srcGemRankAnswer then {
+                            srcGemRankAnswer.value : integer as srcGemRankValue "SetGemRankValue";
+                        } "setDDNAnswer" ;
+                    } "setDDN" ;
+                } "navigationToPatientId" ;
+                srcSocioDemoDataItem.item as srcEnvItem where linkId = '5491974639955' then {
+                    srcEnvItem.item as srcGeocodItem where linkId = '3816475533472' then {
+                        srcGeocodItem.item as srcLatItem where linkId = '3709843054556' then {
+                            srcLatItem.answer as srcLatAnswer then {
+                                srcLatAnswer.value : decimal  as srcLatValue "SetLatValue";
+                            } "setLatAnswer" ;
+                        } "setLat" ;
+                        srcGeocodItem.item as srcLongItem where linkId = '7651448032665' then {
+                            srcLongItem.answer as srcLongAnswer then {
+                                srcLongAnswer.value : decimal  as srcLongValue "SetLongValue";
+                            } "setLongAnswer" ;
+                        } "setLong" ;
+                        srcGeocodItem.item as srcGeocodDateItem where linkId = '1185653257776' then {
+                            srcGeocodDateItem.answer as srcGeocodDateAnswer then {
+                                srcGeocodDateAnswer.value : date  as srcGeocodDateValue "SetGeocodDateValue";
+                            } "setGeocodDateAnswer" ;
+                        } "setGeocodDate" ;
+                    } "navigationToGeocod" ;
+                    srcEnvItem.item as srcIrisItem where linkId = '7621032273792' then {
+                        srcIrisItem.answer as srcIrisAnswer then {
+                            srcIrisAnswer.value : Coding  as srcIrisValue "SetIrisValue";
+                        } "setIrisAnswer" ;
+                        srcIrisItem.item as srcIrisDateItem where linkId = '4999580038872' then {
+                            srcIrisDateItem.answer as srcIrisDateAnswer then {
+                                srcIrisDateAnswer.value : date as srcIrisDateValue "SetIrisDateValue";
+                            } "setIrisDateAnswer" ;
+                        } "setIrisDate" ;
+                    } "setIris" ;
+                } "navigationToEnv" ;
+            } "navigationToSocioDemoData" ;
+            srcQR.item as srcPMSIDataItem where linkId = '2825244231605' then {
+                srcPMSIDataItem.item as srcPMSISexeItem where linkId = '3894630481120' then {
+                    srcPMSISexeItem.answer as srcPMSISexeAnswer then {
+                        srcPMSISexeAnswer.value : Coding as srcPMSISexeValueCoding -> tgtPatient.gender = (%srcPMSISexeValueCoding.code) "SetPMSISexeValue" ;
+                    } "SetPMSISexeAnswer" ;
+                } "setPMSISexe" ;
+            } "navigationToPMSIData" ;
+    } "setTgtVar" ;
+}

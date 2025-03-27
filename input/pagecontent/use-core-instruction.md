@@ -64,12 +64,12 @@ Pour l'exemple, nous allons simuler le scénario où l'ensemble des données ide
 
 ##### Périmètre final
 
-L'alignement entre le modèle "physique" (modèle de l'application DPI) et le modèle métier issu des exigences en donnée de l'usage permet d'identifier les tables et les champs d'intérêt.
+L'alignement du modèle métier, issu des exigences en donnée de l'usage, vers le modèle "physique" (modèle de l'application DPI)  permet d'identifier les tables et les champs d'intérêt.
 
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
 <div style="text-align: center;">{%include core-map.svg%}</div>
 
-Vous pouvez trouver l'alignement formel entre le modèle physique et les profils FHIR : [Modèle physique vers FHIR](StructureMap-CorePhysical2FHIR.html)
+Vous pouvez trouver l'alignement formel entre le modèle métier et le modèle physique : [Modèle métier vers modèle physique](StructureMap-CoreBusiness2Physical.html)
 
 #### Profilage des données
 
