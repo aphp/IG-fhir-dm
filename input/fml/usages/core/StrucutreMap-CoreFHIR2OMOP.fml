@@ -1,0 +1,23 @@
+map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOP" = "CoreFHIR2OMOP"
+
+/// name = 'CoreFHIR2OMOP'
+/// title = 'FHIR resources to Tables CDM OMOP'
+/// description = 'Cette ressource présente les spécifications de l\'alignement entre les ressources FHIR vers les tables correspodantes du CDM OMOP.'
+
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as source
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
+
+imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIRPatient2OMOP"
+
+group Bundle(source src: Bundle, target tgtBundle : LogicalBundle) <<types>> {
+  src -> tgtBundle.id = uuid() "setId";
+	src -> tgtBundle.type = 'transaction' "setType";
+  src.entry as srcEntry where srcEntry.resource.is(FHIR.Patient) then {
+    srcEntry.resource as srcResource -> (%srcResource.as(FHIR.Patient)) as srcPatient, tgtBundle.entry as newEntry then Patient(srcPatient, newEntry) "addPatient";
+  } "entryLoop4Patient";
+}
+
+group PatientTest(source src: Patient, target tgtBundle : LogicalBundle) {
+  src -> tgtBundle.entry as newEntry then Patient(src, newEntry) "addPatient";
+}
