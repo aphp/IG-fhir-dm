@@ -14,10 +14,8 @@ group Bundle(source src: Bundle, target tgtBundle : LogicalBundle) <<types>> {
   src -> tgtBundle.id = uuid() "setId";
 	src -> tgtBundle.type = 'transaction' "setType";
   src.entry as srcEntry where srcEntry.resource.is(FHIR.Patient) then {
-    srcEntry.resource as srcResource -> (%srcResource.as(FHIR.Patient)) as srcPatient, tgtBundle.entry as newEntry then Patient(srcPatient, newEntry) "addPatient";
+    srcEntry.resource as srcResource -> 
+      (%srcResource.as(FHIR.Patient)) as srcPatient,
+      tgtBundle.entry as newEntry then Patient(srcPatient, newEntry) "addPatient";
   } "entryLoop4Patient";
-}
-
-group PatientTest(source src: Patient, target tgtBundle : LogicalBundle) {
-  src -> tgtBundle.entry as newEntry then Patient(src, newEntry) "addPatient";
 }
