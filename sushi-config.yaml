@@ -41,7 +41,7 @@ pages:
   change_log.md:
     title: Notes de version
   other.md:
-    title: Plus
+    title: Autre
     help.md:
       title: Aide
     glossary.md:
@@ -59,12 +59,12 @@ menu:
     Sources multiples: dm-reconciliation.html
     Gestion des versions: dm-versioning.html
     Processus de livraison: dm-delivery-process.html
-  Ressources de conformité: artifacts.html
   Notes de version: change_log.html
-  Plus:
+  Autre:
     Aide: help.html
     Glossaire: glossary.html
     Télécharger spécifications: downloads.html
+  Ressources de conformité: artifacts.html
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
   shownav: false
