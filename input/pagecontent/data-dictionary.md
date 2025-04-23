@@ -11,8 +11,8 @@ Le tableau suivant récapitule les données intégré dans le Hub de données du
   <tr><td>Parcours patient</td><td><a href="StructureDefinition-DMEpisodeOfCare.html">Episode de soin</a></td><td>Données d'intérêt</td></tr>
   <tr><td>PMSI</td><td><a href="StructureDefinition-DMClaimRSS.html">Résumé Standardisé de Sortie (RSS)</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
   <tr><td>Résultats d’examens biologiques</td><td><a href="StructureDefinition-DMObservationLaboratoryUremie.html">Urémie</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
-  <tr><td>Résultats d’examens biologiques</td><td><a href="">Créatininémie</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
-  <tr><td>Résultats d’examens biologiques</td><td><a href="">Débit de filtration glomérulaire (DFG)</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
+  <tr><td>Résultats d’examens biologiques</td><td><a href="StructureDefinition-DMObservationLaboratoryFonctionRenale.html">Créatininémie</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
+  <tr><td>Résultats d’examens biologiques</td><td><a href="StructureDefinition-DMObservationLaboratoryFonctionRenale.html">Débit de filtration glomérulaire (DFG)</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
   <tr><td>Résultats d’examens biologiques</td><td><a href="">Leucocytes</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
   <tr><td>Résultats d’examens biologiques</td><td><a href="">Hémoglobine</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
   <tr><td>Résultats d’examens biologiques</td><td><a href="">Hématocrite</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
