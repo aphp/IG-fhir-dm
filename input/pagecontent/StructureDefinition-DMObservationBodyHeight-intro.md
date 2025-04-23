@@ -8,7 +8,7 @@ Cette page documente le jeu de données correspondant à la **taille du patient*
 
 ### Processus de production des données
 
-[Aide de lecture](glossary.html#description-des-processus-de-production-des-donn%C3%A9es-sources)
+[Aide de lecture](help.html#description-des-processus-de-production-des-donn%C3%A9es-sources)
 
 <div style="text-align: center;" id="processus">{%include processus-production-vital-sign.svg%}</div>
 
