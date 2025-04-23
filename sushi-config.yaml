@@ -22,24 +22,32 @@ dependencies:
 pages:
   index.md:
     title: Accueil
-  dm-context.md:
-    title: Contexte
-  dm-reconciliation.md:
-    title: Gestion des sources multiples
-  dm-delivery-process.md:
-    title: Processus de livraison des usages
-  dm-versioning.md:
-    title: Gestion des versions
   data-dictionary.md:
     title: Dictionnaire des données
-  dm-core.md:
-    title: Variables du socles pour les EDSH
+  use-case.md:
+    title: Usages
+    dm-core.md:
+      title: Variables socles
+  data-management.md:
+    title: Gestion des données
+    dm-context.md:
+      title: Contexte
+    dm-reconciliation.md:
+      title: Sources multiples
+    dm-versioning.md:
+      title: Gestion des versions
+    dm-delivery-process.md:
+      title: Processus de livraison
   change_log.md:
     title: Notes de version
-  downloads.md:
-    title: Télécharger les spécifications
-  glossary.md:
-    title: Glossaire
+  other.md:
+    title: Plus
+    help.md:
+      title: Aide
+    glossary.md:
+      title: Glossaire
+    downloads.md:
+      title: Télécharger les spécifications
 
 menu:
   Accueil: index.html
@@ -54,6 +62,7 @@ menu:
   Ressources de conformité: artifacts.html
   Notes de version: change_log.html
   Plus:
+    Aide: help.html
     Glossaire: glossary.html
     Télécharger spécifications: downloads.html
 
