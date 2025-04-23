@@ -1,7 +1,7 @@
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
 <div id="dm-schema-fonctionnel">
     <div style="horiz-align: center">
-        <img src="dm-schema-fonctionnel.png" alt="Le schéma suivant représente le workflow de la méthode employé" height="auto" width="100%" />
+        <img src="dm-schema-fonctionnel.jpg" alt="Le schéma suivant représente le workflow de la méthode employé" height="auto" width="100%" />
     </div>
 </div>
 

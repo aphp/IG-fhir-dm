@@ -26,7 +26,7 @@ pages:
     title: Dictionnaire des données
   use-case.md:
     title: Usages
-    dm-core.md:
+    use-core.md:
       title: Variables socles
   data-management.md:
     title: Gestion des données
@@ -53,7 +53,7 @@ menu:
   Accueil: index.html
   Dictionnaire des données: data-dictionary.html
   Usages:
-    Variables socles: dm-core.html
+    Variables socles: use-core.html
   Gestion des données: 
     Contexte: dm-context.html
     Sources multiples: dm-reconciliation.html
