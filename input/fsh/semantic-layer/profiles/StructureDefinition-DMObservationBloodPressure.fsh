@@ -1,6 +1,6 @@
 Profile: DMObservationBloodPressure
 Parent: FRCoreObservationBpProfile
-Title: "Blood Pressure"
+Title: "Pression artérielle"
 Description: "Profil de la pression artérielle du socle commun des EDS"
 
 * subject only Reference(DMPatient)

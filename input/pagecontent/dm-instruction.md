@@ -50,7 +50,8 @@ ses données, en garantissant transparence, qualité et conformité.
 ##### Supports
 
 Afin de construire la preuve résultant du processus de "Data Discovery", un alignement est réalisé entre les modèles 
-physiques des sources identifiées et une ressource `QuestionnaireResponse` correspondant [au `Questionnaire`des exigences](dm-delivery-process.html#mod%C3%A8le-m%C3%A9tier). Cette preuve à deux vertus :
+physiques des sources identifiées et une ressource `QuestionnaireResponse` correspondant [au `Questionnaire` des exigences](data-management.html#mod%C3%A8le-m%C3%A9tier). Cette preuve à deux vertus :
+
 1. Documenter ce qui a été découvert,
 2. Valider, car cette preuve s'appuie sur un langage formel et standard permettant le calcul de couverture (PKI).
 

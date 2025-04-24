@@ -2,7 +2,7 @@ Instance: CoreExigences
 InstanceOf: DocumentReference
 Title: "Exigences des variables socles pour les Entrepôts de Données de Santé Hospitalier (EDSH)"
 Description: """
-Fichier Excel ...
+Exigences des variables socles pour les Entrepôts de Données de Santé Hospitalier (EDSH) au format Excel.
 """
 Usage: #definition
 

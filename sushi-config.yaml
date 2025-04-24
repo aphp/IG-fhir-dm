@@ -22,40 +22,37 @@ dependencies:
 pages:
   index.md:
     title: Accueil
-  dm-context.md:
-    title: Contexte
-  dm-reconciliation.md:
-    title: Gestion des sources multiples
-  dm-delivery-process.md:
-    title: Processus de livraison des usages
-  dm-versioning.md:
-    title: Gestion des versions
   data-dictionary.md:
     title: Dictionnaire des données
-  dm-core.md:
-    title: Variables du socles pour les EDSH
+  use-case.md:
+    title: Usages
+    use-core.md:
+      title: Variables socles
+  data-management.md:
+    title: Gestion des données
   change_log.md:
     title: Notes de version
-  downloads.md:
-    title: Télécharger les spécifications
-  glossary.md:
-    title: Glossaire
+  other.md:
+    title: Autre
+    help.md:
+      title: Aide
+    glossary.md:
+      title: Glossaire
+    downloads.md:
+      title: Télécharger les spécifications
 
 menu:
   Accueil: index.html
   Dictionnaire des données: data-dictionary.html
   Usages:
-    Variables socles: dm-core.html
-  Gestion des données: 
-    Contexte: dm-context.html
-    Sources multiples: dm-reconciliation.html
-    Gestion des versions: dm-versioning.html
-    Processus de livraison: dm-delivery-process.html
-  Ressources de conformité: artifacts.html
+    Variables socles: use-core.html
+  Gestion des données: data-management.html
   Notes de version: change_log.html
-  Plus:
+  Autre:
+    Aide: help.html
     Glossaire: glossary.html
     Télécharger spécifications: downloads.html
+  Ressources de conformité: artifacts.html
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
   shownav: false
