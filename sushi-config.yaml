@@ -30,14 +30,6 @@ pages:
       title: Variables socles
   data-management.md:
     title: Gestion des données
-    dm-context.md:
-      title: Contexte
-    dm-reconciliation.md:
-      title: Sources multiples
-    dm-versioning.md:
-      title: Gestion des versions
-    dm-delivery-process.md:
-      title: Processus de livraison
   change_log.md:
     title: Notes de version
   other.md:
@@ -54,11 +46,7 @@ menu:
   Dictionnaire des données: data-dictionary.html
   Usages:
     Variables socles: use-core.html
-  Gestion des données: 
-    Contexte: dm-context.html
-    Sources multiples: dm-reconciliation.html
-    Gestion des versions: dm-versioning.html
-    Processus de livraison: dm-delivery-process.html
+  Gestion des données: data-management.html
   Notes de version: change_log.html
   Autre:
     Aide: help.html
