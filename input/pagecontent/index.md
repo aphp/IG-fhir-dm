@@ -61,6 +61,14 @@ Un second lot de données comprend quatre items relatifs à des comportements à
 
 Enfin, le socle commun se compose d'informations généralement structurées à la source, mais les difficultés d'extraction de données depuis les systèmes d'information hospitaliers devront être considérées. En effet, certains éditeurs, sur la base de considérations liées aux droits de copyright et aux investissements à réaliser, choisissent de restreindre l'accès aux données, ce qui peut rendre l'extraction particulièrement complexe ou coûteuse pour les établissements, tout en limitant leur réutilisation au sein des EDS.
 
+### Outils
+
+Pour supporter l'approche, plusieurs outils sont facilitant notamment :
+
+* [FHIR IG Publisher](https://github.com/HL7/fhir-ig-publisher) : le FHIR IG Publisher permet la construction des guides d'implémentation notamment il valide les ressources de conformité et produit un [rapport qualité](qa.html)
+* [FHIR MapBuilder](https://github.com/aphp/fhir-mapbuilder) : le FHIR MapBuilder facilite l'édition de fichier [FHIR Mapping Language (FML)](glossary.html#fml) permettant notamment de documenter le linéage colonne entre deux définition de structure (`StructureDefinition`).
+* [AP-HP FormBuilder](https://github.com/aphp/formbuilder) : le AP-HP FormBuilder est un éditeur de ressource `Questionnaire` permettant notamment de définir un recceuil d'information. Dans le contexte de l'approche, deux usages sont référencés, (i) conception d'un formulaire du (pour le) SIH, (ii) édition d'un modèle logique issue d'un modéle conceptuel pour un cas d'usage.
+
 ### Organisation du guide
 
 Le guide d'implémentation **Data Management with FHIR** s'appuie sur l'outil [HL7 FHIR IG Publisher](https://github.com/HL7/fhir-ig-publisher) impactant le rendu. Dans la barre de navigation où se trouve les entrées de premier niveau du guide. Les entrées sont :
