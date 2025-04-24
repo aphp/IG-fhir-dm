@@ -3,7 +3,7 @@ Le tableau suivant récapitule les données intégré dans le Hub de données du
 <table style="width: 100%">
   <tr><th>Groupe</th><th>Données</th><th>Caractéristiques</th></tr>
   <tr><td>Identité patient</td><td><a href="StructureDefinition-DMPatient.html">Patient</a></td><td>Données maîtres ; Socle de données commun aux EDSH</td></tr>
-  <tr><td>Organisationnel</td><td><a href="StructureDefinition-DMOrganization.html">Structure (Structure)</a></td><td>Données maîtres</td></tr>
+  <tr><td>Organisationnel</td><td><a href="StructureDefinition-DMOrganization.html">Structure (organisation)</a></td><td>Données maîtres</td></tr>
   <tr><td>Organisationnel</td><td><a href="StructureDefinition-DMLocation.html">Structure (localisation)</a></td><td>Données maîtres</td></tr>
   <tr><td>Organisationnel</td><td><a href="StructureDefinition-DMPractitioner.html">Personnel</a></td><td>Données maîtres</td></tr>
   <tr><td>Organisationnel</td><td><a href="StructureDefinition-DMPractitionerRole.html">Rôle du personnel</a></td><td>Données maîtres</td></tr>
