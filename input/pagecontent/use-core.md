@@ -31,6 +31,6 @@ Le processus de livraison des données se compose de la manière suivante :
 
 {% include use-core-conception-omop.md %}
 
-#### Exemple de synthèse
+#### Validation des transformations : d'une réponse au questionnaire des variables socles à OMOP
 
-{% include use-core-exemple-bout-en-bout.md %}
+{% include use-core-validation.md %}
