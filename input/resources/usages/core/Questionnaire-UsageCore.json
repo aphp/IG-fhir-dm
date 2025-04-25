@@ -1,23 +1,6 @@
 {
-  "resourceType": "Questionnaire",
-  "id": "UsageCore",
-  "meta": {
-    "versionId": "12",
-    "lastUpdated": "2025-03-27T13:45:07.076+00:00",
-    "source": "https://aphp.fr/ig/fhir/eds/Endpoint/form-builder"
-  },
-  "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
-  "name": "UsageCore",
-  "title": "Questionnaire usage Core",
-  "status": "active",
-  "date": "2025-02-03",
-  "description": "Arborescence des variables du socle des EDSH.",
   "item": [
     {
-      "linkId": "4647259356106",
-      "text": "Données socio-démographiques",
-      "type": "group",
-      "repeats": false,
       "item": [
         {
           "linkId": "2958000860428",
@@ -317,7 +300,11 @@
             }
           ]
         }
-      ]
+      ],
+      "type": "group",
+      "linkId": "4647259356106",
+      "text": "Données socio-démographiques",
+      "repeats": false
     },
     {
       "linkId": "2825244231605",
@@ -2410,5 +2397,17 @@
         }
       ]
     }
-  ]
+  ],
+  "resourceType": "Questionnaire",
+  "id": "UsageCore",
+  "meta": {
+    "versionId": "15",
+    "lastUpdated": "2025-04-25T09:57:49.017+00:00",
+    "source": "https://aphp.fr/ig/fhir/eds/Endpoint/form-builder"
+  },
+  "name": "UsageCore",
+  "title": "Questionnaire usage Variables socles pour les EDSH",
+  "status": "active",
+  "date": "2025-02-03",
+  "description": "Arborescence des variables du socle pour les EDSH"
 }
