@@ -16,9 +16,17 @@ En effet, bien que le monde du logiciel et celui de la donnée soient étroiteme
 
 Ainsi, appliquer directement les méthodes MDA issues du développement logiciel au domaine de la donnée reviendrait à négliger des spécificités essentielles, comme la variabilité des sources, la volatilité des formats, la traçabilité ou encore les enjeux d'intégration et d'interopérabilité. Cela nécessite une réinterprétation du MDA pour l'adapter aux exigences du data-driven.
 
-La puissance du standard FHIR permet d'adresser les niveaux PIM, PSM et aussi les transformations entre les niveaux PIM et PSM par l'usage du [FHIR Mapping Language (FML)](glossary.html#fml).
+FHIR peut être vu comme un [Domain Specific Language (DSL)](glossary.html#dsl) pour la gestion des données de santé. Il fournit :
 
-Les ressources FHIR de type `StructureDefinition` permettent soit de définir des structures logiques pouvant exprimer tous types de structure de donnée notammant les schémas de base de donnée et dans cet exemple ces struc
+* **Un vocabulaire standardisé** : les ressources (Patient, Observation, Encounter, Questionnaire...) sont les entités du domaine avec des attributs précis, interprétables de manière universelle.
+* **Une grammaire structurée** : les ressources sont sérialisables en JSON, XML ou RDF, ce qui permet de manipuler les données de manière formelle, tout en restant lisibles.
+* **Des mécanismes de composition** : comme dans un DSL, on peut enrichir ou contraindre le langage via des profils, extensions et contraintes (StructureDefinition, ValueSet...).
+* **Des règles d’interprétation métier** : FHIR embarque une logique métier implicite (ex. : un Observation a toujours une date, une valeur...) et peut être validé automatiquement.
+* **Un moteur d’exécution** : l’API RESTful de FHIR permet d’"exécuter" le DSL, c’est-à-dire de créer, lire, interroger et valider des ressources en ligne.
+
+FHIR permet d'adresser les niveaux PIM, PSM et aussi les transformations entre les niveaux PIM et PSM par l'usage du [FHIR Mapping Language (FML)](glossary.html#fml).
+
+Les ressources FHIR de type `StructureDefinition` permettent soit de définir des structures logiques traduisant le contenu d'une représentation conceptuelle, soit de contraindre une ressource pour un cas d'usage (dans ce cas le résultat est de type PIM) ou encore soit de définir des structures logiques pour représenter des schémas de base de donnée (dans ce cas le résultat est de type PSM).
 
 ### Contexte
 

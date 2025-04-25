@@ -2,6 +2,8 @@
 
 <a name="fhir-conceptmap" />**ConceptMap** : Une ressource `ConceptMap` est un patron de conception standard **FHIR**. Il permet de formaliser des alignements entre deux `ValueSet` afin de supporter la tâche de traduction notamment dans le cadre d'un échange de donnée impliquant une normalisation des codes.
 
+<a name="dsl" />**Domain Specific Language** : Un Domain-Specific Language (DSL) est un langage de programmation ou de modélisation conçu spécifiquement pour un domaine d'application particulier. Contrairement aux langages généralistes (comme Python ou Java), un DSL vise à exprimer de façon simple, lisible et efficace des concepts propres à un métier ou un usage donné.
+
 <a name="fml" />**FHIR Mapping Language** : le FHIR Mapping Language (FML) est ...
 
 <a name="hds" />**Hub de Données de Santé** : Un Hub de Données de Santé est un dépôt central de données standardisées provenant de sources multiples au sein d'un SIH.
