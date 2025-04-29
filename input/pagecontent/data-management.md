@@ -28,6 +28,21 @@ FHIR permet d'adresser les niveaux PIM, PSM et aussi les transformations entre l
 
 Les ressources FHIR de type `StructureDefinition` permettent soit de définir des structures logiques traduisant le contenu d'une représentation conceptuelle, soit de contraindre une ressource pour un cas d'usage (dans ce cas le résultat est de type PIM) ou encore soit de définir des structures logiques pour représenter des schémas de base de donnée (dans ce cas le résultat est de type PSM).
 
+### Modéle conceptuel
+
+Un modèle conceptuel est une représentation abstraite et simplifiée de la réalité, utilisée pour organiser, structurer et formaliser des idées ou des connaissances sur un domaine donné. Il sert principalement à décrire les entités (ou objets d'intérêt), leurs propriétés (ou attributs) et les relations entre elles, sans se préoccuper des détails techniques d'implémentation.
+
+Cette étape produit deux livrables :
+
+1. Une représentation graphique des concepts, propriétés et relations les plus importants d'un sujet
+2. Un glossaire référençant pour chaque entité représentée sa définition/description
+
+### Modéle indépendant de plateforme
+
+### Modèle dépendant de plateforme
+
+### Code executable
+
 ### Contexte
 
 Un [Hub de Données de Santé](glossary.html#hds) est un dépôt central de données standardisées provenant de sources multiples au sein d'un SIH. Il est conçu pour :

@@ -1,3 +1,13 @@
+#### Modéle conceptuel
+
+<div style="text-align: center;" id="conceptual-model">
+  <img style="width: 100%" src="use-core-conceptual.png" alt="Modèle conceptuel"/>
+</div>
+
+| Concept | Description | Note | Aussi connu comme | Lien/Dépendance |
+|---------|-------------|------|-------------------|-----------------|
+||||||
+
 #### Formulaire des exigences
 
 Dans notre approche, nous formalisons les exigences d’un cas d'usage en créant une ressource `Questionnaire`, car celle-ci possède la flexibilité nécessaire pour représenter l'ensemble des variables d'un cas d'usage tout en les organisant. [Le formulaire des exigences](Questionnaire-UsageCore.html) est le résultat du processus de formalisation à partir du fichier [exigences de l'usage **Variables socles pour les EDSH** (fichier MSExcel)](DocumentReference-CoreExigences.html) du cas d'usage.
@@ -11,7 +21,7 @@ Pour l'exemple, nous allons simuler le scénario où l'ensemble des données ide
 ##### Périmètre initial
 
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
-<div style="text-align: center;">{%include core-mpd.svg%}</div>
+<div style="text-align: center; width: 100%;">{%include core-mpd.svg%}</div>
 
 <table width="100%">
   <tr><th>Table</th><th>Description</th><th>DDL</th></tr>
@@ -29,7 +39,7 @@ Pour l'exemple, nous allons simuler le scénario où l'ensemble des données ide
 L'alignement du modèle métier, issu des exigences en donnée de l'usage, vers le modèle "physique" (modèle de l'application DPI)  permet d'identifier les tables et les champs d'intérêt.
 
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
-<div style="text-align: center;">{%include core-map.svg%}</div>
+<div style="text-align: center; width: 100%;">{%include core-map.svg%}</div>
 
 Vous pouvez trouver l'alignement formel entre le modèle métier et le modèle physique : [Modèle métier vers modèle physique](StructureMap-CoreBusiness2Physical.html)
 
@@ -46,9 +56,6 @@ Le profilage décrit ici s'appuie sur la norme 8000-81. Le profilage des donnée
 
 ##### Analyse de la structure de données
 
-La première étape du profilage pour un usage est l'analyse de la structure de données. Il s'agit d'identifier les tables
-et les champs d'intérêt. Les résultats sont présentés par table.
-
-Ici pour l'exemple, nous n'avons pas adressé ce point. Néanmoins, et pour l'exercice, nous envisageons de la faire prochainement.
+La première étape du profilage pour un usage est l'analyse de la structure de données. Il s'agit d'identifier les tables et les champs d'intérêt. Les résultats sont présentés par table.
 
 {% include markdown-link-references.md %}
