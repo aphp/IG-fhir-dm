@@ -50,7 +50,7 @@ group setPatientMeta(source srcNi, target tgtMeta : FHIRMeta) {
 }
 
 group setHumainName(source srcPatient : PatientTable, target tgtPatientName) {
-  srcPatient -> tgtPatientName.use = c('http://hl7.org/fhir/name-use', 'usual') "setUse";
+  srcPatient -> tgtPatientName.use = 'usual' "setUse";
 //  srcPatient -> tgtPatientName.text = (%srcPatient.firstName + ' ' + %srcPatient.name) "setText";
 //  srcPatient.name as srcPatientName -> tgtPatientName.family = srcPatientName "setName";
 //  srcPatient.firstName as srcPatientFirstName -> tgtPatientName.given = srcPatientFirstName "setFirstName";
@@ -70,7 +70,8 @@ group setHumainNir(source srcPatient : PatientTable, target tgtPatientIdentifier
 group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient, target tgtEncounter : FHIREncounter) {
   srcSejour -> tgtEncounter.id = uuid() "setId";
   srcSejour.sejourNi as srcNi -> tgtEncounter.meta as tgtMeta then setEncounterMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
-  srcSejour -> tgtEncounter.status = c('http://hl7.org/fhir/encounter-status', 'completed') "setStatus";
+  srcSejour -> tgtEncounter.status = 'finished' "setStatus";
+  srcSejour -> tgtEncounter.class = c('http://terminology.hl7.org/CodeSystem/v3-ActCode', 'IMP') "setClass";
   srcSejour.sejourType as srcSejourType -> tgtEncounter.type = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterType', 'CodeableConcept') "setEncounterType";
   srcPatient.id as patientId -> tgtEncounter.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference"; 
   srcSejour.patientNi "patientNi";// fk vers le patient à conserver pour la construction auto du périmètre final
@@ -93,11 +94,13 @@ group observationBiol(source srcBiology : BiologyTable, source srcPatient : FHIR
   srcBiology.biologyNi as srcNi -> tgtObservation.meta as tgtMeta then setBiologyMeta(srcNi, tgtMeta) "setMeta";
   srcPatient.id as patientId -> tgtObservation.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference";
   srcEncounter.id as encounterId -> tgtObservation.encounter = create("Reference") as newEncounter then setEncounterReference(encounterId, newEncounter) "setEncounterReference";
-  srcBiology.biologyDatePrel as biologyDatePrel -> tgtObservation.effective = biologyDatePrel "setDate";
+  srcBiology -> tgtObservation.status = 'final' "setStatus";
+  srcBiology -> tgtObservation.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs') "setCategory";
+  srcBiology.biologyDatePrel as biologyDatePrel -> tgtObservation.effectiveDateTime = biologyDatePrel "setDate";
   srcBiology.biologyCode as biologyCode -> tgtObservation.code = cc('http://loinc.org', biologyCode) "setCode";
   srcBiology.biologyValue -> tgtObservation.value = create('Quantity') as tgtObsQuantity then {
     srcBiology.biologyValue as biologyValue -> tgtObsQuantity.value = biologyValue "setValue";
-    srcBiology.biologyUnit as biologyUnit ->  tgtObsQuantity.unit = biologyUnit, tgtObsQuantity.system = 'http://unitsofmeasure.org' "setUnit";
+    srcBiology.biologyUnit as biologyUnit ->  tgtObsQuantity.code = biologyUnit, tgtObsQuantity.unit = biologyUnit, tgtObsQuantity.system = 'http://unitsofmeasure.org' "setUnit";
   } "setQuantity";
 }
 
@@ -111,9 +114,9 @@ group setEncounterReference(source srcEncounterId, target newEncounter) {
 
 group setEntryRequestAndFullUrl(source newRes, target tgtEntry) { 
   newRes.id as newResId then {
-    newResId -> tgtEntry.fullUrl = (%newRes.type().name + '/' + %newResId) "setFullUrl";
+    newResId -> tgtEntry.fullUrl = ('https://aphp.fr/' + %newRes.type().name + '/' + %newResId) "setFullUrl";
     newResId -> tgtEntry.request as tgtEntryRequest, 
       tgtEntryRequest.method = 'POST',
       tgtEntryRequest.url = (%newRes.type().name + '/' + %newResId) "setRequest" ;
-  } "setResourceType" ;
+  } "setResourceType";
 }

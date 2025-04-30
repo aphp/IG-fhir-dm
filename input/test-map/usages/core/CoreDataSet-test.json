@@ -29,9 +29,9 @@
     "biologyNi": 1,
     "sejourNi": { "reference": "SejourCore/1" },
     "patientNi": { "reference": "PatientCore/1" },
-    "dateCreat": "2025-02-04",
-    "dateModif": "2025-02-04",
-    "biologyDatePrel": "2025-02-04",
+    "dateCreat": "2025-02-04T09:30:10+01:00",
+    "dateModif": "2025-02-04T09:30:10+01:00",
+    "biologyDatePrel": "2025-02-04T09:30:10+01:00",
     "biologyCode": "29463-7",
     "biologyValue": 45.5,
     "biologyUnit": "kg"
