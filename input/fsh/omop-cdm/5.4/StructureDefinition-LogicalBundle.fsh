@@ -6,7 +6,7 @@ Description: """
 The BundleLogical has the same objective as the FHIR Bundle resource but allows for the grouping of logical models.
 """
 
-* id 1..1 id "Logical id of this artifact"
+* logicalId 1..1 id "Logical id of this artifact"
 * type 1..1 code "Indicates the purpose of this bundle - how it is intended to be used." """	
 It's possible to use a bundle for other purposes (e.g. a document can be accepted as a transaction). This is primarily defined so that there can be specific rules for some of the bundle types.
 """

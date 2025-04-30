@@ -1,6 +1,6 @@
 {
   "resourceType" : "LogicalBundle",
-  "id" : "7e42a5d8-3094-411c-b3a3-1f191d57939b",
+  "logicalId" : "7e42a5d8-3094-411c-b3a3-1f191d57939b",
   "type" : "transaction",
   "entry" : [{
     "person" : {
