@@ -1,6 +1,6 @@
 La méthodologie de gestion des données avec FHIR (Data Management with FHIR) s'inspire du [Model Driven Architecture (MDA)](glossary.html#mda) faisant notamment de la modélisation le coeur de la stratégie de développement logiciel que nous appliquons à la donnée et notamment à la donnée de santé.
 
-Pour rappel, les objectifs de l'approche MDA est de favoriser la portabilité des applications, d'améliorer la réutilisabilité et la productivité, de faciliter la maintenance de systèmes et enfin de promouvoir la standardisation. Ces objectifs s'alignent pleinement avec l'usage du standard FHIR comme langage unique du SIH.
+Pour rappel, les objectifs de l'approche MDA est de favoriser **la portabilité** des applications, d'améliorer **la réutilisabilité** et la productivité, de faciliter la maintenance de systèmes et enfin **de promouvoir la standardisation**. Ces objectifs s'alignent pleinement avec l'usage du standard FHIR comme langage unique du SIH.
 
 L'approche MDA référence trois types de modèles :
 
@@ -8,7 +8,7 @@ L'approche MDA référence trois types de modèles :
 2. PIM (Platform Independent Model) : ce sont des modèles indépendant des plateformes décrivant les fonctionnalités des systèmes sans ce soucier de la technologie, il est fréquent de trouver le terme de modèle logique.
 3. PSM (Platform Specific Model) : ce sont des modèles spécifiques à une plateforme technique, il est fréquent de trouver le terme de modèle physique.
 
-Dans l'approche MDA, le rôle des transformations de modèles est centrale et elles doivent être le plus automatisée possible notamment pour passer de CIM -> PIM (compréhension métier -> modélisation fonctionnelle), de PIM -> PSM (modélisation fonctionnelle -> structure technique) et de PSM -> Code (génération de code automatisée).
+Dans l'approche MDA, **le rôle des transformations de modèles est centrale** et elles doivent être le plus automatisée possible notamment pour passer de CIM -> PIM (compréhension métier -> modélisation fonctionnelle), de PIM -> PSM (modélisation fonctionnelle -> structure technique) et de PSM -> Code (génération de code automatisée).
 
 L'approche MDA a été initialement conçue pour le développement logiciel, avec pour objectif de structurer les applications autour de modèles formels et transformables. Toutefois, lorsqu'on cherche à transposer cette approche au contexte de la donnée, une adaptation est nécessaire.
 
@@ -24,7 +24,7 @@ FHIR peut être vu comme un [Domain Specific Language (DSL)](glossary.html#dsl) 
 * **Des règles d’interprétation métier** : FHIR embarque une logique métier implicite (ex. : un Observation a toujours une date, une valeur...) et peut être validé automatiquement.
 * **Un moteur d’exécution** : l’API RESTful de FHIR permet d’"exécuter" le DSL, c’est-à-dire de créer, lire, interroger et valider des ressources en ligne.
 
-FHIR permet d'adresser les niveaux PIM, PSM et aussi les transformations entre les niveaux PIM et PSM par l'usage du [FHIR Mapping Language (FML)](glossary.html#fml).
+**FHIR permet d'adresser les niveaux PIM, PSM et aussi les transformations par l'usage du [FHIR Mapping Language (FML)](glossary.html#fml)**.
 
 Les ressources FHIR de type `StructureDefinition` permettent soit de définir des structures logiques traduisant le contenu d'une représentation conceptuelle, soit de contraindre une ressource pour un cas d'usage (dans ce cas le résultat est de type PIM) ou encore soit de définir des structures logiques pour représenter des schémas de base de donnée (dans ce cas le résultat est de type PSM).
 
