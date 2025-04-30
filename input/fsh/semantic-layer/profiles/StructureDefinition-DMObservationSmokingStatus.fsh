@@ -39,7 +39,7 @@ Description: "Profil pour la consommation de tabac."
 
 * valueQuantity 0..1 MS
 * valueQuantity only Quantity
-* valueQuantity from UnitsOfMeasureCaseSensitive (required)
+* valueQuantity from $UnitsOfMeasureCaseSensitive (required)
 * valueQuantity ^sliceName = "valueQuantity"
 * valueQuantity ^short = "Quantitative Response"
 

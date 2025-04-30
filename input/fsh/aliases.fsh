@@ -17,6 +17,9 @@ Alias: $fr-core-cs-v2-0203                   = https://hl7.fr/ig/fhir/core/CodeS
 Alias: $fr-core-cs-TRE_R309-FMA              = https://mos.esante.gouv.fr/NOS/TRE_R309-FMA/FHIR/TRE-R309-FMA
 Alias: $fr-core-cs-TRE-R32-StatutHospitalier = https://mos.esante.gouv.fr/NOS/TRE_R32-StatutHospitalier/FHIR/TRE-R32-StatutHospitalier
 
+// ValueSet from HL7
+Alias: $UnitsOfMeasureCaseSensitive          = http://terminology.hl7.org/ValueSet/v3-UnitsOfMeasureCaseSensitive
+
 // ValueSet from FrCore
 Alias: $fr-core-vs-patient-gender-INS        = https://hl7.fr/ig/fhir/core/ValueSet/fr-core-vs-patient-gender-INS
 
