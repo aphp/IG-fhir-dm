@@ -17,7 +17,7 @@ uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationPre" alias Me
 
 
 group init(source srcQR : QR, target tgtDS : DataSet) <<types>> {
-    srcQR -> tgtDS.logicalid = uuid() "setId";
+    srcQR -> tgtDS.logicalId = uuid() "setId";
     srcQR -> tgtDS.patient as tgtPatient,
         tgtDS.sejour as tgtSejour,
         tgtDS.biology as tgtBiol,
