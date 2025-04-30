@@ -6,7 +6,7 @@ Description:  """
 Modèle logique pour les DataSet issues du DPI
 """
 
-* logicalid 0..1 id "id"
+* logicalId 0..1 id "id"
 * patient 1..1 CorePatient "Patient"
 * sejour 0..* CoreSejour "Sejour"
 * biology 0..* CoreBiology "Biologies"

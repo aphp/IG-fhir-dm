@@ -11,7 +11,7 @@ uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias Logica
 imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIRPatient2OMOP"
 
 group Bundle(source src: Bundle, target tgtBundle : LogicalBundle) <<types>> {
-  src -> tgtBundle.id = uuid() "setId";
+  src -> tgtBundle.logicalId = uuid() "setId";
 	src -> tgtBundle.type = 'transaction' "setType";
   src.entry as srcEntry where srcEntry.resource.is(FHIR.Patient) then {
     srcEntry.resource as srcResource -> 

@@ -14,7 +14,7 @@
     <pre>
     {
       "resourceType" : "CoreDataSet",
-      "logicalid" : "UUID",
+      "logicalId" : "UUID",
       "patient" : {
         "name" : "doe",
         "firstName" : "john",
@@ -32,7 +32,7 @@
     <pre>
     {
       "resourceType" : "Bundle",
-      "id" : "5616f9ad-61b0-4279-9f41-777228d04665",
+      "id" : "UUID",
       "type" : "transaction",
       "entry" : [{
         "fullUrl" : "https://aphp.fr/Patient/f133b3c0-ccd8-4435-9ead-40b441c2154d",
@@ -74,7 +74,7 @@
     <pre>
     {
       "resourceType" : "LogicalBundle",
-      "id" : "7e42a5d8-3094-411c-b3a3-1f191d57939b",
+      "logicalId" : "UUID",
       "type" : "transaction",
       "entry" : [{
         "person" : {

@@ -13,7 +13,7 @@ imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreSimpleObservation2OMOPMeasu
 // imports "https://aphp.fr/ig/fhir/dm/StructureMap/*Measurement"
 
 group Observation(source src: LabObs, target tgtBundle : LogicalBundle) {
-    src -> tgtBundle.id = uuid() "setId";
+    src -> tgtBundle.logicalId = uuid() "setId";
     src -> tgtBundle.type = 'transaction' "setType";
     src where code.coding.code in ('14682-9'|'22664-7'|'77147-7') -> tgtBundle.entry as newEntry then {
         src -> newEntry.measurement = create("MeasurementTable") as newMeasurement then {

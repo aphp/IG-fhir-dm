@@ -1,6 +1,6 @@
 {
     "resourceType" : "CoreDataSet",
-    "logicalid" : "4f8879f2-b6df-4d10-b4ca-492ea26d16c2",
+    "logicalId" : "4f8879f2-b6df-4d10-b4ca-492ea26d16c2",
     "patient" : {
       "name" : "doe",
       "firstName" : "john",
