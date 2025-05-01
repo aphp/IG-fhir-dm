@@ -96,7 +96,7 @@ group observationBiol(source srcBiology : BiologyTable, source srcPatient : FHIR
   srcEncounter.id as encounterId -> tgtObservation.encounter = create("Reference") as newEncounter then setEncounterReference(encounterId, newEncounter) "setEncounterReference";
   srcBiology -> tgtObservation.status = 'final' "setStatus";
   srcBiology -> tgtObservation.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs') "setCategory";
-  srcBiology.biologyDatePrel as biologyDatePrel -> tgtObservation.effectiveDateTime = biologyDatePrel "setDate";
+  srcBiology.biologyDatePrel as biologyDatePrel -> tgtObservation.effective = biologyDatePrel "setDate";
   srcBiology.biologyCode as biologyCode -> tgtObservation.code = cc('http://loinc.org', biologyCode) "setCode";
   srcBiology.biologyValue -> tgtObservation.value = create('Quantity') as tgtObsQuantity then {
     srcBiology.biologyValue as biologyValue -> tgtObsQuantity.value = biologyValue "setValue";
