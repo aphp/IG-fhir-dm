@@ -6,6 +6,7 @@ map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIRPatient2OMOP" = "CoreFHIRPa
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPPerson" alias PersonTable as target
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPLocation" alias LocationTable as target
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPDeath" alias DeathTable as target
