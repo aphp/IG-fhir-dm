@@ -1,16 +1,47 @@
-#### Modéle conceptuel
+#### Modéle de donnée conceptuel
 
 <div style="text-align: center;" id="conceptual-model">
-  <img style="width: 100%" src="use-core-conceptual.png" alt="Modèle conceptuel"/>
+  <img style="width: 100%" src="use-core-conceptual.png" alt="Modèle de donnée conceptuel"/>
 </div>
 
-| Concept | Description | Note | Aussi connu comme | Lien/Dépendance |
-|---------|-------------|------|-------------------|-----------------|
-||||||
+<table width="100%">
+  <tr><th>Concept</th><th>Description</th><th>Note</th><th>Aussi connu comme</th><th>Lien/Dépendance</th></tr>
+  <tr><td>Patient</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Urémie</td><td></td><td></td><td>Dosage de l'urée dans le sang</td><td></td></tr>
+  <tr><td>Créatininémie</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Débit de filtration glomérulaire</td><td></td><td></td><td></td><td>Créatininémie, sexe, âge</td></tr>
+  <tr><td>Glycémie à jeun</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Hémoglobine glyquée</td><td></td><td></td><td>HbA1c</td><td></td></tr>
+  <tr><td>Aspartate aminotransférase (ASAT)</td><td></td><td></td><td>Aspartate aminotransférase (AST)</td><td></td></tr>
+  <tr><td>Alamine aminotransférase (ALAT)</td><td></td><td></td><td>Alamine aminotransférase (ALT)</td><td></td></tr>
+  <tr><td>Gamma-glutamyl transférase (GGT)</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Bilirubine totale</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Bilirubine conjuguée</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Leucocytes</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Hémoglobine</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Hématocrite</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Erythrocytes</td><td></td><td></td><td>Globule rouge</td><td></td></tr>
+  <tr><td>Volume globulaire moyen</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Plaquettes</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Neutrophiles</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Lymphocytes</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Eosinophiles</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Monocytes</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Taux prothrombine (TP)</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Temps de céphaline activée (TCA)</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Prescription médicamenteuse</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Posologie</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Médicament prescript</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Administration médicamenteuse</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Dosage</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Médicament administré</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Poids</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Taille</td><td></td><td></td><td></td><td></td></tr>
+</table>
 
 #### Formulaire des exigences
 
-Dans notre approche, nous formalisons les exigences d’un cas d'usage en créant une ressource `Questionnaire`, car celle-ci possède la flexibilité nécessaire pour représenter l'ensemble des variables d'un cas d'usage tout en les organisant. [Le formulaire des exigences](Questionnaire-UsageCore.html) est le résultat du processus de formalisation à partir du fichier [exigences de l'usage **Variables socles pour les EDSH** (fichier MSExcel)](DocumentReference-CoreExigences.html) du cas d'usage.
+Dans notre approche, nous formalisons les exigences d’un cas d'usage en créant une ressource `Questionnaire`, car celle-ci possède la flexibilité nécessaire pour représenter l'ensemble des variables d'un cas d'usage tout en les organisant. [Le formulaire des exigences](Questionnaire-UsageCore.html) est le résultat du processus de formalisation à partir du fichier d'[exigences de l'usage **Variables socles pour les EDSH** (fichier MSExcel)](DocumentReference-CoreExigences.html) du cas d'usage.
 
 #### Identification des applications sources
 
