@@ -4,7 +4,15 @@
 <ol>
   <li>
     <p><b>Un exemple de réponse issue du <a href="Questionnaire-UsageCore.html">questionnaire des variables socles</a></b> :</p>
-    <p>TODO mettre le détail du comment</p>
+    <p>On utilise Postman pour charger <a href="CodeSystem-DpiGender.html">le CodeSystem utile à l'alimentation du champ `Sexe`</a> et <a href="ValueSet-DpiGender.html">le ValueSet correspondant</a> dans un serveur FHIR (par exemple <a href="https://hapi.fhir.org/baseR4">le serveur HAPI R4 publique</a>).
+    On peut alors utiliser le <a href="https://fhirpath-lab.azurewebsites.net/Questionnaire/tester/">Form Tester</a>, un outil open source qui propose une interface de saisie et qui génère la ressource QuestionnaireResponse correspondant aux données saisies dans l'interface. Pour cela, il faut : 
+      <ul>
+        <li>Dans l'onglet DETAIL, coller la ressource <a href="Questionnaire-UsageCore.html">questionnaire des variables socles</a> dans le champ du milieu</li>
+        <li>Dans l'onglet CONTEXT, paramétrer l'url du serveur FHIR utiliser dans le champ `Data Server`</li>
+        <li>Dans l'onglet LHC-FORMS, renseigner le Questionnaire comme on le souhaite, puis cliquer sur SHOW RESPONSE</li> 
+        <li>Copier la ressource présente dans le champ de droite et la coller dans le dossier `input/test-map/usages/core/QuestionnaireResponse-UsageCoreTest.json`.</li> 
+      </ul>
+    </p>
     <p><b>Le résultat</b> : <a href="QuestionnaireResponse-qr-test-usage-core.html">un exemple de réponse</a></p>
   </li>
   <li>
