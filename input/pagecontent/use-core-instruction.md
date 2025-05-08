@@ -1,13 +1,16 @@
 #### Modéle de donnée conceptuel
 
-<div style="text-align: center;" id="conceptual-model">
-  <img style="width: 100%" src="use-core-conceptual.png" alt="Modèle de donnée conceptuel"/>
+<div style="text-align: center; width: 100%; max-width: 100%;" id="conceptual-model">
+  <a href="use-core-conceptual.png" target="_blank">
+    <img style="max-width: 100%; box-sizing: border-box;" src="use-core-conceptual.png" alt="Modèle de donnée conceptuel" />
+  </a>
 </div>
 
 <table width="100%">
   <tr><th>Concept</th><th>Description</th><th>Note</th><th>Aussi connu comme</th><th>Lien/Dépendance</th></tr>
   <tr><td>Patient</td><td></td><td></td><td></td><td></td></tr>
-  <tr><td>Urémie</td><td></td><td></td><td>Dosage de l'urée dans le sang</td><td></td></tr>
+  <tr><td>Urémie</td><td>Taux d'urée dans le sang. 
+L'urée est un catabolite composé formé dans le foie à partir de l'ammoniac produit par la désamination des acides aminés. C'est le principal produit final du catabolisme des protéines et il constitue environ la moitié des solides urinaires totaux.</td><td>Reflet de la fonction rénale</td><td>Dosage de l'urée dans le sang</td><td></td></tr>
   <tr><td>Créatininémie</td><td></td><td></td><td></td><td></td></tr>
   <tr><td>Débit de filtration glomérulaire</td><td></td><td></td><td></td><td>Créatininémie, sexe, âge</td></tr>
   <tr><td>Glycémie à jeun</td><td></td><td></td><td></td><td></td></tr>
