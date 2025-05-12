@@ -19,3 +19,5 @@ Description: "Ce profil définit la manière de représenter les observations de
 * effective[x] ^short = "Date de réalisation de la mesure"
 
 * value[x] ^short = "Valeur de la mesure. Les signes vitaux sont enregistrés sous forme de quantité, exprimés en unité du Système International."
+
+* method from WeightMeasurementMethod (example)
