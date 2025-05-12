@@ -6,6 +6,7 @@ Description: "TODO"
 * ^content = #complete
 * ^hierarchyMeaning = #grouped-by
 * ^caseSensitive = false
+* ^experimental = false
 
 * #h "Homme"
 * #f "Femme"
