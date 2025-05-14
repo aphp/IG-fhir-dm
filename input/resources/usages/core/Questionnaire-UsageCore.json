@@ -245,18 +245,16 @@
               ]
             },
             {
-              "linkId": "7621032273792",
-              "text": "IRIS",
-              "type": "choice",
-              "repeats": true,
-              "answerValueSet": "https://insee.fr/IRIS-vs",
               "item": [
                 {
+                  "type": "date",
                   "linkId": "4999580038872",
-                  "text": "Date du recueil de l'information",
-                  "type": "date"
+                  "text": "Date du recueil de l'information"
                 },
                 {
+                  "linkId": "7621032273792_intention",
+                  "type": "display",
+                  "text": "Codage de l'adresse du patient selon la méthode d'Ilots Regroupés pour l'Information Statistique de l'INSEE. Si adresse géocodée non disponible",
                   "extension": [
                     {
                       "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -271,10 +269,41 @@
                         "text": "Intention"
                       }
                     }
-                  ],
-                  "linkId": "7621032273792_intention",
-                  "text": "Codage de l'adresse du patient selon la méthode d'Ilots Regroupés pour l'Information Statistique de l'INSEE. Si adresse géocodée non disponible",
-                  "type": "display"
+                  ]
+                }
+              ],
+              "type": "choice",
+              "linkId": "7621032273792",
+              "text": "IRIS",
+              "repeats": true,
+              "answerOption": [
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "010010000",
+                    "display": "L'Abergement-Clémenciat (commune non irisée)"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "010040102",
+                    "display": "Longeray-Gare"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "765400102",
+                    "display": "Vieux Marché Palais de Justice"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "391900000",
+                    "display": "Dampierre (commune non irisée)"
+                  }
                 }
               ]
             },
@@ -345,23 +374,37 @@
           ]
         },
         {
+          "type": "choice",
           "linkId": "3894630481120",
           "text": "Sexe",
-          "type": "choice",
-          "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/DpiGender"
-        },
-        {
-          "linkId": "2446369196222",
-          "text": "Code géographique de résidence",
-          "type": "choice",
-          "answerValueSet": "https://atih.sante.fr/CodesGeographiques-vs",
-          "item": [
+          "answerOption": [
             {
-              "linkId": "1537511139540",
-              "text": "Date du recueil de l'information",
-              "type": "date"
+              "valueCoding": {
+                "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "code": "h",
+                "display": "Homme"
+              }
             },
             {
+              "valueCoding": {
+                "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "code": "f",
+                "display": "Femme"
+              }
+            }
+          ]
+        },
+        {
+          "item": [
+            {
+              "type": "date",
+              "linkId": "1537511139540",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "linkId": "2446369196222_intention",
+              "type": "display",
+              "text": "Code de la commune de résidence du patient selon la classification PMSI",
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -376,10 +419,40 @@
                     "text": "Intention"
                   }
                 }
-              ],
-              "linkId": "2446369196222_intention",
-              "text": "Code de la commune de résidence du patient selon la classification PMSI",
-              "type": "display"
+              ]
+            }
+          ],
+          "type": "choice",
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "code": "04C01",
+                "display": "LA CONDAMINE CHATELARD"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "code": "01290",
+                "display": "PONT DE VEYLE"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "code": "76000",
+                "display": "ROUEN"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "code": "70180",
+                "display": "DAMPIERRE SUR SALON"
+              }
             }
           ]
         },
@@ -1935,14 +2008,26 @@
               "text": "codification",
               "type": "choice",
               "repeats": true,
-              "answerValueSet": "https://medicament/ATC-UCD-CIP-DCI-libellé_commercial"
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
+                }
+              ]
             },
             {
               "linkId": "387026794874",
               "text": "Voie d'administration",
               "type": "choice",
               "repeats": false,
-              "answerValueSet": "https://standardterms.edqm.eu/"
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
+                }
+              ]
             },
             {
               "extension": [
@@ -2017,14 +2102,26 @@
               "text": "codification",
               "type": "choice",
               "repeats": true,
-              "answerValueSet": "https://medicament/ATC-UCD-CIP-DCI-libellé_commercial"
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
+                }
+              ]
             },
             {
               "linkId": "811931484859",
               "text": "Voie d'administration",
               "type": "choice",
               "repeats": false,
-              "answerValueSet": "https://standardterms.edqm.eu/"
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
+                }
+              ]
             },
             {
               "extension": [
@@ -2401,13 +2498,20 @@
   "resourceType": "Questionnaire",
   "id": "UsageCore",
   "meta": {
-    "versionId": "15",
-    "lastUpdated": "2025-04-25T09:57:49.017+00:00",
+    "versionId": "2",
+    "lastUpdated": "2025-05-14T15:14:59.520+00:00",
     "source": "https://aphp.fr/ig/fhir/eds/Endpoint/form-builder"
   },
+  "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "name": "UsageCore",
   "title": "Questionnaire usage Variables socles pour les EDSH",
   "status": "active",
   "date": "2025-02-03",
-  "description": "Arborescence des variables du socle pour les EDSH"
+  "description": "Arborescence des variables du socle pour les EDSH",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+      "valueUrl": "https://hapi.fhir.org/baseR4"
+    }
+  ]
 }
