@@ -31,6 +31,8 @@ pages:
       title: Variables socles
   data-management.md:
     title: Gestion des données
+  best-practice.md:
+    title: Bonnes pratiques
   change_log.md:
     title: Notes de version
   other.md:
@@ -48,6 +50,7 @@ menu:
   Usages:
     Variables socles: use-core.html
   Gestion des données: data-management.html
+  Bonnes pratiques: best-practice.html
   Notes de version: change_log.html
   Autre:
     Aide: help.html
