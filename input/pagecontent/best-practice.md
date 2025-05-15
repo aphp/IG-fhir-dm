@@ -16,7 +16,7 @@ Chaque ressource est caractérisée par un ensemble d'éléments permettant son 
 
 #### Détermination des noms
 
-La détermination des noms doit prendre en compte le "périmètre d’usage" de la ressource ou de l'élément. Autrement dit : quelles en sont les limites fonctionnelles ?
+La détermination des noms doit prendre en compte le "périmètre d'usage" de la ressource ou de l'élément. Autrement dit : quelles en sont les limites fonctionnelles ?
 
 Les noms doivent :
 * utiliser **le terme le plus largement reconnu dans le domaine** pour désigner l'objet, tout en évitant les risques de confusion avec d'autres éléments ;
@@ -36,13 +36,12 @@ Les noms doivent :
   * par exemple, `birthDate` et `dateOfDeath` forment une mauvaise paire, car incohérente ;
 * être suffisamment différents des autres noms présents dans le même espace (éléments d'une ressource, ressources associées, opérations liées) pour éviter toute confusion à l'oral (ex. : `update` et `updates` posent problème) ;
 * **ne pas inclure de suffixe indiquant le type de données** de l'élément (ex. : ne pas terminer un nom par `code`, `indicator`, etc.) ;
-* lorsqu’un concept est **connu sous plusieurs noms**, utiliser des **alias** pour fournir ces noms alternatifs ;
-* si un nom **tend à être souvent abrégé** dans les discussions de comité, c’est sans doute qu’il est **trop long**, et cela doit éveiller les soupçons ;
+* lorsqu'un concept est **connu sous plusieurs noms**, utiliser des **alias** pour fournir ces noms alternatifs ;
+* si un nom **tend à être souvent abrégé** dans les discussions de comité, c'est sans doute qu'il est **trop long**, et cela doit éveiller les soupçons ;
 * utiliser **skmtglossary.org** et un **thésaurus** pour évaluer les noms candidats en cas de doute ;
-* si la recherche d’un nom industrielement reconnu s’avère très difficile, cela peut indiquer que la **granularité** du concept ne correspond pas aux besoins réels du secteur.
+* si la recherche d'un nom industriellement reconnu s'avère très difficile, cela peut indiquer que la **granularité** du concept ne correspond pas aux besoins réels du secteur.
 
-L'objectif est de fournir un **maximum de clarté pour un développeur non familier**, afin qu'il comprenne immédiatement "ce qu'est cette chose". Les noms sont aussi utilisés pour la recherche. Leur longueur influence la taille des instances et la lisibilité du code : il faut donc trouver le bon **compromis entre précision sémantique et simplicité d’usage**.
-
+L'objectif est de fournir un **maximum de clarté pour un développeur non familier**, afin qu'il comprenne immédiatement "ce qu'est cette chose". Les noms sont aussi utilisés pour la recherche. Leur longueur influence la taille des instances et la lisibilité du code : il faut donc trouver le bon **compromis entre précision sémantique et simplicité d'usage**.
 
 La documentation officielle se trouve dans [règles de nommage et guide de bonnes pratiques](https://confluence.hl7.org/spaces/FHIR/pages/35718826/Guide+to+Designing+Resources#GuidetoDesigningResources-NamingRules&Guidelines).
 
