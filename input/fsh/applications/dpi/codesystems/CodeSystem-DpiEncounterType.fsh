@@ -3,6 +3,7 @@ Title: "DPI Type de séjour"
 Description: "Type de séjour"
 
 * ^status = #active
+* ^experimental = false
 * ^content = #complete
 * ^hierarchyMeaning = #grouped-by
 * ^caseSensitive = false

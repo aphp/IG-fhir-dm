@@ -1,5 +1,6 @@
 CodeSystem: PMSIMCODiagType
 Title: "type de diagnostic du PMSI MCO"
+Description: "Il faudrait mettre une description"
 
 * ^status = #active
 * ^experimental = false

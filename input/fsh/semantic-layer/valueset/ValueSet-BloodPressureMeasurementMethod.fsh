@@ -10,5 +10,5 @@ Description: "SELECT SNOMED CT code system values that describe how a blood pres
 * $sct#13385008 "Mediate auscultation (procedure)"
 * $sct#113011001 "Palpation (procedure)"
 * $sct#31813000 "Vascular oscillometry (procedure)"
-* $SolorTemporary#911000205109 "Measurement of blood pressure using intravascular transducer (procedure)"
-* $SolorTemporary#641000205104 "Auscultation - automatic (procedure)"
+* SolorTemporary#911000205109 "Measurement of blood pressure using intravascular transducer (procedure)"
+* SolorTemporary#641000205104 "Auscultation - automatic (procedure)"

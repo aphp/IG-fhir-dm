@@ -1,6 +1,7 @@
 Alias: $ucum                                 = http://unitsofmeasure.org
 Alias: $loinc                                = http://loinc.org
 Alias: $sct                                  = http://snomed.info/sct
+Alias: $ohdsi                                = https://fhir-terminology.ohdsi.org
 
 // CodeSystem from HL7 terminology
 Alias: $observation-category                 = http://terminology.hl7.org/CodeSystem/observation-category
@@ -28,4 +29,3 @@ Alias: $SIPh-CIO_UCD                         = http://phast.fr/fhir/ValueSet/Pha
 
 // IG
 Alias: $ClaimMode                            = https://aphp.fr/ig/fhir/dm/CodeSystem/FrClaimMode
-Alias: $SolorTemporary                       = https://aphp.fr/ig/fhir/dm/CodeSystem/SolorTemporaryCodeSystem

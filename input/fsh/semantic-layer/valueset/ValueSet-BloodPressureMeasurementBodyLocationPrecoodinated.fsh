@@ -3,6 +3,7 @@ Title: "Blood Pressure Measurement Body Location Precoordinated"
 Description: "SELECT SNOMED CT code system values that describe the location on the body where the blood pressure was measured."
 
 * ^copyright = "This value set includes content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement"
+
 * $sct#49256001 "Structure of dorsal digital artery of foot (body structure)"
 * $sct#368469003 "Structure of proper volar digital arteries (body structure)"
 * $sct#17137000 "Structure of brachial artery (body structure)"

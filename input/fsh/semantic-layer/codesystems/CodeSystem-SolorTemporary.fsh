@@ -1,9 +1,14 @@
 CodeSystem: SolorTemporary
 Title: "SNOMED CT Solor Extension Temporary"
 Description: "A set of codes that are defined in the Solor extension to the SNOMED CT code system. To be used until they are adopted by SNOMED CT."
-* ^caseSensitive = false
+
+* ^status = #active
+* ^experimental = false
 * ^content = #complete
+* ^hierarchyMeaning = #grouped-by
+* ^caseSensitive = false
 * ^count = 13
+
 * #1461000205102 "Digital thermometer (physical object)" "A device used to measure temperature with digital readout."
 * #2331000205106 "Non-contact infrared thermometer (physical object)" "A device used to measure temperature via infrared technology that does not come into contact with the skin."
 * #24031000205108 "Thermoluminescent diode thermometer (physical object)" "A device used to measure temperature that uses a thermoluminescent diode."
