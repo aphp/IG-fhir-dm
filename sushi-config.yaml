@@ -33,12 +33,12 @@ pages:
     title: Gestion des données
   best-practice.md:
     title: Bonnes pratiques
-  change_log.md:
-    title: Notes de version
   other.md:
     title: Autre
     help.md:
       title: Aide
+    change_log.md:
+      title: Notes de version
     glossary.md:
       title: Glossaire
     downloads.md:
@@ -51,12 +51,12 @@ menu:
     Variables socles: use-core.html
   Gestion des données: data-management.html
   Bonnes pratiques: best-practice.html
-  Notes de version: change_log.html
-  Autre:
+  Ressources de conformité: artifacts.html
+  Autres:
     Aide: help.html
+    Notes de version: change_log.html
     Glossaire: glossary.html
     Télécharger spécifications: downloads.html
-  Ressources de conformité: artifacts.html
 
 parameters:  # see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html
   shownav: false

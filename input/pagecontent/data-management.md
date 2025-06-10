@@ -1,39 +1,37 @@
 
-### Etat de l'art
+### Introduction
 
-Les objectifs de l'approche MDA est de favoriser **la portabilité** des applications, d'améliorer **la réutilisabilité** et la productivité, de faciliter la maintenance de systèmes et enfin **de promouvoir la standardisation**. Ces objectifs s'alignent pleinement avec l'usage du standard FHIR comme langage unique du [SIH](glossary.html#sih).
+Dans un contexte de transformation numérique du secteur de la santé, les [systèmes d'information (SI)](glossary.html#si) jouent un rôle central dans la gestion et l'exploitation des données cliniques, administratives et médico-techniques. Ces systèmes, de plus en plus interconnectés, **produisent un volume considérable de données à fort potentiel de valorisation**, que ce soit pour améliorer la qualité des soins, optimiser les organisations ou soutenir la recherche. Toutefois, cette richesse informationnelle se heurte à un obstacle majeur : **l'hétérogénéité des systèmes et l'absence fréquente d'interopérabilité**.
 
-L'approche MDA référence trois types de modèles :
+L'[interopérabilité](glossary.html#io) des SI de santé, entendue comme la capacité des systèmes à échanger, comprendre et utiliser des données de manière cohérente, s'impose donc comme une condition indispensable à la continuité des soins et à l'exploitation secondaire des données. Pour y répondre, de nouvelles approches de conception des systèmes émergent, qui privilégient la modélisation en amont, la standardisation et l'automatisation du passage vers le code exécutable.
 
-1. CIM (Computation Independant Model) : ce sont des modèles indépendant de l'informatique, focalisé sur les besoins métiers, il est fréquent de trouver le terme de modèle conceptuel.
-2. PIM (Platform Independent Model) : ce sont des modèles indépendant des plateformes décrivant les fonctionnalités des systèmes sans ce soucier de la technologie, il est fréquent de trouver le terme de modèle logique.
-3. PSM (Platform Specific Model) : ce sont des modèles spécifiques à une plateforme technique, il est fréquent de trouver le terme de modèle physique.
+Dans ce cadre, l'approche [design first](glossary.html#design-first), qui consiste à centrer la conception logicielle sur les modèles avant toute implémentation, s'impose comme une bonne pratique pour structurer les échanges et faciliter leur alignement avec des standards. Elle est souvent couplée à l'[ingénierie dirigée par les modèles (IDM)](glossary.html#mde), une méthodologie qui permet de générer automatiquement des artefacts logiciels à partir de modèles formels. En santé, ces approches prennent tout leur sens dans le cadre de l'usage du standard [HL7 Fast Healthcare Interoperability Resources (FHIR)](glossary.html#fhir), conçu pour offrir un cadre normatif robuste, extensible et aligné sur les technologies modernes du web.
 
-Dans l'approche MDA, **le rôle des transformations de modèles est centrale** et elles doivent être le plus automatisée possible notamment pour passer de CIM -> PIM (compréhension métier -> modélisation fonctionnelle), de PIM -> PSM (modélisation fonctionnelle -> structure technique) et de PSM -> Code (génération de code automatisée).
+On se propose d'examiner ces éléments en articulant les enjeux de valorisation des données de santé avec les concepts clés que sont l'interopérabilité, l'approche design first, l'ingénierie dirigée par les modèles, et l'utilisation du standard FHIR. Il vise ainsi à fournir un socle conceptuel et technique pour penser et concevoir des systèmes d'information de santé interopérables, durables et adaptables.
 
-L'approche MDA a été initialement conçue pour le développement logiciel, avec pour objectif de structurer les applications autour de modèles formels et transformables. Toutefois, lorsqu'on cherche à transposer cette approche au contexte de la donnée, une adaptation est nécessaire.
+#### La valorisation des données de santé
 
-En effet, bien que le monde du logiciel et celui de la donnée soient étroitement liés, ils reposent sur des fondamentaux différents. Le logiciel s'inscrit dans une logique fonctionnelle, orientée vers des comportements et des processus d'exécution, tandis que la donnée s'ancre dans une logique informationnelle, centrée sur la structure, la qualité, le cycle de vie et la gouvernance des données.
+Les systèmes d'information (SI) de santé génèrent un volume considérable de données, provenant de sources hétérogènes telles que les dossiers médicaux électroniques, les systèmes de gestion hospitalière, les dispositifs médicaux connectés ou encore les applications mobiles de santé. Dans un contexte où les données deviennent un levier stratégique pour l'amélioration des soins, la recherche clinique, la gestion des établissements ou la santé publique, les organisations cherchent à valoriser ces données de manière optimale. Cette valorisation implique leur accès, leur compréhension, leur analyse et leur réutilisation dans des contextes variés. Toutefois, cette ambition se heurte souvent à des obstacles liés à l'hétérogénéité et au cloisonnement des SI.
 
-Ainsi, appliquer directement les méthodes MDA issues du développement logiciel au domaine de la donnée reviendrait à négliger des spécificités essentielles, comme la variabilité des sources, la volatilité des formats, la traçabilité ou encore les enjeux d'intégration et d'interopérabilité. Cela nécessite une réinterprétation du MDA pour l'adapter aux exigences du data-driven.
+#### Le besoin d'interopérabilité
 
-FHIR peut être vu comme un [Domain Specific Language (DSL)](glossary.html#dsl) pour la gestion des données de santé. Il fournit :
+Pour surmonter ces obstacles, l'interopérabilité entre les SI de santé devient une exigence incontournable. L'interopérabilité se décline en plusieurs dimensions — syntaxique, sémantique, technique et organisationnelle — et vise à assurer l'échange, la compréhension et l'exploitation cohérente des données entre systèmes. Cette capacité est d'autant plus cruciale dans les environnements pluriels et distribués des écosystèmes de santé, où les acteurs doivent collaborer efficacement tout en respectant des exigences réglementaires strictes (comme le RGPD en Europe).
 
-* **Un vocabulaire standardisé** : les ressources (Patient, Observation, Encounter, Questionnaire...) sont les entités du domaine avec des attributs précis, interprétables de manière universelle.
-* **Une grammaire structurée** : les ressources sont sérialisables en JSON, XML ou RDF, ce qui permet de manipuler les données de manière formelle, tout en restant lisibles.
-* **Des mécanismes de composition** : comme dans un DSL, on peut enrichir ou contraindre le langage via des profils, extensions et contraintes (StructureDefinition, ValueSet...).
-* **Des règles d’interprétation métier** : FHIR embarque une logique métier implicite (ex. : un Observation a toujours une date, une valeur...) et peut être validé automatiquement.
-* **Un moteur d’exécution** : l'API RESTful de FHIR permet d'"exécuter" le DSL, c'est-à-dire de créer, lire, interroger et valider des ressources en ligne.
+#### L'approche **design first** pour favoriser l'interopérabilité
 
-**Le standard HL7 FHIR permet de modéliser les niveaux PIM, PSM et aussi les transformations par l'usage du [FHIR Mapping Language (FML)](glossary.html#fml)**.
+Dans une perspective d'ingénierie des SI de santé interopérables, une transition méthodologique s'opère vers une approche dite design first. Contrairement à l'approche **code first** — qui consiste à générer des modèles à partir du code source —, le design first privilégie la conception préalable des modèles de données, de processus et d'interfaces. Cette approche favorise une documentation claire, un alignement entre les équipes techniques et métier, et surtout une capacité à générer des artefacts cohérents en aval du cycle de développement. Elle s'inscrit dans une logique d'**interopérabilité by design** en intégrant les contraintes de standardisation dès les premières phases de la conception.
 
-Les ressources FHIR de type `StructureDefinition` permettent soit de définir des structures logiques traduisant le contenu d'une représentation conceptuelle, soit de contraindre une ressource pour un cas d'usage (dans ce cas le résultat est de type PIM) ou encore soit de définir des structures logiques pour représenter des schémas de base de donnée (dans ce cas le résultat est de type PSM).
+#### L'ingénierie dirigée par les modèles ou Model-Driven Engineering (MDE)
 
-### Notre approche
+Pour opérationnaliser cette approche **design first** et automatiser la génération de code à partir des modèles, l'[ingénierie dirigée par les modèles (MDE)](glossary.html#mde) est mobilisée. Le MDE permet de formaliser la modélisation à différents niveaux d'abstraction (modèles métiers, modèles techniques, modèles d'exécution) et d'assurer leur transformation vers des artefacts opérationnels (code, configurations, schémas d'échange, etc.). En contexte de santé, cette approche est particulièrement adaptée pour maîtriser la complexité des structures de données et garantir la conformité aux standards d'interopérabilité.
 
-La méthodologie de gestion des données avec FHIR (Data Management with FHIR) s'appuie du [Model Driven Architecture (MDA)](glossary.html#mda) faisant notamment de la modélisation le coeur de la stratégie de développement logiciel que nous appliquons à la donnée et notamment à la donnée de santé.
+#### HL7 FHIR : un standard pivot pour l'interopérabilité en santé
 
-Comme le MDA, n
+Parmi les standards existants, [HL7 Fast Healthcare Interoperability Resources (FHIR)](glossary.html#fhir) s'impose comme le standard de référence pour l'interopérabilité des SI de santé. Conçu selon une logique modulaire et fondé sur les technologies du web (REST, JSON, XML), FHIR propose une bibliothèque de ressources normalisées (templates) permettant notamment de modéliser les entités cliniques (patients, observations, diagnostics, prescriptions, etc.). Aussi, FHIR permet de définir des profils, des extensions et des jeux valeurs de codes, offrant ainsi des mécanismes puissants pour adapter les modéles au contexte. Au delà de la modélisation, FHIR permet de spécifiquer des alignements structurels et sémantiques notamment avec l'usage de ressources tel que `StructureMap`, `ConceptMap` et `ValueSet`. En cela, FHIR soutient une **interopérabilité by design**, en rendant possible l'intégration des principes **MDE** et **design first** dans le développement et le déploiement des SI de santé.
+
+### Gestion des données avec FHIR
+
+La méthodologie de gestion des données avec FHIR (Data Management with FHIR) s'appuie sur Le MDE faisant notamment de la modélisation le coeur de la stratégie de développement logiciel que nous appliquons à la donnée et notamment à la donnée de santé.
 
 #### Modéle de donnée conceptuel
 
@@ -48,34 +46,12 @@ Cette étape produit deux livrables :
 
 #### Modèle de donnée standardisé : profils + ressources sémantiques FHIR
 
+**Le standard HL7 FHIR permet de modéliser les niveaux PIM, PSM et aussi les transformations par l'usage du [FHIR Mapping Language (FML)](glossary.html#fml)**.
+
+Les ressources FHIR de type `StructureDefinition` permettent soit de définir des structures logiques traduisant le contenu d'une représentation conceptuelle, soit de contraindre une ressource pour un cas d'usage (dans ce cas le résultat est de type PIM) ou encore soit de définir des structures logiques pour représenter des schémas de base de donnée (dans ce cas le résultat est de type PSM).
+
 #### Modéle de donnée propriétaire : `StructureDefinition` de type logique
 
-### Contexte
-
-Un [Hub de Données de Santé](glossary.html#hds) est un dépôt central de données standardisées provenant de sources multiples au sein d'un SIH. Il est conçu pour :
-
-- Soutenir la recherche scientifique
-- Développer des recherches multicentriques
-- Appuyer la recherche clinique
-- Appuyer l'innovation dans le domaine de la santé
-- Faciliter le pilotage de l'activité hospitalière
-
-#### Disclaimer
-
-Nous nous permettons d'attirer l'attention des utilisateurs sur les éléments d'information apportés concernant la manière dont les données ont été produites.
-
-Même s'il s'agit d'une description d'assez haut niveau, qui peut être déclinée de manière très variable au niveau des hôpitaux, pôles, services et équipes de soins, elle permet de mieux apprécier l'usage qui peut être fait des données présentes dans le Hub de données.
-
-### Sources multiples
-
-On peut avoir différentes sources dans le système d'information (SI) de production qui peuvent fournir des informations équivalentes avec des status différents. 
-Idéalement, on s'attachera à reconstruire, au niveau du Hub de données, le cycle de vie de la ressource, avec les experts métiers. 
-Cette tâche peut néanmoins être difficile et on pourra être amené à intégrer dans un hub de données, depuis deux sources différentes, des données qui correspondent à une seule information à un stade différent dans son cycle de vie. 
-On s'astreindra donc à toujours mentionner la source (via l'attribut `meta.source`) dans les ressources FHIR manipulées au niveau du Hub de données (voir [convention de nommage des uris source](help.html#uri-des-sources)). 
-
-Dans tous les cas, on essayera d'expliciter dans les ressources l'étape du cycle de vie, au-delà de la source de l'information. 
-
-Ces décisions seront documentées dans le présent IG ainsi que les profils/extensions à mettre en œuvre le cas échéant. 
 
 ### Gestion de version
 

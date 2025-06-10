@@ -97,7 +97,6 @@ val igPublisherBuild = tasks.register<JavaExec>("igPublisherBuild") {
   args = listOf(
     "-no-sushi",
     "-authorise-non-conformant-tx-servers",
-    "-tx ${properties["tx"]}",
     "-ig",
     projectDir.absolutePath
   )
