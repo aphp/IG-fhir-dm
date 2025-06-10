@@ -11,7 +11,7 @@ Usage: #definition
 * targetCanonical = Canonical(OMOPGender)
 * group[0]
   * source = "http://hl7.org/fhir/administrative-gender"
-  * target = "https://aphp.fr/ig/fhir/dm/CodeSystem/OMOP-CDM-v20240229"
+  * target = Canonical(DMOmopCDMv20240229)
   * element[0]
     * code = #male
     * display = "Male"

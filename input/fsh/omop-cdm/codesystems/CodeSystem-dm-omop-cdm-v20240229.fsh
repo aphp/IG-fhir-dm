@@ -1,8 +1,8 @@
-CodeSystem: OMOP_CDM_v20240229
+CodeSystem: DMOmopCDMv20240229
+Id: dm-omop-cdm-v20240229
 Title: "Observational Medical Outcomes Partnership (OMOP)"
 Description: "Type de séjour"
 
-* ^name = "OMOP"
 * ^date = 2024-03-01
 * ^publisher = "Observational Health Data Sciences and Informatics (OHDSI)"
 
