@@ -1,6 +1,6 @@
 Instance: DpiGender2Hl7Gender
 InstanceOf: ConceptMap
-Description: "TODO"
+Description: "Standardisation du sexe administratif des patients pour se conformer aux exigences de FHIR"
 Usage: #definition
 
 * title = "DPI (local) Gender to HL7 Gender"
