@@ -15,7 +15,7 @@ cyberattaques et de non-conformité réglementaire.
 
 Avec l'essor du **Big Data**, de l'**intelligence artificielle** et de l'**analyse prédictive**, le Data Management est devenu un levier stratégique pour l'innovation et la compétitivité. Maîtriser ces enjeux est aujourd'hui indispensable pour toute organisation souhaitant exploiter pleinement la valeur de ses données.
 
-Ce guide d'implémentation sert de référence pour la gestion des don1nées. Plus précisément, il accompagne la mise en place d'une couche sémantique dans le cadre de la construction du Hub de données d'un système d'information hospitalier (SIH).
+Ce guide d'implémentation sert de référence pour la gestion des données. Plus précisément, il accompagne la mise en place d'une couche sémantique dans le cadre de la construction du Hub de données d'un système d'information hospitalier (SIH).
 
 L'objectif de ce Hub est de permettre à une organisation de renforcer sa gouvernance des données en instaurant une couche sémantique homogène, garantissant ainsi que l'ensemble du SIH adopte un langage commun : **FHIR**.
 
