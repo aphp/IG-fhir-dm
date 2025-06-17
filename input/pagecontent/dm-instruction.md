@@ -1,12 +1,14 @@
 Le processus d'instruction se compose de 5 étapes :
+##### Modèle conceptuel
+Il s'agit de définir, avec les acteurs métiers, [les principaux concepts manipulés dans leur domaine et de les définir](#modèle-de-donnée-conceptuel)
 
-#### Modèle métier
+##### Modèle métier
 
 À l'aide du [FormBuilder](https://formbuilder-prod-ext-k8s.eds.aphp.fr/), une ressource `Questionnaire` est produite en tenant compte des exigences.
 
-#### Data discovery
+##### Data discovery
 
-##### Qu'est-ce que la **Data Discovery** ?
+###### Qu'est-ce que la **Data Discovery** ?
 
 La **Data Discovery** (ou découverte des données) est un processus clé en **Data Management** qui consiste à identifier, 
 explorer et analyser les données disponibles au sein d’une organisation. Son objectif est de permettre aux utilisateurs 
@@ -47,7 +49,7 @@ transformation digitale.
 La **Data Discovery** est donc un levier essentiel pour toute organisation souhaitant exploiter au mieux la valeur de 
 ses données, en garantissant transparence, qualité et conformité.
 
-##### Supports
+###### Supports
 
 Afin de construire la preuve résultant du processus de "Data Discovery", un alignement est réalisé entre les modèles 
 physiques des sources identifiées et une ressource `QuestionnaireResponse` correspondant [au `Questionnaire` des exigences](data-management.html#mod%C3%A8le-m%C3%A9tier). Cette preuve a deux vertus :
@@ -55,13 +57,13 @@ physiques des sources identifiées et une ressource `QuestionnaireResponse` corr
 1. Documenter ce qui a été découvert,
 2. Valider, car cette preuve s'appuie sur un langage formel et standard permettant le calcul de couverture (PKI).
 
-#### Validation
+##### Validation
 
 Le processus de "Validation" consiste à s'assurer sur un échantillon représentatif que la collecte des données va 
 permettre de répondre aux exigences du cas d'usage. En fonction du résultat, les étapes suivantes peuvent différer à tel 
 point que le résultat peut provoquer l'abandon du cas d'usage.
 
-#### Conception de la couche sémantique
+##### Conception de la couche sémantique
 
 À l'issue de la "Data Discovery" et une fois avoir apporté la preuve que le cas d'usage peut se faire, l'identification 
 des ressources FHIR est réalisée. En priorité, nous choisissons les ressources compatibles avec l'écosystème français 
@@ -69,16 +71,16 @@ des ressources FHIR est réalisée. En priorité, nous choisissons les ressource
 et par conséquent et de plus en plus, nous devons également tenir compte des guides d'implémentation FHIR européen, nous 
 préparant ainsi à l'European Health Data Space (EHDS).
 
-##### Alignement liste de variables (modèle métier) vers FHIR
+###### Alignement liste de variables (modèle métier) vers FHIR
 
 Un alignement est réalisé entre le `QuestionnaireResponse` créé lors de la data discovery et les ressource FHIR pertinentes 
 identifiées. Cela permet de formaliser les preuves que l'ensemble des variables d'un usage a été traitée.
 
-##### Alignement modèle physique vers FHIR
+###### Alignement modèle physique vers FHIR
 
 Un alignement est réalisé entre les élements du modèle physique des source de données et et les ressource FHIR pertinentes 
 identifiées. Cela permet de formaliser les règles d'alimentation du Hub de données de santé (couche sémantique).
 
-#### Publication dans le catalogue des données
+##### Publication dans le catalogue des données
 
 TODO à définir
