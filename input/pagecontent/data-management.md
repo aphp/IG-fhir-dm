@@ -33,7 +33,7 @@ Parmi les standards existants, [HL7 Fast Healthcare Interoperability Resources (
 
 La méthodologie de gestion des données avec FHIR (Data Management with FHIR) s'appuie sur Le MDE faisant notamment de la modélisation le coeur de la stratégie de développement logiciel que nous appliquons à la donnée et notamment à la donnée de santé.
 
-#### Modéle de donnée conceptuel
+#### Modèle de donnée conceptuel
 
 Un modèle conceptuel est une représentation abstraite et simplifiée de la réalité, utilisée pour organiser, structurer et formaliser des idées ou des connaissances sur un domaine donné. Il sert principalement à décrire les entités (ou objets d'intérêt), leurs propriétés (ou attributs) et les relations entre elles, sans se préoccuper des détails techniques d'implémentation.
 
