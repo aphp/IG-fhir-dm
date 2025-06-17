@@ -67,7 +67,7 @@ Pour supporter l'approche, plusieurs outils sont facilitant notamment :
 
 * [FHIR IG Publisher](https://github.com/HL7/fhir-ig-publisher) : le FHIR IG Publisher permet la construction des guides d'implémentation notamment il valide les ressources de conformité et produit un [rapport qualité](qa.html)
 * [FHIR MapBuilder](https://github.com/aphp/fhir-mapbuilder) : le FHIR MapBuilder facilite l'édition de fichier [FHIR Mapping Language (FML)](glossary.html#fml) permettant notamment de documenter le linéage colonne entre deux définition de structure (`StructureDefinition`).
-* [AP-HP FormBuilder](https://github.com/aphp/formbuilder) : le AP-HP FormBuilder est un éditeur de ressource `Questionnaire` permettant notamment de définir un recceuil d'information. Dans le contexte de l'approche, deux usages sont référencés, (i) conception d'un formulaire du (pour le) SIH, (ii) édition d'un modèle logique issue d'un modéle conceptuel pour un cas d'usage.
+* [AP-HP FormBuilder](https://github.com/aphp/formbuilder) : le AP-HP FormBuilder est un éditeur de ressource `Questionnaire` permettant notamment de définir un recceuil d'information. Dans le contexte de l'approche, deux usages sont référencés, (i) conception d'un formulaire du (pour le) SIH, (ii) édition d'un modèle logique issue d'un modèle conceptuel pour un cas d'usage.
 
 ### Organisation du guide
 
