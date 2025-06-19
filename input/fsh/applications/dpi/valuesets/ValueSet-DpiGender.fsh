@@ -1,6 +1,6 @@
 ValueSet: DpiGender
-Title: "ValueSet of gender from DPI"
-Description: "ToDo"
+Title: "ValueSet des Sexe administratif du DPI"
+Description: "ValueSet des Sexe administratif du DPI"
 
 * ^experimental = false
 * ^immutable = false
