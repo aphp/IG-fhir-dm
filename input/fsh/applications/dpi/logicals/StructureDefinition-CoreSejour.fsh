@@ -15,3 +15,5 @@ Table CORE.SEJOUR (DDL)
 * dateRemove 0..1 date "DATE_REMOVE"
 * sejourStart 0..1 date "SEJOUR_START"
 * sejourEnd 0..1 date "SEJOUR_END"
+* modeIn 0..1 string "MODE_IN"
+* modeOut 0..1 string "MODE_OUT"
