@@ -9,7 +9,9 @@ Le tableau suivant récapitule les données intégré dans le Hub de données du
   <tr><td>Organisationnel</td><td><a href="StructureDefinition-DMPractitionerRole.html">Rôle du personnel</a></td><td>Données maîtres</td></tr>
   <tr><td>Parcours patient</td><td><a href="StructureDefinition-DMEncounter.html">Séjour</a></td><td>Données d'intérêt</td></tr>
   <tr><td>Parcours patient</td><td><a href="StructureDefinition-DMEpisodeOfCare.html">Episode de soin</a></td><td>Données d'intérêt</td></tr>
-  <tr><td>PMSI</td><td><a href="StructureDefinition-DMClaimRSS.html">Résumé Standardisé de Sortie (RSS)</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
+  <tr><td>PMSI</td><td><a href="StructureDefinition-DMClaimRUM.html">Résumé d'Unité Médicale (RUM)</a></td><td>Données d'intérêt</td></tr>
+  <tr><td>PMSI - diagnostiques</td><td><a href="StructureDefinition-DMCondition.html">Codage CIM10</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
+  <tr><td>PMSI - actes</td><td><a href="StructureDefinition-DMProcedure.html">Codage CCAM</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
   <tr><td>Résultats d’examens biologiques</td><td><a href="StructureDefinition-DMObservationLaboratoryUremie.html">Urémie</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
   <tr><td>Résultats d’examens biologiques</td><td><a href="StructureDefinition-DMObservationLaboratoryFonctionRenale.html">Créatininémie</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
   <tr><td>Résultats d’examens biologiques</td><td><a href="StructureDefinition-DMObservationLaboratoryFonctionRenale.html">Débit de filtration glomérulaire (DFG)</a></td><td>Données d'intérêt ; Socle de données commun aux EDSH</td></tr>
