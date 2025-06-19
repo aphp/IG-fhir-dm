@@ -1,6 +1,6 @@
 @startuml
 
-' quoique la syntaxe uml des diagrammes de cas d'utilisation soit utiliser, cette figure n'est qu'illustrative. 
+' quoique la syntaxe uml des diagrammes de cas d'utilisation soit utilisée, cette figure n'est qu'illustrative. 
 
 skinparam actorStyle awesome
 
