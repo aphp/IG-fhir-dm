@@ -6,6 +6,8 @@
   </a>
 </div>
 
+[Voir la version navigable du modèle conceptuel](https://miro.com/app/board/uXjVI2D5ilU=/?share_link_id=531605220269)
+
 <table width="100%">
   <tr><th>Concept</th><th>Description</th><th>Note</th><th>Aussi connu comme</th><th>Lien/Dépendance</th></tr>
   <tr><td>Patient</td><td></td><td></td><td></td><td></td></tr>
