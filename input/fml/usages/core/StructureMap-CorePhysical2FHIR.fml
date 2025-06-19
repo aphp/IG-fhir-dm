@@ -11,6 +11,9 @@ uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CorePatient" alias PatientT
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreSejour" alias SejourTable as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreBiology" alias BiologyTable as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreClinical" alias ClinicalTable as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreDiag" alias DiagTable as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreActe" alias ActeTable as source
+uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreAddress" alias AddressTable as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationAdm" alias MedicationAdmTable as source
 uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationPre" alias MedicationPreTable as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias FHIRBundle as target
@@ -18,6 +21,8 @@ uses "http://hl7.org/fhir/StructureDefinition/Patient" alias FHIRPatient as targ
 uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias FHIREncounter as target
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias FHIRObservation as target
 uses "http://hl7.org/fhir/StructureDefinition/Meta" alias FHIRMeta as target
+uses "http://hl7.org/fhir/StructureDefinition/Procedure" alias FHIRProcedure as target
+uses "http://hl7.org/fhir/StructureDefinition/Condition" alias FHIRCondition as target
 
 group dataSet(source srcDataSet : DataSet, target tgtBundle : FHIRBundle) <<types>> {
   srcDataSet -> tgtBundle.id = uuid() "setId";
@@ -25,9 +30,18 @@ group dataSet(source srcDataSet : DataSet, target tgtBundle : FHIRBundle) <<type
   srcDataSet.patient as srcPatient -> tgtBundle.entry as tgtPatientEntry, tgtPatientEntry.resource = create("Patient") as newPatient then {
     srcPatient then patient(srcPatient, newPatient) "setPatient";
     srcPatient then setEntryRequestAndFullUrl(newPatient,tgtPatientEntry) "setRequestAndFullUrl";
+    srcDataSet.address as srcAddress where patientNi.reference = ('PatientCore/' + %srcPatient.patientNi.toString()) then patientAddress(srcAddress, newPatient) "addPatientAddress" ;
     srcDataSet.sejour as srcSejour where patientNi.reference = ('PatientCore/' + %srcPatient.patientNi.toString()) -> tgtBundle.entry as tgtEncounterEntry, tgtEncounterEntry.resource = create("Encounter") as newEncounter then {
       srcSejour then encounter(srcSejour, newPatient, newEncounter) "setEncounter";
       srcSejour then setEntryRequestAndFullUrl(newEncounter,tgtEncounterEntry) "setRequestAndFullUrl";
+      srcDataSet.acte as srcActe where sejourNi.reference = ('SejourCore/' + %srcSejour.sejourNi.toString()) -> tgtBundle.entry as tgtProcedureEntry,tgtProcedureEntry.resource = create("Procedure") as newProcedure then {
+        srcActe then procedure(srcActe, newPatient, newEncounter, newProcedure) "setProcedure";
+        srcActe then setEntryRequestAndFullUrl(newProcedure,tgtProcedureEntry) "setRequestAndFullUrl";
+      } "createProcedure";
+      srcDataSet.diag as srcDiag where sejourNi.reference = ('SejourCore/' + %srcSejour.sejourNi.toString()) -> tgtBundle.entry as tgtConditionEntry,tgtConditionEntry.resource = create("Condition") as newCondition then {
+        srcDiag then condition(srcDiag, newPatient, newEncounter, newCondition) "setCondition";
+        srcDiag then setEntryRequestAndFullUrl(newCondition,tgtConditionEntry) "setRequestAndFullUrl";
+      } "createProcedure";
       srcDataSet.biology as srcBiology where sejourNi.reference = ('SejourCore/' + %srcSejour.sejourNi.toString()) -> tgtBundle.entry as tgtBiologyEntry, tgtBiologyEntry.resource = create("Observation") as newObservation then {
         srcBiology then observationBiol(srcBiology, newPatient, newEncounter, newObservation) "setBiology";
         srcBiology then setEntryRequestAndFullUrl(newObservation,tgtBiologyEntry) "setRequestAndFullUrl";
@@ -67,12 +81,35 @@ group setHumainNir(source srcPatient : PatientTable, target tgtPatientIdentifier
     tgtPatientIdentifier.value = srcPatientNir "setNir" ;
 }
 
+group patientAddress(source srcAddress : AddressTable, target tgtPatient : FHIRPatient) {
+  srcAddress -> tgtPatient.address = create("Address") as newAddress then {
+    srcAddress.zipCode as srczip -> newAddress.postalCode = srczip "setZip" ;
+    srcAddress.city as srcCity -> newAddress.city = srcCity "setCity" ;
+    srcAddress.country as srcCountry -> newAddress.country = srcCountry "setCountry" ;
+    srcAddress.address as srcAddressText -> newAddress.text = srcAddressText "setText" ;
+    srcAddress where current = true -> newAddress.use = 'home' "setUseHome"; 
+    srcAddress where current = false -> newAddress.use = 'old' "setUseOld"; 
+    srcAddress where latitude.exists() or longitude.exists() -> newAddress.extension = create("Extension") as firstLevelExtension then {
+      srcAddress -> firstLevelExtension.url = ('http://hl7.org/fhir/StructureDefinition/geolocation') then {
+        srcAddress.latitude as srcLat -> firstLevelExtension.extension = create("Extension") as latExtension then {
+          srcLat -> latExtension.url = ('latitude'),
+            latExtension.value = srcLat "setLat" ;
+        } "setLatExt";
+        srcAddress.longitude as srcLong -> firstLevelExtension.extension = create("Extension") as longExtension then {
+          srcLong -> longExtension.url = ('longitude'),
+            longExtension.value = srcLong "setLong" ;
+        } "setLongExt";
+      } "setflext";
+    } "setCoordinatesExtension" ;
+  } "setAddress" ;
+}
+
 group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient, target tgtEncounter : FHIREncounter) {
   srcSejour -> tgtEncounter.id = uuid() "setId";
   srcSejour.sejourNi as srcNi -> tgtEncounter.meta as tgtMeta then setEncounterMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
   srcSejour -> tgtEncounter.status = 'finished' "setStatus";
   srcSejour -> tgtEncounter.class = c('http://terminology.hl7.org/CodeSystem/v3-ActCode', 'IMP') "setClass";
-  srcSejour.sejourType as srcSejourType -> tgtEncounter.type = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterType', 'CodeableConcept') "setEncounterType";
+  srcSejour.sejourType as srcSejourType -> tgtEncounter.class = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterClass', 'CodeableConcept') "setEncounterClass";
   srcPatient.id as patientId -> tgtEncounter.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference"; 
   srcSejour.patientNi "patientNi";// fk vers le patient à conserver pour la construction auto du périmètre final
   srcSejour -> tgtEncounter.period = create("Period") as newActualPeriod then {
@@ -87,6 +124,41 @@ group setEncounterMeta(source srcNi, target tgtMeta : FHIRMeta) {
 
 group setSubjectReference(source srcPatientId , target newSubject) {
   srcPatientId -> newSubject.reference = ('Patient/' + %srcPatientId.toString()) "setReference";
+}
+
+group procedure(source srcActe : ActeTable, source srcPatient : FHIRPatient, source srcEncounter : FHIREncounter, target tgtProcedure : FHIRProcedure) {
+  srcActe -> tgtProcedure.id = uuid() "setId";
+  srcActe.acteNi as srcNi -> tgtProcedure.meta as tgtMeta then setProcedureMeta(srcNi, tgtMeta) "setMeta";
+  srcPatient.id as patientId -> tgtProcedure.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference";
+  srcEncounter.id as encounterId -> tgtProcedure.encounter = create("Reference") as newEncounter then setEncounterReference(encounterId, newEncounter) "setEncounterReference";
+  srcActe -> tgtProcedure.status = 'completed' "setStatus";
+  srcActe where dateStart.exists() or dateEnd.exists -> tgtProcedure.performed = create("Period") as tgtProcedurePeriod then {
+    srcActe.dateStart as srcActeStart -> tgtProcedurePeriod.start = srcActeStart "setActeStart";
+    srcActe.dateEnd as srcActeEnd -> tgtProcedurePeriod.end = srcActeEnd "setActeEnd";
+  } "setDate";
+  srcActe.code as acteCode -> tgtProcedure.code = cc('https://smt.esante.gouv.fr/terminologie-ccam', acteCode) "setCode"; //C'est le code de la CCAM facturante
+}
+
+group setProcedureMeta(source srcNi, target tgtMeta : FHIRMeta) {
+  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/ActeTable' + '/' + %srcNi.toString()) "setSource";
+}
+
+group setEncounterReference(source srcEncounterId, target newEncounter) {
+  srcEncounterId -> newEncounter.reference = ('Encounter/' + %srcEncounterId.toString()) "setReference";
+}
+
+group condition(source srcDiag : DiagTable, source srcPatient : FHIRPatient, source srcEncounter : FHIREncounter, target tgtCondition : FHIRCondition) {
+  srcDiag -> tgtCondition.id = uuid() "setId";
+  srcDiag.diagNi as srcNi -> tgtCondition.meta as tgtMeta then setConditionMeta(srcNi, tgtMeta) "setMeta";
+  srcPatient.id as patientId -> tgtCondition.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference";
+  srcEncounter.id as encounterId -> tgtCondition.encounter = create("Reference") as newEncounter then setEncounterReference(encounterId, newEncounter) "setEncounterReference";
+  srcDiag -> tgtCondition.verificationStatus = 'confirmed' "setVerificationStatus";
+  srcDiag -> tgtCondition.category = cc('http://terminology.hl7.org/CodeSystem/condition-category', 'encouter-diagnosis') "setCategory";
+  srcDiag.code as diagCode -> tgtCondition.code = cc('http://hl7.org/fhir/sid/icd-10', diagCode) "setCode";
+}
+
+group setConditionMeta(source srcNi, target tgtMeta : FHIRMeta) {
+  srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/DiagTable' + '/' + %srcNi.toString()) "setSource";
 }
 
 group observationBiol(source srcBiology : BiologyTable, source srcPatient : FHIRPatient, source srcEncounter : FHIREncounter, target tgtObservation : FHIRObservation) {
@@ -108,9 +180,6 @@ group setBiologyMeta(source srcNi, target tgtMeta : FHIRMeta) {
   srcNi -> tgtMeta.source = ('https://aphp.fr/fhir/Endpoint/dpi/BiologyTable' + '/' + %srcNi.toString()) "setSource";
 }
 
-group setEncounterReference(source srcEncounterId, target newEncounter) {
-  srcEncounterId -> newEncounter.reference = ('Encounter/' + %srcEncounterId.toString()) "setReference";
-}
 
 group setEntryRequestAndFullUrl(source newRes, target tgtEntry) { 
   newRes.id as newResId then {
