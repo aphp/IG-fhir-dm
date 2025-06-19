@@ -1,5 +1,6 @@
 ValueSet: DpiEncounterType
-Title: "ValueSet of encounter type from DPI"
+Title: "ValueSet des types de séjour du DPI"
+Description: "ValueSet des types de séjour du DPI"
 
 * ^experimental = false
 * ^immutable = false
