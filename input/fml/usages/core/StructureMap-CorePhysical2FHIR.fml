@@ -108,8 +108,7 @@ group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient,
   srcSejour -> tgtEncounter.id = uuid() "setId";
   srcSejour.sejourNi as srcNi -> tgtEncounter.meta as tgtMeta then setEncounterMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
   srcSejour -> tgtEncounter.status = 'finished' "setStatus";
-  srcSejour -> tgtEncounter.class = c('http://terminology.hl7.org/CodeSystem/v3-ActCode', 'IMP') "setClass";
-  srcSejour.sejourType as srcSejourType -> tgtEncounter.class = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterClass', 'CodeableConcept') "setEncounterClass";
+  srcSejour.sejourType as srcSejourType -> tgtEncounter.class = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterClass', 'Coding') "setEncounterClass";
   srcPatient.id as patientId -> tgtEncounter.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference"; 
   srcSejour.patientNi "patientNi";// fk vers le patient à conserver pour la construction auto du périmètre final
   srcSejour -> tgtEncounter.period = create("Period") as newActualPeriod then {
@@ -153,7 +152,7 @@ group condition(source srcDiag : DiagTable, source srcPatient : FHIRPatient, sou
   srcPatient.id as patientId -> tgtCondition.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference";
   srcEncounter.id as encounterId -> tgtCondition.encounter = create("Reference") as newEncounter then setEncounterReference(encounterId, newEncounter) "setEncounterReference";
   srcDiag -> tgtCondition.verificationStatus = 'confirmed' "setVerificationStatus";
-  srcDiag -> tgtCondition.category = cc('http://terminology.hl7.org/CodeSystem/condition-category', 'encouter-diagnosis') "setCategory";
+  srcDiag -> tgtCondition.category = cc('http://terminology.hl7.org/CodeSystem/condition-category', 'encounter-diagnosis') "setCategory";
   srcDiag.code as diagCode -> tgtCondition.code = cc('http://hl7.org/fhir/sid/icd-10', diagCode) "setCode";
 }
 

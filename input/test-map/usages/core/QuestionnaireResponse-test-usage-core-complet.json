@@ -1,6 +1,6 @@
 {
   "resourceType": "QuestionnaireResponse",
-  "id": "qr-test-usage-core-complet",
+  "id": "test-usage-core-complet",
   "status": "completed",
   "authored": "2025-06-17T10:39:41.625Z",
   "questionnaire": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
@@ -94,30 +94,6 @@
                   ],
                   "linkId": "1185653257776",
                   "text": "Date du recueil de l'information"
-                }
-              ]
-            },
-            {
-              "linkId": "3816475533472",
-              "text": "Géocodage",
-              "item": [
-                {
-                  "answer": [
-                    {
-                      "valueDecimal": 10.1
-                    }
-                  ],
-                  "linkId": "3709843054556",
-                  "text": "Latitude"
-                },
-                {
-                  "answer": [
-                    {
-                      "valueDecimal": 2.2
-                    }
-                  ],
-                  "linkId": "7651448032665",
-                  "text": "Longitude"
                 }
               ]
             },
