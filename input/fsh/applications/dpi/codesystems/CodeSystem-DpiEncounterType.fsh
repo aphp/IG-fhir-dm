@@ -1,6 +1,6 @@
 CodeSystem: DpiEncounterType
 Title: "DPI Type de séjour"
-Description: "Type de séjour"
+Description: "CodeSystem des types de séjour"
 
 * ^status = #active
 * ^experimental = false
@@ -8,5 +8,9 @@ Description: "Type de séjour"
 * ^hierarchyMeaning = #grouped-by
 * ^caseSensitive = false
 
-* #1 "Type 1"
-* #2 "Type 2"
+* #1 "Hospitalisation complète"
+* #2 "Consultation/acte externe"
+* #3 "Passage aux urgences (sans hospitalisation)"
+* #4 "Hospitalisation de jour"
+* #5 "Chirurgie ambulatoire"
+

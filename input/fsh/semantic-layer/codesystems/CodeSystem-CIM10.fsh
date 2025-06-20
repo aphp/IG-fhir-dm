@@ -4,7 +4,7 @@ Description: "CIM 10 ATIH pour le PMSI"
 
 * ^status = #active
 * ^experimental = false
-* ^content = #not-present
+* ^content = #fragment
 * ^hierarchyMeaning = #grouped-by
 * ^caseSensitive = false
 
@@ -25,3 +25,10 @@ interdit
 - 4 : Diagnostic interdit en DP - Autorisé ailleurs
 """
 * ^property[=].type = #code
+
+* #I10 "Hypertension essentielle"
+* #I10 ^property[+].code = #typeMcoHad
+* #I10 ^property[=].valueCode = #0
+* #J41.1 "Bronchite chronique mucopurulente"
+* #J41.1 ^property[+].code = #typeMcoHad
+* #J41.1 ^property[=].valueCode = #0

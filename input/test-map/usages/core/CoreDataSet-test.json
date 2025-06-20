@@ -9,6 +9,28 @@
     "gender": "h",
     "birthDate": "1948-07-16"
   },
+  "address": [{
+    "addressNi" : 1,
+    "patientNi": { "reference": "PatientCore/1" },
+    "current" : true,
+    "zipCode": "78720",
+    "city": "Dampierre",
+    "country": "France",
+    "address": "18 Grand Rue",
+    "latitude" : 49.2,
+    "longitude" : 1.2
+  },
+  {
+    "addressNi" : 2,
+    "patientNi": { "reference": "PatientCore/1" },
+    "current" : false,
+    "zipCode": "76000",
+    "city": "Rouen",
+    "country": "France",
+    "address": "1 rue Malatiré",
+    "latitude" : 49.451697,
+    "longitude" : 1.095129
+  }],
   "sejour": [{
     "sejourNi": 1,
     "patientNi": { "reference": "PatientCore/1" },
@@ -25,6 +47,28 @@
     "dateCreat": "2025-02-04",
     "dateModif": "2025-02-04",
     "sejourStart": "2025-03-04"
+  }],
+  "acte":[{
+    "acteNi": 1,
+    "patientNi": { "reference": "PatientCore/1" },
+    "sejourNi": { "reference": "SejourCore/1" },
+    "code": "HFFC0044",
+    "dateStart" : "2025-02-04T10:00:00Z",
+    "dateEnd" : "2025-02-04T12:30:00Z"
+  }],
+  "diag":[{
+    "diagNi": 1,
+    "patientNi": { "reference": "PatientCore/1" },
+    "sejourNi": { "reference": "SejourCore/1" },
+    "code": "J41.1",
+    "codeType" : "DP"
+  },
+  {
+    "diagNi": 2,
+    "patientNi": { "reference": "PatientCore/1" },
+    "sejourNi": { "reference": "SejourCore/2" },
+    "code": "I10",
+    "codeType" : "DP"
   }],
   "biology": [{
     "biologyNi": 1,

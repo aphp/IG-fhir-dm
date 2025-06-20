@@ -11,6 +11,8 @@ group Qualification
 end group
 
 group Instruction
+    :Modélisation conceptuelle et définition des concepts;
+        note right: idéalement via un outil collaboratif
     :Création du modèle métier; 
         note right: en utilisant le FormBuilder
     group Data discovery

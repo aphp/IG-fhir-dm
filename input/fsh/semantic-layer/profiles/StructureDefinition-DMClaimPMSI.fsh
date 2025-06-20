@@ -12,3 +12,8 @@ Description: "Profil abstrait pour les invariants dans les claims du PMSI."
 * provider ^short = "Entité juridique émettrice"
 * priority = http://terminology.hl7.org/CodeSystem/processpriority#normal
 * use = #claim
+
+* insurance.sequence = 1
+* insurance.focal = true
+* insurance.coverage.display 1..1
+* insurance.coverage.display = "Assurance Maladie"

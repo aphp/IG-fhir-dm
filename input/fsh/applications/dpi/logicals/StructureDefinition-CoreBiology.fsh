@@ -8,7 +8,7 @@ Table CORE.BIOLOGY (DDL)
 
 * biologyNi 1..1 integer "BIOLOGY_NI"
 * patientNi 1..1 Reference(CorePatient) "PATIENT_NI"
-* sejourNi 1..1 Reference(CoreSejour) "null"
+* sejourNi 1..1 Reference(CoreSejour) "SEJOUR_NI"
 * dateCreat 1..1 dateTime "DATE_CREAT"
 * dateModif 1..1 dateTime "DATE_MODIF"
 * dateRemove 0..1 dateTime "DATE_REMOVE"

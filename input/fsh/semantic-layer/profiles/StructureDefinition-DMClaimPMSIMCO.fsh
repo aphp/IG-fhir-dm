@@ -6,3 +6,4 @@ Description: "Profil abstrait pour les invariants dans les claims du champs MCO 
 * ^abstract = true
 
 * type = FrClaimType#PMSIMCO
+* subType from FrMCOClaimSubType (required)

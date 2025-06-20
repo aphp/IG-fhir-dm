@@ -1,0 +1,659 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "test-usage-core-complet",
+  "status": "completed",
+  "authored": "2025-06-17T10:39:41.625Z",
+  "questionnaire": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "item": [
+    {
+      "linkId": "4647259356106",
+      "text": "Données socio-démographiques",
+      "item": [
+        {
+          "linkId": "2958000860428",
+          "text": "Identité patient",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueString": "doe"
+                }
+              ],
+              "linkId": "8605698058770",
+              "text": "Nom patient"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "john"
+                }
+              ],
+              "linkId": "6214879623503",
+              "text": "Prénom patient"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "1234567890123"
+                }
+              ],
+              "linkId": "5711960356160",
+              "text": "Numéro d'inscription au Répertoire (NIR)"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "1948-07-16"
+                }
+              ],
+              "linkId": "5036133558154",
+              "text": "Date de naissance"
+            },
+            {
+              "answer": [
+                {
+                  "valueInteger": 1
+                }
+              ],
+              "linkId": "6931296968515",
+              "text": "Rang gémellaire du bénéficiaire"
+            }
+          ]
+        },
+        {
+          "linkId": "5491974639955",
+          "text": "Environnement",
+          "item": [
+            {
+              "linkId": "3816475533472",
+              "text": "Géocodage",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDecimal": 49.451697
+                    }
+                  ],
+                  "linkId": "3709843054556",
+                  "text": "Latitude"
+                },
+                {
+                  "answer": [
+                    {
+                      "valueDecimal": 1.095129
+                    }
+                  ],
+                  "linkId": "7651448032665",
+                  "text": "Longitude"
+                },
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2025-06-16"
+                    }
+                  ],
+                  "linkId": "1185653257776",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            },
+            {
+              "linkId": "7621032273792",
+              "text": "IRIS",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "010040102",
+                    "display": "Longeray-Gare"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2025-01-01"
+                        }
+                      ],
+                      "linkId": "4999580038872",
+                      "text": "Date du recueil de l'information"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2825244231605",
+      "text": "Données PMSI",
+      "item": [
+        {
+          "answer": [
+            {
+              "valueInteger": 76,
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2025-06-17"
+                    }
+                  ],
+                  "linkId": "1690778867802",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            }
+          ],
+          "linkId": "8164976487070",
+          "text": "Age"
+        },
+        {
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "code": "h",
+                "display": "Homme"
+              }
+            }
+          ],
+          "linkId": "3894630481120",
+          "text": "Sexe"
+        },
+        {
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "code": "76000",
+                "display": "ROUEN"
+              },
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2025-06-17"
+                    }
+                  ],
+                  "linkId": "1537511139540",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            }
+          ],
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence"
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2025-06-17"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueCoding": {
+                    "display": "DP"
+                  }
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic ?"
+            },
+            {
+              "linkId": "5505101189372",
+              "answer":[
+                {
+                  "valueCoding": {
+                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "code": "J41.1"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2025-06-17"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueCoding": {
+                    "display": "DAS"
+                  }
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic ?"
+            },
+            {
+              "linkId": "5505101189372",
+              "answer":[
+                {
+                  "valueCoding": {
+                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "code": "I10"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2025-06-16"
+                }
+              ],
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2025-06-16T10:31:29.148Z"
+                }
+              ],
+              "linkId": "5066866286682",
+              "text": "Date de l'acte ?"
+            }, 
+            {
+              "linkId": "7758110033600",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "code": "HFFC0044"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "answer": [
+            {
+              "valueDate": "2025-06-16"
+            }
+          ],
+          "linkId": "5991443718282",
+          "text": "Date de début de séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueDate": "2025-06-17"
+            }
+          ],
+          "linkId": "6114780320846",
+          "text": "Date de fin de séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "8",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueString": "Domicile"
+                    }
+                  ],
+                  "linkId": "6567394304650",
+                  "text": "Libellé"
+                }
+              ]
+            }
+          ],
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "8",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueString": "Domicile"
+                    }
+                  ],
+                  "linkId": "896083568884",
+                  "text": "Libellé"
+                }
+              ]
+            }
+          ],
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour"
+        }
+      ]
+    },
+    {
+      "linkId": "7702944131447",
+      "text": "Biologie",
+      "item": [
+        {
+          "linkId": "5241323453538",
+          "text": "Fonction rénale",
+          "item": [
+            {
+              "linkId": "500408205043",
+              "text": "Créatininémie",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 92,
+                    "unit": "umol/l"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2025-06-15T05:34:50.399Z"
+                        }
+                      ],
+                      "linkId": "279176538278",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 60,
+                            "unit": "umol/l"
+                          }
+                        }
+                      ],
+                      "linkId": "488869963230",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 120,
+                            "unit": "umol/l"
+                          }
+                        }
+                      ],
+                      "linkId": "984480974142",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "419282985970",
+          "text": "Hémogramme",
+          "item": [
+            {
+              "linkId": "304159088493",
+              "text": "Hémoglobine",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 12,
+                    "unit": "g/dl"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2025-06-15T05:35:32.902Z"
+                        }
+                      ],
+                      "linkId": "471894150678",
+                      "text": "Date et heure du prélèvement"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "334039497382",
+          "text": "Autres",
+          "item": [
+            {
+              "linkId": "273778921448",
+              "text": "Glycémie à jeun",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 1.1,
+                    "unit": "g/l"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueCoding": {
+                            "system": "http://loinc.org",
+                            "code": "88365-2",
+                            "display": "Glucose [Mass/volume] in Blood --pre-meal"
+                          }
+                        }
+                      ],
+                      "linkId": "398039571990",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2025-06-15T05:36:06.343Z"
+                        }
+                      ],
+                      "linkId": "632111374848",
+                      "text": "Date et heure du prélèvement"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "cardensiel",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "C07AB07",
+                        "display": "bisoprolol"
+                      }
+                    }
+                  ],
+                  "linkId": "1923143398283",
+                  "text": "codification"
+                },
+                {
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "90001146",
+                        "display": "Oral"
+                      }
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-06-04"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "214880328197",
+      "text": "Examen clinique",
+      "item": [
+        {
+          "linkId": "305831246173",
+          "text": "Dossier de soins",
+          "item": [
+            {
+              "linkId": "4846902346416",
+              "text": "Taille",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 1.81,
+                    "unit": "m"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2025-06-16"
+                        }
+                      ],
+                      "linkId": "941821315470",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "451513217936",
+              "text": "Poids",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 74,
+                    "unit": "kg"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2025-06-16"
+                        }
+                      ],
+                      "linkId": "151269044052",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 123,
+                    "unit": "mmHg"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2025-06-16"
+                        }
+                      ],
+                      "linkId": "987654638442",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "4160905247955",
+              "text": "Pression artérielle systolique"
+            },
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 79,
+                    "unit": "mmHg"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2025-06-16"
+                        }
+                      ],
+                      "linkId": "820981783585",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "848797127998",
+              "text": "Pression artérielle diastolique"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "type": "Patient",
+    "identifier": {
+      "system": "https://dpi.exemple/Patient/PatientNi",
+      "value": "1"
+    },
+    "display": "john doe"
+  }
+}

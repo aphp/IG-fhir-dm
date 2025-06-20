@@ -15,7 +15,7 @@ cyberattaques et de non-conformité réglementaire.
 
 Avec l'essor du **Big Data**, de l'**intelligence artificielle** et de l'**analyse prédictive**, le Data Management est devenu un levier stratégique pour l'innovation et la compétitivité. Maîtriser ces enjeux est aujourd'hui indispensable pour toute organisation souhaitant exploiter pleinement la valeur de ses données.
 
-Ce guide d'implémentation sert de référence pour la gestion des don1nées. Plus précisément, il accompagne la mise en place d'une couche sémantique dans le cadre de la construction du Hub de données d'un système d'information hospitalier (SIH).
+Ce guide d'implémentation sert de référence pour la gestion des données. Plus précisément, il accompagne la mise en place d'une couche sémantique dans le cadre de la construction du Hub de données d'un système d'information hospitalier (SIH).
 
 L'objectif de ce Hub est de permettre à une organisation de renforcer sa gouvernance des données en instaurant une couche sémantique homogène, garantissant ainsi que l'ensemble du SIH adopte un langage commun : **FHIR**.
 
@@ -35,22 +35,16 @@ Dans le but d'engager efficacement les travaux d'intégration du socle au sein d
 
 Le premier lot est composé d'items dont l'intégration est estimée comme prioritaire. Il s'agit de données essentiellement recueillies dans le cadre des soins, et dont la collecte au sein des systèmes d'information des hôpitaux est généralement structurée et fiable. Ce premier segment du socle comprend :
 
-* Des données du PMSI collectées localement par les hôpitaux. Bien qu'elles soient déjà disponibles et consolidées à l'échelle nationale via la base principale du SNDS, le groupe de travail propose de capitaliser sur la collecte et les mécanismes de mise en qualité du PMSI déjà en place au sein des établissements. L'objectif est d'obtenir une caractérisation globale des patients et de leur séjour à l'hôpital au sein du socle. Le groupe de travail recommande donc l'inclusion d'un socle minimal de 9 items génériques collectés par les recueils PMSI dans les quatre "champs de soins de santé".
-
-Initialement recueillies à des fins médico-administratives, la qualité des données du PMSI en fait désormais une source d'information largement utilisée pour la gestion des établissements, l'évaluation des parcours de soins, ainsi que pour la recherche.
-
+* Des données du PMSI collectées localement par les hôpitaux. Bien qu'elles soient déjà disponibles et consolidées à l'échelle nationale via la base principale du SNDS, le groupe de travail propose de capitaliser sur la collecte et les mécanismes de mise en qualité du PMSI déjà en place au sein des établissements. L'objectif est d'obtenir une caractérisation globale des patients et de leur séjour à l'hôpital au sein du socle. Le groupe de travail recommande donc l'inclusion d'un socle minimal de 9 items génériques collectés par les recueils PMSI dans les quatre "champs de soins de santé". <br/>
+Initialement recueillies à des fins médico-administratives, la qualité des données du PMSI en fait désormais une source d'information largement utilisée pour la gestion des établissements, l'évaluation des parcours de soins, ainsi que pour la recherche. <br/>
 Par conséquent, la collecte des données du PMSI doit être durable et indépendante du modèle de financement des hôpitaux.
 
-* Des données socio-démographiques. Ces données complètent la caractérisation générale des patients par des données administratives qui ne sont pas collectées dans le cadre du PMSI. Parmi ces données, figurent les identifiants nationaux tels que le NIR, l'INS ou l'adresse géocodée. En tant que clés d'appariement direct, elles revêtent une importance primordiale pour rendre plus fiable et exhaustif le croisement des données cliniques collectées à l'hôpital avec d'autres bases de données nationales, notamment la base principale du SNDS, ainsi que des bases environnementales ou sociales (bases de données de la statistique publique). La mise en relation de ces données permettrait de promouvoir l'analyse des déterminants sociaux ou environnementaux de la santé, mesurés au moins à l'échelon collectif, sinon à un échelon individuel.
-
+* Des données socio-démographiques. Ces données complètent la caractérisation générale des patients par des données administratives qui ne sont pas collectées dans le cadre du PMSI. Parmi ces données, figurent les identifiants nationaux tels que le NIR, l'INS ou l'adresse géocodée. En tant que clés d'appariement direct, elles revêtent une importance primordiale pour rendre plus fiable et exhaustif le croisement des données cliniques collectées à l'hôpital avec d'autres bases de données nationales, notamment la base principale du SNDS, ainsi que des bases environnementales ou sociales (bases de données de la statistique publique). La mise en relation de ces données permettrait de promouvoir l'analyse des déterminants sociaux ou environnementaux de la santé, mesurés au moins à l'échelon collectif, sinon à un échelon individuel. <br/>
 Actuellement, le traitement de ces données sensibles à des fins d'appariement suscite des interrogations légitimes pour les EDS conformes au référentiel sur les entrepôts de données de santé établi par la CNIL qui ne les autorise, ni ne les interdit explicitement.
 
-* Les données de prescription et d'administration permettant de caractériser l'exposition médicamenteuse des patients. Ces données sont essentielles pour décrire les maladies et pour évaluer le rôle des médicaments comme déterminant de santé.
-
-Ces données répondent à un besoin exprimé des utilisateurs pour améliorer la qualité des études en vie réelle en complétant les données médico-administratives de prescription et de délivrance en ville, disponibles dans la base principale du SNDS.
-
-Disposer d'une vision globale de l'exposition médicamenteuse des patients sur l'ensemble de leur parcours de soins vise à améliorer l'évaluation des prises en charge des patients.
-
+* Les données de prescription et d'administration permettant de caractériser l'exposition médicamenteuse des patients. Ces données sont essentielles pour décrire les maladies et pour évaluer le rôle des médicaments comme déterminant de santé. <br/>
+Ces données répondent à un besoin exprimé des utilisateurs pour améliorer la qualité des études en vie réelle en complétant les données médico-administratives de prescription et de délivrance en ville, disponibles dans la base principale du SNDS. <br/>
+Disposer d'une vision globale de l'exposition médicamenteuse des patients sur l'ensemble de leur parcours de soins vise à améliorer l'évaluation des prises en charge des patients. <br/>
 Le socle inclut les données relatives aux prescriptions et à l'administration des médicaments dans le milieu hospitalier quel que soit le type de traitement. A terme, le socle commun consolidera l'ensemble des informations concernant l'exposition médicamenteuse individuelle des patients à l'hôpital, ce qui constitue une évolution très favorable pour cette source d'information.
 
 * Des résultats d'examens de biologie médicale. Élément majeur de la prise en charge des patients, contribuant au diagnostic, à apprécier la gravité ou le pronostic d'une maladie ou encore à évaluer la tolérance des produits de santé, les résultats des examens de biologie médicale ont un intérêt scientifique majeur. Les résultats de certains examens de biologie médicale réalisés à l'hôpital complètent les données relatives aux actes de dépistage et de diagnostic disponibles dans le PMSI. Étant donné la grande diversité des examens réalisables et le volume de données généré, le groupe de travail propose un socle minimal de 23 items, correspondant aux examens de routine, offrant une vision globale de l'état de santé du patient. Ces items incluent l'hémogramme, une caractérisation des fonctions rénale et hépatique et du bilan glycémique.
@@ -67,7 +61,7 @@ Pour supporter l'approche, plusieurs outils sont facilitant notamment :
 
 * [FHIR IG Publisher](https://github.com/HL7/fhir-ig-publisher) : le FHIR IG Publisher permet la construction des guides d'implémentation notamment il valide les ressources de conformité et produit un [rapport qualité](qa.html)
 * [FHIR MapBuilder](https://github.com/aphp/fhir-mapbuilder) : le FHIR MapBuilder facilite l'édition de fichier [FHIR Mapping Language (FML)](glossary.html#fml) permettant notamment de documenter le linéage colonne entre deux définition de structure (`StructureDefinition`).
-* [AP-HP FormBuilder](https://github.com/aphp/formbuilder) : le AP-HP FormBuilder est un éditeur de ressource `Questionnaire` permettant notamment de définir un recceuil d'information. Dans le contexte de l'approche, deux usages sont référencés, (i) conception d'un formulaire du (pour le) SIH, (ii) édition d'un modèle logique issue d'un modéle conceptuel pour un cas d'usage.
+* [AP-HP FormBuilder](https://github.com/aphp/formbuilder) : le AP-HP FormBuilder est un éditeur de ressource `Questionnaire` permettant notamment de définir un recceuil d'information. Dans le contexte de l'approche, deux usages sont référencés, (i) conception d'un formulaire du (pour le) SIH, (ii) édition d'un modèle logique issue d'un modèle conceptuel pour un cas d'usage.
 
 ### Organisation du guide
 

@@ -508,6 +508,34 @@
               "linkId": "9391816419630_intention",
               "text": "L'ensemble des diagnostics (qu'il s'agisse de diagnostics principaux, diagnostics reliés, ou diagnostics associés significatifs) selon la classification CIM-10, à l'échelle du séjour",
               "type": "display"
+            },
+            {
+              "type": "choice",
+              "linkId": "5505101189372",
+              "text": "diagnostique",
+              "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CIM10",
+              "item": [
+                {
+                  "linkId": "5505101189372_intention",
+                  "type": "display",
+                  "text": "LA version international de la CIM10 a été prise du fait de l'absence de value set pertinent sur le SMT",
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -526,6 +554,34 @@
               "linkId": "5066866286682",
               "text": "Date de l'acte ?",
               "type": "dateTime"
+            },
+            {
+              "type": "choice",
+              "linkId": "7758110033600",
+              "text": "Acte",
+              "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CcamSmt",
+              "item": [
+                {
+                  "linkId": "7758110033600_intention",
+                  "type": "display",
+                  "text": "C'est la CCAM du SMT, donc tarifante",
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ]
+                }
+              ]
             },
             {
               "extension": [
@@ -606,7 +662,7 @@
         {
           "linkId": "6172398101212",
           "text": "Mode d'entrée du séjour",
-          "type": "integer",
+          "type": "string",
           "item": [
             {
               "linkId": "6567394304650",
@@ -638,11 +694,11 @@
         {
           "linkId": "3354867075704",
           "text": "Mode de sortie du séjour",
-          "type": "integer",
+          "type": "string",
           "item": [
             {
               "linkId": "896083568884",
-              "text": "Copy of Libellé",
+              "text": "Libellé",
               "type": "string"
             },
             {
@@ -2498,8 +2554,8 @@
   "resourceType": "Questionnaire",
   "id": "UsageCore",
   "meta": {
-    "versionId": "2",
-    "lastUpdated": "2025-05-14T15:14:59.520+00:00",
+    "versionId": "4",
+    "lastUpdated": "2025-06-17T08:30:08.844+00:00",
     "source": "https://aphp.fr/ig/fhir/eds/Endpoint/form-builder"
   },
   "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",

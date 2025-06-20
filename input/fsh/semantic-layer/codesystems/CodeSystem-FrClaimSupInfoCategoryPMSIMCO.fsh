@@ -1,6 +1,6 @@
 CodeSystem: FrClaimSupInfoCategoryPMSIMCO
 Title: "Categorie d'information pour les supporting information"
-Description: "Il faudrait mettre une description"
+Description: "CodeSystem aggrégeant les categories d'informations susceptible d'alimenter les Claim dans le système de santé français."
 
 * ^status = #active
 * ^experimental = false
