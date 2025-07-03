@@ -166,7 +166,7 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "76000",
                 "display": "ROUEN"
               },

@@ -420,28 +420,28 @@
           "answerOption": [
             {
               "valueCoding": {
-                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "04C01",
                 "display": "LA CONDAMINE CHATELARD"
               }
             },
             {
               "valueCoding": {
-                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "01290",
                 "display": "PONT DE VEYLE"
               }
             },
             {
               "valueCoding": {
-                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "76000",
                 "display": "ROUEN"
               }
             },
             {
               "valueCoding": {
-                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "70180",
                 "display": "DAMPIERRE SUR SALON"
               }
