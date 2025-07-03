@@ -215,8 +215,8 @@
               "answer":[
                 {
                   "valueCoding": {
-                    "system": "http://hl7.org/fhir/sid/icd-10",
-                    "code": "J41.1"
+                    "display": "Tumeur maligne de la base de la langue",
+                    "code": "C01"
                   }
                 }
               ]
@@ -252,7 +252,7 @@
               "answer":[
                 {
                   "valueCoding": {
-                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "display": "Hypertension essentielle (primitive)",
                     "code": "I10"
                   }
                 }

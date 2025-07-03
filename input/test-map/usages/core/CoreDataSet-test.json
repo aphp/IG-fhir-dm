@@ -60,7 +60,7 @@
     "diagNi": 1,
     "patientNi": { "reference": "PatientCore/1" },
     "sejourNi": { "reference": "SejourCore/1" },
-    "code": "J41.1",
+    "code": "C01",
     "codeType" : "DP"
   },
   {

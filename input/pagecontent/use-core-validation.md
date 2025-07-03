@@ -141,7 +141,7 @@
         "patientNi" : {
           "reference" : "PatientCore/1"
         },
-        "code" : "J41.1",
+        "code" : "I10",
         "codeType" : "DP"
       },
       {
@@ -305,7 +305,7 @@
           "code" : {
             "coding" : [{
               "system" : "http://hl7.org/fhir/sid/icd-10",
-              "code" : "J41.1"
+              "code" : "I10"
             }]
           },
           "subject" : {
