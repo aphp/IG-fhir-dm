@@ -245,36 +245,9 @@
               ]
             },
             {
-              "item": [
-                {
-                  "type": "date",
-                  "linkId": "4999580038872",
-                  "text": "Date du recueil de l'information"
-                },
-                {
-                  "linkId": "7621032273792_intention",
-                  "type": "display",
-                  "text": "Codage de l'adresse du patient selon la méthode d'Ilots Regroupés pour l'Information Statistique de l'INSEE. Si adresse géocodée non disponible",
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help",
-                            "display": "Help-Button"
-                          }
-                        ],
-                        "text": "Intention"
-                      }
-                    }
-                  ]
-                }
-              ],
-              "type": "choice",
               "linkId": "7621032273792",
               "text": "IRIS",
+              "type": "choice",
               "repeats": true,
               "answerOption": [
                 {
@@ -304,6 +277,33 @@
                     "code": "391900000",
                     "display": "Dampierre (commune non irisée)"
                   }
+                }
+              ],
+              "item": [
+                {
+                  "linkId": "4999580038872",
+                  "text": "Date du recueil de l'information",
+                  "type": "date"
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "7621032273792_intention",
+                  "text": "Codage de l'adresse du patient selon la méthode d'Ilots Regroupés pour l'Information Statistique de l'INSEE. Si adresse géocodée non disponible",
+                  "type": "display"
                 }
               ]
             },
@@ -374,9 +374,9 @@
           ]
         },
         {
-          "type": "choice",
           "linkId": "3894630481120",
           "text": "Sexe",
+          "type": "choice",
           "answerOption": [
             {
               "valueCoding": {
@@ -395,36 +395,9 @@
           ]
         },
         {
-          "item": [
-            {
-              "type": "date",
-              "linkId": "1537511139540",
-              "text": "Date du recueil de l'information"
-            },
-            {
-              "linkId": "2446369196222_intention",
-              "type": "display",
-              "text": "Code de la commune de résidence du patient selon la classification PMSI",
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "help",
-                        "display": "Help-Button"
-                      }
-                    ],
-                    "text": "Intention"
-                  }
-                }
-              ]
-            }
-          ],
-          "type": "choice",
           "linkId": "2446369196222",
           "text": "Code géographique de résidence",
+          "type": "choice",
           "answerOption": [
             {
               "valueCoding": {
@@ -453,6 +426,33 @@
                 "code": "70180",
                 "display": "DAMPIERRE SUR SALON"
               }
+            }
+          ],
+          "item": [
+            {
+              "linkId": "1537511139540",
+              "text": "Date du recueil de l'information",
+              "type": "date"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "help",
+                        "display": "Help-Button"
+                      }
+                    ],
+                    "text": "Intention"
+                  }
+                }
+              ],
+              "linkId": "2446369196222_intention",
+              "text": "Code de la commune de résidence du patient selon la classification PMSI",
+              "type": "display"
             }
           ]
         },
@@ -490,6 +490,34 @@
               ]
             },
             {
+              "linkId": "5505101189372",
+              "text": "Diagnostique",
+              "type": "choice",
+              "answerValueSet": "http://hl7.org/fhir/ValueSet/icd-10",
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "help",
+                            "display": "Help-Button"
+                          }
+                        ],
+                        "text": "Intention"
+                      }
+                    }
+                  ],
+                  "linkId": "5505101189372_intention",
+                  "text": "LA version international de la CIM10 a été prise du faitt de l'absence de value set pertinent sur le SMT",
+                  "type": "display"
+                }
+              ]
+            },
+            {
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -508,34 +536,6 @@
               "linkId": "9391816419630_intention",
               "text": "L'ensemble des diagnostics (qu'il s'agisse de diagnostics principaux, diagnostics reliés, ou diagnostics associés significatifs) selon la classification CIM-10, à l'échelle du séjour",
               "type": "display"
-            },
-            {
-              "type": "choice",
-              "linkId": "5505101189372",
-              "text": "diagnostique",
-              "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CIM10",
-              "item": [
-                {
-                  "linkId": "5505101189372_intention",
-                  "type": "display",
-                  "text": "LA version international de la CIM10 a été prise du fait de l'absence de value set pertinent sur le SMT",
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                      "valueCodeableConcept": {
-                        "coding": [
-                          {
-                            "system": "http://hl7.org/fhir/questionnaire-item-control",
-                            "code": "help",
-                            "display": "Help-Button"
-                          }
-                        ],
-                        "text": "Intention"
-                      }
-                    }
-                  ]
-                }
-              ]
             }
           ]
         },
@@ -660,16 +660,11 @@
           ]
         },
         {
-          "linkId": "6172398101212",
-          "text": "Mode d'entrée du séjour",
-          "type": "string",
           "item": [
             {
-              "linkId": "6567394304650",
-              "text": "Libellé",
-              "type": "string"
-            },
-            {
+              "linkId": "6172398101212_intention",
+              "type": "display",
+              "text": "Mode d'entrée pendant le séjour ; dans le cas d'un séjour avec passage dans plusieurs unités médicales, il s'agit du mode d'entrée dans la première unité médicale dans l’ordre chronologique pendant le séjour",
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -684,24 +679,57 @@
                     "text": "Intention"
                   }
                 }
-              ],
-              "linkId": "6172398101212_intention",
-              "text": "Mode d'entrée pendant le séjour ; dans le cas d'un séjour avec passage dans plusieurs unités médicales, il s'agit du mode d'entrée dans la première unité médicale dans l’ordre chronologique pendant le séjour",
-              "type": "display"
+              ]
+            }
+          ],
+          "type": "choice",
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "6",
+                "display": "Mutation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "7",
+                "display": "Transfert définitif"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "0",
+                "display": "Transfert provisoire"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "8",
+                "display": "Domicile"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "N",
+                "display": "Naissance"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "O",
+                "display": "Patient entré décédé pour prélèvement d'organes"
+              }
             }
           ]
         },
         {
-          "linkId": "3354867075704",
-          "text": "Mode de sortie du séjour",
-          "type": "string",
           "item": [
             {
-              "linkId": "896083568884",
-              "text": "Libellé",
-              "type": "string"
-            },
-            {
+              "linkId": "3354867075704_intention",
+              "type": "display",
+              "text": "Mode de sortie pendant le séjour ; dans le cas d'un séjour avec passage dans plusieurs unités médicales, il s'agit du mode de sortie de la dernière unité médicale dans l’ordre chronologique pendant le séjour",
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -716,10 +744,42 @@
                     "text": "Intention"
                   }
                 }
-              ],
-              "linkId": "3354867075704_intention",
-              "text": "Mode de sortie pendant le séjour ; dans le cas d'un séjour avec passage dans plusieurs unités médicales, il s'agit du mode de sortie de la dernière unité médicale dans l’ordre chronologique pendant le séjour",
-              "type": "display"
+              ]
+            }
+          ],
+          "type": "choice",
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "code": "6",
+                "display": "Mutation"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "7",
+                "display": "Transfert définitif"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "0",
+                "display": "Transfert provisoire"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "8",
+                "display": "Domicile"
+              }
+            },
+            {
+              "valueCoding": {
+                "code": "9",
+                "display": "Décès"
+              }
             }
           ]
         },
@@ -2060,30 +2120,30 @@
           "repeats": true,
           "item": [
             {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
+                }
+              ],
               "linkId": "1923143398283",
               "text": "codification",
               "type": "choice",
               "repeats": true,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs",
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs"
+            },
+            {
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
                   "valueUrl": "https://smt.esante.gouv.fr/fhir"
                 }
-              ]
-            },
-            {
+              ],
               "linkId": "387026794874",
               "text": "Voie d'administration",
               "type": "choice",
               "repeats": false,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs",
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
-                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
-                }
-              ]
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs"
             },
             {
               "extension": [
@@ -2154,30 +2214,30 @@
           "repeats": true,
           "item": [
             {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
+                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
+                }
+              ],
               "linkId": "631972144976",
               "text": "codification",
               "type": "choice",
               "repeats": true,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs",
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs"
+            },
+            {
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
                   "valueUrl": "https://smt.esante.gouv.fr/fhir"
                 }
-              ]
-            },
-            {
+              ],
               "linkId": "811931484859",
               "text": "Voie d'administration",
               "type": "choice",
               "repeats": false,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs",
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
-                  "valueUrl": "https://smt.esante.gouv.fr/fhir"
-                }
-              ]
+              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs"
             },
             {
               "extension": [
@@ -2554,20 +2614,20 @@
   "resourceType": "Questionnaire",
   "id": "UsageCore",
   "meta": {
-    "versionId": "4",
-    "lastUpdated": "2025-06-17T08:30:08.844+00:00",
+    "versionId": "10",
+    "lastUpdated": "2025-07-03T14:42:16.744+00:00",
     "source": "https://aphp.fr/ig/fhir/eds/Endpoint/form-builder"
   },
-  "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
-  "name": "UsageCore",
-  "title": "Questionnaire usage Variables socles pour les EDSH",
-  "status": "active",
-  "date": "2025-02-03",
-  "description": "Arborescence des variables du socle pour les EDSH",
   "extension": [
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-preferredTerminologyServer",
       "valueUrl": "https://hapi.fhir.org/baseR4"
     }
-  ]
+  ],
+  "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "title": "Questionnaire usage Variables socles pour les EDSH",
+  "status": "active",
+  "date": "2025-02-03",
+  "description": "Arborescence des variables du socle pour les EDSH",
+  "name": "QuestionnaireUsageVariablesSoclesPourLesEDSH"
 }

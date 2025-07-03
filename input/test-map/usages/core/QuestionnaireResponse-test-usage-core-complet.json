@@ -316,18 +316,10 @@
         {
           "answer": [
             {
-              "valueString": "8",
-              "item": [
-                {
-                  "answer": [
-                    {
-                      "valueString": "Domicile"
-                    }
-                  ],
-                  "linkId": "6567394304650",
-                  "text": "Libellé"
-                }
-              ]
+              "valueCoding": {
+                "code": "8",
+                "display": "Domicile"
+              }
             }
           ],
           "linkId": "6172398101212",
@@ -336,18 +328,10 @@
         {
           "answer": [
             {
-              "valueString": "8",
-              "item": [
-                {
-                  "answer": [
-                    {
-                      "valueString": "Domicile"
-                    }
-                  ],
-                  "linkId": "896083568884",
-                  "text": "Libellé"
-                }
-              ]
+              "valueCoding": {
+                "code": "8",
+                "display": "Domicile"
+              }
             }
           ],
           "linkId": "3354867075704",
