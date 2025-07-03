@@ -556,15 +556,12 @@
               "type": "dateTime"
             },
             {
-              "type": "choice",
               "linkId": "7758110033600",
               "text": "Acte",
-              "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/CcamSmt",
+              "type": "choice",
+              "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/Ccam",
               "item": [
                 {
-                  "linkId": "7758110033600_intention",
-                  "type": "display",
-                  "text": "C'est la CCAM du SMT, donc tarifante",
                   "extension": [
                     {
                       "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
@@ -579,7 +576,10 @@
                         "text": "Intention"
                       }
                     }
-                  ]
+                  ],
+                  "linkId": "7758110033600_intention",
+                  "text": "C'est une CCAM exemple de l'IG",
+                  "type": "display"
                 }
               ]
             },

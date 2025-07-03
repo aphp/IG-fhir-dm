@@ -287,7 +287,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "code": "HFFC0044"
                   }
                 }
