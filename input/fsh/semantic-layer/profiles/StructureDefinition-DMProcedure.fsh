@@ -14,4 +14,4 @@ Description: "Procedure adapted to Data Management"
 * location only Reference(DMLocation)
 * reasonReference only Reference(DMCondition or Observation or DMProcedure)
 
-* code from CcamSmt (extensible)
+* code from Ccam (extensible)

@@ -48,7 +48,7 @@ Description: "Profil pour les Résumés d'Unité Médicale (RUM) du PMSI MCO."
 * procedure MS
 * procedure
   * procedure[x] only CodeableConcept
-  * procedureCodeableConcept from CcamSmt
+  * procedureCodeableConcept from Ccam
 
 * item.category from FrMCOClaimItemCategory (required)
 
@@ -86,5 +86,5 @@ Description: "Profil pour les Résumés d'Unité Médicale (RUM) du PMSI MCO."
 * item[CCAMProcedure]
   * category 1..1
   * category = FrMCOClaimItemCategory#0    //Procédure
-  * productOrService from CcamSmt (extensible)
+  * productOrService from Ccam (extensible)
 

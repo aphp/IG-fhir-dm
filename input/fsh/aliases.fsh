@@ -4,7 +4,9 @@ Alias: $sct                                  = http://snomed.info/sct
 Alias: $ohdsi                                = https://fhir-terminology.ohdsi.org
 
 // CodeSystem from HL7 terminology
+Alias: $administrative-gender                = http://hl7.org/fhir/administrative-gender
 Alias: $observation-category                 = http://terminology.hl7.org/CodeSystem/observation-category
+Alias: $cs-v3-ActCode                        = http://terminology.hl7.org/CodeSystem/v3-ActCode
 
 // Extension from FHIR Extensions Pack
 Alias: $geolocation                          = http://hl7.org/fhir/StructureDefinition/geolocation
@@ -20,6 +22,7 @@ Alias: $fr-core-cs-TRE-R32-StatutHospitalier = https://mos.esante.gouv.fr/NOS/TR
 
 // ValueSet from HL7
 Alias: $UnitsOfMeasureCaseSensitive          = http://terminology.hl7.org/ValueSet/v3-UnitsOfMeasureCaseSensitive
+Alias: $vs-v3-ActEncounterCode               = http://terminology.hl7.org/ValueSet/v3-ActEncounterCode
 
 // ValueSet from FrCore
 Alias: $fr-core-vs-patient-gender-INS        = https://hl7.fr/ig/fhir/core/ValueSet/fr-core-vs-patient-gender-INS

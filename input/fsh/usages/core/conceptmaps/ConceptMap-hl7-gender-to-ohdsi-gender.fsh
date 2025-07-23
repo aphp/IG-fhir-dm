@@ -10,7 +10,7 @@ Usage: #definition
 * sourceCanonical = Canonical($fr-core-vs-patient-gender-INS)
 * targetCanonical = Canonical(OMOPGender)
 * group[0]
-  * source = "http://hl7.org/fhir/administrative-gender"
+  * source = Canonical($administrative-gender)
   * target = Canonical(DMOmopCDMv20240229)
   * element[0]
     * code = #male

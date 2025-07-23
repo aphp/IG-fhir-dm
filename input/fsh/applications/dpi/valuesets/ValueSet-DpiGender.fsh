@@ -5,4 +5,4 @@ Description: "ValueSet des Sexe administratif du DPI"
 * ^experimental = false
 * ^immutable = false
 
-* include codes from system https://aphp.fr/ig/fhir/dm/CodeSystem/DpiGender
+* include codes from system DpiGender

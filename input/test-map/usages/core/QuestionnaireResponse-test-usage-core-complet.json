@@ -166,7 +166,7 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://ati.sante.fr/CodesGeographiques-cs",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "76000",
                 "display": "ROUEN"
               },
@@ -215,8 +215,8 @@
               "answer":[
                 {
                   "valueCoding": {
-                    "system": "http://hl7.org/fhir/sid/icd-10",
-                    "code": "J41.1"
+                    "display": "Tumeur maligne de la base de la langue",
+                    "code": "C01"
                   }
                 }
               ]
@@ -252,7 +252,7 @@
               "answer":[
                 {
                   "valueCoding": {
-                    "system": "http://hl7.org/fhir/sid/icd-10",
+                    "display": "Hypertension essentielle (primitive)",
                     "code": "I10"
                   }
                 }
@@ -287,7 +287,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "code": "HFFC0044"
                   }
                 }
@@ -316,18 +316,10 @@
         {
           "answer": [
             {
-              "valueString": "8",
-              "item": [
-                {
-                  "answer": [
-                    {
-                      "valueString": "Domicile"
-                    }
-                  ],
-                  "linkId": "6567394304650",
-                  "text": "Libellé"
-                }
-              ]
+              "valueCoding": {
+                "code": "8",
+                "display": "Domicile"
+              }
             }
           ],
           "linkId": "6172398101212",
@@ -336,18 +328,10 @@
         {
           "answer": [
             {
-              "valueString": "8",
-              "item": [
-                {
-                  "answer": [
-                    {
-                      "valueString": "Domicile"
-                    }
-                  ],
-                  "linkId": "896083568884",
-                  "text": "Libellé"
-                }
-              ]
+              "valueCoding": {
+                "code": "8",
+                "display": "Domicile"
+              }
             }
           ],
           "linkId": "3354867075704",

@@ -20,7 +20,7 @@
     "patientNi" : {
       "reference" : "PatientCore/1"
     },
-    "code" : "J41.1",
+    "code" : "I10",
     "codeType" : "DP"
   },
   {

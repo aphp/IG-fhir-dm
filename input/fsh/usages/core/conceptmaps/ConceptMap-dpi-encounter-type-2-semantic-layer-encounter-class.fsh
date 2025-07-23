@@ -1,17 +1,17 @@
-Instance: DpiEncounterType2SemanticLayerEncounterClass
+Instance: dpi-encounter-type-2-semantic-layer-encounter-class
 InstanceOf: ConceptMap
+Title: "DPI Encounter type to Semantic layer"
 Description: "TODO"
 Usage: #definition
 
 * name = "DpiEncounterType2FhirEncounterClass"
-* title = "DPI Encounter type to Semantic layer"
 * experimental = false
 * status = #active
-* sourceCanonical = "https://aphp.fr/ig/fhir/dm/ValueSet/DpiEncounterType"
-* targetCanonical = "http://terminology.hl7.org/ValueSet/v3-ActEncounterCode"
+* sourceCanonical = Canonical(DpiEncounterType)
+* targetCanonical = Canonical($vs-v3-ActEncounterCode)
 * group[0]
-  * source = "https://aphp.fr/ig/fhir/dm/CodeSystem/DpiEncounterType"
-  * target = "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+  * source = Canonical(DpiEncounterType)
+  * target = Canonical($cs-v3-ActCode)
   * element[0]
     * code = #1
     * display = "Hospitalisation complète"
@@ -47,5 +47,3 @@ Usage: #definition
       * code = #SS
       * display = "short stay"
       * equivalence = #subsumes
-
-
