@@ -2,8 +2,6 @@ CodeSystem: GHM
 Title:     "Classification des GHM  utilisée pour le groupage des séjours dans le PMSI MCO."
 Description: "Groupes Homogènes de Malades."
 
-* ^meta.profile[+] = "https://aphp.fr/ig/fhir/core/StructureDefinition/CoreCodeSystem"
-
 * ^experimental = false
 * ^caseSensitive = false
 * ^status = #draft
