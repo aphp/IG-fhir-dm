@@ -4,6 +4,8 @@ skinparam Shadowing 1.0
 ' avoid problems with angled crows feet
 skinparam linetype ortho
 
+scale max 1100 width
+
 title
 Périmètre initial de l'usage
 end title
