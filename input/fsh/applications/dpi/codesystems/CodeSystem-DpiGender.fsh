@@ -1,6 +1,6 @@
 CodeSystem: DpiGender
-Title: "Dpi Gender"
-Description: "CodeSystem des Sexe administratif de patient"
+Title: "DPI Gender"
+Description: "Système de codage des sexes administratifs du patient"
 
 * ^status = #active
 * ^experimental = false
