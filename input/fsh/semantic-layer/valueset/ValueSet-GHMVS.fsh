@@ -1,4 +1,4 @@
-ValueSet: GHM
+ValueSet: GHMVS
 Title: "Liste des GHM pour le PMSI MCO"
 Description: "Ce ValueSet contient les GHM pour le PMSI MCO"
 

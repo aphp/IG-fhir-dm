@@ -2,6 +2,7 @@ Alias: $ucum                                 = http://unitsofmeasure.org
 Alias: $loinc                                = http://loinc.org
 Alias: $sct                                  = http://snomed.info/sct
 Alias: $ohdsi                                = https://fhir-terminology.ohdsi.org
+Alias: $icd-10                               = http://hl7.org/fhir/sid/icd-10
 
 // CodeSystem from HL7 terminology
 Alias: $administrative-gender                = http://hl7.org/fhir/administrative-gender

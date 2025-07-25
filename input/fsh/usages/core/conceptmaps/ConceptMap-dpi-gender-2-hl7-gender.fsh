@@ -7,7 +7,7 @@ Usage: #definition
 * name = "DpiGender2Hl7Gender"
 * experimental = false
 * status = #active
-* sourceCanonical = Canonical(DpiGender)
+* sourceCanonical = Canonical(DpiGenderVS)
 * targetCanonical = Canonical($fr-core-vs-patient-gender-INS)
 * group[0]
   * source = Canonical(DpiGender)

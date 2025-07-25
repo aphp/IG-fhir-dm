@@ -1,4 +1,4 @@
-ValueSet: DpiGender
+ValueSet: DpiGenderVS
 Title: "ValueSet des Sexe administratif du DPI"
 Description: "ValueSet des Sexe administratif du DPI"
 

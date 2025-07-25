@@ -48,7 +48,7 @@ Description: "Profil pour les Résumés d'Unité Médicale (RUM) du PMSI MCO."
 * procedure MS
 * procedure
   * procedure[x] only CodeableConcept
-  * procedureCodeableConcept from Ccam
+  * procedureCodeableConcept from CcamVS
 
 * item.category from FrMCOClaimItemCategory (required)
 
@@ -63,7 +63,7 @@ Description: "Profil pour les Résumés d'Unité Médicale (RUM) du PMSI MCO."
 * item[RUMGrouped]
   * category 1..1 
   * category = FrMCOClaimItemCategory#1    //RUM
-  * productOrService from GHM (extensible)
+  * productOrService from GHMVS (extensible)
 
   * modifier ^slicing.discriminator[+].type = #value
   * modifier ^slicing.discriminator[=].path = "coding.system"
@@ -75,16 +75,16 @@ Description: "Profil pour les Résumés d'Unité Médicale (RUM) du PMSI MCO."
 
   * modifier[MDE] ^short = "Mode d'entrée du patient"
   * modifier[MDE].coding.system = "https://aphp.fr/ig/fhir/core/CodeSystem/PMSIMCOMDE"
-  * modifier[MDE] from PMSIMCOMDE (required)
+  * modifier[MDE] from PMSIMCOMDEVS (required)
 
   * modifier[MDS] ^short = "Mode de sortie du patient"
   * modifier[MDS].coding.system = "https://aphp.fr/ig/fhir/core/CodeSystem/PMSIMCOMDS"
-  * modifier[MDS] from PMSIMCOMDS (required)
+  * modifier[MDS] from PMSIMCOMDSVS (required)
 
 
 
 * item[CCAMProcedure]
   * category 1..1
   * category = FrMCOClaimItemCategory#0    //Procédure
-  * productOrService from Ccam (extensible)
+  * productOrService from CcamVS (extensible)
 

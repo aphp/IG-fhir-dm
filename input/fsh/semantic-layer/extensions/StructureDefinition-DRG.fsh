@@ -18,7 +18,7 @@ Description: "Cette extension permet de renseigner le Groupe Homogène de Malade
 * extension[GHM].url only uri
 * extension[GHM].value[x] 1..1
 * extension[GHM].value[x] only CodeableConcept
-* extension[GHM].valueCodeableConcept from GHM
+* extension[GHM].valueCodeableConcept from GHMVS
 
 * extension[codeRetour] only Extension
 * extension[codeRetour] ^short = "Code retour de la fonction groupage"

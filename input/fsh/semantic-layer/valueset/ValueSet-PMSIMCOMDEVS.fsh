@@ -1,4 +1,4 @@
-ValueSet: PMSIMCOMDE
+ValueSet: PMSIMCOMDEVS
 Title: "Mode d'entré du PMSI MCO"
 Description: "Ce ValueSet contient tous les modes d'entrée pour le PMSI MCO"
 
