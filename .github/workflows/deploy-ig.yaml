@@ -1,10 +1,10 @@
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy implementation-guide to GitHub pages
+name: Deploy FHIR Implementation Guide to GitHub pages
 
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main", "deploy_ig_pages"]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
