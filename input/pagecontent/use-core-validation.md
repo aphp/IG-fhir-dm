@@ -15,9 +15,16 @@
   </li>
   <li>
     <p><b>Transformation d'une ressource `QuestionnaireResponse` en une instance du modèle physique de notre DPI théorique</b> :</p>
-    <p>Dans VSCode, ouvrir le fichier `input/fml/usages/core/StructureMap-CoreBusiness2Physical.fml`, puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`, puis choisir le fichier `input/test-map/usages/core/QuestionnaireResponse-test-usage-core.json`</p>
+    <p>Dans VSCode, 
+      <ol>
+        <li>ouvrir le fichier `input/fml/usages/core/StructureMap-CoreBusiness2Physical.fml`,</li>
+        <li>puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`,</li>
+        <li>puis choisir le fichier `input/test-map/usages/core/QuestionnaireResponse-test-usage-core.json`</li>
+      </ol>
+    </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/CoreDataSet-UsageCoreTest.json`</p>
-    <pre class="json" style="overflow: hidden;">
+    <pre class="json" style="width: 100%; overflow: auto;">
+      <code class="language-json">
 {
   "resourceType" : "CoreDataSet",
   "logicalId" : "UUID",
@@ -29,13 +36,21 @@
     "nir" : "1234567890123"
   }
 }
+      </code>
     </pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de DPI générique vers une instance FHIR (couche sémantique)</b> :</p>
-    <p>Dans VSCode, ouvrir le fichier `input/fml/usages/core/StructureMap-CorePhysical2FHIR.fml`, puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`, puis choisir le fichier `input/test-map/usages/core/CoreDataSet-UsageCoreTest.json` ou bien prendre le résultat de la transformation précédente</p>
+    <p>Dans VSCode,
+      <ol>
+        <li>ouvrir le fichier `input/fml/usages/core/StructureMap-CorePhysical2FHIR.fml`,</li>
+        <li>puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`,</li>
+        <li>puis choisir le fichier `input/test-map/usages/core/CoreDataSet-UsageCoreTest.json` ou bien prendre le résultat de la transformation précédente</li>
+      </ol>
+    </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/Bundle-UsageCoreTest.json`</p>
-    <pre class="json" style="overflow: hidden;">
+    <pre class="json" style="width: 100%; overflow: auto;">
+      <code class="language-json">
 {
   "resourceType" : "Bundle",
   "id" : "UUID",
@@ -71,13 +86,21 @@
     }
   }]
 }
+      </code>
     </pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de FHIR vers une instance OMOP (format le livraison)</b> :</p>
-    <p>Dans VSCode, ouvrir le fichier `input/fml/usages/core/StrucutreMap-CoreFHIR2OMOP.fml`, puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`, puis choisir le fichier `input/test-map/usages/core/Bundle-UsageCoreTest.json` ou bien prendre le résultat de la transformation précédente</p>
+    <p>Dans VSCode,
+      <ol>
+        <li>ouvrir le fichier `input/fml/usages/core/StrucutreMap-CoreFHIR2OMOP.fml`,</li>
+        <li>puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`,</li>
+        <li>puis choisir le fichier `input/test-map/usages/core/Bundle-UsageCoreTest.json` ou bien prendre le résultat de la transformation précédente</li>
+      </ol>
+    </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/OMOP-UsageCoreTest.json`</p>
-    <pre class="json" style="overflow: hidden;">
+    <pre class="json" style="width: 100%; overflow: auto;">
+      <code class="language-json">
 {
   "resourceType" : "LogicalBundle",
   "logicalId" : "UUID",
@@ -96,6 +119,7 @@
     }
   }]
 }
+      </code>
     </pre>
   </li>
 </ol>
@@ -116,9 +140,16 @@
   </li>
   <li>
     <p><b>Transformation d'une ressource `QuestionnaireResponse` en une instance du modèle physique de notre DPI théorique</b> :</p>
-    <p>Dans VSCode, ouvrir le fichier `input/fml/usages/core/StructureMap-CoreBusiness2Physical.fml`, puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`, puis choisir le fichier `input/test-map/usages/core/QuestionnaireResponse-test-usage-core-complet.json`</p>
+    <p>Dans VSCode,
+      <ol>
+        <li>ouvrir le fichier `input/fml/usages/core/StructureMap-CoreBusiness2Physical.fml`,</li>
+        <li>puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`,</li>
+        <li>puis choisir le fichier `input/test-map/usages/core/QuestionnaireResponse-test-usage-core-complet.json`</li>
+      </ol>
+    </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/CoreDataSet-UsageCoreTestFull.json`</p>
-    <pre class="json" style="overflow: hidden;">
+    <pre class="json" style="width: 100%; overflow: auto;">
+      <code class="language-json">
 {
   "resourceType" : "CoreDataSet",
   "logicalId" : "045b10f4-040d-4eb1-929c-6048dea8a312",
@@ -160,13 +191,21 @@
     "dateEnd" : "2025-06-16T10:31:29.148Z"
   }]
 }
+      </code>
     </pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de DPI générique vers une instance FHIR (couche sémantique)</b> :</p>
-    <p>Dans VSCode, ouvrir le fichier `input/fml/usages/core/StructureMap-CorePhysical2FHIR.fml`, puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`, puis choisir le fichier `input/test-map/usages/core/CoreDataSet-UsageCoreTestFull.json` ou bien prendre le résultat de la transformation précédente</p>
+    <p>Dans VSCode,
+      <ol>
+        <li>ouvrir le fichier `input/fml/usages/core/StructureMap-CorePhysical2FHIR.fml`,</li>
+        <li>puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`,</li>
+        <li>puis choisir le fichier `input/test-map/usages/core/CoreDataSet-UsageCoreTestFull.json` ou bien prendre le résultat de la transformation précédente</li>
+      </ol>
+    </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/Bundle-UsageCoreTestFull.json`</p>
-    <pre class="json" style="overflow: hidden;">
+    <pre class="json" style="width: 100%; overflow: auto;">
+      <code class="language-json">
 {
   "resourceType" : "Bundle",
   "id" : "2abf7f4c-bd1f-431f-a4c8-667cfa425baf",
@@ -421,14 +460,22 @@
     }
   }]
 }
+      </code>
     </pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de FHIR vers une instance OMOP (format le livraison)</b> :</p>
-    <p>Dans VSCode, ouvrir le fichier `input/fml/usages/core/StrucutreMap-CoreFHIR2OMOP.fml`, puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`, puis choisir le fichier `input/test-map/usages/core/Bundle-UsageCoreTestFull.json` ou bien prendre le résultat de la transformation précédente</p>
+    <p>Dans VSCode,
+      <ol>
+        <li>ouvrir le fichier `input/fml/usages/core/StrucutreMap-CoreFHIR2OMOP.fml`,</li>
+        <li>puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`,</li>
+        <li>puis choisir le fichier `input/test-map/usages/core/Bundle-UsageCoreTestFull.json` ou bien prendre le résultat de la transformation précédente</li>
+      </ol>
+    </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/OMOP-UsageCoreTestFull.json`</p>
-    <pre class="json" style="overflow: hidden;">
-    
+    <pre class="json" style="width: 100%; overflow: auto;">
+      <code class="language-json">
+      </code>
     </pre>
   </li>
 </ol>
