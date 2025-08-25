@@ -77,10 +77,30 @@ Le guide d'implémentation **Data Management with FHIR** s'appuie sur l'outil [H
 
 ### Auteurs et contributeurs
 
-| Role               | Nom             | Organisation | Contact                 |
-|--------------------|-----------------|--------------|-------------------------|
-| **Primary Editor** | David Ouagne    | AP-HP        | david.ouagne@aphp.fr    |
-| **Primary Editor** | Nicolas Griffon | AP-HP        | nicolas.griffon@aphp.fr |
+<table style="width: 100%">
+  <thead>
+    <tr>
+      <th>Rôle</th>
+      <th>Nom</th>
+      <th>Organisation</th>
+      <th>Contact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Primary Editor</strong></td>
+      <td>David Ouagne</td>
+      <td>Assistance Publique - Hôpitaux de Paris</td>
+      <td>david.ouagne@aphp.fr</td>
+    </tr>
+    <tr>
+      <td><strong>Primary Editor</strong></td>
+      <td>Nicolas Griffon</td>
+      <td>Assistance Publique - Hôpitaux de Paris</td>
+      <td>nicolas.griffon@aphp.fr</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Dépendances
 
