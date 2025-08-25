@@ -1,4 +1,4 @@
-@startuml
+@startuml core-mpd
 
 skinparam Shadowing 1.0
 ' avoid problems with angled crows feet
