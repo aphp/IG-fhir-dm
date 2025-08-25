@@ -23,9 +23,7 @@
       </ol>
     </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/CoreDataSet-UsageCoreTest.json`</p>
-    <pre class="json" style="width: 100%; overflow: auto;">
-      <code class="language-json">
-{
+    <pre class="json" style="width: 100%; overflow: auto;"><code class="language-json">{
   "resourceType" : "CoreDataSet",
   "logicalId" : "UUID",
   "patient" : {
@@ -35,9 +33,7 @@
     "birthDate" : "1948-07-16",
     "nir" : "1234567890123"
   }
-}
-      </code>
-    </pre>
+}</code></pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de DPI générique vers une instance FHIR (couche sémantique)</b> :</p>
@@ -49,9 +45,7 @@
       </ol>
     </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/Bundle-UsageCoreTest.json`</p>
-    <pre class="json" style="width: 100%; overflow: auto;">
-      <code class="language-json">
-{
+    <pre class="json" style="width: 100%; overflow: auto;"><code class="language-json">{
   "resourceType" : "Bundle",
   "id" : "UUID",
   "type" : "transaction",
@@ -85,9 +79,7 @@
       "url" : "Patient/f133b3c0-ccd8-4435-9ead-40b441c2154d"
     }
   }]
-}
-      </code>
-    </pre>
+}</code></pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de FHIR vers une instance OMOP (format le livraison)</b> :</p>
@@ -99,9 +91,7 @@
       </ol>
     </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/OMOP-UsageCoreTest.json`</p>
-    <pre class="json" style="width: 100%; overflow: auto;">
-      <code class="language-json">
-{
+    <pre class="json" style="width: 100%; overflow: auto;"><code class="language-json">{
   "resourceType" : "LogicalBundle",
   "logicalId" : "UUID",
   "type" : "transaction",
@@ -118,9 +108,7 @@
       "gender_source_value" : "male"
     }
   }]
-}
-      </code>
-    </pre>
+}</code></pre>
   </li>
 </ol>
 
@@ -148,9 +136,7 @@
       </ol>
     </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/CoreDataSet-UsageCoreTestFull.json`</p>
-    <pre class="json" style="width: 100%; overflow: auto;">
-      <code class="language-json">
-{
+    <pre class="json" style="width: 100%; overflow: auto;"><code class="language-json">{
   "resourceType" : "CoreDataSet",
   "logicalId" : "045b10f4-040d-4eb1-929c-6048dea8a312",
   "patient" : {
@@ -190,9 +176,7 @@
     "dateStart" : "2025-06-16T10:31:29.148Z",
     "dateEnd" : "2025-06-16T10:31:29.148Z"
   }]
-}
-      </code>
-    </pre>
+}</code></pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de DPI générique vers une instance FHIR (couche sémantique)</b> :</p>
@@ -204,9 +188,7 @@
       </ol>
     </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/Bundle-UsageCoreTestFull.json`</p>
-    <pre class="json" style="width: 100%; overflow: auto;">
-      <code class="language-json">
-{
+    <pre class="json" style="width: 100%; overflow: auto;"><code class="language-json">{
   "resourceType" : "Bundle",
   "id" : "2abf7f4c-bd1f-431f-a4c8-667cfa425baf",
   "type" : "transaction",
@@ -459,9 +441,7 @@
       "url" : "Condition/a81b1210-77ef-4008-85b0-07d6334feaad"
     }
   }]
-}
-      </code>
-    </pre>
+}</code></pre>
   </li>
   <li>
     <p><b>Transformation d'une instance de FHIR vers une instance OMOP (format le livraison)</b> :</p>
@@ -473,9 +453,6 @@
       </ol>
     </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/OMOP-UsageCoreTestFull.json`</p>
-    <pre class="json" style="width: 100%; overflow: auto;">
-      <code class="language-json">
-      </code>
-    </pre>
+    <pre class="json" style="width: 100%; overflow: auto;"><code class="language-json"></code></pre>
   </li>
 </ol>
