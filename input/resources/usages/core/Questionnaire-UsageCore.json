@@ -435,6 +435,13 @@
             {
               "valueCoding": {
                 "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75009",
+                "display": "PARIS 9E ARRONDISSEMENT"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "76000",
                 "display": "ROUEN"
               }
@@ -523,6 +530,24 @@
                   "valueCoding": {
                     "code": "C01",
                     "display": "Tumeur maligne de la base de la langue"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "E119",
+                    "display": "Diabète sucré de type 2, sans complication"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "N183",
+                    "display": "Maladie rénale chronique, stade 3"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "E6604",
+                    "display": "Obésité due à un excès calorique de l'adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l'enfant"
                   }
                 },
                 {

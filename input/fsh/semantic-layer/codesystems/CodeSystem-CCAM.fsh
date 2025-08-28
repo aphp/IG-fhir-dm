@@ -8,4 +8,6 @@ Description: "Fragment de CCAM permettant d'illustrer l'utilisation des codes CC
 * ^hierarchyMeaning = #grouped-by
 * ^caseSensitive = false
 
+* #BGQP002...01. "Examen du fond d'oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA"
+* #DEQP003...01. "Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA"
 * #HFFC0044 "Cholécystectomie, par coelioscopie - anesthésie"
