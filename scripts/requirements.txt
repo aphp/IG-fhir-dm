@@ -1,0 +1,31 @@
+# FHIR QuestionnaireResponse to PostgreSQL Database Population Script
+# Python Dependencies
+
+# Core data processing
+pandas>=2.1.0
+numpy>=1.24.0
+
+# Database connectivity
+psycopg2-binary>=2.9.7
+sqlalchemy>=2.0.20
+
+# Security and encryption
+cryptography>=41.0.4
+
+# Date/time handling
+python-dateutil>=2.8.2
+
+# Structured logging
+structlog>=23.1.0
+
+# Configuration and utilities
+python-dotenv>=1.0.0
+
+# Optional: FHIR validation (if needed for advanced validation)
+# fhir.resources>=7.0.0
+
+# Development dependencies (uncomment for development)
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# black>=23.7.0
+# flake8>=6.0.0
