@@ -31,8 +31,8 @@ pages:
       title: Variables socles
   data-management.md:
     title: Gestion des données
-  best-practice.md:
-    title: Bonnes pratiques
+    best-practice.md:
+      title: Bonnes pratiques
   other.md:
     title: Autre
     help.md:
@@ -47,8 +47,7 @@ pages:
 menu:
   Accueil: index.html
   Dictionnaire des données: data-dictionary.html
-  Usages:
-    Variables socles: use-core.html
+  Variables socles: use-core.html
   Gestion des données: data-management.html
   Bonnes pratiques: best-practice.html
   Ressources de conformité: artifacts.html
@@ -66,7 +65,6 @@ parameters:  # see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-pa
   path-resource:
     - input/resources/usages/core
     - input/fml/usages/core
-    - input/test-map/usages/core
 
 # The instanceOptions property is used to configure certain aspects of how SUSHI processes instances.
 instanceOptions:
@@ -79,3 +77,29 @@ instanceOptions:
 #    - generate #generate: Log when producing an individual resource (troubleshooting only - leave off)
 #    - init #init: Messages describing the start up process (for debugging)
 #    - progress #progress: Overall progress messages
+
+resources:
+  Questionnaire/UsageCore:
+    name: Questionnaire usage Variables socles pour les EDSH,
+    description: Formalisation de variables socles pour les EDSH,
+    exampleBoolean: false
+  QuestionnaireResponse/test-usage-core:
+    name: Exemple simple,
+    description: Exemple simple,
+    exampleBoolean: true
+  QuestionnaireResponse/test-usage-core-complet:
+    name: Exemple complet,
+    description: Exemple complet,
+    exampleBoolean: true
+  Bundle/5616f9ad-61b0-4279-9f41-777228d04665:
+    name: Patient test (Bundle)
+    description: ???
+    exampleBoolean: true
+  Bundle/2abf7f4c-bd1f-431f-a4c8-667cfa425baf:
+    name: Test simple
+    description: ???
+    exampleBoolean: true
+  Patient/8f005d60-b59b-47f7-b04a-f877378f8d68:
+    name: Patient test (Ressource)
+    description: ???
+    exampleBoolean: true
