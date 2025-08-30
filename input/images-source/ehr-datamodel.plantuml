@@ -1,0 +1,274 @@
+@startuml ehr-datamodel
+
+skinparam Shadowing 1.0
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+scale max 1100 width
+
+title
+Modèle de donnée du DPI
+end title
+
+' Central Patient Identity Table
+entity "identite_patient" as patient {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<UK>>
+  --
+  nom_patient : VARCHAR(255)
+  prenom_patient : VARCHAR(255)
+  nir : VARCHAR(15)
+  ins : VARCHAR(50)
+  date_naissance : DATE
+  date_deces : DATE
+  source_date_deces : VARCHAR(10)
+  rang_gemellaire : INTEGER
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
+}
+
+' Demographic Data
+entity "donnees_socio_demographiques" as demo {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  age : INTEGER
+  date_recueil_age : DATE
+  sexe : VARCHAR(10)
+  code_geographique_residence : VARCHAR(10)
+  date_recueil_residence : DATE
+  created_at : TIMESTAMP
+  updated_at : TIMESTAMP
+}
+
+' Geocoding Information
+entity "geocodage" as geo {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  latitude : DECIMAL(10,8)
+  longitude : DECIMAL(11,8)
+  date_recueil : DATE
+  iris_code : VARCHAR(20)
+  created_at : TIMESTAMP
+}
+
+' PMSI Data
+entity "donnees_pmsi" as pmsi {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  date_debut_sejour : DATE
+  date_fin_sejour : DATE
+  mode_entree : VARCHAR(10)
+  mode_sortie : VARCHAR(10)
+  created_at : TIMESTAMP
+}
+
+' Diagnostics
+entity "diagnostics" as diag {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  sejour_id : VARCHAR(50)
+  date_recueil : DATE
+  type_diagnostic : VARCHAR(10)
+  code_diagnostic : VARCHAR(20)
+  libelle_diagnostic : VARCHAR(500)
+  created_at : TIMESTAMP
+}
+
+' Medical Procedures
+entity "actes" as actes {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  sejour_id : VARCHAR(50)
+  date_recueil : DATE
+  code_acte : VARCHAR(20)
+  libelle_acte : VARCHAR(500)
+  created_at : TIMESTAMP
+}
+
+' Renal Function Tests
+entity "fonction_renale" as renal {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  uree_valeur : DECIMAL(15,6)
+  uree_code_loinc : VARCHAR(20)
+  uree_date_prelevement : TIMESTAMP
+  uree_statut_validation : VARCHAR(50)
+  uree_borne_inf : DECIMAL(15,6)
+  uree_borne_sup : DECIMAL(15,6)
+  creatinine_valeur : DECIMAL(15,6)
+  creatinine_code_loinc : VARCHAR(20)
+  creatinine_date_prelevement : TIMESTAMP
+  creatinine_statut_validation : VARCHAR(50)
+  creatinine_borne_inf : DECIMAL(15,6)
+  creatinine_borne_sup : DECIMAL(15,6)
+  dfg_valeur : DECIMAL(15,6)
+  dfg_code_loinc : VARCHAR(20)
+  dfg_date_prelevement : TIMESTAMP
+  dfg_statut_validation : VARCHAR(50)
+  dfg_borne_inf : DECIMAL(15,6)
+  dfg_borne_sup : DECIMAL(15,6)
+  created_at : TIMESTAMP
+}
+
+' Blood Count Tests
+entity "hemogramme" as hemo {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  leucocytes_valeur : DECIMAL(15,6)
+  leucocytes_code_loinc : VARCHAR(20)
+  leucocytes_date_prelevement : TIMESTAMP
+  leucocytes_statut_validation : VARCHAR(50)
+  leucocytes_borne_inf : DECIMAL(15,6)
+  leucocytes_borne_sup : DECIMAL(15,6)
+  hemoglobine_valeur : DECIMAL(15,6)
+  hemoglobine_code_loinc : VARCHAR(20)
+  hemoglobine_date_prelevement : TIMESTAMP
+  hemoglobine_statut_validation : VARCHAR(50)
+  hemoglobine_borne_inf : DECIMAL(15,6)
+  hemoglobine_borne_sup : DECIMAL(15,6)
+  hematocrite_valeur : DECIMAL(15,6)
+  hematocrite_code_loinc : VARCHAR(20)
+  hematocrite_date_prelevement : TIMESTAMP
+  hematocrite_statut_validation : VARCHAR(50)
+  hematocrite_borne_inf : DECIMAL(15,6)
+  hematocrite_borne_sup : DECIMAL(15,6)
+  globules_rouges_valeur : DECIMAL(15,6)
+  globules_rouges_code_loinc : VARCHAR(20)
+  globules_rouges_date_prelevement : TIMESTAMP
+  globules_rouges_statut_validation : VARCHAR(50)
+  globules_rouges_borne_inf : DECIMAL(15,6)
+  globules_rouges_borne_sup : DECIMAL(15,6)
+  vgm_valeur : DECIMAL(15,6)
+  vgm_code_loinc : VARCHAR(20)
+  vgm_date_prelevement : TIMESTAMP
+  vgm_statut_validation : VARCHAR(50)
+  vgm_borne_inf : DECIMAL(15,6)
+  vgm_borne_sup : DECIMAL(15,6)
+  plaquettes_valeur : DECIMAL(15,6)
+  plaquettes_code_loinc : VARCHAR(20)
+  plaquettes_date_prelevement : TIMESTAMP
+  plaquettes_statut_validation : VARCHAR(50)
+  plaquettes_borne_inf : DECIMAL(15,6)
+  plaquettes_borne_sup : DECIMAL(15,6)
+  neutrophiles_valeur : DECIMAL(15,6)
+  neutrophiles_code_loinc : VARCHAR(20)
+  neutrophiles_date_prelevement : TIMESTAMP
+  neutrophiles_statut_validation : VARCHAR(50)
+  neutrophiles_borne_inf : DECIMAL(15,6)
+  neutrophiles_borne_sup : DECIMAL(15,6)
+  created_at : TIMESTAMP
+}
+
+' Hepatic Assessment
+entity "bilan_hepatique" as hepatic {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  created_at : TIMESTAMP
+}
+
+' Other Biology Tests
+entity "biologie_autres" as bio_other {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  test_name : VARCHAR(255)
+  test_valeur : DECIMAL(15,6)
+  test_code_loinc : VARCHAR(20)
+  test_date_prelevement : TIMESTAMP
+  test_statut_validation : VARCHAR(50)
+  test_borne_inf : DECIMAL(15,6)
+  test_borne_sup : DECIMAL(15,6)
+  created_at : TIMESTAMP
+}
+
+' Medication Exposure
+entity "exposition_medicamenteuse" as med_exp {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  medicament_prescrit : VARCHAR(500)
+  codification_atc : VARCHAR(20)
+  voie_administration : VARCHAR(100)
+  created_at : TIMESTAMP
+}
+
+' Medication Dosage Details
+entity "posologie_detail" as posology {
+  * id : SERIAL <<PK>>
+  * exposition_id : INTEGER <<FK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  dose_unitaire : DECIMAL(15,6)
+  unite_dose : VARCHAR(20)
+  frequence_administration : VARCHAR(100)
+  duree_traitement : INTEGER
+  created_at : TIMESTAMP
+}
+
+' Individual Dosages
+entity "dosage" as dosage {
+  * id : SERIAL <<PK>>
+  * exposition_id : INTEGER <<FK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  date_administration : TIMESTAMP
+  dose_administree : DECIMAL(15,6)
+  unite_dose : VARCHAR(20)
+  created_at : TIMESTAMP
+}
+
+' Care Records
+entity "dossier_soins" as care {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  date_enregistrement : TIMESTAMP
+  type_soins : VARCHAR(100)
+  description_soins : TEXT
+  professionnel_id : VARCHAR(50)
+  created_at : TIMESTAMP
+}
+
+' Lifestyle Information
+entity "style_vie" as lifestyle {
+  * id : SERIAL <<PK>>
+  * patient_id : VARCHAR(50) <<FK>>
+  --
+  date_recueil : DATE
+  consommation_tabac : VARCHAR(50)
+  tabac_details : TEXT
+  consommation_alcool : VARCHAR(50)
+  alcool_details : TEXT
+  consommation_drogues : VARCHAR(50)
+  drogues_details : TEXT
+  activite_physique : VARCHAR(50)
+  activite_details : TEXT
+  created_at : TIMESTAMP
+}
+
+' Relationships
+patient ||--o{ demo : "patient_id"
+patient ||--o{ geo : "patient_id"
+patient ||--o{ pmsi : "patient_id"
+patient ||--o{ diag : "patient_id"
+patient ||--o{ actes : "patient_id"
+patient ||--o{ renal : "patient_id"
+patient ||--o{ hemo : "patient_id"
+patient ||--o{ hepatic : "patient_id"
+patient ||--o{ bio_other : "patient_id"
+patient ||--o{ med_exp : "patient_id"
+patient ||--o{ care : "patient_id"
+patient ||--o{ lifestyle : "patient_id"
+
+med_exp ||--o{ posology : "exposition_id"
+med_exp ||--o{ dosage : "exposition_id"
+
+@enduml
