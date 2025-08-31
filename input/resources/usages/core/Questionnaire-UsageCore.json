@@ -495,7 +495,7 @@
             },
             {
               "linkId": "6427586743735",
-              "text": "Type de diagnostic ?",
+              "text": "Type de diagnostic",
               "type": "choice",
               "answerOption": [
                 {
@@ -615,7 +615,7 @@
             },
             {
               "linkId": "5066866286682",
-              "text": "Date de l'acte ?",
+              "text": "Date de l'acte",
               "type": "dateTime"
             },
             {
