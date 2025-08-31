@@ -20,7 +20,7 @@ Schemas in `data_core` for Transformation:
 - **dbt_seeds** – Used to test the pipeline.  
 - **dbt_staging** – Extracts source data.  
 - **dbt_intermediate** – Performs complex transformations.  
-- **fhir_semantic_layer** – Stores the final transformed data.
+- **dbt_fhir_semantic_layer** – Stores the final transformed data.
 </functional-architecture>
 
 <instructions>

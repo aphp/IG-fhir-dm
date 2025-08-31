@@ -56,11 +56,7 @@ vars:
 # Model configuration with multi-database support
 models:
   ehr_fhir_transform:
-    # Seeds for testing
-    seeds:
-      +schema: seeds
-      +materialized: seed
-    
+  
     # Staging layer - read from EHR database
     staging:
       +schema: "staging"
@@ -104,20 +100,6 @@ tests:
     +severity: error
     +tags: ["data_quality"]
     +schema: "test_results"
-
-# Snapshots configuration for change tracking
-snapshots:
-  ehr_fhir_transform:
-    +target_schema: "dbt_snapshots"
-    +strategy: timestamp
-    +updated_at: updated_at
-    +tags: ["snapshot", "audit"]
-
-tests:
-  ehr_fhir_transform:
-    +severity: warn
-    +store_failures: true
-    +schema: dbt_test_results
 
 # Pre and post hooks for auditing
 on-run-start:
