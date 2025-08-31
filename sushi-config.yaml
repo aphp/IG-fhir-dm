@@ -80,16 +80,16 @@ instanceOptions:
 
 resources:
   Questionnaire/UsageCore:
-    name: Questionnaire usage Variables socles pour les EDSH,
-    description: Formalisation de variables socles pour les EDSH,
+    name: Questionnaire usage Variables socles pour les EDSH
+    description: Formalisation de variables socles pour les EDSH
     exampleBoolean: false
   QuestionnaireResponse/test-usage-core:
-    name: Exemple simple,
-    description: Exemple simple,
+    name: Exemple simple
+    description: Exemple simple
     exampleBoolean: true
   QuestionnaireResponse/test-usage-core-complet:
-    name: Exemple complet,
-    description: Exemple complet,
+    name: Exemple complet
+    description: Exemple complet
     exampleBoolean: true
   Bundle/5616f9ad-61b0-4279-9f41-777228d04665:
     name: Patient test (Bundle)
@@ -102,4 +102,8 @@ resources:
   Patient/8f005d60-b59b-47f7-b04a-f877378f8d68:
     name: Patient test (Ressource)
     description: ???
+    exampleBoolean: true
+  Bundle/df9c9a9c-854b-46f4-9687-1fbe40c06540:
+    name: Exemple complet (FSL)
+    description: Exemple de réponse au questionnaire au format FHIR
     exampleBoolean: true
