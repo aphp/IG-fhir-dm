@@ -1,0 +1,291 @@
+version: 2
+
+models:
+  # Core FHIR Resources
+  - name: fhir_patient
+    description: >
+      FHIR Patient resources following the DMPatient profile.
+      Ready for loading into the FHIR Semantic Layer database.
+    columns:
+      - name: id
+        description: "FHIR Patient resource ID"
+        tests:
+          - not_null
+          - unique
+      - name: version_id
+        description: "FHIR resource version ID"
+      - name: last_updated
+        description: "FHIR lastUpdated timestamp"
+        tests:
+          - not_null
+      - name: active
+        description: "Patient active status"
+      - name: identifiers
+        description: "JSONB array of FHIR Identifier objects"
+      - name: ins_nir_identifier
+        description: "Extracted INS-NIR identifier for indexing"
+      - name: names
+        description: "JSONB array of FHIR HumanName objects"  
+      - name: family_name
+        description: "Extracted family name for indexing"
+      - name: given_names
+        description: "Extracted given names for indexing"
+      - name: gender
+        description: "FHIR gender (male/female/other/unknown)"
+      - name: birth_date
+        description: "FHIR birth date"
+      - name: deceased_date_time
+        description: "FHIR death date/time if applicable"
+      - name: addresses
+        description: "JSONB array of FHIR Address objects"
+      - name: extensions
+        description: "JSONB array of FHIR Extension objects"
+      - name: meta
+        description: "FHIR Meta object with DMPatient profile"
+
+  - name: fhir_encounter
+    description: >
+      FHIR Encounter resources following the DMEncounter profile.
+      Healthcare encounters from PMSI data.
+    columns:
+      - name: id
+        description: "FHIR Encounter resource ID"
+        tests:
+          - not_null  
+          - unique
+      - name: version_id
+        description: "FHIR resource version ID"
+      - name: last_updated
+        description: "FHIR lastUpdated timestamp"
+        tests:
+          - not_null
+      - name: status
+        description: "FHIR encounter status"
+        tests:
+          - accepted_values:
+              values: ['planned', 'arrived', 'triaged', 'in-progress', 'onleave', 'finished', 'cancelled', 'entered-in-error', 'unknown']
+      - name: class
+        description: "JSONB FHIR Coding for encounter class"
+      - name: patient_id
+        description: "Reference to FHIR Patient resource"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: identifiers
+        description: "JSONB array of FHIR Identifier objects"
+      - name: period_start
+        description: "Encounter start timestamp"
+      - name: period_end
+        description: "Encounter end timestamp"
+      - name: length
+        description: "JSONB FHIR Quantity for length of stay"
+      - name: hospitalization
+        description: "JSONB FHIR Encounter.hospitalization object"
+      - name: service_provider_id
+        description: "Reference to healthcare facility organization"
+      - name: locations
+        description: "JSONB array of FHIR Encounter.location objects"
+      - name: meta
+        description: "FHIR Meta object with DMEncounter profile"
+
+  # Clinical FHIR Resources  
+  - name: fhir_condition
+    description: >
+      FHIR Condition resources following the DMCondition profile.
+      Diagnostic conditions with ICD-10 codes.
+    columns:
+      - name: id
+        description: "FHIR Condition resource ID"
+        tests:
+          - not_null
+          - unique
+      - name: version_id
+        description: "FHIR resource version ID"
+      - name: last_updated
+        description: "FHIR lastUpdated timestamp"
+        tests:
+          - not_null
+      - name: clinical_status
+        description: "JSONB FHIR CodeableConcept for clinical status"
+      - name: verification_status
+        description: "JSONB FHIR CodeableConcept for verification status"
+      - name: categories
+        description: "JSONB array of FHIR CodeableConcept for categories"
+      - name: code
+        description: "JSONB FHIR CodeableConcept with ICD-10 code"
+      - name: subject_patient_id
+        description: "Reference to FHIR Patient resource"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter_id
+        description: "Reference to FHIR Encounter resource"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: recorded_date
+        description: "Date when condition was recorded"
+      - name: meta
+        description: "FHIR Meta object with DMCondition profile"
+
+  - name: fhir_procedure
+    description: >
+      FHIR Procedure resources following the DMProcedure profile.
+      Medical procedures with CCAM codes.
+    columns:
+      - name: id
+        description: "FHIR Procedure resource ID"
+        tests:
+          - not_null
+          - unique
+      - name: version_id
+        description: "FHIR resource version ID"
+      - name: last_updated
+        description: "FHIR lastUpdated timestamp"
+        tests:
+          - not_null
+      - name: status
+        description: "FHIR procedure status"
+        tests:
+          - accepted_values:
+              values: ['preparation', 'in-progress', 'not-done', 'on-hold', 'stopped', 'completed', 'entered-in-error', 'unknown']
+      - name: code
+        description: "JSONB FHIR CodeableConcept with CCAM code"
+      - name: subject_patient_id
+        description: "Reference to FHIR Patient resource"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter_id
+        description: "Reference to FHIR Encounter resource"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: performed_date_time
+        description: "When procedure was performed"
+      - name: performers
+        description: "JSONB array of FHIR Procedure.performer objects"
+      - name: meta
+        description: "FHIR Meta object with DMProcedure profile"
+
+  - name: fhir_observation
+    description: >
+      FHIR Observation resources for laboratory, vital signs, and lifestyle observations.
+      Follows various DM observation profiles.
+    columns:
+      - name: id
+        description: "FHIR Observation resource ID"
+        tests:
+          - not_null
+          - unique
+      - name: version_id
+        description: "FHIR resource version ID"
+      - name: last_updated
+        description: "FHIR lastUpdated timestamp"
+        tests:
+          - not_null
+      - name: status
+        description: "FHIR observation status"
+        tests:
+          - accepted_values:
+              values: ['registered', 'preliminary', 'final', 'amended', 'corrected', 'cancelled', 'entered-in-error', 'unknown']
+      - name: categories
+        description: "JSONB array of FHIR CodeableConcept for categories"
+      - name: code
+        description: "JSONB FHIR CodeableConcept with LOINC or other codes"
+      - name: subject_patient_id
+        description: "Reference to FHIR Patient resource"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter_id
+        description: "Reference to FHIR Encounter resource"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: effective_date_time
+        description: "When observation was made"
+      - name: value_quantity
+        description: "JSONB FHIR Quantity for numeric values"
+      - name: value_string
+        description: "String value for text results"
+      - name: value_codeable_concept
+        description: "JSONB FHIR CodeableConcept for coded values"
+      - name: observation_profile
+        description: "Type of observation profile (laboratory, vital-signs, lifestyle)"
+      - name: laboratory_type
+        description: "Laboratory test category"
+      - name: vital_sign_type
+        description: "Vital sign measurement type"
+      - name: lifestyle_type
+        description: "Lifestyle observation type"
+      - name: reference_ranges
+        description: "JSONB array of FHIR Observation.referenceRange"
+      - name: performers
+        description: "JSONB array of performer references"
+      - name: notes
+        description: "JSONB array of FHIR Annotation objects"
+      - name: meta
+        description: "FHIR Meta object with appropriate DM observation profile"
+
+  # Medication FHIR Resources
+  - name: fhir_medication_request
+    description: >
+      FHIR MedicationRequest resources following the DMMedicationRequest profile.
+      Medication prescriptions with ATC codes.
+    columns:
+      - name: id
+        description: "FHIR MedicationRequest resource ID"
+        tests:
+          - not_null
+          - unique
+      - name: version_id
+        description: "FHIR resource version ID"
+      - name: last_updated
+        description: "FHIR lastUpdated timestamp"
+        tests:
+          - not_null
+      - name: status
+        description: "FHIR medication request status"
+        tests:
+          - accepted_values:
+              values: ['active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown']
+      - name: intent
+        description: "FHIR medication request intent"
+        tests:
+          - accepted_values:
+              values: ['proposal', 'plan', 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order', 'option']
+      - name: medication_codeable_concept
+        description: "JSONB FHIR CodeableConcept with ATC code"
+      - name: subject_patient_id
+        description: "Reference to FHIR Patient resource"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter_id
+        description: "Reference to FHIR Encounter resource"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: authored_on
+        description: "When prescription was authored"
+      - name: requester_id
+        description: "Reference to prescribing practitioner"
+      - name: dosage_instructions
+        description: "JSONB array of FHIR Dosage objects"
+      - name: meta
+        description: "FHIR Meta object with DMMedicationRequest profile"

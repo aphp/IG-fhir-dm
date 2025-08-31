@@ -1,0 +1,420 @@
+version: 2
+
+sources:
+  - name: ehr
+    description: >
+      Electronic Health Records source database tables.
+      Contains patient demographics, encounters, clinical data, and administrative information
+      following the EDSH (Entrepôt de Données de Santé Hospitalières) core variables model.
+    database: "{{ env_var('DBT_DATABASE', 'fhir_dm') }}"
+    schema: "{{ var('ehr_schema', 'public') }}"
+    
+    # Freshness checks disabled for development
+      
+    tables:
+      - name: patient
+        description: >
+          Consolidated patient demographics and identity information.
+          Combines FHIR Questionnaire items for patient identity and geocoding.
+        columns:
+          - name: patient_id
+            description: "Primary key - Unique patient identifier"
+            tests:
+              - not_null
+              - unique
+          - name: nom
+            description: "Patient family name"
+          - name: prenom  
+            description: "Patient given name"
+          - name: nir
+            description: "Numéro d'Inscription au Répertoire (NIR) - French social security number"
+          - name: ins
+            description: "Identité Nationale de Santé (INS) - National health identifier"
+          - name: date_naissance
+            description: "Patient birth date"
+            tests:
+              - not_null
+          - name: sexe
+            description: "Patient gender/sex"
+            tests:
+              - accepted_values:
+                  values: ['M', 'F', 'Masculin', 'Féminin', 'Indéterminé', '1', '2', '9']
+          - name: date_deces
+            description: "Date of death (if applicable)"
+          - name: source_deces
+            description: "Source of death information"
+          - name: rang_gemellaire
+            description: "Twin/multiple birth rank"
+          - name: latitude
+            description: "Latitude of patient residence"
+          - name: longitude
+            description: "Longitude of patient residence"
+          - name: code_iris
+            description: "IRIS geographic code"
+          - name: libelle_iris
+            description: "IRIS geographic label"
+          - name: code_geographique_residence
+            description: "Residence geographic code"
+          - name: libelle_geographique_residence
+            description: "Residence geographic label"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: donnees_pmsi
+        description: >
+          Main healthcare encounter/stay data from PMSI 
+          (Programme de Médicalisation des Systèmes d'Information).
+          Central table linking to all other clinical data.
+        columns:
+          - name: pmsi_id
+            description: "Primary key - Unique PMSI encounter identifier"
+            tests:
+              - not_null
+              - unique
+          - name: patient_id
+            description: "Foreign key to patient table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'patient')
+                  field: patient_id
+          - name: mode_sortie
+            description: "Discharge mode"
+          - name: duree_sejour
+            description: "Length of stay in days"
+          - name: date_debut_sejour
+            description: "Encounter start date"
+          - name: date_fin_sejour
+            description: "Encounter end date"
+          - name: mode_entree
+            description: "Admission mode"
+          - name: statut_administratif
+            description: "Administrative status"
+          - name: etablissement
+            description: "Healthcare facility"
+          - name: unite_fonctionnelle
+            description: "Functional unit"
+          - name: service
+            description: "Clinical service/ward"
+          - name: code_geographique_residence
+            description: "Geographic residence code at time of encounter"
+          - name: libelle_geographique_residence
+            description: "Geographic residence label at time of encounter"
+          - name: date_recueil
+            description: "Data collection date"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: diagnostics
+        description: >
+          Diagnostic codes and information linked to healthcare encounters
+          using ICD-10/CIM-10 classifications.
+        columns:
+          - name: diagnostic_id
+            description: "Primary key - Unique diagnostic identifier"
+            tests:
+              - not_null
+              - unique
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'donnees_pmsi')
+                  field: pmsi_id
+          - name: code_diagnostic
+            description: "ICD-10 diagnostic code"
+            tests:
+              - not_null
+          - name: type_diagnostic
+            description: "Type of diagnosis (primary, secondary, etc.)"
+          - name: libelle_diagnostic
+            description: "Diagnostic label/description"
+          - name: date_diagnostic
+            description: "Diagnosis date"
+          - name: sequence_diagnostic
+            description: "Sequence number for multiple diagnoses"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: actes
+        description: >
+          Medical procedures and acts performed during healthcare encounters
+          using CCAM and other standard classifications.
+        columns:
+          - name: acte_id
+            description: "Primary key - Unique procedure identifier"
+            tests:
+              - not_null
+              - unique
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'donnees_pmsi')
+                  field: pmsi_id
+          - name: code_acte
+            description: "CCAM procedure code"
+            tests:
+              - not_null
+          - name: libelle_acte
+            description: "Procedure label/description"
+          - name: date_acte
+            description: "Procedure date/time"
+          - name: executant
+            description: "Procedure performer"
+          - name: sequence_acte
+            description: "Sequence number for multiple procedures"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: biologie
+        description: >
+          Consolidated laboratory test results for all biological examinations.
+          Differentiated by LOINC codes and test types including renal function,
+          hepatic panel, complete blood count, and other tests.
+        columns:
+          - name: biologie_id
+            description: "Primary key - Unique biology result identifier"
+            tests:
+              - not_null
+              - unique
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'donnees_pmsi')
+                  field: pmsi_id
+          - name: patient_id
+            description: "Foreign key to patient table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'patient')
+                  field: patient_id
+          - name: code_loinc
+            description: "LOINC code for test identification"
+          - name: libelle_test
+            description: "Test name/label"
+          - name: type_examen
+            description: "Examination type (fonction_renale, bilan_hepatique, hemogramme, autres)"
+            tests:
+              - accepted_values:
+                  values: ['fonction_renale', 'bilan_hepatique', 'hemogramme', 'autres', 'coagulation', 'metabolisme']
+          - name: valeur
+            description: "Numeric test result value"
+          - name: unite
+            description: "Unit of measurement"
+          - name: valeur_texte
+            description: "Text result value"
+          - name: date_prelevement
+            description: "Sample collection date/time"
+          - name: statut_validation
+            description: "Validation status"
+          - name: borne_inf_normale
+            description: "Lower normal reference range"
+          - name: borne_sup_normale
+            description: "Upper normal reference range"
+          - name: commentaire
+            description: "Comments/notes"
+          - name: methode_analyse
+            description: "Analysis method"
+          - name: laboratoire
+            description: "Laboratory name"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: exposition_medicamenteuse
+        description: >
+          Medication exposure and prescription data with ATC coding
+          for pharmacovigilance and clinical research.
+        columns:
+          - name: exposition_id
+            description: "Primary key - Unique medication exposure identifier"
+            tests:
+              - not_null
+              - unique
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'donnees_pmsi')
+                  field: pmsi_id
+          - name: patient_id
+            description: "Foreign key to patient table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'patient')
+                  field: patient_id
+          - name: code_atc
+            description: "ATC (Anatomical Therapeutic Chemical) code"
+          - name: denomination
+            description: "Medication name/denomination"
+          - name: forme_pharmaceutique
+            description: "Pharmaceutical form"
+          - name: voie_administration
+            description: "Route of administration"
+          - name: type_prescription
+            description: "Prescription type (prescrit, administré)"
+          - name: prescripteur
+            description: "Prescriber name"
+          - name: date_debut
+            description: "Medication start date"
+          - name: date_fin
+            description: "Medication end date"
+          - name: date_prescription
+            description: "Prescription date"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: dossier_soins
+        description: >
+          Clinical care measurements and observations including 
+          vital signs, physical measurements, and nursing care data.
+        columns:
+          - name: soins_id
+            description: "Primary key - Unique care record identifier"
+            tests:
+              - not_null
+              - unique
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'donnees_pmsi')
+                  field: pmsi_id
+          - name: patient_id
+            description: "Foreign key to patient table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'patient')
+                  field: patient_id
+          - name: taille
+            description: "Height measurement in cm"
+          - name: date_mesure_taille
+            description: "Height measurement date"
+          - name: poids
+            description: "Weight measurement in kg"
+          - name: date_mesure_poids
+            description: "Weight measurement date"
+          - name: pression_systolique
+            description: "Systolic blood pressure"
+          - name: date_mesure_ps
+            description: "Systolic pressure measurement date"
+          - name: pression_diastolique
+            description: "Diastolic blood pressure"
+          - name: date_mesure_pd
+            description: "Diastolic pressure measurement date"
+          - name: type_mesure
+            description: "Measurement type"
+          - name: unite_soins
+            description: "Care unit"
+          - name: professionnel
+            description: "Healthcare professional"
+          - name: commentaire
+            description: "Comments/notes"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: posologie
+        description: >
+          Detailed dosing information for medications.
+        columns:
+          - name: posologie_id
+            description: "Primary key - Unique dosing identifier"
+            tests:
+              - not_null
+              - unique
+          - name: exposition_id
+            description: "Foreign key to exposition_medicamenteuse table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'exposition_medicamenteuse')
+                  field: exposition_id
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+          - name: patient_id
+            description: "Foreign key to patient table"
+          - name: date_debut_prescription
+            description: "Prescription start date"
+          - name: date_fin_prescription
+            description: "Prescription end date"
+          - name: nombre_prises_par_jour
+            description: "Number of doses per day"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: dosage
+        description: >
+          Specific dosage administration details.
+        columns:
+          - name: dosage_id
+            description: "Primary key - Unique dosage identifier"
+            tests:
+              - not_null
+              - unique
+          - name: exposition_id
+            description: "Foreign key to exposition_medicamenteuse table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'exposition_medicamenteuse')
+                  field: exposition_id
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+          - name: patient_id
+            description: "Foreign key to patient table"
+          - name: quantite_administree
+            description: "Administered quantity"
+          - name: unite_quantite
+            description: "Quantity unit"
+          - name: date_heure_debut
+            description: "Administration start date/time"
+          - name: date_heure_fin
+            description: "Administration end date/time"
+          - name: updated_at
+            description: "Last update timestamp"
+            
+      - name: style_vie
+        description: >
+          Consolidated lifestyle information including tobacco, 
+          alcohol, drugs, and physical activity.
+        columns:
+          - name: style_vie_id
+            description: "Primary key - Unique lifestyle record identifier"
+            tests:
+              - not_null
+              - unique
+          - name: pmsi_id
+            description: "Foreign key to donnees_pmsi table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'donnees_pmsi')
+                  field: pmsi_id
+          - name: patient_id
+            description: "Foreign key to patient table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'patient')
+                  field: patient_id
+          - name: consommation_tabac
+            description: "Tobacco consumption status"
+          - name: consommation_alcool
+            description: "Alcohol consumption status"
+          - name: consommation_autres_drogues
+            description: "Other drugs consumption status"
+          - name: activite_physique
+            description: "Physical activity level"
+          - name: date_recueil
+            description: "Data collection date"
+          - name: updated_at
+            description: "Last update timestamp"
