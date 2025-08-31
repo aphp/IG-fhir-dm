@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Task",
+      "Edit",
+      "Glob",
+      "Grep",
+      "LS",
+      "Read",
+      "Edit",
+      "MultiEdit",
+      "Write",
+      "WebFetch",
+      "WebSearch",
+      "Bash(ls:*)",
+      "Bash(git:*)",
+      "Bash(find:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  }
+}
