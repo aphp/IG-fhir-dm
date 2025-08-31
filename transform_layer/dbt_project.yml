@@ -24,9 +24,12 @@ clean-targets:
 vars:
   # Source database schema
   ehr_schema: 'public'
+
+  # Source database schema
+  dbt_schema: 'public'
   
   # Target FHIR schema
-  fhir_schema: 'fhir_semantic_layer'
+  fhir_schema: 'public'
   
   # Timezone for timestamp conversions
   timezone: 'Europe/Paris'
@@ -59,26 +62,6 @@ models:
 seeds:
   ehr_fhir_transform:
     +quote_columns: false
-    ehr_test_patient:
-      +column_types:
-        patient_id: bigint
-        nom: varchar(255)
-        prenom: varchar(255)
-        nir: varchar(15)
-        ins: varchar(50)
-        date_naissance: date
-        sexe: varchar(20)
-        date_deces: date
-        source_deces: varchar(50)
-        rang_gemellaire: integer
-        latitude: decimal(10,7)
-        longitude: decimal(10,7)
-        code_iris: varchar(20)
-        libelle_iris: varchar(200)
-        code_geographique_residence: varchar(10)
-        libelle_geographique_residence: varchar(200)
-        created_at: timestamp
-        updated_at: timestamp
 
 # Tests configuration
 tests:

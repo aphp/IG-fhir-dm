@@ -1,4 +1,0 @@
-pmsi_id,patient_id,mode_sortie,duree_sejour,date_debut_sejour,date_fin_sejour,mode_entree,statut_administratif,etablissement,unite_fonctionnelle,service,code_geographique_residence,libelle_geographique_residence,date_recueil,created_at,updated_at
-1001,1,Domicile,5,2024-01-10,2024-01-15,Urgences,Hospitalisation complète,AP-HP Pitié-Salpêtrière,Cardiologie,Service de Cardiologie,75102,Paris 2e Arrondissement,2024-01-15,2024-01-15 16:00:00+01,2024-01-15 16:00:00+01
-1002,2,Domicile,3,2024-02-01,2024-02-04,Consultation,Hospitalisation complète,AP-HP Cochin,Gynécologie,Service de Gynécologie,75103,Paris 3e Arrondissement,2024-02-04,2024-02-04 14:00:00+01,2024-02-04 14:00:00+01
-1003,3,Décès,10,2024-03-05,2024-03-15,Urgences,Réanimation,AP-HP Bichat,Réanimation,Service de Réanimation,75116,Paris 16e Arrondissement,2024-03-15,2024-03-15 14:00:00+01,2024-03-15 14:00:00+01
