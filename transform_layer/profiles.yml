@@ -1,6 +1,4 @@
-# Multi-database configuration example
-# Copy to ~/.dbt/profiles.yml
-
+# Simplified profiles configuration to avoid UTF-8 encoding issues
 ehr_fhir_transform:
   target: dev
   outputs:
@@ -11,9 +9,13 @@ ehr_fhir_transform:
       user: "{{ env_var('DBT_USER') }}"
       pass: "{{ env_var('DBT_PASSWORD') }}"
       
-      # Default target database for transformations and final output
-      dbname: "{{ env_var('DBT_DATABASE', 'theRing') }}"
-      schema: "{{ env_var('DBT_SCHEMA', 'public') }}"
-      threads: 4
+      # Default target database for transformations (data_core workspace)
+      dbname: "{{ env_var('DBT_DATABASE', 'data_core') }}"
+      schema: "{{ env_var('DBT_SCHEMA', 'dbt') }}"
+      threads: 1
       keepalives_idle: 0
-      sslmode: prefer
+      sslmode: disable
+      connect_timeout: 30
+      search_path: "{{ env_var('DBT_SCHEMA', 'dbt') }}"
+      # Use French locale to match database
+      options: "-c lc_messages=French_France.1252 -c client_encoding=UTF8"

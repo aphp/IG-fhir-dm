@@ -60,7 +60,6 @@ models/
     where updated_at >= (select max(updated_at) from {{ this }}) - interval '3 days'
 {% endif %}
 ```
-
 ## Documentation Requirements
 - **Model descriptions**: Purpose, grain, update frequency
 - **Column descriptions**: Business meaning, constraints
@@ -77,25 +76,6 @@ models/
    - Table: < 1M rows or wide transformations
    - Incremental: > 1M rows, append/update patterns
 5. **Query optimization**: Push filters down, minimize full scans
-
-## Development Workflow
-1. **Feature branches**: `feature/<ticket>-<description>`
-2. **Local development**: Use `target: dev` with personal schema
-3. **Pre-commit hooks**: SQLFluff, yamllint
-4. **Pull request checklist**:
-   - [ ] Models follow naming conventions
-   - [ ] Tests added (unique, not_null minimum)
-   - [ ] Documentation updated
-   - [ ] Lineage reviewed
-   - [ ] Performance impact assessed
-5. **CI/CD**: `dbt build --select state:modified+ --defer --state ./target`
-
-## Orchestration Integration
-- **Airflow/Dagster**: Separate DAGs for staging, transformation, marts
-- **Error handling**: Implement circuit breakers for critical models
-- **SLAs**: Define and monitor data freshness requirements
-- **Alerting**: PagerDuty/Slack for test failures
-- **Backfill strategy**: Document and automate historical loads
 
 ## Monitoring & Observability
 - **dbt artifacts**: Parse run_results.json for metrics

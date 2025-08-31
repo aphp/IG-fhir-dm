@@ -1,13 +1,25 @@
 {
   "permissions": {
     "allow": [
-      "Bash(export DBT_USER=postgres)",
-      "Bash(export DBT_PASSWORD=123456)",
-      "Bash(export DBT_HOST=localhost)",
-      "Bash(export DBT_PORT=5432)",
-      "Bash(export DBT_DATABASE=fhir_dm)",
-      "Bash(export DBT_SCHEMA=dbt_dev)",
-      "Bash(dbt run:*)"
+      "Task",
+      "Edit",
+      "Glob",
+      "Grep",
+      "LS",
+      "Read",
+      "Edit",
+      "MultiEdit",
+      "Write",
+      "WebFetch",
+      "WebSearch",
+      "Bash(ls:*)",
+      "Bash(git:*)",
+      "Bash(find:*)",
+      "Bash(dbt:*)",
+      "Bash(dir)",
+      "Bash(mkdir:*)",
+      "Bash(powershell:*)",
+      "Bash(psql:*)"
     ],
     "deny": [],
     "ask": []
