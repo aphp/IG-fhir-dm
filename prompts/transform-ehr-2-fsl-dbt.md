@@ -1,6 +1,8 @@
 <subagent>
 Use subagent fml-specialist
 Use subagent dbt-pro
+Use subagent sql-pro
+Use subagent python-pro
 Use subagent architect-reviewer
 Use subagent backend-architect
 Use subagent code-reviewer
