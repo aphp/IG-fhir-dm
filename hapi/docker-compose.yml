@@ -1,0 +1,276 @@
+version: '3.9'
+
+services:
+  # PostgreSQL Database Service
+  postgres:
+    image: postgres:15-alpine
+    container_name: hapi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hapi}
+      POSTGRES_USER: ${POSTGRES_USER:-hapi}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-hapi_password}
+      # PostgreSQL performance tuning for FHIR workloads
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+      # Connection pooling and performance settings
+      POSTGRES_MAX_CONNECTIONS: ${POSTGRES_MAX_CONNECTIONS:-200}
+      POSTGRES_SHARED_BUFFERS: ${POSTGRES_SHARED_BUFFERS:-256MB}
+      POSTGRES_EFFECTIVE_CACHE_SIZE: ${POSTGRES_EFFECTIVE_CACHE_SIZE:-1GB}
+      POSTGRES_MAINTENANCE_WORK_MEM: ${POSTGRES_MAINTENANCE_WORK_MEM:-64MB}
+      POSTGRES_CHECKPOINT_COMPLETION_TARGET: ${POSTGRES_CHECKPOINT_COMPLETION_TARGET:-0.9}
+      POSTGRES_WAL_BUFFERS: ${POSTGRES_WAL_BUFFERS:-16MB}
+      POSTGRES_DEFAULT_STATISTICS_TARGET: ${POSTGRES_DEFAULT_STATISTICS_TARGET:-100}
+      POSTGRES_RANDOM_PAGE_COST: ${POSTGRES_RANDOM_PAGE_COST:-1.1}
+      POSTGRES_EFFECTIVE_IO_CONCURRENCY: ${POSTGRES_EFFECTIVE_IO_CONCURRENCY:-200}
+      POSTGRES_WORK_MEM: ${POSTGRES_WORK_MEM:-4MB}
+      POSTGRES_MIN_WAL_SIZE: ${POSTGRES_MIN_WAL_SIZE:-1GB}
+      POSTGRES_MAX_WAL_SIZE: ${POSTGRES_MAX_WAL_SIZE:-4GB}
+    volumes:
+      # Data persistence
+      - postgres_data:/var/lib/postgresql/data
+      # Custom initialization scripts
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+      # Custom PostgreSQL configuration
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    networks:
+      - hapi-network
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hapi} -d ${POSTGRES_DB:-hapi}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '${POSTGRES_CPU_LIMIT:-2}'
+          memory: ${POSTGRES_MEMORY_LIMIT:-2G}
+        reservations:
+          cpus: '${POSTGRES_CPU_RESERVATION:-0.5}'
+          memory: ${POSTGRES_MEMORY_RESERVATION:-512M}
+
+  # HAPI FHIR JPA Server
+  hapi-fhir:
+    image: hapiproject/hapi:${HAPI_VERSION:-v7.0.0}
+    container_name: hapi-fhir-jpaserver
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      # Spring Boot Configuration
+      SPRING_CONFIG_LOCATION: file:///opt/config/
+      # Database Configuration
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-hapi}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-hapi}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-hapi_password}
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      # JPA/Hibernate Configuration
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: ${HIBERNATE_FORMAT_SQL:-false}
+      SPRING_JPA_PROPERTIES_HIBERNATE_SHOW_SQL: ${HIBERNATE_SHOW_SQL:-false}
+      SPRING_JPA_PROPERTIES_HIBERNATE_HBM2DDL_AUTO: ${HIBERNATE_HBM2DDL_AUTO:-update}
+      SPRING_JPA_PROPERTIES_HIBERNATE_JDBC_BATCH_SIZE: ${HIBERNATE_BATCH_SIZE:-20}
+      SPRING_JPA_PROPERTIES_HIBERNATE_CACHE_USE_QUERY_CACHE: ${HIBERNATE_USE_QUERY_CACHE:-false}
+      SPRING_JPA_PROPERTIES_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE: ${HIBERNATE_USE_SECOND_LEVEL_CACHE:-false}
+      SPRING_JPA_PROPERTIES_HIBERNATE_CACHE_USE_STRUCTURED_ENTRIES: ${HIBERNATE_USE_STRUCTURED_ENTRIES:-false}
+      SPRING_JPA_PROPERTIES_HIBERNATE_CACHE_USE_MINIMAL_PUTS: ${HIBERNATE_USE_MINIMAL_PUTS:-false}
+      # Connection Pool Configuration (HikariCP)
+      SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE: ${HIKARI_MAXIMUM_POOL_SIZE:-20}
+      SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE: ${HIKARI_MINIMUM_IDLE:-10}
+      SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT: ${HIKARI_CONNECTION_TIMEOUT:-30000}
+      SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT: ${HIKARI_IDLE_TIMEOUT:-600000}
+      SPRING_DATASOURCE_HIKARI_MAX_LIFETIME: ${HIKARI_MAX_LIFETIME:-1800000}
+      # HAPI FHIR Configuration
+      HAPI_FHIR_ALLOW_EXTERNAL_REFERENCES: ${HAPI_ALLOW_EXTERNAL_REFERENCES:-true}
+      HAPI_FHIR_ALLOW_MULTIPLE_DELETE: ${HAPI_ALLOW_MULTIPLE_DELETE:-true}
+      HAPI_FHIR_ALLOW_OVERRIDE_DEFAULT_SEARCH_PARAMS: ${HAPI_ALLOW_OVERRIDE_DEFAULT_SEARCH_PARAMS:-true}
+      HAPI_FHIR_ALLOW_CASCADING_DELETES: ${HAPI_ALLOW_CASCADING_DELETES:-true}
+      HAPI_FHIR_ALLOW_CONTAINS_SEARCHES: ${HAPI_ALLOW_CONTAINS_SEARCHES:-true}
+      HAPI_FHIR_ENFORCE_REFERENTIAL_INTEGRITY_ON_DELETE: ${HAPI_ENFORCE_REFERENTIAL_INTEGRITY:-false}
+      HAPI_FHIR_ENFORCE_REFERENTIAL_INTEGRITY_ON_WRITE: ${HAPI_ENFORCE_REFERENTIAL_INTEGRITY:-false}
+      HAPI_FHIR_DEFAULT_PAGE_SIZE: ${HAPI_DEFAULT_PAGE_SIZE:-20}
+      HAPI_FHIR_MAX_PAGE_SIZE: ${HAPI_MAX_PAGE_SIZE:-200}
+      HAPI_FHIR_FHIR_VERSION: ${HAPI_FHIR_VERSION:-R4}
+      HAPI_FHIR_SUBSCRIPTION_RESTHOOK_ENABLED: ${HAPI_SUBSCRIPTION_RESTHOOK_ENABLED:-false}
+      HAPI_FHIR_SUBSCRIPTION_EMAIL_ENABLED: ${HAPI_SUBSCRIPTION_EMAIL_ENABLED:-false}
+      HAPI_FHIR_SUBSCRIPTION_WEBSOCKET_ENABLED: ${HAPI_SUBSCRIPTION_WEBSOCKET_ENABLED:-true}
+      HAPI_FHIR_BULK_EXPORT_ENABLED: ${HAPI_BULK_EXPORT_ENABLED:-true}
+      HAPI_FHIR_CORS_ENABLED: ${HAPI_CORS_ENABLED:-true}
+      HAPI_FHIR_CORS_ALLOWED_ORIGIN: ${HAPI_CORS_ALLOWED_ORIGIN:-*}
+      HAPI_FHIR_CORS_ALLOW_CREDENTIALS: ${HAPI_CORS_ALLOW_CREDENTIALS:-false}
+      HAPI_FHIR_VALIDATION_REQUESTS_ENABLED: ${HAPI_VALIDATION_REQUESTS_ENABLED:-true}
+      HAPI_FHIR_VALIDATION_RESPONSES_ENABLED: ${HAPI_VALIDATION_RESPONSES_ENABLED:-false}
+      HAPI_FHIR_TESTER_HOME_SERVER_ADDRESS: ${HAPI_TESTER_SERVER_ADDRESS:-http://localhost:8080/fhir}
+      # JVM Settings
+      JAVA_OPTS: >-
+        -Xms${JVM_HEAP_MIN:-1024m}
+        -Xmx${JVM_HEAP_MAX:-2048m}
+        -XX:+UseG1GC
+        -XX:MaxGCPauseMillis=200
+        -XX:+ParallelRefProcEnabled
+        -XX:+AlwaysPreTouch
+        -XX:+UseStringDeduplication
+        -Djava.awt.headless=true
+        -Dfile.encoding=UTF-8
+        -Duser.timezone=${TZ:-UTC}
+    volumes:
+      # Application configuration
+      - ./config:/opt/config:ro
+      # Logs
+      - ./logs/hapi:/var/log/hapi
+      # Lucene indexes
+      - hapi_lucene:/data/lucenefiles
+      # Bulk export storage
+      - hapi_bulk_export:/data/bulk_export
+    networks:
+      - hapi-network
+    ports:
+      - "${HAPI_PORT:-8080}:8080"
+      - "${HAPI_DEBUG_PORT:-5005}:5005"  # Debug port
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/fhir/metadata"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: '${HAPI_CPU_LIMIT:-4}'
+          memory: ${HAPI_MEMORY_LIMIT:-4G}
+        reservations:
+          cpus: '${HAPI_CPU_RESERVATION:-1}'
+          memory: ${HAPI_MEMORY_RESERVATION:-1G}
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: hapi-nginx
+    restart: unless-stopped
+    depends_on:
+      - hapi-fhir
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    networks:
+      - hapi-network
+    ports:
+      - "${NGINX_HTTP_PORT:-80}:80"
+      - "${NGINX_HTTPS_PORT:-443}:443"
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '${NGINX_CPU_LIMIT:-0.5}'
+          memory: ${NGINX_MEMORY_LIMIT:-256M}
+
+  # Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: hapi-prometheus
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
+      - '--storage.tsdb.retention.time=${PROMETHEUS_RETENTION:-15d}'
+    volumes:
+      - ./monitoring/prometheus:/etc/prometheus:ro
+      - prometheus_data:/prometheus
+    networks:
+      - hapi-network
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '${PROMETHEUS_CPU_LIMIT:-0.5}'
+          memory: ${PROMETHEUS_MEMORY_LIMIT:-512M}
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: hapi-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_INSTALL_PLUGINS: ${GRAFANA_PLUGINS:-}
+      GF_SERVER_ROOT_URL: ${GRAFANA_ROOT_URL:-http://localhost:3000}
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    networks:
+      - hapi-network
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '${GRAFANA_CPU_LIMIT:-0.5}'
+          memory: ${GRAFANA_MEMORY_LIMIT:-256M}
+
+  # Postgres Exporter for database metrics
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:latest
+    container_name: hapi-postgres-exporter
+    restart: unless-stopped
+    environment:
+      DATA_SOURCE_NAME: postgresql://${POSTGRES_USER:-hapi}:${POSTGRES_PASSWORD:-hapi_password}@postgres:5432/${POSTGRES_DB:-hapi}?sslmode=disable
+    networks:
+      - hapi-network
+    ports:
+      - "${POSTGRES_EXPORTER_PORT:-9187}:9187"
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+        limits:
+          cpus: '${POSTGRES_EXPORTER_CPU_LIMIT:-0.25}'
+          memory: ${POSTGRES_EXPORTER_MEMORY_LIMIT:-128M}
+
+networks:
+  hapi-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+volumes:
+  postgres_data:
+    driver: local
+  hapi_lucene:
+    driver: local
+  hapi_bulk_export:
+    driver: local
+  nginx_logs:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local

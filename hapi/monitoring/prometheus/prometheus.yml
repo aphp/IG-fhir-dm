@@ -1,0 +1,90 @@
+# Prometheus configuration for HAPI FHIR monitoring
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'hapi-fhir-monitor'
+    environment: 'production'
+
+# Alertmanager configuration (optional)
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets:
+#           - alertmanager:9093
+
+# Load rules once and periodically evaluate them
+rule_files:
+  - "rules/*.yml"
+
+# Scrape configuration
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    metrics_path: /metrics
+    scrape_interval: 15s
+
+  # HAPI FHIR JPA Server metrics
+  - job_name: 'hapi-fhir'
+    static_configs:
+      - targets: ['hapi-fhir:8080']
+    metrics_path: /actuator/prometheus
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: hapi-fhir:8080
+
+  # PostgreSQL metrics
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+    metrics_path: /metrics
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # Node/Container metrics (if node-exporter is added)
+  # - job_name: 'node'
+  #   static_configs:
+  #     - targets: ['node-exporter:9100']
+  #   metrics_path: /metrics
+  #   scrape_interval: 30s
+
+  # Docker container metrics (if cAdvisor is added)
+  # - job_name: 'cadvisor'
+  #   static_configs:
+  #     - targets: ['cadvisor:8080']
+  #   metrics_path: /metrics
+  #   scrape_interval: 30s
+
+  # Nginx metrics (if nginx-prometheus-exporter is added)
+  # - job_name: 'nginx'
+  #   static_configs:
+  #     - targets: ['nginx-exporter:9113']
+  #   metrics_path: /metrics
+  #   scrape_interval: 30s
+
+# Storage configuration
+storage:
+  tsdb:
+    path: /prometheus
+    retention.time: 15d
+    retention.size: 10GB
+
+# Web configuration
+web:
+  console:
+    libraries:
+      - /usr/share/prometheus/console_libraries
+    templates:
+      - /usr/share/prometheus/consoles
+  enable-lifecycle: true

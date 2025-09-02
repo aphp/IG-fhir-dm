@@ -1,0 +1,38 @@
+# Grafana datasource configuration
+
+apiVersion: 1
+
+# List of datasources to insert/update depending on what's available in the database
+datasources:
+  # Prometheus datasource for metrics
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      httpMethod: POST
+      manageAlerts: true
+      prometheusType: Prometheus
+      prometheusVersion: 2.40.0
+      cacheLevel: 'High'
+      disableRecordingRules: false
+      incrementalQueryOverlapWindow: 10m
+      
+  # PostgreSQL datasource (optional, for direct database queries)
+  - name: PostgreSQL
+    type: postgres
+    access: proxy
+    url: postgres:5432
+    database: hapi
+    user: hapi
+    secureJsonData:
+      password: hapi_password  # This should match your actual password
+    jsonData:
+      sslmode: disable
+      maxOpenConns: 5
+      maxIdleConns: 2
+      connMaxLifetime: 14400
+      postgresVersion: 1500  # PostgreSQL 15.x
+      timescaledb: false
