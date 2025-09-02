@@ -35,14 +35,13 @@ DROP TABLE IF EXISTS fhir_patient CASCADE;
 -- French Patient profile with INS-NIR identifiers
 CREATE TABLE fhir_patient (
     id VARCHAR(64) PRIMARY KEY,
-    version_id VARCHAR(64),
     last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- FHIR Patient core elements
     active BOOLEAN DEFAULT TRUE,
     
     -- Identifiers (multiple allowed)
-    identifiers JSONB, -- Array of Identifier objects
+    identifier JSONB, -- Array of Identifier objects
     nss_identifier VARCHAR(50), -- NSS (Numéro de Sécurité Sociale)
     ins_nir_identifier VARCHAR(15), -- INS-NIR official identifier
     
@@ -57,11 +56,11 @@ CREATE TABLE fhir_patient (
     deceased_boolean BOOLEAN,
     deceased_date_time TIMESTAMP WITH TIME ZONE,
     
-    -- Addresses (multiple allowed)
-    addresses JSONB, -- Array of Address objects
+    -- Address (multiple allowed)
+    address JSONB, -- Array of Address objects
     
     -- Contact information
-    telecoms JSONB, -- Array of ContactPoint objects
+    telecom JSONB, -- Array of ContactPoint objects
     
     -- Multiple birth
     multiple_birth_boolean BOOLEAN,
@@ -73,12 +72,7 @@ CREATE TABLE fhir_patient (
     
     -- FHIR metadata
     meta JSONB,
-    implicit_rules VARCHAR(255),
-    language VARCHAR(10),
-    text_div TEXT,
-    contained JSONB,
     extensions JSONB,
-    modifier_extensions JSONB,
     
     -- Audit fields
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,

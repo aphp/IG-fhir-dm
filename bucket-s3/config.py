@@ -21,7 +21,12 @@ class DatabaseConfig(BaseSettings):
     user: str = Field(default="postgres")
     password: str = Field(default="123456")
     database: str = Field(default="data_core")
-    schema: str = Field(default="dbt_fhir_semantic_layer")
+    db_schema: str = Field(default="dbt_fhir_semantic_layer", alias="schema")
+    
+    @property
+    def schema(self) -> str:
+        """Backward compatibility property for schema access."""
+        return self.db_schema
     
     @property
     def connection_string(self) -> str:

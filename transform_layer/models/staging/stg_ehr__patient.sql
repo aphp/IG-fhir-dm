@@ -56,8 +56,8 @@ cleaned_data as (
         '{{ var('patient_id_prefix') }}' || patient_id::text as fhir_patient_id,
         
         -- Data quality flags
-        case when nir is not null and length(trim(nir::text)) = 13 then true else false end as has_valid_nir,
-        case when ins is not null and length(trim(ins)) > 0 then true else false end as has_ins,
+        case when nir is not null and length(trim(nir::text)) > 0 then true else false end as has_nir,
+        case when ins is not null and length(trim(ins::text)) > 0 then true else false end as has_ins,
         case when latitude is not null and longitude is not null then true else false end as has_location
         
     from source_data

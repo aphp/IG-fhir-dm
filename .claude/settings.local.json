@@ -21,7 +21,8 @@
       "Bash(powershell:*)",
       "Bash(psql:*)",
       "Bash(python test_connection.py:*)",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash(pip --version)"
     ],
     "deny": [],
     "ask": []

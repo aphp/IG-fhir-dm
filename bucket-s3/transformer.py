@@ -151,63 +151,29 @@ class FHIRTransformer:
         }
         
         # Meta information
-        if record.get("version_id") or record.get("last_updated"):
-            fhir_resource["meta"] = {}
-            if record.get("version_id"):
-                fhir_resource["meta"]["versionId"] = record.get("version_id")
+        fhir_resource["meta"] = {}
+        if record.get("last_updated"): 
             if record.get("last_updated"):
                 fhir_resource["meta"]["lastUpdated"] = self._format_datetime(record.get("last_updated"))
-            if record.get("meta"):
-                fhir_resource["meta"].update(self._parse_json(record.get("meta")))
+
+        if record.get("meta"):
+            fhir_resource["meta"].update(self._parse_json(record.get("meta")))
         
         # Active status
-        if record.get("active") is not None:
+        if record.get("active"):
             fhir_resource["active"] = record.get("active")
         
         # Identifiers
-        identifiers = []
-        
         if record.get("identifier"):
-            parsed_identifiers = self._parse_json(record.get("identifier"))
-            if isinstance(parsed_identifiers, list):
-                identifiers.extend(parsed_identifiers)
-        
-        if record.get("nss_identifier"):
-            identifiers.append({
-                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                "value": record.get("nss_identifier"),
-                "use": "official"
-            })
-        
-        if record.get("ins_nir_identifier"):
-            identifiers.append({
-                "system": "urn:oid:1.2.250.1.213.1.4.8",
-                "value": record.get("ins_nir_identifier"),
-                "use": "official"
-            })
-        
-        if identifiers:
-            fhir_resource["identifier"] = identifiers
-        
+            identifiers = self._parse_json(record.get("identifier"))
+            if isinstance(identifiers, list):
+                fhir_resource["identifier"] = identifiers
+
         # Names
-        names = []
-        
         if record.get("name"):
-            parsed_names = self._parse_json(record.get("name"))
-            if isinstance(parsed_names, list):
-                names.extend(parsed_names)
-        
-        if record.get("family_name") or record.get("given_names"):
-            name = {}
-            if record.get("family_name"):
-                name["family"] = record.get("family_name")
-            if record.get("given_names"):
-                name["given"] = record.get("given_names").split()
-            name["use"] = "official"
-            names.append(name)
-        
-        if names:
-            fhir_resource["name"] = names
+            names = self._parse_json(record.get("name"))
+            if isinstance(names, list):
+                fhir_resource["name"] = names
         
         # Demographics
         if record.get("gender"):
@@ -292,9 +258,7 @@ class FHIRTransformer:
         
         # Class
         if record.get("class"):
-            class_data = self._parse_json(record.get("class"))
-            if class_data:
-                fhir_resource["class"] = class_data
+            fhir_resource["class"] = self._parse_json(record.get("class"))
         
         # Types
         if record.get("types"):
@@ -303,19 +267,12 @@ class FHIRTransformer:
                 fhir_resource["type"] = types
         
         # Subject (Patient reference)
-        if record.get("patient_id"):
-            fhir_resource["subject"] = {
-                "reference": f"Patient/{record.get('patient_id')}"
-            }
+        if record.get("subject"):
+            fhir_resource["subject"] = self._parse_json(record.get('subject'))
         
         # Period
-        if record.get("period_start") or record.get("period_end"):
-            period = {}
-            if record.get("period_start"):
-                period["start"] = self._format_datetime(record.get("period_start"))
-            if record.get("period_end"):
-                period["end"] = self._format_datetime(record.get("period_end"))
-            fhir_resource["period"] = period
+        if record.get("period"):
+            fhir_resource["period"] = self._parse_json(record.get("period"))
         
         # Service provider
         if record.get("service_provider_id"):
@@ -323,9 +280,9 @@ class FHIRTransformer:
                 "reference": f"Organization/{record.get('service_provider_id')}"
             }
         
-        # Participants
-        if record.get("participants"):
-            participants = self._parse_json(record.get("participants"))
+        # Participant
+        if record.get("participant"):
+            participants = self._parse_json(record.get("participant"))
             if isinstance(participants, list):
                 fhir_resource["participant"] = participants
         
