@@ -15,21 +15,30 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
   
   // Transform Patient
   src.patient as patient -> bundle.entry as patientEntry then {
-    patient -> patientEntry.resource = create('Patient') as dmPatient then 
-      TransformPatient(patient, dmPatient) "create-patient";
-    patient.patientId as pid -> patientEntry.fullUrl = append('urn:ehr:Patient/', pid) "patient-url";
+    patient -> patientEntry.resource = create('Patient') as dmPatient then {
+      patient then TransformPatient(patient, dmPatient) "transform-patient";
+      patient then setEntryRequestAndFullUrl(dmPatient,patientEntry) "setRequestAndFullUrl";
+      src.patientLocation as patientLocation where patientLocation.patientId = %patient.patientId then setAddress(patientLocation, dmPatient) "transform-patientLocation";
+    } "create-patient";
+//    patient.patientId as pid -> patientEntry.fullUrl = append('urn:ehr:Patient/', pid) "patient-url"; // c'est trivial parce qu'on récupère l'id source pour l'id fhir, mais ce n'est pas une bonne pratique (risque de collision des id si plusieurs sources)
   } "patient-entry";
 
   // Transform PMSI Encounters
-  src.patient as srcPatient then {
-    srcPatient.patientId as patientId then {
-      src.donneesPmsi as pmsi -> bundle.entry as encounterEntry then {
-        pmsi -> encounterEntry.resource = create('Encounter') as encounter then
-          TransformEncounter(pmsi, encounter, patientId) "create-encounter";
-        pmsi.pmsiId as eid -> encounterEntry.fullUrl = append('urn:ehr:Encounter/', eid) "encounter-url";
-      } "encounter-entries";
-    } "nav-patientId";
-  } "nav-patient";
+//  src.patient as srcPatient then {
+//    srcPatient.patientId as patientId then {  utiliser donneesPmsi.patientId, ça évite de faire un lien sur le présupposé que le set de données traité ne concerne qu'un patient. 
+    src.donneesPmsi as pmsi -> bundle.entry as encounterEntry then {
+      pmsi -> encounterEntry.resource = create('Encounter') as encounter then {
+        pmsi then TransformEncounter(pmsi, encounter) "create-encounter";
+        pmsi then setEntryRequestAndFullUrl(encounter,encounterEntry) "setRequestAndFullUrl";
+      } "create-encounter" ;
+//      pmsi.pmsiId as eid -> encounterEntry.fullUrl = append('urn:ehr:Encounter/', eid) "encounter-url";
+    } "encounter-entries";
+//    } "nav-patientId";
+//  } "nav-patient";
+
+// ---------------------------------------------------------
+// Je n'ai relu que jusqu'ici (y compris les groups appelés)
+// ---------------------------------------------------------
 
   // Transform Conditions (Diagnostics)
   src.patient as srcPatient then {
@@ -96,6 +105,7 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
       } "lifestyle-entries";
     } "nav-patientId";
   } "nav-patient";
+
 }
 
 // ========================================================================
@@ -103,43 +113,47 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
 // ========================================================================
 
 group TransformPatient(source src, target tgt : Patient) {
-  src.patientId as id -> tgt.id = id "patient-id";
+  src -> tgt.id = uuid() "setId";
+  //  src.patientId as id -> tgt.id = id "patient-id"; 
   
   // Identifiers
   src.patientId as pid -> tgt.identifier as identifier then {
     pid -> identifier.use = 'usual' "id-use";
+    pid -> identifier.type = cc('http://terminology.hl7.org/CodeSystem/v2-0203', 'PI', 'Patient Identifier') "id-type";
     pid -> identifier.system = 'https://hospital.eu/ehr/patient-id' "id-system";
     pid -> identifier.value = pid "id-value";
   } "patient-identifier";
 
-  // INS-NIR identifier
+  // NIR identifier <- C'est pas terrible côté expression de besoin : qu'est ce qu'ils veulent quand ils disent NIR ? ça peut être le NSS, mais du coup c'est pas un identifier (un NSS peut correspondre à plusieurs ayant droits), et ce serait plutôt une info qui irait côté claim. ça peut aussi être l'ins-nir, mais du coup qu'est ce qu'ils attendent dans l'ins ? Bref, à mon avis, faut discuter cette variable au niveau du GT. 
+/*
   src.nir as nir where nir.exists() -> tgt.identifier as insIdentifier then {
     nir -> insIdentifier.use = 'official' "ins-use";
     nir -> insIdentifier.type = cc('http://hl7.fr/fhir/CodeSystem/fr-v2-0203', 'INS-NIR') "ins-type";
     nir -> insIdentifier.system = 'urn:oid:1.2.250.1.213.1.4.8' "ins-system";
     nir -> insIdentifier.value = nir "ins-value";
-  } "ins-identifier";
+  } "ins-identifier"; 
+*/
 
   // Alternative INS from ins field
   src.ins as ins where ins.exists() -> tgt.identifier as insIdentifier then {
-    ins -> insIdentifier.use = 'official' "ins2-use";
-    ins -> insIdentifier.type = cc('http://hl7.fr/fhir/CodeSystem/fr-v2-0203', 'INS-NIR') "ins2-type";
-    ins -> insIdentifier.system = 'urn:oid:1.2.250.1.213.1.4.8' "ins2-system";
-    ins -> insIdentifier.value = ins "ins2-value";
-  } "ins2-identifier";
+    ins -> insIdentifier.use = 'official' "ins-use"; // On part du principe qu'on n'est pas sur un old.
+    ins -> insIdentifier.type = cc('https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203', 'INS-NIR', 'NIR définitif') "ins-type";
+    ins -> insIdentifier.system = 'urn:oid:1.2.250.1.213.1.4.8' "ins-system";
+    ins -> insIdentifier.value = ins "ins-value";
+  } "ins-identifier";
 
   // Name
   src where src.nom.exists() or src.prenom.exists() -> tgt.name as name then {
     src.nom as lastName -> name.family = lastName "family-name";
     src.prenom as firstName -> name.given = firstName "given-name";
-    src -> name.use = 'official' "name-use";
+    src -> name.use = 'official' "name-use"; // hypothèse un peu forte.
   } "patient-name";
 
-  // Demographics
+  // Demographics On aurait pu faire plus élégant avec un ConceptMap
   src.dateNaissance as birthDate -> tgt.birthDate = birthDate "birth-date";
-  src.sexe as gender where gender = 'M' -> tgt.gender = 'male' "gender-male";
-  src.sexe as gender where gender = 'F' -> tgt.gender = 'female' "gender-female";
-  src.sexe as gender where gender.exists() and gender != 'M' and gender != 'F' -> tgt.gender = 'unknown' "gender-unknown";
+  src.sexe as gender where gender = 'h' -> tgt.gender = 'male' "gender-male"; 
+  src.sexe as gender where gender = 'f' -> tgt.gender = 'female' "gender-female";
+  src.sexe as gender where gender.exists() and gender != 'h' and gender != 'f' -> tgt.gender = 'unknown' "gender-unknown"; // n'a pas grand sens en l'état des contraintes SQL
 
   // Death information
   src.dateDeces as deathDate where deathDate.exists() -> tgt.deceased = deathDate "death-date";
@@ -147,6 +161,7 @@ group TransformPatient(source src, target tgt : Patient) {
   // Multiple birth
   src.rangGemellaire as twin where twin.exists() -> tgt.multipleBirth = twin "multiple-birth";
 
+/*
   // Address (simplified - geographic data)
   src where src.latitude.exists() or src.longitude.exists() or src.codeGeographiqueResidence.exists() -> 
     tgt.address as address then {
@@ -154,18 +169,45 @@ group TransformPatient(source src, target tgt : Patient) {
     src.libelleGeographiqueResidence as city -> address.city = city "city";
     // Extensions for geographic coordinates could be added here
   } "patient-address";
+*/
+}
+
+// ========================================================================
+// PATIENT_LOCATION TRANSFORMATION
+// ========================================================================
+
+group setAddress(source src, target tgt : Patient) {
+  src where src.latitude.exists() or src.longitude.exists() or src.codeIris.exists() or src.libelleIris.exists()then {
+    src -> tgt.address = create('Address') as newAddress then {
+      src where src.latitude.exists() or src.longitude.exists() -> newAddress.extension as geolocationExtension, 
+        geolocationExtension.url = "http://hl7.org/fhir/StructureDefinition/geolocation" then {
+          src.latitude as srcLat -> geolocationExtension.extension = create('Extension') as tgtLat,
+            tgtLat.url = "latitude", 
+            tgtLat.value = srcLat "setLat";
+          src.longitude as srcLong -> geolocationExtension.extension = create('Extension') as tgtLong,
+            tgtLong.url = "longitude", 
+            tgtLong.value = srcLong "setLong";
+        } "setCoordinates" ;
+      src where src.codeIris.exists() or src.libelleIris.exists() -> newAddress.extension as irisExtension, 
+        irisExtension.url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract", 
+        irisExtension.value = (iif(src.codeIris.exists() and src.libelleIris.exists(),src.codeIris & ' - ' & src.libelleIris, src.codeIris & src.libelleIris)) "setIris" ;
+      src.dateRecueil as dateRecueil-> newAddress.period as newAddressPeriod, newAddressPeriod.start = dateRecueil "setDateRecueil";
+    } "createAddress" ;
+  } "checkSource";
 }
 
 // ========================================================================
 // ENCOUNTER TRANSFORMATION  
 // ========================================================================
 
-group TransformEncounter(source src, target tgt : Encounter, source patientId) {
-  src.pmsiId as id -> tgt.id = id "encounter-id";
+group TransformEncounter(source src, target tgt : Encounter) {
+  src -> tgt.id = uuid() "setId";
+//  src.pmsiId as id -> tgt.id = id "encounter-id";
 
   // Identifier
   src.pmsiId as pmsiId -> tgt.identifier as identifier then {
     pmsiId -> identifier.use = 'official' "encounter-id-use";
+    pmsiId -> identifier.type = cc('https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-identifier-type', 'VN', 'Visit Number') "id-type";
     pmsiId -> identifier.system = 'https://hospital.eu/ehr/pmsi-id' "encounter-id-system";
     pmsiId -> identifier.value = pmsiId "encounter-id-value";
   } "encounter-identifier";
@@ -177,8 +219,12 @@ group TransformEncounter(source src, target tgt : Encounter, source patientId) {
   src -> tgt.class = c('http://terminology.hl7.org/CodeSystem/v3-ActCode', 'IMP', 'inpatient encounter') "encounter-class";
 
   // Reference patient
-  patientId -> tgt.subject = create('Reference') as ref then {
-    patientId -> ref.reference = ('Patient/' + %patientId) "patient-ref";
+  src -> tgt.subject = create('Reference') as ref then {
+    src.patientId as patientId -> ref.type = 'Patient', 
+      ref.identifier = create('Identifier') as subjectIdentifier then {
+        patientId -> subjectIdentifier.system = 'https://hospital.eu/ehr/patient-id', 
+          subjectIdentifier.value = patientId "setPatientRef";
+      } "createRef";
   } "encounter-subject";  
 
   // Period
@@ -190,7 +236,7 @@ group TransformEncounter(source src, target tgt : Encounter, source patientId) {
   // Duration
   src.dureeSejour as duration -> tgt.length as length then {
     duration -> length.value = duration "length-value";
-    duration -> length.unit = 'day' "length-unit";
+    duration -> length.unit = 'd' "length-unit";
     duration -> length.system = 'http://unitsofmeasure.org' "length-system";
     duration -> length.code = 'd' "length-code";
   } "encounter-length";
@@ -206,21 +252,23 @@ group TransformEncounter(source src, target tgt : Encounter, source patientId) {
   } "encounter-hospitalization";
 
   // Service Provider
-  src.etablissement as facility -> tgt.serviceProvider as provider then {
-    facility -> provider.display = facility "service-provider-display";
-  } "service-provider";
-
-  // Location
+  src where src.uniteFonctionnelle.exists() or src.service.exists() or src.etablissement.exists() -> tgt.serviceProvider = create('Reference') as provider then {
+    src -> provider.display = (iif(src.uniteFonctionnelle.exists(),src.uniteFonctionnelle, iif(src.service.exists(),src.service,src.etablissement))) "provider-display";
+  } "provider";
+/*
+  // Location - On n'a pas de location à gérer à ce stade (établissement, service et UF, halluciné par l'IA, sont des Organization que j'ai du coup mi dans Provider. )
   src.service as service -> tgt.location as location then {
     service -> location.location as loc then {
       service -> loc.display = service "location-display";
     } "location-ref";
   } "encounter-location";
+*/
 }
 
 // ========================================================================
 // CONDITION TRANSFORMATION
 // ========================================================================
+
 group TransformCondition(source src, target tgt : Condition, source patientId) {
   src.diagnosticId as id -> tgt.id = id "condition-id";
 
@@ -569,4 +617,13 @@ group TransformLifestyle(source src, target tgt : Observation, source patientId)
   } "transform-smoking";
 
   // Similar patterns would apply for alcohol, drugs, and physical activity
+}
+
+group setEntryRequestAndFullUrl(source newRes, target tgtEntry) { 
+  newRes.id as newResId then {
+    newResId -> tgtEntry.fullUrl = ('https://aphp.fr/' + %newRes.type().name + '/' + %newResId) "setFullUrl";
+    newResId -> tgtEntry.request as tgtEntryRequest, 
+      tgtEntryRequest.method = 'POST',
+      tgtEntryRequest.url = (%newRes.type().name + '/' + %newResId) "setRequest" ;
+  } "setResourceType";
 }

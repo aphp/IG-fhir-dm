@@ -1100,9 +1100,9 @@
         "coding" : [{
           "system" : "http://www.whocc.no/atc",
           "code" : "A10BA02",
-          "display" : "Glucophage 1g 2/j"
+          "display" : "Glucophage"
         }],
-        "text" : "Glucophage 1g 2/j"
+        "text" : "Glucophage"
       },
       "subject" : {
         "reference" : "Patient/patient-001"
@@ -1133,9 +1133,9 @@
         "coding" : [{
           "system" : "http://www.whocc.no/atc",
           "code" : "A10BK01",
-          "display" : "forxiga 10mg/j"
+          "display" : "forxiga"
         }],
-        "text" : "forxiga 10mg/j"
+        "text" : "forxiga"
       },
       "subject" : {
         "reference" : "Patient/patient-001"

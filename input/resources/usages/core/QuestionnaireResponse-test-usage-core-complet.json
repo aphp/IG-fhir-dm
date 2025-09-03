@@ -390,7 +390,7 @@
                   "valueQuantity": {
                     "value": 6,
                     "unit": "mmol/L",
-					"system" : "http://unitsofmeasure.org"
+					          "system" : "http://unitsofmeasure.org"
                   },
                   "item": [
                     {
@@ -453,7 +453,7 @@
                   "valueQuantity": {
                     "value": 92,
                     "unit": "umol/L",
-					"system" : "http://unitsofmeasure.org"
+					          "system" : "http://unitsofmeasure.org"
                   },
                   "item": [
                     {
@@ -516,7 +516,7 @@
                   "valueQuantity": {
                     "value": 56,
                     "unit": "mL/min/1.73m2",
-					"system" : "http://unitsofmeasure.org"
+				          	"system" : "http://unitsofmeasure.org"
                   },
                   "item": [
                     {
@@ -971,8 +971,8 @@
                         {
                           "valueCoding": {
                             "system": "http://loinc.org",
-                            "code": "26511-6",
-                            "display": "Polynucléaires neutrophiles/100 leucocytes [Fraction de nombres] Sang ; Numérique"
+                            "code": "751-8",
+                            "display": "Polynucléaires neutrophiles [Nombre/Volume] Sang ; Numérique ; Comptage automate"
                           }
                         }
                       ],
@@ -1339,7 +1339,7 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "Glucophage 1g 2/j",
+              "valueString": "Glucophage",
               "item": [
                 {
                   "answer": [
@@ -1370,7 +1370,7 @@
               ]
             },
             {
-              "valueString": "forxiga 10mg/j",
+              "valueString": "forxiga",
               "item": [
                 {
                   "answer": [
