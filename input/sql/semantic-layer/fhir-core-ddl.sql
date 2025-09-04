@@ -14,8 +14,6 @@
 
 -- ========================================================================
 --                                 LIMITES                                 
--- manque une extension pour les codes géographique PMSI
--- manque une extension pour la source du décès
 -- le modèle du médicament (posologie), est très limité dans la demande HDH
 -- ========================================================================
 --                               CONVENTIONS                               
@@ -93,7 +91,7 @@ CREATE TABLE fhir_patient (
     birth_date DATE,
     deceased_x JSONB,
     deceased_date_time TIMESTAMP WITH TIME ZONE,
-    deceased_source VARCHAR(10) CHECK (deceased_source IN ('insee', 'cepidc', 'sih')), -- il faut une extension ad hoc
+    deceased_extension_death_source VARCHAR(10) CHECK (deceased_source IN ('insee', 'cepidc', 'sih')), -- il faut une extension ad hoc
     marital_status VARCHAR(4) CHECK (marital_status IN ('PACS', 'A', 'D', 'I', 'L', 'M', 'C', 'P', 'T', 'U', 'S', 'W', 'UNK')),
 
     -- Addresses (multiple allowed)
@@ -102,9 +100,8 @@ CREATE TABLE fhir_patient (
     address_extension_geolocation_longitude FLOAT,
     address_extension_census_tract VARCHAR(255), -- concaténation du code et du libellé de l'iris dans l'extension (http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract)
     address_period_start DATE, --pour la date de recueil des informations d'addresse. C’est impropre, mais on peut espérer que le patient habite bien là ou il dit habiter au moment ou il dit qu’il y habite. 
-    address_extension_code_geo_pmsi JSONB, -- il faut une extension ad hoc
-    address_extension_code_geo_pmsi_code VARCHAR(5),
-    address_extension_code_geo_pmsi_display VARCHAR(255),
+    address_extension_pmsi_code_geo JSONB, -- il faut une extension ad hoc
+    address_extension_pmsi_code_geo_code VARCHAR(5),
 
     -- Contact information  -- j'aurais bien fait comme pour les name, mais il n'y a rien qui indique la prééminence de certain contactpoint...
     telecoms JSONB, -- Array of ContactPoint objects
