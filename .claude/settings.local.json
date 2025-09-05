@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(export DBT_USER=postgres)",
+      "Bash(export DBT_PASSWORD=123456)",
+      "Bash(export DBT_HOST=localhost)",
+      "Bash(export DBT_PORT=5432)",
+      "Bash(export DBT_DATABASE=fhir_dm)",
+      "Bash(export DBT_SCHEMA=dbt_dev)",
+      "Bash(dbt run:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

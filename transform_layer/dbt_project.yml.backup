@@ -1,0 +1,108 @@
+
+# EHR to FHIR Semantic Layer Transformation Project
+# Transforms Electronic Health Record data to FHIR-compliant resources
+# Following dbt Labs best practices for medallion architecture
+
+name: 'ehr_fhir_transform'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'transform_layer'
+
+# Model paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+# Variables
+vars:
+  # Source database configuration
+  ehr_schema: 'ehr'
+  fhir_schema: 'fhir_semantic_layer'
+  
+  # Timezone for timestamp conversions
+  timezone: 'Europe/Paris'
+  
+  # FHIR resource versioning
+  fhir_version: '4.0.1'
+  
+  # Incremental strategy
+  incremental_lookback_days: 7
+
+# Seeds configuration
+seeds:
+  ehr_fhir_transform:
+    +quote_columns: false
+    terminologies:
+      +column_types:
+        code: varchar(20)
+        display: varchar(255)
+        system: varchar(500)
+
+# Model configuration following medallion architecture
+models:
+  ehr_fhir_transform:
+    # Staging layer - source-conformed, minimal transformation
+    staging:
+      +materialized: view
+      +docs:
+        node_color: "#d4a574"
+      ehr:
+        +description: "Source-conformed EHR data with basic cleansing and type casting"
+        
+    # Intermediate layer - business logic and complex joins
+    intermediate:
+      +materialized: "{{ 'table' if target.name == 'prod' else 'view' }}"
+      +docs:
+        node_color: "#7fb069"
+      +description: "Business logic transformations implementing FHIR mapping rules"
+      
+    # Marts layer - FHIR-compliant resources ready for consumption
+    marts:
+      +materialized: table
+      +docs:
+        node_color: "#4a90a4"
+      core:
+        +description: "Core FHIR resources (Patient, Encounter, etc.)"
+        +tags: ["core_fhir"]
+      clinical:
+        +description: "Clinical FHIR resources (Condition, Procedure, Observation, etc.)"
+        +tags: ["clinical_fhir"]
+      medication:
+        +description: "Medication-related FHIR resources (MedicationRequest, etc.)"
+        +tags: ["medication_fhir"]
+        
+# Snapshot configuration
+snapshots:
+  ehr_fhir_transform:
+    +target_schema: "fhir_snapshots"
+    +strategy: timestamp
+    +updated_at: updated_at
+
+# Tests configuration
+tests:
+  ehr_fhir_transform:
+    +store_failures: true
+    +severity: warn
+
+# Documentation
+docs:
+  ehr_fhir_transform:
+    +generate: true
+
+# Dispatch configuration for cross-database compatibility
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['dbt_utils']
+  - macro_namespace: dbt
+    search_order: ['dbt']

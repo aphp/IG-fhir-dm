@@ -1,0 +1,4 @@
+patient_id,nom,prenom,nir,ins,date_naissance,sexe,date_deces,source_deces,rang_gemellaire,latitude,longitude,code_iris,libelle_iris,code_geographique_residence,libelle_geographique_residence,created_at,updated_at
+1,Dupont,Jean,1850399100042,INS-1850399100042,1985-03-15,M,,,,48.8566,2.3522,75102014,Paris 2e,75102,Paris 2e Arrondissement,2024-01-01 10:00:00,2024-01-01 10:00:00
+2,Martin,Marie,2940675200321,INS-2940675200321,1994-06-15,F,,,,48.8534,2.3488,75103015,Paris 3e,75103,Paris 3e Arrondissement,2024-01-02 11:00:00,2024-01-02 11:00:00
+3,Bernard,Pierre,1780299300054,INS-1780299300054,1978-02-28,M,2024-03-15,INSERM,,48.8584,2.2945,75116001,Paris 16e,75116,Paris 16e Arrondissement,2024-01-03 12:00:00,2024-03-15 14:00:00

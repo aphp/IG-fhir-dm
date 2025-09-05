@@ -1,5 +1,7 @@
 # Project: FHIR Implementation Guide for Data Management with FHIR
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 ## Project Description
 This guide demonstrates how to use the FHIR standard for health data management. Starting from a description of the core variables for the EDSH, we propose a data model enabling the storage of these variables according to an original (proprietary) modeling approach. We then align this proprietary data model with the FHIR profiles adapted to this context, and finally, we propose an alignment of the FHIR profiles with the OMOP data model.
 
@@ -11,27 +13,31 @@ This guide demonstrates how to use the FHIR standard for health data management.
 - DBT
 
 ## Project Structure
-The directory containing the guide inputs is located in `input`.  
+The directory containing the guide inputs is located in `input`.
+
 It includes the following subfolders:
 
-- **`data`**: configuration elements for building the guide.  
-- **`fml`**: mapping files written in FML.  
-- **`fsh`**: FHIR artifacts written in FSH, i.e., the guide content intended for implementers.  
-- **`images`**: images visible in the output.  
-- **`images-source`**: PlantUML files, transformed during the guide build process into SVG files for inclusion in HTML files.  
-- **`includes`**: additional include files.  
-- **`pagecontent`**: markdown files describing the guide content, intended for all roles involved in a digital transformation project based on interoperability.  
-- **`resources`**: FHIR artifacts in JSON format (avoiding transformation through SUSHI).  
-- **`sql`**: SQL scripts for building the different data models for PostgreSQL.  
-- **`test-map`**: material for testing the mappings defined in FML, also very useful for demo purposes.  
+- **`input/data`**: configuration elements for building the guide.  
+- **`input/fml`**: mapping files written in FML.  
+- **`input/fsh`**: FHIR artifacts written in FSH, i.e., the guide content intended for implementers.  
+- **`input/images`**: images visible in the output.  
+- **`input/images-source`**: PlantUML files, transformed during the guide build process into SVG files for inclusion in HTML files.  
+- **`input/includes`**: additional include files.  
+- **`input/pagecontent`**: markdown files describing the guide content, intended for all roles involved in a digital transformation project based on interoperability.  
+- **`input/resources`**: FHIR artifacts in JSON format (avoiding transformation through SUSHI).  
+- **`input/sql`**: SQL scripts for building the different data models for PostgreSQL.
+- **`input/test`**: his directory contains the files used to test the workflow, in particular the loading of the EHR database, and to verify that the StructureMap produces the expected results.
+
+- **`transform_layer`**: this repository includes a DBT project that can be used to build and manage the data transformations.
 
 ## Important Commands
-- Linux/macOS: `./gradlew buildIG`
-- Windows: `.\gradlew.bat buildIG`
+- `./gradlew buildIG` - Build all Implementation Guide
+- `./gradlew sushiBuild` - Build sushi useful to test new fsh files
+- `psql -U postgres -f put-the-sqql-file.sql` - Useful to test SQL scripts
 
 ## Preferred APIs and Libraries
-- no library
-- no API
+- D3.js, mermaid, DBT
+- FHIR API
 
 ## Specific Rules
 

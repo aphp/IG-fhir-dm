@@ -1,0 +1,76 @@
+version: 2
+
+seeds:
+  - name: ehr_test_patient
+    description: "Test data for patient demographics"
+    columns:
+      - name: patient_id
+        description: "Unique patient identifier"
+        data_tests:
+          - unique
+          - not_null
+      - name: nom
+        description: "Patient family name"
+      - name: prenom
+        description: "Patient given name"
+      - name: nir
+        description: "Numéro d'inscription au répertoire"
+      - name: ins
+        description: "Identité nationale de santé"
+      - name: date_naissance
+        description: "Birth date"
+        data_tests:
+          - not_null
+      - name: sexe
+        description: "Gender (M/F)"
+        data_tests:
+          - accepted_values:
+              values: ['M', 'F']
+
+  - name: ehr_test_donnees_pmsi
+    description: "Test data for PMSI encounters"
+    columns:
+      - name: pmsi_id
+        description: "Unique PMSI encounter identifier"
+        data_tests:
+          - unique
+          - not_null
+      - name: patient_id
+        description: "Reference to patient"
+        data_tests:
+          - not_null
+          - relationships:
+              to: seed('ehr_test_patient')
+              field: patient_id
+
+  - name: ehr_test_diagnostics
+    description: "Test data for diagnostic conditions"
+    columns:
+      - name: diagnostic_id
+        description: "Unique diagnostic identifier"
+        data_tests:
+          - unique
+          - not_null
+      - name: pmsi_id
+        description: "Reference to PMSI encounter"
+        data_tests:
+          - not_null
+          - relationships:
+              to: seed('ehr_test_donnees_pmsi')
+              field: pmsi_id
+
+  - name: ehr_test_biologie
+    description: "Test data for laboratory results"
+    columns:
+      - name: biologie_id
+        description: "Unique biology test identifier"
+        data_tests:
+          - unique
+          - not_null
+      - name: patient_id
+        description: "Reference to patient"
+        data_tests:
+          - not_null
+          - relationships:
+              to: seed('ehr_test_patient')
+              field: patient_id

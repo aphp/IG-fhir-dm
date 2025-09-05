@@ -1,0 +1,1187 @@
+{
+  "resourceType" : "Bundle",
+  "id" : "df9c9a9c-854b-46f4-9687-1fbe40c06540",
+  "type" : "collection",
+  "entry" : [{
+    "fullUrl" : "urn:ehr:Patient/patient-001",
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "patient-001",
+      "identifier" : [{
+        "use" : "usual",
+        "system" : "https://hospital.eu/ehr/patient-id",
+        "value" : "patient-001"
+      },
+      {
+        "use" : "official",
+        "type" : {
+          "coding" : [{
+            "system" : "http://hl7.fr/fhir/CodeSystem/fr-v2-0203",
+            "code" : "INS-NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "1590778035124"
+      },
+      {
+        "use" : "official",
+        "type" : {
+          "coding" : [{
+            "system" : "http://hl7.fr/fhir/CodeSystem/fr-v2-0203",
+            "code" : "INS-NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "1590778035124"
+      }],
+      "name" : [{
+        "use" : "official",
+        "family" : "Doré",
+        "given" : ["Jeanne"]
+      }],
+      "gender" : "unknown",
+      "birthDate" : "1959-07-07",
+      "address" : [{
+        "city" : "PARIS 9E ARRONDISSEMENT",
+        "postalCode" : "75009"
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Encounter/pmsi-001",
+    "resource" : {
+      "resourceType" : "Encounter",
+      "id" : "pmsi-001",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/pmsi-id",
+        "value" : "pmsi-001"
+      }],
+      "status" : "finished",
+      "class" : {
+        "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+        "code" : "IMP",
+        "display" : "inpatient encounter"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "period" : {
+        "start" : "2025-08-22",
+        "end" : "2025-08-22"
+      },
+      "hospitalization" : {
+        "admitSource" : {
+          "text" : "8"
+        },
+        "dischargeDisposition" : {
+          "text" : "8"
+        }
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Condition/diag-001",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "diag-001",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/diagnostic-id",
+        "value" : "diag-001"
+      }],
+      "clinicalStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          "code" : "active",
+          "display" : "Active"
+        }]
+      },
+      "verificationStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          "code" : "confirmed",
+          "display" : "Confirmed"
+        }]
+      },
+      "category" : [{
+        "text" : "DP"
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "E119",
+          "display" : "Diabète sucré de type 2, sans complication"
+        }],
+        "text" : "Diabète sucré de type 2, sans complication"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Condition/diag-002",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "diag-002",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/diagnostic-id",
+        "value" : "diag-002"
+      }],
+      "clinicalStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          "code" : "active",
+          "display" : "Active"
+        }]
+      },
+      "verificationStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          "code" : "confirmed",
+          "display" : "Confirmed"
+        }]
+      },
+      "category" : [{
+        "text" : "DAS"
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "E6604",
+          "display" : "Obésité due à un excès calorique de l'adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l'enfant"
+        }],
+        "text" : "Obésité due à un excès calorique de l'adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l'enfant"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Condition/diag-003",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "diag-003",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/diagnostic-id",
+        "value" : "diag-003"
+      }],
+      "clinicalStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          "code" : "active",
+          "display" : "Active"
+        }]
+      },
+      "verificationStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          "code" : "confirmed",
+          "display" : "Confirmed"
+        }]
+      },
+      "category" : [{
+        "text" : "DAS"
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "N183",
+          "display" : "Maladie rénale chronique, stade 3"
+        }],
+        "text" : "Maladie rénale chronique, stade 3"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Procedure/acte-001",
+    "resource" : {
+      "resourceType" : "Procedure",
+      "id" : "acte-001",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/acte-id",
+        "value" : "acte-001"
+      }],
+      "status" : "completed",
+      "code" : {
+        "coding" : [{
+          "system" : "https://mos.esante.gouv.fr/NOS/TRE_A00-ProducteurDocNonPS/FHIR/TRE-A00-ProducteurDocNonPS",
+          "code" : "DEQP003...01.",
+          "display" : "Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA"
+        }],
+        "text" : "Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "performedDateTime" : "2025-08-22T06:50:41.581Z"
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Procedure/acte-002",
+    "resource" : {
+      "resourceType" : "Procedure",
+      "id" : "acte-002",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/acte-id",
+        "value" : "acte-002"
+      }],
+      "status" : "completed",
+      "code" : {
+        "coding" : [{
+          "system" : "https://mos.esante.gouv.fr/NOS/TRE_A00-ProducteurDocNonPS/FHIR/TRE-A00-ProducteurDocNonPS",
+          "code" : "BGQP002...01.",
+          "display" : "Examen du fond d'oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA"
+        }],
+        "text" : "Examen du fond d'oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "performedDateTime" : "2025-08-22T07:44:18.112Z"
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-001",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-001",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-001"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "22664-7",
+          "display" : "Dosage de l'urée dans le sang"
+        }],
+        "text" : "Dosage de l'urée dans le sang"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.711Z",
+      "valueQuantity" : {
+        "value" : 6.0,
+        "unit" : "mmol/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 2.5,
+          "unit" : "mmol/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mmol/L"
+        },
+        "high" : {
+          "value" : 7.5,
+          "unit" : "mmol/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-002",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-002",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-002"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14682-9",
+          "display" : "Créatininémie"
+        }],
+        "text" : "Créatininémie"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 92.0,
+        "unit" : "umol/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "umol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 45.0,
+          "unit" : "umol/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "umol/L"
+        },
+        "high" : {
+          "value" : 105.0,
+          "unit" : "umol/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "umol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-003",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-003",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-003"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "62238-1",
+          "display" : "Débit de filtration glomérulaire (DFG)"
+        }],
+        "text" : "Débit de filtration glomérulaire (DFG)"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 56.0,
+        "unit" : "mL/min/1.73m2",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mL/min/1.73m2"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 80.0,
+          "unit" : "mL/min/1.73m2",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mL/min/1.73m2"
+        },
+        "high" : {
+          "value" : 140.0,
+          "unit" : "mL/min/1.73m2",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mL/min/1.73m2"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-004",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-004",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-004"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "6690-2",
+          "display" : "Leucocytes"
+        }],
+        "text" : "Leucocytes"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 5.1,
+        "unit" : "10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 4.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 10.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-005",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-005",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-005"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "718-7",
+          "display" : "Hémoglobine"
+        }],
+        "text" : "Hémoglobine"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 135.0,
+        "unit" : "g/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "g/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 120.0,
+          "unit" : "g/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/L"
+        },
+        "high" : {
+          "value" : 160.0,
+          "unit" : "g/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-006",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-006",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-006"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "4544-3",
+          "display" : "Hématocrite"
+        }],
+        "text" : "Hématocrite"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 40.4,
+        "unit" : "%",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "%"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 30.0,
+          "unit" : "%",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "%"
+        },
+        "high" : {
+          "value" : 47.0,
+          "unit" : "%",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "%"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-007",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-007",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-007"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "789-8",
+          "display" : "Globules rouges"
+        }],
+        "text" : "Globules rouges"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 4.21,
+        "unit" : "10*12/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*12/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 3.0,
+          "unit" : "10*12/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*12/L"
+        },
+        "high" : {
+          "value" : 5.0,
+          "unit" : "10*12/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*12/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-008",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-008",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-008"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "30428-7",
+          "display" : "Volume Globulaire Moyen (VGM)"
+        }],
+        "text" : "Volume Globulaire Moyen (VGM)"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 92.0,
+        "unit" : "fL",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "fL"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 80.0,
+          "unit" : "fL",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "fL"
+        },
+        "high" : {
+          "value" : 100.0,
+          "unit" : "fL",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "fL"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-009",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-009",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-009"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "777-3",
+          "display" : "Plaquettes"
+        }],
+        "text" : "Plaquettes"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 225.0,
+        "unit" : "10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 150.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 400.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-010",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-010",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-010"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "26511-6",
+          "display" : "Neutrophiles"
+        }],
+        "text" : "Neutrophiles"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 3.58,
+        "unit" : "10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 2.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 10.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-011",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-011",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-011"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "26474-7",
+          "display" : "Lymphocytes"
+        }],
+        "text" : "Lymphocytes"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 1.06,
+        "unit" : "10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 1.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 4.5,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-012",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-012",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-012"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "26449-9",
+          "display" : "Eosinophiles"
+        }],
+        "text" : "Eosinophiles"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 0.14,
+        "unit" : "10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 0.6,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-013",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-013",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-013"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "26484-6",
+          "display" : "Monocytes"
+        }],
+        "text" : "Monocytes"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 0.26,
+        "unit" : "10*9/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "10*9/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 0.2,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        },
+        "high" : {
+          "value" : 1.0,
+          "unit" : "10*9/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "10*9/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-014",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-014",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-014"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "40193-5",
+          "display" : "Glycémie à jeun"
+        }],
+        "text" : "Glycémie à jeun"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 6.1,
+        "unit" : "mmol/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "mmol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 3.9,
+          "unit" : "mmol/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mmol/L"
+        },
+        "high" : {
+          "value" : 6.1,
+          "unit" : "mmol/L",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mmol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/bio-015",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bio-015",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/biologie-id",
+        "value" : "bio-015"
+      }],
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "4548-4",
+          "display" : "Hémoglobine glyquée"
+        }],
+        "text" : "Hémoglobine glyquée"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22T06:12:32.000Z",
+      "valueQuantity" : {
+        "value" : 7.1,
+        "unit" : "%",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "%"
+      },
+      "referenceRange" : [{
+        "high" : {
+          "value" : 7.0,
+          "unit" : "%",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "%"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:MedicationRequest/exp-001",
+    "resource" : {
+      "resourceType" : "MedicationRequest",
+      "id" : "exp-001",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/exposition-id",
+        "value" : "exp-001"
+      }],
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://www.whocc.no/atc",
+          "code" : "A10BA02",
+          "display" : "Glucophage 1g 2/j"
+        }],
+        "text" : "Glucophage 1g 2/j"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "dosageInstruction" : [{
+        "route" : {
+          "text" : "20053000"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:MedicationRequest/exp-002",
+    "resource" : {
+      "resourceType" : "MedicationRequest",
+      "id" : "exp-002",
+      "identifier" : [{
+        "use" : "official",
+        "system" : "https://hospital.eu/ehr/exposition-id",
+        "value" : "exp-002"
+      }],
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://www.whocc.no/atc",
+          "code" : "A10BK01",
+          "display" : "forxiga 10mg/j"
+        }],
+        "text" : "forxiga 10mg/j"
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "dosageInstruction" : [{
+        "route" : {
+          "text" : "20053000"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:ehr:Observation/vital-soins-001",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "vital-soins-001",
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "vital-signs"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "29463-7",
+          "display" : "Body Weight"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/patient-001"
+      },
+      "encounter" : {
+        "reference" : "Encounter/pmsi-001"
+      },
+      "effectiveDateTime" : "2025-08-22",
+      "valueQuantity" : {
+        "value" : 93.0,
+        "unit" : "kg",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "kg"
+      }
+    }
+  }]
+}
