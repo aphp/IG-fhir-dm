@@ -9,24 +9,32 @@
     "ins": "1590778035124",
     "dateNaissance": "1959-07-07",
     "sexe": "f",
-    "latitude": 48.88067598033303,
-    "longitude": 2.331871883929937,
-    "codeGeographiqueResidence": "75009",
-    "libelleGeographiqueResidence": "PARIS 9E ARRONDISSEMENT",
     "createdAt": "2025-08-30T10:00:00Z",
     "updatedAt": "2025-08-30T10:00:00Z"
   },
+  "patientLocation": [
+    {
+      "patientLocationId": "loc-001",
+      "patientId": "patient-001",
+      "latitude": 48.88067598033303,
+      "longitude": 2.331871883929937,
+      "codeIris": "010040102",
+      "libelleIris": "Longeray-Gare",
+      "codeGeographiqueResidence": "75009",
+      "libelleGeographiqueResidence": "PARIS 9E ARRONDISSEMENT",
+      "dateRecueil": "2025-08-22",
+      "createdAt": "2025-08-30T10:00:00Z",
+      "updatedAt": "2025-08-30T10:00:00Z"
+    }
+  ],
   "donneesPmsi": [
     {
       "pmsiId": "pmsi-001",
       "patientId": "patient-001",
       "dateDebutSejour": "2025-08-22",
       "dateFinSejour": "2025-08-22",
-      "modeEntree": "8",
-      "modeSortie": "8",
-      "dateRecueil": "2025-08-22",
-      "codeGeographiqueResidence": "75009",
-      "libelleGeographiqueResidence": "PARIS 9E ARRONDISSEMENT",
+      "modeEntree": "8 - Domicile",
+      "modeSortie": "8 - Domicile",
       "createdAt": "2025-08-30T10:00:00Z",
       "updatedAt": "2025-08-30T10:00:00Z"
     }
@@ -322,7 +330,7 @@
       "pmsiId": "pmsi-001",
       "patientId": "patient-001",
       "codeAtc": "A10BA02",
-      "denomination": "Glucophage 1g 2/j",
+      "denomination": "Glucophage",
       "voieAdministration": "20053000",
       "createdAt": "2025-08-30T10:00:00Z",
       "updatedAt": "2025-08-30T10:00:00Z"
@@ -332,7 +340,7 @@
       "pmsiId": "pmsi-001",
       "patientId": "patient-001",
       "codeAtc": "A10BK01",
-      "denomination": "forxiga 10mg/j",
+      "denomination": "forxiga",
       "voieAdministration": "20053000",
       "createdAt": "2025-08-30T10:00:00Z",
       "updatedAt": "2025-08-30T10:00:00Z"

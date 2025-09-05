@@ -8,7 +8,7 @@ Elle a bénéficié pendant son séjour de :
 - un bilan biologique
 - une consultation avec un diabétologue
 
-à la fin de ce séjour, on lui a remis une ordonnance pour le traitement médicamenteux de son diabète.
+à la fin de ce séjour, on lui a remis une ordonnance pour le traitement médicamenteux de son diabète (glucophage et forxiga).
 
 
 ### Synthèse proposée par Gemini 2.5 pro
@@ -53,5 +53,5 @@ Diagnostics Associés :
 **Traitement en cours**
 
 Une prescription de trois mois (du 22/08/2025 au 22/11/2025) pour des antidiabétiques oraux a été établie, comprenant :
-- Metformine (Glucophage) 1g, 2 fois par jour.
-- Dapagliflozine (Forxiga) 10mg par jour.
+- Metformine (Glucophage).
+- Dapagliflozine (Forxiga).

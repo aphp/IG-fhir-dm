@@ -22,6 +22,9 @@ Description: "Profil Patient du socle commun des EDS"
 
 * birthDate MS
 * deceased[x] MS
+* deceased[x] 
+  * extension contains
+    DeathSource named DeathSource 0..1
 
 * address MS 
 * address only DMAddress

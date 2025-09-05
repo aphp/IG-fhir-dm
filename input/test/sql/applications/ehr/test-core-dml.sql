@@ -34,23 +34,28 @@ INSERT INTO patient (
     ins,                    -- linkId: "3764723550987" (INS)
     date_naissance,         -- linkId: "5036133558154" (Date de naissance)
     sexe,                   -- linkId: "3894630481120" (Sexe - from PMSI)
-    latitude,               -- linkId: "3709843054556" (Latitude)
-    longitude,              -- linkId: "7651448032665" (Longitude)
-    code_geographique_residence, -- linkId: "2446369196222" (Code géographique)
-    libelle_geographique_residence
 ) VALUES (
     'Doré',                 -- From QuestionnaireResponse valueString
     'Jeanne',               -- From QuestionnaireResponse valueString
     '1590778035124',        -- From QuestionnaireResponse valueString (NIR)
     '1590778035124',        -- From QuestionnaireResponse valueString (INS)
     '1959-07-07',           -- From QuestionnaireResponse valueDate
-    'F',                    -- From QuestionnaireResponse valueCoding.code (DpiGender system) - uppercase for constraint
-    48.88067598033303,      -- From QuestionnaireResponse valueDecimal
-    2.331871883929937,      -- From QuestionnaireResponse valueDecimal
-    '75009',                -- From QuestionnaireResponse valueCoding.code
-    'PARIS 9E ARRONDISSEMENT' -- From QuestionnaireResponse valueCoding.display
+    'f',                    -- From QuestionnaireResponse valueCoding.code (DpiGender system) - uppercase for constraint
 )
 RETURNING patient_id INTO v_patient_id;
+
+INSERT INTO patient_addresse (
+    patient_id,
+    latitude,               -- linkId: "3709843054556" (Latitude)
+    longitude,              -- linkId: "7651448032665" (Longitude)
+    date_recueil
+) VALUES (
+    v_patient_id
+    48.88067598033303,      -- From QuestionnaireResponse valueDecimal
+    2.331871883929937,      -- From QuestionnaireResponse valueDecimal
+    '2025-08-22',
+)
+RETURNING patient_addresse_id INTO v_patient_addresse_id;
 
 -- ========================================================================
 -- PMSI ENCOUNTER DATA
@@ -65,13 +70,13 @@ INSERT INTO donnees_pmsi (
     mode_sortie,            -- linkId: "3354867075704" (Mode de sortie du séjour)
     code_geographique_residence, -- linkId: "2446369196222" (Code géographique)
     libelle_geographique_residence,
-    date_recueil            -- From geocoding data collection context
+    date_recueil_resid            -- From geocoding data collection context
 ) VALUES (
     v_patient_id,           -- References patient.patient_id from INSERT above
     '2025-08-22',           -- From QuestionnaireResponse valueDate
     '2025-08-22',           -- From QuestionnaireResponse valueDate
-    'Domicile',             -- From QuestionnaireResponse valueCoding.display (code "8")
-    'Domicile',             -- From QuestionnaireResponse valueCoding.display (code "8")
+    '8 - Domicile',             -- From QuestionnaireResponse valueCoding.display (code "8")
+    '8 - Domicile',             -- From QuestionnaireResponse valueCoding.display (code "8")
     '75009',                -- From QuestionnaireResponse valueCoding.code
     'PARIS 9E ARRONDISSEMENT', -- From QuestionnaireResponse valueCoding.display
     '2025-08-22'            -- From geocoding collection date (linkId: "1185653257776")
@@ -89,15 +94,13 @@ INSERT INTO diagnostics (
     code_diagnostic,        -- linkId: "5505101189372" (Diagnostique)
     type_diagnostic,        -- linkId: "6427586743735" (Type de diagnostic)
     libelle_diagnostic,
-    date_recueil,          -- linkId: "7114466839467" (Date du recueil)
-    sequence_diagnostic
+    date_recueil          -- linkId: "7114466839467" (Date du recueil)
 ) VALUES (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
     'E119',                 -- From QuestionnaireResponse valueCoding.code
     'DP',                   -- From QuestionnaireResponse valueCoding.display
     'Diabète sucré de type 2, sans complication', -- From valueCoding.display
-    '2025-08-22',           -- From QuestionnaireResponse valueDate
-    1                       -- First diagnostic
+    '2025-08-22'           -- From QuestionnaireResponse valueDate
 );
 
 -- Diagnostic 2: E6604 - Obésité (DAS)
@@ -112,9 +115,8 @@ INSERT INTO diagnostics (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
     'E6604',                -- From QuestionnaireResponse valueCoding.code
     'DAS',                  -- From QuestionnaireResponse valueCoding.display
-    'Obésité, sans précision', -- From valueCoding.display
-    '2025-08-22',           -- From QuestionnaireResponse valueDate
-    2                       -- Second diagnostic
+    'Obésité due à un excès calorique de l''adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l''enfant', -- From valueCoding.display
+    '2025-08-22'           -- From QuestionnaireResponse valueDate
 );
 
 -- Diagnostic 3: N183 - Maladie rénale chronique, stade 3a (DAS)
@@ -129,9 +131,8 @@ INSERT INTO diagnostics (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
     'N183',                 -- From QuestionnaireResponse valueCoding.code
     'DAS',                  -- From QuestionnaireResponse valueCoding.display
-    'Maladie rénale chronique, stade 3a', -- From valueCoding.display
-    '2025-08-22',           -- From QuestionnaireResponse valueDate
-    3                       -- Third diagnostic
+    'Maladie rénale chronique, stade 3', -- From valueCoding.display
+    '2025-08-22'           -- From QuestionnaireResponse valueDate
 );
 
 -- ========================================================================
@@ -145,15 +146,13 @@ INSERT INTO actes (
     code_acte,             -- linkId: "7758110033600" (Acte)
     libelle_acte,
     date_acte,             -- linkId: "5066866286682" (Date de l'acte)
-    date_recueil,          -- linkId: "9436509453137" (Date du recueil)
-    sequence_acte
+    date_recueil          -- linkId: "9436509453137" (Date du recueil)
 ) VALUES (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
-    'DEQP003',              -- From QuestionnaireResponse valueCoding.code (CCAM system)
-    'Électrocardiographie sur au moins 12 dérivations', -- From valueCoding.display
-    '2025-08-22',           -- From QuestionnaireResponse valueDate
-    '2025-08-22',           -- From QuestionnaireResponse valueDate
-    1                       -- First act
+    'DEQP003...01.',              -- From QuestionnaireResponse valueCoding.code (CCAM system)
+    'Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA', -- From valueCoding.display
+    '2025-08-22T06:50:41.581Z',           -- From QuestionnaireResponse valueDate
+    '2025-08-22'           -- From QuestionnaireResponse valueDate
 );
 
 -- Act 2: BGQP002 - Examen du fond d'oeil
@@ -162,15 +161,13 @@ INSERT INTO actes (
     code_acte,
     libelle_acte,
     date_acte,
-    date_recueil,
-    sequence_acte
+    date_recueil
 ) VALUES (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
-    'BGQP002',              -- From QuestionnaireResponse valueCoding.code (CCAM system)
-    'Examen du fond d''oeil par biomicroscopie avec verre de contact', -- From valueCoding.display
-    '2025-08-22',           -- From QuestionnaireResponse valueDate
-    '2025-08-22',           -- From QuestionnaireResponse valueDate
-    2                       -- Second act
+    'BGQP002...01.',              -- From QuestionnaireResponse valueCoding.code (CCAM system)
+    'Examen du fond d''oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA', -- From valueCoding.display
+    '2025-08-22T07:44:18.112Z',           -- From QuestionnaireResponse valueDate
+    '2025-08-22'           -- From QuestionnaireResponse valueDate
 );
 
 -- ========================================================================
@@ -178,57 +175,8 @@ INSERT INTO actes (
 -- linkId: "5241323453538" (Fonction rénale) - 3 tests
 -- ========================================================================
 
--- Créatinine sérique (linkId: "8344055298045")
+-- urée (linkId: "2522344648988")
 INSERT INTO biologie (
-    pmsi_id,
-    patient_id,
-    code_loinc,            -- linkId: "8712072639576" (code loinc)
-    libelle_test,
-    type_examen,
-    valeur,
-    unite,
-    date_prelevement,      -- linkId: "8090296522764" (Date et heure du prélèvement)
-    borne_inf_normale,     -- linkId: "4087208615207" (Borne inférieure)
-    borne_sup_normale      -- linkId: "4646498915453" (Borne supérieure)
-) VALUES (
-    v_pmsi_id, v_patient_id,
-    '2160-0',              -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'Créatinine [Masse/Volume] Sérum/Plasma ; Numérique',
-    'fonction_renale',
-    87,                    -- From QuestionnaireResponse valueQuantity.value
-    'µmol/L',              -- From QuestionnaireResponse valueQuantity.unit
-    '2025-08-22T06:12:32.000Z', -- From QuestionnaireResponse valueDateTime
-    45,                    -- From QuestionnaireResponse valueQuantity.value
-    84                     -- From QuestionnaireResponse valueQuantity.value
-);
-
--- DFG/CKD-EPI (linkId: "6627906107678") 
-INSERT INTO biologie (
-    pmsi_id,
-    patient_id,
-    code_loinc,            -- linkId: "977768150991" (code loinc)
-    libelle_test,
-    type_examen,
-    valeur,
-    unite,
-    date_prelevement,      -- linkId: "4141872208228" (Date et heure du prélèvement)
-    borne_inf_normale,     -- linkId: "1948319621290" (Borne inférieure)
-    borne_sup_normale      -- linkId: "952959648127" (Borne supérieure)
-) VALUES (
-    v_pmsi_id, v_patient_id,
-    '62238-1',             -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'DFG/CKD-EPI.créatinine',
-    'fonction_renale',
-    57,                    -- From QuestionnaireResponse valueQuantity.value
-    'mL/min/1.73m2',       -- From QuestionnaireResponse valueQuantity.unit
-    '2025-08-22T06:12:32.000Z',
-    60,                    -- From QuestionnaireResponse valueQuantity.value
-    120                    -- From QuestionnaireResponse valueQuantity.value
-);
-
--- Clairance (linkId: "2522344648988")
-INSERT INTO biologie (
-    pmsi_id,
     patient_id,
     code_loinc,            -- linkId: "974417569313" (code loinc)
     libelle_test,
@@ -239,15 +187,61 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "9648652863906" (Borne inférieure)
     borne_sup_normale      -- linkId: "8928925853627" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
-    '33914-3',             -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'DFG/1.73 m² [Volume/Temps/Surface] Rénal ; Créatinine ; Estimation',
+    v_patient_id,
+    '22664-7',             -- From QuestionnaireResponse valueCoding.code (LOINC system)
+    'Urée [Moles/Volume] Sérum/Plasma ; Numérique',
     'fonction_renale',
-    62,                    -- From QuestionnaireResponse valueQuantity.value
+    6,                    -- From QuestionnaireResponse valueQuantity.value
+    'mmol/L',       -- From QuestionnaireResponse valueQuantity.unit
+    '2025-08-22T06:12:32.711Z',
+    2.5,                    -- From QuestionnaireResponse valueQuantity.value
+    7.5                    -- From QuestionnaireResponse valueQuantity.value
+);
+
+-- Créatinine sérique (linkId: "8344055298045")
+INSERT INTO biologie (
+    patient_id,
+    code_loinc,            -- linkId: "8712072639576" (code loinc)
+    libelle_test,
+    type_examen,
+    valeur,
+    unite,
+    date_prelevement,      -- linkId: "8090296522764" (Date et heure du prélèvement)
+    borne_inf_normale,     -- linkId: "4087208615207" (Borne inférieure)
+    borne_sup_normale      -- linkId: "4646498915453" (Borne supérieure)
+) VALUES (
+    v_patient_id,
+    '14682-9',              -- From QuestionnaireResponse valueCoding.code (LOINC system)
+    'Créatinine [Moles/Volume] Sérum/Plasma ; Numérique',
+    'fonction_renale',
+    92,                    -- From QuestionnaireResponse valueQuantity.value
+    'umol/L',              -- From QuestionnaireResponse valueQuantity.unit
+    '2025-08-22T06:12:32.000Z', -- From QuestionnaireResponse valueDateTime
+    45,                    -- From QuestionnaireResponse valueQuantity.value
+    105                     -- From QuestionnaireResponse valueQuantity.value
+);
+
+-- DFG/CKD-EPI (linkId: "6627906107678") 
+INSERT INTO biologie (
+    patient_id,
+    code_loinc,            -- linkId: "977768150991" (code loinc)
+    libelle_test,
+    type_examen,
+    valeur,
+    unite,
+    date_prelevement,      -- linkId: "4141872208228" (Date et heure du prélèvement)
+    borne_inf_normale,     -- linkId: "1948319621290" (Borne inférieure)
+    borne_sup_normale      -- linkId: "952959648127" (Borne supérieure)
+) VALUES (
+    v_patient_id,
+    '62238-1',             -- From QuestionnaireResponse valueCoding.code (LOINC system)
+    'Filtration glomérulaire corrigée/1,73m2 calculée [Volume arbitraire/Temps] Sérum/Plasma/Sang ; Numérique ; Créatinine,Formule CKD-EPI',
+    'fonction_renale',
+    56,                    -- From QuestionnaireResponse valueQuantity.value
     'mL/min/1.73m2',       -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    70,                    -- From QuestionnaireResponse valueQuantity.value
-    120                    -- From QuestionnaireResponse valueQuantity.value
+    80,                    -- From QuestionnaireResponse valueQuantity.value
+    140                    -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- ========================================================================
@@ -257,7 +251,7 @@ INSERT INTO biologie (
 
 -- Leucocytes (linkId: "1719798551455")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "695484403752" (code loinc)
     libelle_test,
     type_examen,
@@ -267,11 +261,11 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "453039749618" (Borne inférieure)
     borne_sup_normale      -- linkId: "178062486522" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
+    v_patient_id,
     '6690-2',              -- From QuestionnaireResponse valueCoding.code (LOINC system)
     'Leucocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate',
     'hemogramme',
-    7.5,                   -- From QuestionnaireResponse valueQuantity.value
+    5.1,                   -- From QuestionnaireResponse valueQuantity.value
     '10*9/L',              -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
     4,                     -- From QuestionnaireResponse valueQuantity.value
@@ -280,7 +274,7 @@ INSERT INTO biologie (
 
 -- Hématies (linkId: "9695773577965")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "597082091886" (code loinc)
     libelle_test,
     type_examen,
@@ -290,20 +284,20 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "638925966445" (Borne inférieure)
     borne_sup_normale      -- linkId: "851879668451" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
+    v_patient_id,
     '789-8',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
     'Érythrocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate',
     'hemogramme',
-    4.5,                   -- From QuestionnaireResponse valueQuantity.value
+    4.21,                   -- From QuestionnaireResponse valueQuantity.value
     '10*12/L',             -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    3.8,                   -- From QuestionnaireResponse valueQuantity.value
-    5.4                    -- From QuestionnaireResponse valueQuantity.value
+    3,                   -- From QuestionnaireResponse valueQuantity.value
+    5                    -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- Hémoglobine (linkId: "814599251677")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "814457693114" (code loinc)
     libelle_test,
     type_examen,
@@ -313,20 +307,20 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "476467525637" (Borne inférieure)
     borne_sup_normale      -- linkId: "319764681516" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
+    v_patient_id,
     '718-7',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
     'Hémoglobine [Masse/Volume] Sang ; Numérique',
     'hemogramme',
-    13.5,                  -- From QuestionnaireResponse valueQuantity.value
-    'g/dL',                -- From QuestionnaireResponse valueQuantity.unit
+    135,                  -- From QuestionnaireResponse valueQuantity.value
+    'g/L',                -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    11.5,                  -- From QuestionnaireResponse valueQuantity.value
-    16                     -- From QuestionnaireResponse valueQuantity.value
+    120,                  -- From QuestionnaireResponse valueQuantity.value
+    160                     -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- Hématocrite (linkId: "2316619788901")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "274747215145" (code loinc)
     libelle_test,
     type_examen,
@@ -336,20 +330,20 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "547491149124" (Borne inférieure)
     borne_sup_normale      -- linkId: "838239924282" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
+    v_patient_id,
     '4544-3',              -- From QuestionnaireResponse valueCoding.code (LOINC system)
     'Hématocrite [Fraction volumique] Sang ; Numérique ; Comptage automate',
     'hemogramme',
-    40,                    -- From QuestionnaireResponse valueQuantity.value
+    40.4,                    -- From QuestionnaireResponse valueQuantity.value
     '%',                   -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    35,                    -- From QuestionnaireResponse valueQuantity.value
+    30,                    -- From QuestionnaireResponse valueQuantity.value
     47                     -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- VGM (linkId: "2829915513959")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "117718572179" (code loinc)
     libelle_test,
     type_examen,
@@ -359,7 +353,7 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "472419988966" (Borne inférieure)
     borne_sup_normale      -- linkId: "781499407274" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
+    v_patient_id,
     '30428-7',             -- From QuestionnaireResponse valueCoding.code (LOINC system)
     'Volume globulaire moyen [Volume d''entité] Érythrocytes ; Numérique',
     'hemogramme',
@@ -372,7 +366,7 @@ INSERT INTO biologie (
 
 -- Plaquettes (linkId: "794156787471")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "555876654291" (code loinc)
     libelle_test,
     type_examen,
@@ -382,7 +376,7 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "491138393211" (Borne inférieure)
     borne_sup_normale      -- linkId: "859081902103" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
+    v_patient_id,
     '777-3',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
     'Plaquettes [Nombre/Volume] Sang ; Numérique ; Comptage automate',
     'hemogramme',
@@ -395,7 +389,7 @@ INSERT INTO biologie (
 
 -- Neutrophiles (linkId: "961905168477")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "971737782589" (code loinc)
     libelle_test,
     type_examen,
@@ -405,20 +399,20 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "853418774421" (Borne inférieure)
     borne_sup_normale      -- linkId: "511648773162" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
+    v_patient_id,
     '751-8',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
     'Polynucléaires neutrophiles [Nombre/Volume] Sang ; Numérique ; Comptage automate',
     'hemogramme',
-    4.2,                   -- From QuestionnaireResponse valueQuantity.value
+    3.58,                   -- From QuestionnaireResponse valueQuantity.value
     '10*9/L',              -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    1.8,                   -- From QuestionnaireResponse valueQuantity.value
-    7.5                    -- From QuestionnaireResponse valueQuantity.value
+    2,                   -- From QuestionnaireResponse valueQuantity.value
+    10                    -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- Lymphocytes (linkId: "6936313719558")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "663015267867" (code loinc)
     libelle_test,
     type_examen,
@@ -428,20 +422,20 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "491764548638" (Borne inférieure)
     borne_sup_normale      -- linkId: "614147487488" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
-    '731-0',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'Lymphocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate',
+    v_patient_id,
+    '26474-7',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
+    'Lymphocytes totaux [Nombre/Volume] Sang ; Numérique',
     'hemogramme',
-    2.1,                   -- From QuestionnaireResponse valueQuantity.value
+    1.06,                   -- From QuestionnaireResponse valueQuantity.value
     '10*9/L',              -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    1.2,                   -- From QuestionnaireResponse valueQuantity.value
-    3.4                    -- From QuestionnaireResponse valueQuantity.value
+    1,                   -- From QuestionnaireResponse valueQuantity.value
+    4.5                    -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- Monocytes (linkId: "1739916754687")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "283372872777" (code loinc)
     libelle_test,
     type_examen,
@@ -451,11 +445,11 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "211881748564" (Borne inférieure)
     borne_sup_normale      -- linkId: "421683878522" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
-    '742-7',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'Monocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate',
+    v_patient_id,
+    '26484-6',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
+    'Monocytes [Nombre/Volume] Sang ; Numérique',
     'hemogramme',
-    0.5,                   -- From QuestionnaireResponse valueQuantity.value
+    0.26,                   -- From QuestionnaireResponse valueQuantity.value
     '10*9/L',              -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
     0.2,                   -- From QuestionnaireResponse valueQuantity.value
@@ -464,7 +458,7 @@ INSERT INTO biologie (
 
 -- Éosinophiles (linkId: "5419737615479")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "651849853076" (code loinc)
     libelle_test,
     type_examen,
@@ -474,15 +468,15 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "851844668413" (Borne inférieure)
     borne_sup_normale      -- linkId: "616658477879" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
-    '711-2',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'Polynucléaires éosinophiles [Nombre/Volume] Sang ; Numérique ; Comptage automate',
+    v_patient_id,
+    '26449-9',               -- From QuestionnaireResponse valueCoding.code (LOINC system)
+    'Polynucléaires éosinophiles [Nombre/Volume] Sang ; Numérique',
     'hemogramme',
-    0.15,                  -- From QuestionnaireResponse valueQuantity.value
+    0.14,                  -- From QuestionnaireResponse valueQuantity.value
     '10*9/L',              -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    0.04,                  -- From QuestionnaireResponse valueQuantity.value
-    0.5                    -- From QuestionnaireResponse valueQuantity.value
+    0,                  -- From QuestionnaireResponse valueQuantity.value
+    0.6                    -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- ========================================================================
@@ -492,30 +486,28 @@ INSERT INTO biologie (
 
 -- HbA1c (linkId: "541984638731")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "398039571990" (code loinc)
     libelle_test,
     type_examen,
     valeur,
     unite,
     date_prelevement,      -- linkId: "161477881185" (Date et heure du prélèvement)
-    borne_inf_normale,     -- linkId: "381844812668" (Borne inférieure)
     borne_sup_normale      -- linkId: "268845718846" (Borne supérieure)
 ) VALUES (
     v_pmsi_id, v_patient_id,
     '4548-4',              -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'Hémoglobine A1c/Hémoglobine.totale [Fraction massique] Sang ; Numérique',
+    'Hémoglobine A1c/hémoglobine totale [Fraction massique] Sang ; Numérique',
     'autres',
-    7.2,                   -- From QuestionnaireResponse valueQuantity.value
+    7.1,                   -- From QuestionnaireResponse valueQuantity.value
     '%',                   -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
-    4,                     -- From QuestionnaireResponse valueQuantity.value
-    6                      -- From QuestionnaireResponse valueQuantity.value
+    7                      -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- Glycémie (linkId: "4813448476118")
 INSERT INTO biologie (
-    pmsi_id, patient_id,
+    patient_id,
     code_loinc,            -- linkId: "305948197507" (code loinc)
     libelle_test,
     type_examen,
@@ -525,15 +517,15 @@ INSERT INTO biologie (
     borne_inf_normale,     -- linkId: "468428485445" (Borne inférieure)
     borne_sup_normale      -- linkId: "871684548451" (Borne supérieure)
 ) VALUES (
-    v_pmsi_id, v_patient_id,
-    '2339-0',              -- From QuestionnaireResponse valueCoding.code (LOINC system)
-    'Glucose [Masse/Volume] Plasma ; Numérique',
+    v_patient_id,
+    '40193-5',              -- From QuestionnaireResponse valueCoding.code (LOINC system)
+    'Glucose à jeun [Moles/Volume] Sérum/Plasma ; Numérique',
     'autres',
-    6.8,                   -- From QuestionnaireResponse valueQuantity.value
+    6.1,                   -- From QuestionnaireResponse valueQuantity.value
     'mmol/L',              -- From QuestionnaireResponse valueQuantity.unit
     '2025-08-22T06:12:32.000Z',
     3.9,                   -- From QuestionnaireResponse valueQuantity.value
-    5.6                    -- From QuestionnaireResponse valueQuantity.value
+    6.1                    -- From QuestionnaireResponse valueQuantity.value
 );
 
 -- ========================================================================
@@ -542,77 +534,40 @@ INSERT INTO biologie (
 -- ========================================================================
 
 -- Medication 1: Glucophage (Metformin)
-INSERT INTO exposition_medicamenteuse (
-    pmsi_id,
+INSERT INTO prescription (
     patient_id,
     denomination,          -- From QuestionnaireResponse valueString
     code_atc,             -- linkId: "1923143398283" (codification)
     voie_administration,  -- linkId: "387026794874" (Voie d'administration)
-    date_debut,
-    date_fin
+    date_debut_prescription,
+    date_fin_prescription
 ) VALUES (
-    v_pmsi_id, v_patient_id,
-    'Glucophage 1g 2/j',  -- From QuestionnaireResponse valueString
+    v_patient_id,
+    'Glucophage',  -- From QuestionnaireResponse valueString
     'A10BA02',            -- From QuestionnaireResponse valueCoding.code (ATC system)
-    'Voie orale',         -- From QuestionnaireResponse valueCoding.display
+    '20053000',         -- From QuestionnaireResponse valueCoding.display
     '2025-08-22',         -- From posology section
     '2025-11-22'          -- From posology section
 )
-RETURNING exposition_id INTO v_exposition1_id;
+RETURNING prescription_id INTO v_prescription1_id;
 
 -- Medication 2: Forxiga (Dapagliflozin)
-INSERT INTO exposition_medicamenteuse (
-    pmsi_id,
+INSERT INTO prescription (
     patient_id,
     denomination,
     code_atc,             -- linkId: "1923143398283" (codification)
     voie_administration,  -- linkId: "387026794874" (Voie d'administration)
-    date_debut,
-    date_fin
+    date_debut_prescription,
+    date_fin_prescription
 ) VALUES (
-    v_pmsi_id, v_patient_id,
-    'forxiga 10mg/j',     -- From QuestionnaireResponse valueString
+    v_patient_id,
+    'forxiga',     -- From QuestionnaireResponse valueString
     'A10BK01',            -- From QuestionnaireResponse valueCoding.code (ATC system)
     'Voie orale',         -- From QuestionnaireResponse valueCoding.display
     '2025-08-22',         -- From posology section
     '2025-11-22'          -- From posology section
 )
-RETURNING exposition_id INTO v_exposition2_id;
-
--- ========================================================================
--- POSOLOGY DATA
--- linkId: "6348237104421" (Posologie) - Details for both medications
--- ========================================================================
-
--- Posology for Glucophage
-INSERT INTO posologie (
-    exposition_id,
-    pmsi_id,
-    patient_id,
-    date_debut_prescription,  -- linkId: "316347573327" (Date de début de la prescription)
-    date_fin_prescription     -- linkId: "429570775935" (Date de fin de la prescription)
-) VALUES (
-    v_exposition1_id,
-    v_pmsi_id,
-    v_patient_id,
-    '2025-08-22',             -- From QuestionnaireResponse valueDate
-    '2025-11-22'              -- From QuestionnaireResponse valueDate
-);
-
--- Posology for Forxiga
-INSERT INTO posologie (
-    exposition_id,
-    pmsi_id,
-    patient_id,
-    date_debut_prescription,
-    date_fin_prescription
-) VALUES (
-    v_exposition2_id,
-    v_pmsi_id,
-    v_patient_id,
-    '2025-08-22',             -- From QuestionnaireResponse valueDate
-    '2025-11-22'              -- From QuestionnaireResponse valueDate
-);
+RETURNING prescription_id INTO v_prescription2_id;
 
 -- ========================================================================
 -- CLINICAL CARE DATA
@@ -620,26 +575,55 @@ INSERT INTO posologie (
 -- ========================================================================
 
 INSERT INTO dossier_soins (
-    pmsi_id,
     patient_id,
-    taille,                   -- linkId: "4846902346416" (Taille)
-    date_mesure_taille,       -- linkId: "941821315470" (Date de la mesure)
-    poids,                    -- linkId: "451513217936" (Poids)
-    date_mesure_poids,        -- linkId: "111587238478" (Date de la mesure)
-    pression_systolique,      -- linkId: "3648911616318" (Tension artérielle systolique)
-    pression_diastolique,     -- linkId: "5916218467151" (Tension artérielle diastolique)
-    date_mesure_ps,           -- linkId: "4118671348187" (Date de la mesure)
-    date_mesure_pd
+    libelle_test,
+    valeur,
+    unite,
+    date_mesure
 ) VALUES (
-    v_pmsi_id,
     v_patient_id,
-    1.65,                     -- From QuestionnaireResponse valueQuantity.value
-    '2025-08-22',             -- From QuestionnaireResponse valueDate
-    78,                       -- From QuestionnaireResponse valueQuantity.value
-    '2025-08-22',             -- From QuestionnaireResponse valueDate
-    135,                      -- From QuestionnaireResponse valueQuantity.value
-    85,                       -- From QuestionnaireResponse valueQuantity.value
-    '2025-08-22',             -- From QuestionnaireResponse valueDate
+    'taille',
+    1.67,
+    'm',
+    '2025-08-22'
+);
+INSERT INTO dossier_soins (
+    patient_id,
+    libelle_test,
+    valeur,
+    unite,
+    date_mesure
+) VALUES (
+    v_patient_id,
+    'poids',
+    93,
+    'kg',
+    '2025-08-22'
+);
+INSERT INTO dossier_soins (
+    patient_id,
+    libelle_test,
+    valeur,
+    unite,
+    date_mesure
+) VALUES (
+    v_patient_id,
+    'Pression artérielle systolique',
+    117,
+    'mm[Hg]',
+    '2025-08-22'
+);
+INSERT INTO dossier_soins (
+    patient_id,
+    libelle_test,
+    valeur,
+    unite,
+    date_mesure
+) VALUES (
+    v_patient_id,
+    'Pression artérielle diastolique',
+    75,
+    'mm[Hg]',
     '2025-08-22'
 );
 

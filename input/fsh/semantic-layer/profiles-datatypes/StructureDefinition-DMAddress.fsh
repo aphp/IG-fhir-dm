@@ -3,7 +3,9 @@ Parent: FRCoreAddressProfile
 Title: "Address"
 Description: "Profil Address du socle commun des EDS"
 
-* extension contains $geolocation named geolocation 0..1
+* extension contains 
+  $geolocation named geolocation 0..1
+  and PmsiCodeGeo named PmsiCodeGeo 0..1
 
 * extension[geolocation] MS
 * extension[inseeCode] MS
