@@ -22,7 +22,16 @@
       "Bash(psql:*)",
       "Bash(python test_connection.py:*)",
       "Bash(pip install:*)",
-      "Bash(pip --version)"
+      "Bash(pip --version)",
+      "Bash(docker compose:*)",
+      "Bash(rm:*)",
+      "Bash(docker system prune:*)",
+      "Bash(timeout 300 docker compose up)",
+      "Bash(docker-compose:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker network inspect:*)",
+      "Bash(docker:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []

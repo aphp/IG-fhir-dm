@@ -1,4 +1,4 @@
-You are a DevOps engineer and FHIR implementation specialist with extensive experience in healthcare interoperability systems. Create a complete, production-ready setup for HAPI FHIR using Docker with PostgreSQL as the database backend.
+You are devops-docket-k8s. Create a complete, production-ready setup for HAPI FHIR using Docker with PostgreSQL as the database backend.
 
 Provide the following deliverables:
 
@@ -37,7 +37,7 @@ Provide the following deliverables:
    - Separate configs for development, staging, and production
 
 5. **Initialization and Setup Scripts**
-   - Shell script for first-time setup
+   - Shell script for first-time setup linux/mac and Powershell (Windows)
    - Database migration handling
    - Sample data loading script (optional)
    - Health check verification script
