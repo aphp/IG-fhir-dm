@@ -1,114 +1,126 @@
-# EHR to FHIR Semantic Layer Transform
+# EHR to FHIR Semantic Layer Transformation
 
-This dbt project transforms Electronic Health Record (EHR) data from the EDSH (Entrepôt de Données de Santé Hospitalières) model into FHIR R4 compliant resources following the Data Management (DM) profiles developed by AP-HP.
+This DBT project transforms EHR data into FHIR-compliant resources following the FML mapping specification.
 
-## Project Structure
+## Prerequisites
 
-```
-models/
-├── staging/          # Source-conformed, minimal transformations
-│   └── ehr/          # EHR source data staging models
-├── intermediate/     # Business logic and FHIR mapping implementation
-│   ├── core/         # Core FHIR resources (Patient, Encounter)
-│   ├── clinical/     # Clinical FHIR resources (Condition, Procedure, Observation)
-│   └── medication/   # Medication FHIR resources (MedicationRequest)
-└── marts/           # Final FHIR-compliant resources
-    ├── core/        # Core FHIR resources ready for consumption
-    ├── clinical/    # Clinical FHIR resources ready for consumption
-    └── medication/  # Medication FHIR resources ready for consumption
+### 1. PostgreSQL Setup
+Create three databases with UTF-8 encoding:
+
+```sql
+-- Run this in PostgreSQL as superuser
+CREATE DATABASE ehr WITH OWNER = postgres ENCODING = 'UTF8';
+CREATE DATABASE fhir_semantic_layer WITH OWNER = postgres ENCODING = 'UTF8';
+CREATE DATABASE theRing WITH OWNER = postgres ENCODING = 'UTF8';
 ```
 
-## Key Features
+### 2. Load Source Schema
+Load the EHR schema:
+```bash
+psql -U postgres -d ehr -f "../input/sql/applications/ehr/questionnaire-core-ddl.sql"
+```
 
-- **FHIR R4 Compliance**: All output resources follow FHIR R4 specification
-- **DM Profile Adherence**: Resources conform to AP-HP Data Management profiles
-- **Medallion Architecture**: Follows dbt Labs best practices with bronze/silver/gold layers
-- **Incremental Loading**: Supports incremental updates with late-arriving data handling
-- **FML Mapping Implementation**: Based on the StructureMap-EHR2FSL.fml mapping definition
-- **Comprehensive Testing**: Data quality tests and FHIR validation
-- **French Healthcare Standards**: Supports INS-NIR, ICD-10, CCAM, ATC coding systems
+Load the FHIR schema:
+```bash
+psql -U postgres -d fhir_semantic_layer -f "../input/sql/semantic-layer/fhir-core-ddl.sql"
+```
+
+## Environment Setup
+
+### Windows
+Use the provided PowerShell script:
+```powershell
+.\run_dbt.ps1
+```
+
+### Manual Environment Variables
+```bash
+export DBT_USER=postgres
+export DBT_PASSWORD=123456
+export DBT_HOST=localhost
+export DBT_PORT=5432
+export DBT_DATABASE=theRing
+export DBT_SCHEMA=public
+
+export EHR_USER=postgres
+export EHR_PASSWORD=123456
+export EHR_HOST=localhost
+export EHR_PORT=5432
+export EHR_DATABASE=ehr
+export EHR_SCHEMA=public
+
+export FHIR_USER=postgres
+export FHIR_PASSWORD=123456
+export FHIR_HOST=localhost
+export FHIR_PORT=5432
+export FHIR_DATABASE=fhir_semantic_layer
+export FHIR_SCHEMA=public
+```
 
 ## Usage
 
-### Initial Setup
-
-1. Copy `profiles.yml` to `~/.dbt/profiles.yml` and configure your database connection
-2. Install dependencies: `dbt deps` (if packages are defined)
-3. Test connection: `dbt debug`
-
-### Running the Transform
-
+### 1. Test Connection
 ```bash
-# Build all models from scratch
-dbt build --full-refresh
+dbt debug
+```
 
-# Build specific model groups
-dbt build --select tag:staging
-dbt build --select tag:core_fhir
-dbt build --select tag:clinical_fhir
+### 2. Install Dependencies
+```bash
+dbt deps
+```
 
-# Run incremental updates (default behavior)
+### 3. Full Refresh (Initial Load)
+```bash
+dbt run --full-refresh
+```
+
+### 4. Incremental Updates
+```bash
 dbt run
-
-# Run with specific lookback period
-dbt run --vars '{"incremental_lookback_days": 14}'
-
-# Run tests
-dbt test
-
-# Generate documentation
-dbt docs generate && dbt docs serve
 ```
 
-## Source Data Model (EHR)
-
-The source data follows the EDSH core variables model:
-
-- **patient**: Patient demographics with INS-NIR identifiers
-- **donnees_pmsi**: Healthcare encounters from PMSI system
-- **diagnostics**: Diagnostic conditions with ICD-10 codes
-- **actes**: Medical procedures with CCAM codes
-- **biologie**: Laboratory test results with LOINC codes
-- **exposition_medicamenteuse**: Medication exposures with ATC codes
-- **dossier_soins**: Vital signs and physical measurements
-- **style_vie**: Lifestyle and social history observations
-
-## Target FHIR Resources
-
-The transformation produces FHIR R4 resources:
-
-- **fhir_patient**: DMPatient profile with French identifiers
-- **fhir_encounter**: DMEncounter profile for healthcare encounters  
-- **fhir_condition**: DMCondition profile with ICD-10 diagnoses
-- **fhir_procedure**: DMProcedure profile with CCAM procedures
-- **fhir_observation**: DM observation profiles (laboratory, vital signs, lifestyle)
-- **fhir_medication_request**: DMMedicationRequest profile with ATC codes
-
-## Configuration
-
-Set these environment variables in your shell or `.env` file:
-
+### 5. Run Tests
 ```bash
-# Database connection
-DBT_USER=your_username
-DBT_PASSWORD=your_password  
-DBT_DATABASE=fhir_dm
-DBT_SCHEMA=dbt_dev
-
-# Production environment
-PROD_HOST=prod_host
-PROD_USER=prod_user
-PROD_PASSWORD=prod_password
-PROD_DATABASE=prod_database
-PROD_SCHEMA=fhir_semantic_layer
+dbt test
 ```
 
-## Architecture
+## Troubleshooting
 
-This project implements a medallion architecture following dbt Labs best practices:
+### UTF-8 Encoding Issues
+If you encounter UTF-8 encoding errors:
 
-1. **Staging Layer** (`staging/ehr/`): Source-conformed data with basic cleansing
-2. **Intermediate Layer** (`intermediate/`): Business logic implementing FML mapping rules
-3. **Marts Layer** (`marts/`): Final FHIR-compliant resources ready for consumption
+1. Ensure PostgreSQL databases were created with UTF-8 encoding
+2. Set environment variable: `PYTHONIOENCODING=utf-8`
+3. Update PostgreSQL client encoding: `SET client_encoding = 'UTF8';`
 
-The transformation logic is based on the FML StructureMap definition in `input/fml/StructureMap-EHR2FSL.fml`, ensuring compliance with both FHIR R4 specifications and AP-HP Data Management profiles.
+### Database Connection Issues
+1. Verify PostgreSQL is running on port 5432
+2. Check user credentials and permissions
+3. Ensure all three databases exist
+4. Test connection with: `psql -U postgres -h localhost -d theRing`
+
+### Missing Source Data
+The DBT models expect source tables to exist in the `ehr` database. If running without source data, models will fail with table not found errors.
+
+## Model Structure
+
+- **Staging**: Extract and clean data from EHR database
+- **Intermediate**: Prepare FHIR-compliant data structures
+- **Marts**: Final FHIR resources ready for consumption
+
+## FHIR Resources Generated
+
+- `fhir_patient` - DMPatient profile with French identifiers
+- `fhir_encounter` - DMEncounter with PMSI data
+- `fhir_condition` - DMCondition with ICD-10 codes
+- `fhir_observation` - Laboratory and vital signs observations
+- `fhir_medication_request` - ATC-coded medication requests
+- `fhir_procedure` - CCAM-coded procedures
+
+## Data Quality
+
+The pipeline includes comprehensive data quality tests:
+- Reference integrity validation
+- FHIR compliance checks
+- French healthcare standards validation
+- Data completeness scoring

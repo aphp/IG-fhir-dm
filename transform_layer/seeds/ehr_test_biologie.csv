@@ -1,5 +1,0 @@
-biologie_id,pmsi_id,patient_id,code_loinc,libelle_test,type_examen,valeur,unite,valeur_texte,date_prelevement,statut_validation,borne_inf_normale,borne_sup_normale,commentaire,methode_analyse,laboratoire,created_at,updated_at
-3001,1001,1,2160-0,Créatinine sérique,fonction_renale,95,umol/L,,2024-01-10 08:00:00+01,VALIDE,62,106,,Enzymatique,Laboratoire Central AP-HP,2024-01-10 12:00:00+01,2024-01-10 12:00:00+01
-3002,1001,1,33914-3,DFG estimé,fonction_renale,75,mL/min/1.73m2,,2024-01-10 08:00:00+01,VALIDE,90,120,,CKD-EPI,Laboratoire Central AP-HP,2024-01-10 12:00:00+01,2024-01-10 12:00:00+01
-3003,1001,1,2345-7,Glucose sérique,metabolisme,8.5,mmol/L,,2024-01-10 08:00:00+01,VALIDE,3.9,5.8,Hyperglycémie,Hexokinase,Laboratoire Central AP-HP,2024-01-10 12:00:00+01,2024-01-10 12:00:00+01
-3004,1002,2,718-7,Hémoglobine,hemogramme,11.2,g/dL,,2024-02-01 07:30:00+01,VALIDE,12.0,16.0,Anémie légère,Spectrophotométrie,Laboratoire Central AP-HP,2024-02-01 10:00:00+01,2024-02-01 10:00:00+01

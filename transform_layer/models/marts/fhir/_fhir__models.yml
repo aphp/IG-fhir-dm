@@ -1,0 +1,574 @@
+version: 2
+
+models:
+  - name: fhir_patient
+    description: |
+      FHIR R4 Patient resource compliant table containing patient demographic and identification data.
+      Follows French healthcare standards with INS-NIR identifiers and InteropSanté profiles.
+      
+      **Business Purpose**: Provides a standardized patient registry for healthcare interoperability.
+      **Update Frequency**: Real-time as source patient data changes.
+      **Data Quality**: High - all patients have validated identifiers and core demographics.
+    columns:
+      - name: id
+        description: "FHIR Patient resource ID (unique identifier)"
+        tests:
+          - unique
+          - not_null
+      - name: resourceType
+        description: "FHIR resource type (always 'Patient')"
+        tests:
+          - accepted_values:
+              values: ['Patient']
+      - name: meta
+        description: "FHIR metadata including profile and last updated timestamp"
+      - name: identifier
+        description: "French healthcare identifiers (INS-C, INS-A, NIR) in FHIR format"
+        tests:
+          - not_null
+      - name: active
+        description: "Patient active status (boolean)"
+      - name: name
+        description: "Patient name components in FHIR HumanName format"
+        tests:
+          - not_null
+      - name: gender
+        description: "Administrative gender (male/female/unknown)"
+        tests:
+          - accepted_values:
+              values: ['male', 'female', 'unknown', 'other']
+      - name: birthDate
+        description: "Patient birth date in YYYY-MM-DD format"
+        tests:
+          - not_null
+      - name: address
+        description: "Patient address in FHIR Address format"
+      - name: extension
+        description: "FHIR extensions including geolocation if available"
+      - name: generalPractitioner
+        description: "Reference to general practitioner or managing organization"
+      - name: managingOrganization
+        description: "Reference to managing healthcare organization"
+      - name: data_quality_level
+        description: "Data quality assessment (high/medium/low)"
+        tests:
+          - accepted_values:
+              values: ['high', 'medium', 'low']
+      - name: data_quality_score
+        description: "Numeric data quality score (0-10)"
+      - name: has_valid_nir
+        description: "Flag indicating presence of valid NIR identifier"
+      - name: has_ins
+        description: "Flag indicating presence of INS identifier"
+      - name: has_location
+        description: "Flag indicating availability of geographic coordinates"
+      - name: source_patient_id
+        description: "Original patient ID from source EHR system"
+        tests:
+          - not_null
+      - name: last_updated
+        description: "Timestamp when record was last updated"
+        tests:
+          - not_null
+
+  - name: fhir_encounter
+    description: |
+      FHIR R4 Encounter resource compliant table containing hospital episodes and care encounters.
+      Based on French PMSI (Programme de Médicalisation des Systèmes d'Information) data.
+      
+      **Business Purpose**: Tracks patient encounters with healthcare system for billing and care coordination.
+      **Update Frequency**: Near real-time as encounters are created/updated.
+      **Data Quality**: High - all encounters linked to valid patients with complete episode information.
+    columns:
+      - name: id
+        description: "FHIR Encounter resource ID (unique identifier)"
+        tests:
+          - unique
+          - not_null
+      - name: resourceType
+        description: "FHIR resource type (always 'Encounter')"
+        tests:
+          - accepted_values:
+              values: ['Encounter']
+      - name: meta
+        description: "FHIR metadata including profile and last updated timestamp"
+      - name: identifier
+        description: "PMSI episode identifiers in FHIR format"
+        tests:
+          - not_null
+      - name: status
+        description: "Encounter status (planned/in-progress/finished)"
+        tests:
+          - accepted_values:
+              values: ['planned', 'in-progress', 'finished', 'cancelled']
+      - name: class
+        description: "Encounter class coding (IMP/AMB/EMER)"
+      - name: serviceType
+        description: "Medical service type with SNOMED CT coding"
+      - name: priority
+        description: "Encounter priority (urgent/routine)"
+      - name: subject
+        description: "Reference to Patient resource"
+        tests:
+          - not_null
+      - name: subject_id
+        description: "Patient ID for relationships"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: episodeOfCare
+        description: "Reference to episode of care for multi-encounter episodes"
+      - name: participant
+        description: "Healthcare providers participating in encounter"
+      - name: period
+        description: "Encounter time period with start and end timestamps"
+        tests:
+          - not_null
+      - name: length
+        description: "Length of stay duration"
+      - name: reasonCode
+        description: "Reason for encounter (coded)"
+      - name: hospitalization
+        description: "Hospitalization details including admit/discharge disposition"
+      - name: location
+        description: "Physical locations where encounter occurred"
+      - name: serviceProvider
+        description: "Organization providing the encounter services"
+      - name: partOf
+        description: "Reference to parent encounter if applicable"
+      - name: length_of_stay_days
+        description: "Length of stay in days (numeric)"
+      - name: facility_name
+        description: "Name of healthcare facility"
+      - name: service_department
+        description: "Medical service/department name"
+      - name: source_pmsi_id
+        description: "Original PMSI episode ID from source system"
+        tests:
+          - not_null
+      - name: source_patient_id
+        description: "Original patient ID from source system"
+        tests:
+          - not_null
+
+  - name: fhir_condition
+    description: |
+      FHIR R4 Condition resource compliant table containing diagnoses and medical conditions.
+      Uses ICD-10 coding system aligned with French healthcare standards.
+      
+      **Business Purpose**: Provides standardized condition/diagnosis data for clinical decision support.
+      **Update Frequency**: Real-time as diagnoses are recorded or updated.
+      **Data Quality**: High - all conditions have valid ICD-10 codes and clinical context.
+    columns:
+      - name: id
+        description: "FHIR Condition resource ID (unique identifier)"
+        tests:
+          - unique
+          - not_null
+      - name: resourceType
+        description: "FHIR resource type (always 'Condition')"
+        tests:
+          - accepted_values:
+              values: ['Condition']
+      - name: meta
+        description: "FHIR metadata including profile and last updated timestamp"
+      - name: identifier
+        description: "Diagnostic identifiers in FHIR format"
+      - name: clinicalStatus
+        description: "Clinical status of condition (active/inactive/resolved)"
+      - name: verificationStatus
+        description: "Verification status (confirmed/provisional/differential)"
+      - name: category
+        description: "Condition category (encounter-diagnosis/problem-list-item)"
+        tests:
+          - not_null
+      - name: severity
+        description: "Condition severity assessment (mild/moderate/severe)"
+      - name: code
+        description: "ICD-10 condition code with display text"
+        tests:
+          - not_null
+      - name: bodySite
+        description: "Anatomical location of condition"
+      - name: subject
+        description: "Reference to Patient resource"
+        tests:
+          - not_null
+      - name: subject_id
+        description: "Patient ID for relationships"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter
+        description: "Reference to Encounter where condition was identified"
+      - name: encounter_id
+        description: "Encounter ID for relationships"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: onsetDateTime
+        description: "When condition first manifested"
+      - name: recordedDate
+        description: "Date condition was recorded"
+      - name: recorder
+        description: "Who recorded the condition"
+      - name: asserter
+        description: "Who asserted this condition"
+      - name: stage
+        description: "Clinical stage of condition if applicable"
+      - name: evidence
+        description: "Supporting evidence for condition"
+      - name: note
+        description: "Additional clinical notes"
+      - name: icd10_code
+        description: "ICD-10 diagnosis code"
+        tests:
+          - not_null
+      - name: diagnosis_type
+        description: "Type of diagnosis (Principal/Secondaire)"
+      - name: diagnosis_label_fr
+        description: "Diagnosis label in French"
+      - name: icd10_chapter
+        description: "ICD-10 chapter classification"
+      - name: condition_severity
+        description: "Condition severity level"
+      - name: source_diagnostic_id
+        description: "Original diagnostic ID from source system"
+      - name: source_pmsi_id
+        description: "Original PMSI ID from source system"
+
+  - name: fhir_observation
+    description: |
+      FHIR R4 Observation resource compliant table containing laboratory results, vital signs, and lifestyle factors.
+      Uses LOINC coding system for standardized observation identification.
+      
+      **Business Purpose**: Provides comprehensive clinical observation data for monitoring and analysis.
+      **Update Frequency**: Real-time as lab results and vital signs are recorded.
+      **Data Quality**: High - all observations have valid LOINC codes and measured values.
+    columns:
+      - name: id
+        description: "FHIR Observation resource ID (unique identifier)"
+        tests:
+          - unique
+          - not_null
+      - name: resourceType
+        description: "FHIR resource type (always 'Observation')"
+        tests:
+          - accepted_values:
+              values: ['Observation']
+      - name: meta
+        description: "FHIR metadata including profile and last updated timestamp"
+      - name: identifier
+        description: "Observation identifiers in FHIR format"
+      - name: status
+        description: "Observation status (final/preliminary/amended)"
+        tests:
+          - accepted_values:
+              values: ['final', 'preliminary', 'amended', 'corrected', 'cancelled']
+      - name: category
+        description: "Observation category (laboratory/vital-signs/social-history)"
+        tests:
+          - not_null
+      - name: code
+        description: "LOINC observation code with display text"
+        tests:
+          - not_null
+      - name: subject
+        description: "Reference to Patient resource"
+        tests:
+          - not_null
+      - name: subject_id
+        description: "Patient ID for relationships"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter
+        description: "Reference to Encounter where observation was made"
+      - name: encounter_id
+        description: "Encounter ID for relationships"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: effectiveDateTime
+        description: "When observation was made"
+      - name: issued
+        description: "When observation was issued/reported"
+      - name: performer
+        description: "Who performed the observation"
+      - name: value
+        description: "Observation result value (Quantity/Boolean/String)"
+      - name: dataAbsentReason
+        description: "Why observation value is absent"
+      - name: interpretation
+        description: "Clinical interpretation of result (High/Low/Normal)"
+      - name: note
+        description: "Additional comments about observation"
+      - name: bodySite
+        description: "Body site where observation was made"
+      - name: method
+        description: "Method used to obtain observation"
+      - name: specimen
+        description: "Reference to specimen used"
+      - name: referenceRange
+        description: "Normal reference ranges for observation"
+      - name: hasMember
+        description: "Related observations (for grouped results)"
+      - name: component
+        description: "Component observations (for multi-part results)"
+      - name: observation_source
+        description: "Source system type (laboratory/vital-signs/social-history)"
+        tests:
+          - accepted_values:
+              values: ['laboratory', 'vital-signs', 'social-history']
+      - name: observation_category
+        description: "Observation category code"
+      - name: loinc_code
+        description: "LOINC code for observation"
+        tests:
+          - not_null
+      - name: display_name_fr
+        description: "Observation name in French"
+      - name: value_type
+        description: "Type of observation value"
+      - name: numeric_value
+        description: "Numeric value for quantitative observations"
+      - name: string_value
+        description: "String value for qualitative observations"
+      - name: boolean_value
+        description: "Boolean value for yes/no observations"
+      - name: value_unit
+        description: "Unit of measurement"
+      - name: performer_name
+        description: "Name of performing organization/person"
+
+  - name: fhir_procedure
+    description: |
+      FHIR R4 Procedure resource compliant table containing medical procedures and interventions.
+      Uses French CCAM coding system for procedure identification.
+      
+      **Business Purpose**: Tracks medical procedures for billing, quality metrics, and care coordination.
+      **Update Frequency**: Real-time as procedures are performed and documented.
+      **Data Quality**: High - all procedures have valid CCAM codes and clinical context.
+    columns:
+      - name: id
+        description: "FHIR Procedure resource ID (unique identifier)"
+        tests:
+          - unique
+          - not_null
+      - name: resourceType
+        description: "FHIR resource type (always 'Procedure')"
+        tests:
+          - accepted_values:
+              values: ['Procedure']
+      - name: meta
+        description: "FHIR metadata including profile and last updated timestamp"
+      - name: identifier
+        description: "Procedure identifiers in FHIR format"
+      - name: status
+        description: "Procedure status (completed/in-progress/not-done)"
+        tests:
+          - accepted_values:
+              values: ['completed', 'in-progress', 'not-done', 'stopped']
+      - name: category
+        description: "Procedure category (surgical/therapeutic/diagnostic)"
+      - name: code
+        description: "CCAM procedure code with display text"
+        tests:
+          - not_null
+      - name: subject
+        description: "Reference to Patient resource"
+        tests:
+          - not_null
+      - name: subject_id
+        description: "Patient ID for relationships"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter
+        description: "Reference to Encounter where procedure was performed"
+      - name: encounter_id
+        description: "Encounter ID for relationships"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: performed
+        description: "When procedure was performed"
+      - name: recorder
+        description: "Who recorded the procedure"
+      - name: asserter
+        description: "Who asserted procedure was performed"
+      - name: performer
+        description: "Who performed the procedure"
+      - name: location
+        description: "Where procedure was performed"
+      - name: reasonCode
+        description: "Reason procedure was performed"
+      - name: bodySite
+        description: "Body site where procedure was performed"
+      - name: outcome
+        description: "Procedure outcome"
+      - name: report
+        description: "Reference to procedure report"
+      - name: complication
+        description: "Procedure complications"
+      - name: followUp
+        description: "Required follow-up care"
+      - name: note
+        description: "Additional procedure notes"
+      - name: focalDevice
+        description: "Devices used in procedure"
+      - name: usedReference
+        description: "Equipment/medications used"
+      - name: ccam_code
+        description: "French CCAM procedure code"
+        tests:
+          - not_null
+      - name: procedure_label_fr
+        description: "Procedure description in French"
+      - name: procedure_category
+        description: "Category of procedure"
+      - name: procedure_date
+        description: "Date procedure was performed"
+      - name: source_acte_id
+        description: "Original procedure ID from source system"
+      - name: source_pmsi_id
+        description: "Original PMSI ID from source system"
+
+  - name: fhir_medication_request
+    description: |
+      FHIR R4 MedicationRequest resource compliant table containing medication prescriptions and orders.
+      Uses ATC (Anatomical Therapeutic Chemical) coding system for medication identification.
+      
+      **Business Purpose**: Provides medication management and prescription tracking for patient safety.
+      **Update Frequency**: Real-time as prescriptions are written and updated.
+      **Data Quality**: High - all medication requests have valid ATC codes and clinical context.
+    columns:
+      - name: id
+        description: "FHIR MedicationRequest resource ID (unique identifier)"
+        tests:
+          - unique
+          - not_null
+      - name: resourceType
+        description: "FHIR resource type (always 'MedicationRequest')"
+        tests:
+          - accepted_values:
+              values: ['MedicationRequest']
+      - name: meta
+        description: "FHIR metadata including profile and last updated timestamp"
+      - name: identifier
+        description: "Medication request identifiers in FHIR format"
+      - name: status
+        description: "Request status (active/completed/cancelled)"
+        tests:
+          - accepted_values:
+              values: ['active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown']
+      - name: intent
+        description: "Request intent (order/plan/proposal)"
+        tests:
+          - accepted_values:
+              values: ['proposal', 'plan', 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order', 'option']
+      - name: category
+        description: "Request category (inpatient/outpatient)"
+      - name: priority
+        description: "Request priority (routine/urgent)"
+      - name: medication
+        description: "ATC medication coding and display"
+        tests:
+          - not_null
+      - name: subject
+        description: "Reference to Patient resource"
+        tests:
+          - not_null
+      - name: subject_id
+        description: "Patient ID for relationships"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fhir_patient')
+              field: id
+      - name: encounter
+        description: "Reference to Encounter where prescribed"
+      - name: encounter_id
+        description: "Encounter ID for relationships"
+        tests:
+          - relationships:
+              to: ref('fhir_encounter')
+              field: id
+      - name: authoredOn
+        description: "When prescription was written"
+      - name: requester
+        description: "Who prescribed the medication"
+      - name: performer
+        description: "Who will administer/dispense"
+      - name: performerType
+        description: "Type of performer (nurse/pharmacist)"
+      - name: recorder
+        description: "Who recorded the prescription"
+      - name: reasonCode
+        description: "Reason for prescription"
+      - name: courseOfTherapyType
+        description: "Course of therapy (acute/continuous)"
+      - name: dosageInstruction
+        description: "How medication should be taken"
+      - name: dispenseRequest
+        description: "Dispensing instructions"
+      - name: substitution
+        description: "Generic substitution allowance"
+      - name: priorPrescription
+        description: "Reference to prior prescription"
+      - name: detectedIssue
+        description: "Drug interaction alerts"
+      - name: eventHistory
+        description: "Prescription event history"
+      - name: atc_code
+        description: "ATC medication classification code"
+        tests:
+          - not_null
+      - name: medication_name
+        description: "Medication name"
+      - name: route_of_administration
+        description: "Route of administration"
+      - name: route_display_fr
+        description: "Route display name in French"
+      - name: atc_therapeutic_category_fr
+        description: "ATC therapeutic category in French"
+      - name: prescription_date
+        description: "Date prescription was written"
+      - name: source_exposition_id
+        description: "Original medication exposure ID from source system"
+      - name: source_pmsi_id
+        description: "Original PMSI ID from source system"
+
+# Tests for data relationships and quality
+tests:
+  - name: test_patient_encounter_referential_integrity
+    description: "Verify all encounters reference valid patients"
+    
+  - name: test_condition_encounter_referential_integrity
+    description: "Verify all conditions reference valid encounters"
+    
+  - name: test_observation_patient_referential_integrity
+    description: "Verify all observations reference valid patients"
+    
+  - name: test_procedure_encounter_referential_integrity
+    description: "Verify all procedures reference valid encounters"
+    
+  - name: test_medication_request_patient_referential_integrity
+    description: "Verify all medication requests reference valid patients"
+    
+  - name: test_fhir_resource_id_uniqueness
+    description: "Verify all FHIR resource IDs are unique across resource types"
+    
+  - name: test_data_quality_metrics
+    description: "Monitor data quality scores and completeness metrics"

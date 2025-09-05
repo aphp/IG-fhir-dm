@@ -1,67 +1,5 @@
-# PostgreSQL Profile Configuration for EHR to FHIR Transform
-# Copy this file to ~/.dbt/profiles.yml and update with your connection details
-#
-# For more information on profiles, see:
-# https://docs.getdbt.com/docs/running-a-dbt-project/using-the-command-line-interface/connection-profiles
-
+# Simplified profiles configuration to avoid UTF-8 encoding issues
 ehr_fhir_transform:
-  target: dev
-  outputs:
-    
-    # Development environment - with environment variables
-    dev:
-      type: postgres
-      host: "{{ env_var('DBT_HOST', 'localhost') }}"  # Uses DBT_HOST or defaults to localhost
-      port: "{{ env_var('DBT_PORT', 5432) | int }}"   # Uses DBT_PORT or defaults to 5432
-      user: "{{ env_var('DBT_USER') }}"               # Required: set DBT_USER environment variable
-      pass: "{{ env_var('DBT_PASSWORD') }}"           # Required: set DBT_PASSWORD environment variable
-      dbname: "{{ env_var('DBT_DATABASE', 'fhir_dm') }}"
-      schema: "{{ env_var('DBT_SCHEMA', 'dbt_dev') }}"
-      threads: 4
-      keepalives_idle: 0
-      sslmode: prefer
-    
-    # Alternative: Development with direct values (less secure)
-    dev_direct:
-      type: postgres
-      host: localhost
-      port: 5432
-      user: postgres         # Replace with your username
-      pass: your_password    # Replace with your password
-      dbname: fhir_dm
-      schema: dbt_dev
-      threads: 4
-      keepalives_idle: 0
-      sslmode: prefer
-    
-    # Test environment
-    test:
-      type: postgres
-      host: "{{ env_var('TEST_HOST', 'localhost') }}"
-      port: "{{ env_var('TEST_PORT', 5432) | int }}"
-      user: "{{ env_var('TEST_USER', 'test_user') }}"
-      pass: "{{ env_var('TEST_PASSWORD') }}"
-      dbname: "{{ env_var('TEST_DATABASE', 'fhir_dm_test') }}"
-      schema: "{{ env_var('TEST_SCHEMA', 'dbt_test') }}"
-      threads: 2
-      keepalives_idle: 0
-      sslmode: prefer
-    
-    # Production environment
-    prod:
-      type: postgres
-      host: "{{ env_var('PROD_HOST') }}"
-      port: "{{ env_var('PROD_PORT', 5432) | int }}"
-      user: "{{ env_var('PROD_USER') }}"
-      pass: "{{ env_var('PROD_PASSWORD') }}"
-      dbname: "{{ env_var('PROD_DATABASE', 'fhir_dm_prod') }}"
-      schema: "{{ env_var('PROD_SCHEMA', 'fhir_semantic_layer') }}"
-      threads: 8
-      keepalives_idle: 0
-      sslmode: require  # Enforce SSL in production
-
-# Alternative profile name (for backward compatibility)
-transform_layer:
   target: dev
   outputs:
     dev:
@@ -70,8 +8,14 @@ transform_layer:
       port: "{{ env_var('DBT_PORT', 5432) | int }}"
       user: "{{ env_var('DBT_USER') }}"
       pass: "{{ env_var('DBT_PASSWORD') }}"
-      dbname: "{{ env_var('DBT_DATABASE', 'fhir_dm') }}"
-      schema: "{{ env_var('DBT_SCHEMA', 'dbt_dev') }}"
-      threads: 4
+      
+      # Default target database for transformations (data_core workspace)
+      dbname: "{{ env_var('DBT_DATABASE', 'data_core') }}"
+      schema: "{{ env_var('DBT_SCHEMA', 'dbt') }}"
+      threads: 1
       keepalives_idle: 0
-      sslmode: prefer
+      sslmode: disable
+      connect_timeout: 30
+      search_path: "{{ env_var('DBT_SCHEMA', 'dbt') }}"
+      # Use French locale to match database
+      options: "-c lc_messages=French_France.1252 -c client_encoding=UTF8"

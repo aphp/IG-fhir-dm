@@ -1,233 +1,239 @@
 version: 2
 
 models:
-  # Core intermediate models
-  - name: int_ehr__patient_fhir
-    description: >
-      Intermediate model transforming EHR patient data to FHIR Patient structure.
-      Implements the TransformPatient group from the FML mapping.
+  - name: int_patient_identifiers
+    description: |
+      Intermediate model for processing and validating French healthcare patient identifiers.
+      Consolidates INS (Identifiant National de Santé) and NIR (Numéro d'Inscription au Répertoire) 
+      identifiers according to French national standards.
+      
+      **Business Logic**: 
+      - Prioritizes INS over NIR as primary identifier
+      - Validates identifier formats and completeness
+      - Calculates data quality scores
+      - Prepares FHIR-compliant identifier structures
     columns:
       - name: patient_id
-        description: "FHIR Patient resource ID"
+        description: "Original patient identifier from EHR"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_patient_id
+        description: "FHIR-formatted patient resource ID"
+        tests:
+          - unique
+      - name: ins_identifier
+        description: "Validated INS identifier"
+      - name: nir_identifier
+        description: "Validated NIR identifier (13 digits)"
+      - name: primary_identifier_system
+        description: "OID system URI for primary identifier"
+      - name: primary_identifier_value
+        description: "Primary identifier value (INS > NIR > internal ID)"
         tests:
           - not_null
-          - unique
-      - name: identifiers
-        description: "FHIR Identifier array including INS-NIR and hospital IDs"
-      - name: names
-        description: "FHIR HumanName array"
-      - name: gender
-        description: "FHIR gender value (male/female/unknown)"
-      - name: birth_date
-        description: "FHIR birth date"
-      - name: deceased_date_time
-        description: "FHIR death date/time if applicable"
-      - name: multiple_birth_integer
-        description: "Multiple birth rank"
-      - name: addresses
-        description: "FHIR Address array"
-      - name: meta
-        description: "FHIR Meta object with DMPatient profile"
+      - name: fhir_address
+        description: "JSONB address structure for FHIR"
+      - name: fhir_position
+        description: "JSONB geographic position for FHIR"
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: data_quality_score
+        description: "Calculated quality score (0-10)"
+      - name: data_quality_level
+        description: "Quality level assessment"
+        tests:
+          - accepted_values:
+              values: ['high', 'medium', 'low']
+      - name: has_valid_identifier
+        description: "Flag for valid healthcare identifier presence"
+        tests:
+          - not_null
 
-  - name: int_ehr__encounter_fhir
-    description: >
-      Intermediate model transforming EHR PMSI data to FHIR Encounter structure.
-      Implements the TransformEncounter group from the FML mapping.
+  - name: int_encounter_episodes
+    description: |
+      Intermediate model for processing hospital encounters from French PMSI system.
+      Transforms PMSI episode data into FHIR-compliant encounter structures with
+      proper status determination and hospitalization details.
+      
+      **Business Logic**:
+      - Maps PMSI admission/discharge modes to FHIR encounter classes
+      - Calculates encounter status based on dates
+      - Structures hospitalization details for French healthcare context
+      - Links to validated patients only
     columns:
-      - name: encounter_id
-        description: "FHIR Encounter resource ID"
+      - name: pmsi_id
+        description: "Original PMSI episode identifier"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_encounter_id
+        description: "FHIR-formatted encounter resource ID"
+        tests:
+          - unique
+      - name: fhir_patient_id
+        description: "Reference to FHIR patient resource"
         tests:
           - not_null
-          - unique
-      - name: patient_reference
-        description: "Reference to FHIR Patient resource"
-      - name: identifiers
-        description: "FHIR Identifier array with PMSI ID"
-      - name: status
-        description: "FHIR Encounter status"
-      - name: class
-        description: "FHIR Encounter class coding"
-      - name: period
-        description: "FHIR Period for encounter duration"
-      - name: length
-        description: "FHIR Quantity for length of stay"
-      - name: hospitalization
-        description: "FHIR Encounter.hospitalization object"
-      - name: service_provider
-        description: "Reference to healthcare facility"
-      - name: locations
-        description: "FHIR Encounter.location array"
+      - name: encounter_status
+        description: "FHIR encounter status"
+        tests:
+          - accepted_values:
+              values: ['planned', 'in-progress', 'finished']
+      - name: encounter_class
+        description: "FHIR encounter class code"
+        tests:
+          - accepted_values:
+              values: ['IMP', 'AMB', 'EMER']
+      - name: fhir_period
+        description: "JSONB period structure for FHIR"
+        tests:
+          - not_null
+      - name: fhir_hospitalization
+        description: "JSONB hospitalization details for FHIR"
+      - name: fhir_location
+        description: "JSONB location array for FHIR"
+      - name: service_type_snomed
+        description: "SNOMED CT code for service type"
+      - name: encounter_priority
+        description: "Encounter priority level"
+        tests:
+          - accepted_values:
+              values: ['urgent', 'routine']
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: is_valid_encounter
+        description: "Overall validation flag"
+        tests:
+          - not_null
 
-  - name: int_ehr__condition_fhir
-    description: >
-      Intermediate model transforming EHR diagnostics to FHIR Condition structure.
-      Implements the TransformCondition group from the FML mapping.
+  - name: int_condition_mapping
+    description: |
+      Intermediate model for mapping diagnostic codes to FHIR conditions.
+      Processes ICD-10 codes with French healthcare context and clinical status mapping.
+      
+      **Business Logic**:
+      - Maps ICD-10 codes to FHIR condition categories
+      - Determines clinical and verification status
+      - Classifies by body systems and severity
+      - Links to validated encounters only
     columns:
-      - name: condition_id
-        description: "FHIR Condition resource ID"
+      - name: diagnostic_id
+        description: "Original diagnostic record identifier"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_condition_id
+        description: "FHIR-formatted condition resource ID"
+        tests:
+          - unique
+      - name: fhir_encounter_id
+        description: "Reference to FHIR encounter resource"
         tests:
           - not_null
-          - unique
-      - name: patient_reference
-        description: "Reference to FHIR Patient resource"
-      - name: encounter_reference
-        description: "Reference to FHIR Encounter resource"
-      - name: identifiers
-        description: "FHIR Identifier array with diagnostic ID"
-      - name: clinical_status
-        description: "FHIR CodeableConcept for clinical status"
-      - name: verification_status
-        description: "FHIR CodeableConcept for verification status"
-      - name: categories
-        description: "FHIR CodeableConcept array for condition categories"
-      - name: code
-        description: "FHIR CodeableConcept with ICD-10 code"
-      - name: recorded_date
-        description: "FHIR date when condition was recorded"
+      - name: fhir_patient_id
+        description: "Reference to FHIR patient resource"
+        tests:
+          - not_null
+      - name: fhir_code
+        description: "JSONB ICD-10 coding structure for FHIR"
+        tests:
+          - not_null
+      - name: fhir_category
+        description: "JSONB category array for FHIR"
+      - name: fhir_verification_status
+        description: "JSONB verification status for FHIR"
+      - name: fhir_clinical_status
+        description: "JSONB clinical status for FHIR"
+      - name: fhir_onset
+        description: "JSONB onset information for FHIR"
+      - name: icd10_chapter
+        description: "ICD-10 chapter classification"
+      - name: condition_severity
+        description: "Assessed condition severity"
+        tests:
+          - accepted_values:
+              values: ['mild', 'moderate', 'severe']
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: is_valid_condition
+        description: "Overall validation flag"
+        tests:
+          - not_null
 
-  - name: int_ehr__procedure_fhir
-    description: >
-      Intermediate model transforming EHR acts to FHIR Procedure structure.
-      Implements the TransformProcedure group from the FML mapping.
+  - name: int_observation_unified
+    description: |
+      Intermediate model unifying all observation types (laboratory, vital signs, lifestyle)
+      into consistent FHIR observation structures with proper LOINC coding.
+      
+      **Business Logic**:
+      - Unifies lab results, vital signs, and lifestyle observations
+      - Maps to appropriate LOINC codes
+      - Standardizes value types and units
+      - Calculates reference ranges for vital signs
+      - Handles multiple observation categories consistently
     columns:
-      - name: procedure_id
-        description: "FHIR Procedure resource ID"
+      - name: fhir_observation_id
+        description: "FHIR-formatted observation resource ID"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_patient_id
+        description: "Reference to FHIR patient resource"
         tests:
           - not_null
-          - unique
-      - name: patient_reference
-        description: "Reference to FHIR Patient resource"
-      - name: encounter_reference
-        description: "Reference to FHIR Encounter resource"
-      - name: identifiers
-        description: "FHIR Identifier array with procedure ID"
-      - name: status
-        description: "FHIR Procedure status"
-      - name: code
-        description: "FHIR CodeableConcept with CCAM code"
-      - name: performed_date_time
-        description: "FHIR dateTime when procedure was performed"
-      - name: performers
-        description: "FHIR Procedure.performer array"
+      - name: fhir_encounter_id
+        description: "Reference to FHIR encounter resource (nullable for lifestyle)"
+      - name: observation_source
+        description: "Source system type"
+        tests:
+          - accepted_values:
+              values: ['laboratory', 'vital-signs', 'social-history']
+      - name: observation_category
+        description: "FHIR observation category"
+        tests:
+          - accepted_values:
+              values: ['laboratory', 'vital-signs', 'social-history']
+      - name: loinc_code
+        description: "LOINC code for observation"
+        tests:
+          - not_null
+      - name: fhir_code
+        description: "JSONB LOINC coding structure for FHIR"
+        tests:
+          - not_null
+      - name: fhir_category
+        description: "JSONB category array for FHIR"
+        tests:
+          - not_null
+      - name: fhir_value
+        description: "JSONB value structure (Quantity/Boolean/String)"
+      - name: fhir_effective
+        description: "JSONB effective time structure"
+      - name: fhir_reference_range
+        description: "JSONB reference range array for vital signs"
+      - name: value_type
+        description: "Type of observation value"
+        tests:
+          - accepted_values:
+              values: ['Quantity', 'boolean', 'string']
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: is_valid_observation
+        description: "Overall validation flag"
+        tests:
+          - not_null
 
-  # Clinical intermediate models
-  - name: int_ehr__laboratory_observation_fhir
-    description: >
-      Intermediate model transforming EHR laboratory results to FHIR Observation structure.
-      Implements the TransformLabObservation group from the FML mapping.
-    columns:
-      - name: observation_id
-        description: "FHIR Observation resource ID"
-        tests:
-          - not_null
-          - unique
-      - name: patient_reference
-        description: "Reference to FHIR Patient resource"
-      - name: encounter_reference
-        description: "Reference to FHIR Encounter resource"
-      - name: identifiers
-        description: "FHIR Identifier array with laboratory ID"
-      - name: status
-        description: "FHIR Observation status"
-      - name: categories
-        description: "FHIR CodeableConcept array with 'laboratory' category"
-      - name: code
-        description: "FHIR CodeableConcept with LOINC code"
-      - name: effective_date_time
-        description: "FHIR dateTime for sample collection"
-      - name: value_quantity
-        description: "FHIR Quantity for numeric results"
-      - name: value_string
-        description: "FHIR string for text results"
-      - name: reference_ranges
-        description: "FHIR Observation.referenceRange array"
-      - name: performers
-        description: "FHIR Reference array to performing laboratory"
-      - name: notes
-        description: "FHIR Annotation array for comments"
-
-  - name: int_ehr__vital_signs_fhir
-    description: >
-      Intermediate model transforming EHR vital signs to multiple FHIR Observation structures.
-      Implements the TransformVitalSigns group from the FML mapping.
-    columns:
-      - name: observation_id
-        description: "FHIR Observation resource ID"
-        tests:
-          - not_null
-          - unique
-      - name: patient_reference
-        description: "Reference to FHIR Patient resource"
-      - name: encounter_reference
-        description: "Reference to FHIR Encounter resource"
-      - name: vital_sign_type
-        description: "Type of vital sign (weight, height, bp_systolic, bp_diastolic)"
-      - name: status
-        description: "FHIR Observation status"
-      - name: categories
-        description: "FHIR CodeableConcept array with 'vital-signs' category"
-      - name: code
-        description: "FHIR CodeableConcept with LOINC vital signs code"
-      - name: effective_date_time
-        description: "FHIR dateTime for measurement"
-      - name: value_quantity
-        description: "FHIR Quantity for measurement value"
-      - name: components
-        description: "FHIR Observation.component array for blood pressure"
-
-  - name: int_ehr__lifestyle_observation_fhir
-    description: >
-      Intermediate model transforming EHR lifestyle data to FHIR Observation structures.
-      Implements the TransformLifestyle group from the FML mapping.
-    columns:
-      - name: observation_id
-        description: "FHIR Observation resource ID"
-        tests:
-          - not_null
-          - unique
-      - name: patient_reference
-        description: "Reference to FHIR Patient resource"
-      - name: encounter_reference
-        description: "Reference to FHIR Encounter resource"
-      - name: lifestyle_type
-        description: "Type of lifestyle observation (tobacco, alcohol, substance, activity)"
-      - name: status
-        description: "FHIR Observation status"
-      - name: categories
-        description: "FHIR CodeableConcept array with 'social-history' category"
-      - name: code
-        description: "FHIR CodeableConcept with LOINC social history code"
-      - name: effective_date_time
-        description: "FHIR dateTime for data collection"
-      - name: value_codeable_concept
-        description: "FHIR CodeableConcept for lifestyle status"
-
-  # Medication intermediate models
-  - name: int_ehr__medication_request_fhir
-    description: >
-      Intermediate model transforming EHR medication exposures to FHIR MedicationRequest structure.
-      Implements the TransformMedicationRequest group from the FML mapping.
-    columns:
-      - name: medication_request_id
-        description: "FHIR MedicationRequest resource ID"
-        tests:
-          - not_null
-          - unique
-      - name: patient_reference
-        description: "Reference to FHIR Patient resource"
-      - name: encounter_reference
-        description: "Reference to FHIR Encounter resource"
-      - name: identifiers
-        description: "FHIR Identifier array with medication exposure ID"
-      - name: status
-        description: "FHIR MedicationRequest status"
-      - name: intent
-        description: "FHIR MedicationRequest intent"
-      - name: medication_codeable_concept
-        description: "FHIR CodeableConcept with ATC code"
-      - name: authored_on
-        description: "FHIR dateTime when prescription was authored"
-      - name: requester
-        description: "Reference to prescribing practitioner"
-      - name: dosage_instructions
-        description: "FHIR Dosage array for dosing instructions"
+# Test relationships between intermediate models
+tests:
+  - name: test_int_patient_identifier_uniqueness
+    description: "Verify patient identifiers are unique and properly formatted"
+    
+  - name: test_int_encounter_patient_relationship
+    description: "Verify all encounters link to valid processed patients"
+    
+  - name: test_int_condition_encounter_relationship
+    description: "Verify all conditions link to valid processed encounters"
+    
+  - name: test_int_observation_loinc_validity
+    description: "Verify all observations have valid LOINC codes"
