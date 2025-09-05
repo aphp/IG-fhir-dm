@@ -30,8 +30,8 @@ models:
         tests:
           - accepted_values:
               values: ['male', 'female', 'unknown']
-      - name: has_valid_nir
-        description: "Data quality flag: TRUE if NIR has valid format (13 digits)"
+      - name: has_nir
+        description: "Data quality flag: TRUE if NIR identifier is present"
       - name: has_ins
         description: "Data quality flag: TRUE if INS identifier is present"
       - name: has_location
