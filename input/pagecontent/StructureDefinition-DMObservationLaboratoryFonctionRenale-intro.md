@@ -17,7 +17,7 @@ Dans le tableau ci-dessous sont référencés tous les cas d'usages présents et
 
 <table style="width: 100%">
   <tr><th>Nom</th><th>Description</th></tr>
-  <tr><td><a href="use-core.html">Socles pour les EDSH</a></td><td>Les variables socles pour les EDSH.</td></tr>
+  <tr><td><a href="use-core-variables.html">Socles pour les EDSH</a></td><td>Les variables socles pour les EDSH.</td></tr>
 </table>
 
 ### Exemples
