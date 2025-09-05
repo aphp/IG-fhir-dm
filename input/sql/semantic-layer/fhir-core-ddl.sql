@@ -49,18 +49,18 @@
 -- ========================================================================
 
 -- Drop tables in reverse dependency order
-DROP TABLE IF EXISTS fhir_claim CASCADE;
+--DROP TABLE IF EXISTS fhir_claim CASCADE;
 DROP TABLE IF EXISTS fhir_medication_administration CASCADE;
 DROP TABLE IF EXISTS fhir_medication_request CASCADE;
 DROP TABLE IF EXISTS fhir_observation CASCADE;
 DROP TABLE IF EXISTS fhir_procedure CASCADE;
 DROP TABLE IF EXISTS fhir_condition CASCADE;
 DROP TABLE IF EXISTS fhir_encounter CASCADE;
-DROP TABLE IF EXISTS fhir_episode_of_care CASCADE;
-DROP TABLE IF EXISTS fhir_practitioner_role CASCADE;
-DROP TABLE IF EXISTS fhir_practitioner CASCADE;
-DROP TABLE IF EXISTS fhir_location CASCADE;
-DROP TABLE IF EXISTS fhir_organization CASCADE;
+--DROP TABLE IF EXISTS fhir_episode_of_care CASCADE;
+--DROP TABLE IF EXISTS fhir_practitioner_role CASCADE;
+--DROP TABLE IF EXISTS fhir_practitioner CASCADE;
+--DROP TABLE IF EXISTS fhir_location CASCADE;
+--DROP TABLE IF EXISTS fhir_organization CASCADE;
 DROP TABLE IF EXISTS fhir_patient CASCADE;
 
 -- ========================================================================
@@ -80,6 +80,8 @@ CREATE TABLE fhir_patient (
     -- Identifiers (multiple allowed)
     identifiers JSONB, -- Array of Identifier objects
 --    nss_identifier VARCHAR(50), -- NSS (Numéro de Sécurité Sociale) --cet identifier est problématique en terme d'expression de besoin
+    identifier JSONB, -- Array of Identifier objects
+    nss_identifier VARCHAR(50), -- NSS (Numéro de Sécurité Sociale)
     ins_nir_identifier VARCHAR(15), -- INS-NIR official identifier
     
     -- Names (multiple allowed)
@@ -95,7 +97,7 @@ CREATE TABLE fhir_patient (
     marital_status VARCHAR(4) CHECK (marital_status IN ('PACS', 'A', 'D', 'I', 'L', 'M', 'C', 'P', 'T', 'U', 'S', 'W', 'UNK')),
 
     -- Addresses (multiple allowed)
-    addresses JSONB, -- Array of Address objects
+    address JSONB, -- Array of Address objects
     address_extension_geolocation_latitude FLOAT,
     address_extension_geolocation_longitude FLOAT,
     address_extension_census_tract VARCHAR(255), -- concaténation du code et du libellé de l'iris dans l'extension (http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract)
@@ -132,7 +134,7 @@ CREATE TABLE fhir_patient (
     contained JSONB,
     extensions JSONB,
     modifier_extensions JSONB,  -- je suis plutôt pour que ces extensions soient dejsonifié, mais pour l'heure on n'en a pas.
-    
+
     -- Audit fields
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
@@ -1100,32 +1102,32 @@ CREATE INDEX idx_patient_gender ON fhir_patient(gender);
 CREATE INDEX idx_patient_active ON fhir_patient(active);
 
 -- Organization indexes
-CREATE INDEX idx_organization_identifiers ON fhir_organization USING GIN (identifiers);
-CREATE INDEX idx_organization_name ON fhir_organization(name);
-CREATE INDEX idx_organization_active ON fhir_organization(active);
-CREATE INDEX idx_organization_part_of ON fhir_organization(part_of_organization_id);
+--CREATE INDEX idx_organization_identifiers ON fhir_organization USING GIN (identifiers);
+--CREATE INDEX idx_organization_name ON fhir_organization(name);
+--CREATE INDEX idx_organization_active ON fhir_organization(active);
+--CREATE INDEX idx_organization_part_of ON fhir_organization(part_of_organization_id);
 
 -- Location indexes
-CREATE INDEX idx_location_managing_org ON fhir_location(managing_organization_id);
-CREATE INDEX idx_location_part_of ON fhir_location(part_of_location_id);
-CREATE INDEX idx_location_status ON fhir_location(status);
-CREATE INDEX idx_location_coordinates ON fhir_location(latitude, longitude) WHERE latitude IS NOT NULL AND longitude IS NOT NULL;
+--CREATE INDEX idx_location_managing_org ON fhir_location(managing_organization_id);
+--CREATE INDEX idx_location_part_of ON fhir_location(part_of_location_id);
+--CREATE INDEX idx_location_status ON fhir_location(status);
+--CREATE INDEX idx_location_coordinates ON fhir_location(latitude, longitude) WHERE latitude IS NOT NULL AND longitude IS NOT NULL;
 
 -- Practitioner indexes
-CREATE INDEX idx_practitioner_identifiers ON fhir_practitioner USING GIN (identifiers);
-CREATE INDEX idx_practitioner_family_name ON fhir_practitioner(family_name);
-CREATE INDEX idx_practitioner_active ON fhir_practitioner(active);
+--CREATE INDEX idx_practitioner_identifiers ON fhir_practitioner USING GIN (identifiers);
+--CREATE INDEX idx_practitioner_family_name ON fhir_practitioner(family_name);
+--CREATE INDEX idx_practitioner_active ON fhir_practitioner(active);
 
 -- PractitionerRole indexes
-CREATE INDEX idx_practitioner_role_practitioner ON fhir_practitioner_role(practitioner_id);
-CREATE INDEX idx_practitioner_role_organization ON fhir_practitioner_role(organization_id);
-CREATE INDEX idx_practitioner_role_active ON fhir_practitioner_role(active);
+--CREATE INDEX idx_practitioner_role_practitioner ON fhir_practitioner_role(practitioner_id);
+--CREATE INDEX idx_practitioner_role_organization ON fhir_practitioner_role(organization_id);
+--CREATE INDEX idx_practitioner_role_active ON fhir_practitioner_role(active);
 
 -- EpisodeOfCare indexes
-CREATE INDEX idx_episode_patient ON fhir_episode_of_care(patient_id);
-CREATE INDEX idx_episode_managing_org ON fhir_episode_of_care(managing_organization_id);
-CREATE INDEX idx_episode_status ON fhir_episode_of_care(status);
-CREATE INDEX idx_episode_period ON fhir_episode_of_care(period_start, period_end);
+--CREATE INDEX idx_episode_patient ON fhir_episode_of_care(patient_id);
+--CREATE INDEX idx_episode_managing_org ON fhir_episode_of_care(managing_organization_id);
+--CREATE INDEX idx_episode_status ON fhir_episode_of_care(status);
+--CREATE INDEX idx_episode_period ON fhir_episode_of_care(period_start, period_end);
 
 -- Encounter indexes
 CREATE INDEX idx_encounter_patient ON fhir_encounter(patient_id);
@@ -1180,339 +1182,13 @@ CREATE INDEX idx_med_admin_status ON fhir_medication_administration(status);
 CREATE INDEX idx_med_admin_effective ON fhir_medication_administration(effective_date_time);
 
 -- Claim indexes
-CREATE INDEX idx_claim_patient ON fhir_claim(patient_id);
-CREATE INDEX idx_claim_provider ON fhir_claim(provider_id);
-CREATE INDEX idx_claim_insurer ON fhir_claim(insurer_id);
-CREATE INDEX idx_claim_facility ON fhir_claim(facility_id);
-CREATE INDEX idx_claim_status ON fhir_claim(status);
-CREATE INDEX idx_claim_created ON fhir_claim(created);
-CREATE INDEX idx_claim_profile ON fhir_claim(claim_profile);
-
--- ========================================================================
--- PL/PGSQL VALIDATION FUNCTIONS FOR PROFILE CONSTRAINTS
--- ========================================================================
-
--- Function: Validate DMPatient profile constraints
-CREATE OR REPLACE FUNCTION validate_dm_patient() RETURNS TRIGGER AS $$
-BEGIN
-    -- Validate INS-NIR identifier format (13 digits)
-    IF NEW.ins_nir_identifier IS NOT NULL AND NEW.ins_nir_identifier !~ '^[0-9]{13}$' THEN
-        RAISE EXCEPTION 'INS-NIR identifier must be 13 digits: %', NEW.ins_nir_identifier;
-    END IF;
-    
-    -- Validate gender values according to French Core requirements
-    IF NEW.gender IS NOT NULL AND NEW.gender NOT IN ('male', 'female', 'unknown') THEN
-        RAISE EXCEPTION 'Invalid gender value for DMPatient: %', NEW.gender;
-    END IF;
-    
-    -- Validate birth date is not in the future
-    IF NEW.birth_date IS NOT NULL AND NEW.birth_date > CURRENT_DATE THEN
-        RAISE EXCEPTION 'Birth date cannot be in the future: %', NEW.birth_date;
-    END IF;
-    
-    -- Validate deceased constraints
-    IF NEW.deceased_boolean IS TRUE AND NEW.deceased_date_time IS NULL THEN
-        RAISE WARNING 'Patient marked as deceased but no death date provided';
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate DMEncounter profile constraints
-CREATE OR REPLACE FUNCTION validate_dm_encounter() RETURNS TRIGGER AS $$
-BEGIN
-    -- Validate patient reference exists
-    IF NEW.patient_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM fhir_patient WHERE id = NEW.patient_id) THEN
-        RAISE EXCEPTION 'Referenced patient does not exist: %', NEW.patient_id;
-    END IF;
-    
-    -- Validate period consistency
-    IF NEW.period_start IS NOT NULL AND NEW.period_end IS NOT NULL AND NEW.period_start > NEW.period_end THEN
-        RAISE EXCEPTION 'Encounter start time cannot be after end time';
-    END IF;
-    
-    -- Validate status transitions
-    IF TG_OP = 'UPDATE' AND OLD.status = 'finished' AND NEW.status != 'finished' THEN
-        RAISE EXCEPTION 'Cannot change status of finished encounter';
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate DMCondition profile constraints (CIM-10)
-CREATE OR REPLACE FUNCTION validate_dm_condition() RETURNS TRIGGER AS $$
-BEGIN
-    -- Validate patient reference exists
-    IF NEW.subject_patient_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM fhir_patient WHERE id = NEW.subject_patient_id) THEN
-        RAISE EXCEPTION 'Referenced patient does not exist: %', NEW.subject_patient_id;
-    END IF;
-    
-    -- Validate encounter reference if provided
-    IF NEW.encounter_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM fhir_encounter WHERE id = NEW.encounter_id) THEN
-        RAISE EXCEPTION 'Referenced encounter does not exist: %', NEW.encounter_id;
-    END IF;
-    
-    -- Validate onset/abatement consistency
-    IF NEW.onset_date_time IS NOT NULL AND NEW.abatement_date_time IS NOT NULL 
-       AND NEW.onset_date_time > NEW.abatement_date_time THEN
-        RAISE EXCEPTION 'Condition onset cannot be after abatement';
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate DMObservationLaboratory profile constraints
-CREATE OR REPLACE FUNCTION validate_dm_observation_laboratory() RETURNS TRIGGER AS $$
-BEGIN
-    -- Validate laboratory observations have required category
-    IF NEW.observation_profile = 'laboratory' THEN
-        IF NEW.categories IS NULL OR NOT (NEW.categories::text LIKE '%"laboratory"%') THEN
-            RAISE EXCEPTION 'Laboratory observations must have laboratory category';
-        END IF;
-    END IF;
-    
-    -- Validate LOINC codes for laboratory observations
-    IF NEW.observation_profile = 'laboratory' AND NEW.code IS NOT NULL THEN
-        IF NOT (NEW.code::text LIKE '%"http://loinc.org"%') THEN
-            RAISE EXCEPTION 'Laboratory observations should use LOINC codes';
-        END IF;
-    END IF;
-    
-    -- Validate value constraints
-    IF NEW.observation_profile = 'laboratory' AND NEW.status = 'final' THEN
-        IF NEW.value_quantity IS NULL AND NEW.value_codeable_concept IS NULL 
-           AND NEW.value_string IS NULL AND NEW.data_absent_reason IS NULL THEN
-            RAISE EXCEPTION 'Final laboratory observations must have a value or data absent reason';
-        END IF;
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate DMObservationVitalSigns profile constraints
-CREATE OR REPLACE FUNCTION validate_dm_observation_vital_signs() RETURNS TRIGGER AS $$
-BEGIN
-    -- Validate vital signs have required category
-    IF NEW.observation_profile = 'vital-signs' THEN
-        IF NEW.categories IS NULL OR NOT (NEW.categories::text LIKE '%"vital-signs"%') THEN
-            RAISE EXCEPTION 'Vital sign observations must have vital-signs category';
-        END IF;
-    END IF;
-    
-    -- Validate specific vital sign ranges
-    IF NEW.vital_sign_type = 'body_weight' AND NEW.value_quantity IS NOT NULL THEN
-        DECLARE
-            weight_value DECIMAL;
-        BEGIN
-            weight_value := (NEW.value_quantity->>'value')::DECIMAL;
-            IF weight_value <= 0 OR weight_value > 1000 THEN
-                RAISE EXCEPTION 'Body weight must be between 0 and 1000 kg: %', weight_value;
-            END IF;
-        END;
-    END IF;
-    
-    IF NEW.vital_sign_type = 'body_height' AND NEW.value_quantity IS NOT NULL THEN
-        DECLARE
-            height_value DECIMAL;
-        BEGIN
-            height_value := (NEW.value_quantity->>'value')::DECIMAL;
-            IF height_value <= 0 OR height_value > 300 THEN
-                RAISE EXCEPTION 'Body height must be between 0 and 300 cm: %', height_value;
-            END IF;
-        END;
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate DMMedicationRequest profile constraints
-CREATE OR REPLACE FUNCTION validate_dm_medication_request() RETURNS TRIGGER AS $$
-BEGIN
-    -- Validate patient reference exists
-    IF NEW.subject_patient_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM fhir_patient WHERE id = NEW.subject_patient_id) THEN
-        RAISE EXCEPTION 'Referenced patient does not exist: %', NEW.subject_patient_id;
-    END IF;
-    
-    -- Validate medication is specified
-    IF NEW.medication_codeable_concept IS NULL AND NEW.medication_reference_id IS NULL THEN
-        RAISE EXCEPTION 'Medication must be specified either as CodeableConcept or Reference';
-    END IF;
-    
-    -- Validate status and intent combination
-    IF NEW.status = 'active' AND NEW.intent NOT IN ('order', 'original-order', 'plan') THEN
-        RAISE EXCEPTION 'Active medication requests must have appropriate intent';
-    END IF;
-    
-    -- Validate dosage instructions for active prescriptions
-    IF NEW.status = 'active' AND (NEW.dosage_instructions IS NULL OR NEW.dosage_instructions = '[]'::jsonb) THEN
-        RAISE WARNING 'Active medication request should have dosage instructions';
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate DMProcedure profile constraints
-CREATE OR REPLACE FUNCTION validate_dm_procedure() RETURNS TRIGGER AS $$
-BEGIN
-    -- Validate patient reference exists
-    IF NEW.subject_patient_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM fhir_patient WHERE id = NEW.subject_patient_id) THEN
-        RAISE EXCEPTION 'Referenced patient does not exist: %', NEW.subject_patient_id;
-    END IF;
-    
-    -- Validate encounter reference if provided
-    IF NEW.encounter_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM fhir_encounter WHERE id = NEW.encounter_id) THEN
-        RAISE EXCEPTION 'Referenced encounter does not exist: %', NEW.encounter_id;
-    END IF;
-    
-    -- Validate performed timing
-    IF NEW.performed_date_time IS NOT NULL AND NEW.performed_date_time > CURRENT_TIMESTAMP THEN
-        RAISE EXCEPTION 'Procedure performed time cannot be in the future';
-    END IF;
-    
-    -- Validate status consistency
-    IF NEW.status = 'completed' AND NEW.performed_date_time IS NULL AND NEW.performed_period IS NULL THEN
-        RAISE EXCEPTION 'Completed procedures must have performed timing';
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate reference integrity across FHIR resources
-CREATE OR REPLACE FUNCTION validate_fhir_references() RETURNS TRIGGER AS $$
-DECLARE
-    ref_table TEXT;
-    ref_id TEXT;
-    ref_exists BOOLEAN;
-BEGIN
-    -- Generic reference validation for common patterns
-    -- This function can be extended for specific reference validation needs
-    
-    -- Validate organization references
-    IF NEW.managing_organization_id IS NOT NULL THEN
-        IF NOT EXISTS (SELECT 1 FROM fhir_organization WHERE id = NEW.managing_organization_id) THEN
-            RAISE EXCEPTION 'Referenced organization does not exist: %', NEW.managing_organization_id;
-        END IF;
-    END IF;
-    
-    -- Validate location references
-    IF NEW.part_of_location_id IS NOT NULL THEN
-        IF NOT EXISTS (SELECT 1 FROM fhir_location WHERE id = NEW.part_of_location_id) THEN
-            RAISE EXCEPTION 'Referenced location does not exist: %', NEW.part_of_location_id;
-        END IF;
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- ========================================================================
--- TRIGGER DEFINITIONS
--- ========================================================================
-
--- Patient validation triggers
-CREATE TRIGGER validate_patient_before_insert_update
-    BEFORE INSERT OR UPDATE ON fhir_patient
-    FOR EACH ROW EXECUTE FUNCTION validate_dm_patient();
-
--- Encounter validation triggers
-CREATE TRIGGER validate_encounter_before_insert_update
-    BEFORE INSERT OR UPDATE ON fhir_encounter
-    FOR EACH ROW EXECUTE FUNCTION validate_dm_encounter();
-
--- Condition validation triggers
-CREATE TRIGGER validate_condition_before_insert_update
-    BEFORE INSERT OR UPDATE ON fhir_condition
-    FOR EACH ROW EXECUTE FUNCTION validate_dm_condition();
-
--- Observation validation triggers
-CREATE TRIGGER validate_observation_laboratory_before_insert_update
-    BEFORE INSERT OR UPDATE ON fhir_observation
-    FOR EACH ROW WHEN (NEW.observation_profile = 'laboratory')
-    EXECUTE FUNCTION validate_dm_observation_laboratory();
-
-CREATE TRIGGER validate_observation_vital_signs_before_insert_update
-    BEFORE INSERT OR UPDATE ON fhir_observation
-    FOR EACH ROW WHEN (NEW.observation_profile = 'vital-signs')
-    EXECUTE FUNCTION validate_dm_observation_vital_signs();
-
--- MedicationRequest validation triggers
-CREATE TRIGGER validate_medication_request_before_insert_update
-    BEFORE INSERT OR UPDATE ON fhir_medication_request
-    FOR EACH ROW EXECUTE FUNCTION validate_dm_medication_request();
-
--- Procedure validation triggers
-CREATE TRIGGER validate_procedure_before_insert_update
-    BEFORE INSERT OR UPDATE ON fhir_procedure
-    FOR EACH ROW EXECUTE FUNCTION validate_dm_procedure();
-
--- Reference validation triggers for tables with references
-CREATE TRIGGER validate_organization_references
-    BEFORE INSERT OR UPDATE ON fhir_organization
-    FOR EACH ROW EXECUTE FUNCTION validate_fhir_references();
-
-CREATE TRIGGER validate_location_references
-    BEFORE INSERT OR UPDATE ON fhir_location
-    FOR EACH ROW EXECUTE FUNCTION validate_fhir_references();
-
--- ========================================================================
--- UTILITY FUNCTIONS
--- ========================================================================
-
--- Function: Extract identifier value by system
-CREATE OR REPLACE FUNCTION get_identifier_value(identifiers JSONB, system_url TEXT)
-RETURNS TEXT AS $$
-DECLARE
-    identifier JSONB;
-BEGIN
-    FOR identifier IN SELECT jsonb_array_elements(identifiers)
-    LOOP
-        IF identifier->>'system' = system_url THEN
-            RETURN identifier->>'value';
-        END IF;
-    END LOOP;
-    RETURN NULL;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Extract coding from CodeableConcept
-CREATE OR REPLACE FUNCTION get_coding_code(codeable_concept JSONB, system_url TEXT)
-RETURNS TEXT AS $$
-DECLARE
-    coding JSONB;
-BEGIN
-    FOR coding IN SELECT jsonb_array_elements(codeable_concept->'coding')
-    LOOP
-        IF coding->>'system' = system_url THEN
-            RETURN coding->>'code';
-        END IF;
-    END LOOP;
-    RETURN NULL;
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Validate FHIR ID format
-CREATE OR REPLACE FUNCTION is_valid_fhir_id(id_value TEXT)
-RETURNS BOOLEAN AS $$
-BEGIN
-    -- FHIR ID regex: [A-Za-z0-9\-\.]{1,64}
-    RETURN id_value ~ '^[A-Za-z0-9\-\.]{1,64}$';
-END;
-$$ LANGUAGE plpgsql;
-
--- Function: Generate FHIR-compliant UUID
-CREATE OR REPLACE FUNCTION generate_fhir_id()
-RETURNS TEXT AS $$
-BEGIN
-    RETURN REPLACE(gen_random_uuid()::TEXT, '-', '');
-END;
-$$ LANGUAGE plpgsql;
+--CREATE INDEX idx_claim_patient ON fhir_claim(patient_id);
+--CREATE INDEX idx_claim_provider ON fhir_claim(provider_id);
+--CREATE INDEX idx_claim_insurer ON fhir_claim(insurer_id);
+--CREATE INDEX idx_claim_facility ON fhir_claim(facility_id);
+--CREATE INDEX idx_claim_status ON fhir_claim(status);
+--CREATE INDEX idx_claim_created ON fhir_claim(created);
+--CREATE INDEX idx_claim_profile ON fhir_claim(claim_profile);
 
 -- ========================================================================
 -- COMMENTS ON TABLES AND COLUMNS
@@ -1535,8 +1211,8 @@ COMMENT ON COLUMN fhir_observation.laboratory_type IS 'Laboratory subtype: uremi
 COMMENT ON TABLE fhir_medication_request IS 'FHIR MedicationRequest resource (DMMedicationRequest profile) - Medication prescriptions';
 COMMENT ON COLUMN fhir_medication_request.medication_codeable_concept IS 'Medication coded with ATC or other standard codes';
 
-COMMENT ON TABLE fhir_claim IS 'FHIR Claim resource - Generic table for PMSI billing data (DMClaimPMSI, DMClaimPMSIMCO, DMClaimRUM profiles)';
-COMMENT ON COLUMN fhir_claim.claim_profile IS 'Claim profile type: pmsi, pmsi_mco, rum';
+--COMMENT ON TABLE fhir_claim IS 'FHIR Claim resource - Generic table for PMSI billing data (DMClaimPMSI, DMClaimPMSIMCO, DMClaimRUM profiles)';
+--COMMENT ON COLUMN fhir_claim.claim_profile IS 'Claim profile type: pmsi, pmsi_mco, rum';
 
 -- ========================================================================
 -- SCHEMA CREATION COMPLETED

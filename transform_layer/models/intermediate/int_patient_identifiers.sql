@@ -30,26 +30,13 @@ identifier_processing as (
         case 
             when has_ins and length(ins) > 0 then ins
             else null
-        end as ins_identifier,
+        end as ins_nir_identifier,
         
         -- NIR (Numéro d'Inscription au Répertoire) - secondary identifier
         case 
-            when has_valid_nir and length(nir) = 13 then nir
+            when has_nir and length(nir) > 0 then nir
             else null
-        end as nir_identifier,
-        
-        -- Identifier system URIs for FHIR
-        case 
-            when has_ins and length(ins) > 0 then 'urn:oid:1.2.250.1.213.1.4.10'  -- INS OID
-            when has_valid_nir and length(nir) = 13 then 'urn:oid:1.2.250.1.213.1.4.2'  -- NIR OID
-            else null
-        end as primary_identifier_system,
-        
-        case 
-            when has_ins and length(ins) > 0 then ins
-            when has_valid_nir and length(nir) = 13 then nir
-            else fhir_patient_id  -- Fallback to internal ID
-        end as primary_identifier_value,
+        end as nss_identifier,
         
         -- Address components for FHIR
         case 
@@ -77,7 +64,7 @@ identifier_processing as (
         -- Data quality scoring
         (
             case when has_ins then 3 else 0 end +
-            case when has_valid_nir then 2 else 0 end +
+            case when has_nir then 2 else 0 end +
             case when family_name is not null then 1 else 0 end +
             case when given_name is not null then 1 else 0 end +
             case when birth_date is not null then 1 else 0 end +
@@ -87,10 +74,9 @@ identifier_processing as (
         
         -- FHIR meta information
         jsonb_build_object(
-            'versionId', '1',
             'lastUpdated', to_char(current_timestamp, 'YYYY-MM-DD"T"HH24:MI:SS"Z"'),
             'source', 'ehr-system',
-            'profile', array['http://interopsante.org/fhir/StructureDefinition/FrPatient']
+            'profile', array['https://aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient']
         ) as fhir_meta
         
     from patient_base
@@ -99,7 +85,7 @@ identifier_processing as (
 select 
     *,
     -- Final validation flags
-    case when primary_identifier_system is not null then true else false end as has_valid_identifier,
+    case when ins_nir_identifier is not null then true else false end as has_valid_identifier,
     case when data_quality_score >= 5 then 'high' 
          when data_quality_score >= 3 then 'medium' 
          else 'low' 

@@ -22,16 +22,10 @@ models:
         description: "FHIR-formatted patient resource ID"
         tests:
           - unique
-      - name: ins_identifier
-        description: "Validated INS identifier"
-      - name: nir_identifier
-        description: "Validated NIR identifier (13 digits)"
-      - name: primary_identifier_system
-        description: "OID system URI for primary identifier"
-      - name: primary_identifier_value
-        description: "Primary identifier value (INS > NIR > internal ID)"
-        tests:
-          - not_null
+      - name: ins_nir_identifier
+        description: "Value of INS-NIR"
+      - name: nss_identifier
+        description: "Secu number"
       - name: fhir_address
         description: "JSONB address structure for FHIR"
       - name: fhir_position

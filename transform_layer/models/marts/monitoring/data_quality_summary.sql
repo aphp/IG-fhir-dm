@@ -15,7 +15,7 @@ with patient_quality as (
         count(case when data_quality_level = 'medium' then 1 end) as medium_quality_count,
         count(case when data_quality_level = 'low' then 1 end) as low_quality_count,
         avg(data_quality_score) as avg_quality_score,
-        count(case when has_valid_nir then 1 end) as valid_nir_count,
+        count(case when has_nss then 1 end) as nss_count,
         count(case when has_ins then 1 end) as ins_count,
         count(case when has_location then 1 end) as location_count,
         count(case when identifier is not null then 1 end) as identifier_count
@@ -34,7 +34,7 @@ encounter_quality as (
         count(case when hospitalization is not null then 1 end) as hospitalization_count,
         avg(length_of_stay_days) as avg_length_of_stay,
         null::decimal as avg_quality_score,
-        null::bigint as valid_nir_count,
+        null::bigint as nss_count,
         null::bigint as ins_count,
         null::bigint as location_count,
         count(*) as identifier_count
@@ -53,7 +53,7 @@ condition_quality as (
         count(case when severity is not null then 1 end) as severity_count,
         null::decimal as avg_length_of_stay,
         null::decimal as avg_quality_score,
-        null::bigint as valid_nir_count,
+        null::bigint as nss_count,
         null::bigint as ins_count,
         null::bigint as location_count,
         count(*) as identifier_count
@@ -72,7 +72,7 @@ observation_quality as (
         count(case when performer is not null then 1 end) as performer_count,
         null::decimal as avg_length_of_stay,
         null::decimal as avg_quality_score,
-        null::bigint as valid_nir_count,
+        null::bigint as nss_count,
         null::bigint as ins_count,
         null::bigint as location_count,
         count(*) as identifier_count
@@ -91,7 +91,7 @@ procedure_quality as (
         count(case when outcome is not null then 1 end) as outcome_count,
         null::decimal as avg_length_of_stay,
         null::decimal as avg_quality_score,
-        null::bigint as valid_nir_count,
+        null::bigint as nss_count,
         null::bigint as ins_count,
         null::bigint as location_count,
         count(*) as identifier_count
@@ -110,7 +110,7 @@ medication_request_quality as (
         count(case when requester is not null then 1 end) as requester_count,
         null::decimal as avg_length_of_stay,
         null::decimal as avg_quality_score,
-        null::bigint as valid_nir_count,
+        null::bigint as nss_count,
         null::bigint as ins_count,
         null::bigint as location_count,
         count(*) as identifier_count
@@ -125,7 +125,7 @@ unified_metrics as (
         medium_quality_count as medium_quality_records,
         low_quality_count as low_quality_records,
         avg_quality_score,
-        valid_nir_count,
+        nss_count,
         ins_count,
         location_count,
         identifier_count,
@@ -141,7 +141,7 @@ unified_metrics as (
         active_count as medium_quality_records,
         total_records - coalesce(completed_count, 0) - coalesce(active_count, 0) as low_quality_records,
         avg_quality_score,
-        valid_nir_count,
+        nss_count,
         ins_count,
         location_count,
         identifier_count,
@@ -157,7 +157,7 @@ unified_metrics as (
         verification_status_count as medium_quality_records,
         total_records - coalesce(clinical_status_count, 0) - coalesce(verification_status_count, 0) as low_quality_records,
         avg_quality_score,
-        valid_nir_count,
+        nss_count,
         ins_count,
         location_count,
         identifier_count,
@@ -173,7 +173,7 @@ unified_metrics as (
         valid_code_count as medium_quality_records,
         total_records - coalesce(final_status_count, 0) - coalesce(valid_code_count, 0) as low_quality_records,
         avg_quality_score,
-        valid_nir_count,
+        nss_count,
         ins_count,
         location_count,
         identifier_count,
@@ -189,7 +189,7 @@ unified_metrics as (
         valid_code_count as medium_quality_records,
         total_records - coalesce(completed_count, 0) - coalesce(valid_code_count, 0) as low_quality_records,
         avg_quality_score,
-        valid_nir_count,
+        nss_count,
         ins_count,
         location_count,
         identifier_count,
@@ -205,7 +205,7 @@ unified_metrics as (
         valid_code_count as medium_quality_records,
         total_records - coalesce(active_count, 0) - coalesce(valid_code_count, 0) as low_quality_records,
         avg_quality_score,
-        valid_nir_count,
+        nss_count,
         ins_count,
         location_count,
         identifier_count,
@@ -225,10 +225,10 @@ select
     round(avg_quality_score, 2) as avg_quality_score,
     identifier_count,
     round((identifier_count::decimal / total_records * 100), 2) as identifier_completeness_pct,
-    valid_nir_count,
+    nss_count,
     case 
-        when valid_nir_count is not null 
-        then round((valid_nir_count::decimal / total_records * 100), 2)
+        when nss_count is not null 
+        then round((nss_count::decimal / total_records * 100), 2)
         else null 
     end as nir_completeness_pct,
     ins_count,

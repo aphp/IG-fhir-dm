@@ -24,30 +24,33 @@ fhir_patient as (
         jsonb_build_array(
             jsonb_build_object(
                 'use', 'official',
-                'system', primary_identifier_system,
-                'value', primary_identifier_value
+                'system', 'urn:oid:1.2.250.1.213.1.4.8',
+                'value', ins_nir_identifier
             ) ||
-            case when primary_identifier_system = 'urn:oid:1.2.250.1.213.1.4.10' 
-                then jsonb_build_object('type', jsonb_build_object(
-                    'coding', jsonb_build_array(
-                        jsonb_build_object(
-                            'system', 'http://interopsante.org/fhir/CodeSystem/fr-v2-0203',
-                            'code', 'INS-C',
-                            'display', 'Identifiant National de Santé Calculé'
-                        )
+            jsonb_build_object('type', jsonb_build_object(
+                'coding', jsonb_build_array(
+                    jsonb_build_object(
+                        'system', 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203',
+                        'code', 'INS-NIR'
                     )
-                ))
-                else jsonb_build_object('type', jsonb_build_object(
-                    'coding', jsonb_build_array(
-                        jsonb_build_object(
-                            'system', 'http://interopsante.org/fhir/CodeSystem/fr-v2-0203',
-                            'code', 'NIR',
-                            'display', 'Numéro d''Inscription au Répertoire'
-                        )
+                )
+            )),
+            jsonb_build_object(
+                'use', 'official',
+                'system', 'urn:oid:1.2.250.1.213.1.4.8',
+                'value', nss_identifier
+            ) ||
+            jsonb_build_object('type', jsonb_build_object(
+                'coding', jsonb_build_array(
+                    jsonb_build_object(
+                        'system', 'http://terminology.hl7.org/CodeSystem/v2-0203',
+                        'code', 'NH'
                     )
-                ))
-            end
+                )
+            ))
         ) as identifier,
+        ins_nir_identifier,
+        nss_identifier,
         
         -- Active status (assuming all patients are active)
         true as active,
@@ -60,7 +63,8 @@ fhir_patient as (
                 'given', jsonb_build_array(given_name)
             )
         ) as name,
-        
+        family_name,
+
         -- Gender (FHIR administrative gender)
         gender,
         
@@ -112,8 +116,8 @@ fhir_patient as (
         -- Data quality and audit fields
         data_quality_level,
         data_quality_score,
-        case when nir_identifier is not null then true else false end as has_valid_nir,
-        case when ins_identifier is not null then true else false end as has_ins,
+        case when nss_identifier is not null then true else false end as has_nss,
+        case when ins_nir_identifier is not null then true else false end as has_ins,
         case when latitude is not null and longitude is not null then true else false end as has_location,
         extracted_at,
         current_timestamp as last_updated,
@@ -130,8 +134,11 @@ select
     resourceType,
     meta,
     identifier,
+    ins_nir_identifier,
+    nss_identifier,
     active,
     name,
+    family_name,
     gender,
     birthDate,
     address,
@@ -142,7 +149,7 @@ select
     -- Audit and quality fields
     data_quality_level,
     data_quality_score,
-    has_valid_nir,
+    has_nss,
     has_ins,
     has_location,
     source_patient_id,

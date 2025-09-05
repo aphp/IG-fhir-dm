@@ -19,7 +19,10 @@
       "Bash(dir)",
       "Bash(mkdir:*)",
       "Bash(powershell:*)",
-      "Bash(psql:*)"
+      "Bash(psql:*)",
+      "Bash(python test_connection.py:*)",
+      "Bash(pip install:*)",
+      "Bash(pip --version)"
     ],
     "deny": [],
     "ask": []
