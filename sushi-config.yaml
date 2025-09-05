@@ -23,16 +23,36 @@ dependencies:
 pages:
   index.md:
     title: Accueil
-  data-dictionary.md:
-    title: Dictionnaire des données
-  use-case.md:
-    title: Usages
-    use-core.md:
-      title: Variables socles
   data-management.md:
     title: Gestion des données
     best-practice.md:
       title: Bonnes pratiques
+  data-plateform.md:
+    title: La plateforme Data
+    data-plateform-ehr.md:
+      title: Dossier Patient Informatisé (DPI)
+    data-plateform-semantic-layer.md:
+      title: Hub d'intégtation (couche sémantique)
+    data-plateform-transform-layer.md:
+      title: La couche de transformation
+    data-plateform-share-layer.md:
+      title: La couche de partage
+    data-plateform-eds.md:
+      title: Entrepôt de Données de Santé (CNIL)
+  use-case.md:
+    title: Usages
+    use-core-variables.md:
+      title: Variables socles pour les EDSH
+      use-core-variables-process.md:
+        title: Standardisation de données au format FHIR
+        use-core-variables-knowledge-acquisition.md:
+          title: Acquisition des connaissances
+        use-core-variables-knowledge-formalization.md:
+          title: Formalisation des connaissances
+        use-core-variables-knowledge-standardization.md:
+          title: Standardisation des connaissances
+      use-core-variables-evaluation.md:
+        title: Evaluation
   other.md:
     title: Autre
     help.md:
@@ -46,10 +66,9 @@ pages:
 
 menu:
   Accueil: index.html
-  Dictionnaire des données: data-dictionary.html
-  Variables socles: use-core.html
   Gestion des données: data-management.html
-  Bonnes pratiques: best-practice.html
+  La plateforme Data: data-plateform.html
+  Variables du socle: use-core-variables.html
   Ressources de conformité: artifacts.html
   Autres:
     Aide: help.html
@@ -64,6 +83,7 @@ parameters:  # see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-pa
     - ../../input/data/expansion-params.json # for using French SNOMED CT Extension
   path-resource:
     - input/resources/usages/core
+    - input/fml
     - input/fml/usages/core
 
 # The instanceOptions property is used to configure certain aspects of how SUSHI processes instances.

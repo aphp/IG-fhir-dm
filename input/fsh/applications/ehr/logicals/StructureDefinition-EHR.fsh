@@ -54,8 +54,8 @@ Maps to SQL table: patient
 // ========================================================================
 // PATIENT_ADDRESSE TABLE
 // ========================================================================
-* patientAddresse 0..* BackboneElement "Adresses des patients" "Depuis la table patient_addresse"
-  * patientAddresseId 1..1 id "Patient address identifier" "Unique identifier"
+* patientAddress 0..* BackboneElement "Adresses des patients" "Depuis la table patient_addresse"
+  * patientAddressId 1..1 id "Patient address identifier" "Unique identifier"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * latitude 0..1 decimal "Latitude" "Latitude - linkId: 3709843054556"
   * longitude 0..1 decimal "Longitude" "Longitude - linkId: 7651448032665"
@@ -95,11 +95,12 @@ Maps to SQL table: donnees_pmsi
 // DIAGNOSTICS TABLE
 // ========================================================================
 
-* diagnostics 0..* BackboneElement "Diagnostics" """
+* diagnostic 0..* BackboneElement "Diagnostic" """
 Diagnostic codes and information using ICD-10/CIM-10 classifications.
-Based on linkId: 9391816419630. Maps to SQL table: diagnostics
+Based on linkId: 9391816419630. Maps to SQL table: diagnostic
 """
   * diagnosticId 1..1 id "Diagnostic ID" "Unique diagnostic identifier (diagnostic_id)"
+  * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * pmsiId 1..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * codeDiagnostic 1..1 string "Diagnostic Code" "Code diagnostic ICD-10/CIM-10 (code_diagnostic)"
   * typeDiagnostic 0..1 string "Diagnostic Type" "Type de diagnostic (type_diagnostic)"
@@ -112,11 +113,12 @@ Based on linkId: 9391816419630. Maps to SQL table: diagnostics
 // ACTES TABLE
 // ========================================================================
 
-* actes 0..* BackboneElement "Medical Acts" """
+* acte 0..* BackboneElement "Medical Acts" """
 Medical procedures and acts using CCAM classifications.
 Based on linkId: 591926901726. Maps to SQL table: actes
 """
   * acteId 1..1 id "Act ID" "Unique act identifier (acte_id)"
+  * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * pmsiId 1..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * codeActe 1..1 string "Act Code" "Code acte CCAM (code_acte)"
   * libelleActe 0..1 string "Act Label" "Libellé de l'acte (libelle_acte)"
@@ -174,20 +176,19 @@ Based on linkId: 817801935685. Maps to SQL table: prescription
 // POSOLOGIE TABLE
 // ========================================================================
 
-* posologie 0..* BackboneElement "Posology" """
+  * posologie 0..* BackboneElement "Posology" """
 Detailed dosing information. Based on linkId: 6348237104421.
 Maps to SQL table: posologie
 """
-  * posologieId 1..1 id "Posology ID" "Unique posology identifier (posologie_id)"
-  * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
-  * prescriptionId 1..1 id "Prescription ID" "Foreign key to prescription (prescription_id)"
-  * nombrePrisesParJour 0..1 integer "Daily Intakes" "Nombre prises par jour (nombre_prises_par_jour)"
-  * quantite 0..1 decimal "quantité de médicament prise" "à correler avec l'unité"
-  * uniteQuantite 0..1 string "Unité de la quantité" "Si possible en UCUM, sinon en Standard terms"
-  * dateHeureDebut 0..1 dateTime "DateHeure de début de prise" "Date de la prise si prise 'instantanée'"
-  * dateHeureFin 0..1 dateTime "DateHeure de fin de prise"  "DateHeure de fin de prise"
-  * createdAt 1..1 dateTime "Created At" "Record creation timestamp (created_at)"
-  * updatedAt 1..1 dateTime "Updated At" "Record update timestamp (updated_at)"
+    * posologieId 1..1 id "Posology ID" "Unique posology identifier (posologie_id)"
+    * prescriptionId 1..1 id "Prescription ID" "Foreign key to prescription (prescription_id)"
+    * nombrePrisesParJour 0..1 integer "Daily Intakes" "Nombre prises par jour (nombre_prises_par_jour)"
+    * quantite 0..1 decimal "quantité de médicament prise" "à correler avec l'unité"
+    * uniteQuantite 0..1 string "Unité de la quantité" "Si possible en UCUM, sinon en Standard terms"
+    * dateHeureDebut 0..1 dateTime "DateHeure de début de prise" "Date de la prise si prise 'instantanée'"
+    * dateHeureFin 0..1 dateTime "DateHeure de fin de prise"  "DateHeure de fin de prise"
+    * createdAt 1..1 dateTime "Created At" "Record creation timestamp (created_at)"
+    * updatedAt 1..1 dateTime "Updated At" "Record update timestamp (updated_at)"
 
 // ========================================================================
 // ADMINISTRATION TABLE
@@ -214,11 +215,11 @@ Maps to SQL table: administration
 // DOSSIER_SOINS TABLE
 // ========================================================================
 
-* dossierSoins 0..* BackboneElement "Care Record" """
+* dossierSoin 0..* BackboneElement "Care Record" """
 Clinical care measurements and observations.
-Based on linkId: 305831246173. Maps to SQL table: dossier_soins
+Based on linkId: 305831246173. Maps to SQL table: dossier_soin
 """
-  * soinsId 1..1 id "Care ID" "Unique care identifier (soins_id)"
+  * soinId 1..1 id "Care ID" "Unique care identifier (soin_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * codeLoinc 0..1 string "Observation" "codé avec LOINC"
   * libelleTest 0..1 string "Libellé métier de l'observation" "Libellé métier de l'observation"
