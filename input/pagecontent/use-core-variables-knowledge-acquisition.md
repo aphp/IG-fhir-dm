@@ -9,7 +9,7 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 #### Modéle de donnée conceptuel
 
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
-<div class="viewer-container" style="height: 588px;">
+<div class="viewer-container" style="height: 695px;">
   <div class="svg-container" id="conceptual-model">
     {% include use-core-conceptual.svg %}
   </div>
