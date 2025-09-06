@@ -2,6 +2,7 @@
 
 >* OMOP (StructureDefinition logic)
 >* ViewDefinition / per OMOP Table
+>* Pathling
 >* Parquet
 >* DuckDB
 
