@@ -10,7 +10,7 @@ pandas==2.1.4
 numpy==1.26.2
 
 # JSON handling
-orjson==3.9.10
+orjson==3.9.15
 
 # Environment management
 python-dotenv==1.0.0
@@ -27,7 +27,7 @@ asyncio==3.4.3
 aiofiles==23.2.1
 
 # Progress bars
-tqdm==4.66.1
+tqdm==4.66.3
 
 # Date handling
 python-dateutil==2.8.2
