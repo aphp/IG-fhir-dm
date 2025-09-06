@@ -1,0 +1,109 @@
+# EHR to FHIR Semantic Layer Transformation Project
+# Multi-database configuration for PostgreSQL sources and targets
+
+name: 'ehr_fhir_transform'
+version: '1.0.0'
+config-version: 2
+
+profile: 'ehr_fhir_transform'
+
+# Model paths
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+# Global variables for multi-database setup
+vars:
+  # Timezone for timestamp conversions
+  timezone: 'Europe/Paris'
+  
+  # FHIR version and configuration
+  fhir_version: '4.0.1'
+  
+  # Incremental strategy settings
+  incremental_lookback_days: 7
+  full_refresh_days: 30
+  
+  # Performance tuning
+  batch_size: 10000
+  max_parallel_jobs: 4
+  
+  # Data quality thresholds
+  min_patient_count: 1
+  max_null_percentage: 10
+  
+  # Reference data configurations
+  default_organization_id: 'fr-aphp'
+  default_facility_id: 'facility-default'
+  
+  # FHIR resource ID prefixes
+  patient_id_prefix: 'pat-'
+  encounter_id_prefix: 'enc-'
+  condition_id_prefix: 'con-'
+  observation_id_prefix: 'obs-'
+  medication_request_id_prefix: 'medreq-'
+  procedure_id_prefix: 'proc-'
+
+# Model configuration with multi-database support
+models:
+  ehr_fhir_transform:
+  
+    # Staging layer - read from EHR database
+    staging:
+      +schema: "staging"
+      +materialized: view
+      +tags: ["staging", "source"]
+      
+    # Intermediate layer - process in DBT workspace
+    intermediate:
+      +schema: "intermediate"
+      +materialized: table
+      +tags: ["intermediate", "transformation"]
+      
+    # Marts layer - write to FHIR semantic layer
+    marts:
+      +materialized: table
+      +tags: ["mart", "fhir", "target"]
+      +schema: "fhir_semantic_layer"
+      fhir:
+        +materialized: table
+        +indexes:
+          - columns: ['id']
+            unique: true
+          - columns: ['last_updated']
+        +on_schema_change: 'fail'
+        +incremental_strategy: 'merge'
+        +unique_key: 'id'
+        +cluster_by: ['last_updated']
+
+# Seeds configuration for reference data
+seeds:
+  ehr_fhir_transform:
+    +quote_columns: false
+    +schema: "seeds"
+    +tags: ["reference_data"]
+    
+  
+# Tests configuration with enhanced validation
+tests:
+  ehr_fhir_transform:
+    +store_failures: true
+    +severity: error
+    +tags: ["data_quality"]
+    +schema: "test_results"
+
+# Pre and post hooks for auditing
+on-run-start:
+  - "{{ log('Starting EHR to FHIR transformation run at ' ~ run_started_at) }}"
+  
+on-run-end:
+  - "{{ log('Completed EHR to FHIR transformation run at ' ~ run_started_at) }}"

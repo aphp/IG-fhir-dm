@@ -1,0 +1,233 @@
+version: 2
+
+models:
+  - name: int_patient_identifiers
+    description: |
+      Intermediate model for processing and validating French healthcare patient identifiers.
+      Consolidates INS (Identifiant National de Santé) and NIR (Numéro d'Inscription au Répertoire) 
+      identifiers according to French national standards.
+      
+      **Business Logic**: 
+      - Prioritizes INS over NIR as primary identifier
+      - Validates identifier formats and completeness
+      - Calculates data quality scores
+      - Prepares FHIR-compliant identifier structures
+    columns:
+      - name: patient_id
+        description: "Original patient identifier from EHR"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_patient_id
+        description: "FHIR-formatted patient resource ID"
+        tests:
+          - unique
+      - name: ins_nir_identifier
+        description: "Value of INS-NIR"
+      - name: nss_identifier
+        description: "Secu number"
+      - name: fhir_address
+        description: "JSONB address structure for FHIR"
+      - name: fhir_position
+        description: "JSONB geographic position for FHIR"
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: data_quality_score
+        description: "Calculated quality score (0-10)"
+      - name: data_quality_level
+        description: "Quality level assessment"
+        tests:
+          - accepted_values:
+              values: ['high', 'medium', 'low']
+      - name: has_valid_identifier
+        description: "Flag for valid healthcare identifier presence"
+        tests:
+          - not_null
+
+  - name: int_encounter_episodes
+    description: |
+      Intermediate model for processing hospital encounters from French PMSI system.
+      Transforms PMSI episode data into FHIR-compliant encounter structures with
+      proper status determination and hospitalization details.
+      
+      **Business Logic**:
+      - Maps PMSI admission/discharge modes to FHIR encounter classes
+      - Calculates encounter status based on dates
+      - Structures hospitalization details for French healthcare context
+      - Links to validated patients only
+    columns:
+      - name: pmsi_id
+        description: "Original PMSI episode identifier"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_encounter_id
+        description: "FHIR-formatted encounter resource ID"
+        tests:
+          - unique
+      - name: fhir_patient_id
+        description: "Reference to FHIR patient resource"
+        tests:
+          - not_null
+      - name: encounter_status
+        description: "FHIR encounter status"
+        tests:
+          - accepted_values:
+              values: ['planned', 'in-progress', 'finished']
+      - name: encounter_class
+        description: "FHIR encounter class code"
+        tests:
+          - accepted_values:
+              values: ['IMP', 'AMB', 'EMER']
+      - name: fhir_period
+        description: "JSONB period structure for FHIR"
+        tests:
+          - not_null
+      - name: fhir_hospitalization
+        description: "JSONB hospitalization details for FHIR"
+      - name: fhir_location
+        description: "JSONB location array for FHIR"
+      - name: service_type_snomed
+        description: "SNOMED CT code for service type"
+      - name: encounter_priority
+        description: "Encounter priority level"
+        tests:
+          - accepted_values:
+              values: ['urgent', 'routine']
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: is_valid_encounter
+        description: "Overall validation flag"
+        tests:
+          - not_null
+
+  - name: int_condition_mapping
+    description: |
+      Intermediate model for mapping diagnostic codes to FHIR conditions.
+      Processes ICD-10 codes with French healthcare context and clinical status mapping.
+      
+      **Business Logic**:
+      - Maps ICD-10 codes to FHIR condition categories
+      - Determines clinical and verification status
+      - Classifies by body systems and severity
+      - Links to validated encounters only
+    columns:
+      - name: diagnostic_id
+        description: "Original diagnostic record identifier"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_condition_id
+        description: "FHIR-formatted condition resource ID"
+        tests:
+          - unique
+      - name: fhir_encounter_id
+        description: "Reference to FHIR encounter resource"
+        tests:
+          - not_null
+      - name: fhir_patient_id
+        description: "Reference to FHIR patient resource"
+        tests:
+          - not_null
+      - name: fhir_code
+        description: "JSONB ICD-10 coding structure for FHIR"
+        tests:
+          - not_null
+      - name: fhir_category
+        description: "JSONB category array for FHIR"
+      - name: fhir_verification_status
+        description: "JSONB verification status for FHIR"
+      - name: fhir_clinical_status
+        description: "JSONB clinical status for FHIR"
+      - name: fhir_onset
+        description: "JSONB onset information for FHIR"
+      - name: icd10_chapter
+        description: "ICD-10 chapter classification"
+      - name: condition_severity
+        description: "Assessed condition severity"
+        tests:
+          - accepted_values:
+              values: ['mild', 'moderate', 'severe']
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: is_valid_condition
+        description: "Overall validation flag"
+        tests:
+          - not_null
+
+  - name: int_observation_unified
+    description: |
+      Intermediate model unifying all observation types (laboratory, vital signs, lifestyle)
+      into consistent FHIR observation structures with proper LOINC coding.
+      
+      **Business Logic**:
+      - Unifies lab results, vital signs, and lifestyle observations
+      - Maps to appropriate LOINC codes
+      - Standardizes value types and units
+      - Calculates reference ranges for vital signs
+      - Handles multiple observation categories consistently
+    columns:
+      - name: fhir_observation_id
+        description: "FHIR-formatted observation resource ID"
+        tests:
+          - unique
+          - not_null
+      - name: fhir_patient_id
+        description: "Reference to FHIR patient resource"
+        tests:
+          - not_null
+      - name: fhir_encounter_id
+        description: "Reference to FHIR encounter resource (nullable for lifestyle)"
+      - name: observation_source
+        description: "Source system type"
+        tests:
+          - accepted_values:
+              values: ['laboratory', 'vital-signs', 'social-history']
+      - name: observation_category
+        description: "FHIR observation category"
+        tests:
+          - accepted_values:
+              values: ['laboratory', 'vital-signs', 'social-history']
+      - name: loinc_code
+        description: "LOINC code for observation"
+        tests:
+          - not_null
+      - name: fhir_code
+        description: "JSONB LOINC coding structure for FHIR"
+        tests:
+          - not_null
+      - name: fhir_category
+        description: "JSONB category array for FHIR"
+        tests:
+          - not_null
+      - name: fhir_value
+        description: "JSONB value structure (Quantity/Boolean/String)"
+      - name: fhir_effective
+        description: "JSONB effective time structure"
+      - name: fhir_reference_range
+        description: "JSONB reference range array for vital signs"
+      - name: value_type
+        description: "Type of observation value"
+        tests:
+          - accepted_values:
+              values: ['Quantity', 'boolean', 'string']
+      - name: fhir_meta
+        description: "FHIR metadata structure"
+      - name: is_valid_observation
+        description: "Overall validation flag"
+        tests:
+          - not_null
+
+# Test relationships between intermediate models
+tests:
+  - name: test_int_patient_identifier_uniqueness
+    description: "Verify patient identifiers are unique and properly formatted"
+    
+  - name: test_int_encounter_patient_relationship
+    description: "Verify all encounters link to valid processed patients"
+    
+  - name: test_int_condition_encounter_relationship
+    description: "Verify all conditions link to valid processed encounters"
+    
+  - name: test_int_observation_loinc_validity
+    description: "Verify all observations have valid LOINC codes"

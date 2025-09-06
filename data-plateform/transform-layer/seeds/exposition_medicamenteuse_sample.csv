@@ -1,4 +1,0 @@
-exposition_id,pmsi_id,patient_id,code_atc,denomination,voie_administration,date_prescription
-1,1,1,C09AA02,Enalapril,Orale,2024-01-10
-2,2,2,R03AC02,Salbutamol,Inhalation,2024-01-20
-3,3,3,A06AB02,Bisacodyl,Orale,2024-02-01

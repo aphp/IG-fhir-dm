@@ -1,4 +1,0 @@
-acte_id,pmsi_id,code_acte,libelle_acte,date_acte,executant
-1,1,DEQP003,Echocardiographie transthoracique,2024-01-11,Dr. Cardiologue
-2,2,GLQP002,Exploration fonctionnelle respiratoire,2024-01-21,Dr. Pneumologue
-3,3,HHQE002,Coloscopie diagnostique,2024-02-02,Dr. Gastroenterologue
