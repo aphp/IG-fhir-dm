@@ -7,54 +7,66 @@ Description: "ViewDefinition to transform FHIR Patient resources into OMOP Perso
 * name = "OMOP-Person-View"
 * status = #draft
 * resource = #Patient
+* constant[0]
+  * name = "integerNull"
+  * valueInteger = 0
 * select[0]
   * column[0]
     * name = "person_id"
-    * path = "getResourceKey()"
+    * path = "id"
     * description = "Unique identifier for the person"
-    * type = #integer
+    * type = #id
+    * tag[0]
+      * name = "ansi/type"
+      * value = "CHARACTER VARYING"
   * column[+]
-    * name = "year_of_birth"
-    * path = "Patient.birthDate.toString().substring(0,4).toInteger()"
-    * description = "Year of birth extracted from birthDate"
-    * type = #integer
-  * column[+]
-    * name = "month_of_birth"
-    * path = "Patient.birthDate.toString().substring(5,7).toInteger()"
-    * description = "Month of birth extracted from birthDate"
-    * type = #integer
-  * column[+]
-    * name = "day_of_birth"
-    * path = "Patient.birthDate.toString().substring(8,10).toInteger()"
-    * description = "Day of birth extracted from birthDate"
+    * name = "gender_concept_id"
+    * path = "%integerNull"
+    * description = "Gender concept id"
     * type = #integer
   * column[+]
     * name = "birth_datetime"
-    * path = "Patient.birthDate"
+    * path = "birthDate"
     * description = "Birth date and time"
-    * type = #dateTime
+    * type = #date
+    * tag[0]
+      * name = "ansi/type"
+      * value = "TIMESTAMP"
+  * column[+]
+    * name = "race_concept_id"
+    * path = "%integerNull"
+    * description = "Race concept"
+    * type = #integer
+  * column[+]
+    * name = "ethnicity_concept_id"
+    * path = "%integerNull"
+    * description = "Ethnicity concept"
+    * type = #integer
   * column[+]
     * name = "location_id"
-    * path = "Patient.address.first().id"
+    * path = "address.first().id"
     * description = "Location identifier from primary address"
-    * type = #integer
+    * type = #string
   * column[+]
     * name = "provider_id"
-    * path = "Patient.generalPractitioner.first().reference.substring(12)"
+    * path = "generalPractitioner.first().getReferenceKey(Practitioner)"
     * description = "Provider identifier from general practitioner"
-    * type = #integer
+    * type = #string
   * column[+]
     * name = "care_site_id"
-    * path = "Patient.managingOrganization.reference.substring(13)"
+    * path = "managingOrganization.getReferenceKey(Organization)"
     * description = "Care site identifier from managing organization"
-    * type = #integer
+    * type = #string
   * column[+]
     * name = "person_source_value"
-    * path = "Patient.meta.source"
+    * path = "getResourceKey()"
     * description = "Source value for person"
     * type = #string
   * column[+]
     * name = "gender_source_value"
-    * path = "Patient.gender"
+    * path = "gender"
     * description = "Source value for gender"
-    * type = #string
+    * type = #code
+    * tag[0]
+      * name = "ansi/type"
+      * value = "CHARACTER VARYING"
