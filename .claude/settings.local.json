@@ -33,7 +33,9 @@
       "Bash(docker:*)",
       "Bash(curl:*)",
       "Bash(python:*)",
-      "Bash(DATA_DIRECTORY=\"../mimic-iv-clinical-database-demo-on-fhir-2.1.0/fhir\" FILE_PATTERN=\"MimicEncounter*.ndjson.gz\" BATCH_SIZE=\"25\" python fhir_bulk_loader_fixed.py)"
+      "mcp__context7__resolve-library-id",
+      "Bash(touch:*)",
+      "Bash(mv:*)"
     ],
     "deny": [],
     "ask": []
