@@ -1,0 +1,46 @@
+services:
+  hapi-fhir-jpaserver-start:
+    image: hapiproject/hapi:v8.4.0-2
+    container_name: hapi-fhir-jpaserver-start
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://hapi-fhir-postgres:5432/hapi"
+      SPRING_DATASOURCE_USERNAME: "admin"
+      SPRING_DATASOURCE_PASSWORD: "admin"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect"
+      HAPI_FHIR_FHIR_VERSION: "R4"
+      HAPI_FHIR_BULK_EXPORT_ENABLED: true
+      HAPI_FHIR_BULK_IMPORT_ENABLED: true
+      HAPI_FHIR_BATCH_JOB_ENABLED: true
+      HAPI_FHIR_BINARY_STORAGE_ENABLED: true
+      HAPI_FHIR_REUSE_CACHED_SEARCH_RESULTS_MILLIS: 5000
+      HAPI_FHIR_RETAIN_CACHED_SEARCHES_MINS: 5
+      HAPI_FHIR_BULK_EXPORT_MAXIMUM_BINARY_SIZE: 104857600  # 100 MB
+      HAPI_FHIR_BULK_EXPORT_RETENTION_PERIOD: 86400000  # 24 heures
+      HAPI_FHIR_BULK_EXPORT_MAXIMUM_RESOURCE_PER_FILE: 1000
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/fhir/metadata"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+  hapi-fhir-postgres:
+    image: postgres:15-alpine
+    container_name: hapi-fhir-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: "hapi"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "admin"
+    volumes:
+      - hapi-fhir-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  hapi-fhir-postgres:

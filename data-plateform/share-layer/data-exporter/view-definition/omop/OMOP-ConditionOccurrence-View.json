@@ -1,0 +1,93 @@
+{
+  "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
+  "url": "https://aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-ConditionOccurrence-View",
+  "title": "OMOP Condition Occurrence View",
+  "description": "ViewDefinition to transform FHIR Condition resources into OMOP Condition Occurrence table format",
+  "name": "OMOP-ConditionOccurrence-View",
+  "status": "draft",
+  "resource": "Condition",
+  "select": [
+    {
+      "column": [
+        {
+          "name": "condition_occurrence_id",
+          "path": "getResourceKey()",
+          "description": "Unique identifier for the condition occurrence",
+          "type": "integer"
+        },
+        {
+          "name": "person_id",
+          "path": "Condition.subject.reference.substring(8)",
+          "description": "Reference to person from subject",
+          "type": "integer"
+        },
+        {
+          "name": "condition_concept_id",
+          "path": "Condition.code.coding.first().code",
+          "description": "Condition concept from primary coding",
+          "type": "integer"
+        },
+        {
+          "name": "condition_start_date",
+          "path": "Condition.onsetDateTime.toString().substring(0,10)",
+          "description": "Condition start date from onset",
+          "type": "date"
+        },
+        {
+          "name": "condition_start_datetime",
+          "path": "Condition.onsetDateTime",
+          "description": "Condition start datetime from onset",
+          "type": "dateTime"
+        },
+        {
+          "name": "condition_end_date",
+          "path": "Condition.abatementDateTime.toString().substring(0,10)",
+          "description": "Condition end date from abatement",
+          "type": "date"
+        },
+        {
+          "name": "condition_end_datetime",
+          "path": "Condition.abatementDateTime",
+          "description": "Condition end datetime from abatement",
+          "type": "dateTime"
+        },
+        {
+          "name": "stop_reason",
+          "path": "Condition.abatementString",
+          "description": "Stop reason from abatement string",
+          "type": "string"
+        },
+        {
+          "name": "provider_id",
+          "path": "Condition.asserter.reference.substring(12)",
+          "description": "Provider identifier from asserter",
+          "type": "integer"
+        },
+        {
+          "name": "visit_occurrence_id",
+          "path": "Condition.encounter.reference.substring(10)",
+          "description": "Visit occurrence identifier from encounter",
+          "type": "integer"
+        },
+        {
+          "name": "visit_detail_id",
+          "path": "Condition.encounter.reference.substring(10)",
+          "description": "Visit detail identifier from encounter",
+          "type": "integer"
+        },
+        {
+          "name": "condition_source_value",
+          "path": "Condition.meta.source",
+          "description": "Source value for condition",
+          "type": "string"
+        },
+        {
+          "name": "condition_status_source_value",
+          "path": "Condition.clinicalStatus.text",
+          "description": "Source value for condition status",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+# Core dependencies
+pathling>=8.0.1
+pyspark>=3.5.1
+requests>=2.31.0
+python-dateutil>=2.8.0
+
+# Data processing
+pandas>=2.0.0
+pyarrow>=13.0.0
+duckdb>=1.3.2
+
+# Configuration and validation
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+jsonschema>=4.17.0
+
+# Error handling and resilience
+tenacity>=8.0.0
+# circuit-breaker library not available, will implement custom solution
+
+# Logging and monitoring
+structlog>=23.0.0
+rich>=13.0.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-asyncio>=0.21.0
+
+# Development tools
+black>=23.0.0
+isort>=5.12.0
+mypy>=1.0.0
+ruff>=0.1.0

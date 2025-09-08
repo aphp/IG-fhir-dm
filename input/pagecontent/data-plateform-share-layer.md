@@ -2,4 +2,3 @@
 
 >* Bucket 
 >* API REST (HAPI)
->* Pathling

@@ -1,0 +1,75 @@
+{
+  "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
+  "url": "https://aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-Specimen-View",
+  "title": "OMOP Specimen View",
+  "description": "ViewDefinition to transform FHIR Specimen resources into OMOP Specimen table format",
+  "name": "OMOP-Specimen-View",
+  "status": "draft",
+  "resource": "Specimen",
+  "select": [
+    {
+      "column": [
+        {
+          "name": "specimen_id",
+          "path": "getResourceKey()",
+          "description": "Unique identifier for the specimen",
+          "type": "integer"
+        },
+        {
+          "name": "person_id",
+          "path": "Specimen.subject.reference.substring(8)",
+          "description": "Reference to person from subject",
+          "type": "integer"
+        },
+        {
+          "name": "specimen_date",
+          "path": "Specimen.collection.collectedDateTime.toString().substring(0,10)",
+          "description": "Specimen date from collection datetime",
+          "type": "date"
+        },
+        {
+          "name": "specimen_datetime",
+          "path": "Specimen.collection.collectedDateTime",
+          "description": "Specimen datetime from collection datetime",
+          "type": "dateTime"
+        },
+        {
+          "name": "quantity",
+          "path": "Specimen.collection.quantity.value",
+          "description": "Quantity from collection quantity",
+          "type": "decimal"
+        },
+        {
+          "name": "specimen_source_id",
+          "path": "Specimen.identifier.first().value",
+          "description": "Source identifier for specimen",
+          "type": "string"
+        },
+        {
+          "name": "specimen_source_value",
+          "path": "Specimen.type.text",
+          "description": "Source value for specimen type",
+          "type": "string"
+        },
+        {
+          "name": "unit_source_value",
+          "path": "Specimen.collection.quantity.unit",
+          "description": "Source value for unit",
+          "type": "string"
+        },
+        {
+          "name": "anatomic_site_source_value",
+          "path": "Specimen.collection.bodySite.text",
+          "description": "Source value for anatomic site",
+          "type": "string"
+        },
+        {
+          "name": "disease_status_source_value",
+          "path": "Specimen.condition.first().text",
+          "description": "Source value for disease status",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

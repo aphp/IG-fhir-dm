@@ -1,19 +1,19 @@
 {% include markdown-link-references.md %}
 
-model conceptuel + glossaire + exemples
-
 Les [exigences de l'usage **Variables socles pour les EDSH** (fichier MSExcel)](DocumentReference-CoreExigences.html) 
 référencées issues des travaux du GT Standards & Interopérabilité. 
 
 
-#### Modéle de donnée conceptuel
+### Modéle conceptuel
 
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
-<div class="viewer-container" style="height: 695px;">
+<div class="viewer-container" style="height: 592px;">
   <div class="svg-container" id="conceptual-model">
     {% include use-core-conceptual.svg %}
   </div>
 </div>
+
+### Glossaire métier
 
 <table width="100%">
   <tr><th>Concept</th><th>Description</th><th>Note</th><th>Aussi connu comme</th><th>Lien/Dépendance</th><th>Références</th></tr>
@@ -58,3 +58,14 @@ Unité de référence : UI/L</td><td>Alamine aminotransférase (ALT), glutamate 
   <tr><td>Taille</td><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
 
+### Exemples
+
+Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples serviront également pour valider le processus de formalisation des données et le processus de standardisation.
+
+#### Cas 1 : ???
+
+TODO
+
+#### Cas 2 : ???
+
+TODO

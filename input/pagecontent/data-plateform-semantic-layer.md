@@ -2,17 +2,13 @@
 
 La conception de la couche sémantique permet de décrire les données répondant aux besoins métiers préalablement identifiés de sorte que elles soient le plus réutilisable possible afin d'améliorer leur valeur.
 
-La couche sémantique (au format FHIR), se décrit à l'aide des artefacts suivants :
-(cliquez sur les liens pour obtenir plus d'information sur les artefacts)
 
-#### Les profils
+<!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
+<div class="viewer-container" style="height: 1892px;">
+  <div class="svg-container" id="physical-model">
+    {% include fsl-datamodel.svg %}
+  </div>
+</div>
 
-Les Profils précisent des ensembles de règles supplémentaires définies en plus de la spécification FHIR de base pour 
-gérer le traitement des ressources.  
-Les profils FHIR correspondants à notre usage sont :
-- le profil Patient [DMPatient] (pour l'identifiant du patient, l'addresse, le genre et la date de naissance) 
-- le profil Encounter [DMEncounter] (pour les dates et modes d'entrée et de sortie)
-- les profils Observations [DMObservationBodyHeight] et [DMObservationBodyWeight] pour la taille et le poids, respéctivement
-- le profil Condition [DMCondition] pour le codage des diagnostics avec la CIM10
-- le profil Procedure [DMProcedure] pour le codage des actes avec la CCAM
-- les profils Observations [DMObservationLaboratoryTCA], [DMObservationLaboratoryFonctionRenale], [DMObservationLaboratoryUremie] pour les résultats d'examen de laboratoire (à compléter).
+
+Le modèle de donnée du Hub d'intégration a été dérivé des ressources FHIR servant de définition de base aux profils conçu dans le cadre du [processus de standardisation des données au format FHIR](use-core-variables-knowledge-standardization.html).

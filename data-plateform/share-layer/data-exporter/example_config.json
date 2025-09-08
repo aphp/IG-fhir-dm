@@ -1,0 +1,52 @@
+{
+  "data_source_type": "fhir_server",
+  "fhir_server": {
+    "endpoint_url": "http://localhost:8080/fhir",
+    "timeout": 300,
+    "polling_interval": 5,
+    "bulk_export_types": [
+      "Patient"
+    ]
+  },
+  "omop_tables": [
+    "Person"
+  ],
+  "view_definitions_dir": "..\\..\\..\\fsh-generated\\resources",
+  "pathling": {
+    "app_name": "FHIR-OMOP-Exporter",
+    "executor_memory": "2g",
+    "driver_memory": "2g",
+    "max_result_size": "1g",
+    "sql_adaptive_enabled": true,
+    "sql_adaptive_coalesce_partitions_enabled": true
+  },
+  "post_processing": {
+    "enabled": true,
+    "data_cleaning": true,
+    "data_type_enforcement": true,
+    "concept_mapping": true,
+    "data_validation": true
+  },
+  "output": {
+    "base_path": "output",
+    "formats": [
+      "parquet"
+    ],
+    "parquet_compression": "snappy",
+    "duckdb_database_name": "omop_data.duckdb",
+    "duckdb_create_indexes": true,
+    "csv_encoding": "utf-8",
+    "csv_separator": ","
+  },
+  "schema_validation": {
+    "enabled": true
+  },
+  "log_level": "INFO",
+  "structured_logging": true,
+  "max_memory_usage_mb": 4096,
+  "cleanup_temp_files": true,
+  "retry_max_attempts": 3,
+  "retry_backoff_factor": 2.0,
+  "circuit_breaker_failure_threshold": 5,
+  "circuit_breaker_timeout": 60
+}

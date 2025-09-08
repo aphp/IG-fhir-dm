@@ -33,6 +33,15 @@ TABLE(patient) {
   source_deces : VARCHAR(50)
   rang_gemellaire : INTEGER
   --
+  ' Audit fields
+  created_at : TIMESTAMP WITH TIME ZONE
+  updated_at : TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(patient_adresse) {
+  PK(patient_adresse_id) : BIGSERIAL
+  FK(patient_id) : BIGINT
+  --
   ' Geocoding fields (linkId: 3816475533472)
   latitude : DECIMAL(10,7)
   longitude : DECIMAL(10,7)
@@ -40,6 +49,7 @@ TABLE(patient) {
   libelle_iris : VARCHAR(200)
   code_geographique_residence : VARCHAR(10)
   libelle_geographique_residence : VARCHAR(200)
+  date_recueil : DATE
   --
   ' Audit fields
   created_at : TIMESTAMP WITH TIME ZONE
@@ -52,21 +62,15 @@ TABLE(donnees_pmsi) {
   --
   ' Core PMSI fields
   mode_sortie : VARCHAR(100)
-  duree_sejour : INTEGER
+  age_admission : INTEGER
   date_debut_sejour : DATE
   date_fin_sejour : DATE
   mode_entree : VARCHAR(100)
-  statut_administratif : VARCHAR(50)
   --
   ' Healthcare facility information
   etablissement : VARCHAR(255)
-  unite_fonctionnelle : VARCHAR(255)
   service : VARCHAR(255)
-  --
-  ' Geographic context at encounter time
-  code_geographique_residence : VARCHAR(10)
-  libelle_geographique_residence : VARCHAR(200)
-  date_recueil : DATE
+  unite_fonctionnelle : VARCHAR(255)
   --
   ' Audit fields
   created_at : TIMESTAMP WITH TIME ZONE
@@ -85,8 +89,6 @@ TABLE(diagnostics) {
   code_diagnostic : VARCHAR(20)
   type_diagnostic : VARCHAR(50)
   libelle_diagnostic : TEXT
-  date_diagnostic : DATE
-  sequence_diagnostic : INTEGER
   date_recueil : DATE
   --
   ' Audit fields
@@ -103,7 +105,6 @@ TABLE(actes) {
   libelle_acte : TEXT
   date_acte : TIMESTAMP
   executant : VARCHAR(255)
-  sequence_acte : INTEGER
   date_recueil : DATE
   --
   ' Audit fields
@@ -117,7 +118,6 @@ TABLE(actes) {
 
 TABLE(biologie) {
   PK(biologie_id) : BIGSERIAL
-  FK(pmsi_id) : BIGINT
   FK(patient_id) : BIGINT
   --
   ' Test identification - consolidated biology table
@@ -139,8 +139,6 @@ TABLE(biologie) {
   borne_sup_normale : DECIMAL(15,6)
   --
   ' Quality information
-  commentaire : TEXT
-  methode_analyse : VARCHAR(255)
   laboratoire : VARCHAR(255)
   --
   ' Audit fields
@@ -152,25 +150,20 @@ TABLE(biologie) {
 ' MEDICATION AND TREATMENT DATA
 ' =====================================================
 
-TABLE(exposition_medicamenteuse) {
-  PK(exposition_id) : BIGSERIAL
-  FK(pmsi_id) : BIGINT
+TABLE(prescription) {
+  PK(prescription_id) : BIGSERIAL
   FK(patient_id) : BIGINT
   --
-  ' Medication identification (linkId: 817801935685)
-  code_atc : VARCHAR(20)
+  ' Medication identification
+  prescripteur : VARCHAR(50)
   denomination : VARCHAR(255)
-  forme_pharmaceutique : VARCHAR(100)
+  code_atc : VARCHAR(20)
   voie_administration : VARCHAR(100)
   --
-  ' Prescription context
-  type_prescription : VARCHAR(50)
-  prescripteur : VARCHAR(255)
-  --
   ' Temporal information
-  date_debut : DATE
-  date_fin : DATE
   date_prescription : DATE
+  date_debut_prescription : DATE
+  date_fin_prescription : DATE
   --
   ' Audit fields
   created_at : TIMESTAMP WITH TIME ZONE
@@ -179,29 +172,36 @@ TABLE(exposition_medicamenteuse) {
 
 TABLE(posologie) {
   PK(posologie_id) : BIGSERIAL
-  FK(exposition_id) : BIGINT
-  FK(pmsi_id) : BIGINT
   FK(patient_id) : BIGINT
+  FK(prescription_id) : BIGINT
   --
   ' Posology details (linkId: 6348237104421)
-  date_debut_prescription : DATE
-  date_fin_prescription : DATE
   nombre_prises_par_jour : INTEGER
+  quantite : DECIMAL(10,3)
+  unite_quantite : VARCHAR(20)
+  date_heure_debut : TIMESTAMP
+  date_heure_fin : TIMESTAMP
   --
   ' Audit fields
   created_at : TIMESTAMP WITH TIME ZONE
   updated_at : TIMESTAMP WITH TIME ZONE
 }
 
-TABLE(dosage) {
-  PK(dosage_id) : BIGSERIAL
-  FK(exposition_id) : BIGINT
-  FK(pmsi_id) : BIGINT
+TABLE(administration) {
+  PK(administration_id) : BIGSERIAL
   FK(patient_id) : BIGINT
+  FK(prescription_id) : BIGINT
   --
-  ' Dosage information (linkId: 5720103839343)
-  quantite_administree : DECIMAL(10,3)
+  ' Medication identification
+  denomination : VARCHAR(255)
+  code_atc : VARCHAR(20)
+  voie_administration : VARCHAR(100)
+  --
+  ' Quantity information
+  quantite : DECIMAL(10,3)
   unite_quantite : VARCHAR(20)
+  --
+  ' Temporal information
   date_heure_debut : TIMESTAMP
   date_heure_fin : TIMESTAMP
   --
@@ -216,26 +216,20 @@ TABLE(dosage) {
 
 TABLE(dossier_soins) {
   PK(soins_id) : BIGSERIAL
-  FK(pmsi_id) : BIGINT
   FK(patient_id) : BIGINT
   --
   ' Physical measurements (linkId: 305831246173)
-  taille : DECIMAL(5,2)
-  date_mesure_taille : DATE
-  poids : DECIMAL(6,2)
-  date_mesure_poids : DATE
-  --
-  ' Vital signs
-  pression_systolique : DECIMAL(5,2)
-  date_mesure_ps : DATE
-  pression_diastolique : DECIMAL(5,2)
-  date_mesure_pd : DATE
+  code_loinc : VARCHAR(20)
+  libelle_test : VARCHAR(255)
+  valeur : DECIMAL(15,6)
+  unite : VARCHAR(50)
+  valeur_code : VARCHAR(50)
+  valeur_texte : TEXT
+  date_mesure : DATE
   --
   ' Measurement context
-  type_mesure : VARCHAR(100)
   unite_soins : VARCHAR(255)
   professionnel : VARCHAR(255)
-  commentaire : TEXT
   --
   ' Audit fields
   created_at : TIMESTAMP WITH TIME ZONE
@@ -244,7 +238,6 @@ TABLE(dossier_soins) {
 
 TABLE(style_vie) {
   PK(style_vie_id) : BIGSERIAL
-  FK(pmsi_id) : BIGINT
   FK(patient_id) : BIGINT
   --
   ' Lifestyle factors (linkId: 1693164086678)
@@ -260,39 +253,31 @@ TABLE(style_vie) {
 }
 
 ' =====================================================
-' RELATIONSHIPS - Central Hub Architecture
+' RELATIONSHIPS
 ' =====================================================
 
-' Core patient-encounter relationship
+' Core patient relationships
+patient ||--o{ patient_adresse : "patient_id"
 patient ||--o{ donnees_pmsi : "patient_id"
 
 ' Medical events linked to encounters
 donnees_pmsi ||--o{ diagnostics : "pmsi_id"
 donnees_pmsi ||--o{ actes : "pmsi_id"
 
-' Laboratory data - linked to both patient and encounter
+' Laboratory data - linked to patient only
 patient ||--o{ biologie : "patient_id"
-donnees_pmsi ||--o{ biologie : "pmsi_id"
 
-' Medication exposure hierarchy
-patient ||--o{ exposition_medicamenteuse : "patient_id"
-donnees_pmsi ||--o{ exposition_medicamenteuse : "pmsi_id"
+' Medication hierarchy
+patient ||--o{ prescription : "patient_id"
+prescription ||--o{ posologie : "prescription_id"
+prescription ||--o{ administration : "prescription_id"
 
-exposition_medicamenteuse ||--o{ posologie : "exposition_id"
-exposition_medicamenteuse ||--o{ dosage : "exposition_id"
+' Additional patient relationships for medication
+patient ||--o{ posologie : "patient_id"
+patient ||--o{ administration : "patient_id"
 
-posologie }o--|| donnees_pmsi : "pmsi_id"
-posologie }o--|| patient : "patient_id"
-
-dosage }o--|| donnees_pmsi : "pmsi_id"
-dosage }o--|| patient : "patient_id"
-
-' Clinical care data
+' Clinical care and lifestyle data
 patient ||--o{ dossier_soins : "patient_id"
-donnees_pmsi ||--o{ dossier_soins : "pmsi_id"
-
-' Lifestyle data
 patient ||--o{ style_vie : "patient_id"
-donnees_pmsi ||--o{ style_vie : "pmsi_id"
 
 @enduml

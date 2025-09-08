@@ -59,6 +59,12 @@ Le guide d'implémentation **Data Management with FHIR** s'appuie sur l'outil [H
   <tbody>
     <tr>
       <td><strong>Primary Editor</strong></td>
+      <td>Christel Gérardin</td>
+      <td>Assistance Publique - Hôpitaux de Paris</td>
+      <td>christel.gerardin@aphp.fr</td>
+    </tr>
+    <tr>
+      <td><strong>Primary Editor</strong></td>
       <td>David Ouagne</td>
       <td>Assistance Publique - Hôpitaux de Paris</td>
       <td>david.ouagne@aphp.fr</td>

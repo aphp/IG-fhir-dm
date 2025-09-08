@@ -1,0 +1,99 @@
+{
+  "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
+  "url": "https://aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-Person-View",
+  "title": "OMOP Person View",
+  "description": "ViewDefinition to transform FHIR Patient resources into OMOP Person table format",
+  "name": "OMOP-Person-View",
+  "status": "draft",
+  "resource": "Patient",
+  "constant": [
+    {
+      "name": "integerNull",
+      "valueInteger": 0
+    }
+  ],
+  "select": [
+    {
+      "column": [
+        {
+          "name": "person_id",
+          "path": "id",
+          "description": "Unique identifier for the person",
+          "type": "id",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
+        },
+        {
+          "name": "gender_concept_id",
+          "path": "%integerNull",
+          "description": "Gender concept id",
+          "type": "integer"
+        },
+        {
+          "name": "birth_datetime",
+          "path": "birthDate",
+          "description": "Birth date and time",
+          "type": "date",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "TIMESTAMP"
+            }
+          ]
+        },
+        {
+          "name": "race_concept_id",
+          "path": "%integerNull",
+          "description": "Race concept id",
+          "type": "integer"
+        },
+        {
+          "name": "ethnicity_concept_id",
+          "path": "%integerNull",
+          "description": "Ethnicity concept id",
+          "type": "integer"
+        },
+        {
+          "name": "location_id",
+          "path": "address.first().id",
+          "description": "Location identifier from primary address",
+          "type": "string"
+        },
+        {
+          "name": "provider_id",
+          "path": "generalPractitioner.first().getReferenceKey(Practitioner)",
+          "description": "Provider identifier from general practitioner",
+          "type": "string"
+        },
+        {
+          "name": "care_site_id",
+          "path": "managingOrganization.getReferenceKey(Organization)",
+          "description": "Care site identifier from managing organization",
+          "type": "string"
+        },
+        {
+          "name": "person_source_value",
+          "path": "getResourceKey()",
+          "description": "Source value for person",
+          "type": "string"
+        },
+        {
+          "name": "gender_source_value",
+          "path": "gender",
+          "description": "Source value for gender",
+          "type": "code",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

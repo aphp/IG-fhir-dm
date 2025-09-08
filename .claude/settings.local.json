@@ -31,7 +31,12 @@
       "Bash(docker exec:*)",
       "Bash(docker network inspect:*)",
       "Bash(docker:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(python:*)",
+      "mcp__context7__resolve-library-id",
+      "Bash(touch:*)",
+      "Bash(mv:*)",
+      "mcp__context7__get-library-docs"
     ],
     "deny": [],
     "ask": []
