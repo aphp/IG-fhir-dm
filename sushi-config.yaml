@@ -35,7 +35,7 @@ pages:
     data-plateform-ehr.md:
       title: Dossier Patient Informatisé (DPI)
     data-plateform-semantic-layer.md:
-      title: Hub d'intégtation (couche sémantique)
+      title: Hub d'intégration (couche sémantique)
     data-plateform-transform-layer.md:
       title: La couche de transformation
     data-plateform-share-layer.md:
