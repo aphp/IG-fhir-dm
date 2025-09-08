@@ -52,6 +52,7 @@
 --DROP TABLE IF EXISTS fhir_claim CASCADE;
 DROP TABLE IF EXISTS fhir_medication_administration CASCADE;
 DROP TABLE IF EXISTS fhir_medication_request CASCADE;
+DROP TABLE IF EXISTS fhir_observation_component CASCADE;
 DROP TABLE IF EXISTS fhir_observation CASCADE;
 DROP TABLE IF EXISTS fhir_procedure CASCADE;
 DROP TABLE IF EXISTS fhir_condition CASCADE;
@@ -69,77 +70,78 @@ DROP TABLE IF EXISTS fhir_patient CASCADE;
 
 -- Table: fhir_patient (DMPatient profile)
 -- French Patient profile with INS-NIR identifiers
+-- Description: Profil Patient du socle commun des EDS (Patient profile for common EDS foundation)
 CREATE TABLE fhir_patient (
     id VARCHAR(64) PRIMARY KEY,
 --    version_id VARCHAR(64), ça me semble pas nécessaire à sortir du meta
     last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- FHIR Patient core elements
-    active BOOLEAN, -- je me dis qu'il vaut mieux éviter les valeurs par défaut sur des modifiers
+    active BOOLEAN, -- Whether this patient's record is in active use
     
     -- Identifiers (multiple allowed)
     identifiers JSONB, -- Array of Identifier objects
 --    nss_identifier VARCHAR(50), -- NSS (Numéro de Sécurité Sociale) --cet identifier est problématique en terme d'expression de besoin
-    identifier JSONB, -- Array of Identifier objects
-    nss_identifier VARCHAR(50), -- NSS (Numéro de Sécurité Sociale)
-    ins_nir_identifier VARCHAR(15), -- INS-NIR official identifier
+    identifier JSONB, -- An identifier for this patient
+    nss_identifier VARCHAR(50), -- NSS (Numéro de Sécurité Sociale) - Social Security Number
+    ins_nir_identifier VARCHAR(15), -- INS-NIR - The patient national health identifier obtained from INSi teleservice
     
     -- Names (multiple allowed)
-    names JSONB, -- Array of HumanName objects
-    full_names VARCHAR(255)[][],  -- Le premier array correspond au nombre de HumanName, le second au nombre maximum de givenNames (-1). Dans chaque sous arret, le premier terme est le familyName et les termes d'après sont les givenName. 
+    names JSONB, -- A name associated with the patient
+    full_names VARCHAR(255)[][],  -- Structured name: first array for multiple HumanName, second for given names. First element is familyName, following are givenNames 
     
     -- Demographics
-    gender VARCHAR(10) CHECK (gender IN ('male', 'female', 'other', 'unknown')),
-    birth_date DATE,
-    deceased_x JSONB,
-    deceased_date_time TIMESTAMP WITH TIME ZONE,
-    deceased_extension_death_source VARCHAR(10) CHECK (deceased_source IN ('insee', 'cepidc', 'sih')), -- il faut une extension ad hoc
-    marital_status VARCHAR(4) CHECK (marital_status IN ('PACS', 'A', 'D', 'I', 'L', 'M', 'C', 'P', 'T', 'U', 'S', 'W', 'UNK')),
+    gender VARCHAR(10) CHECK (gender IN ('male', 'female', 'other', 'unknown')), -- Administrative Gender - male | female | other | unknown
+    birth_date DATE, -- The date of birth for the individual
+    deceased_x JSONB, -- Indicates if the individual is deceased or not (boolean or dateTime)
+    deceased_date_time TIMESTAMP WITH TIME ZONE, -- Date and time of death
+    deceased_extension_death_source VARCHAR(10) CHECK (deceased_extension_death_source IN ('insee', 'cepidc', 'sih')), -- Source of death information (INSEE, CepiDc, or Hospital Information System)
+    marital_status VARCHAR(4) CHECK (marital_status IN ('PACS', 'A', 'D', 'I', 'L', 'M', 'C', 'P', 'T', 'U', 'S', 'W', 'UNK')), -- Marital (civil) status of a patient
 
     -- Addresses (multiple allowed)
-    address JSONB, -- Array of Address objects
-    address_extension_geolocation_latitude FLOAT,
-    address_extension_geolocation_longitude FLOAT,
-    address_extension_census_tract VARCHAR(255), -- concaténation du code et du libellé de l'iris dans l'extension (http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract)
-    address_period_start DATE, --pour la date de recueil des informations d'addresse. C’est impropre, mais on peut espérer que le patient habite bien là ou il dit habiter au moment ou il dit qu’il y habite. 
-    address_extension_pmsi_code_geo JSONB, -- il faut une extension ad hoc
-    address_extension_pmsi_code_geo_code VARCHAR(5),
+    address JSONB, -- Physical addresses for the individual (home, work, temporary, etc.) - FHIR Address (0..*)
+    address_extension_geolocation_latitude FLOAT, -- Latitude coordinate for patient address geolocation extension
+    address_extension_geolocation_longitude FLOAT, -- Longitude coordinate for patient address geolocation extension
+    address_extension_census_tract VARCHAR(255), -- IRIS census tract code and label (ISO 21090 ADXP census tract extension)
+    address_period_start DATE, -- Start date of address validity period for data collection tracking
+    address_extension_pmsi_code_geo JSONB, -- PMSI geographic code extension for French healthcare facility location coding
+    address_extension_pmsi_code_geo_code VARCHAR(5), -- PMSI geographic code value for administrative purposes
 
-    -- Contact information  -- j'aurais bien fait comme pour les name, mais il n'y a rien qui indique la prééminence de certain contactpoint...
-    telecoms JSONB, -- Array of ContactPoint objects
-    contacts JSONB,
-    communications JSONB,
-    preferred_communication_languages VARCHAR(255)[], -- array des language.text where language.preferred = true
+    -- Contact information - FHIR ContactPoint, Contact, Communication
+    telecoms JSONB, -- Contact details for the individual (phone, email, fax, etc.) - FHIR telecom ContactPoint (0..*)
+    contacts JSONB, -- Emergency contacts and guardians for the patient - FHIR contact BackboneElement (0..*)
+    communications JSONB, -- Languages the patient can communicate in - FHIR communication BackboneElement (0..*)
+    preferred_communication_languages VARCHAR(255)[], -- Preferred languages for communication (language.text where preferred = true)
     
-    -- Multiple birth
-    multiple_birth_x JSONB,
-    multiple_birth_integer INTEGER,
+    -- Multiple birth - FHIR multipleBirth[x] (0..1)
+    multiple_birth_x JSONB, -- Whether patient is part of multiple birth (boolean or integer) - FHIR multipleBirth[x]
+    multiple_birth_integer INTEGER, -- Birth order for multiple birth scenarios (rang gémellaire)
     
-    -- inscription dans le parcours de soins
-    general_practitioners JSONB,
-    managing_organization JSONB,
+    -- Care pathway enrollment - FHIR generalPractitioner, managingOrganization
+    general_practitioners JSONB, -- Patient's nominated primary care provider(s) - FHIR generalPractitioner Reference (0..*)
+    managing_organization JSONB, -- Organization that is the custodian of the patient record - FHIR managingOrganization Reference (0..1)
 
-    -- identitovigilance
-    links JSONB,
+    -- Identity vigilance - FHIR link (0..*)
+    links JSONB, -- Link to another patient resource that concerns the same actual person - used for patient deduplication
 
     -- French Core extensions
 --    birth_place VARCHAR(255), je vois pas l'intérêt (identitovigilance seulement), on peut le laisser dans le jsonb extension
 --    nationality VARCHAR(10), pas d'intérêt pour le soin, on peut le laisser dans le jsonb extension
     
-    -- FHIR metadata
-    meta JSONB,
-    implicit_rules VARCHAR(255),
-    resource_language VARCHAR(10), -- confusant avec le language de communication
-    text_div TEXT,
-    contained JSONB,
-    extensions JSONB,
-    modifier_extensions JSONB,  -- je suis plutôt pour que ces extensions soient dejsonifié, mais pour l'heure on n'en a pas.
+    -- FHIR metadata and resource control
+    meta JSONB, -- Metadata about the resource (version, lastUpdated, profile, security labels) - FHIR Meta
+    implicit_rules VARCHAR(255), -- A set of rules under which this content was created - FHIR implicitRules (0..1)
+    resource_language VARCHAR(10), -- Language of the resource content - FHIR language (0..1)
+    text_div TEXT, -- Text summary of the resource for human interpretation - FHIR Narrative text
+    contained JSONB, -- Contained, inline Resources that don't have independent identity - FHIR contained (0..*)
+    extensions JSONB, -- Additional content defined by implementations - FHIR extension (0..*)
+    modifier_extensions JSONB,  -- Extensions that cannot be ignored - FHIR modifierExtension (0..*)
 
     -- Audit fields
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 
-    -- manque photo
+    -- Note: photo field not implemented (FHIR photo 0..* - Attachment type for patient image)
 );
 /*
 -- de ma compréhension, on n'a de lien que textuel vers les organization en l'état actuel. 
@@ -391,53 +393,54 @@ CREATE TABLE fhir_episode_of_care (
 );
 */
 
--- Table: fhir_encounter (DMEncounter profile)
+-- Table: fhir_encounter (DMEncounter profile)  
 -- Healthcare encounters adapted for Data Management
+-- Description: A healthcare interaction between a patient and healthcare provider(s)
 CREATE TABLE fhir_encounter (
     id VARCHAR(64) PRIMARY KEY,
 --    version_id VARCHAR(64), ça me semble pas nécessaire à sortir du meta
     last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- FHIR Encounter core elements
-    status VARCHAR(20) CHECK (status IN ('planned', 'arrived', 'triaged', 'in-progress', 'onleave', 'finished', 'cancelled', 'entered-in-error', 'unknown')),
-    status_history JSONB, -- Array of Encounter.statusHistory
-    class JSONB, -- Coding (encounter class)
-    class_display VARCHAR(255),
-    class_history JSONB, -- Array of Encounter.classHistory
-    types JSONB, -- CodeableConcept
-    service_type JSONB, -- CodeableConcept
-    priority JSONB, -- CodeableConcept
+    status VARCHAR(20) CHECK (status IN ('planned', 'arrived', 'triaged', 'in-progress', 'onleave', 'finished', 'cancelled', 'entered-in-error', 'unknown')), -- Current state of encounter - FHIR status (1..1) - modifier element
+    status_history JSONB, -- The status history permits tracking of statuses over time - FHIR statusHistory (0..*)
+    class JSONB, -- Classification of patient encounter (inpatient, outpatient, emergency) - FHIR class Coding (1..1)
+    class_display VARCHAR(255), -- Display text for encounter class for easier querying
+    class_history JSONB, -- The class history permits tracking of the encounter type over time - FHIR classHistory (0..*)
+    types JSONB, -- Specific type of encounter (consultation, surgical day care, etc.) - FHIR type CodeableConcept (0..*)
+    service_type JSONB, -- Broad categorization of the service provided - FHIR serviceType CodeableConcept (0..1)
+    priority JSONB, -- Indicates the urgency of the encounter - FHIR priority CodeableConcept (0..1)
     
     -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
+    identifiers JSONB, -- Business identifiers for this encounter - FHIR identifier (0..*)
     
     -- Patient reference (required)
-    subject JSONB,
-    subject_patient_id VARCHAR(64) NOT NULL,
+    subject JSONB, -- The patient or group present at the encounter - FHIR subject Reference(Patient|Group) (0..1)
+    subject_patient_id VARCHAR(64) NOT NULL, -- Required reference to DMPatient - enforced business rule
     
     -- Episode of care
-    episodes_of_care JSONB, -- Array of Reference(EpisodeOfCare)
+    episodes_of_care JSONB, -- Where a specific encounter should be classified as part of an episode - FHIR episodeOfCare Reference (0..*)
     
     -- Based on appointments
-    based_on_s JSONB, -- Array of Reference(Appointment | ServiceRequest)
+    based_on_s JSONB, -- The appointment that scheduled this encounter - FHIR basedOn Reference(Appointment|ServiceRequest) (0..*)
     
     -- Participants
-    participants JSONB, -- Array of Encounter.participant
+    participants JSONB, -- List of people involved in the encounter - FHIR participant BackboneElement (0..*)
     
     -- Appointments
-    appointments JSONB, -- Array of Reference(Appointment)
+    appointments JSONB, -- The appointment that scheduled this encounter - FHIR appointment Reference (0..*)
     
-    -- Period
-    period_start TIMESTAMP WITH TIME ZONE,
-    period_end TIMESTAMP WITH TIME ZONE,
+    -- Period - FHIR period (0..1)
+    period_start TIMESTAMP WITH TIME ZONE, -- Start time of the encounter - FHIR period.start
+    period_end TIMESTAMP WITH TIME ZONE, -- End time of the encounter - FHIR period.end
     
-    -- Length of stay
-    length JSONB, 
-    length_number_of_day INTEGER,
+    -- Length of stay - FHIR length (0..1)
+    length JSONB, -- Quantity of time the encounter lasted (excludes time for leaves of absence) - FHIR length Duration
+    length_number_of_day INTEGER, -- Length of stay in days for easier reporting
     
-    -- Reason codes
-    reason_codes JSONB, -- Array of CodeableConcept
-    reason_references JSONB, -- Array of Reference
+    -- Reason codes - FHIR reasonCode, reasonReference
+    reason_codes JSONB, -- Coded reason the encounter takes place - FHIR reasonCode CodeableConcept (0..*)
+    reason_references JSONB, -- Reason the encounter takes place (reference to other resources) - FHIR reasonReference Reference (0..*)
     
     -- Diagnoses
     diagnoses JSONB, -- Array of Encounter.diagnosis
@@ -483,42 +486,43 @@ CREATE TABLE fhir_encounter (
 
 -- Table: fhir_condition (DMCondition profile)
 -- Conditions adapted for Data Management with CIM-10 coding
+-- Description: A clinical condition, problem, diagnosis, or other event, situation, issue, or clinical concept
 CREATE TABLE fhir_condition (
     id VARCHAR(64) PRIMARY KEY,
 --    version_id VARCHAR(64), ça me semble pas nécessaire à sortir du meta
     last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- FHIR Condition core elements
-    clinical_status JSONB, -- CodeableConcept
-    clinical_status_text VARCHAR(255), 
-    verification_status JSONB, -- CodeableConcept
-    verification_status_text VARCHAR(255),
-    categories JSONB, -- Array of CodeableConcept
-    categories_text VARCHAR(255)[], -- préciser qu'il s'agit de diag codés dans le cadre du PMSI
-    severity JSONB, -- CodeableConcept
-    code JSONB, -- CodeableConcept (CIM-10)
-    code_text VARCHAR(255),
-    body_sites JSONB, -- Array of CodeableConcept
+    clinical_status JSONB, -- The clinical status of the condition (active, recurrence, relapse, inactive, remission, resolved) - FHIR clinicalStatus CodeableConcept (0..1) - modifier element
+    clinical_status_text VARCHAR(255), -- Display text for clinical status for easier querying
+    verification_status JSONB, -- The verification status (unconfirmed, provisional, differential, confirmed, refuted, entered-in-error) - FHIR verificationStatus CodeableConcept (0..1) - modifier element
+    verification_status_text VARCHAR(255), -- Display text for verification status
+    categories JSONB, -- A category assigned to the condition (problem-list-item, encounter-diagnosis) - FHIR category CodeableConcept (0..*)
+    categories_text VARCHAR(255)[], -- Display text for categories, particularly PMSI diagnosis coding context
+    severity JSONB, -- A subjective assessment of the severity (mild, moderate, severe) - FHIR severity CodeableConcept (0..1)
+    code JSONB, -- Identification of the condition, problem or diagnosis using CIM-10 - FHIR code CodeableConcept (0..1)
+    code_text VARCHAR(255), -- Display text for condition code
+    body_sites JSONB, -- The anatomical location where condition manifests - FHIR bodySite CodeableConcept (0..*)
     
     -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
+    identifiers JSONB, -- Business identifiers for this condition - FHIR identifier (0..*)
     
     -- Patient reference (required)
-    subject JSONB NOT NULL,
-    subject_patient_id VARCHAR(64) NOT NULL,
+    subject JSONB NOT NULL, -- Indicates the patient or group who condition concerns - FHIR subject Reference(Patient|Group) (1..1)
+    subject_patient_id VARCHAR(64) NOT NULL, -- Required reference to DMPatient
     
     -- Encounter reference
-    encounter JSONB,
-    encounter_id VARCHAR(64),
+    encounter JSONB, -- Encounter during which condition was first asserted - FHIR encounter Reference(Encounter) (0..1)
+    encounter_id VARCHAR(64), -- Reference to DMEncounter where condition was identified
     
-    -- Onset and abatement - on simplifie
-    onset_x JSONB,
-    abatement_x JSONB,
+    -- Onset and abatement timing - FHIR onset[x], abatement[x]
+    onset_x JSONB, -- Estimated or actual date, date-time, or age when condition began - FHIR onset[x] (0..1)
+    abatement_x JSONB, -- Date or estimated date condition resolved or went into remission - FHIR abatement[x] (0..1)
     
     -- Recording information
-    recorded_date DATE,
-    recorder JSONB,
-    asserter JSONB,
+    recorded_date DATE, -- Date condition was first recorded in system - FHIR recordedDate (0..1)
+    recorder JSONB, -- Individual who recorded the condition - FHIR recorder Reference(Practitioner|PractitionerRole|Patient|RelatedPerson) (0..1)
+    asserter JSONB, -- Individual making the condition statement - FHIR asserter Reference(Practitioner|PractitionerRole|Patient|RelatedPerson) (0..1)
     
     -- Stage
     stages JSONB, -- Array of Condition.stage
@@ -550,6 +554,7 @@ CREATE TABLE fhir_condition (
 
 -- Table: fhir_procedure (DMProcedure profile)
 -- Procedures adapted for Data Management
+-- Description: An action that is or was performed on a patient (with CCAM coding)
 CREATE TABLE fhir_procedure (
     id VARCHAR(64) PRIMARY KEY,
 --    version_id VARCHAR(64), ça me semble pas nécessaire à sortir du meta
@@ -582,7 +587,7 @@ CREATE TABLE fhir_procedure (
     
     -- Timing - on simplifie
     performed_x JSONB,
-    performed_date_time DATETIME, -- date de réalisation de l'acte, dispo dans le pmsi et plus intéressante que la date du recueil, seule demandée dans le socle.
+    performed_date_time TIMESTAMP WITH TIME ZONE, -- date de réalisation de l'acte, dispo dans le pmsi et plus intéressante que la date du recueil, seule demandée dans le socle.
     
     -- Recorder and asserter
     recorder JSONB,
@@ -645,18 +650,19 @@ CREATE TABLE fhir_procedure (
 
 -- Table: fhir_observation
 -- Generic observation table for all DM observation profiles
--- Includes laboratory results, vital signs, and lifestyle observations
+-- Includes laboratory results, vital signs, and lifestyle observations  
+-- Description: Measurements and simple assertions made about a patient, device or other subject
 CREATE TABLE fhir_observation (
     id VARCHAR(64) PRIMARY KEY,
 --    version_id VARCHAR(64), ça me semble pas nécessaire à sortir du meta
     last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- FHIR Observation core elements
-    status VARCHAR(20) CHECK (status IN ('registered', 'preliminary', 'final', 'amended', 'corrected', 'cancelled', 'entered-in-error', 'unknown')), -- prévoir un mapping de statut de validation vers ce status.
-    categories JSONB, -- Array of CodeableConcept (laboratory, vital-signs, etc.)
-    categories_text VARCHAR(255)[],
-    code JSONB, -- CodeableConcept (LOINC codes)
-    code_text VARCHAR(255),
+    status VARCHAR(20) CHECK (status IN ('registered', 'preliminary', 'final', 'amended', 'corrected', 'cancelled', 'entered-in-error', 'unknown')), -- The status of the result value - FHIR status (1..1) - modifier element
+    categories JSONB, -- Classification of type of observation (laboratory, vital-signs, imaging, etc.) - FHIR category CodeableConcept (0..*)
+    categories_text VARCHAR(255)[], -- Display text for observation categories
+    code JSONB, -- Type of observation (what was measured/observed) using LOINC codes - FHIR code CodeableConcept (1..1)
+    code_text VARCHAR(255), -- Display text for observation code (sometimes called observation "name")
     
     -- Identifiers
     identifiers JSONB, -- Array of Identifier objects
@@ -750,7 +756,7 @@ CREATE TABLE fhir_observation (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (subject_id) REFERENCES fhir_patient(id),
+    FOREIGN KEY (subject_patient_id) REFERENCES fhir_patient(id),
     FOREIGN KEY (encounter_id) REFERENCES fhir_encounter(id)
 --    FOREIGN KEY (specimen_id) REFERENCES fhir_patient(id), -- Simplified; in real FHIR this would be Specimen
 --    FOREIGN KEY (device_id) REFERENCES fhir_organization(id) -- Simplified; in real FHIR this would be Device
@@ -789,18 +795,19 @@ CREATE TABLE fhir_observation_component (
 
 -- Table: fhir_medication_request (DMMedicationRequest profile)
 -- Medication prescriptions
+-- Description: An order or request for both supply of the medication and the instructions for administration
 CREATE TABLE fhir_medication_request (
     id VARCHAR(64) PRIMARY KEY,
 --    version_id VARCHAR(64), ça me semble pas nécessaire à sortir du meta
     last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     -- FHIR MedicationRequest core elements
-    status VARCHAR(20) NOT NULL CHECK (status IN ('active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown')),
-    status_reason JSONB, -- CodeableConcept
-    intent VARCHAR(20) NOT NULL CHECK (intent IN ('proposal', 'plan', 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order', 'option')),
-    categories JSONB, -- Array of CodeableConcept
-    priority VARCHAR(20) CHECK (priority IN ('routine', 'urgent', 'asap', 'stat')),
-    do_not_perform BOOLEAN,
+    status VARCHAR(20) NOT NULL CHECK (status IN ('active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown')), -- Current state of order - FHIR status (1..1) - modifier element
+    status_reason JSONB, -- Reason for current status - FHIR statusReason CodeableConcept (0..1)
+    intent VARCHAR(20) NOT NULL CHECK (intent IN ('proposal', 'plan', 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order', 'option')), -- Whether request is proposal, plan, or original order - FHIR intent (1..1) - modifier element
+    categories JSONB, -- Type of medication usage (inpatient, outpatient, community, discharge) - FHIR category CodeableConcept (0..*)
+    priority VARCHAR(20) CHECK (priority IN ('routine', 'urgent', 'asap', 'stat')), -- Indicates urgency of request - FHIR priority (0..1)
+    do_not_perform BOOLEAN, -- True if request is prohibiting action - FHIR doNotPerform (0..1) - modifier element
     
     -- Identifiers
     identifiers JSONB, -- Array of Identifier objects
@@ -861,8 +868,8 @@ CREATE TABLE fhir_medication_request (
     dosage_instruction_route_text VARCHAR(255),
     dosage_instruction_dose_quantity_value float, 
     dosage_instruction_dose_quantity_unit VARCHAR(255), 
-    dosage_instruction_timing_bounds_period_start DATETIME, 
-    dosage_instruction_timing_bounds_period_end DATETIME, 
+    dosage_instruction_timing_bounds_period_start TIMESTAMP WITH TIME ZONE, 
+    dosage_instruction_timing_bounds_period_end TIMESTAMP WITH TIME ZONE, 
     
     -- Dispense request
     dispense_request JSONB, -- MedicationRequest.dispenseRequest
@@ -902,6 +909,7 @@ CREATE TABLE fhir_medication_request (
 
 -- Table: fhir_medication_administration (DMMedicationAdministration profile)
 -- Medication administration records
+-- Description: Describes the event of a patient consuming or otherwise being administered a medication
 CREATE TABLE fhir_medication_administration (
     id VARCHAR(64) PRIMARY KEY,
 --    version_id VARCHAR(64), ça me semble pas nécessaire à sortir du meta
@@ -1096,7 +1104,6 @@ CREATE TABLE fhir_claim (
 CREATE INDEX idx_patient_identifiers ON fhir_patient USING GIN (identifiers);
 CREATE INDEX idx_patient_nss ON fhir_patient(nss_identifier) WHERE nss_identifier IS NOT NULL;
 CREATE INDEX idx_patient_ins_nir ON fhir_patient(ins_nir_identifier) WHERE ins_nir_identifier IS NOT NULL;
-CREATE INDEX idx_patient_family_name ON fhir_patient(family_name);
 CREATE INDEX idx_patient_birth_date ON fhir_patient(birth_date);
 CREATE INDEX idx_patient_gender ON fhir_patient(gender);
 CREATE INDEX idx_patient_active ON fhir_patient(active);
@@ -1130,10 +1137,7 @@ CREATE INDEX idx_patient_active ON fhir_patient(active);
 --CREATE INDEX idx_episode_period ON fhir_episode_of_care(period_start, period_end);
 
 -- Encounter indexes
-CREATE INDEX idx_encounter_patient ON fhir_encounter(patient_id);
-CREATE INDEX idx_encounter_episode ON fhir_encounter USING GIN (episode_of_care_ids);
-CREATE INDEX idx_encounter_service_provider ON fhir_encounter(service_provider_id);
-CREATE INDEX idx_encounter_part_of ON fhir_encounter(part_of_encounter_id);
+CREATE INDEX idx_encounter_patient ON fhir_encounter(subject_patient_id);
 CREATE INDEX idx_encounter_status ON fhir_encounter(status);
 CREATE INDEX idx_encounter_period ON fhir_encounter(period_start, period_end);
 CREATE INDEX idx_encounter_class ON fhir_encounter USING GIN (class);
@@ -1159,25 +1163,17 @@ CREATE INDEX idx_observation_code ON fhir_observation USING GIN (code);
 CREATE INDEX idx_observation_categories ON fhir_observation USING GIN (categories);
 CREATE INDEX idx_observation_status ON fhir_observation(status);
 CREATE INDEX idx_observation_effective ON fhir_observation(effective_date_time);
-CREATE INDEX idx_observation_profile ON fhir_observation(observation_profile);
-CREATE INDEX idx_observation_lab_type ON fhir_observation(laboratory_type) WHERE laboratory_type IS NOT NULL;
-CREATE INDEX idx_observation_vital_type ON fhir_observation(vital_sign_type) WHERE vital_sign_type IS NOT NULL;
-CREATE INDEX idx_observation_lifestyle_type ON fhir_observation(lifestyle_type) WHERE lifestyle_type IS NOT NULL;
 
 -- MedicationRequest indexes
 CREATE INDEX idx_med_request_patient ON fhir_medication_request(subject_patient_id);
 CREATE INDEX idx_med_request_encounter ON fhir_medication_request(encounter_id);
-CREATE INDEX idx_med_request_requester ON fhir_medication_request(requester_id);
 CREATE INDEX idx_med_request_status ON fhir_medication_request(status);
 CREATE INDEX idx_med_request_intent ON fhir_medication_request(intent);
 CREATE INDEX idx_med_request_authored ON fhir_medication_request(authored_on);
-CREATE INDEX idx_med_request_medication_cc ON fhir_medication_request USING GIN (medication_codeable_concept);
 
 -- MedicationAdministration indexes
 CREATE INDEX idx_med_admin_patient ON fhir_medication_administration(subject_patient_id);
 CREATE INDEX idx_med_admin_encounter ON fhir_medication_administration(context_encounter_id);
-CREATE INDEX idx_med_admin_episode ON fhir_medication_administration(context_episode_id);
-CREATE INDEX idx_med_admin_request ON fhir_medication_administration(request_id);
 CREATE INDEX idx_med_admin_status ON fhir_medication_administration(status);
 CREATE INDEX idx_med_admin_effective ON fhir_medication_administration(effective_date_time);
 
@@ -1194,22 +1190,75 @@ CREATE INDEX idx_med_admin_effective ON fhir_medication_administration(effective
 -- COMMENTS ON TABLES AND COLUMNS
 -- ========================================================================
 
-COMMENT ON TABLE fhir_patient IS 'FHIR Patient resource (DMPatient profile) - French patient demographics with INS-NIR identifiers';
-COMMENT ON COLUMN fhir_patient.ins_nir_identifier IS 'INS-NIR official French national health identifier (13 digits)';
-COMMENT ON COLUMN fhir_patient.nss_identifier IS 'Numéro de Sécurité Sociale (Social Security Number)';
+COMMENT ON TABLE fhir_patient IS 'FHIR Patient resource (DMPatient profile) - Profil Patient du socle commun des EDS. Demographics and other administrative information about an individual receiving care or other health-related services';
+COMMENT ON COLUMN fhir_patient.ins_nir_identifier IS 'INS-NIR - The patient national health identifier obtained from INSi teleservice (Identifiant national de santé)';
+COMMENT ON COLUMN fhir_patient.nss_identifier IS 'NSS - Numéro de Sécurité Sociale (Social Security Number)';
+COMMENT ON COLUMN fhir_patient.active IS 'Whether this patient record is in active use. Many systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization business rule';
+COMMENT ON COLUMN fhir_patient.gender IS 'Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes';
+COMMENT ON COLUMN fhir_patient.birth_date IS 'The date of birth for the individual';
 
-COMMENT ON TABLE fhir_encounter IS 'FHIR Encounter resource (DMEncounter profile) - Healthcare encounters adapted for Data Management';
-COMMENT ON COLUMN fhir_encounter.patient_id IS 'Required reference to DMPatient';
+COMMENT ON TABLE fhir_encounter IS 'FHIR Encounter resource (DMEncounter profile) - An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient';
+COMMENT ON COLUMN fhir_encounter.subject_patient_id IS 'Required reference to DMPatient - The patient present at the encounter';
+COMMENT ON COLUMN fhir_encounter.status IS 'planned | arrived | triaged | in-progress | onleave | finished | cancelled | entered-in-error | unknown';
 
-COMMENT ON TABLE fhir_condition IS 'FHIR Condition resource (DMCondition profile) - Conditions with CIM-10 coding';
-COMMENT ON COLUMN fhir_condition.code IS 'Condition code using CIM-10 value set (extensible)';
+COMMENT ON TABLE fhir_condition IS 'FHIR Condition resource (DMCondition profile) - A clinical condition, problem, diagnosis, or other event, situation, issue, or clinical concept that has risen to a level of concern';
+COMMENT ON COLUMN fhir_condition.code IS 'Identification of the condition, problem or diagnosis using CIM-10 value set (extensible)';
+COMMENT ON COLUMN fhir_condition.clinical_status IS 'The clinical status of the condition - active | recurrence | relapse | inactive | remission | resolved';
 
-COMMENT ON TABLE fhir_observation IS 'FHIR Observation resource - Generic table for all DM observation profiles (laboratory, vital signs, lifestyle)';
-COMMENT ON COLUMN fhir_observation.observation_profile IS 'Profile type: laboratory, vital-signs, lifestyle';
-COMMENT ON COLUMN fhir_observation.laboratory_type IS 'Laboratory subtype: uremie, tca, fonction_renale, generic';
+COMMENT ON TABLE fhir_procedure IS 'FHIR Procedure resource (DMProcedure profile) - An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy';
+COMMENT ON COLUMN fhir_procedure.code IS 'The specific procedure that was performed using CCAM or other standard classifications';
+COMMENT ON COLUMN fhir_procedure.status IS 'A code specifying the state of the procedure - preparation | in-progress | not-done | on-hold | stopped | completed | entered-in-error | unknown';
 
-COMMENT ON TABLE fhir_medication_request IS 'FHIR MedicationRequest resource (DMMedicationRequest profile) - Medication prescriptions';
-COMMENT ON COLUMN fhir_medication_request.medication_codeable_concept IS 'Medication coded with ATC or other standard codes';
+COMMENT ON TABLE fhir_observation IS 'FHIR Observation resource - Measurements and simple assertions made about a patient, device or other subject. Generic table for all DM observation profiles (laboratory, vital signs, lifestyle)';
+COMMENT ON COLUMN fhir_observation.status IS 'The status of the result value - registered | preliminary | final | amended | corrected | cancelled | entered-in-error | unknown';
+COMMENT ON COLUMN fhir_observation.code IS 'Describes what was observed using LOINC codes. Sometimes this is called the observation "name"';
+
+COMMENT ON TABLE fhir_medication_request IS 'FHIR MedicationRequest resource (DMMedicationRequest profile) - An order or request for both supply of the medication and the instructions for administration of the medication to a patient';
+COMMENT ON COLUMN fhir_medication_request.status IS 'A code specifying the current state of the order - active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown';
+COMMENT ON COLUMN fhir_medication_request.intent IS 'Whether the request is a proposal, plan, or an original order - proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option';
+
+COMMENT ON TABLE fhir_medication_administration IS 'FHIR MedicationAdministration resource (DMMedicationAdministration profile) - Describes the event of a patient consuming or otherwise being administered a medication';
+COMMENT ON COLUMN fhir_medication_administration.status IS 'Will generally be set to show that the administration has been completed - in-progress | not-done | on-hold | completed | entered-in-error | stopped | unknown';
+
+-- Additional comprehensive column comments
+COMMENT ON COLUMN fhir_patient.identifiers IS 'Business identifiers for this patient (0..*) - Array of Identifier objects';
+COMMENT ON COLUMN fhir_patient.names IS 'A name associated with the patient (0..*) - Array of HumanName objects';
+COMMENT ON COLUMN fhir_patient.telecoms IS 'Contact details for the individual (phone, email, fax, etc.) - FHIR telecom ContactPoint (0..*)';
+COMMENT ON COLUMN fhir_patient.address IS 'Physical addresses for the individual (home, work, temporary, etc.) - FHIR Address (0..*)';
+COMMENT ON COLUMN fhir_patient.marital_status IS 'Patient marital (civil) status - CodeableConcept with French coding system';
+COMMENT ON COLUMN fhir_patient.contacts IS 'Emergency contacts and guardians for the patient - FHIR contact BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_patient.communications IS 'Languages the patient can communicate in - FHIR communication BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_patient.general_practitioners IS 'Patient nominated primary care provider(s) - FHIR generalPractitioner Reference (0..*)';
+COMMENT ON COLUMN fhir_patient.managing_organization IS 'Organization that is the custodian of the patient record - FHIR managingOrganization Reference (0..1)';
+COMMENT ON COLUMN fhir_patient.links IS 'Link to another patient resource that concerns the same actual person - used for patient deduplication';
+
+COMMENT ON COLUMN fhir_encounter.participants IS 'List of people involved in the encounter - FHIR participant BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_encounter.period_start IS 'Start time of the encounter - FHIR period.start';
+COMMENT ON COLUMN fhir_encounter.period_end IS 'End time of the encounter - FHIR period.end';
+COMMENT ON COLUMN fhir_encounter.length IS 'Quantity of time the encounter lasted (excludes time for leaves of absence) - FHIR length Duration';
+COMMENT ON COLUMN fhir_encounter.reason_codes IS 'Coded reason the encounter takes place - FHIR reasonCode CodeableConcept (0..*)';
+COMMENT ON COLUMN fhir_encounter.diagnoses IS 'List of diagnoses relevant to encounter - FHIR diagnosis BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_encounter.hospitalization IS 'Details about admission to healthcare facility - FHIR hospitalization BackboneElement (0..1)';
+COMMENT ON COLUMN fhir_encounter.locations IS 'List of locations where patient was during encounter - FHIR location BackboneElement (0..*)';
+
+COMMENT ON COLUMN fhir_condition.onset_x IS 'Estimated or actual date, date-time, or age when condition began - FHIR onset[x] (0..1)';
+COMMENT ON COLUMN fhir_condition.abatement_x IS 'Date or estimated date condition resolved or went into remission - FHIR abatement[x] (0..1)';
+COMMENT ON COLUMN fhir_condition.stages IS 'Stage/grade of condition - FHIR stage BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_condition.evidences IS 'Supporting evidence for condition - FHIR evidence BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_condition.notes IS 'Additional information about the condition - FHIR note Annotation (0..*)';
+
+COMMENT ON COLUMN fhir_observation.effective_date_time IS 'Clinically relevant time/time-period for observation - FHIR effective[x]';
+COMMENT ON COLUMN fhir_observation.value_quantity_value IS 'Actual result value - FHIR value[x] as Quantity.value';
+COMMENT ON COLUMN fhir_observation.value_quantity_unit IS 'Unit of measurement for observation value - FHIR value[x] as Quantity.unit';
+COMMENT ON COLUMN fhir_observation.reference_ranges IS 'Provides guide for interpretation - FHIR referenceRange BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_observation.components IS 'Component results for complex observations - FHIR component BackboneElement (0..*)';
+COMMENT ON COLUMN fhir_observation.performers IS 'Who is responsible for observation - FHIR performer Reference (0..*)';
+
+COMMENT ON COLUMN fhir_medication_request.medication_x IS 'Medication to be taken - FHIR medication[x] (1..1) - either CodeableConcept or Reference(Medication)';
+COMMENT ON COLUMN fhir_medication_request.dosage_instructions IS 'How medication should be taken - FHIR dosageInstruction Dosage (0..*)';
+COMMENT ON COLUMN fhir_medication_request.requester IS 'Who/what requested the medication - FHIR requester Reference (0..1)';
+COMMENT ON COLUMN fhir_medication_request.reason_codes IS 'Reason or indication for ordering medication - FHIR reasonCode CodeableConcept (0..*)';
+COMMENT ON COLUMN fhir_medication_request.authored_on IS 'When request was initially authored - FHIR authoredOn dateTime (0..1)';
 
 --COMMENT ON TABLE fhir_claim IS 'FHIR Claim resource - Generic table for PMSI billing data (DMClaimPMSI, DMClaimPMSIMCO, DMClaimRUM profiles)';
 --COMMENT ON COLUMN fhir_claim.claim_profile IS 'Claim profile type: pmsi, pmsi_mco, rum';
