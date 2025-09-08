@@ -388,7 +388,7 @@ def main() -> None:
                 console.print(f"  - {key}: {value}")
         
         # Create and initialize exporter
-        console.print(f"\n[bold]Initializing FHIR to OMOP Exporter[/bold]")
+        console.print(f"\n[bold]Initializing FHIR to Analytisc Exporter[/bold]")
         
         with FHIRExporter(config) as exporter:
             # Check for shutdown signal during initialization
