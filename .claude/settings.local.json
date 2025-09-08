@@ -35,7 +35,8 @@
       "Bash(python:*)",
       "mcp__context7__resolve-library-id",
       "Bash(touch:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "mcp__context7__get-library-docs"
     ],
     "deny": [],
     "ask": []
