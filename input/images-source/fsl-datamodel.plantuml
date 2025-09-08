@@ -1,0 +1,346 @@
+@startuml fsl-datamodel
+
+skinparam Shadowing 1.0
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+scale max 1100 width
+
+title
+Modèle de donnée du Hub d'intégration
+end title
+
+' Entity styling
+!define TABLE(name) entity name
+!define PK(field) <b><u>field</u></b>
+!define FK(field) <i>field</i>
+
+' Define entity tables with FHIR structure
+TABLE(fhir_patient) {
+  PK(id): VARCHAR(64)
+  --
+  last_updated: TIMESTAMP WITH TIME ZONE
+  active: BOOLEAN
+  identifier: JSONB
+  nss_identifier: VARCHAR(50)
+  ins_nir_identifier: VARCHAR(15)
+  names: JSONB
+  full_names: VARCHAR(255)[][]
+  gender: VARCHAR(10)
+  birth_date: DATE
+  deceased_x: JSONB
+  deceased_date_time: TIMESTAMP WITH TIME ZONE
+  marital_status: VARCHAR(4)
+  address: JSONB
+  address_extension_geolocation_latitude: FLOAT
+  address_extension_geolocation_longitude: FLOAT
+  telecoms: JSONB
+  contacts: JSONB
+  communications: JSONB
+  multiple_birth_x: JSONB
+  multiple_birth_integer: INTEGER
+  general_practitioners: JSONB
+  managing_organization: JSONB
+  links: JSONB
+  meta: JSONB
+  extensions: JSONB
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(fhir_encounter) {
+  PK(id): VARCHAR(64)
+  FK(subject_patient_id): VARCHAR(64)
+  --
+  last_updated: TIMESTAMP WITH TIME ZONE
+  status: VARCHAR(20)
+  status_history: JSONB
+  class: JSONB
+  class_display: VARCHAR(255)
+  class_history: JSONB
+  types: JSONB
+  service_type: JSONB
+  priority: JSONB
+  identifiers: JSONB
+  subject: JSONB
+  episodes_of_care: JSONB
+  based_on_s: JSONB
+  participants: JSONB
+  appointments: JSONB
+  period_start: TIMESTAMP WITH TIME ZONE
+  period_end: TIMESTAMP WITH TIME ZONE
+  length: JSONB
+  length_number_of_day: INTEGER
+  reason_codes: JSONB
+  reason_references: JSONB
+  diagnoses: JSONB
+  account: JSONB
+  hospitalization: JSONB
+  admit_source_text: VARCHAR(255)
+  discharge_disposition_text: VARCHAR(255)
+  locations: JSONB
+  service_provider: JSONB
+  service_provider_organization_display: VARCHAR(64)
+  part_of: JSONB
+  meta: JSONB
+  extensions: JSONB
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(fhir_condition) {
+  PK(id): VARCHAR(64)
+  FK(subject_patient_id): VARCHAR(64)
+  FK(encounter_id): VARCHAR(64)
+  --
+  last_updated: TIMESTAMP WITH TIME ZONE
+  clinical_status: JSONB
+  clinical_status_text: VARCHAR(255)
+  verification_status: JSONB
+  verification_status_text: VARCHAR(255)
+  categories: JSONB
+  categories_text: VARCHAR(255)[]
+  severity: JSONB
+  code: JSONB
+  code_text: VARCHAR(255)
+  body_sites: JSONB
+  identifiers: JSONB
+  subject: JSONB
+  encounter: JSONB
+  onset_x: JSONB
+  abatement_x: JSONB
+  recorded_date: DATE
+  recorder: JSONB
+  asserter: JSONB
+  stages: JSONB
+  evidences: JSONB
+  notes: JSONB
+  meta: JSONB
+  extensions: JSONB
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(fhir_procedure) {
+  PK(id): VARCHAR(64)
+  FK(subject_patient_id): VARCHAR(64)
+  FK(encounter_id): VARCHAR(64)
+  --
+  last_updated: TIMESTAMP WITH TIME ZONE
+  instantiates_canonical_s: JSONB
+  instantiates_uri_s: JSONB
+  status: VARCHAR(20)
+  status_reason: JSONB
+  category: JSONB
+  code: JSONB
+  code_text: VARCHAR(255)
+  identifiers: JSONB
+  based_on_s: JSONB
+  part_of_s: JSONB
+  subject: JSONB
+  encounter: JSONB
+  performed_x: JSONB
+  performed_date_time: TIMESTAMP WITH TIME ZONE
+  recorder: JSONB
+  asserter: JSONB
+  performers: JSONB
+  performer_actor_practitioner_text: VARCHAR(255)[]
+  location: JSONB
+  reason_codes: JSONB
+  reason_references: JSONB
+  body_sites: JSONB
+  outcome: JSONB
+  reports: JSONB
+  complications: JSONB
+  complication_details: JSONB
+  follow_up_s: JSONB
+  notes: JSONB
+  focal_devices: JSONB
+  used_references: JSONB
+  used_codes: JSONB
+  meta: JSONB
+  extensions: JSONB
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(fhir_observation) {
+  PK(id): VARCHAR(64)
+  FK(subject_patient_id): VARCHAR(64)
+  FK(encounter_id): VARCHAR(64)
+  --
+  last_updated: TIMESTAMP WITH TIME ZONE
+  status: VARCHAR(20)
+  categories: JSONB
+  categories_text: VARCHAR(255)[]
+  code: JSONB
+  code_text: VARCHAR(255)
+  identifiers: JSONB
+  based_on_s: JSONB
+  part_of_s: JSONB
+  subject: JSONB
+  encounter: JSONB
+  focus_s: JSONB
+  effective_x: JSONB
+  effective_date_time: TIMESTAMP WITH TIME ZONE
+  issued: TIMESTAMP WITH TIME ZONE
+  performers: JSONB
+  performer_organization_text: VARCHAR(255)
+  value_x: JSONB
+  value_quantity_value: FLOAT
+  value_quantity_unit: VARCHAR(255)
+  data_absent_reason: JSONB
+  interpretations: JSONB
+  notes: JSONB
+  body_site: JSONB
+  method: JSONB
+  specimen: JSONB
+  device: JSONB
+  reference_ranges: JSONB
+  reference_ranges_value: FLOAT[2][]
+  has_members: JSONB
+  derived_from_s: JSONB
+  components: JSONB
+  meta: JSONB
+  extensions: JSONB
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(fhir_observation_component) {
+  PK(id): VARCHAR(64)
+  FK(observation_id): VARCHAR(64)
+  --
+  code: JSONB
+  code_text: VARCHAR(255)
+  value_x: JSONB
+  value_quantity_value: FLOAT
+  value_quantity_unit: VARCHAR(255)
+  data_absent_reason: JSONB
+  interpretations: JSONB
+  reference_ranges: JSONB
+  reference_ranges_value: FLOAT[2][]
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(fhir_medication_request) {
+  PK(id): VARCHAR(64)
+  FK(subject_patient_id): VARCHAR(64)
+  FK(encounter_id): VARCHAR(64)
+  --
+  last_updated: TIMESTAMP WITH TIME ZONE
+  status: VARCHAR(20)
+  status_reason: JSONB
+  intent: VARCHAR(20)
+  categories: JSONB
+  priority: VARCHAR(20)
+  do_not_perform: BOOLEAN
+  identifiers: JSONB
+  based_on_s: JSONB
+  reported_x: JSONB
+  group_identifier: JSONB
+  course_of_therapy_type: JSONB
+  insurances: JSONB
+  notes: JSONB
+  medication_x: JSONB
+  medication_text: VARCHAR(255)
+  supporting_informations: JSONB
+  authored_on: TIMESTAMP WITH TIME ZONE
+  requester: JSONB
+  requester_practitioner_display: VARCHAR(255)
+  performer: JSONB
+  performer_type: JSONB
+  recorder: JSONB
+  reason_codes: JSONB
+  reason_references: JSONB
+  instantiates_canonical_s: JSONB
+  instantiates_uri_s: JSONB
+  dosage_instructions: JSONB
+  dosage_instruction_route_text: VARCHAR(255)
+  dosage_instruction_dose_quantity_value: FLOAT
+  dosage_instruction_dose_quantity_unit: VARCHAR(255)
+  dosage_instruction_timing_bounds_period_start: TIMESTAMP WITH TIME ZONE
+  dosage_instruction_timing_bounds_period_end: TIMESTAMP WITH TIME ZONE
+  dispense_request: JSONB
+  substitution: JSONB
+  prior_prescription: JSONB
+  detected_issues: JSONB
+  event_history: JSONB
+  meta: JSONB
+  extensions: JSONB
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+TABLE(fhir_medication_administration) {
+  PK(id): VARCHAR(64)
+  FK(subject_patient_id): VARCHAR(64)
+  FK(context_encounter_id): VARCHAR(64)
+  FK(request_medication_request_id): VARCHAR(64)
+  --
+  last_updated: TIMESTAMP WITH TIME ZONE
+  status: VARCHAR(20)
+  status_reasons: JSONB
+  category: JSONB
+  identifiers: JSONB
+  instantiates_s: JSONB
+  part_of_s: JSONB
+  medication_x: JSONB
+  medication_text: VARCHAR(255)
+  context: JSONB
+  supporting_informations: JSONB
+  effective_x: JSONB
+  effective_date_time: TIMESTAMP WITH TIME ZONE
+  performers: JSONB
+  reason_codes: JSONB
+  reason_references: JSONB
+  request: JSONB
+  devices: JSONB
+  notes: JSONB
+  dosage: JSONB
+  dosage_route_text: VARCHAR(255)
+  dosage_dose_value: FLOAT
+  dosage_dose_unit: VARCHAR(255)
+  event_history: JSONB
+  meta: JSONB
+  extensions: JSONB
+  --
+  ' Audit fields
+  created_at: TIMESTAMP WITH TIME ZONE
+  updated_at: TIMESTAMP WITH TIME ZONE
+}
+
+' Define relationships with crow's foot notation
+fhir_patient ||--o{ fhir_encounter : "has"
+fhir_patient ||--o{ fhir_condition : "subject"
+fhir_patient ||--o{ fhir_procedure : "subject"
+fhir_patient ||--o{ fhir_observation : "subject"
+fhir_patient ||--o{ fhir_medication_request : "subject"
+fhir_patient ||--o{ fhir_medication_administration : "subject"
+
+fhir_encounter ||--o{ fhir_condition : "context"
+fhir_encounter ||--o{ fhir_procedure : "context"
+fhir_encounter ||--o{ fhir_observation : "context"
+fhir_encounter ||--o{ fhir_medication_request : "context"
+fhir_encounter ||--o{ fhir_medication_administration : "context"
+
+fhir_observation ||--o{ fhir_observation_component : "components"
+
+fhir_medication_request ||--o{ fhir_medication_administration : "based_on"
+
+@enduml
