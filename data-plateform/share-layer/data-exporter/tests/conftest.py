@@ -17,7 +17,7 @@ def test_config():
     return {
         "fhir_endpoint_url": "http://localhost:8080/fhir",
         "output_dir": "./test_output",
-        "view_definitions_dir": "../../../fsh-generated/resources",
+        "view_definitions_dir": "view-definition/omop",
         "temp_dir": "./test_temp"
     }
 

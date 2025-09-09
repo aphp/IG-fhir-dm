@@ -172,7 +172,7 @@ class Config(BaseSettings):
     
     # Processing configuration
     omop_tables: List[str] = Field(["Person"], description="OMOP tables to export")
-    view_definitions_dir: Path = Field(Path("../../../fsh-generated/resources"), description="ViewDefinition files directory")
+    view_definitions_dir: Path = Field(Path("view-definition/omop"), description="ViewDefinition files directory")
     
     # Component configurations
     pathling: PathlingConfig = Field(default_factory=PathlingConfig)
@@ -300,7 +300,7 @@ class Config(BaseSettings):
         Returns:
             Path to ViewDefinition file
         """
-        return self.view_definitions_dir / f"Binary-OMOP-{table_name}-View.json"
+        return self.view_definitions_dir / f"OMOP-{table_name}-View.json"
     
     def get_data_source_config(self) -> Union[FHIRServerConfig, FileSystemConfig]:
         """Get active data source configuration.

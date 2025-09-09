@@ -8,7 +8,7 @@ from datetime import datetime
 
 def load_view_definition():
     """Load the ViewDefinition for reference."""
-    view_def_path = Path("../../../fsh-generated/resources/Binary-OMOP-Person-View.json")
+    view_def_path = Path("view-definition/omop/OMOP-Person-View.json")
     
     if view_def_path.exists():
         with open(view_def_path, "r", encoding="utf-8") as f:

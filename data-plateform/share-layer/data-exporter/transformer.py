@@ -219,7 +219,7 @@ class FHIRToOMOPTransformer:
         Returns:
             Path to ViewDefinition file
         """
-        return self.view_definitions_dir / f"Binary-OMOP-{table_name}-View.json"
+        return self.view_definitions_dir / f"OMOP-{table_name}-View.json"
     
     @log_execution_time("table_transformation")
     def transform_table(

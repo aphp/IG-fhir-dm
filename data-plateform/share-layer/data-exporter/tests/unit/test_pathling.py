@@ -25,7 +25,7 @@ try:
     pc = PathlingContext.create()
     logger.info("✅ Pathling context created successfully!")
 
-    view_path = "../../../fsh-generated/resources/Binary-OMOP-Person-View.json"
+    view_path = "view-definition/omop/OMOP-Person-View.json"
     with open(view_path, "r", encoding="utf-8") as f:
                 view_definition = f.read()
     

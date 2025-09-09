@@ -107,7 +107,7 @@ Examples:
     process_group.add_argument(
         "--view-definitions-dir",
         type=Path,
-        default="../../../fsh-generated/resources",
+        default="view-definition/omop",
         help="Directory containing ViewDefinition files"
     )
     process_group.add_argument(

@@ -28,7 +28,7 @@ def simple_test():
         print("SUCCESS: Pathling imported successfully")
         
         # Test ViewDefinition loading
-        view_definition_path = "../../../fsh-generated/resources/Binary-OMOP-Person-View.json"
+        view_definition_path = "view-definition/omop/OMOP-Person-View.json"
         full_path = Path(__file__).parent / view_definition_path
         
         print(f"Checking ViewDefinition at: {full_path}")

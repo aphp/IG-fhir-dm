@@ -9,7 +9,7 @@
   "omop_tables": [
     "Person"
   ],
-  "view_definitions_dir": "../../../fsh-generated/resources",
+  "view_definitions_dir": "view-definition/omop",
   "pathling": {
     "app_name": "FHIR-Exporter",
     "executor_memory": "2g",

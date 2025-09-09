@@ -18,7 +18,7 @@ The data exporter must be: (1)Configurable according to the defined options, (2)
 - You should allow to config output files directory.
 - For Test, You should take account the `hapi-fhir-server` context configuration.
 - For Test, tirst try with OMOP Table Person and stop.
-- For test the target schema for OMOP tables is defined in the file `data-plateform/eds/sql/omop/OMOPCDM_duckdb_5.4_*.sql`, while the corresponding ViewDefinitions are provided in the files located at `fsh-generated/resources/Binary-OMOP-*-View.json`. Warning with post-processing without it's not possible to conform data after ViewDefinition transform.
+- For test the target schema for OMOP tables is defined in the file `data-plateform/eds/sql/omop/OMOPCDM_duckdb_5.4_*.sql`, while the corresponding ViewDefinitions are provided in the files located at `view-definition/omop/OMOP-*-View.json`. Warning with post-processing without it's not possible to conform data after ViewDefinition transform.
 </recommandations>
 
 <example>
@@ -26,7 +26,7 @@ The data exporter must be: (1)Configurable according to the defined options, (2)
 pc = PathlingContext.create()
 logger.info("✅ Pathling context created successfully!")
 
-view_path = "../../../fsh-generated/resources/Binary-OMOP-Person-View.json"
+view_path = "view-definition/omop/OMOP-Person-View.json"
 with open(view_path, "r", encoding="utf-8") as f:
             view_definition = f.read()
 

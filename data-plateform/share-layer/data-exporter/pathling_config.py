@@ -212,10 +212,10 @@ def load_view_definition_safe() -> Optional[Dict[str, Any]]:
     
     # Try multiple possible locations
     possible_paths = [
-        Path("../../../fsh-generated/resources/Binary-OMOP-Person-View.json"),
-        Path("fsh-generated/resources/Binary-OMOP-Person-View.json"),
-        Path("../fsh-generated/resources/Binary-OMOP-Person-View.json"),
-        Path("Binary-OMOP-Person-View.json")
+        Path("../view-definition/omop/OMOP-Person-View.json"),
+        Path("omop/OMOP-Person-View.json"),
+        Path("../../view-definition/omop/OMOP-Person-View.json"),
+        Path("OMOP-Person-View.json")
     ]
     
     for view_def_path in possible_paths:

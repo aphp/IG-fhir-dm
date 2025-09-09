@@ -41,7 +41,7 @@ def run_complete_test():
         
         # Step 2: Load ViewDefinition
         print("\n2. Loading OMOP Person ViewDefinition...")
-        view_def_path = Path("../../../fsh-generated/resources/Binary-OMOP-Person-View.json")
+        view_def_path = Path("view-definition/omop/OMOP-Person-View.json")
         
         if not view_def_path.exists():
             print(f"   ERROR: ViewDefinition not found at {view_def_path}")

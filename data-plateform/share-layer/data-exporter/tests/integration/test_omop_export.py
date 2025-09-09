@@ -33,7 +33,7 @@ def test_person_export():
     
     # Configuration
     fhir_server = "http://localhost:8080/fhir"
-    view_definition_path = "../../../fsh-generated/resources/Binary-OMOP-Person-View.json"
+    view_definition_path = "view-definition/omop/OMOP-Person-View.json"
     output_dir = "./output"
     
     # Create output directory

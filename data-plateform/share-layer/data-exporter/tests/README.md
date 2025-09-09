@@ -182,7 +182,7 @@ The tests use realistic French healthcare context data:
 ```bash
 export FHIR_ENDPOINT_URL="http://localhost:8080/fhir"
 export OUTPUT_DIR="./test_output"
-export VIEW_DEFINITIONS_DIR="../../../fsh-generated/resources"
+export VIEW_DEFINITIONS_DIR="view-definition/omop"
 ```
 
 ## 📈 Test Metrics

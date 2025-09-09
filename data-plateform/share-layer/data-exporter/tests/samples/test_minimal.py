@@ -83,7 +83,7 @@ def create_minimal_patient_data():
 
 def load_view_definition():
     """Load the OMOP Person ViewDefinition."""
-    view_def_path = Path("../../../../../fsh-generated/resources/Binary-OMOP-Person-View.json")
+    view_def_path = Path("view-definition/omop/OMOP-Person-View.json")
     
     if not view_def_path.exists():
         logger.error(f"ViewDefinition not found at: {view_def_path}")
