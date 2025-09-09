@@ -9,7 +9,7 @@
 
 #### Cas 1 : ???
 
-TODO
+{% include QuestionnaireResponse-test-usage-core-complet-html.xhtml %}
 
 #### Cas 2 : ???
 

@@ -64,7 +64,7 @@ Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples se
 
 #### Cas 1 : ???
 
-TODO
+{% include QuestionnaireResponse-test-usage-core-complet-intro.md %}
 
 #### Cas 2 : ???
 
