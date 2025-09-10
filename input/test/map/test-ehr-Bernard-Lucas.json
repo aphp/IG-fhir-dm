@@ -1,0 +1,164 @@
+{
+  "resourceType": "ehr",
+  "id": "test-ehr-bernard-lucas",
+  "patient": {
+    "patientId": "patient-007",
+    "nom": "Bernard",
+    "prenom": "Lucas",
+    "ins": "1950515678901",
+    "dateNaissance": "1995-05-15",
+    "sexe": "h",
+    "createdAt": "2025-08-30T16:00:00Z",
+    "updatedAt": "2025-08-30T16:00:00Z"
+  },
+  "patientAddress": [
+    {
+      "patientAddressId": "loc-007",
+      "patientId": "patient-007",
+      "latitude": 47.2184,
+      "longitude": -1.5536,
+      "codeIris": "440090505",
+      "libelleIris": "Île de Nantes",
+      "codeGeographiqueResidence": "44009",
+      "libelleGeographiqueResidence": "NANTES",
+      "dateRecueil": "2025-08-18",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "donneesPmsi": [
+    {
+      "pmsiId": "pmsi-006",
+      "patientId": "patient-007",
+      "dateDebutSejour": "2025-08-18",
+      "dateFinSejour": "2025-08-19",
+      "dureeSejour": 1,
+      "modeEntree": "7 - Mutation d'une unité de l'établissement",
+      "modeSortie": "8 - Domicile",
+      "etablissement": "CHU Nantes",
+      "service": "Chirurgie orthopédique",
+      "uniteFonctionnelle": "Bloc opératoire",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "diagnostic": [
+    {
+      "diagnosticId": "diag-011",
+      "patientId": "patient-007",
+      "pmsiId": "pmsi-006",
+      "codeDiagnostic": "S721",
+      "typeDiagnostic": "DP",
+      "libelleDiagnostic": "Fracture pertrochantérienne",
+      "dateRecueil": "2025-08-18",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "acte": [
+    {
+      "acteId": "acte-007",
+      "patientId": "patient-007",
+      "pmsiId": "pmsi-006",
+      "codeActe": "NBCA002...01.",
+      "libelleActe": "Ostéosynthèse de fracture pertrochantérienne par clou gamma",
+      "dateActe": "2025-08-18T14:00:00.000Z",
+      "executant": "Dr. Orthopédiste",
+      "dateRecueil": "2025-08-18",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "biologie": [
+    {
+      "biologieId": "bio-010",
+      "patientId": "patient-007",
+      "pmsiId": "pmsi-006",
+      "codeLoinc": "718-7",
+      "libelleTest": "Hémoglobine",
+      "typeExamen": "Hématologie",
+      "valeur": 13.5,
+      "unite": "g/dL",
+      "datePrelevement": "2025-08-18T06:00:00.000Z",
+      "borneInfNormale": 13.0,
+      "borneSupNormale": 17.0,
+      "statutValidation": "VALIDE",
+      "laboratoire": "CHU Nantes",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "prescription": [
+    {
+      "prescriptionId": "exp-009",
+      "patientId": "patient-007",
+      "pmsiId": "pmsi-006",
+      "denomination": "Tramadol",
+      "codeAtc": "N02AX02",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Chirurgien",
+      "datePrescription": "2025-08-18",
+      "dateDebutPrescription": "2025-08-18",
+      "dateFinPrescription": "2025-08-25",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "posologie": [
+    {
+      "posologieId": "pos-009",
+      "prescriptionId": "exp-009",
+      "nombrePrisesParJour": 4,
+      "quantite": 50,
+      "uniteQuantite": "mg",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "dossierSoin": [
+    {
+      "soinId": "soins-008",
+      "patientId": "patient-007",
+      "pmsiId": "pmsi-006",
+      "codeLoinc": "72133-2",
+      "libelleTest": "Échelle de douleur",
+      "valeur": 3.0,
+      "unite": "score",
+      "dateMesure": "2025-08-19T08:00:00.000Z",
+      "uniteSoins": "Chirurgie orthopédique",
+      "professionnel": "Infirmière Moreau",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "styleVie": [
+    {
+      "styleVieId": "style-005",
+      "patientId": "patient-007",
+      "consommationTabac": "Non fumeur",
+      "consommationAlcool": "Occasionnel week-end",
+      "consommationAutresDrogues": "Non",
+      "activitePhysique": "Sport régulier",
+      "dateRecueil": "2025-08-18T12:00:00.000Z",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ],
+  "administration": [
+    {
+      "administrationId": "admin-006",
+      "patientId": "patient-007",
+      "pmsiId": "pmsi-006",
+      "prescriptionId": "exp-009",
+      "denomination": "Tramadol",
+      "codeAtc": "N02AX02",
+      "quantite": 50,
+      "uniteQuantite": "mg",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-18T20:00:00.000Z",
+      "dateHeureFin": "2025-08-18T20:05:00.000Z",
+      "createdAt": "2025-08-30T16:00:00Z",
+      "updatedAt": "2025-08-30T16:00:00Z"
+    }
+  ]
+}

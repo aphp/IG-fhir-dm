@@ -1,0 +1,240 @@
+{
+  "resourceType": "ehr",
+  "id": "test-ehr-faure-camille",
+  "patient": {
+    "patientId": "patient-010",
+    "nom": "Faure",
+    "prenom": "Camille",
+    "ins": "2920805123456",
+    "dateNaissance": "1992-08-05",
+    "sexe": "f",
+    "rangGemellaire": 2,
+    "createdAt": "2025-08-30T19:00:00Z",
+    "updatedAt": "2025-08-30T19:00:00Z"
+  },
+  "patientAddress": [
+    {
+      "patientAddressId": "loc-010",
+      "patientId": "patient-010",
+      "latitude": 48.11198,
+      "longitude": -1.6743,
+      "codeIris": "350380501",
+      "libelleIris": "Centre historique",
+      "codeGeographiqueResidence": "35038",
+      "libelleGeographiqueResidence": "RENNES",
+      "dateRecueil": "2025-08-05",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "donneesPmsi": [
+    {
+      "pmsiId": "pmsi-009",
+      "patientId": "patient-010",
+      "dateDebutSejour": "2025-08-05",
+      "dateFinSejour": "2025-08-08",
+      "dureeSejour": 3,
+      "modeEntree": "8 - Domicile",
+      "modeSortie": "8 - Domicile",
+      "etablissement": "CHU Rennes",
+      "service": "Dermatologie",
+      "uniteFonctionnelle": "Hospitalisation de jour",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "diagnostic": [
+    {
+      "diagnosticId": "diag-016",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "codeDiagnostic": "L409",
+      "typeDiagnostic": "DP",
+      "libelleDiagnostic": "Psoriasis, sans précision",
+      "dateRecueil": "2025-08-05",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    },
+    {
+      "diagnosticId": "diag-017",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "codeDiagnostic": "M0690",
+      "typeDiagnostic": "DAS",
+      "libelleDiagnostic": "Rhumatisme psoriasique, siège non précisé",
+      "dateRecueil": "2025-08-05",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "acte": [
+    {
+      "acteId": "acte-011",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "codeActe": "YYYY005...01.",
+      "libelleActe": "Photothérapie UVB",
+      "dateActe": "2025-08-06T14:00:00.000Z",
+      "executant": "Dermatologue",
+      "dateRecueil": "2025-08-06",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    },
+    {
+      "acteId": "acte-012",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "codeActe": "YYYY005...02.",
+      "libelleActe": "Photothérapie UVB",
+      "dateActe": "2025-08-07T14:00:00.000Z",
+      "executant": "Dermatologue",
+      "dateRecueil": "2025-08-07",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "biologie": [
+    {
+      "biologieId": "bio-013",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "codeLoinc": "1988-5",
+      "libelleTest": "CRP",
+      "typeExamen": "Inflammation",
+      "valeur": 25.0,
+      "unite": "mg/L",
+      "datePrelevement": "2025-08-05T08:00:00.000Z",
+      "borneInfNormale": 0.0,
+      "borneSupNormale": 3.0,
+      "statutValidation": "VALIDE",
+      "laboratoire": "CHU Rennes",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    },
+    {
+      "biologieId": "bio-014",
+      "patientId": "patient-010",
+      "codeLoinc": "25613-0",
+      "libelleTest": "Vitamine D",
+      "typeExamen": "Vitamines",
+      "valeur": 15.0,
+      "unite": "ng/mL",
+      "datePrelevement": "2025-07-20T09:00:00.000Z",
+      "borneInfNormale": 30.0,
+      "borneSupNormale": 100.0,
+      "laboratoire": "Laboratoire de ville",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "prescription": [
+    {
+      "prescriptionId": "exp-013",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "denomination": "Méthotrexate",
+      "codeAtc": "L04AX03",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Dermatologue",
+      "datePrescription": "2025-08-05",
+      "dateDebutPrescription": "2025-08-05",
+      "dateFinPrescription": "2025-11-05",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    },
+    {
+      "prescriptionId": "exp-014",
+      "patientId": "patient-010",
+      "denomination": "Vitamine D3",
+      "codeAtc": "A11CC05",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Généraliste",
+      "datePrescription": "2025-07-20",
+      "dateDebutPrescription": "2025-07-20",
+      "dateFinPrescription": "2025-10-20",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "posologie": [
+    {
+      "posologieId": "pos-013",
+      "prescriptionId": "exp-013",
+      "nombrePrisesParJour": 1,
+      "quantite": 15,
+      "uniteQuantite": "mg",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    },
+    {
+      "posologieId": "pos-014",
+      "prescriptionId": "exp-014",
+      "nombrePrisesParJour": 1,
+      "quantite": 100000,
+      "uniteQuantite": "UI",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "dossierSoin": [
+    {
+      "soinId": "soins-012",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "codeLoinc": "72133-2",
+      "libelleTest": "PASI score",
+      "valeur": 18.5,
+      "unite": "score",
+      "dateMesure": "2025-08-05T15:00:00.000Z",
+      "uniteSoins": "Dermatologie",
+      "professionnel": "Dr. Dermatologue",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "styleVie": [
+    {
+      "styleVieId": "style-008",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "consommationTabac": "Ex-fumeuse depuis 1 an",
+      "consommationAlcool": "Socialement",
+      "consommationAutresDrogues": "Non",
+      "activitePhysique": "Yoga et natation",
+      "dateRecueil": "2025-08-05T16:00:00.000Z",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ],
+  "administration": [
+    {
+      "administrationId": "admin-009",
+      "patientId": "patient-010",
+      "pmsiId": "pmsi-009",
+      "prescriptionId": "exp-013",
+      "denomination": "Méthotrexate",
+      "codeAtc": "L04AX03",
+      "quantite": 15,
+      "uniteQuantite": "mg",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-08T08:00:00.000Z",
+      "dateHeureFin": "2025-08-08T08:05:00.000Z",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    },
+    {
+      "administrationId": "admin-010",
+      "patientId": "patient-010",
+      "prescriptionId": "exp-014",
+      "denomination": "Vitamine D3",
+      "codeAtc": "A11CC05",
+      "quantite": 100000,
+      "uniteQuantite": "UI",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-05T19:00:00.000Z",
+      "dateHeureFin": "2025-08-05T19:05:00.000Z",
+      "createdAt": "2025-08-30T19:00:00Z",
+      "updatedAt": "2025-08-30T19:00:00Z"
+    }
+  ]
+}
