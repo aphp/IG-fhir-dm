@@ -19,98 +19,97 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
       patient then TransformPatient(patient, dmPatient) "transform-patient";
       patient then setEntryRequestAndFullUrl(dmPatient, patientEntry) "setRequestAndFullUrl";
       src.patientAddress as patientAddress where patientAddress.patientId = %patient.patientId then setAddress(patientAddress, dmPatient) "transform-patientAddress";
-    } "create-patient";
-//    patient.patientId as pid -> patientEntry.fullUrl = append('urn:ehr:Patient/', pid) "patient-url"; // c'est trivial parce qu'on récupère l'id source pour l'id fhir, mais ce n'est pas une bonne pratique (risque de collision des id si plusieurs sources)
-  } "patient-entry";
 
   // Transform PMSI Encounters
-//  src.patient as srcPatient then {
-//    srcPatient.patientId as patientId then {  utiliser donneesPmsi.patientId, ça évite de faire un lien sur le présupposé que le set de données traité ne concerne qu'un patient. 
-    src.donneesPmsi as pmsi -> bundle.entry as encounterEntry then {
-      pmsi -> encounterEntry.resource = create('Encounter') as encounter then {
-        pmsi then TransformEncounter(pmsi, encounter) "create-encounter";
-        pmsi then setEntryRequestAndFullUrl(encounter, encounterEntry) "setRequestAndFullUrl";
-      } "create-encounter" ;
-//      pmsi.pmsiId as eid -> encounterEntry.fullUrl = append('urn:ehr:Encounter/', eid) "encounter-url";
-    } "encounter-entries";
-//    } "nav-patientId";
-//  } "nav-patient";
-
-// ---------------------------------------------------------
-// Je n'ai relu que jusqu'ici (y compris les groups appelés)
-// ---------------------------------------------------------
+      src.donneesPmsi as pmsi where pmsi.patientId = %patient.patientId -> bundle.entry as encounterEntry then {
+        pmsi -> encounterEntry.resource = create('Encounter') as dmEncounter then {
+          pmsi then TransformEncounter(pmsi, dmEncounter, dmPatient) "transform-encounter";
+          pmsi then setEntryRequestAndFullUrl(dmEncounter, encounterEntry) "setRequestAndFullUrl";
 
   // Transform Conditions (Diagnostic)
-  //src.patient as srcPatient then {
-    //srcPatient.patientId as patientId then {
-      src.diagnostic as diag -> bundle.entry as conditionEntry then {
-        diag -> conditionEntry.resource = create('Condition') as condition then
-          TransformCondition(diag, condition) "create-condition";
-        diag.diagnosticId as did -> conditionEntry.fullUrl = append('urn:ehr:Condition/', did) "condition-url";
-      } "condition-entries";
-    //} "nav-patientId";
-  //} "nav-patient";
+          src.diagnostic as diag where diag.patientId = %patient.patientId and diag.pmsiId = %pmsi.pmsiId -> bundle.entry as conditionEntry then {
+            diag -> conditionEntry.resource = create('Condition') as dmCondition then {
+              diag then TransformCondition(diag, dmCondition, dmPatient, dmEncounter) "transform-condition";
+              diag then setEntryRequestAndFullUrl(dmCondition, conditionEntry) "setRequestAndFullUrl";
+            } "create-condition";              
+          } "condition-entries";
 
   // Transform Procedures (Acts)
-  src.patient as srcPatient then {
-    srcPatient.patientId as patientId then {
-      src.acte as acte -> bundle.entry as procedureEntry then {
-      acte -> procedureEntry.resource = create('Procedure') as procedure then
-        TransformProcedure(acte, procedure) "create-procedure";
-      acte.acteId as aid -> procedureEntry.fullUrl = append('urn:ehr:Procedure/', aid) "procedure-url";
-  } "procedure-entries";
-    } "nav-patientId";
-  } "nav-patient";
-  
-  // Transform Laboratory Observations
-  //src.patient as srcPatient then {
-    //srcPatient.patientId as patientId then {
-      src.biologie as lab -> bundle.entry as labEntry then {
-        lab -> labEntry.resource = create('Observation') as labObs then
-          TransformLabObservation(lab, labObs) "create-lab-obs";
-        lab.biologieId as lid -> labEntry.fullUrl = append('urn:ehr:Observation/', lid) "lab-url";
-      } "lab-entries";
-    //} "nav-patientId";
-  //} "nav-patient";
-  
-  // Transform Medication Requests
-  //src.patient as srcPatient then {
-    //srcPatient.patientId as patientId then {
-      src.prescription as srcPres -> bundle.entry as medEntry then {
-        src -> medEntry.resource = create('MedicationRequest') as medReq then
-          TransformMedicationRequest(srcPres, medReq) "create-med-request";
-        srcPres.prescriptionId as srcPrescriptionId -> medEntry.fullUrl = append('urn:ehr:MedicationRequest/', srcPrescriptionId) "med-url";
-      } "medication-entries";
-    //} "nav-patientId";
-  //} "nav-patient";
+          src.acte as acte where acte.patientId = %patient.patientId and acte.pmsiId = %pmsi.pmsiId -> bundle.entry as procedureEntry then {
+            acte -> procedureEntry.resource = create('Procedure') as dmProcedure then {
+              acte then TransformProcedure(acte, dmProcedure, dmPatient, dmEncounter) "transform-procedure";
+              acte then setEntryRequestAndFullUrl(dmProcedure, procedureEntry) "setRequestAndFullUrl";
+            } "create-procedure";
+          } "procedure-entries";
 
-  // Transform Care Observations (Vital Signs)
-  //src.patient as srcPatient then {
-    //srcPatient.patientId as patientId then {
-      src.dossierSoin as soins -> bundle.entry as vitalEntry then {
-        soins -> vitalEntry.resource = create('Observation') as vitalObs then
-          TransformVitalSigns(soins, vitalObs) "create-vital-obs";
-        soins.soinId as sid -> vitalEntry.fullUrl = append('urn:ehr:Observation/vital-', sid) "vital-url";
-      } "vital-entries";
-    //} "nav-patientId";
-  //} "nav-patient";
+  // Transform Laboratory Observations (with pmsiId)
+          src.biologie as lab where lab.patientId = %patient.patientId and lab.pmsiId = %pmsi.pmsiId-> bundle.entry as labEntry then {
+            lab -> labEntry.resource = create('Observation') as dmLab then {
+              lab then TransformLabObservationWEncounter(lab, dmLab, dmPatient, dmEncounter) "transformLabObs";
+              lab then setEntryRequestAndFullUrl(dmLab, labEntry) "setRequestAndFullUrl";
+            } "create-lab-obs";
+          } "lab-entries";
+
+  // Transform Medication Requests (with pmsiId)
+          src.prescription as pres where pres.patientId = %patient.patientId and pres.pmsiId = %pmsi.pmsiId -> bundle.entry as medReqEntry then {
+            pres -> medReqEntry.resource = create('MedicationRequest') as dmMedReq then {
+              pres then TransformMedicationRequestWEncounter(pres, dmMedReq, dmPatient, dmEncounter) "create-med-request";
+              pres then setEntryRequestAndFullUrl(dmMedReq, medReqEntry) "setRequestAndFullUrl";
+              src.posologie as poso where poso.prescriptionId = pres.prescriptionId then setPoso(poso, pres, dmMedReq) "transformPoso";
+            } "create-med-req";
+          } "medication-entries";
+
+  // Transform Mesure Observations
+          src.dossierSoin as soins where soins.patientId = %patient.patientId and soins.pmsiId = %pmsi.pmsiId -> bundle.entry as vitalEntry then {
+            soins -> vitalEntry.resource = create('Observation') as dmObs then {
+              soins then TransformVitalSigns(soins, dmObs, dmPatient, dmEncounter) "create-mesure-obs";
+              soins then setEntryRequestAndFullUrl(dmObs, vitalEntry) "setRequestAndFullUrl";
+            } "create-mesure-obs";
+          } "vital-entries";
+          
+        } "create-encounter";
+      } "encounter-entries";
+
+  // Transform Laboratory Observations (without pmsiId)
+      src.biologie as lab where lab.patientId = %patient.patientId and lab.pmsiId.empty() -> bundle.entry as labEntry then {
+        lab -> labEntry.resource = create('Observation') as dmLab then {
+          lab then TransformLabObservationWOEncounter(lab, dmLab, dmPatient) "transformLabObs";
+          lab then setEntryRequestAndFullUrl(dmLab, labEntry) "setRequestAndFullUrl";
+        } "create-lab-obs";
+      } "lab-entries";
+
+  // Transform Medication Requests (without pmsiId)
+      src.prescription as pres where pres.patientId = %patient.patientId and pres.pmsiId.empty() -> bundle.entry as medReqEntry then {
+        pres -> medReqEntry.resource = create('MedicationRequest') as dmMedReq then {
+          pres then TransformMedicationRequestWOEncounter(pres, dmMedReq, dmPatient) "create-med-request";
+          pres then setEntryRequestAndFullUrl(dmMedReq, medReqEntry) "setRequestAndFullUrl";
+          src.posologie as poso where poso.prescriptionId = pres.prescriptionId then setPoso(poso, pres, dmMedReq) "transformPoso";
+        } "create-med-req";
+      } "medication-entries";
+
+    } "create-patient";
+  } "patient-entry";
+
+  /*  
+
+  
 
   // Transform Lifestyle Observations
   //src.patient as srcPatient then {
     //srcPatient.patientId as patientId then {
       src.styleVie as lifestyle -> bundle.entry as lifestyleEntry then {
         lifestyle -> lifestyleEntry.resource = create('Observation') as lifestyleObs then
-          TransformLifestyle(lifestyle, lifestyleObs) "create-lifestyle-obs";
+          TransformLifestyle(lifestyle, lifestyleObs, dmPatient) "create-lifestyle-obs";
         lifestyle.styleVieId as lsid -> lifestyleEntry.fullUrl = append('urn:ehr:Observation/lifestyle-', lsid) "lifestyle-url";
       } "lifestyle-entries";
     //} "nav-patientId";
   //} "nav-patient";
-
+*/
 }
 
-// ========================================================================
+// ---------------------------------------------------------
 // PATIENT TRANSFORMATION
-// ========================================================================
+// ---------------------------------------------------------
 
 group TransformPatient(source src, target tgt : Patient) {
   src -> tgt.id = uuid() "setId";
@@ -156,41 +155,40 @@ group TransformPatient(source src, target tgt : Patient) {
   src.sexe as gender where gender.exists() and gender != 'h' and gender != 'f' -> tgt.gender = 'unknown' "gender-unknown"; // n'a pas grand sens en l'état des contraintes SQL
 
   // Death information
-  src.dateDeces as deathDate where deathDate.exists() -> tgt.deceased = deathDate "death-date";
+  src.dateDeces as deathDate where deathDate.exists() -> tgt.deceased = cast(deathDate, 'dateTime') as deceasedDate then {
+    src.sourceDeces as deathSource where deathSource.exists() -> deceasedDate.extension as DeathSourceExtension then {
+      deathSource -> DeathSourceExtension.url = 'https://aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource' "deathSourceUrl";
+      deathSource -> DeathSourceExtension.value = cast(deathSource, 'code') "deathSourceValue";
+    } "deathSource";
+  } "deathDate";
 
   // Multiple birth
   src.rangGemellaire as twin where twin.exists() -> tgt.multipleBirth = twin "multiple-birth";
 
-/*
-  // Address (simplified - geographic data)
-  src where src.latitude.exists() or src.longitude.exists() or src.codeGeographiqueResidence.exists() -> 
-    tgt.address as address then {
-    src.codeGeographiqueResidence as postalCode -> address.postalCode = postalCode "postal-code";
-    src.libelleGeographiqueResidence as city -> address.city = city "city";
-    // Extensions for geographic coordinates could be added here
-  } "patient-address";
-*/
 }
 
 // ========================================================================
 // PATIENT_LOCATION TRANSFORMATION
 // ========================================================================
 
-group setAddress(source src, target tgt : Patient) {
-  src where src.latitude.exists() or src.longitude.exists() or src.codeIris.exists() or src.libelleIris.exists()then {
-    src -> tgt.address as newAddress then {
+group setAddress(source src, target tgtPat : Patient) {
+  src where src.latitude.exists() or src.longitude.exists() or src.codeIris.exists() or src.libelleIris.exists() or src.codeGeographiqueResidence.exists() then {
+    src -> tgtPat.address as newAddress then {
       src where src.latitude.exists() or src.longitude.exists() -> newAddress.extension as geolocationExtension, 
-        geolocationExtension.url = "http://hl7.org/fhir/StructureDefinition/geolocation" then {
+        geolocationExtension.url = 'http://hl7.org/fhir/StructureDefinition/geolocation' then {
           src.latitude as srcLat -> geolocationExtension.extension as tgtLat,
-            tgtLat.url = "latitude", 
+            tgtLat.url = 'latitude', 
             tgtLat.value = srcLat "setLat";
           src.longitude as srcLong -> geolocationExtension.extension as tgtLong,
-            tgtLong.url = "longitude", 
+            tgtLong.url = 'longitude', 
             tgtLong.value = srcLong "setLong";
         } "setCoordinates" ;
       src where src.codeIris.exists() or src.libelleIris.exists() -> newAddress.extension as irisExtension, 
-        irisExtension.url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract", 
+        irisExtension.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract', 
         irisExtension.value = (iif(%src.codeIris.exists() and %src.libelleIris.exists(), %src.codeIris & ' - ' & %src.libelleIris, %src.codeIris & %src.libelleIris)) "setIris";
+      src.codeGeographiqueResidence as srcCodeGeographiqueResidence where src.codeGeographiqueResidence.exists() -> newAddress.extension as residencePmsiExtension, 
+        residencePmsiExtension.url = 'https://aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo' ,
+        residencePmsiExtension.value = cast(srcCodeGeographiqueResidence, 'code') "SetResidencePmsi";
       src.dateRecueil as dateRecueil -> newAddress.period as newAddressPeriod, newAddressPeriod.start = dateRecueil "setDateRecueil";
     } "createAddress" ;
   } "checkSource";
@@ -200,41 +198,37 @@ group setAddress(source src, target tgt : Patient) {
 // ENCOUNTER TRANSFORMATION  
 // ========================================================================
 
-group TransformEncounter(source src, target tgt : Encounter) {
-  src -> tgt.id = uuid() "setId";
+group TransformEncounter(source src, target tgtEnc : Encounter, source patient) {
+  src -> tgtEnc.id = uuid() "setId";
 //  src.pmsiId as id -> tgt.id = id "encounter-id";
 
   // Identifier
-  src -> tgt.identifier as identifier then {
-    src -> identifier.use = 'official' "encounter-id-use";
+  src -> tgtEnc.identifier as identifier then {
     src -> identifier.type = cc('https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-identifier-type', 'VN', 'Visit Number') "id-type";
     src -> identifier.system = 'https://hospital.eu/ehr/pmsi-id' "encounter-id-system";
     src.pmsiId as srcEncoutnerId -> identifier.value = srcEncoutnerId "encounter-id-value";
   } "encounter-identifier";
 
   // Status - default to finished for historical data
-  src -> tgt.status = 'finished' "encounter-status";
+  src -> tgtEnc.status = 'finished' "encounter-status";
 
   // Class - assume inpatient for PMSI data
-  src -> tgt.class = c('http://terminology.hl7.org/CodeSystem/v3-ActCode', 'IMP', 'inpatient encounter') "encounter-class";
+  src -> tgtEnc.class = c('http://terminology.hl7.org/CodeSystem/v3-ActCode', 'IMP', 'inpatient encounter') "encounter-class";
 
   // Reference patient
-  src -> tgt.subject = create('Reference') as ref then {
-    src.patientId as patientId -> ref.type = 'Patient', 
-      ref.identifier = create('Identifier') as subjectIdentifier then {
-        patientId -> subjectIdentifier.system = 'https://hospital.eu/ehr/patient-id', 
-          subjectIdentifier.value = patientId "setPatientRef";
-      } "createRef";
+  src -> tgtEnc.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-reference" ;
   } "encounter-subject";  
 
   // Period
-  src where src.dateDebutSejour.exists() or src.dateFinSejour.exists() -> tgt.period as period then {
+  src where src.dateDebutSejour.exists() or src.dateFinSejour.exists() -> tgtEnc.period as period then {
     src.dateDebutSejour as startDate -> period.start = startDate "period-start";
     src.dateFinSejour as endDate -> period.end = endDate "period-end";
   } "encounter-period";
 
   // Duration
-  src.dureeSejour as duration -> tgt.length as length then {
+  src.dureeSejour as duration -> tgtEnc.length as length then {
     duration -> length.value = duration "length-value";
     duration -> length.unit = 'd' "length-unit";
     duration -> length.system = 'http://unitsofmeasure.org' "length-system";
@@ -242,7 +236,7 @@ group TransformEncounter(source src, target tgt : Encounter) {
   } "encounter-length";
 
   // Hospitalization
-  src where src.modeEntree.exists() or src.modeSortie.exists() -> tgt.hospitalization as hosp then {
+  src where src.modeEntree.exists() or src.modeSortie.exists() -> tgtEnc.hospitalization as hosp then {
     src.modeEntree as admitSource -> hosp.admitSource as admitSrc then {
       admitSource -> admitSrc.text = admitSource "admit-source-text";
     } "admit-source";
@@ -252,7 +246,7 @@ group TransformEncounter(source src, target tgt : Encounter) {
   } "encounter-hospitalization";
 
   // Service Provider
-  src where src.uniteFonctionnelle.exists() or src.service.exists() or src.etablissement.exists() -> tgt.serviceProvider as provider then {
+  src where src.uniteFonctionnelle.exists() or src.service.exists() or src.etablissement.exists() -> tgtEnc.serviceProvider as provider then {
     src -> provider.display = (iif(%src.uniteFonctionnelle.exists(), %src.uniteFonctionnelle, iif(%src.service.exists(), %src.service, %src.etablissement))) "provider-display";
   } "provider";
 /*
@@ -269,119 +263,125 @@ group TransformEncounter(source src, target tgt : Encounter) {
 // CONDITION TRANSFORMATION
 // ========================================================================
 
-group TransformCondition(source src, target tgt : Condition) {
-  src.diagnosticId as id -> tgt.id = id "condition-id";
+group TransformCondition(source src, target tgtCond : Condition, source patient, source encounter) {
+  src -> tgtCond.id = uuid() "setId";
 
   // Identifier
-  src.diagnosticId as diagId -> tgt.identifier as identifier then {
-    diagId -> identifier.use = 'official' "condition-id-use";
+  src.diagnosticId as diagId -> tgtCond.identifier as identifier then {
     diagId -> identifier.system = 'https://hospital.eu/ehr/diagnostic-id' "condition-id-system";  
     diagId -> identifier.value = diagId "condition-id-value";
   } "condition-identifier";
 
-  // Category
-  src.typeDiagnostic as diagType -> tgt.category as category then {
+  // Category 
+    // Représentation des codes diagnostics du PMSI dans condition , plusieurs options : 
+    // - ce sont des infos de claim, pas de condition
+    // - utiliser la catégorie 'encounter-diagnosis'
+    // - utiliser les catégories du PMSI : DP, DR, DAS, DAD
+    // - mettre les deux précédent <- j'ai fait ça.
+  src -> tgtCond.category = cc('http://terminology.hl7.org/CodeSystem/condition-category','encounter-diagnosis','Encounter Diagnosis') "category-encounterDiag";
+  src.typeDiagnostic as diagType -> tgtCond.category as category then {
     diagType -> category.text = diagType "category-text";
   } "condition-category";
 
   // Code (ICD-10)
-  src.codeDiagnostic as code -> tgt.code as conditionCode then {
-    code -> conditionCode.coding as coding then {
-      code -> coding.system = 'http://hl7.org/fhir/sid/icd-10' "code-system";
-      code -> coding.code = code "code-value";
-      src.libelleDiagnostic as label -> coding.display = label "code-display";
-    } "condition-coding";
+  src.codeDiagnostic as srcCode -> tgtCond.code as conditionCode then { // la fonction cc ne peuple pas le display...
+    src.libelleDiagnostic as label -> conditionCode.coding as tgtCoding, 
+      tgtCoding.system = 'http://hl7.org/fhir/sid/icd-10',
+      tgtCoding.code = srcCode "condition-code" ;
     src.libelleDiagnostic as text -> conditionCode.text = text "code-text";
-  } "condition-code";
+  } "var-code";
 
   // Subject
-  src -> tgt.subject = create('Reference') as ref then {
-    src.patientId as srcPatientId -> ref.reference = ('Patient/' + %srcPatientId) "patient-ref";
+  src -> tgtCond.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-ref";
   } "condition-subject";
 
   // Encounter reference
-  src -> tgt.encounter = create('Reference') as ref then {
-    src.pmsiId as srcEncounterId -> ref.reference = ('Encounter/' + %srcEncounterId) "encounter-ref";
+  src -> tgtCond.encounter = create('Reference') as ref then {
+    encounter.id as encounterId -> ref.reference = ('Encounter/' + %encounterId), 
+      ref.type = 'Encounter' "encounter-ref";
   } "condition-encounter";
 
   // Recorded date
-  src.dateRecueil as diagDate -> tgt.recordedDate = diagDate "condition-recorded-date";
+  src.dateRecueil as entryDate -> tgtCond.recordedDate = entryDate "condition-recorded-date";
 
   // Clinical status - assume active for recorded diagnoses
-  src -> tgt.clinicalStatus = cc('http://terminology.hl7.org/CodeSystem/condition-clinical', 'active') "condition-clinical-status";
+  src -> tgtCond.clinicalStatus = cc('http://terminology.hl7.org/CodeSystem/condition-clinical', 'active') "condition-clinical-status";
 
   // Verification status - assume confirmed for coded diagnoses  
-  src -> tgt.verificationStatus = cc('http://terminology.hl7.org/CodeSystem/condition-ver-status', 'confirmed') "condition-verification-status";
+  src -> tgtCond.verificationStatus = cc('http://terminology.hl7.org/CodeSystem/condition-ver-status', 'confirmed') "condition-verification-status";
 }
 
 // ========================================================================
 // PROCEDURE TRANSFORMATION
 // ========================================================================
 
-group TransformProcedure(source src, target tgt : Procedure) {
-  src.acteId as id -> tgt.id = id "procedure-id";
+group TransformProcedure(source src, target tgtProc : Procedure, source patient, source encounter) {
+  src -> tgtProc.id = uuid() "setId";
 
   // Identifier
-  src.acteId as acteId -> tgt.identifier as identifier then {
-    acteId -> identifier.use = 'official' "procedure-id-use";
+  src.acteId as acteId -> tgtProc.identifier as identifier then {
     acteId -> identifier.system = 'https://hospital.eu/ehr/acte-id' "procedure-id-system";
     acteId -> identifier.value = acteId "procedure-id-value";
   } "procedure-identifier";
 
   // Status - assume completed for historical data
-  src -> tgt.status = 'completed' "procedure-status";
+  src -> tgtProc.status = 'completed' "procedure-status";
 
   // Code (CCAM)
-  src.codeActe as code -> tgt.code as procedureCode then {
-    code -> procedureCode.coding as coding then {
-      code -> coding.system = 'https://mos.esante.gouv.fr/NOS/TRE_A00-ProducteurDocNonPS/FHIR/TRE-A00-ProducteurDocNonPS' "code-system";
-      code -> coding.code = code "code-value";
-      src.libelleActe as label -> coding.display = label "code-display";
-    } "procedure-coding";
+  src.codeActe as code -> tgtProc.code as procedureCode then {
+    code -> procedureCode.coding as coding,
+      coding.system = 'https://aphp.fr/ig/fhir/dm/CodeSystem/Ccam',
+      coding.code = code "procedure-coding";
     src.libelleActe as text -> procedureCode.text = text "code-text";
   } "procedure-code";
 
   // Subject
-  src -> tgt.subject = create('Reference') as ref then {
-    src.patientId as srcPatientId -> ref.reference = ('Patient/' + %srcPatientId) "patient-ref";
-  } "condition-subject";
+  src -> tgtProc.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-ref";
+  } "procedure-subject";
 
   // Encounter reference
-  src -> tgt.encounter = create('Reference') as ref then {
-    src.pmsiId as srcEncounterId -> ref.reference = ('Encounter/' + %srcEncounterId) "encounter-ref";
-  } "condition-encounter";
+  src -> tgtProc.encounter = create('Reference') as ref then {
+    encounter.id as encounterId -> ref.reference = ('Encounter/' + %encounterId), 
+      ref.type = 'Encounter' "encounter-ref";
+  } "procedure-encounter";
 
   // Performed date/time
-  src.dateActe as performedDate where %performedDate.exists() -> tgt.performed = performedDate "procedure-performed";
+  src.dateActe as performedDate where %performedDate.exists() -> tgtProc.performed = performedDate "procedure-performed";
 
   // Performer
-  src.executant as performer -> tgt.performer as perf then {
+  src.executant as performer -> tgtProc.performer as perf then {
     performer -> perf.actor as actor then {
       performer -> actor.display = performer "performer-display";
+      performer -> actor.type = 'Practitioner' "performerType";
     } "performer-actor";
+    performer -> perf.function as function, function.text = 'Exécutant' "performerFunction";
   } "procedure-performer";
+
 }
 
 // ========================================================================
 // LABORATORY OBSERVATION TRANSFORMATION
 // ========================================================================
 
-group TransformLabObservation(source src, target tgt : Observation) {
-  src.biologieId as id -> tgt.id = id "lab-obs-id";
+group TransformLabObservationWOEncounter(source src, target tgtObs : Observation, source patient) {
+  src -> tgtObs.id = uuid() "setId";
 
   // Identifier
-  src.biologieId as bioId -> tgt.identifier as identifier then {
-    bioId -> identifier.use = 'official' "lab-id-use";
+  src.biologieId as bioId -> tgtObs.identifier as identifier then {
     bioId -> identifier.system = 'https://hospital.eu/ehr/biologie-id' "lab-id-system";
     bioId -> identifier.value = bioId "lab-id-value";
   } "lab-identifier";
 
   // Status - map validation status or default to final
-  src.statutValidation as validation where validation = 'VALIDE' -> tgt.status = 'final' "status-validated";
-  src where src.statutValidation.exists().not() -> tgt.status = 'final' "status-default";
+  src.statutValidation as validation where validation = 'VALIDE' -> tgtObs.status = 'final' "status-validated";
+  src where src.statutValidation.exists().not() -> tgtObs.status = 'final' "status-default";
 
   // Category
-  src -> tgt.category as category then {
+    src -> tgtObs.category as category then {
     src -> category.coding as coding then {
       src -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "category-system";
       src -> coding.code = 'laboratory' "category-code";
@@ -390,44 +390,37 @@ group TransformLabObservation(source src, target tgt : Observation) {
   } "lab-category";
 
   // Code (LOINC)
-  src.codeLoinc as loinc -> tgt.code as code then {
+  src.codeLoinc as loinc -> tgtObs.code as code then {
     loinc -> code.coding as coding then {
       loinc -> coding.system = 'http://loinc.org' "code-system";
       loinc -> coding.code = loinc "code-value";
-      src.libelleTest as label -> coding.display = label "code-display";
     } "lab-coding";
     src.libelleTest as text -> code.text = text "code-text";
   } "lab-code";
 
   // Subject
-  src -> tgt.subject = create('Reference') as ref then {
-    src.patientId as srcPatientId -> ref.reference = ('Patient/' + %srcPatientId) "patient-ref";
+  src -> tgtObs.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-ref";
   } "lab-subject";
 
-  // Encounter reference
-  /*
-  src.pmsiId as encounterId -> tgt.encounter = create('Reference') as ref then {
-    encounterId -> ref.reference = ('Encounter/' + %encounterId) "encounter-ref";
-  } "lab-encounter";
-  */
-
   // Effective date/time
-  src.datePrelevement as collectionDate where %collectionDate.exists() -> tgt.effective = cast(collectionDate, 'dateTime') "lab-effective";
+  src.datePrelevement as collectionDate where %collectionDate.exists() -> tgtObs.effective = cast(collectionDate, 'dateTime') "lab-effective";
 
   // Value (numeric or text)
-  src.valeur as numValue where numValue.exists() -> tgt.value = create('Quantity') as qty then {
+  src.valeur as numValue where numValue.exists() -> tgtObs.value = create('Quantity') as qty then {
     numValue -> qty.value = numValue "quantity-value";
     src.unite as unit -> qty.unit = unit "quantity-unit";
     src.unite as unit -> qty.code = unit "quantity-code";
     src -> qty.system = 'http://unitsofmeasure.org' "quantity-system";
   } "lab-value-quantity";
 
-  src.valeurTexte as textValue where textValue.exists() and src.valeur.exists().not() -> 
-    tgt.value = textValue "lab-value-string";
+// On n'a pas de résultats textuels de prévu
+//  src.valeurTexte as textValue where textValue.exists() and src.valeur.exists().not() -> tgtObs.value = textValue "lab-value-string";
 
   // Reference range
   src where src.borneInfNormale.exists() or src.borneSupNormale.exists() -> 
-    tgt.referenceRange as range then {
+    tgtObs.referenceRange as range then {
     src.borneInfNormale as low -> range.low as lowQty then {
       low -> lowQty.value = low "ref-low-value";
       src.unite as unit -> lowQty.unit = unit "ref-low-unit";
@@ -443,150 +436,167 @@ group TransformLabObservation(source src, target tgt : Observation) {
   } "lab-reference-range";
 
   // Performer
-  src.laboratoire as lab -> tgt.performer as performer then {
+  src.laboratoire as lab -> tgtObs.performer as performer then {
     lab -> performer.display = lab "performer-display";
+    lab -> performer.type = 'Organization' "performerType";
   } "lab-performer";
 
-  // Note/Comment
-  /*
-  src.commentaire as comment -> tgt.note as note then {
-    comment -> note.text = comment "note-text";
-  } "lab-note";
-  */
 }
 
+group TransformLabObservationWEncounter(source src, target tgtObs : Observation, source patient, source encounter) extends TransformLabObservationWOEncounter {
+  // Encounter reference
+  src -> tgtObs.encounter = create('Reference') as ref then {
+    encounter.id as encounterId -> ref.reference = ('Encounter/' + %encounterId), 
+      ref.type = 'Encounter' "encounter-ref";
+  } "procedure-encounter";
+}
 // ========================================================================
 // MEDICATION REQUEST TRANSFORMATION
 // ========================================================================
 
-group TransformMedicationRequest(source src, target tgt : MedicationRequest) {
-  src.prescriptionId as id -> tgt.id = id "med-request-id";
+group TransformMedicationRequestWOEncounter(source src, target tgtMedReq : MedicationRequest, source patient) {
+  src -> tgtMedReq.id = uuid() "setId";
 
   // Identifier
-  src.prescriptionId as presId -> tgt.identifier as identifier then {
-    presId -> identifier.use = 'usual' "med-request-id-use";
-    presId -> identifier.system = 'https://hospital.eu/ehr/exposition-id' "med-request-id-system";
+  src.prescriptionId as presId -> tgtMedReq.identifier as identifier then {
+    presId -> identifier.system = 'https://hospital.eu/ehr/prescription-id' "med-request-id-system";
     presId -> identifier.value = presId "med-request-id-value";
   } "med-request-identifier";
 
   // Status - assume active for current prescriptions
-  src -> tgt.status = 'active' "med-request-status";
+  src -> tgtMedReq.status = 'unknowk' "med-request-status";
 
   // Intent
-  src -> tgt.intent = 'order' "med-request-intent";
+  src -> tgtMedReq.intent = 'order' "med-request-intent";
 
   // Subject
-  src -> tgt.subject = create('Reference') as ref then {
-    src.patientId as srcPatientId -> ref.reference = ('Patient/' + %srcPatientId) "patient-ref";
+  src -> tgtMedReq.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-ref";
   } "med-request-subject";
 
-  // Encounter reference
-  /*
-  src.pmsiId as encounterId -> tgt.encounter = create('Reference') as ref then {
-    encounterId -> ref.reference = ('Encounter/' + %encounterId) "encounter-ref";
-  } "med-request-encounter";
-  */
-
-  // Medication (create inline for ATC code)
-  src.codeAtc as atc -> tgt.medication = create('CodeableConcept') as medication then {
-    atc -> medication.coding as coding then {
-      atc -> coding.system = 'http://www.whocc.no/atc' "atc-system";
-      atc -> coding.code = atc "atc-code";
-      src.denomination as denom -> coding.display = denom "atc-display";
-    } "medication-coding";
-    src.denomination as text -> medication.text = text "medication-text";
-  } "medication-atc";
+  // Medication (sur la base de la dénomination (on drop l'ATC qui compliquerait pas mal))
+  src.denomination as denomination -> tgtMedReq.medication = create('CodeableConcept') as medication then {
+    denomination as text -> medication.text = text "medication-text";
+  } "medication-denomination";
 
   // Authored date
-  src.datePrescription as prescDate -> tgt.authoredOn = prescDate "med-authored";
+  src.datePrescription as prescDate -> tgtMedReq.authoredOn = prescDate "med-authored";
 
   // Requester
-  src.prescripteur as prescriber -> tgt.requester as requesterRef then {
+  src.prescripteur as prescriber -> tgtMedReq.requester as requesterRef then {
     prescriber -> requesterRef.display = prescriber "requester-display";
+    prescriber -> requesterRef.type = 'Practitioner' "requesterType";
   } "med-requester";
+}
 
-  // Dosage instruction
-  src -> tgt.dosageInstruction as dosage then {
+group TransformMedicationRequestWEncounter(source src, target tgtMedReq : MedicationRequest, source patient, source encounter) extends TransformMedicationRequestWOEncounter {
+  // Encounter reference
+  src -> tgtMedReq.encounter = create('Reference') as ref then {
+    encounter.id as encounterId -> ref.reference = ('Encounter/' + %encounterId), 
+      ref.type = 'Encounter' "encounter-ref";
+  } "procedure-encounter";
+}
+
+
+// ========================================================================
+// POSOLOGIE TRANSFORMATION
+// ========================================================================
+
+
+group setPoso(source srcPoso, source srcPres, target tgtMedReq : MedicationRequest) {
+//srcPres -> tgtMedReq.priority = 'routine' "ripugqhpfg";
+  srcPres -> tgtMedReq.dosageInstruction as dosageInstruction then {
     // Route of administration
-    src.voieAdministration as route -> dosage.route as routeCC then {
-      route -> routeCC.text = route "route-text";
+    srcPres.voieAdministration as route -> dosageInstruction.route as routeCC, routeCC.coding as routeCoding then {
+      route -> routeCoding.code = route, 
+        routeCoding.system = 'https://smt.esante.gouv.fr/terminologie-standardterms' "routeCoding";
     } "dosage-route";
 
-    // Timing (based on prescription period)
-    src where src.dateDebutPrescription.exists() or src.dateFinPrescription.exists() -> dosage.timing as timing then {
-      src where src.dateDebutPrescription.exists() or src.dateFinPrescription.exists() -> timing.repeat as repeat then {
-        src.dateDebutPrescription as start -> repeat.bounds = create('Period') as period then {
-          start -> period.start = start "timing-start";
-          src.dateFinPrescription as end -> period.end = end "timing-end";
-        } "timing-bounds";
-      } "timing-repeat";
-    } "dosage-timing";
+    // prescription period
+    srcPres -> dosageInstruction.timing as timing, timing.repeat as timingRepeat, timingRepeat.bounds = create('Period') as medReqPeriod then {
+      srcPres.dateDebutPrescription as deb -> medReqPeriod.start = deb "setPeriodStart";
+      srcPres.dateFinPrescription as fin -> medReqPeriod.end = fin "setPeriodStart";
+    } "navPeriod";
 
-    // Pharmaceutical form as additional instruction
-    /*
-    src.formePharmaceutique as form -> dosage.additionalInstruction as instruction then {
-      form -> instruction.text = form "form-text";
-    } "dosage-form";
-    */
-  } "medication-dosage";
+    //timing (j'ai droppé les timestamps de début et fin de prise.)
+    srcPoso -> dosageInstruction.timing as timing, timing.repeat as timingRepeat then {
+      srcPoso.nombrePrisesParJour as frq -> timingRepeat.frequency = frq, timingRepeat.period = '1', timingRepeat.periodUnit = 'd';
+    } "navRepeat";
+
+    // quantity
+    srcPoso.quantite as quantite -> dosageInstruction.doseAndRate as doseRate then {
+      srcPoso.uniteQuantite as uniteQuantite -> doseRate.dose = create('Quantity') as medDose then {
+        srcPoso -> medDose.value = quantite, medDose.unit = uniteQuantite "sdgdfsg";
+      } "uyfdgiytv";
+    } "setVar";
+  } "navDosageInstruction";
 }
 
 // ========================================================================
 // VITAL SIGNS TRANSFORMATION
 // ========================================================================
 
-group TransformVitalSigns(source src, target tgt : Observation) {
-  src.soinId as id -> tgt.id = append('vital-', id) "vital-id";
+group TransformVitalSigns(source src, target tgtObs : Observation, source patient, source encounter) {
+  src -> tgtObs.id = uuid() "setId";
 
-  // Multiple observations for different vital signs
-  // Weight observation
-  /*src.poids as weight where weight.exists() -> tgt then {
-    src -> tgt.status = 'final' "weight-status";
-    src -> tgt.category as category then {
-      src -> category.coding as coding then {
-        src -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "weight-category-system";
-        src -> coding.code = 'vital-signs' "weight-category-code";
-      } "weight-category-coding";
-    } "weight-category";
-    
-    src -> tgt.code as code then {
-      src -> code.coding as coding then {
-        src -> coding.system = 'http://loinc.org' "weight-code-system";
-        src -> coding.code = '29463-7' "weight-code-value";
-        src -> coding.display = 'Body Weight' "weight-code-display";
-      } "weight-coding";
-    } "weight-code";
-    
-    // Subject
-    patientId -> tgt.subject = create('Reference') as ref then {
-      patientId -> ref.reference = ('Patient/' + %patientId) "patient-ref";
-    } "weight-subject";
+  // Identifier
+  src.soinId as soinId -> tgtObs.identifier as identifier then {
+    soinId -> identifier.system = 'https://hospital.eu/ehr/soin-id' "soin-id-system";
+    soinId -> identifier.value = soinId "soin-id-value";
+  } "med-request-identifier";
 
-    // Encounter reference
-    src.pmsiId as encounterId -> tgt.encounter = create('Reference') as ref then {
-      encounterId -> ref.reference = ('Encounter/' + %encounterId) "encounter-ref";
-    } "weight-encounter";
+  // Status - assume final
+  src -> tgtObs.status = 'final' "status";
 
-    src.dateMesurePoids as weightDate where %weightDate.exists() -> tgt.effective = cast(weightDate, 'dateTime') "weight-effective";
-    
-    weight -> tgt.valueQuantity as qty then {
-      weight -> qty.value = weight "weight-value";
-      weight -> qty.unit = 'kg' "weight-unit";
-      weight -> qty.system = 'http://unitsofmeasure.org' "weight-system";
-      weight -> qty.code = 'kg' "weight-code-ucum";
-    } "weight-quantity";
-  } "transform-weight";
-*/
-  // Height observation - would need separate entry
+  // Category - vital-signs
+  src -> tgtObs.category as category then {
+    src -> category.coding as coding then {
+      src -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "category-system";
+      src -> coding.code = 'vital-signs' "category-code";
+    } "category-coding";
+  } "category";
+
+  // code (LOINC)
+  src -> tgtObs.code as code then {
+    src -> code.coding as coding then {
+      src -> coding.system = 'http://loinc.org' "code-system";
+      src.codeLoinc as codeLoinc -> coding.code = codeLoinc "code-value";
+    } "weight-coding";
+    src.libelleTest as label -> code.text = label "code-text";
+  } "code";
+
+  // Subject
+  src -> tgtObs.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-ref";
+  } "obs-subject";
+
+  // Encounter reference
+  src -> tgtObs.encounter = create('Reference') as ref then {
+    encounter.id as encounterId -> ref.reference = ('Encounter/' + %encounterId), 
+      ref.type = 'Encounter' "encounter-ref";
+  } "obs-encounter";
+
+  // Date de l'observation
+  src.dateMesure as date where %date.exists() -> tgtObs.effective = cast(date, 'dateTime') "effective";
+
+  // Valeur (quantitiative)
+  src -> tgtObs.value = create('Quantity') as qty then {
+    src.valeur as mesure -> qty.value = mesure "value";
+    src.unite as unit -> qty.unit = unit "unit";
+    src.unite as unit -> qty.code = unit "code";
+    src -> qty.system = 'http://unitsofmeasure.org' "system";
+  } "quantity";
+
   // Blood pressure observation - would need separate entry with components
-  // This example shows weight; similar patterns would apply for other vitals
 }
 
 // ========================================================================
 // LIFESTYLE TRANSFORMATION
 // ========================================================================
-
-group TransformLifestyle(source src, target tgt : Observation) {
+/*
+group TransformLifestyle(source src, target tgt : Observation, source patient) {
   src.styleVieId as id -> tgt.id = append('lifestyle-', id) "lifestyle-id";
 
   // Smoking status observation
@@ -609,15 +619,15 @@ group TransformLifestyle(source src, target tgt : Observation) {
 
     // Subject
     src -> tgt.subject = create('Reference') as ref then {
-      src.patientId as srcPatientId -> ref.reference = ('Patient/' + %srcPatientId) "patient-ref";
+      patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+        ref.type = 'Patient' "subject-ref";
     } "smoking-subject";
 
+
     // Encounter reference
-    /*
     src.pmsiId as encounterId -> tgt.encounter = create('Reference') as ref then {
       encounterId -> ref.reference = ('Encounter/' + %encounterId) "encounter-ref";
     } "smoking-encounter";
-    */
 
     src.dateRecueil as collectDate where %collectDate.exists() -> tgt.effective = cast(collectDate, 'dateTime') "smoking-effective";
     
@@ -628,7 +638,7 @@ group TransformLifestyle(source src, target tgt : Observation) {
 
   // Similar patterns would apply for alcohol, drugs, and physical activity
 }
-
+ */
 group setEntryRequestAndFullUrl(source newRes, target tgtEntry) { 
   newRes.id as newResId then {
     newResId -> tgtEntry.fullUrl = ('urn:ehr:' + %newRes.type().name + '/' + %newResId) "setFullUrl";

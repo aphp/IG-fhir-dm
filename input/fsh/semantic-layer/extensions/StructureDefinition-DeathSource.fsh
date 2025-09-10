@@ -5,5 +5,5 @@ Description: "Cette extension permet de formaliser la source d'information de la
 * ^context[0].type = #element
 * ^context[=].expression = "Patient.deceased[x]"
 * . 0..1
-* value[x] only CodeableConcept
-* valueCodeableConcept from DeathSourcesVs (extensible)
+* value[x] only code
+* valueCode from DeathSourcesVs (extensible)

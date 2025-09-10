@@ -8,7 +8,7 @@ Usage: #example
   * city = "GRIÈGES"
   * extension[+].url = "https://aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo"
   * extension[=].valueCode = #01C01
-* deceasedBoolean = true
-* deceasedBoolean.extension.url = "https://aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource"
-* deceasedBoolean.extension.valueCodeableConcept = https://aphp.fr/ig/fhir/dm/CodeSystem/DeathSources#cepidc
+* deceasedDateTime = "2025-08-31T10:00:00Z"
+* deceasedDateTime.extension.url = "https://aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource"
+* deceasedDateTime.extension.valueCode = #cepidc
 * gender = #male
