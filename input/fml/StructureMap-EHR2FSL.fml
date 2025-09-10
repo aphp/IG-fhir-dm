@@ -90,21 +90,37 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
     } "create-patient";
   } "patient-entry";
 
-  /*  
-
-  
-
-  // Transform Lifestyle Observations
-  //src.patient as srcPatient then {
-    //srcPatient.patientId as patientId then {
-      src.styleVie as lifestyle -> bundle.entry as lifestyleEntry then {
-        lifestyle -> lifestyleEntry.resource = create('Observation') as lifestyleObs then
-          TransformLifestyle(lifestyle, lifestyleObs, dmPatient) "create-lifestyle-obs";
-        lifestyle.styleVieId as lsid -> lifestyleEntry.fullUrl = append('urn:ehr:Observation/lifestyle-', lsid) "lifestyle-url";
+  // Transform Lifestyle Observations (without pmsiId)
+      src.styleVie as lifestyle where lifestyle.patientId = %patient.patientId and lifestyle.pmsiId.empty() -> bundle.entry as lifestyleEntry then {
+        lifestyle -> lifestyleEntry.resource = create('Observation') as lifestyleObs then {
+          lifestyle then TransformLifestyle(lifestyle, lifestyleObs, dmPatient) "create-lifestyle-obs";
+          lifestyle then setEntryRequestAndFullUrl(lifestyleObs, lifestyleEntry) "setRequestAndFullUrl";
+        } "create-lifestyle-obs";
       } "lifestyle-entries";
-    //} "nav-patientId";
-  //} "nav-patient";
-*/
+
+  // Transform Lifestyle Observations (with pmsiId) 
+      src.styleVie as lifestyle where lifestyle.patientId = %patient.patientId and lifestyle.pmsiId.exists() -> bundle.entry as lifestyleEntry then {
+        lifestyle -> lifestyleEntry.resource = create('Observation') as lifestyleObs then {
+          lifestyle then TransformLifestyleWithEncounter(lifestyle, lifestyleObs, dmPatient, dmEncounter) "create-lifestyle-obs";
+          lifestyle then setEntryRequestAndFullUrl(lifestyleObs, lifestyleEntry) "setRequestAndFullUrl";
+        } "create-lifestyle-obs";
+      } "lifestyle-with-encounter-entries";
+
+  // Transform Administration (without pmsiId)
+      src.administration as admin where admin.patientId = %patient.patientId and admin.pmsiId.empty() -> bundle.entry as adminEntry then {
+        admin -> adminEntry.resource = create('MedicationAdministration') as dmAdmin then {
+          admin then TransformMedicationAdministrationWOEncounter(admin, dmAdmin, dmPatient) "create-med-admin";
+          admin then setEntryRequestAndFullUrl(dmAdmin, adminEntry) "setRequestAndFullUrl";
+        } "create-med-admin";
+      } "administration-entries";
+
+  // Transform Administration (with pmsiId)
+          src.administration as admin where admin.patientId = %patient.patientId and admin.pmsiId = %pmsi.pmsiId -> bundle.entry as adminEntry then {
+            admin -> adminEntry.resource = create('MedicationAdministration') as dmAdmin then {
+              admin then TransformMedicationAdministrationWEncounter(admin, dmAdmin, dmPatient, dmEncounter) "create-med-admin";
+              admin then setEntryRequestAndFullUrl(dmAdmin, adminEntry) "setRequestAndFullUrl";
+            } "create-med-admin";
+          } "administration-with-encounter-entries";
 }
 
 // ---------------------------------------------------------
@@ -463,8 +479,8 @@ group TransformMedicationRequestWOEncounter(source src, target tgtMedReq : Medic
     presId -> identifier.value = presId "med-request-id-value";
   } "med-request-identifier";
 
-  // Status - assume active for current prescriptions
-  src -> tgtMedReq.status = 'unknowk' "med-request-status";
+  // Status - assume unknown for historical prescriptions
+  src -> tgtMedReq.status = 'unknown' "med-request-status";
 
   // Intent
   src -> tgtMedReq.intent = 'order' "med-request-intent";
@@ -595,50 +611,173 @@ group TransformVitalSigns(source src, target tgtObs : Observation, source patien
 // ========================================================================
 // LIFESTYLE TRANSFORMATION
 // ========================================================================
-/*
-group TransformLifestyle(source src, target tgt : Observation, source patient) {
-  src.styleVieId as id -> tgt.id = append('lifestyle-', id) "lifestyle-id";
 
-  // Smoking status observation
-  src.consommationTabac as tobacco where tobacco.exists() -> tgt then {
-    src -> tgt.status = 'final' "smoking-status";
-    src -> tgt.category as category then {
-      src -> category.coding as coding then {
-        src -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "smoking-category-system";
-        src -> coding.code = 'social-history' "smoking-category-code";
-      } "smoking-category-coding";
-    } "smoking-category";
+group TransformLifestyle(source src, target tgtObs : Observation, source patient) {
+  src -> tgtObs.id = uuid() "setId";
 
-    src -> tgt.code as code then {
-      src -> code.coding as coding then {
-        src -> coding.system = 'http://loinc.org' "smoking-code-system";
-        src -> coding.code = '72166-2' "smoking-code-value";
-        src -> coding.display = 'Tobacco smoking status' "smoking-code-display";
-      } "smoking-coding";
-    } "smoking-code";
+  // Identifier
+  src.styleVieId as lsId -> tgtObs.identifier as identifier then {
+    lsId -> identifier.system = 'https://hospital.eu/ehr/lifestyle-id' "lifestyle-id-system";
+    lsId -> identifier.value = lsId "lifestyle-id-value";
+  } "lifestyle-identifier";
 
-    // Subject
-    src -> tgt.subject = create('Reference') as ref then {
-      patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
-        ref.type = 'Patient' "subject-ref";
-    } "smoking-subject";
+  // Status
+  src -> tgtObs.status = 'final' "lifestyle-status";
 
+  // Category - social-history
+  src -> tgtObs.category as category then {
+    src -> category.coding as coding then {
+      src -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "category-system";
+      src -> coding.code = 'social-history' "category-code";
+      src -> coding.display = 'Social History' "category-display";
+    } "category-coding";
+  } "lifestyle-category";
 
-    // Encounter reference
-    src.pmsiId as encounterId -> tgt.encounter = create('Reference') as ref then {
-      encounterId -> ref.reference = ('Encounter/' + %encounterId) "encounter-ref";
-    } "smoking-encounter";
+  // Code - tobacco use status (primary focus)
+  src -> tgtObs.code as code then {
+    src -> code.coding as coding then {
+      src -> coding.system = 'http://loinc.org' "code-system";
+      src -> coding.code = '72166-2' "code-value";
+      src -> coding.display = 'Tobacco smoking status' "code-display";
+    } "lifestyle-coding";
+    src -> code.text = 'Lifestyle Assessment' "code-text";
+  } "lifestyle-code";
 
-    src.dateRecueil as collectDate where %collectDate.exists() -> tgt.effective = cast(collectDate, 'dateTime') "smoking-effective";
-    
-    tobacco -> tgt.value = create('CodeableConcept') as valueCC then {
-      tobacco -> valueCC.text = tobacco "smoking-value-text";
-    } "smoking-value";
-  } "transform-smoking";
+  // Subject
+  src -> tgtObs.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-ref";
+  } "lifestyle-subject";
 
-  // Similar patterns would apply for alcohol, drugs, and physical activity
+  // Effective date
+  src.dateRecueil as collectDate where %collectDate.exists() -> tgtObs.effective = cast(collectDate, 'dateTime') "lifestyle-effective";
+
+  // Components for different lifestyle factors
+  src.consommationTabac as tobacco where tobacco.exists() -> tgtObs.component as tobaccoComp then {
+    tobacco -> tobaccoComp.code as compCode then {
+      tobacco -> compCode.coding as coding then {
+        tobacco -> coding.system = 'http://loinc.org' "tobacco-comp-system";
+        tobacco -> coding.code = '72166-2' "tobacco-comp-code";
+        tobacco -> coding.display = 'Tobacco smoking status' "tobacco-comp-display";
+      } "tobacco-comp-coding";
+    } "tobacco-comp-code";
+    tobacco -> tobaccoComp.value = create('CodeableConcept') as valueCC then {
+      tobacco -> valueCC.text = tobacco "tobacco-value-text";
+    } "tobacco-comp-value";
+  } "tobacco-component";
+
+  src.consommationAlcool as alcohol where alcohol.exists() -> tgtObs.component as alcoholComp then {
+    alcohol -> alcoholComp.code as compCode then {
+      alcohol -> compCode.coding as coding then {
+        alcohol -> coding.system = 'http://loinc.org' "alcohol-comp-system";
+        alcohol -> coding.code = '11331-6' "alcohol-comp-code";
+        alcohol -> coding.display = 'History of alcohol use' "alcohol-comp-display";
+      } "alcohol-comp-coding";
+    } "alcohol-comp-code";
+    alcohol -> alcoholComp.value = create('CodeableConcept') as valueCC then {
+      alcohol -> valueCC.text = alcohol "alcohol-value-text";
+    } "alcohol-comp-value";
+  } "alcohol-component";
+
+  src.consommationAutresDrogues as drugs where drugs.exists() -> tgtObs.component as drugsComp then {
+    drugs -> drugsComp.code as compCode then {
+      drugs -> compCode.coding as coding then {
+        drugs -> coding.system = 'http://loinc.org' "drugs-comp-system";
+        drugs -> coding.code = '11342-3' "drugs-comp-code";
+        drugs -> coding.display = 'History of drug use' "drugs-comp-display";
+      } "drugs-comp-coding";
+    } "drugs-comp-code";
+    drugs -> drugsComp.value = create('CodeableConcept') as valueCC then {
+      drugs -> valueCC.text = drugs "drugs-value-text";
+    } "drugs-comp-value";
+  } "drugs-component";
+
+  src.activitePhysique as physical where physical.exists() -> tgtObs.component as physicalComp then {
+    physical -> physicalComp.code as compCode then {
+      physical -> compCode.coding as coding then {
+        physical -> coding.system = 'http://loinc.org' "physical-comp-system";
+        physical -> coding.code = '67504-6' "physical-comp-code";
+        physical -> coding.display = 'Exercise activity' "physical-comp-display";
+      } "physical-comp-coding";
+    } "physical-comp-code";
+    physical -> physicalComp.value = create('CodeableConcept') as valueCC then {
+      physical -> valueCC.text = physical "physical-value-text";
+    } "physical-comp-value";
+  } "physical-component";
 }
- */
+
+group TransformLifestyleWithEncounter(source src, target tgtObs : Observation, source patient, source encounter) extends TransformLifestyle {
+  // Encounter reference
+  src -> tgtObs.encounter = create('Reference') as ref then {
+    encounter.id as encounterId -> ref.reference = ('Encounter/' + %encounterId), 
+      ref.type = 'Encounter' "encounter-ref";
+  } "lifestyle-encounter";
+}
+
+// ========================================================================
+// MEDICATION ADMINISTRATION TRANSFORMATION
+// ========================================================================
+
+group TransformMedicationAdministrationWOEncounter(source src, target tgtMedAdmin : MedicationAdministration, source patient) {
+  src -> tgtMedAdmin.id = uuid() "setId";
+
+  // Identifier
+  src.administrationId as adminId -> tgtMedAdmin.identifier as identifier then {
+    adminId -> identifier.system = 'https://hospital.eu/ehr/administration-id' "admin-id-system";
+    adminId -> identifier.value = adminId "admin-id-value";
+  } "admin-identifier";
+
+  // Status - assume completed
+  src -> tgtMedAdmin.status = 'completed' "admin-status";
+
+  // Subject
+  src -> tgtMedAdmin.subject = create('Reference') as ref then {
+    patient.id as patientId -> ref.reference = ('Patient/' + %patientId), 
+      ref.type = 'Patient' "subject-ref";
+  } "admin-subject";
+
+  // Medication
+  src.denomination as denomination -> tgtMedAdmin.medication = create('CodeableConcept') as medication then {
+    denomination -> medication.text = denomination "medication-text";
+    src.codeAtc as atc -> medication.coding as coding then {
+      atc -> coding.system = 'http://www.whocc.no/atc' "atc-system";
+      atc -> coding.code = atc "atc-code";
+    } "atc-coding";
+  } "admin-medication";
+
+  // Effective period
+  src where src.dateHeureDebut.exists() or src.dateHeureFin.exists() -> tgtMedAdmin.effective = create('Period') as period then {
+    src.dateHeureDebut as startDate -> period.start = startDate "period-start";
+    src.dateHeureFin as endDate -> period.end = endDate "period-end";
+  } "admin-effective";
+
+  // Dosage
+  src where src.quantite.exists() or src.voieAdministration.exists() -> tgtMedAdmin.dosage as dosage then {
+    src.quantite as quantity -> dosage.dose = create('Quantity') as dose then {
+      quantity -> dose.value = quantity "dose-value";
+      src.uniteQuantite as unit -> dose.unit = unit "dose-unit";
+      src.uniteQuantite as unit -> dose.code = unit "dose-code";
+      src -> dose.system = 'http://unitsofmeasure.org' "dose-system";
+    } "admin-dose";
+    src.voieAdministration as route -> dosage.route as routeCC then {
+      route -> routeCC.text = route "route-text";
+    } "admin-route";
+  } "admin-dosage";
+
+  // Reference to prescription if available
+  src.prescriptionId as presId where presId.exists() -> tgtMedAdmin.request = create('Reference') as reqRef then {
+    presId -> reqRef.reference = ('MedicationRequest/' + %presId) "request-ref";
+    presId -> reqRef.type = 'MedicationRequest' "requestType";
+  } "admin-request";
+}
+
+group TransformMedicationAdministrationWEncounter(source src, target tgtMedAdmin : MedicationAdministration, source patient, source encounter) extends TransformMedicationAdministrationWOEncounter {
+  // Context (encounter) reference
+  src -> tgtMedAdmin.context = create('Reference') as ref then {
+    encounter.id as encounterId -> ref.reference = ('Encounter/' + %encounterId), 
+      ref.type = 'Encounter' "encounter-ref";
+  } "admin-context";
+}
 group setEntryRequestAndFullUrl(source newRes, target tgtEntry) { 
   newRes.id as newResId then {
     newResId -> tgtEntry.fullUrl = ('urn:ehr:' + %newRes.type().name + '/' + %newResId) "setFullUrl";
