@@ -138,6 +138,7 @@ Based on linkId: 7702944131447. Maps to SQL table: biologie
 """
   * biologieId 1..1 id "Biology ID" "Unique biology identifier (biologie_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
+  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * codeLoinc 0..1 string "LOINC Code" "Code LOINC (code_loinc)"
   * libelleTest 0..1 string "Test Label" "Libellé du test (libelle_test)"
   * typeExamen 0..1 code "Exam Type" "Type examen (type_examen)"
@@ -162,6 +163,7 @@ Based on linkId: 817801935685. Maps to SQL table: prescription
 """
   * prescriptionId 1..1 id "Prescription ID" "Unique prescription identifier (prescription_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
+  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * denomination 0..1 string "Denomination" "Dénomination"
   * codeAtc 0..1 string "médicament prescrit" "Codé en ATC"
   * voieAdministration 0..1 string "Voie administration" "Codé avec un Standard Term"
@@ -176,19 +178,19 @@ Based on linkId: 817801935685. Maps to SQL table: prescription
 // POSOLOGIE TABLE
 // ========================================================================
 
-  * posologie 0..* BackboneElement "Posology" """
+* posologie 0..* BackboneElement "Posology" """
 Detailed dosing information. Based on linkId: 6348237104421.
 Maps to SQL table: posologie
 """
-    * posologieId 1..1 id "Posology ID" "Unique posology identifier (posologie_id)"
-    * prescriptionId 1..1 id "Prescription ID" "Foreign key to prescription (prescription_id)"
-    * nombrePrisesParJour 0..1 integer "Daily Intakes" "Nombre prises par jour (nombre_prises_par_jour)"
-    * quantite 0..1 decimal "quantité de médicament prise" "à correler avec l'unité"
-    * uniteQuantite 0..1 string "Unité de la quantité" "Si possible en UCUM, sinon en Standard terms"
-    * dateHeureDebut 0..1 dateTime "DateHeure de début de prise" "Date de la prise si prise 'instantanée'"
-    * dateHeureFin 0..1 dateTime "DateHeure de fin de prise"  "DateHeure de fin de prise"
-    * createdAt 1..1 dateTime "Created At" "Record creation timestamp (created_at)"
-    * updatedAt 1..1 dateTime "Updated At" "Record update timestamp (updated_at)"
+  * posologieId 1..1 id "Posology ID" "Unique posology identifier (posologie_id)"
+  * prescriptionId 1..1 id "Prescription ID" "Foreign key to prescription (prescription_id)"
+  * nombrePrisesParJour 0..1 integer "Daily Intakes" "Nombre prises par jour (nombre_prises_par_jour)"
+  * quantite 0..1 decimal "quantité de médicament prise" "à correler avec l'unité"
+  * uniteQuantite 0..1 string "Unité de la quantité" "Si possible en UCUM, sinon en Standard terms"
+  * dateHeureDebut 0..1 dateTime "DateHeure de début de prise" "Date de la prise si prise 'instantanée'"
+  * dateHeureFin 0..1 dateTime "DateHeure de fin de prise"  "DateHeure de fin de prise"
+  * createdAt 1..1 dateTime "Created At" "Record creation timestamp (created_at)"
+  * updatedAt 1..1 dateTime "Updated At" "Record update timestamp (updated_at)"
 
 // ========================================================================
 // ADMINISTRATION TABLE
@@ -200,6 +202,7 @@ Maps to SQL table: administration
 """
   * administrationId 1..1 id "Administration ID" "Unique administration identifier (administration_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
+  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * prescriptionId 0..1 id "Prescription ID" "Foreign key to prescription (prescription_id)"
   * denomination 0..1 string "Médicament administré" "DCI si possible"
   * codeAtc 0..1 string "Classe thérapeutique du médicament administré" "codé en ATC"
@@ -221,6 +224,7 @@ Based on linkId: 305831246173. Maps to SQL table: dossier_soin
 """
   * soinId 1..1 id "Care ID" "Unique care identifier (soin_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
+  * pmsiId 1..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * codeLoinc 0..1 string "Observation" "codé avec LOINC"
   * libelleTest 0..1 string "Libellé métier de l'observation" "Libellé métier de l'observation"
   * valeur 0..1 decimal "Valeur de l'observation" "si quantitative"
@@ -243,6 +247,7 @@ Based on linkId: 1693164086678. Maps to SQL table: style_vie
 """
   * styleVieId 1..1 id "Lifestyle ID" "Unique lifestyle identifier (style_vie_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
+  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * consommationTabac 0..1 string "Tobacco Use" "Consommation tabac (consommation_tabac)"
   * consommationAlcool 0..1 string "Alcohol Use" "Consommation alcool (consommation_alcool)"
   * consommationAutresDrogues 0..1 string "Other Drugs" "Consommation autres drogues (consommation_autres_drogues)"
