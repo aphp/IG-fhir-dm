@@ -97,7 +97,6 @@
     {
       "biologieId": "bio-013",
       "patientId": "patient-010",
-      "pmsiId": "pmsi-009",
       "codeLoinc": "1988-5",
       "libelleTest": "CRP",
       "typeExamen": "Inflammation",
@@ -131,7 +130,6 @@
     {
       "prescriptionId": "exp-013",
       "patientId": "patient-010",
-      "pmsiId": "pmsi-009",
       "denomination": "Méthotrexate",
       "codeAtc": "L04AX03",
       "voieAdministration": "20053000",
@@ -180,7 +178,6 @@
     {
       "soinId": "soins-012",
       "patientId": "patient-010",
-      "pmsiId": "pmsi-009",
       "codeLoinc": "72133-2",
       "libelleTest": "PASI score",
       "valeur": 18.5,
@@ -196,7 +193,6 @@
     {
       "styleVieId": "style-008",
       "patientId": "patient-010",
-      "pmsiId": "pmsi-009",
       "consommationTabac": "Ex-fumeuse depuis 1 an",
       "consommationAlcool": "Socialement",
       "consommationAutresDrogues": "Non",
@@ -210,7 +206,6 @@
     {
       "administrationId": "admin-009",
       "patientId": "patient-010",
-      "pmsiId": "pmsi-009",
       "prescriptionId": "exp-013",
       "denomination": "Méthotrexate",
       "codeAtc": "L04AX03",

@@ -85,7 +85,6 @@
     {
       "biologieId": "bio-012",
       "patientId": "patient-009",
-      "pmsiId": "pmsi-008",
       "codeLoinc": "14682-9",
       "libelleTest": "Créatininémie",
       "typeExamen": "Fonction rénale",
@@ -104,7 +103,6 @@
     {
       "prescriptionId": "exp-012",
       "patientId": "patient-009",
-      "pmsiId": "pmsi-008",
       "denomination": "Paracétamol pédiatrique",
       "codeAtc": "N02BE01",
       "voieAdministration": "20053000",
@@ -131,7 +129,6 @@
     {
       "soinId": "soins-010",
       "patientId": "patient-009",
-      "pmsiId": "pmsi-008",
       "codeLoinc": "9269-2",
       "libelleTest": "Score de Glasgow",
       "valeur": 14.0,
@@ -145,7 +142,6 @@
     {
       "soinId": "soins-011",
       "patientId": "patient-009",
-      "pmsiId": "pmsi-008",
       "codeLoinc": "29463-7",
       "libelleTest": "Poids",
       "valeur": 65.0,
@@ -174,7 +170,6 @@
     {
       "administrationId": "admin-008",
       "patientId": "patient-009",
-      "pmsiId": "pmsi-008",
       "prescriptionId": "exp-012",
       "denomination": "Paracétamol pédiatrique",
       "codeAtc": "N02BE01",

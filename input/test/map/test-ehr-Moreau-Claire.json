@@ -96,7 +96,6 @@
     {
       "biologieId": "bio-011",
       "patientId": "patient-008",
-      "pmsiId": "pmsi-007",
       "codeLoinc": "3016-3",
       "libelleTest": "TSH",
       "typeExamen": "Hormones thyroïdiennes",
@@ -115,7 +114,6 @@
     {
       "prescriptionId": "exp-010",
       "patientId": "patient-008",
-      "pmsiId": "pmsi-007",
       "denomination": "Sertraline",
       "codeAtc": "N06AB06",
       "voieAdministration": "20053000",
@@ -164,7 +162,6 @@
     {
       "soinId": "soins-009",
       "patientId": "patient-008",
-      "pmsiId": "pmsi-007",
       "codeLoinc": "72133-2",
       "libelleTest": "Échelle HAD anxiété",
       "valeur": 12.0,
@@ -180,7 +177,6 @@
     {
       "styleVieId": "style-006",
       "patientId": "patient-008",
-      "pmsiId": "pmsi-007",
       "consommationTabac": "10 cigarettes/jour",
       "consommationAlcool": "1-2 verres/jour",
       "consommationAutresDrogues": "Cannabis occasionnel",
@@ -194,7 +190,6 @@
     {
       "administrationId": "admin-007",
       "patientId": "patient-008",
-      "pmsiId": "pmsi-007",
       "prescriptionId": "exp-010",
       "denomination": "Sertraline",
       "codeAtc": "N06AB06",

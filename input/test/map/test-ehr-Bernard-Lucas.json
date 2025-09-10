@@ -73,7 +73,6 @@
     {
       "biologieId": "bio-010",
       "patientId": "patient-007",
-      "pmsiId": "pmsi-006",
       "codeLoinc": "718-7",
       "libelleTest": "Hémoglobine",
       "typeExamen": "Hématologie",
@@ -92,7 +91,6 @@
     {
       "prescriptionId": "exp-009",
       "patientId": "patient-007",
-      "pmsiId": "pmsi-006",
       "denomination": "Tramadol",
       "codeAtc": "N02AX02",
       "voieAdministration": "20053000",
@@ -119,7 +117,6 @@
     {
       "soinId": "soins-008",
       "patientId": "patient-007",
-      "pmsiId": "pmsi-006",
       "codeLoinc": "72133-2",
       "libelleTest": "Échelle de douleur",
       "valeur": 3.0,
@@ -148,7 +145,6 @@
     {
       "administrationId": "admin-006",
       "patientId": "patient-007",
-      "pmsiId": "pmsi-006",
       "prescriptionId": "exp-009",
       "denomination": "Tramadol",
       "codeAtc": "N02AX02",

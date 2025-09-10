@@ -85,7 +85,6 @@
     {
       "biologieId": "bio-003",
       "patientId": "patient-002",
-      "pmsiId": "pmsi-002",
       "codeLoinc": "48420-5",
       "libelleTest": "Troponine T ultrasensible",
       "typeExamen": "Marqueurs cardiaques",
@@ -119,7 +118,6 @@
     {
       "prescriptionId": "exp-002",
       "patientId": "patient-002",
-      "pmsiId": "pmsi-002",
       "denomination": "Aspégic 75mg",
       "codeAtc": "B01AC06",
       "voieAdministration": "20053000",
@@ -168,7 +166,6 @@
     {
       "soinId": "soins-003",
       "patientId": "patient-002",
-      "pmsiId": "pmsi-002",
       "codeLoinc": "8480-6",
       "libelleTest": "Pression artérielle systolique",
       "valeur": 140.0,
@@ -197,7 +194,6 @@
     {
       "administrationId": "admin-001",
       "patientId": "patient-002",
-      "pmsiId": "pmsi-002",
       "prescriptionId": "exp-002",
       "denomination": "Aspégic 75mg",
       "codeAtc": "B01AC06",

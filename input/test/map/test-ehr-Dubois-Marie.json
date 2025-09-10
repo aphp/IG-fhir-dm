@@ -71,7 +71,6 @@
     {
       "biologieId": "bio-005",
       "patientId": "patient-003",
-      "pmsiId": "pmsi-003",
       "codeLoinc": "6598-7",
       "libelleTest": "Lactates",
       "typeExamen": "Gazométrie",
@@ -90,7 +89,6 @@
     {
       "prescriptionId": "exp-004",
       "patientId": "patient-003",
-      "pmsiId": "pmsi-003",
       "denomination": "Adrénaline",
       "codeAtc": "C01CA24",
       "voieAdministration": "20047000",
@@ -117,7 +115,6 @@
     {
       "soinId": "soins-004",
       "patientId": "patient-003",
-      "pmsiId": "pmsi-003",
       "codeLoinc": "8867-4",
       "libelleTest": "Fréquence cardiaque",
       "valeur": 0.0,
@@ -133,7 +130,6 @@
     {
       "administrationId": "admin-002",
       "patientId": "patient-003",
-      "pmsiId": "pmsi-003",
       "prescriptionId": "exp-004",
       "denomination": "Adrénaline",
       "codeAtc": "C01CA24",

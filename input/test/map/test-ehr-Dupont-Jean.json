@@ -98,7 +98,6 @@
     {
       "biologieId": "bio-007",
       "patientId": "patient-005",
-      "pmsiId": "pmsi-004",
       "codeLoinc": "19123-9",
       "libelleTest": "CA 19-9",
       "typeExamen": "Marqueurs tumoraux",
@@ -117,7 +116,6 @@
     {
       "prescriptionId": "exp-006",
       "patientId": "patient-005",
-      "pmsiId": "pmsi-004",
       "denomination": "Morphine",
       "codeAtc": "N02AA01",
       "voieAdministration": "20066000",
@@ -144,7 +142,6 @@
     {
       "soinId": "soins-005",
       "patientId": "patient-005",
-      "pmsiId": "pmsi-004",
       "codeLoinc": "72133-2",
       "libelleTest": "Échelle de douleur",
       "valeur": 8.0,
@@ -160,7 +157,6 @@
     {
       "styleVieId": "style-003",
       "patientId": "patient-005",
-      "pmsiId": "pmsi-004",
       "consommationTabac": "Fumeur depuis 40 ans",
       "consommationAlcool": "Modéré",
       "consommationAutresDrogues": "Non",
@@ -174,7 +170,6 @@
     {
       "administrationId": "admin-004",
       "patientId": "patient-005",
-      "pmsiId": "pmsi-004",
       "prescriptionId": "exp-006",
       "denomination": "Morphine",
       "codeAtc": "N02AA01",

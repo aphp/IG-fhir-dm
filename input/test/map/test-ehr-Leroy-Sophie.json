@@ -73,7 +73,6 @@
     {
       "biologieId": "bio-008",
       "patientId": "patient-006",
-      "pmsiId": "pmsi-005",
       "codeLoinc": "718-7",
       "libelleTest": "Hémoglobine",
       "typeExamen": "Hématologie",
@@ -107,7 +106,6 @@
     {
       "prescriptionId": "exp-007",
       "patientId": "patient-006",
-      "pmsiId": "pmsi-005",
       "denomination": "Fer tardyferon",
       "codeAtc": "B03AA07",
       "voieAdministration": "20053000",
@@ -156,7 +154,6 @@
     {
       "soinId": "soins-006",
       "patientId": "patient-006",
-      "pmsiId": "pmsi-005",
       "codeLoinc": "29463-7",
       "libelleTest": "Poids",
       "valeur": 68.5,
@@ -170,7 +167,6 @@
     {
       "soinId": "soins-007",
       "patientId": "patient-006",
-      "pmsiId": "pmsi-005",
       "codeLoinc": "8480-6",
       "libelleTest": "Pression artérielle systolique",
       "valeur": 125.0,
@@ -199,7 +195,6 @@
     {
       "administrationId": "admin-005",
       "patientId": "patient-006",
-      "pmsiId": "pmsi-005",
       "prescriptionId": "exp-007",
       "denomination": "Fer tardyferon",
       "codeAtc": "B03AA07",
