@@ -1,4 +1,0 @@
-biologie_id,pmsi_id,patient_id,code_loinc,libelle_test,valeur,unite,laboratoire,date_prelevement
-1,1,1,33747-0,Creatinine serique,1.2,mg/dL,Laboratoire Central,2024-01-10
-2,2,2,718-7,Hemoglobine,12.5,g/dL,Laboratoire Central,2024-01-20
-3,3,3,1975-2,Bilirubine totale,0.8,mg/dL,Laboratoire Central,2024-02-01

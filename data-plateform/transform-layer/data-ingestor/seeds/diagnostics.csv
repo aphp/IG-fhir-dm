@@ -1,0 +1,21 @@
+diagnostic_id,patient_id,pmsi_id,code_diagnostic,type_diagnostic,libelle_diagnostic,date_recueil,created_at,updated_at
+diag-011,patient-007,pmsi-006,S721,DP,Fracture pertrochantérienne,2025-08-18,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+diag-001,patient-001,pmsi-001,E119,DP,"Diabète sucré de type 2, sans complication",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+diag-002,patient-001,pmsi-001,E6604,DAS,"Obésité due à un excès calorique de l'adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l'enfant",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+diag-003,patient-001,pmsi-001,N183,DAS,"Maladie rénale chronique, stade 3",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+diag-006,patient-003,pmsi-003,R570,DP,Choc cardiogénique,2025-08-25,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+diag-007,patient-005,pmsi-004,C780,DP,Métastase maligne du poumon,2025-08-20,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+diag-008,patient-005,pmsi-004,C25,DAS,Tumeur maligne du pancréas,2025-08-20,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+diag-009,patient-005,pmsi-004,R060,DAD,Dyspnée,2025-08-25,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+diag-016,patient-010,pmsi-009,L409,DP,"Psoriasis, sans précision",2025-08-05,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+diag-017,patient-010,pmsi-009,M0690,DAS,"Rhumatisme psoriasique, siège non précisé",2025-08-05,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+diag-018,patient-011,pmsi-010,F03,DP,"Démence, sans précision",2025-08-01,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+diag-019,patient-011,pmsi-010,Z741,DAS,Nécessité d'une assistance pour des soins personnels permanents,2025-08-01,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+diag-020,patient-011,pmsi-010,R2688,DAD,Autres troubles de la démarche et de la mobilité précisés,2025-08-03,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+diag-010,patient-006,pmsi-005,O80,DP,Accouchement par voie basse unique spontané,2025-08-15,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+diag-004,patient-002,pmsi-002,I219,DP,"Infarctus aigu du myocarde, sans précision",2025-08-20,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+diag-005,patient-002,pmsi-002,Z958,DR,Présence d'autres implants et greffes cardio-vasculaires,2025-08-21,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+diag-012,patient-008,pmsi-007,F320,DP,Épisode dépressif léger,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+diag-013,patient-008,pmsi-007,F411,DAS,Trouble anxieux généralisé,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+diag-014,patient-009,pmsi-008,S064,DP,Contusion cérébrale,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+diag-015,patient-009,pmsi-008,S020,DAS,Fracture de la voûte du crâne,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z

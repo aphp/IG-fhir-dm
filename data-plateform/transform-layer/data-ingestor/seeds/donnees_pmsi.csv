@@ -1,0 +1,11 @@
+pmsi_id,patient_id,mode_sortie,age_admission,date_debut_sejour,date_fin_sejour,mode_entree,etablissement,service,unite_fonctionnelle,created_at,updated_at
+pmsi-006,patient-007,8 - Domicile,,2025-08-18,2025-08-19,7 - Mutation d'une unité de l'établissement,CHU Nantes,Chirurgie orthopédique,Bloc opératoire,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+pmsi-001,patient-001,8 - Domicile,,2025-08-22,2025-08-22,8 - Domicile,,,,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+pmsi-003,patient-003,9 - Décès,,2025-08-25,2025-08-27,6 - Transfert d'un autre établissement,AP-HM,Urgences,,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+pmsi-004,patient-005,9 - Décès,,2025-08-20,2025-08-29,8 - Domicile,CHU Lille,Oncologie,Soins palliatifs,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+pmsi-009,patient-010,8 - Domicile,,2025-08-05,2025-08-08,8 - Domicile,CHU Rennes,Dermatologie,Hospitalisation de jour,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+pmsi-010,patient-011,7 - Transfert vers un autre établissement,,2025-08-01,2025-08-15,8 - Domicile,CH La Roche-sur-Yon,Gériatrie,SSR gériatrique,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+pmsi-005,patient-006,8 - Domicile,,2025-08-15,2025-08-17,8 - Domicile,CHU Caen,Gynécologie-Obstétrique,Maternité,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+pmsi-002,patient-002,7 - Transfert vers un autre établissement,,2025-08-20,2025-08-25,6 - Transfert d'un autre établissement,CHU Lyon,Cardiologie,USIC,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+pmsi-007,patient-008,8 - Domicile,,2025-08-12,2025-08-14,8 - Domicile,AP-HM Timone,Psychiatrie,Unité fermée,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+pmsi-008,patient-009,8 - Domicile,,2025-08-10,2025-08-11,8 - Domicile,CHU Grenoble,Pédiatrie,Urgences pédiatriques,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z

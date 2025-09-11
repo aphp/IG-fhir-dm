@@ -1,0 +1,15 @@
+soin_id,patient_id,code_loinc,libelle_test,valeur,unite,valeur_code,valeur_texte,date_mesure,unite_soins,professionnel,created_at,updated_at
+soins-008,patient-007,72133-2,Échelle de douleur,3.0,score,,,2025-08-19T08:00:00.000Z,Chirurgie orthopédique,Infirmière Moreau,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+soins-001,patient-001,8302-2,Taille,167.0,cm,,,2025-08-22,Cardiologie,M Diouque,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+soins-002,patient-001,29463-7,Poids,73.0,kg,,,2025-08-22,Cardiologie,M Diouque,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+soins-004,patient-003,8867-4,Fréquence cardiaque,0.0,bpm,,,2025-08-25T18:00:00.000Z,Urgences,Dr. Réa,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+soins-005,patient-005,72133-2,Échelle de douleur,8.0,score,,,2025-08-28T14:00:00.000Z,Soins palliatifs,Mme Infirmière,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+soins-012,patient-010,72133-2,PASI score,18.5,score,,,2025-08-05T15:00:00.000Z,Dermatologie,Dr. Dermatologue,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+soins-013,patient-011,72133-2,MMS score,18.0,score,,,2025-08-01T14:00:00.000Z,Gériatrie,Dr. Gériatre,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+soins-014,patient-011,29463-7,Poids,58.0,kg,,,2025-08-02T09:00:00.000Z,Gériatrie,Aide-soignante,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+soins-006,patient-006,29463-7,Poids,68.5,kg,,,2025-08-15T09:00:00.000Z,Maternité,Sage-Femme Martin,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+soins-007,patient-006,8480-6,Pression artérielle systolique,125.0,mm[Hg],,,2025-08-16T06:00:00.000Z,Maternité,Infirmière Dupuis,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+soins-003,patient-002,8480-6,Pression artérielle systolique,140.0,mm[Hg],,,2025-08-20T08:00:00.000Z,USIC,Mme Nurse,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+soins-009,patient-008,72133-2,Échelle HAD anxiété,12.0,score,,,2025-08-12T14:00:00.000Z,Psychiatrie,Infirmière psy,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+soins-010,patient-009,9269-2,Score de Glasgow,14.0,score,,,2025-08-10T18:00:00.000Z,Urgences pédiatriques,Dr. Urgentiste,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+soins-011,patient-009,29463-7,Poids,65.0,kg,,,2025-08-10T15:30:00.000Z,Urgences pédiatriques,Infirmière,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z

@@ -1,0 +1,10 @@
+style_vie_id,patient_id,consommation_tabac,consommation_alcool,consommation_autres_drogues,activite_physique,date_recueil,created_at,updated_at
+style-005,patient-007,Non fumeur,Occasionnel week-end,Non,Sport régulier,2025-08-18T12:00:00.000Z,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+style-003,patient-005,Fumeur depuis 40 ans,Modéré,Non,Alité,2025-08-20T15:00:00.000Z,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+style-008,patient-010,Ex-fumeuse depuis 1 an,Socialement,Non,Yoga et natation,2025-08-05T16:00:00.000Z,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+style-009,patient-011,Ex-fumeur depuis 20 ans,Arrêt,Non,Limitée aide technique,2025-08-01T17:00:00.000Z,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+style-004,patient-006,Arrêt pendant grossesse,Arrêt pendant grossesse,Non,Adaptée grossesse,2025-08-15T14:00:00.000Z,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+style-001,patient-002,Ex-fumeur depuis 2 ans,Occasionnel,Non,Sédentaire,2025-08-20T10:00:00.000Z,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+style-006,patient-008,10 cigarettes/jour,1-2 verres/jour,Cannabis occasionnel,Nulle,2025-08-12T16:00:00.000Z,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+style-002,patient-004,Non fumeur,Non,,Modérée,2025-08-28T10:00:00.000Z,2025-08-30T13:00:00Z,2025-08-30T13:00:00Z
+style-007,patient-009,Non fumeur,Occasionnel en soirée,Non,Sport étudiant,2025-08-10T19:00:00.000Z,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z

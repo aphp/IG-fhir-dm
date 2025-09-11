@@ -1,4 +1,0 @@
-patient_id,nom,prenom,nir,ins,date_naissance,sexe,latitude,longitude,code_geographique_residence,libelle_geographique_residence
-1,MARTIN,Jean,123456789,12345001,1980-05-15,M,48.8566,2.3522,75001,Paris 1er
-2,DUBOIS,Marie,987654321,12345002,1975-09-22,F,45.7640,4.8357,69001,Lyon 1er
-3,BERNARD,Pierre,456789123,12345003,1990-12-03,M,43.2965,5.3698,13001,Marseille 1er
