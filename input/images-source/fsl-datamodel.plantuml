@@ -21,31 +21,41 @@ TABLE(fhir_patient) {
   --
   last_updated: TIMESTAMP WITH TIME ZONE
   active: BOOLEAN
-  identifier: JSONB
+  identifiers: JSONB
   nss_identifier: VARCHAR(50)
   ins_nir_identifier: VARCHAR(15)
   names: JSONB
-  full_names: VARCHAR(255)[][]
+  full_names: TEXT
   gender: VARCHAR(10)
   birth_date: DATE
   deceased_x: JSONB
   deceased_date_time: TIMESTAMP WITH TIME ZONE
+  deceased_extension_death_source: VARCHAR(10)
   marital_status: VARCHAR(4)
   address: JSONB
   address_extension_geolocation_latitude: FLOAT
   address_extension_geolocation_longitude: FLOAT
+  address_extension_census_tract: VARCHAR(255)
+  address_period_start: DATE
+  address_extension_pmsi_code_geo: JSONB
+  address_extension_pmsi_code_geo_code: VARCHAR(5)
   telecoms: JSONB
   contacts: JSONB
   communications: JSONB
+  preferred_communication_languages: TEXT
   multiple_birth_x: JSONB
   multiple_birth_integer: INTEGER
   general_practitioners: JSONB
   managing_organization: JSONB
   links: JSONB
   meta: JSONB
+  implicit_rules: VARCHAR(255)
+  resource_language: VARCHAR(10)
+  text_div: TEXT
+  contained: JSONB
   extensions: JSONB
+  modifier_extensions: JSONB
   --
-  ' Audit fields
   created_at: TIMESTAMP WITH TIME ZONE
   updated_at: TIMESTAMP WITH TIME ZONE
 }
@@ -103,7 +113,7 @@ TABLE(fhir_condition) {
   verification_status: JSONB
   verification_status_text: VARCHAR(255)
   categories: JSONB
-  categories_text: VARCHAR(255)[]
+  categories_text: TEXT
   severity: JSONB
   code: JSONB
   code_text: VARCHAR(255)
@@ -122,7 +132,6 @@ TABLE(fhir_condition) {
   meta: JSONB
   extensions: JSONB
   --
-  ' Audit fields
   created_at: TIMESTAMP WITH TIME ZONE
   updated_at: TIMESTAMP WITH TIME ZONE
 }
@@ -150,7 +159,7 @@ TABLE(fhir_procedure) {
   recorder: JSONB
   asserter: JSONB
   performers: JSONB
-  performer_actor_practitioner_text: VARCHAR(255)[]
+  performer_actor_practitioner_text: TEXT
   location: JSONB
   reason_codes: JSONB
   reason_references: JSONB
@@ -180,7 +189,7 @@ TABLE(fhir_observation) {
   last_updated: TIMESTAMP WITH TIME ZONE
   status: VARCHAR(20)
   categories: JSONB
-  categories_text: VARCHAR(255)[]
+  categories_text: TEXT
   code: JSONB
   code_text: VARCHAR(255)
   identifiers: JSONB
@@ -205,7 +214,7 @@ TABLE(fhir_observation) {
   specimen: JSONB
   device: JSONB
   reference_ranges: JSONB
-  reference_ranges_value: FLOAT[2][]
+  reference_ranges_value: TEXT
   has_members: JSONB
   derived_from_s: JSONB
   components: JSONB
@@ -229,7 +238,7 @@ TABLE(fhir_observation_component) {
   data_absent_reason: JSONB
   interpretations: JSONB
   reference_ranges: JSONB
-  reference_ranges_value: FLOAT[2][]
+  reference_ranges_value: TEXT
   --
   ' Audit fields
   created_at: TIMESTAMP WITH TIME ZONE

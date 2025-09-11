@@ -1,15 +1,21 @@
 -- ========================================================================
--- PostgreSQL 17.x DDL Script for FHIR Questionnaire Core Variables EDSH
+-- PostgreSQL 17.x Optimized DDL Script for FHIR Questionnaire Core Variables EDSH
 -- Generated from: input/resources/usages/core/Questionnaire-UsageCore.json
 -- 
 -- This script creates an optimized schema for storing FHIR Questionnaire
 -- responses related to core health data variables for EDSH.
 -- 
--- Key optimizations:
--- - Consolidated laboratory results into single generic table
--- - Removed age columns (calculable from birth date and encounter date)  
--- - Consolidated patient information into single table
+-- Key optimizations for PostgreSQL 17.x:
+-- - Consolidated laboratory results into single generic table with LOINC codes
+-- - Removed age columns (calculable from birth date and encounter date)
+-- - Consolidated patient information into single table with geocoding separation
 -- - All clinical tables linked to central PMSI encounter table
+-- - Hash indexes for exact lookups and improved performance
+-- - Covering indexes with INCLUDE columns for query optimization
+-- - Full-text search capabilities for patient names (French language)
+-- - Spatial indexes using GIST for geographic coordinates
+-- - Comprehensive data validation with enhanced check constraints
+-- - Optimized foreign key naming and referential integrity
 -- ========================================================================
 
 -- Drop tables in reverse dependency order
@@ -114,6 +120,7 @@ CREATE TABLE donnees_pmsi (
 -- Diagnostic codes and information linked to PMSI encounters
 CREATE TABLE diagnostics (
     diagnostic_id BIGSERIAL PRIMARY KEY,
+    patient_id BIGINT NOT NULL,
     pmsi_id BIGINT NOT NULL,
     
     -- Diagnostic information (linkId: 9391816419630)
@@ -137,6 +144,7 @@ CREATE TABLE diagnostics (
 -- Medical procedures and acts linked to PMSI encounters  
 CREATE TABLE actes (
     acte_id BIGSERIAL PRIMARY KEY,
+    patient_id BIGINT NOT NULL,
     pmsi_id BIGINT NOT NULL,
     
     -- Act/procedure information (linkId: 591926901726)
@@ -227,7 +235,7 @@ CREATE TABLE biologie (
 -- Clinical care measurements and observations
 -- Based on linkId: 305831246173 (Dossier de soins) - repeats=true
 CREATE TABLE dossier_soins (  --il aurait pu génériciser, comme pour la bio...
-    soins_id BIGSERIAL PRIMARY KEY,
+    soin_id BIGSERIAL PRIMARY KEY,
 --    pmsi_id BIGINT NOT NULL,  -- implique qu'on n'a ces infos que durant une prise en charge PMSI.
     patient_id BIGINT NOT NULL,
     
@@ -281,7 +289,7 @@ CREATE TABLE prescription (
 -- Detailed dosing information (linkId: 6348237104421)
 CREATE TABLE posologie (  
     posologie_id BIGSERIAL PRIMARY KEY,
-    patient_id BIGINT NOT NULL,
+--    patient_id BIGINT NOT NULL,
     prescription_id BIGINT NOT NULL,
     
     -- Posology details, à enrichir+++
@@ -377,10 +385,16 @@ FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
 ALTER TABLE diagnostics 
 ADD CONSTRAINT fk_diagnostics_pmsi 
 FOREIGN KEY (pmsi_id) REFERENCES donnees_pmsi(pmsi_id) ON DELETE CASCADE;
+ALTER TABLE diagnostics 
+ADD CONSTRAINT fk_diagnostics_patient 
+FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
 
 ALTER TABLE actes 
 ADD CONSTRAINT fk_actes_pmsi 
 FOREIGN KEY (pmsi_id) REFERENCES donnees_pmsi(pmsi_id) ON DELETE CASCADE;
+ALTER TABLE actes 
+ADD CONSTRAINT fk_actes_patient 
+FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
 
 ALTER TABLE biologie 
 ADD CONSTRAINT fk_biologie_patient 
@@ -398,16 +412,16 @@ ALTER TABLE posologie
 ADD CONSTRAINT fk_posologie_prescription 
 FOREIGN KEY (prescription_id) REFERENCES prescription(prescription_id) ON DELETE CASCADE;
 
-ALTER TABLE posologie 
-ADD CONSTRAINT fk_posologie_patient 
+--ALTER TABLE posologie 
+--ADD CONSTRAINT fk_posologie_patient 
+--FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
+
+ALTER TABLE administration 
+ADD CONSTRAINT fk_administration_patient 
 FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
 
 ALTER TABLE administration 
-ADD CONSTRAINT fk_prescription_patient 
-FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
-
-ALTER TABLE administration 
-ADD CONSTRAINT fk_posologie_prescription 
+ADD CONSTRAINT fk_administration_prescription 
 FOREIGN KEY (prescription_id) REFERENCES prescription(prescription_id);
 
 ALTER TABLE style_vie 
@@ -421,7 +435,19 @@ CHECK (sexe IN ('h', 'f'));
 
 ALTER TABLE patient 
 ADD CONSTRAINT chk_patient_date_naissance 
-CHECK (date_naissance <= CURRENT_DATE);
+CHECK (date_naissance <= CURRENT_DATE AND date_naissance >= '1900-01-01');
+
+ALTER TABLE patient 
+ADD CONSTRAINT chk_patient_date_deces 
+CHECK (date_deces IS NULL OR (date_deces >= date_naissance AND date_deces <= CURRENT_DATE));
+
+ALTER TABLE patient 
+ADD CONSTRAINT chk_patient_nir_format 
+CHECK (nir IS NULL OR (nir ~ '^[0-9]{13,15}$'));
+
+ALTER TABLE patient 
+ADD CONSTRAINT chk_patient_rang_gemellaire 
+CHECK (rang_gemellaire IS NULL OR rang_gemellaire BETWEEN 1 AND 10);
 
 ALTER TABLE patient_adresse
 ADD CONSTRAINT chk_patient_latitude 
@@ -449,7 +475,19 @@ CHECK (borne_sup_normale IS NULL OR borne_inf_normale IS NULL OR borne_sup_norma
 
 ALTER TABLE biologie
 ADD CONSTRAINT chk_biologie_type_examen
-CHECK (type_examen IN ('fonction_renale', 'bilan_hepatique', 'hemogramme', 'autres'));  -- c'est marrant, il met coag et métabolisme qui est pertinent pour certaines analyse mais qui n'existe pas dans le questionnaire
+CHECK (type_examen IN ('fonction_renale', 'bilan_hepatique', 'hemogramme', 'autres'));
+
+ALTER TABLE biologie
+ADD CONSTRAINT chk_biologie_valeur_positive
+CHECK (valeur IS NULL OR valeur >= 0);
+
+ALTER TABLE biologie
+ADD CONSTRAINT chk_biologie_date_prelevement
+CHECK (date_prelevement IS NULL OR date_prelevement <= CURRENT_TIMESTAMP);
+
+ALTER TABLE biologie
+ADD CONSTRAINT chk_biologie_statut_validation
+CHECK (statut_validation IS NULL OR statut_validation IN ('en_attente', 'valide', 'rejete', 'en_cours'));  -- c'est marrant, il met coag et métabolisme qui est pertinent pour certaines analyse mais qui n'existe pas dans le questionnaire
 
 ALTER TABLE prescription
 ADD CONSTRAINT chk_prescription_dates
@@ -457,8 +495,67 @@ CHECK (date_fin_prescription IS NULL OR date_debut_prescription IS NULL OR date_
 
 ALTER TABLE administration
 ADD CONSTRAINT chk_administration_dates
-CHECK (date_heure_fin IS NULL OR date_heure_debut IS NULL);
+CHECK (date_heure_fin IS NULL OR date_heure_debut IS NULL OR date_heure_fin >= date_heure_debut);
 
+ALTER TABLE administration
+ADD CONSTRAINT chk_administration_quantite
+CHECK (quantite IS NULL OR quantite > 0);
+
+ALTER TABLE donnees_pmsi
+ADD CONSTRAINT chk_pmsi_age_admission
+CHECK (age_admission IS NULL OR age_admission BETWEEN 0 AND 150);
+
+--ALTER TABLE donnees_pmsi
+--ADD CONSTRAINT chk_pmsi_duree_coherence
+--CHECK (date_debut_sejour IS NULL OR date_fin_sejour IS NULL OR 
+--        (date_fin_sejour - date_debut_sejour) >= INTERVAL '0 days');
+
+ALTER TABLE posologie
+ADD CONSTRAINT chk_posologie_prises_jour
+CHECK (nombre_prises_par_jour IS NULL OR nombre_prises_par_jour BETWEEN 1 AND 24);
+
+ALTER TABLE posologie
+ADD CONSTRAINT chk_posologie_quantite
+CHECK (quantite IS NULL OR quantite > 0);
+
+ALTER TABLE posologie
+ADD CONSTRAINT chk_posologie_dates
+CHECK (date_heure_fin IS NULL OR date_heure_debut IS NULL OR date_heure_fin >= date_heure_debut);
+
+ALTER TABLE dossier_soins
+ADD CONSTRAINT chk_soins_valeur_positive
+CHECK (valeur IS NULL OR valeur >= 0);
+
+ALTER TABLE dossier_soins
+ADD CONSTRAINT chk_soins_date_mesure
+CHECK (date_mesure IS NULL OR date_mesure <= CURRENT_DATE);
+
+ALTER TABLE style_vie
+ADD CONSTRAINT chk_style_vie_date_recueil
+CHECK (date_recueil IS NULL OR date_recueil <= CURRENT_DATE);
+
+-- Additional validation constraints
+ALTER TABLE diagnostics
+ADD CONSTRAINT chk_diagnostics_code_format
+CHECK (code_diagnostic IS NULL OR LENGTH(code_diagnostic) BETWEEN 3 AND 20);
+
+ALTER TABLE diagnostics
+ADD CONSTRAINT chk_diagnostics_date_recueil
+CHECK (date_recueil IS NULL OR date_recueil <= CURRENT_DATE);
+
+ALTER TABLE actes
+ADD CONSTRAINT chk_actes_code_format
+CHECK (code_acte IS NULL OR LENGTH(code_acte) BETWEEN 4 AND 20);
+
+ALTER TABLE actes
+ADD CONSTRAINT chk_actes_date_acte
+CHECK (date_acte IS NULL OR date_acte <= CURRENT_TIMESTAMP);
+
+ALTER TABLE actes
+ADD CONSTRAINT chk_actes_date_recueil
+CHECK (date_recueil IS NULL OR date_recueil <= CURRENT_DATE);
+
+-- Commented out original constraints for reference
 /*ALTER TABLE exposition_medicamenteuse
 ADD CONSTRAINT chk_exposition_type
 CHECK (type_prescription IN ('prescrit', 'administré'));*/
@@ -494,9 +591,6 @@ CREATE INDEX idx_patient_nom_prenom ON patient(nom, prenom);
 CREATE INDEX idx_patient_date_naissance ON patient(date_naissance);
 -- CREATE INDEX idx_patient_code_postal ON patient(code_postal);
 --CREATE INDEX idx_patient_commune ON patient(commune);
-
--- Primary lookup index on patient_location table
-CREATE INDEX idx_patient_adresse_iris ON patient_adresse(code_iris) WHERE code_iris IS NOT NULL;
 
 -- donnees_PMSI indexes  
 CREATE INDEX idx_pmsi_patient_id ON donnees_pmsi(patient_id);
@@ -550,14 +644,37 @@ CREATE INDEX idx_pmsi_patient_date ON donnees_pmsi(patient_id, date_debut_sejour
 CREATE INDEX idx_diagnostics_pmsi_code ON diagnostics(pmsi_id, code_diagnostic);
 CREATE INDEX idx_actes_pmsi_code ON actes(pmsi_id, code_acte);
 
--- Geographic/spatial indexes
-CREATE INDEX idx_patient_coords ON patient_adresse(latitude, longitude) WHERE latitude IS NOT NULL AND longitude IS NOT NULL;
---CREATE INDEX idx_patient_iris ON patient(code_iris) WHERE code_iris IS NOT NULL;
+-- Geographic/spatial indexes optimized for PostgreSQL 17.x
+CREATE INDEX idx_patient_coords_gist ON patient_adresse USING gist(point(longitude, latitude)) WHERE latitude IS NOT NULL AND longitude IS NOT NULL;
+CREATE INDEX idx_patient_adresse_iris ON patient_adresse(code_iris) WHERE code_iris IS NOT NULL;
+CREATE INDEX idx_patient_adresse_date ON patient_adresse(patient_id, date_recueil DESC);
 
 -- Partial indexes for performance
 CREATE INDEX idx_biologie_valeur_non_null ON biologie(valeur) WHERE valeur IS NOT NULL;
-CREATE INDEX idx_exposition_active ON prescription(patient_id, date_debut_prescription, date_fin_prescription) 
+CREATE INDEX idx_prescription_active ON prescription(patient_id, date_debut_prescription, date_fin_prescription) 
 WHERE date_debut_prescription IS NOT NULL;
+
+-- Additional performance indexes for PostgreSQL 17.x
+CREATE INDEX CONCURRENTLY idx_patient_search ON patient USING gin(to_tsvector('french', COALESCE(nom, '') || ' ' || COALESCE(prenom, '')));
+CREATE INDEX idx_biologie_date_patient ON biologie(date_prelevement DESC, patient_id) WHERE date_prelevement IS NOT NULL;
+CREATE INDEX idx_pmsi_duree_sejour ON donnees_pmsi((date_fin_sejour - date_debut_sejour)) WHERE date_debut_sejour IS NOT NULL AND date_fin_sejour IS NOT NULL;
+CREATE INDEX idx_diagnostics_patient_code ON diagnostics(patient_id, code_diagnostic, date_recueil);
+CREATE INDEX idx_actes_patient_code ON actes(patient_id, code_acte, date_acte);
+CREATE INDEX idx_prescription_period ON prescription(date_debut_prescription, date_fin_prescription) WHERE date_debut_prescription IS NOT NULL;
+CREATE INDEX idx_administration_timeline ON administration(patient_id, date_heure_debut DESC) WHERE date_heure_debut IS NOT NULL;
+CREATE INDEX idx_dossier_soins_timeline ON dossier_soins(patient_id, date_mesure DESC) WHERE date_mesure IS NOT NULL;
+
+-- Hash indexes for exact lookups (PostgreSQL 17.x optimization)
+CREATE INDEX idx_patient_nir_hash ON patient USING hash(nir) WHERE nir IS NOT NULL;
+CREATE INDEX idx_patient_ins_hash ON patient USING hash(ins) WHERE ins IS NOT NULL;
+CREATE INDEX idx_biologie_loinc_hash ON biologie USING hash(code_loinc) WHERE code_loinc IS NOT NULL;
+CREATE INDEX idx_prescription_atc_hash ON prescription USING hash(code_atc) WHERE code_atc IS NOT NULL;
+CREATE INDEX idx_administration_atc_hash ON administration USING hash(code_atc) WHERE code_atc IS NOT NULL;
+
+-- Covering indexes for common queries
+CREATE INDEX idx_biologie_covering ON biologie(patient_id, code_loinc, date_prelevement) INCLUDE (valeur, unite, valeur_texte);
+CREATE INDEX idx_prescription_covering ON prescription(patient_id, code_atc) INCLUDE (denomination, date_debut_prescription, date_fin_prescription);
+CREATE INDEX idx_pmsi_covering ON donnees_pmsi(patient_id, date_debut_sejour) INCLUDE (date_fin_sejour, etablissement, service);
 
 -- ========================================================================
 -- COLUMN COMMENTS
@@ -609,6 +726,39 @@ COMMENT ON TABLE posologie IS 'Detailed dosing information for medications (link
 
 COMMENT ON TABLE style_vie IS 'Consolidated lifestyle information including tobacco, alcohol, drugs, and physical activity (linkId: 1693164086678)';
 
+-- ========================================================================
+-- POSTGRESQL 17.x PERFORMANCE SETTINGS AND RECOMMENDATIONS
+-- ========================================================================
+
+-- Set optimal maintenance settings for this schema
+-- These should be applied at database or session level:
+-- SET maintenance_work_mem = '1GB';
+-- SET work_mem = '256MB';
+-- SET random_page_cost = 1.1; -- For SSD storage
+-- SET effective_cache_size = '4GB'; -- Adjust based on system memory
+
+-- Enable parallel query execution for large table operations
+-- SET max_parallel_workers_per_gather = 4;
+-- SET parallel_tuple_cost = 0.1;
+-- SET parallel_setup_cost = 1000;
+
+-- Recommended VACUUM and ANALYZE schedule
+-- Run VACUUM ANALYZE after bulk data loads
+-- Consider pg_stat_statements extension for query performance monitoring
+
+-- Table-specific recommendations:
+-- 1. patient table: Consider partitioning by date_naissance year for very large datasets
+-- 2. biologie table: Consider partitioning by date_prelevement month for time-series queries
+-- 3. donnees_pmsi table: Consider partitioning by date_debut_sejour for temporal queries
+-- 4. Use CLUSTER command on frequently queried indexes after bulk loads
+
+-- PostgreSQL 17.x specific features utilized:
+-- - INCLUDE columns in indexes for covering index optimization
+-- - Hash indexes for exact equality lookups
+-- - GiST indexes for spatial data (latitude/longitude)
+-- - Full-text search with French language configuration
+-- - Advanced check constraints with complex validation logic
+
 -- ==============================================================================
--- END OF DDL SCRIPT
+-- END OF OPTIMIZED DDL SCRIPT FOR POSTGRESQL 17.x
 -- ==============================================================================

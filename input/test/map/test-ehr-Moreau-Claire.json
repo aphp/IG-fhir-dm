@@ -1,0 +1,205 @@
+{
+  "resourceType": "ehr",
+  "id": "test-ehr-moreau-claire",
+  "patient": {
+    "patientId": "patient-008",
+    "nom": "Moreau",
+    "prenom": "Claire",
+    "ins": "2801015678901",
+    "dateNaissance": "1980-01-15",
+    "sexe": "f",
+    "createdAt": "2025-08-30T17:00:00Z",
+    "updatedAt": "2025-08-30T17:00:00Z"
+  },
+  "patientAdresse": [
+    {
+      "patientAdresseId": "loc-008",
+      "patientId": "patient-008",
+      "latitude": 43.2965,
+      "longitude": 5.3698,
+      "codeIris": "130550808",
+      "libelleIris": "Vieux Port",
+      "codeGeographiqueResidence": "13055",
+      "libelleGeographiqueResidence": "MARSEILLE 2E ARRONDISSEMENT",
+      "dateRecueil": "2025-08-12",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "donneesPmsi": [
+    {
+      "pmsiId": "pmsi-007",
+      "patientId": "patient-008",
+      "dateDebutSejour": "2025-08-12",
+      "dateFinSejour": "2025-08-14",
+      "dureeSejour": 2,
+      "modeEntree": "8 - Domicile",
+      "modeSortie": "8 - Domicile",
+      "etablissement": "AP-HM Timone",
+      "service": "Psychiatrie",
+      "uniteFonctionnelle": "Unité fermée",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "diagnostics": [
+    {
+      "diagnosticId": "diag-012",
+      "patientId": "patient-008",
+      "pmsiId": "pmsi-007",
+      "codeDiagnostic": "F320",
+      "typeDiagnostic": "DP",
+      "libelleDiagnostic": "Épisode dépressif léger",
+      "dateRecueil": "2025-08-12",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    },
+    {
+      "diagnosticId": "diag-013",
+      "patientId": "patient-008",
+      "pmsiId": "pmsi-007",
+      "codeDiagnostic": "F411",
+      "typeDiagnostic": "DAS",
+      "libelleDiagnostic": "Trouble anxieux généralisé",
+      "dateRecueil": "2025-08-12",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "actes": [
+    {
+      "acteId": "acte-008",
+      "patientId": "patient-008",
+      "pmsiId": "pmsi-007",
+      "codeActe": "ANQP001...01.",
+      "libelleActe": "Entretien psychiatrique individuel",
+      "dateActe": "2025-08-12T15:30:00.000Z",
+      "executant": "Dr. Psychiatre",
+      "dateRecueil": "2025-08-12",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    },
+    {
+      "acteId": "acte-009",
+      "patientId": "patient-008",
+      "pmsiId": "pmsi-007",
+      "codeActe": "ANQP002...01.",
+      "libelleActe": "Psychothérapie de soutien",
+      "dateActe": "2025-08-13T10:00:00.000Z",
+      "executant": "Psychologue clinicien",
+      "dateRecueil": "2025-08-13",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "biologie": [
+    {
+      "biologieId": "bio-011",
+      "patientId": "patient-008",
+      "codeLoinc": "3016-3",
+      "libelleTest": "TSH",
+      "typeExamen": "Hormones thyroïdiennes",
+      "valeur": 2.5,
+      "unite": "mUI/L",
+      "datePrelevement": "2025-08-13T07:00:00.000Z",
+      "borneInfNormale": 0.4,
+      "borneSupNormale": 4.0,
+      "statutValidation": "VALIDE",
+      "laboratoire": "AP-HM Timone",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "prescription": [
+    {
+      "prescriptionId": "exp-010",
+      "patientId": "patient-008",
+      "denomination": "Sertraline",
+      "codeAtc": "N06AB06",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Psychiatre",
+      "datePrescription": "2025-08-12",
+      "dateDebutPrescription": "2025-08-12",
+      "dateFinPrescription": "2025-11-12",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    },
+    {
+      "prescriptionId": "exp-011",
+      "patientId": "patient-008",
+      "denomination": "Oxazépam",
+      "codeAtc": "N05BA04",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Généraliste",
+      "datePrescription": "2025-08-05",
+      "dateDebutPrescription": "2025-08-05",
+      "dateFinPrescription": "2025-08-19",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "posologie": [
+    {
+      "posologieId": "pos-010",
+      "prescriptionId": "exp-010",
+      "nombrePrisesParJour": 1,
+      "quantite": 50,
+      "uniteQuantite": "mg",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    },
+    {
+      "posologieId": "pos-011",
+      "prescriptionId": "exp-011",
+      "nombrePrisesParJour": 2,
+      "quantite": 10,
+      "uniteQuantite": "mg",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "dossierSoins": [
+    {
+      "soinId": "soins-009",
+      "patientId": "patient-008",
+      "codeLoinc": "72133-2",
+      "libelleTest": "Échelle HAD anxiété",
+      "valeur": 12.0,
+      "unite": "score",
+      "dateMesure": "2025-08-12T14:00:00.000Z",
+      "uniteSoins": "Psychiatrie",
+      "professionnel": "Infirmière psy",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "styleVie": [
+    {
+      "styleVieId": "style-006",
+      "patientId": "patient-008",
+      "consommationTabac": "10 cigarettes/jour",
+      "consommationAlcool": "1-2 verres/jour",
+      "consommationAutresDrogues": "Cannabis occasionnel",
+      "activitePhysique": "Nulle",
+      "dateRecueil": "2025-08-12T16:00:00.000Z",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ],
+  "administration": [
+    {
+      "administrationId": "admin-007",
+      "patientId": "patient-008",
+      "prescriptionId": "exp-010",
+      "denomination": "Sertraline",
+      "codeAtc": "N06AB06",
+      "quantite": 50,
+      "uniteQuantite": "mg",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-12T08:00:00.000Z",
+      "dateHeureFin": "2025-08-12T08:05:00.000Z",
+      "createdAt": "2025-08-30T17:00:00Z",
+      "updatedAt": "2025-08-30T17:00:00Z"
+    }
+  ]
+}

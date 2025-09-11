@@ -14,9 +14,9 @@
     "createdAt": "2025-08-30T10:00:00Z",
     "updatedAt": "2025-08-30T10:00:00Z"
   },
-  "patientAddress": [
+  "patientAdresse": [
     {
-      "patientAddressId": "loc-001",
+      "patientAdresseId": "loc-001",
       "patientId": "patient-001",
       "latitude": 48.88067598033303,
       "longitude": 2.331871883929937,
@@ -41,7 +41,7 @@
       "updatedAt": "2025-08-30T10:00:00Z"
     }
   ],
-  "diagnostic": [
+  "diagnostics": [
     {
       "diagnosticId": "diag-001",
       "patientId": "patient-001",
@@ -76,7 +76,7 @@
       "updatedAt": "2025-08-30T10:00:00Z"
     }
   ],
-  "acte": [
+  "actes": [
     {
       "acteId": "acte-001",
       "patientId": "patient-001",
@@ -117,7 +117,6 @@
     },
     {
       "biologieId": "bio-002",
-      "pmsiId": "pmsi-001",
       "patientId": "patient-001",
       "codeLoinc": "14682-9",
       "libelleTest": "Créatininémie",
@@ -135,7 +134,6 @@
     {
       "prescriptionId": "exp-001",
       "patientId": "patient-001",
-      "pmsiId": "pmsi-001",
       "denomination": "Glucophage",
       "codeAtc": "A10BA02",
       "voieAdministration": "20053000",
@@ -158,11 +156,10 @@
       "updatedAt": "2025-08-30T10:00:00Z"
     }
   ],
-  "dossierSoin": [
+  "dossierSoins": [
     {
       "soinId": "soins-001",
       "patientId": "patient-001",
-      "pmsiId": "pmsi-001",
       "codeLoinc": "8302-2",
       "libelleTest": "Taille",
       "valeur": 167.0,
@@ -176,7 +173,6 @@
     {
       "soinId": "soins-002",
       "patientId": "patient-001",
-      "pmsiId": "pmsi-001",
       "codeLoinc": "29463-7",
       "libelleTest": "Poids",
       "valeur": 73.0,

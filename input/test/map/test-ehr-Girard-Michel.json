@@ -1,0 +1,259 @@
+{
+  "resourceType": "ehr",
+  "id": "test-ehr-girard-michel",
+  "patient": {
+    "patientId": "patient-011",
+    "nom": "Girard",
+    "prenom": "Michel",
+    "nir": "1450334567890",
+    "ins": "1450334567890",
+    "dateNaissance": "1945-03-12",
+    "sexe": "h",
+    "createdAt": "2025-08-30T20:00:00Z",
+    "updatedAt": "2025-08-30T20:00:00Z"
+  },
+  "patientAdresse": [
+    {
+      "patientAdresseId": "loc-011",
+      "patientId": "patient-011",
+      "latitude": 46.1603,
+      "longitude": -1.1511,
+      "codeIris": "850470303",
+      "libelleIris": "Les Sables Centre",
+      "codeGeographiqueResidence": "85047",
+      "libelleGeographiqueResidence": "LA ROCHE-SUR-YON",
+      "dateRecueil": "2025-08-01",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "donneesPmsi": [
+    {
+      "pmsiId": "pmsi-010",
+      "patientId": "patient-011",
+      "dateDebutSejour": "2025-08-01",
+      "dateFinSejour": "2025-08-15",
+      "dureeSejour": 14,
+      "modeEntree": "8 - Domicile",
+      "modeSortie": "7 - Transfert vers un autre établissement",
+      "etablissement": "CH La Roche-sur-Yon",
+      "service": "Gériatrie",
+      "uniteFonctionnelle": "SSR gériatrique",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "diagnostics": [
+    {
+      "diagnosticId": "diag-018",
+      "patientId": "patient-011",
+      "pmsiId": "pmsi-010",
+      "codeDiagnostic": "F03",
+      "typeDiagnostic": "DP",
+      "libelleDiagnostic": "Démence, sans précision",
+      "dateRecueil": "2025-08-01",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "diagnosticId": "diag-019",
+      "patientId": "patient-011",
+      "pmsiId": "pmsi-010",
+      "codeDiagnostic": "Z741",
+      "typeDiagnostic": "DAS",
+      "libelleDiagnostic": "Nécessité d'une assistance pour des soins personnels permanents",
+      "dateRecueil": "2025-08-01",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "diagnosticId": "diag-020",
+      "patientId": "patient-011",
+      "pmsiId": "pmsi-010",
+      "codeDiagnostic": "R2688",
+      "typeDiagnostic": "DAD",
+      "libelleDiagnostic": "Autres troubles de la démarche et de la mobilité précisés",
+      "dateRecueil": "2025-08-03",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "actes": [
+    {
+      "acteId": "acte-013",
+      "patientId": "patient-011",
+      "pmsiId": "pmsi-010",
+      "codeActe": "AMK2001...01.",
+      "libelleActe": "Rééducation cognitive",
+      "dateActe": "2025-08-05T10:00:00.000Z",
+      "executant": "Orthophoniste",
+      "dateRecueil": "2025-08-05",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "acteId": "acte-014",
+      "patientId": "patient-011",
+      "pmsiId": "pmsi-010",
+      "codeActe": "AQM0002...01.",
+      "libelleActe": "Kinésithérapie de rééducation",
+      "dateActe": "2025-08-06T15:00:00.000Z",
+      "executant": "Kinésithérapeute",
+      "dateRecueil": "2025-08-06",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "biologie": [
+    {
+      "biologieId": "bio-015",
+      "patientId": "patient-011",
+      "codeLoinc": "1975-2",
+      "libelleTest": "Bilirubine totale",
+      "typeExamen": "Bilan hépatique",
+      "valeur": 45.0,
+      "unite": "umol/L",
+      "datePrelevement": "2025-08-02T07:00:00.000Z",
+      "borneInfNormale": 5.0,
+      "borneSupNormale": 21.0,
+      "statutValidation": "VALIDE",
+      "laboratoire": "CH La Roche-sur-Yon",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "biologieId": "bio-016",
+      "patientId": "patient-011",
+      "codeLoinc": "1742-6",
+      "libelleTest": "Alanine aminotransférase",
+      "typeExamen": "Bilan hépatique",
+      "valeur": 85.0,
+      "unite": "U/L",
+      "datePrelevement": "2025-07-25T08:30:00.000Z",
+      "borneInfNormale": 7.0,
+      "borneSupNormale": 56.0,
+      "laboratoire": "Laboratoire privé",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "prescription": [
+    {
+      "prescriptionId": "exp-015",
+      "patientId": "patient-011",
+      "denomination": "Donépézil",
+      "codeAtc": "N06DA02",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Gériatre",
+      "datePrescription": "2025-08-01",
+      "dateDebutPrescription": "2025-08-01",
+      "dateFinPrescription": "2025-11-01",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "prescriptionId": "exp-016",
+      "patientId": "patient-011",
+      "denomination": "Mémantine",
+      "codeAtc": "N06DX01",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Neurologue",
+      "datePrescription": "2025-07-15",
+      "dateDebutPrescription": "2025-07-15",
+      "dateFinPrescription": "2025-10-15",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "posologie": [
+    {
+      "posologieId": "pos-015",
+      "prescriptionId": "exp-015",
+      "nombrePrisesParJour": 1,
+      "quantite": 10,
+      "uniteQuantite": "mg",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "posologieId": "pos-016",
+      "prescriptionId": "exp-016",
+      "nombrePrisesParJour": 2,
+      "quantite": 10,
+      "uniteQuantite": "mg",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "dossierSoins": [
+    {
+      "soinId": "soins-013",
+      "patientId": "patient-011",
+      "codeLoinc": "72133-2",
+      "libelleTest": "MMS score",
+      "valeur": 18.0,
+      "unite": "score",
+      "dateMesure": "2025-08-01T14:00:00.000Z",
+      "uniteSoins": "Gériatrie",
+      "professionnel": "Dr. Gériatre",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "soinId": "soins-014",
+      "patientId": "patient-011",
+      "codeLoinc": "29463-7",
+      "libelleTest": "Poids",
+      "valeur": 58.0,
+      "unite": "kg",
+      "dateMesure": "2025-08-02T09:00:00.000Z",
+      "uniteSoins": "Gériatrie",
+      "professionnel": "Aide-soignante",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "styleVie": [
+    {
+      "styleVieId": "style-009",
+      "patientId": "patient-011",
+      "consommationTabac": "Ex-fumeur depuis 20 ans",
+      "consommationAlcool": "Arrêt",
+      "consommationAutresDrogues": "Non",
+      "activitePhysique": "Limitée aide technique",
+      "dateRecueil": "2025-08-01T17:00:00.000Z",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ],
+  "administration": [
+    {
+      "administrationId": "admin-011",
+      "patientId": "patient-011",
+      "prescriptionId": "exp-015",
+      "denomination": "Donépézil",
+      "codeAtc": "N06DA02",
+      "quantite": 10,
+      "uniteQuantite": "mg",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-05T08:00:00.000Z",
+      "dateHeureFin": "2025-08-05T08:05:00.000Z",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    },
+    {
+      "administrationId": "admin-012",
+      "patientId": "patient-011",
+      "prescriptionId": "exp-016",
+      "denomination": "Mémantine",
+      "codeAtc": "N06DX01",
+      "quantite": 10,
+      "uniteQuantite": "mg",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-05T08:00:00.000Z",
+      "dateHeureFin": "2025-08-05T08:05:00.000Z",
+      "createdAt": "2025-08-30T20:00:00Z",
+      "updatedAt": "2025-08-30T20:00:00Z"
+    }
+  ]
+}

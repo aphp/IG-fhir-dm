@@ -54,8 +54,8 @@ Maps to SQL table: patient
 // ========================================================================
 // PATIENT_ADDRESSE TABLE
 // ========================================================================
-* patientAddress 0..* BackboneElement "Adresses des patients" "Depuis la table patient_addresse"
-  * patientAddressId 1..1 id "Patient address identifier" "Unique identifier"
+* patientAdresse 0..* BackboneElement "Adresses des patients" "Depuis la table patient_addresse"
+  * patientAdresseId 1..1 id "Patient address identifier" "Unique identifier"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * latitude 0..1 decimal "Latitude" "Latitude - linkId: 3709843054556"
   * longitude 0..1 decimal "Longitude" "Longitude - linkId: 7651448032665"
@@ -81,7 +81,7 @@ Maps to SQL table: donnees_pmsi
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * modeSortie 0..1 string "Discharge Mode" "Mode de sortie (mode_sortie)"
   * ageAdmission 0..1 integer "Age du patient au début de la prise en charge" "Au cas ou la date de naissance n'est pas connue"  // à mettre dans une observation le cas échéant.
-  * dureeSejour 0..1 integer "Stay Duration" "Durée de séjour en jours (duree_sejour)"
+//  * dureeSejour 0..1 integer "Stay Duration" "Durée de séjour en jours (duree_sejour)"
   * dateDebutSejour 0..1 date "Start Date" "Date début séjour (date_debut_sejour)"
   * dateFinSejour 0..1 date "End Date" "Date fin séjour (date_fin_sejour)"
   * modeEntree 0..1 string "Admission Mode" "Mode d'entrée (mode_entree)"
@@ -95,7 +95,7 @@ Maps to SQL table: donnees_pmsi
 // DIAGNOSTICS TABLE
 // ========================================================================
 
-* diagnostic 0..* BackboneElement "Diagnostic" """
+* diagnostics 0..* BackboneElement "Diagnostic" """
 Diagnostic codes and information using ICD-10/CIM-10 classifications.
 Based on linkId: 9391816419630. Maps to SQL table: diagnostic
 """
@@ -113,7 +113,7 @@ Based on linkId: 9391816419630. Maps to SQL table: diagnostic
 // ACTES TABLE
 // ========================================================================
 
-* acte 0..* BackboneElement "Medical Acts" """
+* actes 0..* BackboneElement "Medical Acts" """
 Medical procedures and acts using CCAM classifications.
 Based on linkId: 591926901726. Maps to SQL table: actes
 """
@@ -137,8 +137,7 @@ Consolidated laboratory test results for all biological examinations.
 Based on linkId: 7702944131447. Maps to SQL table: biologie
 """
   * biologieId 1..1 id "Biology ID" "Unique biology identifier (biologie_id)"
-  * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
-  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
+  * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"  
   * codeLoinc 0..1 string "LOINC Code" "Code LOINC (code_loinc)"
   * libelleTest 0..1 string "Test Label" "Libellé du test (libelle_test)"
   * typeExamen 0..1 code "Exam Type" "Type examen (type_examen)"
@@ -163,7 +162,6 @@ Based on linkId: 817801935685. Maps to SQL table: prescription
 """
   * prescriptionId 1..1 id "Prescription ID" "Unique prescription identifier (prescription_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
-  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * denomination 0..1 string "Denomination" "Dénomination"
   * codeAtc 0..1 string "médicament prescrit" "Codé en ATC"
   * voieAdministration 0..1 string "Voie administration" "Codé avec un Standard Term"
@@ -202,7 +200,6 @@ Maps to SQL table: administration
 """
   * administrationId 1..1 id "Administration ID" "Unique administration identifier (administration_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
-  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * prescriptionId 0..1 id "Prescription ID" "Foreign key to prescription (prescription_id)"
   * denomination 0..1 string "Médicament administré" "DCI si possible"
   * codeAtc 0..1 string "Classe thérapeutique du médicament administré" "codé en ATC"
@@ -218,13 +215,12 @@ Maps to SQL table: administration
 // DOSSIER_SOINS TABLE
 // ========================================================================
 
-* dossierSoin 0..* BackboneElement "Care Record" """
+* dossierSoins 0..* BackboneElement "Care Record" """
 Clinical care measurements and observations.
 Based on linkId: 305831246173. Maps to SQL table: dossier_soin
 """
   * soinId 1..1 id "Care ID" "Unique care identifier (soin_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
-  * pmsiId 1..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * codeLoinc 0..1 string "Observation" "codé avec LOINC"
   * libelleTest 0..1 string "Libellé métier de l'observation" "Libellé métier de l'observation"
   * valeur 0..1 decimal "Valeur de l'observation" "si quantitative"
@@ -247,7 +243,6 @@ Based on linkId: 1693164086678. Maps to SQL table: style_vie
 """
   * styleVieId 1..1 id "Lifestyle ID" "Unique lifestyle identifier (style_vie_id)"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
-  * pmsiId 0..1 id "PMSI ID" "Foreign key to donnees_pmsi (pmsi_id)"
   * consommationTabac 0..1 string "Tobacco Use" "Consommation tabac (consommation_tabac)"
   * consommationAlcool 0..1 string "Alcohol Use" "Consommation alcool (consommation_alcool)"
   * consommationAutresDrogues 0..1 string "Other Drugs" "Consommation autres drogues (consommation_autres_drogues)"

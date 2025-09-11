@@ -1,0 +1,93 @@
+{
+  "resourceType": "ehr",
+  "id": "test-ehr-petit-unknown",
+  "patient": {
+    "patientId": "patient-004",
+    "nom": "Petit",
+    "dateNaissance": "1990-12-31",
+    "sexe": "x",
+    "createdAt": "2025-08-30T13:00:00Z",
+    "updatedAt": "2025-08-30T13:00:00Z"
+  },
+  "patientAdresse": [
+    {
+      "patientAdresseId": "loc-004",
+      "patientId": "patient-004",
+      "latitude": 43.6047,
+      "longitude": 1.4442,
+      "dateRecueil": "2025-08-28",
+      "createdAt": "2025-08-30T13:00:00Z",
+      "updatedAt": "2025-08-30T13:00:00Z"
+    }
+  ],
+  "biologie": [
+    {
+      "biologieId": "bio-006",
+      "patientId": "patient-004",
+      "codeLoinc": "2951-2",
+      "libelleTest": "Sodium",
+      "typeExamen": "Ionogramme",
+      "valeur": 138.0,
+      "unite": "mmol/L",
+      "datePrelevement": "2025-08-28T09:00:00.000Z",
+      "borneInfNormale": 136.0,
+      "borneSupNormale": 145.0,
+      "laboratoire": "Lab Externe",
+      "createdAt": "2025-08-30T13:00:00Z",
+      "updatedAt": "2025-08-30T13:00:00Z"
+    }
+  ],
+  "prescription": [
+    {
+      "prescriptionId": "exp-005",
+      "patientId": "patient-004",
+      "denomination": "Paracétamol",
+      "codeAtc": "N02BE01",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Généraliste",
+      "datePrescription": "2025-08-28",
+      "dateDebutPrescription": "2025-08-28",
+      "dateFinPrescription": "2025-09-04",
+      "createdAt": "2025-08-30T13:00:00Z",
+      "updatedAt": "2025-08-30T13:00:00Z"
+    }
+  ],
+  "posologie": [
+    {
+      "posologieId": "pos-005",
+      "prescriptionId": "exp-005",
+      "nombrePrisesParJour": 3,
+      "quantite": 1,
+      "uniteQuantite": "g",
+      "createdAt": "2025-08-30T13:00:00Z",
+      "updatedAt": "2025-08-30T13:00:00Z"
+    }
+  ],
+  "styleVie": [
+    {
+      "styleVieId": "style-002",
+      "patientId": "patient-004",
+      "consommationTabac": "Non fumeur",
+      "consommationAlcool": "Non",
+      "activitePhysique": "Modérée",
+      "dateRecueil": "2025-08-28T10:00:00.000Z",
+      "createdAt": "2025-08-30T13:00:00Z",
+      "updatedAt": "2025-08-30T13:00:00Z"
+    }
+  ],
+  "administration": [
+    {
+      "administrationId": "admin-003",
+      "patientId": "patient-004",
+      "prescriptionId": "exp-005",
+      "denomination": "Paracétamol",
+      "codeAtc": "N02BE01",
+      "quantite": 1,
+      "uniteQuantite": "g",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-28T08:00:00.000Z",
+      "createdAt": "2025-08-30T13:00:00Z",
+      "updatedAt": "2025-08-30T13:00:00Z"
+    }
+  ]
+}

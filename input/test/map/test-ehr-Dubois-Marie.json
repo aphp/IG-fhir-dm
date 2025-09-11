@@ -1,0 +1,145 @@
+{
+  "resourceType": "ehr",
+  "id": "test-ehr-dubois-marie",
+  "patient": {
+    "patientId": "patient-003",
+    "nom": "Dubois",
+    "prenom": "Marie",
+    "nir": "2750912345678",
+    "ins": "2750912345678",
+    "dateNaissance": "1975-09-12",
+    "sexe": "f",
+    "createdAt": "2025-08-30T12:00:00Z",
+    "updatedAt": "2025-08-30T12:00:00Z"
+  },
+  "patientAdresse": [
+    {
+      "patientAdresseId": "loc-003",
+      "patientId": "patient-003",
+      "codeIris": "133060305",
+      "libelleIris": "Quartier Nord",
+      "codeGeographiqueResidence": "13306",
+      "libelleGeographiqueResidence": "MARSEILLE 6E ARRONDISSEMENT",
+      "dateRecueil": "2025-08-25",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "donneesPmsi": [
+    {
+      "pmsiId": "pmsi-003",
+      "patientId": "patient-003",
+      "dateDebutSejour": "2025-08-25",
+      "dateFinSejour": "2025-08-27",
+      "dureeSejour": 2,
+      "modeEntree": "6 - Transfert d'un autre établissement",
+      "modeSortie": "9 - Décès",
+      "etablissement": "AP-HM",
+      "service": "Urgences",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "diagnostics": [
+    {
+      "diagnosticId": "diag-006",
+      "patientId": "patient-003",
+      "pmsiId": "pmsi-003",
+      "codeDiagnostic": "R570",
+      "typeDiagnostic": "DP",
+      "libelleDiagnostic": "Choc cardiogénique",
+      "dateRecueil": "2025-08-25",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "actes": [
+    {
+      "acteId": "acte-004",
+      "patientId": "patient-003",
+      "pmsiId": "pmsi-003",
+      "codeActe": "YYYY001...01.",
+      "libelleActe": "Réanimation cardio-pulmonaire",
+      "dateActe": "2025-08-25T15:30:00.000Z",
+      "executant": "Équipe SAMU",
+      "dateRecueil": "2025-08-25",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "biologie": [
+    {
+      "biologieId": "bio-005",
+      "patientId": "patient-003",
+      "codeLoinc": "6598-7",
+      "libelleTest": "Lactates",
+      "typeExamen": "Gazométrie",
+      "valeur": 15.2,
+      "unite": "mmol/L",
+      "datePrelevement": "2025-08-25T16:00:00.000Z",
+      "borneInfNormale": 0.5,
+      "borneSupNormale": 2.2,
+      "statutValidation": "VALIDE",
+      "laboratoire": "Urgences AP-HM",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "prescription": [
+    {
+      "prescriptionId": "exp-004",
+      "patientId": "patient-003",
+      "denomination": "Adrénaline",
+      "codeAtc": "C01CA24",
+      "voieAdministration": "20047000",
+      "prescripteur": "Dr. Urgences",
+      "datePrescription": "2025-08-25",
+      "dateDebutPrescription": "2025-08-25",
+      "dateFinPrescription": "2025-08-25",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "posologie": [
+    {
+      "posologieId": "pos-004",
+      "prescriptionId": "exp-004",
+      "nombrePrisesParJour": 1,
+      "quantite": 1,
+      "uniteQuantite": "mg",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "dossierSoins": [
+    {
+      "soinId": "soins-004",
+      "patientId": "patient-003",
+      "codeLoinc": "8867-4",
+      "libelleTest": "Fréquence cardiaque",
+      "valeur": 0.0,
+      "unite": "bpm",
+      "dateMesure": "2025-08-25T18:00:00.000Z",
+      "uniteSoins": "Urgences",
+      "professionnel": "Dr. Réa",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ],
+  "administration": [
+    {
+      "administrationId": "admin-002",
+      "patientId": "patient-003",
+      "prescriptionId": "exp-004",
+      "denomination": "Adrénaline",
+      "codeAtc": "C01CA24",
+      "quantite": 1,
+      "uniteQuantite": "mg",
+      "voieAdministration": "20047000",
+      "dateHeureDebut": "2025-08-25T16:00:00.000Z",
+      "dateHeureFin": "2025-08-25T16:30:00.000Z",
+      "createdAt": "2025-08-30T12:00:00Z",
+      "updatedAt": "2025-08-30T12:00:00Z"
+    }
+  ]
+}

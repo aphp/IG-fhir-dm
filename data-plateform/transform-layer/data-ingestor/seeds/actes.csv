@@ -1,0 +1,15 @@
+acte_id,patient_id,pmsi_id,code_acte,libelle_acte,date_acte,executant,date_recueil,created_at,updated_at
+acte-007,patient-007,pmsi-006,NBCA002...01.,Ostéosynthèse de fracture pertrochantérienne par clou gamma,2025-08-18T14:00:00.000Z,Dr. Orthopédiste,2025-08-18,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+acte-001,patient-001,pmsi-001,DEQP003...01.,Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA,2025-08-22T06:50:41.581Z,,2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+acte-002,patient-001,pmsi-001,BGQP002...01.,Examen du fond d'oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA,2025-08-22T07:44:18.112Z,,2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+acte-004,patient-003,pmsi-003,YYYY001...01.,Réanimation cardio-pulmonaire,2025-08-25T15:30:00.000Z,Équipe SAMU,2025-08-25,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+acte-005,patient-005,pmsi-004,ZBQK002...01.,Soins palliatifs en phase terminale,2025-08-28T10:00:00.000Z,Équipe soins palliatifs,2025-08-28,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+acte-011,patient-010,pmsi-009,YYYY005...01.,Photothérapie UVB,2025-08-06T14:00:00.000Z,Dermatologue,2025-08-06,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+acte-012,patient-010,pmsi-009,YYYY005...02.,Photothérapie UVB,2025-08-07T14:00:00.000Z,Dermatologue,2025-08-07,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+acte-013,patient-011,pmsi-010,AMK2001...01.,Rééducation cognitive,2025-08-05T10:00:00.000Z,Orthophoniste,2025-08-05,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+acte-014,patient-011,pmsi-010,AQM0002...01.,Kinésithérapie de rééducation,2025-08-06T15:00:00.000Z,Kinésithérapeute,2025-08-06,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+acte-006,patient-006,pmsi-005,JQGD001...01.,Accouchement par voie basse d'un foetus unique en présentation céphalique,2025-08-15T12:30:00.000Z,Dr. Sage-Femme,2025-08-15,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+acte-003,patient-002,pmsi-002,DEDF001...01.,Angioplastie coronaire transluminale percutanée avec pose d'un stent,2025-08-20T14:30:00.000Z,Dr. Dupont,2025-08-20,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+acte-008,patient-008,pmsi-007,ANQP001...01.,Entretien psychiatrique individuel,2025-08-12T15:30:00.000Z,Dr. Psychiatre,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+acte-009,patient-008,pmsi-007,ANQP002...01.,Psychothérapie de soutien,2025-08-13T10:00:00.000Z,Psychologue clinicien,2025-08-13,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+acte-010,patient-009,pmsi-008,ZZQH007...01.,Scanner cérébral sans injection,2025-08-10T16:30:00.000Z,Radiologue,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z

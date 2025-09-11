@@ -1,0 +1,185 @@
+{
+  "resourceType": "ehr",
+  "id": "test-ehr-roux-antoine",
+  "patient": {
+    "patientId": "patient-009",
+    "nom": "Roux",
+    "prenom": "Antoine",
+    "ins": "1030712345678",
+    "dateNaissance": "2003-07-25",
+    "sexe": "h",
+    "rangGemellaire": 1,
+    "createdAt": "2025-08-30T18:00:00Z",
+    "updatedAt": "2025-08-30T18:00:00Z"
+  },
+  "patientAdresse": [
+    {
+      "patientAdresseId": "loc-009",
+      "patientId": "patient-009",
+      "latitude": 45.188529,
+      "longitude": 5.724524,
+      "codeIris": "380850207",
+      "libelleIris": "Centre-Ville",
+      "codeGeographiqueResidence": "38085",
+      "libelleGeographiqueResidence": "GRENOBLE",
+      "dateRecueil": "2025-08-10",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "donneesPmsi": [
+    {
+      "pmsiId": "pmsi-008",
+      "patientId": "patient-009",
+      "dateDebutSejour": "2025-08-10",
+      "dateFinSejour": "2025-08-11",
+      "dureeSejour": 1,
+      "modeEntree": "8 - Domicile",
+      "modeSortie": "8 - Domicile",
+      "etablissement": "CHU Grenoble",
+      "service": "Pédiatrie",
+      "uniteFonctionnelle": "Urgences pédiatriques",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "diagnostics": [
+    {
+      "diagnosticId": "diag-014",
+      "patientId": "patient-009",
+      "pmsiId": "pmsi-008",
+      "codeDiagnostic": "S064",
+      "typeDiagnostic": "DP",
+      "libelleDiagnostic": "Contusion cérébrale",
+      "dateRecueil": "2025-08-10",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    },
+    {
+      "diagnosticId": "diag-015",
+      "patientId": "patient-009",
+      "pmsiId": "pmsi-008",
+      "codeDiagnostic": "S020",
+      "typeDiagnostic": "DAS",
+      "libelleDiagnostic": "Fracture de la voûte du crâne",
+      "dateRecueil": "2025-08-10",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "actes": [
+    {
+      "acteId": "acte-010",
+      "patientId": "patient-009",
+      "pmsiId": "pmsi-008",
+      "codeActe": "ZZQH007...01.",
+      "libelleActe": "Scanner cérébral sans injection",
+      "dateActe": "2025-08-10T16:30:00.000Z",
+      "executant": "Radiologue",
+      "dateRecueil": "2025-08-10",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "biologie": [
+    {
+      "biologieId": "bio-012",
+      "patientId": "patient-009",
+      "codeLoinc": "14682-9",
+      "libelleTest": "Créatininémie",
+      "typeExamen": "Fonction rénale",
+      "valeur": 65.0,
+      "unite": "umol/L",
+      "datePrelevement": "2025-08-10T17:00:00.000Z",
+      "borneInfNormale": 60.0,
+      "borneSupNormale": 110.0,
+      "statutValidation": "VALIDE",
+      "laboratoire": "CHU Grenoble",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "prescription": [
+    {
+      "prescriptionId": "exp-012",
+      "patientId": "patient-009",
+      "denomination": "Paracétamol pédiatrique",
+      "codeAtc": "N02BE01",
+      "voieAdministration": "20053000",
+      "prescripteur": "Dr. Pédiatre",
+      "datePrescription": "2025-08-10",
+      "dateDebutPrescription": "2025-08-10",
+      "dateFinPrescription": "2025-08-13",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "posologie": [
+    {
+      "posologieId": "pos-012",
+      "prescriptionId": "exp-012",
+      "nombrePrisesParJour": 4,
+      "quantite": 15,
+      "uniteQuantite": "mg/kg",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "dossierSoins": [
+    {
+      "soinId": "soins-010",
+      "patientId": "patient-009",
+      "codeLoinc": "9269-2",
+      "libelleTest": "Score de Glasgow",
+      "valeur": 14.0,
+      "unite": "score",
+      "dateMesure": "2025-08-10T18:00:00.000Z",
+      "uniteSoins": "Urgences pédiatriques",
+      "professionnel": "Dr. Urgentiste",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    },
+    {
+      "soinId": "soins-011",
+      "patientId": "patient-009",
+      "codeLoinc": "29463-7",
+      "libelleTest": "Poids",
+      "valeur": 65.0,
+      "unite": "kg",
+      "dateMesure": "2025-08-10T15:30:00.000Z",
+      "uniteSoins": "Urgences pédiatriques",
+      "professionnel": "Infirmière",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "styleVie": [
+    {
+      "styleVieId": "style-007",
+      "patientId": "patient-009",
+      "consommationTabac": "Non fumeur",
+      "consommationAlcool": "Occasionnel en soirée",
+      "consommationAutresDrogues": "Non",
+      "activitePhysique": "Sport étudiant",
+      "dateRecueil": "2025-08-10T19:00:00.000Z",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ],
+  "administration": [
+    {
+      "administrationId": "admin-008",
+      "patientId": "patient-009",
+      "prescriptionId": "exp-012",
+      "denomination": "Paracétamol pédiatrique",
+      "codeAtc": "N02BE01",
+      "quantite": 975,
+      "uniteQuantite": "mg",
+      "voieAdministration": "20053000",
+      "dateHeureDebut": "2025-08-10T20:00:00.000Z",
+      "dateHeureFin": "2025-08-10T20:05:00.000Z",
+      "createdAt": "2025-08-30T18:00:00Z",
+      "updatedAt": "2025-08-30T18:00:00Z"
+    }
+  ]
+}

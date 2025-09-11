@@ -1,5 +1,5 @@
 id: aphp.fhir.fr.dm
-canonical: https://aphp.fr/ig/fhir/dm
+canonical: https://interop.aphp.fr/ig/fhir/dm
 name: DM
 title: Data Management with FHIR
 description: "Ce guide d'implémentation décrit: (i) le processus d'alimentation d'un hub de données de santé, (ii) les cas d'usages traités et, in fine, (iii) la liste des données présentes dans le hub de données de santé d'un SIH."
@@ -31,7 +31,7 @@ pages:
     best-practice.md:
       title: Bonnes pratiques
   data-plateform.md:
-    title: La plateforme Data
+    title: La Health Data Platform (démo)
     data-plateform-ehr.md:
       title: Dossier Patient Informatisé (DPI)
     data-plateform-semantic-layer.md:
@@ -70,7 +70,7 @@ pages:
 menu:
   Accueil: index.html
   Gestion des données: data-management.html
-  La plateforme Data: data-plateform.html
+  La Health Data Platform: data-plateform.html
   Variables du socle: use-core-variables.html
   Ressources de conformité: artifacts.html
   Autres:
