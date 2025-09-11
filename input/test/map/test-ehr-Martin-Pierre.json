@@ -169,7 +169,7 @@
       "codeLoinc": "8480-6",
       "libelleTest": "Pression artérielle systolique",
       "valeur": 140.0,
-      "unite": "mmHg",
+      "unite": "mm[Hg]",
       "dateMesure": "2025-08-20T08:00:00.000Z",
       "uniteSoins": "USIC",
       "professionnel": "Mme Nurse",
