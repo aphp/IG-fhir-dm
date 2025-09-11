@@ -4,7 +4,7 @@
 -- This script creates the data_core database with proper UTF-8 encoding
 -- for French healthcare data management with FHIR resources.
 
-CREATE DATABASE data_core
+CREATE DATABASE transform_layer
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
