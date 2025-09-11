@@ -12,7 +12,7 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
   src -> bundle.id = uuid() "bundle-id";
   src -> bundle.type = 'collection' "bundle-type";
   src -> (%bundle.timestamp = now()) "bundle-timestamp";
-  
+
   // Transform Patient
   src.patient as patient -> bundle.entry as patientEntry then {
     patient -> patientEntry.resource = create('Patient') as dmPatient then {
@@ -60,6 +60,7 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
           src.posologie as poso where %poso.prescriptionId = %pres.prescriptionId then setPoso(poso, pres, dmMedReq) "transformPoso";
         } "create-med-req";
       } "medication-entries";
+
 
   // Transform Lifestyle Observations - separate observation for each lifestyle element
       src.styleVie as lifestyle where lifestyle.patientId = %patient.patientId then {
@@ -516,11 +517,11 @@ group TransformMedicationRequestWEncounter(source src, target tgtMedReq : Medica
 group setPoso(source srcPoso, source srcPres, target tgtMedReq) {
   srcPres -> tgtMedReq.dosageInstruction as dosageInstruction then {
     // Human-readable dosage text - construct from available fields
-    srcPoso -> dosageInstruction.text = 
-      ('Prendre ' & 
-       iif(%srcPoso.quantite.exists(), %srcPoso.quantite, '1') & 
-       iif(%srcPoso.uniteQuantite.exists(), ' ' & %srcPoso.uniteQuantite, ' comprimé') &
-       iif(%srcPoso.nombrePrisesParJour.exists(), ' ' & %srcPoso.nombrePrisesParJour & ' fois par jour', ' selon prescription')) "dosage-text";
+    srcPoso -> dosageInstruction.text = ('Prendre'
+      + iif(%srcPoso.quantite.exists(), ' ' + %srcPoso.quantite.toString(), '1')
+      + iif(%srcPoso.uniteQuantite.exists(), ' ' + %srcPoso.uniteQuantite, ' comprimé')
+      + iif(%srcPoso.nombrePrisesParJour.exists(), ' ' + %srcPoso.nombrePrisesParJour.toString() + ' fois par jour', ' selon prescription')  
+      ) "dosage-text";
 
     // Route of administration from prescription
     srcPres.voieAdministration as route -> dosageInstruction.route as routeCC then {
