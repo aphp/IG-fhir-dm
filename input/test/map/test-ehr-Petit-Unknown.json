@@ -9,9 +9,9 @@
     "createdAt": "2025-08-30T13:00:00Z",
     "updatedAt": "2025-08-30T13:00:00Z"
   },
-  "patientAddress": [
+  "patientAdresse": [
     {
-      "patientAddressId": "loc-004",
+      "patientAdresseId": "loc-004",
       "patientId": "patient-004",
       "latitude": 43.6047,
       "longitude": 1.4442,

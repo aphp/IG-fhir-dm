@@ -12,9 +12,9 @@
     "createdAt": "2025-08-30T19:00:00Z",
     "updatedAt": "2025-08-30T19:00:00Z"
   },
-  "patientAddress": [
+  "patientAdresse": [
     {
-      "patientAddressId": "loc-010",
+      "patientAdresseId": "loc-010",
       "patientId": "patient-010",
       "latitude": 48.11198,
       "longitude": -1.6743,
@@ -43,7 +43,7 @@
       "updatedAt": "2025-08-30T19:00:00Z"
     }
   ],
-  "diagnostic": [
+  "diagnostics": [
     {
       "diagnosticId": "diag-016",
       "patientId": "patient-010",
@@ -67,7 +67,7 @@
       "updatedAt": "2025-08-30T19:00:00Z"
     }
   ],
-  "acte": [
+  "actes": [
     {
       "acteId": "acte-011",
       "patientId": "patient-010",
@@ -174,7 +174,7 @@
       "updatedAt": "2025-08-30T19:00:00Z"
     }
   ],
-  "dossierSoin": [
+  "dossierSoins": [
     {
       "soinId": "soins-012",
       "patientId": "patient-010",
