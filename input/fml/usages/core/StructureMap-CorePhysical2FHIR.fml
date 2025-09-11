@@ -1,4 +1,4 @@
-map "https://aphp.fr/ig/fhir/dm/StructureMap/CorePhysical2FHIR" = "CorePhysical2FHIR"
+map "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CorePhysical2FHIR" = "CorePhysical2FHIR"
 
 /// name = 'CorePhysical2FHIR'
 /// title = 'Alignement de l\'usage Core du modèle physique du DPI vers les ressources FHIR'
@@ -6,16 +6,16 @@ map "https://aphp.fr/ig/fhir/dm/StructureMap/CorePhysical2FHIR" = "CorePhysical2
 // Alignement entre le modèle physique du DPI et les ressources FHIR de l'usage Core
 
 
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreDataSet" alias DataSet as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CorePatient" alias PatientTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreSejour" alias SejourTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreBiology" alias BiologyTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreClinical" alias ClinicalTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreDiag" alias DiagTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreActe" alias ActeTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreAddress" alias AddressTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationAdm" alias MedicationAdmTable as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationPre" alias MedicationPreTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreDataSet" alias DataSet as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CorePatient" alias PatientTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreSejour" alias SejourTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreBiology" alias BiologyTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreClinical" alias ClinicalTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreDiag" alias DiagTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreActe" alias ActeTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreAddress" alias AddressTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationAdm" alias MedicationAdmTable as source
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationPre" alias MedicationPreTable as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias FHIRBundle as target
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias FHIRPatient as target
 uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias FHIREncounter as target
@@ -55,7 +55,7 @@ group patient(source srcPatient : PatientTable, target tgtPatient : FHIRPatient)
   srcPatient.patientNi as srcNi -> tgtPatient.meta as tgtMeta then setPatientMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
   srcPatient -> tgtPatient.name as tgtPatientName then setHumainName(srcPatient, tgtPatientName) "setHumainName";
   srcPatient -> tgtPatient.identifier as tgtPatientIdentifier then setHumainNir(srcPatient, tgtPatientIdentifier) "setHumainNir" ;
-  srcPatient.gender as srcPatientGender -> tgtPatient.gender = translate(srcPatientGender, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiGender2Hl7Gender', 'code') "setGender"; // traduit la valeur du champ gender de la table Patient dans l'élément gender de la ressource FHIR Patient
+  srcPatient.gender as srcPatientGender -> tgtPatient.gender = translate(srcPatientGender, 'https://interop.aphp.fr/ig/fhir/dm/ConceptMap/DpiGender2Hl7Gender', 'code') "setGender"; // traduit la valeur du champ gender de la table Patient dans l'élément gender de la ressource FHIR Patient
   srcPatient.birthDate as srcPatientBirthDate -> tgtPatient.birthDate = srcPatientBirthDate "setBirthDate"; // copie la valeur du champ birthDate de la table Patient dans l'élément birthDate de la ressource FHIR Patient
 }
 
@@ -108,7 +108,7 @@ group encounter(source srcSejour : SejourTable, source srcPatient : FHIRPatient,
   srcSejour -> tgtEncounter.id = uuid() "setId";
   srcSejour.sejourNi as srcNi -> tgtEncounter.meta as tgtMeta then setEncounterMeta(srcNi, tgtMeta) "setMeta"; // copie la valeur du champ patientNi de la table Patient dans l'élément id de la ressource FHIR Patient
   srcSejour -> tgtEncounter.status = 'finished' "setStatus";
-  srcSejour.sejourType as srcSejourType -> tgtEncounter.class = translate(srcSejourType, 'https://aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterClass', 'Coding') "setEncounterClass";
+  srcSejour.sejourType as srcSejourType -> tgtEncounter.class = translate(srcSejourType, 'https://interop.aphp.fr/ig/fhir/dm/ConceptMap/DpiEncounterType2SemanticLayerEncounterClass', 'Coding') "setEncounterClass";
   srcPatient.id as patientId -> tgtEncounter.subject = create("Reference") as newSubject then setSubjectReference(patientId, newSubject) "setSubjectReference"; 
   srcSejour.patientNi "patientNi";// fk vers le patient à conserver pour la construction auto du périmètre final
   srcSejour -> tgtEncounter.period = create("Period") as newActualPeriod then {

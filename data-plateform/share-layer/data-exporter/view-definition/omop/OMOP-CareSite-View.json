@@ -1,6 +1,6 @@
 {
   "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
-  "url": "https://aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-CareSite-View",
+  "url": "https://interop.aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-CareSite-View",
   "title": "OMOP Care Site View",
   "description": "ViewDefinition to transform FHIR Organization resources into OMOP Care Site table format",
   "name": "OMOP-CareSite-View",

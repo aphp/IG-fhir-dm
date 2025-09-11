@@ -12,7 +12,7 @@
       "valueUrl": "https://hapi.fhir.org/baseR4"
     }
   ],
-  "url": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "url": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "name": "QuestionnaireUsageVariablesSoclesPourLesEDSH",
   "title": "Questionnaire usage Variables socles pour les EDSH",
   "status": "active",
@@ -399,14 +399,14 @@
           "answerOption": [
             {
               "valueCoding": {
-                "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
                 "code": "h",
                 "display": "Homme"
               }
             },
             {
               "valueCoding": {
-                "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
                 "code": "f",
                 "display": "Femme"
               }
@@ -622,7 +622,7 @@
               "linkId": "7758110033600",
               "text": "Acte",
               "type": "choice",
-              "answerValueSet": "https://aphp.fr/ig/fhir/dm/ValueSet/Ccam",
+              "answerValueSet": "https://interop.aphp.fr/ig/fhir/dm/ValueSet/Ccam",
               "item": [
                 {
                   "extension": [

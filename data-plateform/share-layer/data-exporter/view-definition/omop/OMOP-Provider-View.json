@@ -1,6 +1,6 @@
 {
   "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
-  "url": "https://aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-Provider-View",
+  "url": "https://interop.aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-Provider-View",
   "title": "OMOP Provider View",
   "description": "ViewDefinition to transform FHIR Practitioner resources into OMOP Provider table format",
   "name": "OMOP-Provider-View",

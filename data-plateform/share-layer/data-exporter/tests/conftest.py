@@ -95,7 +95,7 @@ def omop_person_viewdef() -> Dict[str, Any]:
     """OMOP Person ViewDefinition for testing."""
     return {
         "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
-        "url": "https://aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-Person-View",
+        "url": "https://interop.aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-Person-View",
         "title": "OMOP Person View",
         "description": "ViewDefinition to transform FHIR Patient resources into OMOP Person table format",
         "name": "OMOP-Person-View", 

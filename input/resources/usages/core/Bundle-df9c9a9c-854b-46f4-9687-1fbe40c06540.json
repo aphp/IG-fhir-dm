@@ -40,7 +40,7 @@
       "deceasedDateTime" : "2025-08-31",
       "_deceasedDateTime" : {
         "extension" : [{
-          "url" : "https://aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource",
+          "url" : "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource",
           "valueCode" : "insee"
         }]
       },
@@ -61,7 +61,7 @@
           "valueString" : "010040102 - Longeray-Gare"
         },
         {
-          "url" : "https://aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo",
+          "url" : "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo",
           "valueCode" : "75009"
         }],
         "period" : {
@@ -274,7 +274,7 @@
       "status" : "completed",
       "code" : {
         "coding" : [{
-          "system" : "https://aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
           "code" : "DEQP003...01."
         }],
         "text" : "Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA"
@@ -302,7 +302,7 @@
       "status" : "completed",
       "code" : {
         "coding" : [{
-          "system" : "https://aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
           "code" : "BGQP002...01."
         }],
         "text" : "Examen du fond d'oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA"
