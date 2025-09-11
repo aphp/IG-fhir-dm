@@ -12,9 +12,9 @@
     "createdAt": "2025-08-30T11:00:00Z",
     "updatedAt": "2025-08-30T11:00:00Z"
   },
-  "patientAddress": [
+  "patientAdresse": [
     {
-      "patientAddressId": "loc-002",
+      "patientAdresseId": "loc-002",
       "patientId": "patient-002",
       "latitude": 45.75,
       "longitude": 4.85,
@@ -43,7 +43,7 @@
       "updatedAt": "2025-08-30T11:00:00Z"
     }
   ],
-  "diagnostic": [
+  "diagnostics": [
     {
       "diagnosticId": "diag-004",
       "patientId": "patient-002",
@@ -67,7 +67,7 @@
       "updatedAt": "2025-08-30T11:00:00Z"
     }
   ],
-  "acte": [
+  "actes": [
     {
       "acteId": "acte-003",
       "patientId": "patient-002",
@@ -162,14 +162,14 @@
       "updatedAt": "2025-08-30T11:00:00Z"
     }
   ],
-  "dossierSoin": [
+  "dossierSoins": [
     {
       "soinId": "soins-003",
       "patientId": "patient-002",
       "codeLoinc": "8480-6",
       "libelleTest": "Pression artérielle systolique",
       "valeur": 140.0,
-      "unite": "mmHg",
+      "unite": "mm[Hg]",
       "dateMesure": "2025-08-20T08:00:00.000Z",
       "uniteSoins": "USIC",
       "professionnel": "Mme Nurse",

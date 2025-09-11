@@ -11,9 +11,9 @@
     "createdAt": "2025-08-30T15:00:00Z",
     "updatedAt": "2025-08-30T15:00:00Z"
   },
-  "patientAddress": [
+  "patientAdresse": [
     {
-      "patientAddressId": "loc-006",
+      "patientAdresseId": "loc-006",
       "patientId": "patient-006",
       "latitude": 49.4944,
       "longitude": 0.1079,
@@ -42,7 +42,7 @@
       "updatedAt": "2025-08-30T15:00:00Z"
     }
   ],
-  "diagnostic": [
+  "diagnostics": [
     {
       "diagnosticId": "diag-010",
       "patientId": "patient-006",
@@ -55,7 +55,7 @@
       "updatedAt": "2025-08-30T15:00:00Z"
     }
   ],
-  "acte": [
+  "actes": [
     {
       "acteId": "acte-006",
       "patientId": "patient-006",
@@ -150,7 +150,7 @@
       "updatedAt": "2025-08-30T15:00:00Z"
     }
   ],
-  "dossierSoin": [
+  "dossierSoins": [
     {
       "soinId": "soins-006",
       "patientId": "patient-006",
@@ -170,7 +170,7 @@
       "codeLoinc": "8480-6",
       "libelleTest": "Pression artérielle systolique",
       "valeur": 125.0,
-      "unite": "mmHg",
+      "unite": "mm[Hg]",
       "dateMesure": "2025-08-16T06:00:00.000Z",
       "uniteSoins": "Maternité",
       "professionnel": "Infirmière Dupuis",
