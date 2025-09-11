@@ -18,7 +18,7 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
     patient -> patientEntry.resource = create('Patient') as dmPatient then {
       patient then TransformPatient(patient, dmPatient) "transform-patient";
       patient then setEntryRequestAndFullUrl(dmPatient, patientEntry) "setRequestAndFullUrl";
-      src.patientAddress as patientAddress where patientAddress.patientId = %patient.patientId then setAddress(patientAddress, dmPatient) "transform-patientAddress";
+      src.patientAdresse as patientAdresse where patientAdresse.patientId = %patient.patientId then setAddress(patientAdresse, dmPatient) "transform-patientAdresse";
 
   // Transform PMSI Encounters
       src.donneesPmsi as pmsi where pmsi.patientId = %patient.patientId -> bundle.entry as encounterEntry then {
@@ -26,16 +26,16 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
           pmsi then TransformEncounter(pmsi, dmEncounter, dmPatient) "transform-encounter";
           pmsi then setEntryRequestAndFullUrl(dmEncounter, encounterEntry) "setRequestAndFullUrl";
 
-  // Transform Conditions (Diagnostic)
-          src.diagnostic as diag where diag.patientId = %patient.patientId and diag.pmsiId = %pmsi.pmsiId -> bundle.entry as conditionEntry then {
+  // Transform Conditions (Diagnostics)
+          src.diagnostics as diag where diag.patientId = %patient.patientId and diag.pmsiId = %pmsi.pmsiId -> bundle.entry as conditionEntry then {
             diag -> conditionEntry.resource = create('Condition') as dmCondition then {
               diag then TransformCondition(diag, dmCondition, dmPatient, dmEncounter) "transform-condition";
               diag then setEntryRequestAndFullUrl(dmCondition, conditionEntry) "setRequestAndFullUrl";
             } "create-condition";              
           } "condition-entries";
 
-  // Transform Procedures (Acts)
-          src.acte as acte where acte.patientId = %patient.patientId and acte.pmsiId = %pmsi.pmsiId -> bundle.entry as procedureEntry then {
+  // Transform Procedures (Actes)
+          src.actes as acte where acte.patientId = %patient.patientId and acte.pmsiId = %pmsi.pmsiId -> bundle.entry as procedureEntry then {
             acte -> procedureEntry.resource = create('Procedure') as dmProcedure then {
               acte then TransformProcedure(acte, dmProcedure, dmPatient, dmEncounter) "transform-procedure";
               acte then setEntryRequestAndFullUrl(dmProcedure, procedureEntry) "setRequestAndFullUrl";
@@ -97,11 +97,11 @@ group EHR2FSL(source src : EHR, target bundle : Bundle) {
         } "physical-entries";
       } "lifestyle-entries";
 
-  // Transform Care Observations (dossierSoin)
-      src.dossierSoin as soins where soins.patientId = %patient.patientId -> bundle.entry as vitalEntry then {
-        soins -> vitalEntry.resource = create('Observation') as dmObs then {
-          soins then TransformVitalSignsWOEncounter(soins, dmObs, dmPatient) "create-mesure-obs";
-          soins then setEntryRequestAndFullUrl(dmObs, vitalEntry) "setRequestAndFullUrl";
+  // Transform Care Observations (s)
+      src.dossierSoins as soin where soin.patientId = %patient.patientId -> bundle.entry as vitalEntry then {
+        soin -> vitalEntry.resource = create('Observation') as dmObs then {
+          soin then TransformVitalSigns(soin, dmObs, dmPatient) "create-mesure-obs";
+          soin then setEntryRequestAndFullUrl(dmObs, vitalEntry) "setRequestAndFullUrl";
         } "create-mesure-obs";
       } "vital-entries";
 
@@ -237,6 +237,7 @@ group TransformEncounter(source src, target tgtEnc : Encounter, source patient) 
     src.dateFinSejour as endDate -> period.end = endDate "period-end";
   } "encounter-period";
 
+/* Désactivé dans le modèle physique
   // Duration
   src.dureeSejour as duration -> tgtEnc.length as length then {
     duration -> length.value = duration "length-value";
@@ -244,6 +245,7 @@ group TransformEncounter(source src, target tgtEnc : Encounter, source patient) 
     duration -> length.system = 'http://unitsofmeasure.org' "length-system";
     duration -> length.code = 'd' "length-code";
   } "encounter-length";
+ */
 
   // Hospitalization
   src where src.modeEntree.exists() or src.modeSortie.exists() -> tgtEnc.hospitalization as hosp then {
