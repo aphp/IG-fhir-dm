@@ -1,4 +1,4 @@
-map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIRPatient2OMOP" = "CoreFHIRPatient2OMOP"
+map "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreFHIRPatient2OMOP" = "CoreFHIRPatient2OMOP"
 
 /// name = 'CoreFHIRPatient2OMOP'
 /// title = 'FHIR Patient resource to Tables CDM OMOP'
@@ -6,14 +6,14 @@ map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIRPatient2OMOP" = "CoreFHIRPa
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPPerson" alias PersonTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPLocation" alias LocationTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPDeath" alias DeathTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/OMOPPerson" alias PersonTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/OMOPLocation" alias LocationTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/OMOPDeath" alias DeathTable as target
 
-imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPPerson"
-imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPLocation"
-imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPDeath"
+imports "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPPerson"
+imports "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPLocation"
+imports "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPDeath"
 
 group Patient(source src: Patient, target tgtBundle: LogicalBundle) <<types>> {
 	src -> tgtBundle.entry as newEntry then {

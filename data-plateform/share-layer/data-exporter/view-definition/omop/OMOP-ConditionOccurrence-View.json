@@ -1,6 +1,6 @@
 {
   "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
-  "url": "https://aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-ConditionOccurrence-View",
+  "url": "https://interop.aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-ConditionOccurrence-View",
   "title": "OMOP Condition Occurrence View",
   "description": "ViewDefinition to transform FHIR Condition resources into OMOP Condition Occurrence table format",
   "name": "OMOP-ConditionOccurrence-View",

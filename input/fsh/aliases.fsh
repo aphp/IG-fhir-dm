@@ -32,4 +32,4 @@ Alias: $fr-core-vs-patient-gender-INS        = https://hl7.fr/ig/fhir/core/Value
 Alias: $SIPh-CIO_UCD                         = http://phast.fr/fhir/ValueSet/Pharmacy/CIOdc/SIPh-CIO_UCD
 
 // IG
-Alias: $ClaimMode                            = https://aphp.fr/ig/fhir/dm/CodeSystem/FrClaimMode
+Alias: $ClaimMode                            = https://interop.aphp.fr/ig/fhir/dm/CodeSystem/FrClaimMode

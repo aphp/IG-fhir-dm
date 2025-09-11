@@ -1,17 +1,17 @@
-map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPPerson" = "CoreFHIR2OMOPPerson"
+map "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPPerson" = "CoreFHIR2OMOPPerson"
 
 /// name = 'CoreFHIR2OMOPPerson'
 /// title = 'Mapping FHIR Patient resource to OMOP Person'
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPPerson" alias PersonTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/OMOPPerson" alias PersonTable as target
 
 group Person(source src: Patient, target tgt : PersonTable) {
 	src.id as srcId -> tgt.person_source_value = srcId;
 	src.gender as srcGender then {
 	  srcGender -> tgt.gender_concept_id = create('Reference') as tgtReference then {
-      srcGender -> translate(srcGender, 'https://aphp.fr/ig/fhir/dm/ConceptMap/hl7-gender-to-ohdsi-gender', 'code') as genderCode, 
+      srcGender -> translate(srcGender, 'https://interop.aphp.fr/ig/fhir/dm/ConceptMap/hl7-gender-to-ohdsi-gender', 'code') as genderCode, 
         tgtReference.reference = append('Concept/', genderCode) "ref";
     } "refConcept";
   	srcGender -> tgt.gender_source_value = srcGender "sourceGender";

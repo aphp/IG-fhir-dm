@@ -1,4 +1,4 @@
-map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreBusiness2Physical" = "CoreBusiness2Physical"
+map "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreBusiness2Physical" = "CoreBusiness2Physical"
 
 /// name = 'CoreBusiness2Physical'
 /// title = 'Alignement de l\'expression de besoin vers le modèle physique du DPI dans le cadre de l\'usage Core'
@@ -7,16 +7,16 @@ map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreBusiness2Physical" = "CoreBusin
 
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QR as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreDataSet" alias DataSet as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CorePatient" alias PatientTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreAddress" alias AddressTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreSejour" alias SejourTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreBiology" alias BiologyTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreClinical" alias ClinicalTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreDiag" alias DiagTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreActe" alias ActeTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationAdm" alias MedicationAdmTable as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationPre" alias MedicationPreTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreDataSet" alias DataSet as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CorePatient" alias PatientTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreAddress" alias AddressTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreSejour" alias SejourTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreBiology" alias BiologyTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreClinical" alias ClinicalTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreDiag" alias DiagTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreActe" alias ActeTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationAdm" alias MedicationAdmTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/CoreMedicationPre" alias MedicationPreTable as target
 
 
 group init(source srcQR : QR, target tgtDS : DataSet) <<types>> {

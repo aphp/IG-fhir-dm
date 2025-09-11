@@ -3,7 +3,7 @@
   "id": "test-usage-core",
   "status": "completed",
   "authored": "2025-03-27T10:18:47.779Z",
-  "questionnaire": "https://aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
       "linkId": "4647259356106",
@@ -122,7 +122,7 @@
               "valueCoding": {
                 "display": "Homme",
                 "code": "h",
-                "system": "https://aphp.fr/ig/fhir/dm/CodeSystem/DpiGender"
+                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender"
               }
             }
           ],

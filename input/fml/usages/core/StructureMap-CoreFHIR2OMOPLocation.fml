@@ -1,11 +1,11 @@
-map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPLocation" = "CoreFHIR2OMOPLocation"
+map "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPLocation" = "CoreFHIR2OMOPLocation"
 
 /// name = 'CoreFHIR2OMOPLocation'
 /// title = 'Mapping Patient resource to Location OMOP Domain'
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Address" alias Address as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPLocation" alias LocationTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/OMOPLocation" alias LocationTable as target
 
 group Location(source src: Address, target tgt: LocationTable) {
 	src.line first as srcLine1 -> tgt.address_1 = srcLine1 "setLineOne";

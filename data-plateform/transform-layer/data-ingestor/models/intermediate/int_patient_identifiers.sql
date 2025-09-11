@@ -76,7 +76,7 @@ identifier_processing as (
         jsonb_build_object(
             'lastUpdated', to_char(current_timestamp, 'YYYY-MM-DD"T"HH24:MI:SS"Z"'),
             'source', 'ehr-system',
-            'profile', array['https://aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient']
+            'profile', array['https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient']
         ) as fhir_meta
         
     from patient_base

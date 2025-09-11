@@ -1,16 +1,16 @@
-map "https://aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPMeasurement" = "CoreFHIR2OMOPMeasurement"
+map "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreFHIR2OMOPMeasurement" = "CoreFHIR2OMOPMeasurement"
 
 /// name = 'CoreFHIR2OMOPMeasurement'
 /// title = 'Mapping Observation laboratory resources to Measurement OMOP Domain'
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias LabObs as source
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
-uses "https://aphp.fr/ig/fhir/dm/StructureDefinition/OMOPMeasurement" alias MeasurementTable as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
+uses "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/OMOPMeasurement" alias MeasurementTable as target
 
-imports "https://aphp.fr/ig/fhir/dm/StructureMap/CoreSimpleObservation2OMOPMeasurement"
-// imports "https://aphp.fr/ig/fhir/dm/StructureMap/ComplexMeasurement"
-// imports "https://aphp.fr/ig/fhir/dm/StructureMap/*Measurement"
+imports "https://interop.aphp.fr/ig/fhir/dm/StructureMap/CoreSimpleObservation2OMOPMeasurement"
+// imports "https://interop.aphp.fr/ig/fhir/dm/StructureMap/ComplexMeasurement"
+// imports "https://interop.aphp.fr/ig/fhir/dm/StructureMap/*Measurement"
 
 group Observation(source src: LabObs, target tgtBundle : LogicalBundle) {
     src -> tgtBundle.logicalId = uuid() "setId";
