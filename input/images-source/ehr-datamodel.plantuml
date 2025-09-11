@@ -83,6 +83,7 @@ TABLE(donnees_pmsi) {
 
 TABLE(diagnostics) {
   PK(diagnostic_id) : BIGSERIAL
+  FK(patient_id) : BIGINT
   FK(pmsi_id) : BIGINT
   --
   ' Diagnostic information (linkId: 9391816419630)
@@ -98,6 +99,7 @@ TABLE(diagnostics) {
 
 TABLE(actes) {
   PK(acte_id) : BIGSERIAL
+  FK(patient_id) : BIGINT
   FK(pmsi_id) : BIGINT
   --
   ' Act/procedure information (linkId: 591926901726)
@@ -172,7 +174,6 @@ TABLE(prescription) {
 
 TABLE(posologie) {
   PK(posologie_id) : BIGSERIAL
-  FK(patient_id) : BIGINT
   FK(prescription_id) : BIGINT
   --
   ' Posology details (linkId: 6348237104421)
@@ -215,7 +216,7 @@ TABLE(administration) {
 ' =====================================================
 
 TABLE(dossier_soins) {
-  PK(soins_id) : BIGSERIAL
+  PK(soin_id) : BIGSERIAL
   FK(patient_id) : BIGINT
   --
   ' Physical measurements (linkId: 305831246173)
@@ -260,7 +261,9 @@ TABLE(style_vie) {
 patient ||--o{ patient_adresse : "patient_id"
 patient ||--o{ donnees_pmsi : "patient_id"
 
-' Medical events linked to encounters
+' Medical events linked to encounters and patients
+patient ||--o{ diagnostics : "patient_id"
+patient ||--o{ actes : "patient_id"
 donnees_pmsi ||--o{ diagnostics : "pmsi_id"
 donnees_pmsi ||--o{ actes : "pmsi_id"
 
@@ -273,7 +276,6 @@ prescription ||--o{ posologie : "prescription_id"
 prescription ||--o{ administration : "prescription_id"
 
 ' Additional patient relationships for medication
-patient ||--o{ posologie : "patient_id"
 patient ||--o{ administration : "patient_id"
 
 ' Clinical care and lifestyle data
