@@ -3,14 +3,14 @@ Create a plantUML diagram based on FHIR Semantic Layer data model.
 </goal>
 
 <tasks>
-- You are a `backend-architect`, You should EXPLORE and THINK to understand what you need in order to complete the task. Read input file that is USEFUL for your task.
-- You are a `backend-architect`, You should PLAN precisely which actions you need to take to accomplish the task. Clearly define each step to achieve a clean and maintainable result.
+- You are a `architect-reviewer`, You should EXPLORE and THINK to understand what you need in order to complete the task. Read input file that is USEFUL for your task.
+- You are a `architect-reviewer`, You should PLAN precisely which actions you need to take to accomplish the task. Clearly define each step to achieve a clean and maintainable result.
 - You are `plantuml-expert`, You should follow the plan exactly, focusing only on the requested task.
 - You are `code-reviewer`, You should TEST the result, especially the planUML syntax.
 </tasks>
 
 <input>
-A source of ehr data model is data-plateform/semantic-layer/sql/fhir-core-ddl.sql
+A source of FHIR Semantic Layer data model is data-plateform/semantic-layer/sql/fhir-core-ddl.sql
 </input>
 
 <output>
@@ -35,4 +35,6 @@ end title
 !define FK(field) <i>field</i>
 ```
 The diagram should uses the exact header format requested and will generate a comprehensive visual representation of the FHIR Semantic Layer data model relationships when rendered.
+You must follow strictilly data-plateform/semantic-layer/sql/fhir-core-ddl.sql
+You must follow strictilly the style define into header
 </output>
