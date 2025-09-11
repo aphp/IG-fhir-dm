@@ -114,6 +114,7 @@ CREATE TABLE donnees_pmsi (
 -- Diagnostic codes and information linked to PMSI encounters
 CREATE TABLE diagnostics (
     diagnostic_id BIGSERIAL PRIMARY KEY,
+    patient_id BIGINT NOT NULL,
     pmsi_id BIGINT NOT NULL,
     
     -- Diagnostic information (linkId: 9391816419630)
@@ -137,6 +138,7 @@ CREATE TABLE diagnostics (
 -- Medical procedures and acts linked to PMSI encounters  
 CREATE TABLE actes (
     acte_id BIGSERIAL PRIMARY KEY,
+    patient_id BIGINT NOT NULL,
     pmsi_id BIGINT NOT NULL,
     
     -- Act/procedure information (linkId: 591926901726)
@@ -227,7 +229,7 @@ CREATE TABLE biologie (
 -- Clinical care measurements and observations
 -- Based on linkId: 305831246173 (Dossier de soins) - repeats=true
 CREATE TABLE dossier_soins (  --il aurait pu génériciser, comme pour la bio...
-    soins_id BIGSERIAL PRIMARY KEY,
+    soin_id BIGSERIAL PRIMARY KEY,
 --    pmsi_id BIGINT NOT NULL,  -- implique qu'on n'a ces infos que durant une prise en charge PMSI.
     patient_id BIGINT NOT NULL,
     
@@ -281,7 +283,7 @@ CREATE TABLE prescription (
 -- Detailed dosing information (linkId: 6348237104421)
 CREATE TABLE posologie (  
     posologie_id BIGSERIAL PRIMARY KEY,
-    patient_id BIGINT NOT NULL,
+--    patient_id BIGINT NOT NULL,
     prescription_id BIGINT NOT NULL,
     
     -- Posology details, à enrichir+++

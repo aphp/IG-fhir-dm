@@ -54,8 +54,8 @@ Maps to SQL table: patient
 // ========================================================================
 // PATIENT_ADDRESSE TABLE
 // ========================================================================
-* patientAddress 0..* BackboneElement "Adresses des patients" "Depuis la table patient_addresse"
-  * patientAddressId 1..1 id "Patient address identifier" "Unique identifier"
+* patientAdresse 0..* BackboneElement "Adresses des patients" "Depuis la table patient_addresse"
+  * patientAdresseId 1..1 id "Patient address identifier" "Unique identifier"
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * latitude 0..1 decimal "Latitude" "Latitude - linkId: 3709843054556"
   * longitude 0..1 decimal "Longitude" "Longitude - linkId: 7651448032665"
@@ -81,7 +81,7 @@ Maps to SQL table: donnees_pmsi
   * patientId 1..1 id "Patient ID" "Foreign key to patient (patient_id)"
   * modeSortie 0..1 string "Discharge Mode" "Mode de sortie (mode_sortie)"
   * ageAdmission 0..1 integer "Age du patient au début de la prise en charge" "Au cas ou la date de naissance n'est pas connue"  // à mettre dans une observation le cas échéant.
-  * dureeSejour 0..1 integer "Stay Duration" "Durée de séjour en jours (duree_sejour)"
+//  * dureeSejour 0..1 integer "Stay Duration" "Durée de séjour en jours (duree_sejour)"
   * dateDebutSejour 0..1 date "Start Date" "Date début séjour (date_debut_sejour)"
   * dateFinSejour 0..1 date "End Date" "Date fin séjour (date_fin_sejour)"
   * modeEntree 0..1 string "Admission Mode" "Mode d'entrée (mode_entree)"
@@ -95,7 +95,7 @@ Maps to SQL table: donnees_pmsi
 // DIAGNOSTICS TABLE
 // ========================================================================
 
-* diagnostic 0..* BackboneElement "Diagnostic" """
+* diagnostics 0..* BackboneElement "Diagnostic" """
 Diagnostic codes and information using ICD-10/CIM-10 classifications.
 Based on linkId: 9391816419630. Maps to SQL table: diagnostic
 """
@@ -113,7 +113,7 @@ Based on linkId: 9391816419630. Maps to SQL table: diagnostic
 // ACTES TABLE
 // ========================================================================
 
-* acte 0..* BackboneElement "Medical Acts" """
+* actes 0..* BackboneElement "Medical Acts" """
 Medical procedures and acts using CCAM classifications.
 Based on linkId: 591926901726. Maps to SQL table: actes
 """
@@ -215,7 +215,7 @@ Maps to SQL table: administration
 // DOSSIER_SOINS TABLE
 // ========================================================================
 
-* dossierSoin 0..* BackboneElement "Care Record" """
+* dossierSoins 0..* BackboneElement "Care Record" """
 Clinical care measurements and observations.
 Based on linkId: 305831246173. Maps to SQL table: dossier_soin
 """
