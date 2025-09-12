@@ -2,208 +2,413 @@ version: 2
 
 sources:
   - name: ehr
-    description: "Electronic Health Records source database containing patient clinical data"
-    database: data_core
-    schema: dbt_seeds
-    
+    description: "Source EHR database tables containing raw healthcare data (using seed data for development)"
+    database: transform_layer
+    schema: dbt_dev_seeds
     tables:
-      - name: patient_sample
-        description: "Patient demographic and identification data"
+      - name: patient
+        description: "Patient demographics and identity information"
         columns:
           - name: patient_id
             description: "Unique patient identifier"
+            data_type: bigint
             tests:
-              - unique
               - not_null
+              - unique
           - name: nom
-            description: "Patient family name"
+            description: "Patient last name"
+            data_type: varchar(255)
           - name: prenom
-            description: "Patient given name"
+            description: "Patient first name"
+            data_type: varchar(255)
           - name: nir
-            description: "French national insurance number"
+            description: "National health identifier"
+            data_type: varchar(15)
           - name: ins
-            description: "French national health insurance identifier"
+            description: "INS identifier"
+            data_type: varchar(50)
           - name: date_naissance
-            description: "Patient birth date"
-            tests:
-              - not_null
+            description: "Birth date"
+            data_type: date
           - name: sexe
-            description: "Patient gender (M/F)"
-            tests:
-              - accepted_values:
-                  values: ['M', 'F']
-          - name: latitude
-            description: "Geographic latitude of residence"
-          - name: longitude
-            description: "Geographic longitude of residence"
-          - name: code_geographique_residence
-            description: "Postal code of residence"
-          - name: libelle_geographique_residence
-            description: "City name of residence"
+            description: "Gender (h/f)"
+            data_type: varchar(20)
+          - name: date_deces
+            description: "Death date"
+            data_type: date
+          - name: source_deces
+            description: "Source of death information"
+            data_type: varchar(50)
+          - name: rang_gemellaire
+            description: "Twin birth rank"
+            data_type: bigint
 
-      - name: donnees_pmsi_sample
-        description: "Hospital stay data from PMSI system"
+      - name: patient_adresse
+        description: "Patient address and geolocation information"
         columns:
-          - name: pmsi_id
-            description: "Unique PMSI episode identifier"
+          - name: patient_adresse_id
+            description: "Unique address identifier"
+            data_type: bigint
             tests:
-              - unique
               - not_null
+              - unique
           - name: patient_id
             description: "Reference to patient"
+            data_type: bigint
             tests:
               - not_null
               - relationships:
-                  to: source('ehr', 'patient_sample')
+                  to: source('ehr', 'patient')
+                  field: patient_id
+          - name: latitude
+            description: "Geographic latitude"
+            data_type: decimal(10,7)
+          - name: longitude
+            description: "Geographic longitude"
+            data_type: decimal(10,7)
+          - name: code_iris
+            description: "IRIS census tract code"
+            data_type: varchar(20)
+          - name: libelle_iris
+            description: "IRIS census tract label"
+            data_type: varchar(200)
+          - name: code_geographique_residence
+            description: "PMSI geographic residence code"
+            data_type: varchar(10)
+          - name: date_recueil
+            description: "Data collection date"
+            data_type: date
+
+      - name: donnees_pmsi
+        description: "PMSI encounter and stay data"
+        columns:
+          - name: pmsi_id
+            description: "Unique PMSI identifier"
+            data_type: bigint
+            tests:
+              - not_null
+              - unique
+          - name: patient_id
+            description: "Reference to patient"
+            data_type: bigint
+            tests:
+              - not_null
+              - relationships:
+                  to: source('ehr', 'patient')
                   field: patient_id
           - name: mode_sortie
             description: "Discharge mode"
-          - name: duree_sejour
-            description: "Length of stay in days"
+            data_type: varchar(100)
+          - name: age_admission
+            description: "Age at admission"
+            data_type: integer
           - name: date_debut_sejour
-            description: "Admission date"
-            tests:
-              - not_null
+            description: "Stay start date"
+            data_type: date
           - name: date_fin_sejour
-            description: "Discharge date"
+            description: "Stay end date"
+            data_type: date
           - name: mode_entree
             description: "Admission mode"
+            data_type: varchar(100)
           - name: etablissement
-            description: "Healthcare facility name"
+            description: "Healthcare facility"
+            data_type: varchar(255)
           - name: service
-            description: "Medical service/department"
+            description: "Medical service"
+            data_type: varchar(255)
+          - name: unite_fonctionnelle
+            description: "Functional unit"
+            data_type: varchar(255)
 
-      - name: diagnostics_sample
-        description: "Diagnostic codes from hospital stays"
+      - name: diagnostics
+        description: "Medical diagnoses linked to PMSI encounters"
         columns:
           - name: diagnostic_id
             description: "Unique diagnostic identifier"
+            data_type: bigint
             tests:
+              - not_null
               - unique
+          - name: patient_id
+            description: "Reference to patient"
+            data_type: bigint
+            tests:
               - not_null
           - name: pmsi_id
-            description: "Reference to PMSI episode"
+            description: "Reference to PMSI encounter"
+            data_type: bigint
             tests:
               - not_null
-              - relationships:
-                  to: source('ehr', 'donnees_pmsi_sample')
-                  field: pmsi_id
           - name: code_diagnostic
             description: "ICD-10 diagnostic code"
+            data_type: varchar(20)
           - name: type_diagnostic
-            description: "Type of diagnosis (Principal, Secondaire, etc.)"
+            description: "Type of diagnosis"
+            data_type: varchar(50)
           - name: libelle_diagnostic
-            description: "Diagnostic label in French"
-          - name: date_diagnostic
-            description: "Date of diagnosis"
+            description: "Diagnosis label"
+            data_type: text
+          - name: date_recueil
+            description: "Data collection date"
+            data_type: date
 
-      - name: actes_sample
-        description: "Medical procedures performed"
+      - name: actes
+        description: "Medical procedures and acts"
         columns:
           - name: acte_id
             description: "Unique procedure identifier"
+            data_type: bigint
             tests:
+              - not_null
               - unique
+          - name: patient_id
+            description: "Reference to patient"
+            data_type: bigint
+            tests:
               - not_null
           - name: pmsi_id
-            description: "Reference to PMSI episode"
+            description: "Reference to PMSI encounter"
+            data_type: bigint
             tests:
               - not_null
-          - name: code_ccam
+          - name: code_acte
             description: "CCAM procedure code"
+            data_type: varchar(20)
           - name: libelle_acte
-            description: "Procedure description in French"
+            description: "Procedure label"
+            data_type: text
           - name: date_acte
-            description: "Date procedure was performed"
+            description: "Procedure date"
+            data_type: timestamp
+          - name: executant
+            description: "Procedure performer"
+            data_type: varchar(255)
+          - name: date_recueil
+            description: "Data collection date"
+            data_type: date
 
-      - name: biologie_sample
+      - name: biologie
         description: "Laboratory test results"
         columns:
           - name: biologie_id
-            description: "Unique lab test identifier"
+            description: "Unique laboratory test identifier"
+            data_type: bigint
             tests:
-              - unique
               - not_null
-          - name: pmsi_id
-            description: "Reference to PMSI episode"
+              - unique
           - name: patient_id
             description: "Reference to patient"
+            data_type: bigint
             tests:
               - not_null
           - name: code_loinc
-            description: "LOINC code for the laboratory test"
+            description: "LOINC test code"
+            data_type: varchar(20)
           - name: libelle_test
-            description: "Test name in French"
+            description: "Test name"
+            data_type: varchar(255)
+          - name: type_examen
+            description: "Examination type"
+            data_type: varchar(100)
           - name: valeur
-            description: "Test result value"
+            description: "Test value"
+            data_type: decimal(15,6)
           - name: unite
             description: "Unit of measurement"
+            data_type: varchar(50)
+          - name: valeur_texte
+            description: "Text value"
+            data_type: text
+          - name: date_prelevement
+            description: "Collection date"
+            data_type: timestamp with time zone
+          - name: statut_validation
+            description: "Validation status"
+            data_type: varchar(50)
+          - name: borne_inf_normale
+            description: "Normal range lower bound"
+            data_type: decimal(15,6)
+          - name: borne_sup_normale
+            description: "Normal range upper bound"
+            data_type: decimal(15,6)
           - name: laboratoire
             description: "Laboratory name"
-          - name: date_prelevement
-            description: "Sample collection date"
+            data_type: varchar(255)
 
-      - name: exposition_medicamenteuse_sample
-        description: "Medication exposure data"
+      - name: prescription
+        description: "Medication prescriptions"
         columns:
-          - name: exposition_id
-            description: "Unique medication exposure identifier"
+          - name: prescription_id
+            description: "Unique prescription identifier"
+            data_type: bigint
             tests:
-              - unique
               - not_null
-          - name: pmsi_id
-            description: "Reference to PMSI episode"
+              - unique
           - name: patient_id
             description: "Reference to patient"
+            data_type: bigint
             tests:
               - not_null
-          - name: code_atc
-            description: "ATC medication code"
+          - name: prescripteur
+            description: "Prescriber"
+            data_type: varchar(50)
           - name: denomination
             description: "Medication name"
+            data_type: varchar(255)
+          - name: code_atc
+            description: "ATC medication code"
+            data_type: varchar(20)
           - name: voie_administration
             description: "Route of administration"
+            data_type: varchar(100)
           - name: date_prescription
             description: "Prescription date"
+            data_type: date
+          - name: date_debut_prescription
+            description: "Prescription start date"
+            data_type: date
+          - name: date_fin_prescription
+            description: "Prescription end date"
+            data_type: date
 
-      - name: dossier_soins_sample
-        description: "Nursing care records with vital signs"
+      - name: posologie
+        description: "Dosing information for prescriptions"
         columns:
-          - name: soins_id
-            description: "Unique care record identifier"
+          - name: posologie_id
+            description: "Unique dosage identifier"
+            data_type: bigint
             tests:
-              - unique
               - not_null
-          - name: pmsi_id
-            description: "Reference to PMSI episode"
+              - unique
+          - name: prescription_id
+            description: "Reference to prescription"
+            data_type: bigint
+            tests:
+              - not_null
+          - name: nombre_prises_par_jour
+            description: "Daily frequency"
+            data_type: integer
+          - name: quantite
+            description: "Dose quantity"
+            data_type: decimal(10,3)
+          - name: unite_quantite
+            description: "Dose unit"
+            data_type: varchar(20)
+          - name: date_heure_debut
+            description: "Start date/time"
+            data_type: timestamp
+          - name: date_heure_fin
+            description: "End date/time"
+            data_type: timestamp
+
+      - name: administration
+        description: "Medication administration records"
+        columns:
+          - name: administration_id
+            description: "Unique administration identifier"
+            data_type: bigint
+            tests:
+              - not_null
+              - unique
           - name: patient_id
             description: "Reference to patient"
+            data_type: bigint
             tests:
               - not_null
-          - name: type_mesure
-            description: "Type of vital sign measurement"
+          - name: prescription_id
+            description: "Reference to prescription (nullable)"
+            data_type: bigint
+          - name: denomination
+            description: "Medication name"
+            data_type: varchar(255)
+          - name: code_atc
+            description: "ATC medication code"
+            data_type: varchar(20)
+          - name: voie_administration
+            description: "Route of administration"
+            data_type: varchar(100)
+          - name: quantite
+            description: "Administered quantity"
+            data_type: decimal(10,3)
+          - name: unite_quantite
+            description: "Administration unit"
+            data_type: varchar(20)
+          - name: date_heure_debut
+            description: "Administration start date/time"
+            data_type: timestamp
+          - name: date_heure_fin
+            description: "Administration end date/time"
+            data_type: timestamp
+
+      - name: dossier_soins
+        description: "Clinical care measurements and vital signs"
+        columns:
+          - name: soin_id
+            description: "Unique care record identifier"
+            data_type: bigint
+            tests:
+              - not_null
+              - unique
+          - name: patient_id
+            description: "Reference to patient"
+            data_type: bigint
+            tests:
+              - not_null
+          - name: code_loinc
+            description: "LOINC measurement code"
+            data_type: varchar(20)
+          - name: libelle_test
+            description: "Measurement name"
+            data_type: varchar(255)
           - name: valeur
-            description: "Measured value"
+            description: "Measurement value"
+            data_type: decimal(15,6)
           - name: unite
             description: "Unit of measurement"
+            data_type: varchar(50)
+          - name: valeur_code
+            description: "Coded value"
+            data_type: varchar(50)
+          - name: valeur_texte
+            description: "Text value"
+            data_type: text
           - name: date_mesure
-            description: "Date of measurement"
+            description: "Measurement date"
+            data_type: date
+          - name: unite_soins
+            description: "Care unit"
+            data_type: varchar(255)
+          - name: professionnel
+            description: "Healthcare professional"
+            data_type: varchar(255)
 
-      - name: style_vie_sample
-        description: "Lifestyle factors and social determinants"
+      - name: style_vie
+        description: "Lifestyle information"
         columns:
           - name: style_vie_id
             description: "Unique lifestyle record identifier"
+            data_type: bigint
             tests:
-              - unique
               - not_null
+              - unique
           - name: patient_id
             description: "Reference to patient"
+            data_type: bigint
             tests:
               - not_null
-          - name: type_facteur
-            description: "Type of lifestyle factor"
-          - name: valeur
-            description: "Factor value or status"
-          - name: date_evaluation
-            description: "Date of assessment"
+          - name: consommation_tabac
+            description: "Tobacco consumption"
+            data_type: varchar(100)
+          - name: consommation_alcool
+            description: "Alcohol consumption"
+            data_type: varchar(100)
+          - name: consommation_autres_drogues
+            description: "Other drug consumption"
+            data_type: varchar(100)
+          - name: activite_physique
+            description: "Physical activity"
+            data_type: varchar(100)
+          - name: date_recueil
+            description: "Data collection date"
+            data_type: date

@@ -1,10 +1,11 @@
 style_vie_id,patient_id,consommation_tabac,consommation_alcool,consommation_autres_drogues,activite_physique,date_recueil,created_at,updated_at
-style-005,patient-007,Non fumeur,Occasionnel week-end,Non,Sport régulier,2025-08-18T12:00:00.000Z,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
-style-003,patient-005,Fumeur depuis 40 ans,Modéré,Non,Alité,2025-08-20T15:00:00.000Z,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
-style-008,patient-010,Ex-fumeuse depuis 1 an,Socialement,Non,Yoga et natation,2025-08-05T16:00:00.000Z,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
-style-009,patient-011,Ex-fumeur depuis 20 ans,Arrêt,Non,Limitée aide technique,2025-08-01T17:00:00.000Z,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
-style-004,patient-006,Arrêt pendant grossesse,Arrêt pendant grossesse,Non,Adaptée grossesse,2025-08-15T14:00:00.000Z,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
-style-001,patient-002,Ex-fumeur depuis 2 ans,Occasionnel,Non,Sédentaire,2025-08-20T10:00:00.000Z,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
-style-006,patient-008,10 cigarettes/jour,1-2 verres/jour,Cannabis occasionnel,Nulle,2025-08-12T16:00:00.000Z,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
-style-002,patient-004,Non fumeur,Non,,Modérée,2025-08-28T10:00:00.000Z,2025-08-30T13:00:00Z,2025-08-30T13:00:00Z
-style-007,patient-009,Non fumeur,Occasionnel en soirée,Non,Sport étudiant,2025-08-10T19:00:00.000Z,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+1,1,Ex-fumeur depuis 10 ans,2-3 verres par semaine,Non,Marche quotidienne 30 min,2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+2,2,Non-fumeur,Occasionnel,Non,Sport 3 fois par semaine,2025-08-20,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+3,3,Fumeur actif 1 paquet/jour,Quotidien,Non,Sedentaire,2025-08-25,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+4,5,Ex-fumeur depuis 5 ans,Non,Non,Marche occasionnelle,2025-08-20,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+5,6,Non-fumeur,Non,Non,Yoga prenatal,2025-08-15,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+6,7,Non-fumeur,Occasionnel,Non,Course a pied,2025-08-18,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+7,8,Fumeur occasionnel,Quotidien modere,Non,Marche,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+8,9,Non-fumeur,Non,Non,Sports divers,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+9,10,Non-fumeur,1-2 verres par semaine,Non,Natation 2 fois par semaine,2025-08-05,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+10,11,Ex-fumeur depuis 20 ans,Non,Non,Promenade quotidienne,2025-08-01,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z

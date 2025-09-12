@@ -1,13 +1,16 @@
-# EHR to FHIR Semantic Layer Transformation Project
-# Multi-database configuration for PostgreSQL sources and targets
-
-name: 'ehr_fhir_transform'
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'ehr_to_fhir_semantic_layer'
 version: '1.0.0'
 config-version: 2
 
-profile: 'ehr_fhir_transform'
+# This setting configures which "profile" dbt uses for this project.
+profile: 'ehr_transform_layer'
 
-# Model paths
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -15,95 +18,152 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-target-path: "target"
-clean-targets:
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
-  - "logs"
 
-# Global variables for multi-database setup
-vars:
-  # Timezone for timestamp conversions
-  timezone: 'Europe/Paris'
-  
-  # FHIR version and configuration
-  fhir_version: '4.0.1'
-  
-  # Incremental strategy settings
-  incremental_lookback_days: 7
-  full_refresh_days: 30
-  
-  # Performance tuning
-  batch_size: 10000
-  max_parallel_jobs: 4
-  
-  # Data quality thresholds
-  min_patient_count: 1
-  max_null_percentage: 10
-  
-  # Reference data configurations
-  default_organization_id: 'fr-aphp'
-  default_facility_id: 'facility-default'
-  
-  # FHIR resource ID prefixes
-  patient_id_prefix: 'pat-'
-  encounter_id_prefix: 'enc-'
-  condition_id_prefix: 'con-'
-  observation_id_prefix: 'obs-'
-  medication_request_id_prefix: 'medreq-'
-  procedure_id_prefix: 'proc-'
-
-# Model configuration with multi-database support
+# Configuring models
+# Full documentation: https://docs.getdbt.com/reference/model-configs
 models:
-  ehr_fhir_transform:
-  
-    # Staging layer - read from EHR database
+  ehr_to_fhir_semantic_layer:
+    # Config indicated by + and applies to all files under models/staging/
     staging:
-      +schema: "staging"
       +materialized: view
-      +tags: ["staging", "source"]
-      
-    # Intermediate layer - process in DBT workspace
+      +schema: staging
+    # Config indicated by + and applies to all files under models/intermediate/
     intermediate:
-      +schema: "intermediate"
-      +materialized: table
-      +tags: ["intermediate", "transformation"]
-      
-    # Marts layer - write to FHIR semantic layer
+      +materialized: view
+      +schema: intermediate
+    # Config indicated by + and applies to all files under models/marts/
     marts:
       +materialized: table
-      +tags: ["mart", "fhir", "target"]
-      +schema: "fhir_semantic_layer"
+      +schema: fhir_semantic_layer
+      # Specific configurations for FHIR resource tables
       fhir:
         +materialized: table
         +indexes:
           - columns: ['id']
             unique: true
-          - columns: ['last_updated']
-        +on_schema_change: 'fail'
-        +incremental_strategy: 'merge'
-        +unique_key: 'id'
-        +cluster_by: ['last_updated']
+        +post-hook: "ANALYZE {{ this }}"
+      #monitoring:
+      #  +materialized: table
+      #  +tags: ['monitoring']
 
-# Seeds configuration for reference data
+# Seeds configuration
 seeds:
-  ehr_fhir_transform:
+  ehr_to_fhir_semantic_layer:
+    +schema: seeds
     +quote_columns: false
-    +schema: "seeds"
-    +tags: ["reference_data"]
-    
-  
-# Tests configuration with enhanced validation
-tests:
-  ehr_fhir_transform:
-    +store_failures: true
-    +severity: error
-    +tags: ["data_quality"]
-    +schema: "test_results"
+    # Specify column types for seeds to ensure proper data types
+    patient:
+      +column_types:
+        patient_id: "bigint"
+        nir: "varchar(15)"
+        ins: "varchar(15)" 
+        date_naissance: "date"
+        date_deces: "date"
+        rang_gemellaire: "integer"
+    donnees_pmsi:
+      +column_types:
+        pmsi_id: "bigint"
+        patient_id: "bigint"
+        date_debut_sejour: "date"
+        date_fin_sejour: "date"
+        age_admission: "integer"
+    biologie:
+      +column_types:
+        biologie_id: "bigint"
+        patient_id: "bigint"
+        code_loinc: "varchar(20)"
+        valeur: "decimal(15,6)"
+        borne_inf_normale: "decimal(15,6)"
+        borne_sup_normale: "decimal(15,6)"
+        date_prelevement: "timestamp with time zone"
+    prescription:
+      +column_types:
+        prescription_id: "bigint"
+        patient_id: "bigint"
+        code_atc: "varchar(20)"
+        date_prescription: "date"
+        date_debut_prescription: "date" 
+        date_fin_prescription: "date"
+    posologie:
+      +column_types:
+        posologie_id: "bigint"
+        prescription_id: "bigint"
+        quantite: "decimal(10,3)"
+        nombre_prises_par_jour: "integer"
+        date_heure_debut: "timestamp"
+        date_heure_fin: "timestamp"
+    administration:
+      +column_types:
+        administration_id: "bigint"
+        patient_id: "bigint"
+        prescription_id: "bigint"
+        quantite: "decimal(10,3)"
+        code_atc: "varchar(20)"
+        date_heure_debut: "timestamp"
+        date_heure_fin: "timestamp"
+    diagnostics:
+      +column_types:
+        diagnostic_id: "bigint"
+        patient_id: "bigint"
+        pmsi_id: "bigint"
+        code_diagnostic: "varchar(20)"
+        date_recueil: "date"
+    actes:
+      +column_types:
+        acte_id: "bigint"
+        patient_id: "bigint"
+        pmsi_id: "bigint"
+        code_acte: "varchar(20)"
+        date_acte: "timestamp"
+        date_recueil: "date"
+    dossier_soins:
+      +column_types:
+        soin_id: "bigint"
+        patient_id: "bigint"
+        code_loinc: "varchar(20)"
+        valeur: "decimal(15,6)"
+        date_mesure: "date"
+    style_vie:
+      +column_types:
+        style_vie_id: "bigint"
+        patient_id: "bigint"
+        date_recueil: "date"
+    patient_adresse:
+      +column_types:
+        patient_adresse_id: "bigint"
+        patient_id: "bigint"
+        latitude: "decimal(10,7)"
+        longitude: "decimal(10,7)"
+        code_iris: "varchar(20)"
+        libelle_iris: "varchar(200)"
+        code_geographique_residence: "varchar(10)"
+        libelle_geographique_residence: "varchar(100)"
+        date_recueil: "date"
 
-# Pre and post hooks for auditing
-on-run-start:
-  - "{{ log('Starting EHR to FHIR transformation run at ' ~ run_started_at) }}"
+# Vars - variables that can be referenced in models
+vars:
+  # Source database connection settings
+  source_database: "ehr"
+  target_database: "transform_layer"
   
-on-run-end:
-  - "{{ log('Completed EHR to FHIR transformation run at ' ~ run_started_at) }}"
+  # Date range for incremental processing
+  start_date: '2020-01-01'
+  end_date: '2024-12-31'
+  
+  # FHIR configuration
+  fhir_base_url: "https://interop.aphp.fr/ig/fhir/dm"
+  fhir_version: "4.0.1"
+
+# Tests configuration
+tests:
+  +store_failures: true
+  +schema: dbt_test_results
+
+# Dispatch configuration for macro overrides
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['ehr_to_fhir_semantic_layer', 'dbt_utils']

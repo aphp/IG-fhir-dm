@@ -1,21 +1,39 @@
-# Simplified profiles configuration to avoid UTF-8 encoding issues
-ehr_fhir_transform:
+# PostgreSQL profile for EHR to FHIR Semantic Layer transformation
+ehr_transform_layer:
   target: dev
   outputs:
     dev:
       type: postgres
-      host: "{{ env_var('DBT_HOST', 'localhost') }}"
-      port: "{{ env_var('DBT_PORT', 5432) | int }}"
-      user: "{{ env_var('DBT_USER') }}"
-      pass: "{{ env_var('DBT_PASSWORD') }}"
-      
-      # Default target database for transformations (data_core workspace)
-      dbname: "{{ env_var('DBT_DATABASE', 'data_core') }}"
-      schema: "{{ env_var('DBT_SCHEMA', 'dbt') }}"
-      threads: 1
+      host: localhost
+      user: postgres
+      password: "{{ env_var('DBT_POSTGRES_PASSWORD', 'postgres') }}"
+      port: 5432
+      dbname: transform_layer
+      schema: dbt_dev
+      threads: 4
+      keepalives_idle: 0 # default 0, indicating the system default
+      search_path: "public,dbt_staging,dbt_intermediate,dbt_fhir_semantic_layer,dbt_seeds"
+    
+    prod:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: "{{ env_var('DBT_POSTGRES_PASSWORD', 'postgres') }}"
+      port: 5432
+      dbname: transform_layer
+      schema: dbt_prod
+      threads: 8
       keepalives_idle: 0
-      sslmode: disable
-      connect_timeout: 30
-      search_path: "{{ env_var('DBT_SCHEMA', 'dbt') }}"
-      # Use French locale to match database
-      options: "-c lc_messages=French_France.1252 -c client_encoding=UTF8"
+      search_path: "public,dbt_staging,dbt_intermediate,dbt_fhir_semantic_layer,dbt_seeds"
+
+    test:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: "{{ env_var('DBT_POSTGRES_PASSWORD', 'postgres') }}"
+      port: 5432
+      dbname: transform_layer
+      schema: dbt_test
+      threads: 2
+      keepalives_idle: 0
+      search_path: "public,dbt_staging,dbt_intermediate,dbt_fhir_semantic_layer,dbt_seeds"

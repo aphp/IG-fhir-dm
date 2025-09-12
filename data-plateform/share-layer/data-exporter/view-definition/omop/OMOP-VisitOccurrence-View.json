@@ -6,80 +6,134 @@
   "name": "OMOP-VisitOccurrence-View",
   "status": "draft",
   "resource": "Encounter",
+  "constant": [
+    {
+      "name": "integerNull",
+      "valueInteger": 0
+    }
+  ],
   "select": [
     {
       "column": [
         {
           "name": "visit_occurrence_id",
-          "path": "getResourceKey()",
+          "path": "id",
           "description": "Unique identifier for the visit occurrence",
-          "type": "integer"
+          "type": "id",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
         },
         {
           "name": "person_id",
-          "path": "Encounter.subject.reference.substring(8)",
+          "path": "subject.reference",
           "description": "Reference to person from subject",
-          "type": "integer"
+          "type": "string"
         },
         {
           "name": "visit_concept_id",
-          "path": "Encounter.class.code",
+          "path": "%integerNull",
           "description": "Visit concept from encounter class",
           "type": "integer"
         },
         {
-          "name": "visit_start_date",
-          "path": "Encounter.period.start.toString().substring(0,10)",
-          "description": "Visit start date from period start",
-          "type": "date"
-        },
-        {
           "name": "visit_start_datetime",
-          "path": "Encounter.period.start",
+          "path": "period.start",
           "description": "Visit start datetime from period start",
-          "type": "dateTime"
-        },
-        {
-          "name": "visit_end_date",
-          "path": "Encounter.period.end.toString().substring(0,10)",
-          "description": "Visit end date from period end",
-          "type": "date"
+          "type": "dateTime",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "TIMESTAMP"
+            }
+          ]
         },
         {
           "name": "visit_end_datetime",
-          "path": "Encounter.period.end",
+          "path": "period.end",
           "description": "Visit end datetime from period end",
-          "type": "dateTime"
+          "type": "dateTime",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "TIMESTAMP"
+            }
+          ]
         },
         {
-          "name": "provider_id",
-          "path": "Encounter.participant.where(type.coding.code='ATND').individual.reference.substring(12)",
-          "description": "Provider identifier from attending participant",
-          "type": "integer"
-        },
-        {
-          "name": "care_site_id",
-          "path": "Encounter.serviceProvider.reference.substring(13)",
-          "description": "Care site identifier from service provider",
-          "type": "integer"
-        },
-        {
-          "name": "visit_source_value",
-          "path": "Encounter.identifier.first().value",
+          "name": "visit_source_value_value",
+          "path": "identifier.first().value",
           "description": "Source value for visit identification",
-          "type": "string"
+          "type": "string",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
         },
         {
-          "name": "admitted_from_source_value",
-          "path": "Encounter.hospitalization.admitSource.text",
+          "name": "visit_source_value_system",
+          "path": "identifier.first().system",
+          "description": "Source value for visit identification",
+          "type": "uri",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
+        },
+        {
+          "name": "admitted_from_source_value_code",
+          "path": "hospitalization.admitSource.coding.first().code",
           "description": "Source value for admission source",
-          "type": "string"
+          "type": "code",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
         },
         {
-          "name": "discharged_to_source_value",
-          "path": "Encounter.hospitalization.dischargeDisposition.text",
+          "name": "admitted_from_source_value_system",
+          "path": "hospitalization.admitSource.coding.first().system",
+          "description": "Source value for admission source",
+          "type": "uri",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
+        },
+        {
+          "name": "discharged_to_source_value_code",
+          "path": "hospitalization.dischargeDisposition.coding.first().code",
           "description": "Source value for discharge disposition",
-          "type": "string"
+          "type": "code",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
+        },
+        {
+          "name": "discharged_to_source_value_system",
+          "path": "hospitalization.dischargeDisposition.coding.first().system",
+          "description": "Source value for discharge disposition",
+          "type": "uri",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
+            }
+          ]
         }
       ]
     }
