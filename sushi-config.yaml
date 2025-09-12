@@ -30,18 +30,6 @@ pages:
     title: Gestion des données
     best-practice.md:
       title: Bonnes pratiques
-  data-plateform.md:
-    title: La Health Data Platform (démo)
-    data-plateform-ehr.md:
-      title: Dossier Patient Informatisé (DPI)
-    data-plateform-semantic-layer.md:
-      title: Hub d'intégration (couche sémantique)
-    data-plateform-transform-layer.md:
-      title: La couche de transformation
-    data-plateform-share-layer.md:
-      title: La couche de partage
-    data-plateform-eds.md:
-      title: Entrepôt de Données de Santé (CNIL)
   use-case.md:
     title: Usages
     use-core-variables.md:
@@ -56,6 +44,18 @@ pages:
           title: Standardisation des connaissances
       use-core-variables-evaluation.md:
         title: Evaluation
+  data-plateform.md:
+    title: La Health Data Platform (démo)
+    data-plateform-raw-layer.md:
+      title: Raw layer
+    data-plateform-transform-layer.md:
+      title: Transform layer
+    data-plateform-semantic-layer.md:
+      title: Semantic layer
+    data-plateform-share-layer.md:
+      title: Share layer
+    data-plateform-enrichment-layer.md:
+      title: ENrichment layer
   other.md:
     title: Autre
     help.md:
@@ -70,8 +70,8 @@ pages:
 menu:
   Accueil: index.html
   Gestion des données: data-management.html
-  La Health Data Platform: data-plateform.html
   Variables du socle: use-core-variables.html
+  La Health Data Platform: data-plateform.html
   Ressources de conformité: artifacts.html
   Autres:
     Aide: help.html
