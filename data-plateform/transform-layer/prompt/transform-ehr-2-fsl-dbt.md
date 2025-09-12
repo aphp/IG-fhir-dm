@@ -1,14 +1,3 @@
-<subagent>
-Use subagent fml-specialist
-Use subagent dbt-pro
-Use subagent sql-pro
-Use subagent python-pro
-Use subagent architect-reviewer
-Use subagent backend-architect
-Use subagent code-reviewer
-Use subagent debugger
-</subagent>
-
 <goal>
 Operationalize the transformation between the EHR data model and the FHIR Semantic Layer.
 </goal>
@@ -51,10 +40,10 @@ data-plateform\semantic-layer\sql\fhir-core-ddl.sql
 input\fml\StructureMap-EHR2FSL.fml
 </mapping>
 <test-script>
-transform_layer/run_dbt.ps1
+data-plateform\transform-layer\data-ingestor\run_dbt.ps1
 </test-script>
 <test-data>
-Files into transform_layer/seeds/*.csv
+Files into data-plateform\transform-layer\data-ingestor\seeds\*.csv
 </test-data>
 
 <recommandations>

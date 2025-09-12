@@ -1,126 +1,216 @@
-# EHR to FHIR Semantic Layer Transformation
+# EHR to FHIR Semantic Layer - DBT Project
 
-This DBT project transforms EHR data into FHIR-compliant resources following the FML mapping specification.
+This DBT project implements the transformation between EHR data and FHIR Semantic Layer as specified in the FML (FHIR Mapping Language) mapping `input/fml/StructureMap-EHR2FSL.fml`.
 
-## Prerequisites
+## Project Structure
 
-### 1. PostgreSQL Setup
-Create three databases with UTF-8 encoding:
-
-```sql
--- Run this in PostgreSQL as superuser
-CREATE DATABASE ehr WITH OWNER = postgres ENCODING = 'UTF8';
-CREATE DATABASE fhir_semantic_layer WITH OWNER = postgres ENCODING = 'UTF8';
-CREATE DATABASE theRing WITH OWNER = postgres ENCODING = 'UTF8';
+```
+data-plateform/transform-layer/data-ingestor/
+├── dbt_project.yml           # DBT project configuration
+├── profiles.yml              # Database connection profiles  
+├── packages.yml              # DBT package dependencies
+├── run_dbt.ps1              # PowerShell script to run the pipeline
+├── validate_pipeline.ps1     # PowerShell script to validate results
+├── seeds/                   # Test data (CSV files)
+├── models/
+│   ├── staging/             # Clean and standardize source data
+│   │   ├── _sources.yml     # Source table definitions
+│   │   ├── stg_ehr__patient.sql
+│   │   ├── stg_ehr__patient_adresse.sql
+│   │   ├── stg_ehr__donnees_pmsi.sql
+│   │   ├── stg_ehr__diagnostics.sql
+│   │   ├── stg_ehr__actes.sql
+│   │   ├── stg_ehr__biologie.sql
+│   │   ├── stg_ehr__prescription.sql
+│   │   ├── stg_ehr__posologie.sql
+│   │   ├── stg_ehr__administration.sql
+│   │   ├── stg_ehr__dossier_soins.sql
+│   │   └── stg_ehr__style_vie.sql
+│   ├── intermediate/         # Complex transformations and business logic
+│   │   ├── int_patient_enriched.sql
+│   │   ├── int_encounter_enriched.sql
+│   │   ├── int_medication_request_enriched.sql
+│   │   └── int_lifestyle_observations_split.sql
+│   └── marts/               # Final FHIR resource tables
+│       ├── fhir/
+│       │   ├── fhir_patient.sql
+│       │   ├── fhir_encounter.sql
+│       │   ├── fhir_condition.sql
+│       │   ├── fhir_procedure.sql
+│       │   ├── fhir_observation.sql
+│       │   ├── fhir_medication_request.sql
+│       │   └── fhir_medication_administration.sql
+│       └── monitoring/
+│           └── data_quality_summary.sql
 ```
 
-### 2. Load Source Schema
-Load the EHR schema:
-```bash
-psql -U postgres -d ehr -f "../input/sql/applications/ehr/questionnaire-core-ddl.sql"
-```
+## Database Architecture
 
-Load the FHIR schema:
-```bash
-psql -U postgres -d fhir_semantic_layer -f "../input/sql/semantic-layer/fhir-core-ddl.sql"
-```
+### Source Database: `ehr`
+- Contains raw EHR data tables (patient, donnees_pmsi, diagnostics, etc.)
+- Schema: `public`
 
-## Environment Setup
+### Target Database: `transform_layer`  
+- **`dbt_seeds`** - Test data loaded from CSV files
+- **`dbt_staging`** - Cleaned and standardized source data
+- **`dbt_intermediate`** - Complex transformations and enrichments
+- **`dbt_fhir_semantic_layer`** - Final FHIR resource tables
 
-### Windows
-Use the provided PowerShell script:
-```powershell
-.\run_dbt.ps1
-```
+## Key Transformations
 
-### Manual Environment Variables
-```bash
-export DBT_USER=postgres
-export DBT_PASSWORD=123456
-export DBT_HOST=localhost
-export DBT_PORT=5432
-export DBT_DATABASE=theRing
-export DBT_SCHEMA=public
+### 1. Patient Transformation
+- Maps EHR patient data to FHIR Patient resource
+- Includes INS-NIR identifiers, demographics, address with geolocation
+- Handles multiple birth, death information with extensions
 
-export EHR_USER=postgres
-export EHR_PASSWORD=123456
-export EHR_HOST=localhost
-export EHR_PORT=5432
-export EHR_DATABASE=ehr
-export EHR_SCHEMA=public
+### 2. Encounter Transformation  
+- Transforms PMSI encounter data to FHIR Encounter resource
+- Maps admission/discharge modes, length of stay, service providers
 
-export FHIR_USER=postgres
-export FHIR_PASSWORD=123456
-export FHIR_HOST=localhost
-export FHIR_PORT=5432
-export FHIR_DATABASE=fhir_semantic_layer
-export FHIR_SCHEMA=public
-```
+### 3. Condition Transformation
+- Converts diagnostic codes to FHIR Condition resources
+- Uses ICD-10 coding system, maps PMSI diagnosis types to FHIR categories
+
+### 4. Procedure Transformation
+- Maps medical procedures to FHIR Procedure resources  
+- Uses CCAM coding system for French medical procedures
+
+### 5. Observation Transformation
+- **Laboratory**: Transforms biologie data with LOINC codes
+- **Vital Signs**: Transforms dossier_soins measurements  
+- **Lifestyle**: Splits style_vie into separate observations (tobacco, alcohol, drugs, physical activity)
+
+### 6. Medication Transformation
+- **MedicationRequest**: Transforms prescriptions with ATC coding
+- **MedicationAdministration**: Transforms administration records
+- Links prescriptions to administrations where applicable
 
 ## Usage
 
-### 1. Test Connection
-```bash
-dbt debug
+### Prerequisites
+1. PostgreSQL 17.x running on localhost:5432
+2. Databases: `ehr` (source) and `transform_layer` (target) 
+3. DBT installed with PostgreSQL adapter: `pip install dbt-postgres`
+4. PowerShell (for Windows) or adapt scripts for Linux/Mac
+
+### Environment Setup
+```powershell
+# Set PostgreSQL password (optional, defaults to 'postgres')
+$env:DBT_POSTGRES_PASSWORD = "your_password"
 ```
 
-### 2. Install Dependencies
+### Running the Pipeline
+
+#### Full Pipeline Execution
+```powershell
+# Run complete pipeline with test data
+.\run_dbt.ps1 -Target dev
+
+# Production run with full refresh
+.\run_dbt.ps1 -Target prod -FullRefresh
+
+# Run specific models only
+.\run_dbt.ps1 -Models "fhir_patient,fhir_encounter"
+
+# Generate and serve documentation
+.\run_dbt.ps1 -DocsGenerate -DocsServe
+```
+
+#### Validation
+```powershell
+# Validate transformation results
+.\validate_pipeline.ps1 -Target dev
+```
+
+### Manual DBT Commands
 ```bash
+# Install dependencies
 dbt deps
-```
 
-### 3. Full Refresh (Initial Load)
-```bash
-dbt run --full-refresh
-```
+# Test connection
+dbt debug
 
-### 4. Incremental Updates
-```bash
+# Load seed data  
+dbt seed
+
+# Run transformations
 dbt run
-```
 
-### 5. Run Tests
-```bash
+# Run tests
 dbt test
+
+# Generate documentation
+dbt docs generate
+dbt docs serve
 ```
-
-## Troubleshooting
-
-### UTF-8 Encoding Issues
-If you encounter UTF-8 encoding errors:
-
-1. Ensure PostgreSQL databases were created with UTF-8 encoding
-2. Set environment variable: `PYTHONIOENCODING=utf-8`
-3. Update PostgreSQL client encoding: `SET client_encoding = 'UTF8';`
-
-### Database Connection Issues
-1. Verify PostgreSQL is running on port 5432
-2. Check user credentials and permissions
-3. Ensure all three databases exist
-4. Test connection with: `psql -U postgres -h localhost -d theRing`
-
-### Missing Source Data
-The DBT models expect source tables to exist in the `ehr` database. If running without source data, models will fail with table not found errors.
-
-## Model Structure
-
-- **Staging**: Extract and clean data from EHR database
-- **Intermediate**: Prepare FHIR-compliant data structures
-- **Marts**: Final FHIR resources ready for consumption
-
-## FHIR Resources Generated
-
-- `fhir_patient` - DMPatient profile with French identifiers
-- `fhir_encounter` - DMEncounter with PMSI data
-- `fhir_condition` - DMCondition with ICD-10 codes
-- `fhir_observation` - Laboratory and vital signs observations
-- `fhir_medication_request` - ATC-coded medication requests
-- `fhir_procedure` - CCAM-coded procedures
 
 ## Data Quality
 
-The pipeline includes comprehensive data quality tests:
-- Reference integrity validation
-- FHIR compliance checks
-- French healthcare standards validation
-- Data completeness scoring
+The pipeline includes comprehensive data quality checks:
+
+- **Source validation**: Tests referential integrity and data types
+- **Transformation validation**: Ensures FHIR compliance and completeness
+- **Output validation**: Monitors record counts and data quality scores
+- **Monitoring dashboard**: `data_quality_summary` table provides KPIs
+
+## FHIR Compliance
+
+All generated resources follow FHIR R4 specification with French profiles:
+
+- **Patient**: `DMPatient` profile with INS-NIR identifiers
+- **Encounter**: `DMEncounter` profile for PMSI data
+- **Condition**: `DMCondition` profile with ICD-10 coding
+- **Procedure**: `DMProcedure` profile with CCAM coding  
+- **Observation**: `DMObservation` profiles for laboratory, vital signs, lifestyle
+- **MedicationRequest**: `DMMedicationRequest` profile with ATC coding
+- **MedicationAdministration**: `DMMedicationAdministration` profile
+
+## FML Mapping Compliance
+
+The DBT transformations implement the complete FML mapping specification:
+
+✅ **Patient transformation** with identifiers, names, demographics  
+✅ **Address transformation** with geolocation extensions  
+✅ **Encounter transformation** with PMSI hospitalization data  
+✅ **Condition transformation** with ICD-10 diagnosis codes  
+✅ **Procedure transformation** with CCAM procedure codes  
+✅ **Laboratory observation** transformation with LOINC codes  
+✅ **Vital signs observation** transformation  
+✅ **Lifestyle observations** split into separate resources per element  
+✅ **Medication request** transformation with dosage instructions  
+✅ **Medication administration** transformation with/without orders  
+✅ **FHIR JSON structure** generation for all resources  
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Connection failed**: Check PostgreSQL is running and credentials are correct
+2. **Schema not found**: Run `dbt run` to create target schemas  
+3. **No data**: Load seed data first with `dbt seed`
+4. **Tests failing**: Expected for empty databases; load test data
+
+### Logs and Debugging
+```powershell
+# Run with debug output
+.\run_dbt.ps1 -Debug
+
+# Run with verbose logging
+dbt --debug run
+```
+
+### Getting Help
+```powershell  
+# Script help
+Get-Help .\run_dbt.ps1 -Full
+
+# DBT help
+dbt --help
+```
+
+## Performance Optimization
+
+- Indexes on all FHIR resource ID fields and foreign keys
+- Materialized tables for final FHIR resources
+- Views for staging and intermediate transformations
+- Partitioning recommendations for large datasets in production

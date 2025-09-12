@@ -1,264 +1,155 @@
 {{
     config(
         materialized='table',
-        unique_key='id',
-        tags=['mart', 'fhir', 'condition']
+        tags=['marts', 'fhir', 'condition'],
+        indexes=[
+            {'columns': ['id'], 'unique': true},
+            {'columns': ['subject_patient_id']},
+            {'columns': ['encounter_id']},
+            {'columns': ['code_text']},
+            {'columns': ['recorded_date']}
+        ]
     )
 }}
 
--- FHIR Condition resource mart table
--- Compliant with FHIR R4 Condition resource structure
-with condition_data as (
-    select * from {{ ref('int_condition_mapping') }}
-    where is_valid_condition = true
+with diagnostics as (
+    select * from {{ ref('stg_ehr__diagnostics') }}
+),
+
+encounter as (
+    select pmsi_id, fhir_encounter_id from {{ ref('int_encounter_enriched') }}
+),
+
+patient as (
+    select patient_id, fhir_patient_id from {{ ref('int_patient_enriched') }}
+),
+
+diagnostics_with_references as (
+    select 
+        d.*,
+        p.fhir_patient_id,
+        e.fhir_encounter_id
+    from diagnostics d
+    inner join patient p on d.patient_id = p.patient_id
+    left join encounter e on d.pmsi_id = e.pmsi_id
 ),
 
 fhir_condition as (
     select
         -- FHIR Resource metadata
         fhir_condition_id as id,
-        'Condition' as resourceType,
-        fhir_meta as meta,
-        
-        -- Condition identifiers
-        jsonb_build_array(
-            jsonb_build_object(
-                'use', 'official',
-                'system', 'http://aphp.fr/fhir/NamingSystem/diagnostic-id',
-                'value', diagnostic_id::text
-            )
-        ) as identifier,
-        
-        -- Clinical status
-        fhir_clinical_status as clinicalStatus,
-        
-        -- Verification status
-        fhir_verification_status as verificationStatus,
-        
-        -- Category
-        fhir_category as category,
-        
-        -- Severity (basic implementation based on diagnosis type)
-        case
-            when condition_severity = 'severe' then
-                jsonb_build_object(
-                    'coding', jsonb_build_array(
-                        jsonb_build_object(
-                            'system', 'http://snomed.info/sct',
-                            'code', '24484000',
-                            'display', 'Severe'
-                        )
-                    )
-                )
-            when condition_severity = 'moderate' then
-                jsonb_build_object(
-                    'coding', jsonb_build_array(
-                        jsonb_build_object(
-                            'system', 'http://snomed.info/sct',
-                            'code', '6736007',
-                            'display', 'Moderate'
-                        )
-                    )
-                )
-            when condition_severity = 'mild' then
-                jsonb_build_object(
-                    'coding', jsonb_build_array(
-                        jsonb_build_object(
-                            'system', 'http://snomed.info/sct',
-                            'code', '255604002',
-                            'display', 'Mild'
-                        )
-                    )
-                )
-            else null
-        end as severity,
-        
-        -- Condition code (ICD-10)
-        fhir_code as code,
-        
-        -- Body site (could be enhanced based on ICD-10 mapping)
-        case
-            when icd10_chapter = 'Circulatory system' then
-                jsonb_build_array(
-                    jsonb_build_object(
-                        'coding', jsonb_build_array(
-                            jsonb_build_object(
-                                'system', 'http://snomed.info/sct',
-                                'code', '113257007',
-                                'display', 'Cardiovascular system structure'
-                            )
-                        )
-                    )
-                )
-            when icd10_chapter = 'Respiratory system' then
-                jsonb_build_array(
-                    jsonb_build_object(
-                        'coding', jsonb_build_array(
-                            jsonb_build_object(
-                                'system', 'http://snomed.info/sct',
-                                'code', '20139000',
-                                'display', 'Respiratory system structure'
-                            )
-                        )
-                    )
-                )
-            when icd10_chapter = 'Digestive system' then
-                jsonb_build_array(
-                    jsonb_build_object(
-                        'coding', jsonb_build_array(
-                            jsonb_build_object(
-                                'system', 'http://snomed.info/sct',
-                                'code', '86762007',
-                                'display', 'Digestive system structure'
-                            )
-                        )
-                    )
-                )
-            else null
-        end as bodySite,
-        
-        -- Patient reference
-        jsonb_build_object(
-            'reference', 'Patient/' || fhir_patient_id,
-            'display', 'Patient ' || fhir_patient_id
-        ) as subject,
-        
-        -- Subject ID for relationships
-        fhir_patient_id as subject_id,
-        
-        -- Encounter reference
-        jsonb_build_object(
-            'reference', 'Encounter/' || fhir_encounter_id,
-            'display', 'Encounter ' || fhir_encounter_id
-        ) as encounter,
-        
-        -- Encounter ID for relationships  
-        fhir_encounter_id as encounter_id,
-        
-        -- Onset information
-        fhir_onset as onsetDateTime,
-        
-        -- Recorded date
-        case 
-            when diagnosis_date is not null then
-                to_char(diagnosis_date, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
-            else
-                to_char(current_timestamp, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
-        end as recordedDate,
-        
-        -- Recorder (could reference the practitioner who made the diagnosis)
-        jsonb_build_object(
-            'reference', 'Practitioner/pmsi-recorder',
-            'display', 'PMSI Recorder'
-        ) as recorder,
-        
-        -- Asserter (who asserted this condition)
-        jsonb_build_object(
-            'reference', 'Practitioner/attending-physician',
-            'display', 'Attending Physician'
-        ) as asserter,
-        
-        -- Stage (if applicable - could be enhanced for cancer diagnoses)
-        case
-            when icd10_code ~ '^C' and condition_severity = 'severe' then
-                jsonb_build_array(
-                    jsonb_build_object(
-                        'summary', jsonb_build_object(
-                            'coding', jsonb_build_array(
-                                jsonb_build_object(
-                                    'system', 'http://snomed.info/sct',
-                                    'code', '261663004',
-                                    'display', 'Severe stage'
-                                )
-                            )
-                        )
-                    )
-                )
-            else null
-        end as stage,
-        
-        -- Evidence (linking to observations or diagnostic reports)
-        case
-            when condition_category = 'encounter-diagnosis' then
-                jsonb_build_array(
-                    jsonb_build_object(
-                        'code', jsonb_build_array(
-                            jsonb_build_object(
-                                'coding', jsonb_build_array(
-                                    jsonb_build_object(
-                                        'system', 'http://snomed.info/sct',
-                                        'code', '439401001',
-                                        'display', 'Diagnosis'
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            else null
-        end as evidence,
-        
-        -- Note (additional clinical notes)
-        case
-            when diagnosis_label_fr != icd10_code then
-                jsonb_build_array(
-                    jsonb_build_object(
-                        'text', 'Diagnostic: ' || diagnosis_label_fr || ' (Code: ' || icd10_code || ')',
-                        'time', to_char(current_timestamp, 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
-                    )
-                )
-            else null
-        end as note,
-        
-        -- Audit and source fields
-        icd10_code,
-        diagnosis_type,
-        diagnosis_label_fr,
-        icd10_chapter,
-        condition_severity,
-        extracted_at,
         current_timestamp as last_updated,
         
-        -- Source identifiers for traceability
-        diagnostic_id as source_diagnostic_id,
-        pmsi_id as source_pmsi_id
+        -- Condition core elements
+        json_build_object(
+            'coding', json_build_array(json_build_object(
+                'system', 'http://terminology.hl7.org/CodeSystem/condition-clinical',
+                'code', fhir_clinical_status
+            ))
+        ) as clinical_status,
+        fhir_clinical_status as clinical_status_text,
         
-    from condition_data
+        json_build_object(
+            'coding', json_build_array(json_build_object(
+                'system', 'http://terminology.hl7.org/CodeSystem/condition-ver-status',
+                'code', fhir_verification_status
+            ))
+        ) as verification_status,
+        fhir_verification_status as verification_status_text,
+        
+        -- Category - PMSI diagnoses are encounter diagnoses
+        json_build_array(
+            json_build_object(
+                'coding', json_build_array(json_build_object(
+                    'system', 'http://terminology.hl7.org/CodeSystem/condition-category',
+                    'code', 'encounter-diagnosis',
+                    'display', 'Encounter Diagnosis'
+                ))
+            ),
+            case when type_diagnostic is not null then
+                json_build_object('text', type_diagnostic)
+            else null end
+        ) as categories,
+        'encounter-diagnosis, ' || coalesce(type_diagnostic, '') as categories_text,
+        
+        null as severity,
+        
+        -- Code (ICD-10)
+        case when code_diagnostic is not null then
+            json_build_object(
+                'coding', json_build_array(json_build_object(
+                    'system', 'http://hl7.org/fhir/sid/icd-10',
+                    'code', code_diagnostic,
+                    'display', libelle_diagnostic
+                )),
+                'text', libelle_diagnostic
+            )
+        else null end as code,
+        libelle_diagnostic as code_text,
+        
+        null as body_sites,
+        
+        -- Identifiers
+        json_build_array(json_build_object(
+            'system', 'https://hospital.eu/ehr/diagnostic-id',
+            'value', diagnostic_id::text
+        )) as identifiers,
+        
+        -- Patient reference
+        json_build_object(
+            'reference', 'Patient/' || fhir_patient_id,
+            'type', 'Patient'
+        ) as subject,
+        fhir_patient_id as subject_patient_id,
+        
+        -- Encounter reference
+        case when fhir_encounter_id is not null then
+            json_build_object(
+                'reference', 'Encounter/' || fhir_encounter_id,
+                'type', 'Encounter'
+            )
+        else null end as encounter,
+        fhir_encounter_id as encounter_id,
+        
+        -- Onset and abatement (not available in source data)
+        null as onset_x,
+        null as abatement_x,
+        
+        -- Recording information
+        date_recueil as recorded_date,
+        null as recorder,
+        null as asserter,
+        
+        -- Stage and evidence (not available in source data)
+        null as stages,
+        null as evidences,
+        null as notes,
+        
+        -- FHIR metadata
+        json_build_object(
+            'versionId', '1',
+            'lastUpdated', current_timestamp::text,
+            'profile', json_build_array('https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition')
+        ) as meta,
+        null as implicit_rules,
+        'fr-FR' as resource_language,
+        null as text_div,
+        null as contained,
+        null as extensions,
+        null as modifier_extensions,
+        
+        -- Source reference data
+        diagnostic_id as original_diagnostic_id,
+        patient_id as original_patient_id,
+        pmsi_id as original_pmsi_id,
+        code_diagnostic as icd10_code,
+        data_quality_level,
+        
+        -- Audit fields
+        created_at,
+        updated_at
+        
+    from diagnostics_with_references
 )
 
-select 
-    -- FHIR Resource structure
-    id,
-    resourceType,
-    meta,
-    identifier,
-    clinicalStatus,
-    verificationStatus,
-    category,
-    severity,
-    code,
-    bodySite,
-    subject,
-    subject_id,
-    encounter,
-    encounter_id,
-    onsetDateTime,
-    recordedDate,
-    recorder,
-    asserter,
-    stage,
-    evidence,
-    note,
-    
-    -- Audit and source fields
-    icd10_code,
-    diagnosis_type,
-    diagnosis_label_fr,
-    icd10_chapter,
-    condition_severity,
-    source_diagnostic_id,
-    source_pmsi_id,
-    extracted_at,
-    last_updated
-    
-from fhir_condition
+select * from fhir_condition

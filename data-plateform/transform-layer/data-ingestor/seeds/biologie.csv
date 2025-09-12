@@ -1,17 +1,16 @@
 biologie_id,patient_id,code_loinc,libelle_test,type_examen,valeur,unite,valeur_texte,date_prelevement,statut_validation,borne_inf_normale,borne_sup_normale,laboratoire,created_at,updated_at
-bio-010,patient-007,718-7,Hémoglobine,Hématologie,13.5,g/dL,,2025-08-18T06:00:00.000Z,VALIDE,13.0,17.0,CHU Nantes,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
-bio-001,patient-001,22664-7,Dosage de l'urée dans le sang,Fonction rénale,6.0,mmol/L,,2025-08-22T06:12:32.711Z,,2.5,7.5,,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
-bio-002,patient-001,14682-9,Créatininémie,Fonction rénale,92.0,umol/L,,2025-08-22T06:12:32.000Z,,45.0,105.0,,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
-bio-005,patient-003,6598-7,Lactates,Gazométrie,15.2,mmol/L,,2025-08-25T16:00:00.000Z,VALIDE,0.5,2.2,Urgences AP-HM,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
-bio-007,patient-005,19123-9,CA 19-9,Marqueurs tumoraux,2500.0,U/mL,,2025-08-21T07:00:00.000Z,VALIDE,0.0,37.0,CHU Lille,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
-bio-013,patient-010,1988-5,CRP,Inflammation,25.0,mg/L,,2025-08-05T08:00:00.000Z,VALIDE,0.0,3.0,CHU Rennes,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
-bio-014,patient-010,25613-0,Vitamine D,Vitamines,15.0,ng/mL,,2025-07-20T09:00:00.000Z,,30.0,100.0,Laboratoire de ville,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
-bio-015,patient-011,1975-2,Bilirubine totale,Bilan hépatique,45.0,umol/L,,2025-08-02T07:00:00.000Z,VALIDE,5.0,21.0,CH La Roche-sur-Yon,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
-bio-016,patient-011,1742-6,Alanine aminotransférase,Bilan hépatique,85.0,U/L,,2025-07-25T08:30:00.000Z,,7.0,56.0,Laboratoire privé,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
-bio-008,patient-006,718-7,Hémoglobine,Hématologie,10.5,g/dL,,2025-08-16T06:00:00.000Z,VALIDE,12.0,16.0,CHU Caen,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
-bio-009,patient-006,19080-1,Beta-HCG,Hormones,150000.0,mIU/mL,,2025-08-10T08:00:00.000Z,,0.0,5.0,Laboratoire de ville,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
-bio-003,patient-002,48420-5,Troponine T ultrasensible,Marqueurs cardiaques,850.0,ng/L,,2025-08-20T08:00:00.000Z,VALIDE,0.0,14.0,Laboratoire Central CHU Lyon,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
-bio-004,patient-002,2093-3,Cholestérol total,Bilan lipidique,6.2,mmol/L,,2025-08-18T07:30:00.000Z,,3.0,5.2,Laboratoire de ville,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
-bio-011,patient-008,3016-3,TSH,Hormones thyroïdiennes,2.5,mUI/L,,2025-08-13T07:00:00.000Z,VALIDE,0.4,4.0,AP-HM Timone,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
-bio-006,patient-004,2951-2,Sodium,Ionogramme,138.0,mmol/L,,2025-08-28T09:00:00.000Z,,136.0,145.0,Lab Externe,2025-08-30T13:00:00Z,2025-08-30T13:00:00Z
-bio-012,patient-009,14682-9,Créatininémie,Fonction rénale,65.0,umol/L,,2025-08-10T17:00:00.000Z,VALIDE,60.0,110.0,CHU Grenoble,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+1,1,2339-0,Glucose,Biochimie,8.2,mmol/L,,2025-08-22T07:30:00Z,VALIDE,3.9,5.5,Labo Central,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+2,1,33747-0,HbA1c,Biochimie,8.5,%,,2025-08-22T07:30:00Z,VALIDE,4,6,Labo Central,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+3,1,2160-0,Creatinine,Biochimie,110,umol/L,,2025-08-22T07:30:00Z,VALIDE,62,106,Labo Central,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+4,2,2019-8,Dioxyde de carbone,Gazometrie,25,mmol/L,,2025-08-20T16:00:00Z,VALIDE,22,28,Labo Urgences,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+5,2,33743-4,Troponine I,Biochimie,0.8,ng/mL,,2025-08-20T16:00:00Z,VALIDE,0,0.04,Labo Urgences,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+6,3,1751-7,Albumine,Biochimie,28,g/L,,2025-08-25T12:00:00Z,VALIDE,35,50,Labo Urgences,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+7,3,1920-8,Aspartate aminotransferase,Biochimie,95,UI/L,,2025-08-25T12:00:00Z,VALIDE,10,40,Labo Urgences,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+8,5,719-5,Hemoglobine,Hematologie,85,g/L,,2025-08-22T09:00:00Z,VALIDE,120,150,Labo Onco,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+9,5,6690-2,Leucocytes,Hematologie,3.2,G/L,,2025-08-22T09:00:00Z,VALIDE,4,10,Labo Onco,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+10,6,19080-1,Hormone chorionique gonadotrope beta,Hormonologie,2500,mUI/mL,,2025-08-15T05:00:00Z,VALIDE,0,5,Labo Maternite,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+11,7,2339-0,Glucose,Biochimie,5.8,mmol/L,,2025-08-18T15:00:00Z,VALIDE,3.9,5.5,Labo Central,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+12,8,2951-2,Sodium,Biochimie,138,mmol/L,,2025-08-12T08:00:00Z,VALIDE,136,145,Labo Central,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+13,9,6598-7,Proteine C-reactive,Biochimie,45,mg/L,,2025-08-10T21:00:00Z,VALIDE,0,3,Labo Urgences,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+14,10,1751-7,Albumine,Biochimie,42,g/L,,2025-08-05T11:00:00Z,VALIDE,35,50,Labo Dermato,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+15,11,2160-0,Creatinine,Biochimie,145,umol/L,,2025-08-02T10:00:00Z,VALIDE,62,106,Labo Geriatrie,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z

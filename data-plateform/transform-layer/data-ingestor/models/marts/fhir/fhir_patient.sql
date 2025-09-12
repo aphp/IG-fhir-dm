@@ -1,159 +1,111 @@
 {{
     config(
         materialized='table',
-        unique_key='id',
-        tags=['mart', 'fhir', 'patient']
+        tags=['marts', 'fhir', 'patient'],
+        indexes=[
+            {'columns': ['id'], 'unique': true},
+            {'columns': ['ins_nir_identifier'], 'unique': true},
+            {'columns': ['nss_identifier']},
+            {'columns': ['birth_date']},
+            {'columns': ['gender']}
+        ]
     )
 }}
 
--- FHIR Patient resource mart table
--- Compliant with FHIR R4 Patient resource structure
-with patient_data as (
-    select * from {{ ref('int_patient_identifiers') }}
-    where has_valid_identifier = true
+with enriched_patient as (
+    select * from {{ ref('int_patient_enriched') }}
 ),
 
 fhir_patient as (
     select
         -- FHIR Resource metadata
         fhir_patient_id as id,
-        'Patient' as resourceType,
-        fhir_meta as meta,
-        
-        -- Patient identifiers (INS-NIR French healthcare identifiers)
-        jsonb_build_array(
-            jsonb_build_object(
-                'use', 'official',
-                'system', 'urn:oid:1.2.250.1.213.1.4.8',
-                'value', ins_nir_identifier
-            ) ||
-            jsonb_build_object('type', jsonb_build_object(
-                'coding', jsonb_build_array(
-                    jsonb_build_object(
-                        'system', 'https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-v2-0203',
-                        'code', 'INS-NIR'
-                    )
-                )
-            )),
-            jsonb_build_object(
-                'use', 'official',
-                'system', 'urn:oid:1.2.250.1.213.1.4.8',
-                'value', nss_identifier
-            ) ||
-            jsonb_build_object('type', jsonb_build_object(
-                'coding', jsonb_build_array(
-                    jsonb_build_object(
-                        'system', 'http://terminology.hl7.org/CodeSystem/v2-0203',
-                        'code', 'NH'
-                    )
-                )
-            ))
-        ) as identifier,
-        ins_nir_identifier,
-        nss_identifier,
-        
-        -- Active status (assuming all patients are active)
-        true as active,
-        
-        -- Patient name
-        jsonb_build_array(
-            jsonb_build_object(
-                'use', 'official',
-                'family', family_name,
-                'given', jsonb_build_array(given_name)
-            )
-        ) as name,
-        family_name,
-
-        -- Gender (FHIR administrative gender)
-        gender,
-        
-        -- Birth date
-        to_char(birth_date, 'YYYY-MM-DD') as birthDate,
-        
-        -- Address (if available)
-        case 
-            when fhir_address is not null 
-            then jsonb_build_array(fhir_address)
-            else null 
-        end as address,
-        
-        -- Contact information (extension for position if available)
-        case
-            when fhir_position is not null then
-                jsonb_build_array(
-                    jsonb_build_object(
-                        'url', 'http://hl7.org/fhir/StructureDefinition/geolocation',
-                        'extension', jsonb_build_array(
-                            jsonb_build_object(
-                                'url', 'latitude',
-                                'valueDecimal', (fhir_position->>'latitude')::decimal
-                            ),
-                            jsonb_build_object(
-                                'url', 'longitude', 
-                                'valueDecimal', (fhir_position->>'longitude')::decimal
-                            )
-                        )
-                    )
-                )
-            else null
-        end as extension,
-        
-        -- General practitioner or managing organization
-        jsonb_build_array(
-            jsonb_build_object(
-                'reference', 'Organization/' || '{{ var("default_organization_id") }}',
-                'display', 'AP-HP - Assistance Publique Hôpitaux de Paris'
-            )
-        ) as generalPractitioner,
-        
-        -- Managing organization
-        jsonb_build_object(
-            'reference', 'Organization/' || '{{ var("default_organization_id") }}',
-            'display', 'AP-HP - Assistance Publique Hôpitaux de Paris'
-        ) as managingOrganization,
-        
-        -- Data quality and audit fields
-        data_quality_level,
-        data_quality_score,
-        case when nss_identifier is not null then true else false end as has_nss,
-        case when ins_nir_identifier is not null then true else false end as has_ins,
-        case when latitude is not null and longitude is not null then true else false end as has_location,
-        extracted_at,
         current_timestamp as last_updated,
         
-        -- Source identifiers for traceability
-        patient_id as source_patient_id
+        -- Patient active status (assume true for EHR data)
+        true as active,
         
-    from patient_data
+        -- Identifiers
+        identifiers_json as identifiers,
+        ins as ins_nir_identifier,
+        nir as nss_identifier,
+        
+        -- Names
+        names_json as names,
+        case when family_name is not null or given_name is not null then
+            family_name || case when given_name is not null then ', ' || given_name else '' end
+        else null end as full_names,
+        
+        -- Demographics
+        gender_fhir as gender,
+        birth_date,
+        deceased_json as deceased_x,
+        death_date as deceased_date_time,
+        death_source as deceased_extension_death_source,
+        null as marital_status,  -- Not available in source data
+        
+        -- Address
+        address_json as address,
+        latitude as address_extension_geolocation_latitude,
+        longitude as address_extension_geolocation_longitude,
+        case 
+            when code_iris is not null and libelle_iris is not null then code_iris || ' - ' || libelle_iris
+            else coalesce(code_iris, libelle_iris)
+        end as address_extension_census_tract,
+        address_date_recueil as address_period_start,
+        null as address_extension_pmsi_code_geo,  -- Could be added from code_geographique_residence
+        code_geographique_residence as address_extension_pmsi_code_geo_code,
+        
+        -- Contact information (not available in source data)
+        null as telecoms,
+        null as contacts,
+        null as communications,
+        null as preferred_communication_languages,
+        
+        -- Multiple birth
+        multiple_birth_info as multiple_birth_x,
+        birth_rank as multiple_birth_integer,
+        
+        -- Care providers (not available in source data)
+        null as general_practitioners,
+        null as managing_organization,
+        
+        -- Patient linking (not available in source data)
+        null as links,
+        
+        -- FHIR metadata
+        json_build_object(
+            'versionId', '1',
+            'lastUpdated', current_timestamp::text,
+            'profile', json_build_array('https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient')
+        ) as meta,
+        null as implicit_rules,
+        'fr-FR' as resource_language,
+        null as text_div,
+        null as contained,
+        
+        -- Extensions
+        case when death_source is not null then
+            json_build_array(json_build_object(
+                'url', 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource',
+                'valueCode', death_source
+            ))
+        else null end as extensions,
+        null as modifier_extensions,
+        
+        -- Data quality indicators
+        data_quality_level,
+        data_quality_score,
+        has_nss,
+        has_ins,
+        has_location,
+        patient_id as identifier,  -- Original source identifier for reference
+        
+        -- Audit fields
+        transformed_at as created_at,
+        current_timestamp as updated_at
+        
+    from enriched_patient
 )
 
-select 
-    -- FHIR Resource structure
-    id,
-    resourceType,
-    meta,
-    identifier,
-    ins_nir_identifier,
-    nss_identifier,
-    active,
-    name,
-    family_name,
-    gender,
-    birthDate,
-    address,
-    extension,
-    generalPractitioner,
-    managingOrganization,
-    
-    -- Audit and quality fields
-    data_quality_level,
-    data_quality_score,
-    has_nss,
-    has_ins,
-    has_location,
-    source_patient_id,
-    extracted_at,
-    last_updated
-    
-from fhir_patient
+select * from fhir_patient

@@ -1,85 +1,78 @@
 {{
     config(
         materialized='view',
-        tags=['staging', 'observation', 'laboratory', 'loinc']
+        tags=['staging', 'observation', 'laboratory']
     )
 }}
 
-with source_data as (
-    select
-        biologie_id,
-        pmsi_id,
-        patient_id,
-        code_loinc,
-        libelle_test,
-        valeur,
-        unite,
-        laboratoire,
-        date_prelevement,
-        current_timestamp as extracted_at
-    from {{ ref('biologie_sample') }}
+with source_biologie as (
+    select * from {{ source('ehr', 'biologie') }}
 ),
 
-cleaned_data as (
+cleaned_biologie as (
     select
-        -- Primary keys
         biologie_id,
-        pmsi_id,
         patient_id,
         
         -- Laboratory test information
-        trim(code_loinc) as loinc_code,
-        trim(libelle_test) as test_name_fr,
-        trim(valeur::text) as test_value,
-        trim(unite) as test_unit,
-        trim(laboratoire) as laboratory_name,
-        date_prelevement::date as collection_date,
+        trim(code_loinc) as code_loinc,
+        trim(libelle_test) as libelle_test,
+        trim(type_examen) as type_examen,
         
-        -- System fields
-        extracted_at,
+        -- Test values
+        valeur,
+        trim(unite) as unite,
+        valeur_texte,
         
-        -- Calculated fields for FHIR
-        '{{ var('observation_id_prefix') }}' || 'lab-' || biologie_id::text as fhir_observation_id,
-        '{{ var('encounter_id_prefix') }}' || pmsi_id::text as fhir_encounter_id,
-        '{{ var('patient_id_prefix') }}' || patient_id::text as fhir_patient_id,
+        -- Test timing and validation
+        date_prelevement,
+        trim(statut_validation) as statut_validation,
         
-        -- FHIR observation status (assuming final if recorded)
-        'final' as observation_status,
+        -- Reference ranges
+        borne_inf_normale,
+        borne_sup_normale,
         
-        -- FHIR observation category for laboratory tests
-        'laboratory' as observation_category,
+        -- Laboratory information
+        trim(laboratoire) as laboratoire,
+        
+        -- Audit fields
+        created_at,
+        updated_at,
+        
+        -- Data quality assessment
+        case 
+            when code_loinc is not null and (valeur is not null or valeur_texte is not null) and date_prelevement is not null then 'high'
+            when code_loinc is not null and (valeur is not null or valeur_texte is not null) then 'medium'
+            else 'low'
+        end as data_quality_level,
+        
+        -- FHIR observation status mapping
+        case 
+            when lower(trim(statut_validation)) = 'valide' then 'final'
+            when lower(trim(statut_validation)) = 'en_cours' then 'preliminary'
+            when lower(trim(statut_validation)) = 'rejete' then 'cancelled'
+            when lower(trim(statut_validation)) = 'en_attente' then 'registered'
+            else 'final'  -- Default for historical data
+        end as fhir_status,
+        
+        -- FHIR category - laboratory observations
+        'laboratory' as fhir_category,
+        
+        -- LOINC system
+        case when code_loinc is not null then 'http://loinc.org' else null end as code_system,
         
         -- Value type determination
         case 
-            when valeur::text ~ '^[0-9]+\.?[0-9]*$' then 'Quantity'  -- Numeric value
-            when valeur::text ~ '^[<>]=?' then 'Quantity'  -- Comparison operators
-            else 'string'  -- Text value
+            when valeur is not null then 'Quantity'
+            when valeur_texte is not null then 'string'
+            else null
         end as value_type,
         
-        -- Numeric value extraction for quantities
-        case 
-            when valeur::text ~ '^[0-9]+\.?[0-9]*$' then valeur::decimal
-            when valeur::text ~ '^[<>]=?([0-9]+\.?[0-9]*)' then 
-                regexp_replace(valeur::text, '^[<>]=?([0-9]+\.?[0-9]*).*', '\1')::decimal
-            else null
-        end as numeric_value,
+        -- Generate FHIR-compatible observation ID
+        {{ dbt_utils.generate_surrogate_key(['biologie_id']) }} as fhir_observation_id
         
-        -- Comparator extraction for quantities
-        case 
-            when valeur::text ~ '^<' then '<'
-            when valeur::text ~ '^>' then '>'
-            when valeur::text ~ '^<=' then '<='
-            when valeur::text ~ '^>=' then '>='
-            else null
-        end as value_comparator,
-        
-        -- Data quality flags
-        case when code_loinc is not null and length(trim(code_loinc)) > 0 then true else false end as has_loinc_code,
-        case when valeur is not null and length(trim(valeur::text)) > 0 then true else false end as has_test_value,
-        case when date_prelevement is not null then true else false end as has_collection_date
-        
-    from source_data
-    where patient_id is not null  -- Only include lab results with valid patient reference
+    from source_biologie
+    where patient_id is not null
 )
 
-select * from cleaned_data
+select * from cleaned_biologie

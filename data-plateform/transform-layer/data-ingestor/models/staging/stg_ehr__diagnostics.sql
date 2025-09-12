@@ -1,65 +1,61 @@
 {{
     config(
         materialized='view',
-        tags=['staging', 'condition', 'icd10']
+        tags=['staging', 'condition']
     )
 }}
 
-with source_data as (
-    select
-        diagnostic_id,
-        pmsi_id,
-        code_diagnostic,
-        type_diagnostic,
-        libelle_diagnostic,
-        date_diagnostic,
-        current_timestamp as extracted_at
-    from {{ ref('diagnostics_sample') }}
+with source_diagnostics as (
+    select * from {{ source('ehr', 'diagnostics') }}
 ),
 
-cleaned_data as (
+cleaned_diagnostics as (
     select
-        -- Primary keys
         diagnostic_id,
+        patient_id,
         pmsi_id,
         
         -- Diagnostic information
-        trim(upper(code_diagnostic)) as icd10_code,
-        trim(type_diagnostic) as diagnosis_type,
-        trim(libelle_diagnostic) as diagnosis_label_fr,
-        date_diagnostic::date as diagnosis_date,
+        upper(trim(code_diagnostic)) as code_diagnostic,
+        trim(type_diagnostic) as type_diagnostic,
+        trim(libelle_diagnostic) as libelle_diagnostic,
         
-        -- System fields
-        extracted_at,
+        -- Collection date
+        date_recueil,
         
-        -- Calculated fields for FHIR
-        '{{ var('condition_id_prefix') }}' || diagnostic_id::text as fhir_condition_id,
-        '{{ var('encounter_id_prefix') }}' || pmsi_id::text as fhir_encounter_id,
-        
-        -- FHIR condition category mapping
-        case
-            when trim(lower(type_diagnostic)) like '%principal%' then 'encounter-diagnosis'
-            when trim(lower(type_diagnostic)) like '%secondaire%' then 'encounter-diagnosis'
-            else 'problem-list-item'
-        end as condition_category,
-        
-        -- FHIR verification status mapping
-        case
-            when trim(lower(type_diagnostic)) like '%principal%' then 'confirmed'
-            when trim(lower(type_diagnostic)) like '%secondaire%' then 'confirmed'
-            when trim(lower(type_diagnostic)) like '%suspect%' then 'provisional'
-            else 'confirmed'
-        end as verification_status,
-        
-        -- Clinical status (assuming active if recorded)
-        'active' as clinical_status,
+        -- Audit fields
+        created_at,
+        updated_at,
         
         -- Data quality flags
-        case when code_diagnostic is not null and length(trim(code_diagnostic)) >= 3 then true else false end as has_valid_icd10_code,
-        case when date_diagnostic is not null then true else false end as has_diagnosis_date
+        case when code_diagnostic is not null and libelle_diagnostic is not null then 'high'
+             when code_diagnostic is not null or libelle_diagnostic is not null then 'medium'
+             else 'low'
+        end as data_quality_level,
         
-    from source_data
-    where pmsi_id is not null  -- Only include diagnostics with valid encounter reference
+        -- FHIR mapping helpers
+        case 
+            when code_diagnostic is not null then 'http://hl7.org/fhir/sid/icd-10'
+            else null
+        end as code_system,
+        
+        -- Clinical status (assume active for recorded diagnoses)
+        'active' as fhir_clinical_status,
+        
+        -- Verification status (assume confirmed for coded diagnoses)
+        case 
+            when code_diagnostic is not null then 'confirmed'
+            else 'provisional'
+        end as fhir_verification_status,
+        
+        -- Category mapping - PMSI diagnoses are encounter diagnoses
+        'encounter-diagnosis' as fhir_category,
+        
+        -- Generate FHIR-compatible condition ID
+        {{ dbt_utils.generate_surrogate_key(['diagnostic_id']) }} as fhir_condition_id
+        
+    from source_diagnostics
+    where patient_id is not null and pmsi_id is not null
 )
 
-select * from cleaned_data
+select * from cleaned_diagnostics

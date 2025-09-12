@@ -1,66 +1,70 @@
 {{
     config(
         materialized='view',
-        tags=['staging', 'patient', 'demographics']
+        tags=['staging', 'patient']
     )
 }}
 
-with source_data as (
-    select
-        patient_id,
-        nom,
-        prenom,
-        nir,
-        ins,
-        date_naissance,
-        sexe,
-        latitude,
-        longitude,
-        code_geographique_residence,
-        libelle_geographique_residence,
-        current_timestamp as extracted_at
-    from {{ ref('patient_sample') }}
+with source_patient as (
+    select * from {{ source('ehr', 'patient') }}
 ),
 
-cleaned_data as (
+cleaned_patient as (
     select
-        -- Primary key
         patient_id,
         
-        -- Name components
-        trim(upper(nom)) as family_name,
-        trim(initcap(prenom)) as given_name,
-        
-        -- French healthcare identifiers
-        trim(nir::text) as nir,  -- National insurance number
-        trim(ins) as ins,  -- National health insurance identifier
+        -- Identity fields
+        upper(trim(nom)) as nom,
+        upper(trim(prenom)) as prenom,
+        trim(nir) as nir,
+        trim(ins) as ins,
         
         -- Demographics
-        date_naissance::date as birth_date,
+        date_naissance,
         case 
-            when upper(trim(sexe)) = 'M' then 'male'
-            when upper(trim(sexe)) = 'F' then 'female'
+            when lower(trim(sexe)) = 'h' then 'male'
+            when lower(trim(sexe)) = 'f' then 'female'
             else 'unknown'
-        end as gender,
+        end as gender_fhir,
+        sexe as gender_original,
         
-        -- Geographic information
-        latitude::decimal(10,8) as latitude,
-        longitude::decimal(11,8) as longitude,
-        trim(code_geographique_residence::text) as postal_code,
-        trim(libelle_geographique_residence) as city,
+        -- Death information
+        date_deces,
+        trim(source_deces) as source_deces,
         
-        -- System fields
-        extracted_at,
+        -- Multiple birth
+        rang_gemellaire,
         
-        -- Calculated fields for FHIR
-        '{{ var('patient_id_prefix') }}' || patient_id::text as fhir_patient_id,
+        -- Audit fields
+        created_at,
+        updated_at,
         
         -- Data quality flags
-        case when nir is not null and length(trim(nir::text)) > 0 then true else false end as has_nir,
-        case when ins is not null and length(trim(ins::text)) > 0 then true else false end as has_ins,
-        case when latitude is not null and longitude is not null then true else false end as has_location
+        case 
+            when nom is not null and prenom is not null and date_naissance is not null then 'high'
+            when nom is not null and (prenom is not null or date_naissance is not null) then 'medium'
+            else 'low'
+        end as data_quality_level,
         
-    from source_data
+        -- Calculate data quality score
+        (
+            case when patient_id is not null then 10 else 0 end +
+            case when nom is not null then 15 else 0 end +
+            case when prenom is not null then 15 else 0 end +
+            case when date_naissance is not null then 20 else 0 end +
+            case when sexe is not null then 10 else 0 end +
+            case when ins is not null then 15 else 0 end +
+            case when nir is not null then 15 else 0 end
+        ) as data_quality_score,
+        
+        -- Identifier flags
+        case when trim(nir) is not null and trim(nir) != '' then true else false end as has_nss,
+        case when trim(ins) is not null and trim(ins) != '' then true else false end as has_ins,
+        
+        -- Generate FHIR-compatible UUID
+        {{ dbt_utils.generate_surrogate_key(['patient_id']) }} as fhir_patient_id
+        
+    from source_patient
 )
 
-select * from cleaned_data
+select * from cleaned_patient
