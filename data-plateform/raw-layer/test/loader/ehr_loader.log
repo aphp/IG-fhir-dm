@@ -1,0 +1,237 @@
+2025-09-13 10:21:17,110 - INFO - Using CSV directory: C:\Users\4087446\Projects\aphp\IG-fhir-dm\data-plateform\raw-layer\test\loader\..\file
+2025-09-13 10:21:17,110 - INFO - Python version: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-09-13 10:21:17,126 - INFO - System encoding: utf-8
+2025-09-13 10:21:17,168 - INFO - Set locale to: fr_FR.UTF-8
+2025-09-13 10:21:17,235 - ERROR - ❌ Failed to load data: 'utf-8' codec can't decode byte 0xe9 in position 90: invalid continuation byte
+2025-09-13 10:21:17,236 - INFO - Database connection closed
+2025-09-13 11:40:09,847 - INFO - Using CSV directory: C:\Users\4087446\Projects\aphp\IG-fhir-dm\data-plateform\raw-layer\test\loader\..\file
+2025-09-13 11:40:09,847 - INFO - Python version: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-09-13 11:40:09,847 - INFO - System encoding: utf-8
+2025-09-13 11:40:09,902 - INFO - Set locale to: fr_FR.UTF-8
+2025-09-13 11:40:09,933 - INFO - Successfully connected to PostgreSQL database with UTF-8 encoding
+2025-09-13 11:40:09,933 - INFO - Starting data loading process with dependency-aware ordering...
+2025-09-13 11:40:09,933 - INFO - Loading table: patient
+2025-09-13 11:40:09,938 - INFO - Detected encoding for patient.csv: ascii (confidence: 1.00)
+2025-09-13 11:40:09,939 - INFO - Using preferred encoding: utf-8
+2025-09-13 11:40:09,941 - INFO - Read 10 rows from patient.csv with encoding utf-8
+2025-09-13 11:40:09,941 - INFO - Column validation passed for patient
+2025-09-13 11:40:09,942 - ERROR - Unexpected error loading patient: the query contains more than one '%s' placeholder
+2025-09-13 11:40:09,943 - ERROR - ❌ Loading failed, transaction rolled back: the query contains more than one '%s' placeholder
+2025-09-13 11:40:09,953 - ERROR - ❌ Failed to load data: the query contains more than one '%s' placeholder
+2025-09-13 11:40:09,954 - INFO - Database connection closed
+2025-09-13 11:40:35,504 - INFO - Using CSV directory: C:\Users\4087446\Projects\aphp\IG-fhir-dm\data-plateform\raw-layer\test\loader\..\file
+2025-09-13 11:40:35,504 - INFO - Python version: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-09-13 11:40:35,505 - INFO - System encoding: utf-8
+2025-09-13 11:40:35,569 - INFO - Set locale to: fr_FR.UTF-8
+2025-09-13 11:40:35,596 - INFO - Successfully connected to PostgreSQL database with UTF-8 encoding
+2025-09-13 11:40:35,597 - INFO - Starting data loading process with dependency-aware ordering...
+2025-09-13 11:40:35,597 - INFO - Loading table: patient
+2025-09-13 11:40:35,601 - INFO - Detected encoding for patient.csv: ascii (confidence: 1.00)
+2025-09-13 11:40:35,601 - INFO - Using preferred encoding: utf-8
+2025-09-13 11:40:35,604 - INFO - Read 10 rows from patient.csv with encoding utf-8
+2025-09-13 11:40:35,604 - INFO - Column validation passed for patient
+2025-09-13 11:40:35,608 - INFO - Successfully loaded 10 rows into patient
+2025-09-13 11:40:35,609 - INFO - Progress: 1/11 tables completed
+2025-09-13 11:40:35,609 - INFO - Loading table: patient_adresse
+2025-09-13 11:40:35,612 - INFO - Detected encoding for patient_adresse.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,612 - INFO - Read 10 rows from patient_adresse.csv with encoding utf-8
+2025-09-13 11:40:35,612 - INFO - Column validation passed for patient_adresse
+2025-09-13 11:40:35,616 - INFO - Successfully loaded 10 rows into patient_adresse
+2025-09-13 11:40:35,616 - INFO - Progress: 2/11 tables completed
+2025-09-13 11:40:35,616 - INFO - Loading table: donnees_pmsi
+2025-09-13 11:40:35,621 - INFO - Detected encoding for donnees_pmsi.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,623 - INFO - Read 10 rows from donnees_pmsi.csv with encoding utf-8
+2025-09-13 11:40:35,623 - INFO - Column validation passed for donnees_pmsi
+2025-09-13 11:40:35,626 - INFO - Successfully loaded 10 rows into donnees_pmsi
+2025-09-13 11:40:35,627 - INFO - Progress: 3/11 tables completed
+2025-09-13 11:40:35,627 - INFO - Loading table: diagnostics
+2025-09-13 11:40:35,630 - INFO - Detected encoding for diagnostics.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,635 - INFO - Read 18 rows from diagnostics.csv with encoding utf-8
+2025-09-13 11:40:35,635 - INFO - Column validation passed for diagnostics
+2025-09-13 11:40:35,638 - INFO - Successfully loaded 18 rows into diagnostics
+2025-09-13 11:40:35,638 - INFO - Progress: 4/11 tables completed
+2025-09-13 11:40:35,639 - INFO - Loading table: actes
+2025-09-13 11:40:35,643 - INFO - Detected encoding for actes.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,644 - INFO - Read 12 rows from actes.csv with encoding utf-8
+2025-09-13 11:40:35,645 - INFO - Column validation passed for actes
+2025-09-13 11:40:35,649 - INFO - Successfully loaded 12 rows into actes
+2025-09-13 11:40:35,649 - INFO - Progress: 5/11 tables completed
+2025-09-13 11:40:35,649 - INFO - Loading table: biologie
+2025-09-13 11:40:35,654 - INFO - Detected encoding for biologie.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,656 - INFO - Read 24 rows from biologie.csv with encoding utf-8
+2025-09-13 11:40:35,656 - INFO - Column validation passed for biologie
+2025-09-13 11:40:35,660 - INFO - Successfully loaded 24 rows into biologie
+2025-09-13 11:40:35,660 - INFO - Progress: 6/11 tables completed
+2025-09-13 11:40:35,660 - INFO - Loading table: prescription
+2025-09-13 11:40:35,664 - INFO - Detected encoding for prescription.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,666 - INFO - Read 18 rows from prescription.csv with encoding utf-8
+2025-09-13 11:40:35,666 - INFO - Column validation passed for prescription
+2025-09-13 11:40:35,671 - INFO - Successfully loaded 18 rows into prescription
+2025-09-13 11:40:35,672 - INFO - Progress: 7/11 tables completed
+2025-09-13 11:40:35,673 - INFO - Loading table: posologie
+2025-09-13 11:40:35,677 - INFO - Detected encoding for posologie.csv: ascii (confidence: 1.00)
+2025-09-13 11:40:35,677 - INFO - Using preferred encoding: utf-8
+2025-09-13 11:40:35,679 - INFO - Read 18 rows from posologie.csv with encoding utf-8
+2025-09-13 11:40:35,679 - INFO - Column validation passed for posologie
+2025-09-13 11:40:35,682 - INFO - Successfully loaded 18 rows into posologie
+2025-09-13 11:40:35,682 - INFO - Progress: 8/11 tables completed
+2025-09-13 11:40:35,682 - INFO - Loading table: administration
+2025-09-13 11:40:35,686 - INFO - Detected encoding for administration.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,688 - INFO - Read 18 rows from administration.csv with encoding utf-8
+2025-09-13 11:40:35,688 - INFO - Column validation passed for administration
+2025-09-13 11:40:35,691 - INFO - Successfully loaded 18 rows into administration
+2025-09-13 11:40:35,692 - INFO - Progress: 9/11 tables completed
+2025-09-13 11:40:35,692 - INFO - Loading table: dossier_soins
+2025-09-13 11:40:35,697 - INFO - Detected encoding for dossier_soins.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,698 - INFO - Read 24 rows from dossier_soins.csv with encoding utf-8
+2025-09-13 11:40:35,698 - INFO - Column validation passed for dossier_soins
+2025-09-13 11:40:35,702 - INFO - Successfully loaded 24 rows into dossier_soins
+2025-09-13 11:40:35,703 - INFO - Progress: 10/11 tables completed
+2025-09-13 11:40:35,703 - INFO - Loading table: style_vie
+2025-09-13 11:40:35,706 - INFO - Detected encoding for style_vie.csv: utf-8 (confidence: 0.99)
+2025-09-13 11:40:35,708 - INFO - Read 10 rows from style_vie.csv with encoding utf-8
+2025-09-13 11:40:35,708 - INFO - Column validation passed for style_vie
+2025-09-13 11:40:35,710 - INFO - Successfully loaded 10 rows into style_vie
+2025-09-13 11:40:35,711 - INFO - Progress: 11/11 tables completed
+2025-09-13 11:40:35,717 - INFO - ✅ Successfully loaded 172 total rows across 11 tables
+2025-09-13 11:40:35,723 - INFO - Validating data integrity...
+2025-09-13 11:40:35,728 - INFO -   patient: 10 rows
+2025-09-13 11:40:35,731 - INFO -   patient_adresse: 10 rows
+2025-09-13 11:40:35,734 - INFO -   donnees_pmsi: 10 rows
+2025-09-13 11:40:35,737 - INFO -   diagnostics: 18 rows
+2025-09-13 11:40:35,740 - INFO -   actes: 12 rows
+2025-09-13 11:40:35,743 - INFO -   biologie: 24 rows
+2025-09-13 11:40:35,746 - INFO -   prescription: 18 rows
+2025-09-13 11:40:35,749 - INFO -   posologie: 18 rows
+2025-09-13 11:40:35,751 - INFO -   administration: 18 rows
+2025-09-13 11:40:35,754 - INFO -   dossier_soins: 24 rows
+2025-09-13 11:40:35,756 - INFO -   style_vie: 10 rows
+2025-09-13 11:40:35,757 - INFO - Checking foreign key integrity...
+2025-09-13 11:40:35,757 - INFO - Foreign key integrity check completed
+2025-09-13 11:40:35,757 - INFO - ==================================================
+2025-09-13 11:40:35,757 - INFO - LOADING SUMMARY
+2025-09-13 11:40:35,757 - INFO - ==================================================
+2025-09-13 11:40:35,757 - INFO - ✅ patient: loaded 10, in DB 10
+2025-09-13 11:40:35,758 - INFO - ✅ patient_adresse: loaded 10, in DB 10
+2025-09-13 11:40:35,758 - INFO - ✅ donnees_pmsi: loaded 10, in DB 10
+2025-09-13 11:40:35,759 - INFO - ✅ diagnostics: loaded 18, in DB 18
+2025-09-13 11:40:35,759 - INFO - ✅ actes: loaded 12, in DB 12
+2025-09-13 11:40:35,759 - INFO - ✅ biologie: loaded 24, in DB 24
+2025-09-13 11:40:35,760 - INFO - ✅ prescription: loaded 18, in DB 18
+2025-09-13 11:40:35,760 - INFO - ✅ posologie: loaded 18, in DB 18
+2025-09-13 11:40:35,761 - INFO - ✅ administration: loaded 18, in DB 18
+2025-09-13 11:40:35,762 - INFO - ✅ dossier_soins: loaded 24, in DB 24
+2025-09-13 11:40:35,762 - INFO - ✅ style_vie: loaded 10, in DB 10
+2025-09-13 11:40:35,763 - INFO - --------------------------------------------------
+2025-09-13 11:40:35,763 - INFO - Total rows loaded: 172
+2025-09-13 11:40:35,763 - INFO - Total rows in database: 172
+2025-09-13 11:40:35,763 - INFO - ✅ Data loading completed successfully!
+2025-09-13 11:40:35,764 - INFO - Database connection closed
+2025-09-13 12:06:35,406 - INFO - Using CSV directory: C:\Users\4087446\Projects\aphp\IG-fhir-dm\data-plateform\raw-layer\test\loader\..\file
+2025-09-13 12:06:35,406 - INFO - Python version: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2025-09-13 12:06:35,406 - INFO - System encoding: utf-8
+2025-09-13 12:06:35,435 - INFO - Set locale to: fr_FR.UTF-8
+2025-09-13 12:06:35,455 - INFO - Successfully connected to PostgreSQL database with UTF-8 encoding
+2025-09-13 12:06:35,455 - INFO - Starting data loading process with dependency-aware ordering...
+2025-09-13 12:06:35,456 - INFO - Loading table: patient
+2025-09-13 12:06:35,463 - INFO - Detected encoding for patient.csv: ascii (confidence: 1.00)
+2025-09-13 12:06:35,463 - INFO - Using preferred encoding: utf-8
+2025-09-13 12:06:35,466 - INFO - Read 10 rows from patient.csv with encoding utf-8
+2025-09-13 12:06:35,466 - INFO - Column validation passed for patient
+2025-09-13 12:06:35,474 - INFO - Successfully loaded 10 rows into patient
+2025-09-13 12:06:35,475 - INFO - Progress: 1/11 tables completed
+2025-09-13 12:06:35,475 - INFO - Loading table: patient_adresse
+2025-09-13 12:06:35,479 - INFO - Detected encoding for patient_adresse.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,480 - INFO - Read 10 rows from patient_adresse.csv with encoding utf-8
+2025-09-13 12:06:35,480 - INFO - Column validation passed for patient_adresse
+2025-09-13 12:06:35,483 - INFO - Successfully loaded 10 rows into patient_adresse
+2025-09-13 12:06:35,483 - INFO - Progress: 2/11 tables completed
+2025-09-13 12:06:35,483 - INFO - Loading table: donnees_pmsi
+2025-09-13 12:06:35,487 - INFO - Detected encoding for donnees_pmsi.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,488 - INFO - Read 10 rows from donnees_pmsi.csv with encoding utf-8
+2025-09-13 12:06:35,488 - INFO - Column validation passed for donnees_pmsi
+2025-09-13 12:06:35,493 - INFO - Successfully loaded 10 rows into donnees_pmsi
+2025-09-13 12:06:35,493 - INFO - Progress: 3/11 tables completed
+2025-09-13 12:06:35,493 - INFO - Loading table: diagnostics
+2025-09-13 12:06:35,498 - INFO - Detected encoding for diagnostics.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,499 - INFO - Read 18 rows from diagnostics.csv with encoding utf-8
+2025-09-13 12:06:35,499 - INFO - Column validation passed for diagnostics
+2025-09-13 12:06:35,503 - INFO - Successfully loaded 18 rows into diagnostics
+2025-09-13 12:06:35,503 - INFO - Progress: 4/11 tables completed
+2025-09-13 12:06:35,503 - INFO - Loading table: actes
+2025-09-13 12:06:35,507 - INFO - Detected encoding for actes.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,508 - INFO - Read 12 rows from actes.csv with encoding utf-8
+2025-09-13 12:06:35,509 - INFO - Column validation passed for actes
+2025-09-13 12:06:35,512 - INFO - Successfully loaded 12 rows into actes
+2025-09-13 12:06:35,512 - INFO - Progress: 5/11 tables completed
+2025-09-13 12:06:35,512 - INFO - Loading table: biologie
+2025-09-13 12:06:35,516 - INFO - Detected encoding for biologie.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,516 - INFO - Read 24 rows from biologie.csv with encoding utf-8
+2025-09-13 12:06:35,516 - INFO - Column validation passed for biologie
+2025-09-13 12:06:35,521 - INFO - Successfully loaded 24 rows into biologie
+2025-09-13 12:06:35,522 - INFO - Progress: 6/11 tables completed
+2025-09-13 12:06:35,522 - INFO - Loading table: prescription
+2025-09-13 12:06:35,527 - INFO - Detected encoding for prescription.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,528 - INFO - Read 18 rows from prescription.csv with encoding utf-8
+2025-09-13 12:06:35,528 - INFO - Column validation passed for prescription
+2025-09-13 12:06:35,531 - INFO - Successfully loaded 18 rows into prescription
+2025-09-13 12:06:35,531 - INFO - Progress: 7/11 tables completed
+2025-09-13 12:06:35,531 - INFO - Loading table: posologie
+2025-09-13 12:06:35,534 - INFO - Detected encoding for posologie.csv: ascii (confidence: 1.00)
+2025-09-13 12:06:35,534 - INFO - Using preferred encoding: utf-8
+2025-09-13 12:06:35,535 - INFO - Read 18 rows from posologie.csv with encoding utf-8
+2025-09-13 12:06:35,535 - INFO - Column validation passed for posologie
+2025-09-13 12:06:35,537 - INFO - Successfully loaded 18 rows into posologie
+2025-09-13 12:06:35,537 - INFO - Progress: 8/11 tables completed
+2025-09-13 12:06:35,537 - INFO - Loading table: administration
+2025-09-13 12:06:35,540 - INFO - Detected encoding for administration.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,542 - INFO - Read 18 rows from administration.csv with encoding utf-8
+2025-09-13 12:06:35,542 - INFO - Column validation passed for administration
+2025-09-13 12:06:35,545 - INFO - Successfully loaded 18 rows into administration
+2025-09-13 12:06:35,545 - INFO - Progress: 9/11 tables completed
+2025-09-13 12:06:35,545 - INFO - Loading table: dossier_soins
+2025-09-13 12:06:35,548 - INFO - Detected encoding for dossier_soins.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,549 - INFO - Read 24 rows from dossier_soins.csv with encoding utf-8
+2025-09-13 12:06:35,549 - INFO - Column validation passed for dossier_soins
+2025-09-13 12:06:35,552 - INFO - Successfully loaded 24 rows into dossier_soins
+2025-09-13 12:06:35,552 - INFO - Progress: 10/11 tables completed
+2025-09-13 12:06:35,552 - INFO - Loading table: style_vie
+2025-09-13 12:06:35,554 - INFO - Detected encoding for style_vie.csv: utf-8 (confidence: 0.99)
+2025-09-13 12:06:35,556 - INFO - Read 10 rows from style_vie.csv with encoding utf-8
+2025-09-13 12:06:35,556 - INFO - Column validation passed for style_vie
+2025-09-13 12:06:35,559 - INFO - Successfully loaded 10 rows into style_vie
+2025-09-13 12:06:35,559 - INFO - Progress: 11/11 tables completed
+2025-09-13 12:06:35,563 - INFO - ✅ Successfully loaded 172 total rows across 11 tables
+2025-09-13 12:06:35,563 - INFO - Validating data integrity...
+2025-09-13 12:06:35,566 - INFO -   patient: 10 rows
+2025-09-13 12:06:35,568 - INFO -   patient_adresse: 10 rows
+2025-09-13 12:06:35,570 - INFO -   donnees_pmsi: 10 rows
+2025-09-13 12:06:35,572 - INFO -   diagnostics: 18 rows
+2025-09-13 12:06:35,575 - INFO -   actes: 12 rows
+2025-09-13 12:06:35,578 - INFO -   biologie: 24 rows
+2025-09-13 12:06:35,580 - INFO -   prescription: 18 rows
+2025-09-13 12:06:35,582 - INFO -   posologie: 18 rows
+2025-09-13 12:06:35,584 - INFO -   administration: 18 rows
+2025-09-13 12:06:35,622 - INFO -   dossier_soins: 24 rows
+2025-09-13 12:06:35,725 - INFO -   style_vie: 10 rows
+2025-09-13 12:06:35,732 - INFO - Checking foreign key integrity...
+2025-09-13 12:06:35,758 - INFO - Foreign key integrity check completed
+2025-09-13 12:06:35,767 - INFO - ==================================================
+2025-09-13 12:06:35,795 - INFO - LOADING SUMMARY
+2025-09-13 12:06:35,827 - INFO - ==================================================
+2025-09-13 12:06:35,839 - INFO - ✅ patient: loaded 10, in DB 10
+2025-09-13 12:06:35,866 - INFO - ✅ patient_adresse: loaded 10, in DB 10
+2025-09-13 12:06:35,899 - INFO - ✅ donnees_pmsi: loaded 10, in DB 10
+2025-09-13 12:06:35,906 - INFO - ✅ diagnostics: loaded 18, in DB 18
+2025-09-13 12:06:35,936 - INFO - ✅ actes: loaded 12, in DB 12
+2025-09-13 12:06:35,954 - INFO - ✅ biologie: loaded 24, in DB 24
+2025-09-13 12:06:35,981 - INFO - ✅ prescription: loaded 18, in DB 18
+2025-09-13 12:06:36,007 - INFO - ✅ posologie: loaded 18, in DB 18
+2025-09-13 12:06:36,018 - INFO - ✅ administration: loaded 18, in DB 18
+2025-09-13 12:06:36,047 - INFO - ✅ dossier_soins: loaded 24, in DB 24
+2025-09-13 12:06:36,057 - INFO - ✅ style_vie: loaded 10, in DB 10
+2025-09-13 12:06:36,084 - INFO - --------------------------------------------------
+2025-09-13 12:06:36,118 - INFO - Total rows loaded: 172
+2025-09-13 12:06:36,124 - INFO - Total rows in database: 172
+2025-09-13 12:06:36,153 - INFO - ✅ Data loading completed successfully!
+2025-09-13 12:06:36,188 - INFO - Database connection closed

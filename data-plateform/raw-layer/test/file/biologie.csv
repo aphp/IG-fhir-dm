@@ -1,0 +1,25 @@
+biologie_id,patient_id,code_loinc,libelle_test,type_examen,valeur,unite,valeur_texte,date_prelevement,statut_validation,borne_inf_normale,borne_sup_normale,laboratoire,created_at,updated_at
+1,1,2160-0,Créatinine sérique,fonction_renale,85.0,umol/L,,2024-01-10 08:00:00+01,valide,62.0,106.0,Laboratoire Central AP-HP,2024-01-15 11:25:00+01,2024-01-15 11:25:00+01
+2,1,33914-3,DFG estimé,fonction_renale,78.0,mL/min/1.73m2,,2024-01-10 08:00:00+01,valide,60.0,120.0,Laboratoire Central AP-HP,2024-01-15 11:26:00+01,2024-01-15 11:26:00+01
+3,1,1742-6,Alanine aminotransférase,bilan_hepatique,45.0,U/L,,2024-01-10 08:00:00+01,valide,10.0,50.0,Laboratoire Central AP-HP,2024-01-15 11:27:00+01,2024-01-15 11:27:00+01
+4,1,718-7,Hémoglobine,hemogramme,14.2,g/dL,,2024-01-10 08:00:00+01,valide,12.0,16.0,Laboratoire Central AP-HP,2024-01-15 11:28:00+01,2024-01-15 11:28:00+01
+5,2,2160-0,Créatinine sérique,fonction_renale,98.0,umol/L,,2024-01-08 07:30:00+01,valide,62.0,106.0,Laboratoire Pitié-Salpêtrière,2024-01-15 11:29:00+01,2024-01-15 11:29:00+01
+6,2,1742-6,Alanine aminotransférase,bilan_hepatique,38.0,U/L,,2024-01-08 07:30:00+01,valide,10.0,50.0,Laboratoire Pitié-Salpêtrière,2024-01-15 11:30:00+01,2024-01-15 11:30:00+01
+7,2,1975-2,Bilirubine totale,bilan_hepatique,15.0,umol/L,,2024-01-08 07:30:00+01,valide,5.0,21.0,Laboratoire Pitié-Salpêtrière,2024-01-15 11:31:00+01,2024-01-15 11:31:00+01
+8,3,718-7,Hémoglobine,hemogramme,11.8,g/dL,,2024-01-15 06:00:00+01,valide,12.0,16.0,Laboratoire Cochin,2024-01-15 11:32:00+01,2024-01-15 11:32:00+01
+9,3,777-3,Plaquettes,hemogramme,285.0,10e9/L,,2024-01-15 06:00:00+01,valide,150.0,450.0,Laboratoire Cochin,2024-01-15 11:33:00+01,2024-01-15 11:33:00+01
+10,4,6598-7,Troponine I cardiaque,autres,125.5,ng/L,Positif,2023-11-05 21:00:00+01,valide,0.0,34.2,Laboratoire Bichat,2024-01-15 11:34:00+01,2024-01-15 11:34:00+01
+11,4,2160-0,Créatinine sérique,fonction_renale,156.0,umol/L,,2023-11-05 21:00:00+01,valide,62.0,106.0,Laboratoire Bichat,2024-01-15 11:35:00+01,2024-01-15 11:35:00+01
+12,5,6690-2,Globules blancs,hemogramme,12.8,10e9/L,,2024-01-12 09:00:00+01,valide,4.0,11.0,Laboratoire Robert-Debré,2024-01-15 11:36:00+01,2024-01-15 11:36:00+01
+13,5,731-0,Neutrophiles,hemogramme,8.9,10e9/L,,2024-01-12 09:00:00+01,valide,1.8,7.7,Laboratoire Robert-Debré,2024-01-15 11:37:00+01,2024-01-15 11:37:00+01
+14,6,1742-6,Alanine aminotransférase,bilan_hepatique,42.0,U/L,,2024-01-05 07:45:00+01,valide,10.0,50.0,Laboratoire HEGP,2024-01-15 11:38:00+01,2024-01-15 11:38:00+01
+15,6,2160-0,Créatinine sérique,fonction_renale,89.0,umol/L,,2024-01-05 07:45:00+01,valide,62.0,106.0,Laboratoire HEGP,2024-01-15 11:39:00+01,2024-01-15 11:39:00+01
+16,7,718-7,Hémoglobine,hemogramme,13.5,g/dL,,2024-01-14 08:15:00+01,valide,12.0,16.0,Laboratoire Tenon,2024-01-15 11:40:00+01,2024-01-15 11:40:00+01
+17,8,718-7,Hémoglobine,hemogramme,12.1,g/dL,,2024-01-11 07:00:00+01,valide,12.0,16.0,Laboratoire Henri-Mondor,2024-01-15 11:41:00+01,2024-01-15 11:41:00+01
+18,8,2160-0,Créatinine sérique,fonction_renale,76.0,umol/L,,2024-01-11 07:00:00+01,valide,62.0,106.0,Laboratoire Henri-Mondor,2024-01-15 11:42:00+01,2024-01-15 11:42:00+01
+19,9,1742-6,Alanine aminotransférase,bilan_hepatique,156.0,U/L,,2024-01-13 08:30:00+01,valide,10.0,50.0,Laboratoire Beaujon,2024-01-15 11:43:00+01,2024-01-15 11:43:00+01
+20,9,1975-2,Bilirubine totale,bilan_hepatique,85.0,umol/L,,2024-01-13 08:30:00+01,valide,5.0,21.0,Laboratoire Beaujon,2024-01-15 11:44:00+01,2024-01-15 11:44:00+01
+21,9,6768-6,Albumine sérique,bilan_hepatique,28.0,g/L,,2024-01-13 08:30:00+01,valide,35.0,50.0,Laboratoire Beaujon,2024-01-15 11:45:00+01,2024-01-15 11:45:00+01
+22,10,718-7,Hémoglobine,hemogramme,11.2,g/dL,,2024-01-16 07:30:00+01,valide,12.0,16.0,Laboratoire Avicenne,2024-01-15 11:46:00+01,2024-01-15 11:46:00+01
+23,10,6690-2,Globules blancs,hemogramme,14.5,10e9/L,,2024-01-16 07:30:00+01,valide,4.0,11.0,Laboratoire Avicenne,2024-01-15 11:47:00+01,2024-01-15 11:47:00+01
+24,10,33747-0,Protéine C-réactive,autres,58.0,mg/L,,2024-01-16 07:30:00+01,valide,0.0,3.0,Laboratoire Avicenne,2024-01-15 11:48:00+01,2024-01-15 11:48:00+01

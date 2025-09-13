@@ -1,0 +1,13 @@
+acte_id,patient_id,pmsi_id,code_acte,libelle_acte,date_acte,executant,date_recueil,created_at,updated_at
+1,1,1,DKQP002,Coronarographie droite et gauche,2024-01-10 14:30:00,Dr. Cardiologue,2024-01-10,2024-01-15 11:10:00+01,2024-01-15 11:10:00+01
+2,1,1,DZQK001,Angioplastie coronaire avec pose de stent,2024-01-10 15:45:00,Dr. Cardiologue,2024-01-10,2024-01-15 11:11:00+01,2024-01-15 11:11:00+01
+3,2,2,HHQE020,Fibroscopie oesogastroduodénale diagnostique,2024-01-08 10:15:00,Dr. Gastroentérologue,2024-01-08,2024-01-15 11:12:00+01,2024-01-15 11:12:00+01
+4,3,3,JQGA009,Accouchement par voie basse,2024-01-15 08:30:00,Sage-femme,2024-01-15,2024-01-15 11:13:00+01,2024-01-15 11:13:00+01
+5,4,4,GKBP003,Intubation orotrachéale,2023-11-05 22:15:00,Dr. Réanimateur,2023-11-05,2024-01-15 11:14:00+01,2024-01-15 11:14:00+01
+6,4,4,DKQP002,Coronarographie droite et gauche,2023-11-06 09:00:00,Dr. Cardiologue,2023-11-06,2024-01-15 11:15:00+01,2024-01-15 11:15:00+01
+7,5,5,YYYY730,Consultation,2024-01-12 14:00:00,Dr. Pédiatre,2024-01-12,2024-01-15 11:16:00+01,2024-01-15 11:16:00+01
+8,6,6,DKQP002,Coronarographie droite et gauche,2024-01-05 11:30:00,Dr. Cardiologue,2024-01-05,2024-01-15 11:17:00+01,2024-01-15 11:17:00+01
+9,7,7,ACQK001,Scanner cérébral sans injection,2024-01-14 16:45:00,Manipulateur radio,2024-01-14,2024-01-15 11:18:00+01,2024-01-15 11:18:00+01
+10,8,8,NEKA002,Ostéosynthèse du col du fémur,2024-01-11 09:30:00,Dr. Orthopédiste,2024-01-11,2024-01-15 11:19:00+01,2024-01-15 11:19:00+01
+11,9,9,HHQE020,Fibroscopie oesogastroduodénale diagnostique,2024-01-13 13:15:00,Dr. Hépatologue,2024-01-13,2024-01-15 11:20:00+01,2024-01-15 11:20:00+01
+12,10,10,GLQP004,Bronchoscopie souple diagnostique,2024-01-16 10:45:00,Dr. Pneumologue,2024-01-16,2024-01-15 11:21:00+01,2024-01-15 11:21:00+01

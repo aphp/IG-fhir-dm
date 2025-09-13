@@ -1,0 +1,11 @@
+pmsi_id,patient_id,mode_sortie,age_admission,date_debut_sejour,date_fin_sejour,mode_entree,etablissement,service,unite_fonctionnelle,created_at,updated_at
+1,1,Sortie normale,38,2024-01-10,2024-01-12,Entrée directe,AP-HP Hôpital Saint-Louis,Cardiologie,USC Cardiologie,2024-01-15 10:40:00+01,2024-01-15 10:40:00+01
+2,2,Sortie normale,53,2024-01-08,2024-01-10,Transfert,AP-HP Hôpital Pitié-Salpêtrière,Gastroentérologie,Endoscopie,2024-01-15 10:41:00+01,2024-01-15 10:41:00+01
+3,3,Sortie normale,29,2024-01-15,2024-01-18,Entrée directe,AP-HP Hôpital Cochin,Gynécologie-Obstétrique,Maternité,2024-01-15 10:42:00+01,2024-01-15 10:42:00+01
+4,4,Décès,47,2023-11-05,2023-11-10,Entrée SAMU,AP-HP Hôpital Bichat,Réanimation,REA Polyvalente,2024-01-15 10:43:00+01,2024-01-15 10:43:00+01
+5,5,Sortie normale,20,2024-01-12,2024-01-13,Entrée directe,AP-HP Hôpital Robert-Debré,Médecine Interne,Service Adolescents,2024-01-15 10:44:00+01,2024-01-15 10:44:00+01
+6,6,Sortie normale,58,2024-01-05,2024-01-08,Entrée directe,AP-HP Hôpital Européen Georges-Pompidou,Cardiologie,Coronarographie,2024-01-15 10:45:00+01,2024-01-15 10:45:00+01
+7,7,Sortie normale,38,2024-01-14,2024-01-16,Entrée directe,AP-HP Hôpital Tenon,Neurologie,UNV,2024-01-15 10:46:00+01,2024-01-15 10:46:00+01
+8,8,Sortie normale,31,2024-01-11,2024-01-14,Entrée directe,AP-HP Hôpital Henri-Mondor,Traumatologie,Chirurgie Orthopédique,2024-01-15 10:47:00+01,2024-01-15 10:47:00+01
+9,9,Sortie normale,45,2024-01-13,2024-01-15,Entrée directe,AP-HP Hôpital Beaujon,Hépatologie,Hépatologie B,2024-01-15 10:48:00+01,2024-01-15 10:48:00+01
+10,10,Sortie normale,34,2024-01-16,2024-01-19,Entrée directe,AP-HP Hôpital Avicenne,Pneumologie,Pneumologie A,2024-01-15 10:49:00+01,2024-01-15 10:49:00+01

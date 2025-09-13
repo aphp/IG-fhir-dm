@@ -1,0 +1,206 @@
+# -*- coding: utf-8 -*-
+# Docker Compose pour base de données PostgreSQL EHR avec support français optimisé
+# Version: 1.0
+# Auteur: Système EHR-FHIR
+# Description: Infrastructure PostgreSQL conteneurisée pour données de santé avec support complet français
+
+# Réseau personnalisé pour isolation et sécurité
+networks:
+  ehr_network:
+    driver: bridge
+    name: ehr_network
+    labels:
+      description: "Réseau isolé pour l'infrastructure EHR PostgreSQL"
+
+# Volumes persistants pour données PostgreSQL
+volumes:
+  postgres_data:
+    driver: local
+    name: ehr_postgres_data
+    labels:
+      description: "Volume persistant pour données PostgreSQL EHR"
+  postgres_logs:
+    driver: local
+    name: ehr_postgres_logs
+    labels:
+      description: "Volume pour logs PostgreSQL EHR"
+
+services:
+  # Service PostgreSQL 16 avec support français complet
+  postgres_ehr:
+    image: postgres:16
+    container_name: ehr_postgres_db
+    hostname: ehr-postgres
+    
+    # Configuration des variables d'environnement depuis .env
+    env_file:
+      - .env
+    environment:
+      # Configuration PostgreSQL de base
+      - POSTGRES_DB=${POSTGRES_DB:-ehr}
+      - POSTGRES_USER=${POSTGRES_USER:-ehr_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-ehr_user_123}
+      
+      # Configuration locale UTF-8 (compatible avec tous les conteneurs)
+      - LANG=C.UTF-8
+      - LANGUAGE=C.UTF-8
+      - LC_ALL=C.UTF-8
+      - LC_COLLATE=C.UTF-8
+      - LC_CTYPE=C.UTF-8
+      - LC_MESSAGES=C.UTF-8
+      - LC_MONETARY=C.UTF-8
+      - LC_NUMERIC=C.UTF-8
+      - LC_TIME=C.UTF-8
+      
+      # Configuration PostgreSQL spécifique avec UTF-8
+      - POSTGRES_INITDB_ARGS=--locale=C.UTF-8 --encoding=UTF8 --lc-collate=C.UTF-8 --lc-ctype=C.UTF-8
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      
+      # Optimisations PostgreSQL pour environnement français
+      - POSTGRES_HOST_AUTH_METHOD=md5
+    
+    # Mapping des ports - 5433 sur l'hôte pour éviter les conflits
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    
+    # Volumes pour persistance et configuration
+    volumes:
+      # Données PostgreSQL persistantes
+      - postgres_data:/var/lib/postgresql/data
+      
+      # Scripts d'initialisation (exécutés dans l'ordre alphabétique)
+      - ./init:/docker-entrypoint-initdb.d:ro
+      
+      # Logs PostgreSQL - utilisation des logs standards Docker
+      # - postgres_logs:/var/lib/postgresql/logs
+      
+      # Configuration PostgreSQL personnalisée
+      #- ./config/postgresql.conf:/usr/share/postgresql/postgresql.conf.sample:ro
+    
+    # Commande personnalisée avec optimisations françaises
+    command: >
+      postgres
+      -c shared_preload_libraries='pg_stat_statements'
+      -c max_connections=200
+      -c shared_buffers=256MB
+      -c effective_cache_size=1GB
+      -c work_mem=4MB
+      -c maintenance_work_mem=64MB
+      -c random_page_cost=1.1
+      -c effective_io_concurrency=200
+      -c checkpoint_completion_target=0.9
+      -c wal_buffers=16MB
+      -c default_statistics_target=100
+      -c log_statement=mod
+      -c log_duration=on
+      -c log_min_duration_statement=1000
+      -c logging_collector=off
+      -c lc_messages='C.UTF-8'
+      -c lc_monetary='C.UTF-8'
+      -c lc_numeric='C.UTF-8'
+      -c lc_time='C.UTF-8'
+      -c default_text_search_config='french'
+    
+    # Vérification de santé PostgreSQL
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ehr_user} -d ${POSTGRES_DB:-ehr} -h localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    
+    # Politique de redémarrage
+    restart: unless-stopped
+    
+    # Limites de ressources (ajustables selon l'environnement)
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    
+    # Réseau
+    networks:
+      - ehr_network
+    
+    # Labels pour documentation et gestion
+    labels:
+      - "traefik.enable=false"
+      - "description=Base de données PostgreSQL pour système EHR-FHIR"
+      - "environment=development"
+      - "version=1.0"
+      - "maintainer=EHR Team"
+      - "locale=fr_FR.UTF-8"
+      - "encoding=UTF-8"
+      - "collation=french"
+    
+    # Configuration de sécurité
+    security_opt:
+      - no-new-privileges:true
+    
+    # CORRECTION: Suppression de user: postgres:postgres pour éviter les problèmes de permissions
+    # Le conteneur utilisera l'utilisateur par défaut avec les bonnes permissions
+    
+    # Variables d'environnement supplémentaires pour optimisation française
+    tmpfs:
+      - /tmp:size=1G,mode=1777
+      - /var/run/postgresql:size=100M,mode=0755
+
+  # Service optionnel: pgAdmin pour administration web
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: ehr_pgadmin
+    hostname: ehr-pgadmin
+    
+    # Configuration pgAdmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:-admin@ehr.local}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:-admin123}
+      - PGADMIN_CONFIG_SERVER_MODE=False
+      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
+    
+    # Port pgAdmin
+    ports:
+      - "${PGADMIN_PORT:-8080}:80"
+    
+    # Volumes pour configuration pgAdmin
+    #volumes:
+    #  - ./config/servers.json:/pgadmin4/servers.json:ro
+    #  - ./config/pgpass:/pgpass:ro
+    
+    # Dépendance PostgreSQL
+    depends_on:
+      postgres_ehr:
+        condition: service_healthy
+    
+    # Réseau
+    networks:
+      - ehr_network
+    
+    # Politique de redémarrage
+    restart: unless-stopped
+    
+    # Labels
+    labels:
+      - "description=Interface d'administration pgAdmin pour PostgreSQL EHR"
+      - "environment=development"
+      - "version=latest"
+    
+    # Profil pour activation optionnelle
+    profiles:
+      - admin
+      - full
+
+# Configuration par défaut
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+# Ajout de la configuration de logging à tous les services
+x-default-opts: &default-opts
+  logging: *default-logging
