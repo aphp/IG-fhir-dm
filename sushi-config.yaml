@@ -44,17 +44,17 @@ pages:
           title: Standardisation des connaissances
       use-core-variables-evaluation.md:
         title: Evaluation
-  data-plateform.md:
+  data-platform.md:
     title: La Health Data Platform (démo)
-    data-plateform-raw-layer.md:
+    data-platform-raw-layer.md:
       title: Raw layer
-    data-plateform-transform-layer.md:
+    data-platform-transform-layer.md:
       title: Transform layer
-    data-plateform-semantic-layer.md:
+    data-platform-semantic-layer.md:
       title: Semantic layer
-    data-plateform-share-layer.md:
+    data-platform-share-layer.md:
       title: Share layer
-    data-plateform-enrichment-layer.md:
+    data-platform-enrichment-layer.md:
       title: ENrichment layer
   other.md:
     title: Autre
@@ -71,7 +71,7 @@ menu:
   Accueil: index.html
   Gestion des données: data-management.html
   Variables du socle: use-core-variables.html
-  La Health Data Platform: data-plateform.html
+  La Health Data Platform: data-platform.html
   Ressources de conformité: artifacts.html
   Autres:
     Aide: help.html
