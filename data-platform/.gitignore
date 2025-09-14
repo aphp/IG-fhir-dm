@@ -1,2 +1,10 @@
-**/__pycache__/**
+**/__pycache__/
 **/.env
+**/*.log
+**/venv/
+**/logs/
+**/.pytest_cache/
+**/output/
+**/dbt_utils/
+**/target/
+**/dbt_packages/
