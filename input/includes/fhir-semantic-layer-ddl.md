@@ -25,7 +25,7 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 ### Schéma entité/relation
 
 <!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
-<div class="viewer-container" style="height: 2016px;">
+<div class="viewer-container" style="height: 1783px;">
   <div class="svg-container" id="physical-model">
     {% include fsl-datamodel.svg %}
   </div>
