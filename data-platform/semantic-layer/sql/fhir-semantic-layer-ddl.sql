@@ -1,5 +1,5 @@
 -- ========================================================================
--- PostgreSQL 17.x DDL Script for FHIR Semantic Layer (FSL) Database
+-- PostgreSQL DDL Script for FHIR Semantic Layer (FSL) Database
 -- Generated from: input/fsh/semantic-layer/profiles/*.fsh
 -- 
 -- This script creates database tables based on FHIR resources used by 
@@ -8,8 +8,7 @@
 -- 
 -- Key FHIR Resources:
 -- - Patient, Encounter, Condition, Procedure, Observation
--- - MedicationRequest, MedicationAdministration, Organization
--- - Location, Practitioner, PractitionerRole, EpisodeOfCare, Claim
+-- - MedicationRequest, MedicationAdministration
 -- ========================================================================
 
 -- ========================================================================
@@ -49,7 +48,6 @@
 -- ========================================================================
 
 -- Drop tables in reverse dependency order
---DROP TABLE IF EXISTS fhir_claim CASCADE;
 DROP TABLE IF EXISTS fhir_medication_administration CASCADE;
 DROP TABLE IF EXISTS fhir_medication_request CASCADE;
 DROP TABLE IF EXISTS fhir_observation_component CASCADE;
@@ -57,11 +55,6 @@ DROP TABLE IF EXISTS fhir_observation CASCADE;
 DROP TABLE IF EXISTS fhir_procedure CASCADE;
 DROP TABLE IF EXISTS fhir_condition CASCADE;
 DROP TABLE IF EXISTS fhir_encounter CASCADE;
---DROP TABLE IF EXISTS fhir_episode_of_care CASCADE;
---DROP TABLE IF EXISTS fhir_practitioner_role CASCADE;
---DROP TABLE IF EXISTS fhir_practitioner CASCADE;
---DROP TABLE IF EXISTS fhir_location CASCADE;
---DROP TABLE IF EXISTS fhir_organization CASCADE;
 DROP TABLE IF EXISTS fhir_patient CASCADE;
 
 -- ========================================================================
@@ -141,255 +134,6 @@ CREATE TABLE fhir_patient (
 
     -- Note: photo field not implemented (FHIR photo 0..* - Attachment type for patient image)
 );
-/*
--- de ma compréhension, on n'a de lien que textuel vers les organization en l'état actuel. 
--- Table: fhir_organization (DMOrganization profile)
-CREATE TABLE fhir_organization (
-    id VARCHAR(64) PRIMARY KEY,
-    version_id VARCHAR(64),
-    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    -- FHIR Organization core elements
-    active BOOLEAN DEFAULT TRUE,
-    types JSONB, -- Array of CodeableConcept
-    name VARCHAR(255),
-    aliases JSONB, -- Array of strings
-    
-    -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
-    finess_identifier VARCHAR(20), -- FINESS identifier for French healthcare facilities
-    siret_identifier VARCHAR(14), -- SIRET identifier
-    
-    -- Contact information
-    telecoms JSONB, -- Array of ContactPoint objects
-    addresses JSONB, -- Array of Address objects
-    
-    -- Hierarchy
-    part_of_organization_id VARCHAR(64),
-    
-    -- Contact persons
-    contacts JSONB, -- Array of Organization.contact objects
-    
-    -- Endpoints
-    endpoints JSONB, -- Array of Reference(Endpoint)
-    
-    -- FHIR metadata
-    meta JSONB,
-    text_div TEXT,
-    extensions JSONB,
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (part_of_organization_id) REFERENCES fhir_organization(id)
-);
-*/
-/*
--- de ma compréhension, on n'a pas de location, on n'a que des organization 
--- Table: fhir_location (DMLocation profile)
-CREATE TABLE fhir_location (
-    id VARCHAR(64) PRIMARY KEY,
-    version_id VARCHAR(64),
-    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    -- FHIR Location core elements
-    status VARCHAR(20) CHECK (status IN ('active', 'suspended', 'inactive')),
-    operational_status JSONB, -- Coding
-    name VARCHAR(255),
-    aliases JSONB, -- Array of strings
-    description TEXT,
-    mode VARCHAR(20) CHECK (mode IN ('instance', 'kind')),
-    types JSONB, -- Array of CodeableConcept
-    
-    -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
-    
-    -- Contact and address
-    telecoms JSONB, -- Array of ContactPoint objects
-    address JSONB, -- Address object
-    physical_type JSONB, -- CodeableConcept
-    
-    -- Geographic position
-    latitude DECIMAL(10,7),
-    longitude DECIMAL(10,7),
-    altitude DECIMAL(10,3),
-    
-    -- Hierarchy
-    managing_organization_id VARCHAR(64),
-    part_of_location_id VARCHAR(64),
-    
-    -- Operational details
-    hours_of_operation JSONB, -- Array of Location.hoursOfOperation
-    availability_exceptions TEXT,
-    endpoints JSONB, -- Array of Reference(Endpoint)
-    
-    -- FHIR metadata
-    meta JSONB,
-    text_div TEXT,
-    extensions JSONB,
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (managing_organization_id) REFERENCES fhir_organization(id),
-    FOREIGN KEY (part_of_location_id) REFERENCES fhir_location(id)
-);
-*/
-/*
--- de ma compréhension, on n'a de lien que textuel vers des practitionner en l'état actuel. 
--- Table: fhir_practitioner (DMPractitioner profile)
-CREATE TABLE fhir_practitioner (
-    id VARCHAR(64) PRIMARY KEY,
-    version_id VARCHAR(64),
-    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    -- FHIR Practitioner core elements
-    active BOOLEAN DEFAULT TRUE,
-    
-    -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
-    rpps_identifier VARCHAR(20), -- RPPS identifier for French healthcare professionals
-    adeli_identifier VARCHAR(20), -- ADELI identifier
-    
-    -- Names
-    names JSONB, -- Array of HumanName objects
-    family_name VARCHAR(255),
-    given_names VARCHAR(255),
-    
-    -- Contact information
-    telecoms JSONB, -- Array of ContactPoint objects
-    addresses JSONB, -- Array of Address objects
-    
-    -- Demographics
-    gender VARCHAR(10) CHECK (gender IN ('male', 'female', 'other', 'unknown')),
-    birth_date DATE,
-    
-    -- Professional information
-    qualifications JSONB, -- Array of Practitioner.qualification
-    communications JSONB, -- Array of CodeableConcept (languages)
-    
-    -- Photo
-    photos JSONB, -- Array of Attachment
-    
-    -- FHIR metadata
-    meta JSONB,
-    text_div TEXT,
-    extensions JSONB,
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
-*/
-/*
--- de ma compréhension, on n'a pas de practitionerRole en l'état. 
--- Table: fhir_practitioner_role (DMPractitionerRole profile)
-CREATE TABLE fhir_practitioner_role (
-    id VARCHAR(64) PRIMARY KEY,
-    version_id VARCHAR(64),
-    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    -- FHIR PractitionerRole core elements
-    active BOOLEAN DEFAULT TRUE,
-    
-    -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
-    
-    -- References
-    practitioner_id VARCHAR(64),
-    organization_id VARCHAR(64),
-    locations JSONB, -- Array of Reference(Location)
-    healthcare_services JSONB, -- Array of Reference(HealthcareService)
-    
-    -- Professional details
-    codes JSONB, -- Array of CodeableConcept (roles)
-    specialties JSONB, -- Array of CodeableConcept
-    
-    -- Period of validity
-    period_start DATE,
-    period_end DATE,
-    
-    -- Contact information
-    telecoms JSONB, -- Array of ContactPoint objects
-    
-    -- Availability
-    available_times JSONB, -- Array of PractitionerRole.availableTime
-    not_available JSONB, -- Array of PractitionerRole.notAvailable
-    availability_exceptions TEXT,
-    
-    -- Endpoints
-    endpoints JSONB, -- Array of Reference(Endpoint)
-    
-    -- FHIR metadata
-    meta JSONB,
-    text_div TEXT,
-    extensions JSONB,
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (practitioner_id) REFERENCES fhir_practitioner(id),
-    FOREIGN KEY (organization_id) REFERENCES fhir_organization(id)
-);
-*/
-/*
--- de ma compréhension, on n'a pas d'épisodeOfCare 
--- Table: fhir_episode_of_care (DMEpisodeOfCare profile)
-CREATE TABLE fhir_episode_of_care (
-    id VARCHAR(64) PRIMARY KEY,
-    version_id VARCHAR(64),
-    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    -- FHIR EpisodeOfCare core elements
-    status VARCHAR(20) CHECK (status IN ('planned', 'waitlist', 'active', 'onhold', 'finished', 'cancelled', 'entered-in-error')),
-    status_history JSONB, -- Array of EpisodeOfCare.statusHistory
-    types JSONB, -- Array of CodeableConcept
-    
-    -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
-    
-    -- Patient reference
-    patient_id VARCHAR(64) NOT NULL,
-    
-    -- Managing organization
-    managing_organization_id VARCHAR(64),
-    
-    -- Period
-    period_start DATE,
-    period_end DATE,
-    
-    -- Diagnosis
-    diagnoses JSONB, -- Array of EpisodeOfCare.diagnosis
-    
-    -- Referral request
-    referral_requests JSONB, -- Array of Reference(ServiceRequest)
-    
-    -- Care manager
-    care_manager_id VARCHAR(64), -- Reference(Practitioner|PractitionerRole|Organization)
-    
-    -- Team
-    teams JSONB, -- Array of Reference(CareTeam)
-    
-    -- Accounts
-    accounts JSONB, -- Array of Reference(Account)
-    
-    -- FHIR metadata
-    meta JSONB,
-    text_div TEXT,
-    extensions JSONB,
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (patient_id) REFERENCES fhir_patient(id),
-    FOREIGN KEY (managing_organization_id) REFERENCES fhir_organization(id),
-    FOREIGN KEY (care_manager_id) REFERENCES fhir_practitioner(id)
-);
-*/
 
 -- Table: fhir_encounter (DMEncounter profile)  
 -- Healthcare encounters adapted for Data Management
@@ -477,9 +221,6 @@ CREATE TABLE fhir_encounter (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
     FOREIGN KEY (subject_patient_id) REFERENCES fhir_patient(id)
---    FOREIGN KEY (origin_location_id) REFERENCES fhir_location(id),
---    FOREIGN KEY (service_provider_id) REFERENCES fhir_organization(id),
---    FOREIGN KEY (part_of_encounter_id) REFERENCES fhir_encounter(id)
 );
 
 -- Table: fhir_condition (DMCondition profile)
@@ -546,8 +287,6 @@ CREATE TABLE fhir_condition (
     
     FOREIGN KEY (subject_patient_id) REFERENCES fhir_patient(id),
     FOREIGN KEY (encounter_id) REFERENCES fhir_encounter(id)
---    FOREIGN KEY (recorder_id) REFERENCES fhir_practitioner(id),
---    FOREIGN KEY (asserter_id) REFERENCES fhir_practitioner(id)
 );
 
 -- Table: fhir_procedure (DMProcedure profile)
@@ -641,9 +380,6 @@ CREATE TABLE fhir_procedure (
     
     FOREIGN KEY (subject_patient_id) REFERENCES fhir_patient(id),
     FOREIGN KEY (encounter_id) REFERENCES fhir_encounter(id)
---    FOREIGN KEY (recorder_id) REFERENCES fhir_practitioner(id),
---    FOREIGN KEY (asserter_id) REFERENCES fhir_practitioner(id),
---    FOREIGN KEY (location_id) REFERENCES fhir_location(id)
 );
 
 -- Table: fhir_observation
@@ -756,8 +492,6 @@ CREATE TABLE fhir_observation (
     
     FOREIGN KEY (subject_patient_id) REFERENCES fhir_patient(id),
     FOREIGN KEY (encounter_id) REFERENCES fhir_encounter(id)
---    FOREIGN KEY (specimen_id) REFERENCES fhir_patient(id), -- Simplified; in real FHIR this would be Specimen
---    FOREIGN KEY (device_id) REFERENCES fhir_organization(id) -- Simplified; in real FHIR this would be Device
 );
 
 -- Table: fhir_observation_component
@@ -899,10 +633,6 @@ CREATE TABLE fhir_medication_request (
     
     FOREIGN KEY (subject_patient_id) REFERENCES fhir_patient(id),
     FOREIGN KEY (encounter_id) REFERENCES fhir_encounter(id)
---    FOREIGN KEY (requester_id) REFERENCES fhir_practitioner(id),
---    FOREIGN KEY (performer_id) REFERENCES fhir_practitioner(id),
---    FOREIGN KEY (recorder_id) REFERENCES fhir_practitioner(id),
---    FOREIGN KEY (prior_prescription_id) REFERENCES fhir_medication_request(id)
 );
 
 -- Table: fhir_medication_administration (DMMedicationAdministration profile)
@@ -990,111 +720,11 @@ CREATE TABLE fhir_medication_administration (
     
     FOREIGN KEY (subject_patient_id) REFERENCES fhir_patient(id),
     FOREIGN KEY (context_encounter_id) REFERENCES fhir_encounter(id),
---    FOREIGN KEY (context_episode_id) REFERENCES fhir_episode_of_care(id),
     FOREIGN KEY (request_medication_request_id) REFERENCES fhir_medication_request(id)
 );
-/* pas nécessaire à ce stade
--- Table: fhir_claim
--- Generic claim table for PMSI billing data (DMClaimPMSI, DMClaimPMSIMCO, DMClaimRUM profiles)
-CREATE TABLE fhir_claim (
-    id VARCHAR(64) PRIMARY KEY,
-    version_id VARCHAR(64),
-    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    -- FHIR Claim core elements
-    status VARCHAR(20) CHECK (status IN ('active', 'cancelled', 'draft', 'entered-in-error')),
-    type JSONB, -- CodeableConcept
-    sub_type JSONB, -- CodeableConcept
-    use VARCHAR(20) CHECK (use IN ('claim', 'preauthorization', 'predetermination')),
-    
-    -- Identifiers
-    identifiers JSONB, -- Array of Identifier objects
-    
-    -- Patient reference (required)
-    patient_id VARCHAR(64) NOT NULL,
-    
-    -- Billing period
-    billable_period JSONB, -- Period
-    
-    -- Created
-    created TIMESTAMP WITH TIME ZONE,
-    
-    -- Enterer
-    enterer_id VARCHAR(64), -- Reference(Practitioner|PractitionerRole)
-    
-    -- Insurer
-    insurer_id VARCHAR(64), -- Reference(Organization)
-    
-    -- Provider
-    provider_id VARCHAR(64), -- Reference(Practitioner|PractitionerRole|Organization)
-    
-    -- Priority
-    priority JSONB, -- CodeableConcept
-    
-    -- Funds reserve
-    funds_reserve JSONB, -- CodeableConcept
-    
-    -- Related claims
-    related_claims JSONB, -- Array of Claim.related
-    
-    -- Prescription
-    prescription_id VARCHAR(64), -- Reference(DeviceRequest|MedicationRequest|VisionPrescription)
-    
-    -- Original prescription
-    original_prescription_id VARCHAR(64), -- Reference(DeviceRequest|MedicationRequest|VisionPrescription)
-    
-    -- Payee
-    payee JSONB, -- Claim.payee
-    
-    -- Referral
-    referral_id VARCHAR(64), -- Reference(ServiceRequest)
-    
-    -- Facility
-    facility_id VARCHAR(64), -- Reference(Location)
-    
-    -- Care team
-    care_teams JSONB, -- Array of Claim.careTeam
-    
-    -- Supporting info
-    supporting_infos JSONB, -- Array of Claim.supportingInfo
-    
-    -- Diagnoses
-    diagnoses JSONB, -- Array of Claim.diagnosis
-    
-    -- Procedures
-    procedures JSONB, -- Array of Claim.procedure
-    
-    -- Items
-    items JSONB, -- Array of Claim.item
-    
-    -- Total cost
-    total JSONB, -- Money
-    
-    -- Claim-specific fields for DM profiles
-    claim_profile VARCHAR(20), -- 'pmsi', 'pmsi_mco', 'rum'
-    pmsi_data JSONB, -- PMSI-specific data
-    
-    -- FHIR metadata
-    meta JSONB,
-    text_div TEXT,
-    extensions JSONB,
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (patient_id) REFERENCES fhir_patient(id),
-    FOREIGN KEY (enterer_id) REFERENCES fhir_practitioner(id),
-    FOREIGN KEY (insurer_id) REFERENCES fhir_organization(id),
-    FOREIGN KEY (provider_id) REFERENCES fhir_organization(id),
-    FOREIGN KEY (prescription_id) REFERENCES fhir_medication_request(id),
-    FOREIGN KEY (original_prescription_id) REFERENCES fhir_medication_request(id),
-    FOREIGN KEY (referral_id) REFERENCES fhir_medication_request(id), -- Simplified
-    FOREIGN KEY (facility_id) REFERENCES fhir_location(id)
-);
-*/
+
 -- ========================================================================
--- POSTGRESQL 17.x OPTIMIZED INDEXES FOR PERFORMANCE
+-- POSTGRESQL OPTIMIZED INDEXES FOR PERFORMANCE
 -- Comprehensive indexing strategy for FHIR Semantic Layer
 -- ========================================================================
 
@@ -1107,7 +737,7 @@ CREATE INDEX CONCURRENTLY idx_patient_identifiers ON fhir_patient USING GIN (ide
 CREATE INDEX idx_patient_nss ON fhir_patient(nss_identifier) WHERE nss_identifier IS NOT NULL;
 CREATE INDEX idx_patient_ins_nir ON fhir_patient(ins_nir_identifier) WHERE ins_nir_identifier IS NOT NULL;
 
--- Hash indexes for exact lookups (PostgreSQL 17.x optimization)
+-- Hash indexes for exact lookups (PostgreSQL optimization)
 CREATE INDEX idx_patient_nss_hash ON fhir_patient USING hash(nss_identifier) WHERE nss_identifier IS NOT NULL;
 CREATE INDEX idx_patient_ins_nir_hash ON fhir_patient USING hash(ins_nir_identifier) WHERE ins_nir_identifier IS NOT NULL;
 
@@ -1128,34 +758,6 @@ CREATE INDEX idx_patient_census_tract ON fhir_patient(address_extension_census_t
 -- Composite indexes for common queries
 CREATE INDEX idx_patient_demographics ON fhir_patient(birth_date, gender, active);
 CREATE INDEX idx_patient_location_period ON fhir_patient(address_period_start DESC, address_extension_census_tract) WHERE address_period_start IS NOT NULL;
-
--- Organization indexes
---CREATE INDEX idx_organization_identifiers ON fhir_organization USING GIN (identifiers);
---CREATE INDEX idx_organization_name ON fhir_organization(name);
---CREATE INDEX idx_organization_active ON fhir_organization(active);
---CREATE INDEX idx_organization_part_of ON fhir_organization(part_of_organization_id);
-
--- Location indexes
---CREATE INDEX idx_location_managing_org ON fhir_location(managing_organization_id);
---CREATE INDEX idx_location_part_of ON fhir_location(part_of_location_id);
---CREATE INDEX idx_location_status ON fhir_location(status);
---CREATE INDEX idx_location_coordinates ON fhir_location(latitude, longitude) WHERE latitude IS NOT NULL AND longitude IS NOT NULL;
-
--- Practitioner indexes
---CREATE INDEX idx_practitioner_identifiers ON fhir_practitioner USING GIN (identifiers);
---CREATE INDEX idx_practitioner_family_name ON fhir_practitioner(family_name);
---CREATE INDEX idx_practitioner_active ON fhir_practitioner(active);
-
--- PractitionerRole indexes
---CREATE INDEX idx_practitioner_role_practitioner ON fhir_practitioner_role(practitioner_id);
---CREATE INDEX idx_practitioner_role_organization ON fhir_practitioner_role(organization_id);
---CREATE INDEX idx_practitioner_role_active ON fhir_practitioner_role(active);
-
--- EpisodeOfCare indexes
---CREATE INDEX idx_episode_patient ON fhir_episode_of_care(patient_id);
---CREATE INDEX idx_episode_managing_org ON fhir_episode_of_care(managing_organization_id);
---CREATE INDEX idx_episode_status ON fhir_episode_of_care(status);
---CREATE INDEX idx_episode_period ON fhir_episode_of_care(period_start, period_end);
 
 -- ========================================================================
 -- ENCOUNTER INDEXES (Healthcare Episodes)
@@ -1329,15 +931,6 @@ CREATE INDEX idx_med_admin_route ON fhir_medication_administration(dosage_route_
 -- Composite indexes for administration queries
 CREATE INDEX idx_med_admin_patient_effective ON fhir_medication_administration(subject_patient_id, effective_date_time DESC);
 CREATE INDEX idx_med_admin_encounter_medication ON fhir_medication_administration(context_encounter_id, medication_text) WHERE context_encounter_id IS NOT NULL;
-
--- Claim indexes
---CREATE INDEX idx_claim_patient ON fhir_claim(patient_id);
---CREATE INDEX idx_claim_provider ON fhir_claim(provider_id);
---CREATE INDEX idx_claim_insurer ON fhir_claim(insurer_id);
---CREATE INDEX idx_claim_facility ON fhir_claim(facility_id);
---CREATE INDEX idx_claim_status ON fhir_claim(status);
---CREATE INDEX idx_claim_created ON fhir_claim(created);
---CREATE INDEX idx_claim_profile ON fhir_claim(claim_profile);
 
 -- ========================================================================
 -- ENHANCED FOREIGN KEY CONSTRAINTS AND DATA VALIDATION
@@ -1601,142 +1194,3 @@ COMMENT ON COLUMN fhir_medication_request.dosage_instructions IS 'How medication
 COMMENT ON COLUMN fhir_medication_request.requester IS 'Who/what requested the medication - FHIR requester Reference (0..1)';
 COMMENT ON COLUMN fhir_medication_request.reason_codes IS 'Reason or indication for ordering medication - FHIR reasonCode CodeableConcept (0..*)';
 COMMENT ON COLUMN fhir_medication_request.authored_on IS 'When request was initially authored - FHIR authoredOn dateTime (0..1)';
-
---COMMENT ON TABLE fhir_claim IS 'FHIR Claim resource - Generic table for PMSI billing data (DMClaimPMSI, DMClaimPMSIMCO, DMClaimRUM profiles)';
---COMMENT ON COLUMN fhir_claim.claim_profile IS 'Claim profile type: pmsi, pmsi_mco, rum';
-
--- ========================================================================
--- POSTGRESQL 17.x SPECIFIC OPTIMIZATIONS AND RECOMMENDATIONS
--- ========================================================================
-
--- Set optimal maintenance settings for FHIR data (apply at database level)
--- These settings are recommended for optimal performance:
-
-/*
--- Memory configuration for large FHIR datasets
-SET shared_buffers = '4GB';
-SET work_mem = '256MB';
-SET maintenance_work_mem = '1GB';
-SET effective_cache_size = '12GB'; -- Adjust based on system memory
-
--- PostgreSQL 17.x specific optimizations
-SET random_page_cost = 1.1; -- For SSD storage
-SET seq_page_cost = 1.0;
-SET cpu_tuple_cost = 0.01;
-SET cpu_index_tuple_cost = 0.005;
-SET cpu_operator_cost = 0.0025;
-
--- Parallel query settings for FHIR aggregations
-SET max_parallel_workers_per_gather = 4;
-SET parallel_tuple_cost = 0.1;
-SET parallel_setup_cost = 1000;
-SET max_parallel_maintenance_workers = 4;
-
--- JSONB specific optimizations
-SET gin_fuzzy_search_limit = 0;
-SET gin_pending_list_limit = '32MB';
-
--- WAL configuration for high write workloads
-SET wal_buffers = '64MB';
-SET checkpoint_completion_target = 0.9;
-SET checkpoint_segments = 64;
-
--- Connection and resource limits
-SET max_connections = 200;
-SET shared_preload_libraries = 'pg_stat_statements';
-*/
-
--- ========================================================================
--- PERFORMANCE MONITORING QUERIES FOR FHIR SEMANTIC LAYER
--- ========================================================================
-
--- Monitor JSONB index usage
-/*
-SELECT schemaname, tablename, indexname, idx_scan, idx_tup_read, idx_tup_fetch
-FROM pg_stat_user_indexes
-WHERE tablename LIKE 'fhir_%' AND indexname LIKE '%gin%'
-ORDER BY idx_scan DESC;
-*/
-
--- Monitor table statistics for FHIR resources
-/*
-SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del, n_live_tup, n_dead_tup
-FROM pg_stat_user_tables
-WHERE tablename LIKE 'fhir_%'
-ORDER BY n_live_tup DESC;
-*/
-
--- Monitor slow queries related to FHIR resources
-/*
-SELECT query, mean_time, calls, total_time, rows
-FROM pg_stat_statements
-WHERE query LIKE '%fhir_%'
-ORDER BY mean_time DESC
-LIMIT 10;
-*/
-
--- ========================================================================
--- MAINTENANCE RECOMMENDATIONS
--- ========================================================================
-
--- Regular maintenance tasks for optimal FHIR performance:
-
--- 1. Daily VACUUM ANALYZE for high-write tables
-/*
-VACUUM ANALYZE fhir_patient;
-VACUUM ANALYZE fhir_encounter;
-VACUUM ANALYZE fhir_observation;
-VACUUM ANALYZE fhir_medication_request;
-VACUUM ANALYZE fhir_medication_administration;
-*/
-
--- 2. Weekly REINDEX for GIN indexes on JSONB fields
-/*
-REINDEX INDEX CONCURRENTLY idx_patient_identifiers;
-REINDEX INDEX CONCURRENTLY idx_encounter_class;
-REINDEX INDEX CONCURRENTLY idx_condition_code;
-REINDEX INDEX CONCURRENTLY idx_procedure_code;
-REINDEX INDEX CONCURRENTLY idx_observation_code;
-*/
-
--- 3. Monthly statistics update
-/*
-ANALYZE;
-UPDATE pg_stat_statements SET calls = 0, total_time = 0;
-*/
-
--- 4. Partitioning recommendations for large datasets (> 10M records):
--- Consider partitioning by:
--- - fhir_encounter: by period_start (monthly or quarterly)
--- - fhir_observation: by effective_date_time (monthly)
--- - fhir_medication_administration: by effective_date_time (monthly)
-
--- ========================================================================
--- FHIR SEMANTIC LAYER OPTIMIZATION COMPLETED
--- 
--- This optimized FHIR Semantic Layer database provides:
--- 1. PostgreSQL 17.x specific performance optimizations
--- 2. Comprehensive indexing strategy for FHIR resources and JSONB data
--- 3. Hash indexes for exact identifier lookups
--- 4. Full-text search capabilities for French healthcare data
--- 5. Spatial indexes for geographic patient data
--- 6. Comprehensive data validation and referential integrity
--- 7. French healthcare compliance (INS-NIR, CIM-10, CCAM, ATC)
--- 8. JSONB validation constraints
--- 9. Temporal range indexes for efficient date-based queries
--- 10. Covering indexes with INCLUDE columns for query optimization
--- 11. Proper foreign key cascading and constraint naming
--- 12. Performance monitoring and maintenance recommendations
--- 13. FHIR-specific business logic validation
--- 14. Audit trail capabilities with created_at/updated_at
--- 15. Extensibility for future FHIR profiles and resources
--- 
--- Key PostgreSQL 17.x Features Utilized:
--- - CONCURRENTLY index creation for minimal downtime
--- - GiST indexes for spatial and temporal data
--- - Hash indexes for exact equality lookups
--- - Advanced JSONB indexing and validation
--- - French language full-text search configuration
--- - Temporal range queries with tstzrange
--- - Advanced constraint validation with regex patterns
--- ========================================================================
