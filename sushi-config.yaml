@@ -54,8 +54,6 @@ pages:
       title: Semantic layer
     data-platform-share-layer.md:
       title: Share layer
-    data-platform-enrichment-layer.md:
-      title: ENrichment layer
   other.md:
     title: Autre
     help.md:

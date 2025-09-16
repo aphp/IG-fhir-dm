@@ -21,14 +21,17 @@ Cette première couche accueille les données dans leur état d’origine. Elle 
 >* l'imagerie médicale,
 >* la facturation et données administratives.
 
+
 Elle joue le rôle de socle, garantissant l’exhaustivité et la traçabilité, tout en respectant les normes de sécurité.
 
 ### [Transformation layer](data-platform-transform-layer.html)
 
 Ici s'opère la normalisation et la structuration des flux :
 
+
 >* Change Data Capture pour détecter et synchroniser les évolutions,
 >* ETL / ELT pour transformer et harmoniser les données.
+
 
 Cette couche agit comme un filtre qualitatif, indispensable pour préparer la mise en valeur des informations.
 
@@ -40,22 +43,22 @@ Véritable hub d'intégration, cette couche assure la mise en cohérence des don
 
 Une fois harmonisées, les données sont distribuées selon les besoins :
 
+
 >* exports sécurisés,
 >* livraison aux applications partenaires,
 >* accès contrôlé aux professionnels de santé ou aux institutions.
 
+
 Cette couche renforce la transparence et la confiance, en garantissant une gouvernance fine des usages.
-
-### [Enrichment layer](data-platform-enrichment-layer.html)
-
-Un entrepôt de données de santé respectant les recommandations réglementaires, en particulier celles de la CNIL.
 
 ### Perspectives
 
 Au-delà de ce prototype, la vision stratégique est claire :
 
+
 >* Consolider la confiance en plaçant la gouvernance et la protection des données au premier plan.
 >* Stimuler l'innovation grâce à un socle technique agile, prêt à intégrer l'IA, l'analyse prédictive et la médecine personnalisée.
 >* Fédérer les acteurs autour d’une ambition collective : faire de la donnée de santé un bien commun au service du patient, des soignants et de la recherche.
+
 
 Cette architecture n'est pas seulement technique : elle constitue une boussole stratégique pour guider l'écosystème vers une utilisation responsable, innovante et pérenne de la donnée de santé.
