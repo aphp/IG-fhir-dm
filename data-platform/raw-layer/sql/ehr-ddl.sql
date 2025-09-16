@@ -1,21 +1,10 @@
 -- ========================================================================
--- PostgreSQL 17.x Optimized DDL Script for FHIR Questionnaire Core Variables EDSH
+-- PostgreSQL DDL Script for FHIR Questionnaire Core Variables EDSH
 -- Generated from: input/resources/usages/core/Questionnaire-UsageCore.json
 -- 
 -- This script creates an optimized schema for storing FHIR Questionnaire
 -- responses related to core health data variables for EDSH.
--- 
--- Key optimizations for PostgreSQL 17.x:
--- - Consolidated laboratory results into single generic table with LOINC codes
--- - Removed age columns (calculable from birth date and encounter date)
--- - Consolidated patient information into single table with geocoding separation
--- - All clinical tables linked to central PMSI encounter table
--- - Hash indexes for exact lookups and improved performance
--- - Covering indexes with INCLUDE columns for query optimization
--- - Full-text search capabilities for patient names (French language)
--- - Spatial indexes using GIST for geographic coordinates
--- - Comprehensive data validation with enhanced check constraints
--- - Optimized foreign key naming and referential integrity
+--
 -- ========================================================================
 
 -- Drop tables in reverse dependency order
@@ -32,7 +21,7 @@ DROP TABLE IF EXISTS patient_adresse CASCADE;
 DROP TABLE IF EXISTS patient CASCADE;
 
 -- ========================================================================
--- MAIN TABLES
+-- TABLES
 -- ========================================================================
 
 -- Table: patient
@@ -52,16 +41,6 @@ CREATE TABLE patient (
     date_deces DATE,
     source_deces VARCHAR(50),
     rang_gemellaire INTEGER,
-    
-    -- Geocoding fields (linkId: 3816475533472)
---    latitude DECIMAL(10,7),  -- problème de gestion de la cardinalité et de la date de recueil
---    longitude DECIMAL(10,7), -- problème de gestion de la cardinalité et de la date de recueil
---    code_iris VARCHAR(20), -- problème de gestion de la cardinalité et de la date de recueil
---    libelle_iris VARCHAR(200), -- problème de gestion de la cardinalité et de la date de recueil
-    
-    -- Geographic residence
---    code_geographique_residence VARCHAR(10),  -- il s'agit d'une donnée PMSI, liée à une prise en charge PMSI.
---    libelle_geographique_residence VARCHAR(200),
     
     -- Audit fields
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -102,14 +81,11 @@ CREATE TABLE donnees_pmsi (
     date_debut_sejour DATE,
     date_fin_sejour DATE,
     mode_entree VARCHAR(100),
---    statut_administratif VARCHAR(50), je ne sais pas ce que c'est ?!
     
     -- Healthcare facility information <- pas prévu dans le socle. Le niveau établissement pourquoi pas, le reste c'est superfaitatoire. 
     etablissement VARCHAR(255),
     service VARCHAR(255),
     unite_fonctionnelle VARCHAR(255),
-    -- Link to data collection context
---    date_recueil DATE,  -- j'ai simplifié age et déplacé la géographie donc cette colonne n'est plus nécessaire
     
     -- Audit fields
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -127,10 +103,6 @@ CREATE TABLE diagnostics (
     code_diagnostic VARCHAR(20) NOT NULL,
     type_diagnostic VARCHAR(50),
     libelle_diagnostic TEXT,
---    date_diagnostic DATE,   c'est pas dans le socle et c'est compliqué
-    
-    -- Sequencing information for multiple diagnoses
---    sequence_diagnostic INTEGER, je ne sais pas d'ou ça sort, ça ne me semble pas avoir d'intéret (ni pour l'usage, ni dans le cadre du pmsi)
     
     -- Data collection context
     date_recueil DATE,
@@ -152,9 +124,6 @@ CREATE TABLE actes (
     libelle_acte TEXT,
     date_acte TIMESTAMP,
     executant VARCHAR(255),  -- c'est pas dans le socle
-    
-    -- Sequencing information for multiple acts
---    sequence_acte INTEGER,  je ne sais pas d'ou ça sort, ça ne me semble pas avoir d'intéret
     
     -- Data collection context
     date_recueil DATE,
@@ -191,9 +160,6 @@ CREATE TABLE biologie (
     borne_inf_normale DECIMAL(15,6),
     borne_sup_normale DECIMAL(15,6),
     
-    -- Quality information
---    commentaire TEXT,  -- pas dans le socle
---    methode_analyse VARCHAR(255), -- pas dans le socle, plus ou moins dans LOINC
     laboratoire VARCHAR(255),  -- pas dans le socle
     
     -- Audit fields
@@ -201,42 +167,11 @@ CREATE TABLE biologie (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table: exposition_medicamenteuse
--- Medication exposure data linked to encounters and patients
--- Based on linkId: 817801935685 (Exposition médicamenteuse) - repeats=true
-/*CREATE TABLE exposition_medicamenteuse (  -- cette partie n'est pas aboutie dans le socle, ce qui explique a mon avis un peu que ce soit la bazard dans le résultat de l'ia.
-    exposition_id BIGSERIAL PRIMARY KEY,
---    pmsi_id BIGINT NOT NULL,  -- implique qu'on n'a que des exposition médicamenteuse durant une prise en charge PMSI.
-    patient_id BIGINT NOT NULL,
-    
-    -- Medication identification (linkId: 817801935685)
-    code_atc VARCHAR(20),
-    denomination VARCHAR(255),
-    forme_pharmaceutique VARCHAR(100),  -- je sais pas trop ce que ça recouvre, mais pour voie d'administration, faute de simple, il y a tous les Standard Terms, c'est peut être lié.
-    
-    -- Administration details
-    voie_administration VARCHAR(100),
-    
-    -- Prescription context
-    type_prescription VARCHAR(50),
-    prescripteur VARCHAR(255),  -- pas dans le socle
-    
-    -- Temporal information  -- doublonne des champs de la table posologie
-    date_debut DATE,
-    date_fin DATE,
-    date_prescription DATE,  -- pas dans le socle
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);*/
-
 -- Table: dossier_soins  
 -- Clinical care measurements and observations
 -- Based on linkId: 305831246173 (Dossier de soins) - repeats=true
-CREATE TABLE dossier_soins (  --il aurait pu génériciser, comme pour la bio...
+CREATE TABLE dossier_soins (
     soin_id BIGSERIAL PRIMARY KEY,
---    pmsi_id BIGINT NOT NULL,  -- implique qu'on n'a ces infos que durant une prise en charge PMSI.
     patient_id BIGINT NOT NULL,
     
     -- Physical measurements (linkId: 305831246173)
@@ -251,12 +186,8 @@ CREATE TABLE dossier_soins (  --il aurait pu génériciser, comme pour la bio...
     date_mesure DATE,
     
     -- Measurement context
---    type_mesure VARCHAR(100),  -- pas dans le socle (je sais pas ce que ça peut être du reste)
     unite_soins VARCHAR(255),  -- pas dans le socle 
     professionnel VARCHAR(255),  -- pas dans le socle 
-    
-    -- Additional clinical data
---    commentaire TEXT,  -- pas dans le socle 
     
     -- Audit fields
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -289,7 +220,6 @@ CREATE TABLE prescription (
 -- Detailed dosing information (linkId: 6348237104421)
 CREATE TABLE posologie (  
     posologie_id BIGSERIAL PRIMARY KEY,
---    patient_id BIGINT NOT NULL,
     prescription_id BIGINT NOT NULL,
     
     -- Posology details, à enrichir+++
@@ -329,30 +259,10 @@ CREATE TABLE administration (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-/*-- Table: dosage 
--- Dosage details (linkId: 5720103839343)
-CREATE TABLE dosage (
-    dosage_id BIGSERIAL PRIMARY KEY,
-    exposition_id BIGINT NOT NULL,
-    pmsi_id BIGINT NOT NULL,
-    patient_id BIGINT NOT NULL,
-    
-    -- Dosage information
-    quantite_administree DECIMAL(10,3),
-    unite_quantite VARCHAR(20),
-    date_heure_debut TIMESTAMP,
-    date_heure_fin TIMESTAMP,
-    
-    -- Audit fields
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);*/
-
 -- Table: style_vie
 -- Consolidated lifestyle information (linkId: 1693164086678)
 CREATE TABLE style_vie (  -- vu le Questionnaire, il pouvait pas faire beaucoup mieux...
     style_vie_id BIGSERIAL PRIMARY KEY,
---    pmsi_id BIGINT NOT NULL,  -- idem
     patient_id BIGINT NOT NULL,
     
     -- Lifestyle factors
@@ -412,10 +322,6 @@ ALTER TABLE posologie
 ADD CONSTRAINT fk_posologie_prescription 
 FOREIGN KEY (prescription_id) REFERENCES prescription(prescription_id) ON DELETE CASCADE;
 
---ALTER TABLE posologie 
---ADD CONSTRAINT fk_posologie_patient 
---FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
-
 ALTER TABLE administration 
 ADD CONSTRAINT fk_administration_patient 
 FOREIGN KEY (patient_id) REFERENCES patient(patient_id) ON DELETE CASCADE;
@@ -457,17 +363,9 @@ ALTER TABLE patient_adresse
 ADD CONSTRAINT chk_patient_longitude 
 CHECK (longitude BETWEEN -180 AND 180);
 
-/*ALTER TABLE donnees_pmsi 
-ADD CONSTRAINT chk_pmsi_duree_sejour 
-CHECK (duree_sejour >= 0);*/
-
 ALTER TABLE donnees_pmsi 
 ADD CONSTRAINT chk_pmsi_dates 
 CHECK (date_fin_sejour >= date_debut_sejour);
-
-/*ALTER TABLE donnees_pmsi -- il y a pas de champ sexe dans la table PMSI 
-ADD CONSTRAINT chk_pmsi_sexe 
-CHECK (sexe IN ('M', 'F', '1', '2', '9'));*/
 
 ALTER TABLE biologie 
 ADD CONSTRAINT chk_biologie_bornes 
@@ -504,11 +402,6 @@ CHECK (quantite IS NULL OR quantite > 0);
 ALTER TABLE donnees_pmsi
 ADD CONSTRAINT chk_pmsi_age_admission
 CHECK (age_admission IS NULL OR age_admission BETWEEN 0 AND 150);
-
---ALTER TABLE donnees_pmsi
---ADD CONSTRAINT chk_pmsi_duree_coherence
---CHECK (date_debut_sejour IS NULL OR date_fin_sejour IS NULL OR 
---        (date_fin_sejour - date_debut_sejour) >= INTERVAL '0 days');
 
 ALTER TABLE posologie
 ADD CONSTRAINT chk_posologie_prises_jour
@@ -555,31 +448,6 @@ ALTER TABLE actes
 ADD CONSTRAINT chk_actes_date_recueil
 CHECK (date_recueil IS NULL OR date_recueil <= CURRENT_DATE);
 
--- Commented out original constraints for reference
-/*ALTER TABLE exposition_medicamenteuse
-ADD CONSTRAINT chk_exposition_type
-CHECK (type_prescription IN ('prescrit', 'administré'));*/
-
-/*ALTER TABLE exposition_medicamenteuse
-ADD CONSTRAINT chk_exposition_duree
-CHECK (duree_traitement IS NULL OR duree_traitement > 0);  -- ce champ n'existe pas */
-
-/*ALTER TABLE dossier_soins 
-ADD CONSTRAINT chk_soins_taille 
-CHECK (taille IS NULL OR (taille > 0 AND taille < 300));
-
-ALTER TABLE dossier_soins 
-ADD CONSTRAINT chk_soins_poids 
-CHECK (poids IS NULL OR (poids > 0 AND poids < 1000));
-
-ALTER TABLE dossier_soins 
-ADD CONSTRAINT chk_soins_pression_systolique 
-CHECK (pression_systolique IS NULL OR (pression_systolique > 0 AND pression_systolique < 300));
-
-ALTER TABLE dossier_soins 
-ADD CONSTRAINT chk_soins_pression_diastolique 
-CHECK (pression_diastolique IS NULL OR (pression_diastolique > 0 AND pression_diastolique < 200));*/
-
 -- ========================================================================
 -- INDEXES FOR PERFORMANCE OPTIMIZATION
 -- ========================================================================
@@ -589,8 +457,6 @@ CREATE INDEX idx_patient_nir ON patient(nir) WHERE nir IS NOT NULL;
 CREATE INDEX idx_patient_ins ON patient(ins) WHERE ins IS NOT NULL;
 CREATE INDEX idx_patient_nom_prenom ON patient(nom, prenom);
 CREATE INDEX idx_patient_date_naissance ON patient(date_naissance);
--- CREATE INDEX idx_patient_code_postal ON patient(code_postal);
---CREATE INDEX idx_patient_commune ON patient(commune);
 
 -- donnees_PMSI indexes  
 CREATE INDEX idx_pmsi_patient_id ON donnees_pmsi(patient_id);
@@ -603,7 +469,6 @@ CREATE INDEX idx_pmsi_etablissement ON donnees_pmsi(etablissement);
 CREATE INDEX idx_diagnostics_pmsi_id ON diagnostics(pmsi_id);
 CREATE INDEX idx_diagnostics_code ON diagnostics(code_diagnostic);
 CREATE INDEX idx_diagnostics_type ON diagnostics(type_diagnostic);
---CREATE INDEX idx_diagnostics_date ON diagnostics(date_diagnostic);
 
 -- Procedure/acts indexes
 CREATE INDEX idx_actes_pmsi_id ON actes(pmsi_id);
@@ -612,7 +477,6 @@ CREATE INDEX idx_actes_date ON actes(date_acte);
 CREATE INDEX idx_actes_date_recueil ON actes(date_recueil);
 
 -- Laboratory results indexes - optimized for consolidated table
---CREATE INDEX idx_biologie_pmsi_id ON biologie(pmsi_id);
 CREATE INDEX idx_biologie_patient_id ON biologie(patient_id);
 CREATE INDEX idx_biologie_code_loinc ON biologie(code_loinc);
 CREATE INDEX idx_biologie_type_examen ON biologie(type_examen);
@@ -631,7 +495,6 @@ CREATE INDEX idx_administration_denomination ON administration(denomination);
 CREATE INDEX idx_administration_date_heure_debut ON administration(date_heure_debut);
 
 -- Clinical care indexes
---CREATE INDEX idx_soins_pmsi_id ON dossier_soins(pmsi_id);
 CREATE INDEX idx_soins_patient_id ON dossier_soins(patient_id);
 CREATE INDEX idx_soins_loinc ON dossier_soins(code_loinc);
 CREATE INDEX idx_soins_date_mesure ON dossier_soins(date_mesure);
@@ -722,43 +585,8 @@ COMMENT ON TABLE dossier_soins IS 'Clinical care measurements and observations i
 
 COMMENT ON TABLE posologie IS 'Detailed dosing information for medications (linkId: 6348237104421)';
 
---COMMENT ON TABLE dosage IS 'Specific dosage administration details (linkId: 5720103839343)';
-
 COMMENT ON TABLE style_vie IS 'Consolidated lifestyle information including tobacco, alcohol, drugs, and physical activity (linkId: 1693164086678)';
 
--- ========================================================================
--- POSTGRESQL 17.x PERFORMANCE SETTINGS AND RECOMMENDATIONS
--- ========================================================================
-
--- Set optimal maintenance settings for this schema
--- These should be applied at database or session level:
--- SET maintenance_work_mem = '1GB';
--- SET work_mem = '256MB';
--- SET random_page_cost = 1.1; -- For SSD storage
--- SET effective_cache_size = '4GB'; -- Adjust based on system memory
-
--- Enable parallel query execution for large table operations
--- SET max_parallel_workers_per_gather = 4;
--- SET parallel_tuple_cost = 0.1;
--- SET parallel_setup_cost = 1000;
-
--- Recommended VACUUM and ANALYZE schedule
--- Run VACUUM ANALYZE after bulk data loads
--- Consider pg_stat_statements extension for query performance monitoring
-
--- Table-specific recommendations:
--- 1. patient table: Consider partitioning by date_naissance year for very large datasets
--- 2. biologie table: Consider partitioning by date_prelevement month for time-series queries
--- 3. donnees_pmsi table: Consider partitioning by date_debut_sejour for temporal queries
--- 4. Use CLUSTER command on frequently queried indexes after bulk loads
-
--- PostgreSQL 17.x specific features utilized:
--- - INCLUDE columns in indexes for covering index optimization
--- - Hash indexes for exact equality lookups
--- - GiST indexes for spatial data (latitude/longitude)
--- - Full-text search with French language configuration
--- - Advanced check constraints with complex validation logic
-
 -- ==============================================================================
--- END OF OPTIMIZED DDL SCRIPT FOR POSTGRESQL 17.x
+-- END OF OPTIMIZED DDL SCRIPT FOR POSTGRESQL
 -- ==============================================================================
