@@ -54,7 +54,7 @@ class DuckDBOMOPProcessor:
         # Enhanced OMOP Person table with proper indexing and constraints
         create_sql = """
         CREATE TABLE person (
-            person_id VARCHAR PRIMARY KEY,
+            person_id INTEGER PRIMARY KEY,
             gender_concept_id INTEGER DEFAULT 0,
             year_of_birth INTEGER,
             month_of_birth INTEGER,
@@ -172,8 +172,12 @@ class DuckDBOMOPProcessor:
         
     def _transform_patient_to_person(self, patient: Dict[str, Any]) -> Dict[str, Any]:
         """Transform FHIR Patient to OMOP Person record."""
+        # Convert FHIR Patient ID to integer using hash for OMOP compatibility
+        patient_id_str = patient.get('id', '')
+        person_id = abs(hash(patient_id_str)) % (2**31)  # Ensure positive 32-bit int
+
         person = {
-            'person_id': patient.get('id'),
+            'person_id': person_id,
             'person_source_value': patient.get('id'),
             'gender_source_value': patient.get('gender'),
             'gender_concept_id': 0,  # Would need concept mapping

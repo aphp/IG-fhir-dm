@@ -4,10 +4,12 @@
     "endpoint_url": "http://localhost:8080/fhir",
     "timeout": 300,
     "polling_interval": 5,
-    "bulk_export_types": ["Patient"]
+    "bulk_export_types": ["Patient", "Condition", "Encounter"]
   },
   "omop_tables": [
-    "Person"
+    "Person",
+    "VisitOccurrence",
+    "ConditionOccurrence"
   ],
   "view_definitions_dir": "view-definition/omop",
   "pathling": {

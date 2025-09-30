@@ -13,25 +13,25 @@
           "name": "condition_occurrence_id",
           "path": "getResourceKey()",
           "description": "Unique identifier for the condition occurrence",
-          "type": "integer"
+          "type": "string"
         },
         {
           "name": "person_id",
-          "path": "Condition.subject.reference.substring(8)",
+          "path": "subject.getReferenceKey(Patient)",
           "description": "Reference to person from subject",
-          "type": "integer"
+          "type": "string"
         },
         {
           "name": "condition_concept_id",
-          "path": "Condition.code.coding.first().code",
+          "path": "code.coding.first().code",
           "description": "Condition concept from primary coding",
-          "type": "integer"
+          "type": "code"
         },
         {
           "name": "condition_start_date",
-          "path": "Condition.onsetDateTime.toString().substring(0,10)",
+          "path": "onsetDateTime",
           "description": "Condition start date from onset",
-          "type": "date"
+          "type": "dateTime"
         },
         {
           "name": "condition_start_datetime",
@@ -41,9 +41,9 @@
         },
         {
           "name": "condition_end_date",
-          "path": "Condition.abatementDateTime.toString().substring(0,10)",
+          "path": "abatementDateTime",
           "description": "Condition end date from abatement",
-          "type": "date"
+          "type": "dateTime"
         },
         {
           "name": "condition_end_datetime",
@@ -59,27 +59,27 @@
         },
         {
           "name": "provider_id",
-          "path": "Condition.asserter.reference.substring(12)",
-          "description": "Provider identifier from asserter",
-          "type": "integer"
+          "path": "null",
+          "description": "Provider identifier (not available in source data)",
+          "type": "string"
         },
         {
           "name": "visit_occurrence_id",
-          "path": "Condition.encounter.reference.substring(10)",
+          "path": "encounter.getReferenceKey(Encounter)",
           "description": "Visit occurrence identifier from encounter",
-          "type": "integer"
+          "type": "string"
         },
         {
           "name": "visit_detail_id",
-          "path": "Condition.encounter.reference.substring(10)",
+          "path": "encounter.getReferenceKey(Encounter)",
           "description": "Visit detail identifier from encounter",
-          "type": "integer"
+          "type": "string"
         },
         {
           "name": "condition_source_value",
           "path": "Condition.meta.source",
           "description": "Source value for condition",
-          "type": "string"
+          "type": "uri"
         },
         {
           "name": "condition_status_source_value",

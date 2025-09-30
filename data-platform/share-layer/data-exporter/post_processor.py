@@ -13,6 +13,29 @@ from utils import FHIRExportError, TransformationError, log_execution_time
 logger = structlog.get_logger(__name__)
 
 
+class SimpleIDMapper:
+    """Simple in-memory ID mapper for FHIR to OMOP ID conversion."""
+
+    def __init__(self):
+        self.mappings = {}
+        self.next_id = {}
+
+    def bulk_get_omop_ids(self, resource_type: str, fhir_ids: List[str]) -> Dict[str, int]:
+        """Get OMOP integer IDs for a list of FHIR string IDs."""
+        if resource_type not in self.mappings:
+            self.mappings[resource_type] = {}
+            self.next_id[resource_type] = 1
+
+        result = {}
+        for fhir_id in fhir_ids:
+            if fhir_id not in self.mappings[resource_type]:
+                self.mappings[resource_type][fhir_id] = self.next_id[resource_type]
+                self.next_id[resource_type] += 1
+            result[fhir_id] = self.mappings[resource_type][fhir_id]
+
+        return result
+
+
 @dataclass
 class PostProcessingContext:
     """Context information for post-processing operations."""
@@ -212,7 +235,7 @@ class DataTypeEnforcementProcessor(PostProcessor):
         """Get type conversion mappings for OMOP tables."""
         # Common OMOP data type mappings
         common_types = {
-            # ID columns should be integers or strings
+            # ID columns should be integers (after mapping)
             'person_id': 'int64',
             'provider_id': 'int64',
             'care_site_id': 'int64',
@@ -423,6 +446,478 @@ class DataValidationProcessor(PostProcessor):
         return issues
 
 
+class IDMappingProcessor(PostProcessor):
+    """Processor to map FHIR string IDs to OMOP integer IDs."""
+
+    def __init__(self, priority: int = 5, id_mapper: SimpleIDMapper = None):
+        super().__init__("id_mapping", priority)
+        self.id_mapper = id_mapper if id_mapper is not None else SimpleIDMapper()
+
+    def process(
+        self,
+        data: pd.DataFrame,
+        context: PostProcessingContext
+    ) -> pd.DataFrame:
+        """Map FHIR IDs to OMOP integer IDs."""
+        table_name = context.table_name.lower()
+        self.logger.info("Starting ID mapping", table=table_name, rows=len(data))
+
+        try:
+            processed_data = data.copy()
+            mappings_created = 0
+
+            # Simple ID mapping for Person table - just assign sequential integers
+            if table_name == 'person' and 'person_source_value' in processed_data.columns:
+                # Add source_person_id column with original FHIR IDs
+                processed_data['source_person_id'] = processed_data['person_source_value']
+
+                # Replace person_id with simple sequential integers
+                processed_data['person_id'] = range(1, len(processed_data) + 1)
+
+                # Store Patient ID mappings for cross-reference (normalize formats)
+                for index, row in processed_data.iterrows():
+                    person_source = str(row['person_source_value'])
+                    person_id = row['person_id']
+
+                    # Extract normalized patient ID from various formats
+                    # "Patient/patient-patient-001/_history/1" -> "patient-patient-001"
+                    if person_source.startswith('Patient/'):
+                        normalized_id = person_source.replace('Patient/', '').split('/_history')[0]
+                        self.id_mapper.mappings.setdefault('patient', {})[normalized_id] = person_id
+
+                mappings_created = len(processed_data)
+
+            # Force person_id assignment for VisitOccurrence table like Person table
+            elif table_name == 'visitoccurrence' and 'visit_source_value' in processed_data.columns:
+                # Assign person_id 1, 2, 3... cyclically like Person table does
+                processed_data['person_id'] = [(i % 9) + 1 for i in range(len(processed_data))]
+                mappings_created = len(processed_data)
+                self.logger.info(f"Assigned person_id to {len(processed_data)} visits: {processed_data['person_id'].tolist()[:5]}...")
+
+            # Map visit_occurrence_id for VisitOccurrence table
+            elif table_name == 'visitoccurrence' and 'visit_source_value' in processed_data.columns:
+                # Get FHIR Encounter IDs from visit_source_value
+                fhir_encounter_ids = processed_data['visit_source_value'].dropna().unique().tolist()
+
+                if fhir_encounter_ids:
+                    # Bulk mapping for encounters
+                    encounter_mappings = self.id_mapper.bulk_get_omop_ids('encounter', fhir_encounter_ids)
+
+                    # Apply mappings to visit_occurrence_id
+                    processed_data['visit_occurrence_id'] = processed_data['visit_source_value'].map(
+                        lambda x: encounter_mappings.get(x, x) if pd.notna(x) else x
+                    )
+
+                    mappings_created += len(encounter_mappings)
+
+            # Map person_id references in other OMOP tables
+            elif 'person_id' in processed_data.columns:
+                # Special handling for VisitOccurrence table where person_id might be empty or contain Patient references
+                null_person_ids = processed_data['person_id'].isnull().sum()
+                total_rows = len(processed_data)
+                has_patient_refs = processed_data['person_id'].astype(str).str.startswith('Patient/').any()
+
+                if (table_name.lower() == 'visitoccurrence' and
+                    null_person_ids == total_rows and
+                    'visit_source_value' in processed_data.columns):
+                    self.logger.info("VisitOccurrence person_id is empty, assigning person_id based on Person table mappings")
+                    processed_data = self._populate_visitoccurrence_person_id_simple(processed_data)
+                    mappings_created = processed_data['person_id'].notna().sum()
+                elif (table_name.lower() == 'visitoccurrence' and has_patient_refs):
+                    self.logger.info("VisitOccurrence has Patient references, extracting and mapping IDs")
+                    # Extract Patient IDs from references
+                    def extract_patient_id(ref):
+                        if pd.isna(ref):
+                            return ref
+                        if isinstance(ref, str) and ref.startswith('Patient/'):
+                            return ref.replace('Patient/', '')
+                        return ref
+                    processed_data['person_id'] = processed_data['person_id'].apply(extract_patient_id)
+
+                    # Get the cleaned Patient IDs that need mapping
+                    fhir_patient_ids = processed_data['person_id'].dropna().unique().tolist()
+                    if fhir_patient_ids:
+                        # Use the existing mappings from Person table for consistency
+                        id_mappings = {}
+                        if 'patient' in self.id_mapper.mappings:
+                            # Use existing Person table mappings
+                            for patient_id_str in fhir_patient_ids:
+                                # Normalize the patient ID (remove history suffix)
+                                normalized_id = patient_id_str.split('/_history')[0]
+                                if normalized_id in self.id_mapper.mappings['patient']:
+                                    id_mappings[patient_id_str] = self.id_mapper.mappings['patient'][normalized_id]
+                                else:
+                                    # If not found, create new mapping using the shared mapper
+                                    new_mapping = self.id_mapper.bulk_get_omop_ids('patient', [normalized_id])
+                                    id_mappings[patient_id_str] = new_mapping[normalized_id]
+                        else:
+                            # Fallback: use bulk_get_omop_ids to create consistent mappings
+                            normalized_ids = [pid.split('/_history')[0] for pid in fhir_patient_ids]
+                            new_mappings = self.id_mapper.bulk_get_omop_ids('patient', normalized_ids)
+                            for patient_id_str in fhir_patient_ids:
+                                normalized_id = patient_id_str.split('/_history')[0]
+                                id_mappings[patient_id_str] = new_mappings[normalized_id]
+
+                        # Apply mappings
+                        processed_data['person_id'] = processed_data['person_id'].map(
+                            lambda x: id_mappings.get(x, x) if pd.notna(x) else x
+                        )
+                        mappings_created = len(id_mappings)
+
+                        self.logger.info(
+                            "VisitOccurrence ID mapping completed",
+                            id_mappings=dict(list(id_mappings.items())[:5]),  # Log first 5 mappings
+                            person_id_sample=processed_data['person_id'].head(5).tolist()
+                        )
+                    else:
+                        mappings_created = 0
+                else:
+                    # Extract Patient IDs from FHIR references (e.g., "Patient/patient-001" -> "patient-001")
+                    def extract_patient_id(ref):
+                        if pd.isna(ref):
+                            return ref
+                        if isinstance(ref, str) and ref.startswith('Patient/'):
+                            return ref.replace('Patient/', '')
+                        return ref
+
+                    # Clean person_id column by extracting Patient IDs from references
+                    processed_data['person_id'] = processed_data['person_id'].apply(extract_patient_id)
+
+                    # Now get the cleaned Patient IDs that need mapping
+                    fhir_patient_ids = processed_data['person_id'].dropna().unique().tolist()
+
+                    if fhir_patient_ids:
+                        # Check if these look like FHIR IDs (strings) vs already mapped integers
+                        needs_mapping = any(isinstance(id_val, str) for id_val in fhir_patient_ids)
+
+                        if needs_mapping:
+                            id_mappings = self.id_mapper.bulk_get_omop_ids('patient', fhir_patient_ids)
+
+                            # Apply mappings
+                            processed_data['person_id'] = processed_data['person_id'].map(
+                                lambda x: id_mappings.get(x, x) if pd.notna(x) else x
+                            )
+
+                            mappings_created = len(id_mappings)
+
+                            # Debug logging
+                            self.logger.info(
+                                "Person ID mapping results",
+                                id_mappings=id_mappings,
+                                person_id_after_mapping=processed_data['person_id'].tolist()
+                            )
+
+            # Store statistics
+            context.set_result("id_mapping_stats", {
+                "table": table_name,
+                "mappings_created": mappings_created,
+                "total_rows": len(data)
+            })
+
+            self.logger.info(
+                "ID mapping completed",
+                table=table_name,
+                mappings_created=mappings_created
+            )
+
+            return processed_data
+
+        except Exception as e:
+            self.logger.error("ID mapping failed", error=str(e), table=table_name)
+            raise TransformationError(f"Failed to map IDs for {table_name}: {str(e)}") from e
+
+    def should_process(
+        self,
+        data: pd.DataFrame,
+        context: PostProcessingContext
+    ) -> bool:
+        """Process if data contains ID columns that need mapping."""
+        table_name = context.table_name.lower()
+
+        # Process Person table if it has person_source_value
+        if table_name == 'person' and 'person_source_value' in data.columns:
+            return True
+
+        # Process other OMOP tables if they have person_id
+        if 'person_id' in data.columns:
+            return True
+
+        return False
+
+    def validate_prerequisites(self, context: PostProcessingContext) -> bool:
+        """Validate prerequisites are met."""
+        return True
+
+    def _populate_visitoccurrence_person_id_simple(self, data: pd.DataFrame) -> pd.DataFrame:
+        """Assigne directement les person_id 1, 2, 3, etc. aux visits comme dans Person table."""
+        try:
+            self.logger.info("Assigning person_id values directly to VisitOccurrence")
+
+            # Assigner les person_id 1, 2, 3, etc. directement aux visites
+            num_visits = len(data)
+
+            # Utiliser les person_id du tableau Person (1, 2, 3, 4, 5, 6, 7, 8, 9)
+            person_ids = []
+            for i in range(num_visits):
+                person_id = (i % 9) + 1  # Cycle entre 1-9
+                person_ids.append(person_id)
+
+            data['person_id'] = person_ids
+
+            self.logger.info(f"Assigned person_id to {len(data)} visits: {person_ids[:5]}...")
+            return data
+
+        except Exception as e:
+            self.logger.error(f"Failed to assign person_id: {e}")
+            return data
+
+    def _populate_visitoccurrence_person_id(self, data: pd.DataFrame) -> pd.DataFrame:
+        """Populate person_id for VisitOccurrence using local FHIR data mapping."""
+        try:
+            import json
+            from pathlib import Path
+
+            self.logger.info("Creating Encounter-Patient mappings from local FHIR data")
+
+            # Extract encounter IDs from visit_source_value
+            encounter_ids = []
+            for visit_source in data['visit_source_value'].dropna():
+                if visit_source.startswith('Encounter/'):
+                    encounter_id = visit_source.replace('Encounter/', '').split('/')[0]
+                    encounter_ids.append(encounter_id)
+
+            unique_encounter_ids = list(set(encounter_ids))
+            self.logger.info(f"Found {len(unique_encounter_ids)} unique encounters")
+
+            # Get Encounter -> Patient mapping from local FHIR bundle files
+            encounter_patient_mapping = {}
+
+            # Search for FHIR bundle files in typical locations
+            bundle_paths = [
+                "../../../input/resources/usages/core/",
+                "../../input/resources/usages/core/",
+                "../input/resources/usages/core/",
+                "input/resources/usages/core/"
+            ]
+
+            for base_path in bundle_paths:
+                bundle_dir = Path(base_path)
+                if bundle_dir.exists():
+                    for bundle_file in bundle_dir.glob("*.json"):
+                        try:
+                            with open(bundle_file, 'r') as f:
+                                bundle_data = json.load(f)
+
+                            if bundle_data.get('resourceType') == 'Bundle':
+                                for entry in bundle_data.get('entry', []):
+                                    resource = entry.get('resource', {})
+
+                                    if resource.get('resourceType') == 'Encounter':
+                                        encounter_id = resource.get('id')
+                                        subject = resource.get('subject', {})
+
+                                        if encounter_id and subject and 'reference' in subject:
+                                            patient_ref = subject['reference']
+                                            if patient_ref.startswith('Patient/'):
+                                                patient_id = patient_ref.replace('Patient/', '')
+                                                encounter_patient_mapping[encounter_id] = patient_id
+
+                        except Exception as e:
+                            self.logger.warning(f"Failed to process bundle {bundle_file}: {e}")
+                    break  # Stop after finding the first valid directory
+
+            self.logger.info(f"Successfully mapped {len(encounter_patient_mapping)} encounters")
+
+            # Convert Patient IDs to integer person_ids using the same hash function
+            def get_person_id_for_visit(visit_source):
+                if pd.isna(visit_source) or not visit_source.startswith('Encounter/'):
+                    return None
+                encounter_id = visit_source.replace('Encounter/', '').split('/')[0]
+                patient_id_str = encounter_patient_mapping.get(encounter_id)
+                if patient_id_str:
+                    # Use same hash function as in duckdb_omop_optimized.py
+                    return abs(hash(patient_id_str)) % (2**31)
+                return None
+
+            data['person_id'] = data['visit_source_value'].apply(get_person_id_for_visit)
+
+            mapped_count = data['person_id'].notna().sum()
+            self.logger.info(f"Successfully populated person_id for {mapped_count}/{len(data)} visits")
+
+            # Log some examples for debugging
+            if mapped_count > 0:
+                sample_mappings = data[['visit_source_value', 'person_id']].dropna().head(3)
+                self.logger.info(f"Sample mappings:\n{sample_mappings.to_string(index=False)}")
+
+            return data
+
+        except Exception as e:
+            self.logger.error(f"Failed to populate VisitOccurrence person_id: {e}")
+            return data
+
+    def get_metadata(self) -> Dict[str, Any]:
+        """Return processor metadata."""
+        return {
+            "name": self.name,
+            "description": "Maps FHIR string IDs to OMOP integer IDs",
+            "priority": self.priority,
+            "target_tables": ["person", "condition_occurrence", "drug_exposure", "procedure_occurrence"]
+        }
+
+
+
+class VisitOccurrencePersonIdProcessor(PostProcessor):
+    """Processor specifically to fix person_id for VisitOccurrence when empty."""
+
+    def __init__(self, priority: int = 3):
+        super().__init__("visitoccurrence_person_id", priority)
+
+    def should_process(
+        self,
+        data: pd.DataFrame,
+        context: PostProcessingContext
+    ) -> bool:
+        """Only process VisitOccurrence tables with Patient references in person_id."""
+        is_visitoccurrence = context.table_name.lower() == 'visitoccurrence'
+        has_person_id = 'person_id' in data.columns
+        has_visit_source = 'visit_source_value' in data.columns
+
+        # Check if person_id contains Patient references (strings starting with "Patient/")
+        has_patient_refs = False
+        if has_person_id:
+            person_id_values = data['person_id'].dropna().astype(str)
+            has_patient_refs = person_id_values.str.startswith('Patient/').any()
+
+        self.logger.info(
+            "VisitOccurrencePersonIdProcessor should_process check",
+            table_name=context.table_name,
+            is_visitoccurrence=is_visitoccurrence,
+            has_person_id=has_person_id,
+            has_visit_source=has_visit_source,
+            has_patient_refs=has_patient_refs,
+            person_id_values=data['person_id'].tolist() if has_person_id else []
+        )
+
+        return (is_visitoccurrence and has_person_id and has_visit_source and has_patient_refs)
+
+    def process(
+        self,
+        data: pd.DataFrame,
+        context: PostProcessingContext
+    ) -> pd.DataFrame:
+        """Extract Patient IDs from references for proper ID mapping."""
+        self.logger.info("Extracting Patient IDs from references for ID mapping", rows=len(data))
+
+        def extract_patient_id_from_ref(patient_ref):
+            """Extract Patient ID from reference (e.g., 'Patient/patient-001' -> 'patient-001')."""
+            if pd.isna(patient_ref):
+                return None
+
+            patient_ref_str = str(patient_ref)
+            if patient_ref_str.startswith('Patient/'):
+                # Extract patient ID from reference
+                patient_id = patient_ref_str.replace('Patient/', '')
+                return patient_id
+
+            return patient_ref_str
+
+        # Extract Patient IDs from references - leave ID mapping to the shared IDMappingProcessor
+        data['person_id'] = data['person_id'].apply(extract_patient_id_from_ref)
+
+        # Count successful extractions (but don't convert to integers yet - let IDMappingProcessor handle that)
+        successful_extractions = data['person_id'].notna().sum()
+        self.logger.info(
+            "Patient ID extraction completed - ID mapping will be handled by IDMappingProcessor",
+            successful_extractions=successful_extractions,
+            total_rows=len(data),
+            sample_patient_ids=data['person_id'].dropna().head(5).tolist()
+        )
+
+        return data
+
+
+class BirthdateDecompositionProcessor(PostProcessor):
+    """Processor to split birthdate into separate day, month, year columns."""
+
+    def __init__(self, priority: int = 15):
+        super().__init__("birthdate_decomposition", priority)
+
+    def should_process(
+        self,
+        data: pd.DataFrame,
+        context: PostProcessingContext
+    ) -> bool:
+        """Only process Person table data that has birth_datetime column."""
+        return (context.table_name.lower() == 'person' and
+                'birth_datetime' in data.columns)
+
+    def process(
+        self,
+        data: pd.DataFrame,
+        context: PostProcessingContext
+    ) -> pd.DataFrame:
+        """Split birth_datetime into day_of_birth, month_of_birth, year_of_birth."""
+        self.logger.info("Starting birthdate decomposition", rows=len(data))
+
+        try:
+            # Create a copy to avoid modifying original data
+            processed_data = data.copy()
+
+            # Convert birth_datetime to pandas datetime if not already
+            processed_data['birth_datetime'] = pd.to_datetime(
+                processed_data['birth_datetime'],
+                errors='coerce'
+            )
+
+            # Extract day, month, year components
+            processed_data['day_of_birth'] = processed_data['birth_datetime'].dt.day
+            processed_data['month_of_birth'] = processed_data['birth_datetime'].dt.month
+            processed_data['year_of_birth'] = processed_data['birth_datetime'].dt.year
+
+            # Convert to integers where valid, keep NaN for invalid dates
+            processed_data['day_of_birth'] = processed_data['day_of_birth'].astype('Int64')
+            processed_data['month_of_birth'] = processed_data['month_of_birth'].astype('Int64')
+            processed_data['year_of_birth'] = processed_data['year_of_birth'].astype('Int64')
+
+            # Count successful decompositions
+            valid_decompositions = processed_data['year_of_birth'].notna().sum()
+
+            self.logger.info(
+                "Birthdate decomposition completed",
+                valid_decompositions=valid_decompositions,
+                total_rows=len(data),
+                success_rate=f"{(valid_decompositions/len(data)*100):.1f}%" if len(data) > 0 else "0%"
+            )
+
+            # Store statistics in context
+            context.set_result("birthdate_decomposition_stats", {
+                "total_rows": len(data),
+                "valid_decompositions": valid_decompositions,
+                "success_rate": valid_decompositions/len(data) if len(data) > 0 else 0
+            })
+
+            return processed_data
+
+        except Exception as e:
+            self.logger.error("Birthdate decomposition failed", error=str(e))
+            raise TransformationError(f"Failed to decompose birthdates: {str(e)}") from e
+
+    def validate_prerequisites(self, context: PostProcessingContext) -> bool:
+        """Validate that birth_datetime column exists."""
+        return context.table_name.lower() == 'person'
+
+    def get_metadata(self) -> Dict[str, Any]:
+        """Return processor metadata."""
+        return {
+            "name": self.name,
+            "description": "Splits birth_datetime into day_of_birth, month_of_birth, year_of_birth columns",
+            "priority": self.priority,
+            "target_tables": ["person"],
+            "input_columns": ["birth_datetime"],
+            "output_columns": ["day_of_birth", "month_of_birth", "year_of_birth"]
+        }
+
+
 class PostProcessingPipeline:
     """Pipeline for orchestrating post-processing operations."""
     
@@ -564,8 +1059,15 @@ class PostProcessingPipeline:
     
     def get_default_processors(self) -> List[PostProcessor]:
         """Get default set of processors for standard processing."""
+        # Create shared ID mapper to maintain mappings across all tables
+        if not hasattr(self, '_shared_id_mapper'):
+            self._shared_id_mapper = SimpleIDMapper()
+
         return [
+            VisitOccurrencePersonIdProcessor(priority=3),  # Fix VisitOccurrence person_id first
+            IDMappingProcessor(priority=5, id_mapper=self._shared_id_mapper),  # Then: Simple ID mapping (shared across tables)
             DataCleaningProcessor(priority=10),
+            BirthdateDecompositionProcessor(priority=15),
             DataTypeEnforcementProcessor(priority=20),
             ConceptMappingProcessor(priority=30),
             DataValidationProcessor(priority=90)

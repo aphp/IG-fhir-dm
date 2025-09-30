@@ -167,7 +167,7 @@ class Config(BaseSettings):
     
     # Data source configuration
     data_source_type: DataSourceType = Field(DataSourceType.FHIR_SERVER, description="Type of data source")
-    fhir_server: FHIRServerConfig = Field(default_factory=lambda: FHIRServerConfig(endpoint_url="http://localhost:8080/fhir", bulk_export_types=["Patient"]))
+    fhir_server: FHIRServerConfig = Field(default_factory=lambda: FHIRServerConfig(endpoint_url="http://localhost:8080/fhir", bulk_export_types=["Patient", "Condition", "Encounter"]))
     file_system: Optional[FileSystemConfig] = Field(None, description="File system configuration")
     
     # Processing configuration

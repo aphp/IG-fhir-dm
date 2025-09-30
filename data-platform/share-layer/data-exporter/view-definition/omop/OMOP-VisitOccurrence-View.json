@@ -23,13 +23,13 @@
           "tag": [
             {
               "name": "ansi/type",
-              "value": "CHARACTER VARYING"
+              "value": "INTEGER"
             }
           ]
         },
         {
           "name": "person_id",
-          "path": "subject.reference",
+          "path": "subject.getReferenceKey(Patient)",
           "description": "Reference to person from subject",
           "type": "string"
         },
@@ -60,6 +60,18 @@
             {
               "name": "ansi/type",
               "value": "TIMESTAMP"
+            }
+          ]
+        },
+        {
+          "name": "visit_source_value",
+          "path": "getResourceKey()",
+          "description": "Source FHIR Encounter ID for traceability",
+          "type": "string",
+          "tag": [
+            {
+              "name": "ansi/type",
+              "value": "CHARACTER VARYING"
             }
           ]
         },
