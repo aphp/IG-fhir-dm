@@ -62,8 +62,10 @@ class EHRDataLoader:
     ]
     
     # Define expected columns for validation
+    # Note: created_at and updated_at columns are expected in CSV files.
+    # If your database uses triggers to auto-generate these, remove them from CSV files and EXPECTED_COLUMNS.
     EXPECTED_COLUMNS = {
-        'patient': ['patient_id', 'nom', 'prenom', 'nir', 'ins', 'date_naissance', 'sexe', 
+        'patient': ['patient_id', 'nom', 'prenom', 'nir', 'ins', 'date_naissance', 'sexe',
                    'date_deces', 'source_deces', 'rang_gemellaire', 'created_at', 'updated_at'],
         'patient_adresse': ['patient_adresse_id', 'patient_id', 'latitude', 'longitude', 
                            'code_iris', 'libelle_iris', 'code_geographique_residence', 
@@ -438,7 +440,6 @@ def main():
     parser.add_argument('--csv-dir', default='../file', help='Directory containing CSV files')
     parser.add_argument('--clear', action='store_true', help='Clear tables before loading')
     parser.add_argument('--validate-only', action='store_true', help='Only validate, do not load')
-    parser.add_argument('--encoding', help='Force specific encoding for CSV files')
     
     args = parser.parse_args()
     

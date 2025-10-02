@@ -56,7 +56,6 @@ python load_test_patients.py \
 - `--csv-dir`: Directory containing CSV files (default: ../file)
 - `--clear`: Clear tables before loading
 - `--validate-only`: Only validate existing data, do not load
-- `--encoding`: Force specific encoding for CSV files
 
 ## French Environment Features
 
@@ -133,11 +132,6 @@ python load_test_patients.py --database ehr_test --user postgres --clear
 ### Validate Existing Data
 ```bash
 python load_test_patients.py --database ehr_test --user postgres --validate-only
-```
-
-### Force Specific Encoding
-```bash
-python load_test_patients.py --database ehr_test --user postgres --encoding utf-8
 ```
 
 ### Custom CSV Directory
