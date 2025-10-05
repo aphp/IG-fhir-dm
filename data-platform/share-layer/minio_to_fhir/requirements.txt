@@ -1,0 +1,11 @@
+# MinIO SDK
+minio>=7.2.0
+
+# Environment configuration
+python-dotenv>=1.0.0
+
+# HTTP requests for FHIR API
+requests>=2.31.0
+
+# Progress bars (optional, nice to have)
+tqdm>=4.66.0
