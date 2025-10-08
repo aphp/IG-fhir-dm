@@ -1,13 +1,9 @@
-# MinIO Resource Downloader - Feature 2
+# MinIO Resource Downloader - Simplified
 
 ## Objective
 Create a Python script to download all FHIR NDJSON files from a MinIO bucket to a local directory.
 
-## Context
-
-### Project Structure
-
-minio_to_fhir project following directory structure:
+## Project Structure
 
 ```
 data-platform/
@@ -25,35 +21,23 @@ data-platform/
           │   ├── fhir_client.py        # FHIR client wrapper
           │   └── utils.py              # Common utilities
           ├── list_minio_resources.py   # Feature 1: List
-          ├── download_minio_resources.py # Feature 2: Download (this feature)
-          ├── upload_to_fhir.py         # Feature 3: Upload
-          ├── cleanup_ndjson_files.py   # Feature 4: Cleanup
-          └── minio_to_fhir.py          # Feature 5: Orchestrator
+          └── download_minio_resources.py # This script
 ```
 
-### Input
-- **Source**: MinIO bucket (configured in .env)
-- **Format**: NDJSON files (*.ndjson)
-
-### Output
-- Downloaded NDJSON files in local directory
-- Progress indicators for each file
-- Summary of downloaded files
-
-## Requirements
-
-### 1. Use Existing Configuration
-Use the `.env` file from previous features:
+## Configuration (.env)
 ```bash
+# MinIO Configuration
 MINIO_ENDPOINT=localhost:9000
 MINIO_ACCESS_KEY=minioadmin
 MINIO_SECRET_KEY=minioadmin
 MINIO_BUCKET_NAME=fhir-data
 MINIO_SECURE=false
+
+# Download Configuration
 DOWNLOAD_DIR=/tmp/fhir-download
 ```
 
-### 2. Command-Line Interface
+## Command-Line Interface
 ```bash
 # Basic usage - download to default directory
 python download_minio_resources.py
@@ -64,12 +48,6 @@ python download_minio_resources.py --bucket my-bucket
 # With custom download directory
 python download_minio_resources.py --output /data/downloads
 
-# Filter by resource type
-python download_minio_resources.py --filter "Patient,Observation"
-
-# Overwrite existing files
-python download_minio_resources.py --overwrite
-
 # Help
 python download_minio_resources.py --help
 ```
@@ -77,24 +55,19 @@ python download_minio_resources.py --help
 **Arguments**:
 - `--bucket` / `-b`: Override bucket name from .env
 - `--output` / `-o`: Override download directory from .env
-- `--filter` / `-f`: Download only specific resource types (comma-separated)
-- `--overwrite`: Overwrite existing files (default: skip)
-- `--organize`: Organize files in subdirectories by resource type
 
-### 3. Core Functionality
+## Core Functionality
 
-**Must do**:
 - Load configuration from `.env` file
 - Connect to MinIO
 - Create download directory if it doesn't exist
-- List all `.ndjson` files (or filtered files)
-- Download each file with progress indication
-- Skip existing files (unless --overwrite)
-- Organize files by resource type if requested
-- Show download statistics
+- List all `.ndjson` files
+- Download each file (always overwrite)
+- Show progress for each file
+- Display download statistics
 
-**File Organization Options**:
-- **Flat** (default): All files in DOWNLOAD_DIR
+**File Organization**:
+- All files saved in flat structure (same as bucket)
   ```
   /tmp/fhir-download/
     ├── Patient.ndjson
@@ -102,18 +75,7 @@ python download_minio_resources.py --help
     └── Organization.ndjson
   ```
 
-- **Organized** (with --organize): Files in subdirectories
-  ```
-  /tmp/fhir-download/
-    ├── Patient/
-    │   └── Patient.ndjson
-    ├── Observation/
-    │   └── Observation.ndjson
-    └── Organization/
-        └── Organization.ndjson
-  ```
-
-### 4. Output Format
+## Output Format
 
 **Progress Output**:
 ```
@@ -121,41 +83,40 @@ python download_minio_resources.py --help
 Source: fhir-data@localhost:9000
 Destination: /tmp/fhir-download
 
-Found 11 files to download...
+Found 8 files to download...
 
-[1/11] Downloading Organization.ndjson... ✓ (45.2 KB in 0.3s)
-[2/11] Downloading Location.ndjson... ✓ (23.1 KB in 0.2s)
-[3/11] Downloading Patient.ndjson... ✓ (1.2 MB in 2.1s)
-[4/11] Downloading Observation.ndjson... ✓ (8.7 MB in 12.5s)
-[5/11] Downloading Encounter.ndjson... ⊘ (already exists, skipped)
-...
+[1/8] Downloading Organization.ndjson... ✓ (45.2 KB in 0.3s)
+[2/8] Downloading Location.ndjson... ✓ (23.1 KB in 0.2s)
+[3/8] Downloading Patient.ndjson... ✓ (1.2 MB in 2.1s)
+[4/8] Downloading Observation_labs.ndjson... ✓ (8.7 MB in 12.5s)
+[5/8] Downloading Encounter.ndjson... ✓ (456 KB in 1.2s)
+[6/8] Downloading Procedure.ndjson... ✓ (234 KB in 0.8s)
+[7/8] Downloading Condition.ndjson... ✓ (567 KB in 1.5s)
+[8/8] Downloading Medication.ndjson... ✓ (123 KB in 0.4s)
 
 === Summary ===
-Total files found: 11
-Downloaded: 9
-Skipped (already exist): 2
+Total files: 8
+Downloaded: 8
 Failed: 0
 Total size: 12.4 MB
-Duration: 28.3s
+Duration: 19.2s
 Location: /tmp/fhir-download
 ```
 
-### 5. Dependencies
-Same as Feature 1:
+## Dependencies (requirements.txt)
 ```txt
 minio>=7.2.0
 python-dotenv>=1.0.0
 ```
 
-### 6. Error Handling
-- Handle connection errors
-- Handle disk space issues
-- Handle permission errors
-- Handle corrupted downloads
-- Partial download recovery
-- Clear error messages with suggestions
+## Error Handling
+- Connection errors
+- Disk space issues
+- Permission errors
+- Download failures
+- Clear error messages
 
-### 7. Code Structure
+## Code Structure
 
 ```python
 #!/usr/bin/env python3
@@ -164,45 +125,37 @@ MinIO Resource Downloader
 Download all FHIR NDJSON files from MinIO bucket to local directory.
 """
 
-import os
-import sys
 import argparse
+import time
 from pathlib import Path
 from minio import Minio
 from minio.error import S3Error
 from dotenv import load_dotenv
-import time
 
 def parse_arguments():
     """Parse command-line arguments."""
     pass
 
 def load_config(bucket_override=None, output_override=None):
-    """Load and validate environment variables."""
+    """Load environment variables."""
     pass
 
 def create_minio_client(config):
-    """Create and test MinIO client."""
+    """Create MinIO client."""
     pass
 
-def get_resource_type_from_filename(filename):
-    """Extract FHIR resource type from filename."""
+def prepare_download_directory(download_dir):
+    """Create download directory if it doesn't exist."""
     pass
 
-def prepare_download_directory(base_dir, organize=False, resource_type=None):
-    """Create directory structure for downloads."""
-    pass
-
-def download_file(client, bucket_name, object_name, local_path, overwrite=False):
+def download_file(client, bucket_name, object_name, local_path):
     """Download a single file from MinIO."""
-    # Check if file exists and handle overwrite
-    # Download with progress
-    # Return stats (size, duration, success/skip/fail)
+    # Download file
+    # Return stats (size, duration, success/fail)
     pass
 
-def download_all_files(client, bucket_name, download_dir, resource_filter=None, 
-                       organize=False, overwrite=False):
-    """Download all matching NDJSON files."""
+def download_all_files(client, bucket_name, download_dir):
+    """Download all NDJSON files."""
     pass
 
 def format_size(bytes):
@@ -220,15 +173,7 @@ if __name__ == "__main__":
 ## Success Criteria
 ✅ Downloads all NDJSON files from MinIO  
 ✅ Shows progress for each file  
-✅ Creates necessary directories  
-✅ Handles existing files correctly  
-✅ Supports resource filtering  
-✅ Supports organized file structure  
+✅ Creates download directory  
+✅ Always overwrites existing files  
 ✅ Displays summary statistics  
-✅ Handles errors gracefully  
-
-## Deliverables
-1. `download_minio_resources.py` - Main script
-2. Update `requirements.txt` if needed
-3. Brief usage instructions in comments or docstring
-```
+✅ Handles errors gracefully

@@ -1,13 +1,9 @@
-# HAPI FHIR Batch Uploader - Feature 3
+# HAPI FHIR Batch Uploader
 
 ## Objective
-Create a Python script to upload FHIR NDJSON files from a local directory to HAPI FHIR server using batch transactions (NOT $import).
+Create a Python script to upload FHIR NDJSON files from a local directory to HAPI FHIR server using batch transactions, respecting referential integrity order and original id resource.
 
-## Context
-
-### Project Structure
-
-minio_to_fhir project following directory structure:
+## Project Structure
 
 ```
 data-platform/
@@ -26,34 +22,10 @@ data-platform/
           │   └── utils.py              # Common utilities
           ├── list_minio_resources.py   # Feature 1: List
           ├── download_minio_resources.py # Feature 2: Download
-          ├── upload_to_fhir.py         # Feature 3: Upload (this feature)
-          ├── cleanup_ndjson_files.py   # Feature 4: Cleanup
-          └── minio_to_fhir.py          # Feature 5: Orchestrator
+          └── upload_to_fhir.py         # This script
 ```
 
-### Input
-- **Source**: Local directory with NDJSON files
-- **Format**: NDJSON files (*.ndjson) containing FHIR R4 resources
-
-### Output
-- Resources uploaded to HAPI FHIR server
-- Progress tracking
-- Success/failure statistics per file and per resource
-
-### Resource Loading Order
-Resources must be loaded in this specific order to maintain referential integrity:
-1. Organization
-2. Location
-3. Medication
-4. Specimen
-5. Patient
-6. Encounter
-7. Clinical Resources: Procedure, Observation, Condition, MedicationRequest, MedicationDispense, MedicationStatement
-
-## Requirements
-
-### 1. Use Existing Configuration
-Use the `.env` file from previous features:
+## Configuration (.env)
 ```bash
 # HAPI FHIR Configuration
 FHIR_BASE_URL=http://localhost:8080/fhir
@@ -62,29 +34,20 @@ FHIR_USERNAME=
 FHIR_PASSWORD=
 
 # Upload Configuration
-UPLOAD_DIR=/tmp/fhir-upload
+TMP_DIR=/tmp/fhir-upload
 BATCH_SIZE=100
 ```
 
-### 2. Command-Line Interface
+## Command-Line Interface
 ```bash
 # Basic usage - upload from default directory
 python upload_to_fhir.py
 
 # With custom source directory
-python upload_to_fhir.py --input /data/fhir-files
+python upload_to_fhir.py --input ./data/fhir-files
 
 # With custom batch size
 python upload_to_fhir.py --batch-size 50
-
-# Filter by resource type
-python upload_to_fhir.py --filter "Patient,Observation"
-
-# Dry run (validate without uploading)
-python upload_to_fhir.py --dry-run
-
-# Continue on errors
-python upload_to_fhir.py --continue-on-error
 
 # Help
 python upload_to_fhir.py --help
@@ -93,27 +56,56 @@ python upload_to_fhir.py --help
 **Arguments**:
 - `--input` / `-i`: Source directory (overrides .env)
 - `--batch-size` / `-s`: Resources per batch (default: 100)
-- `--filter` / `-f`: Upload only specific resource types
-- `--dry-run`: Validate files without uploading
-- `--continue-on-error`: Continue if a batch fails
-- `--skip-validation`: Skip FHIR validation before upload
 
-### 3. Core Functionality
+## Resource Loading Order (CRITICAL)
 
-**Must do**:
+Resources must be loaded in this specific order to maintain referential integrity:
+
+1. **Organization** 
+2. **Location**
+3. **Patient**
+4. **Encounter**
+5. **Medication**
+6. **Condition**
+7. **Observation**
+8. **Procedure**
+9. **Specimen**
+10. **MedicationRequest**
+11. **MedicationDispense**
+12. **MedicationAdminstration** and **MedicationStatement**
+
+```python
+RESOURCE_ORDER = [
+    'Organization',
+    'Location',
+    'Patient',
+    'Encounter',
+    'Condition',
+    'Observation',
+    'Procedure',
+    'Medication',
+    'Specimen',
+    'MedicationRequest',
+    'MedicationDispense',
+    ['MedicationStatement', 'MedicationAdministration']
+]
+```
+
+## Core Functionality
+
 - Load configuration from `.env` file
 - Test HAPI FHIR server connectivity
-- Scan directory for NDJSON files
-- Group files by resource type
+- Scan directory for all NDJSON files
+- **Group files by resource type**
 - **Sort by resource order** (referential integrity)
-- For each file:
+- For each file (in order):
   - Read NDJSON line by line
   - Create batches of N resources
   - Build FHIR Bundle (type: batch)
-  - POST bundle to FHIR server
+  - PUT bundle to FHIR server
   - Parse response and track results
-- Track success/failure per resource
 - Display progress and statistics
+- Log failed resources
 
 **Batch Bundle Structure**:
 ```json
@@ -123,35 +115,20 @@ python upload_to_fhir.py --help
   "entry": [
     {
       "request": {
-        "method": "POST",
-        "url": "Patient"
+        "method": "PUT",
+        "url": "Patient/patient-001"
       },
       "resource": {
         "resourceType": "Patient",
+        "id": "patient-001",
         ...
       }
-    },
-    ...
+    }
   ]
 }
 ```
 
-### 4. Resource Order (CRITICAL)
-
-```python
-RESOURCE_ORDER = [
-    'Organization',
-    'Location',
-    'Medication',
-    'Specimen',
-    'Patient',
-    'Encounter',
-    ['Procedure', 'Observation', 'Condition', 
-     'MedicationRequest', 'MedicationDispense', 'MedicationStatement']
-]
-```
-
-### 5. Output Format
+## Output Format
 
 **Progress Output**:
 ```
@@ -159,6 +136,8 @@ RESOURCE_ORDER = [
 Source: /tmp/fhir-upload
 Destination: http://localhost:8080/fhir
 Batch Size: 100
+
+Testing FHIR server... ✓
 
 Scanning directory...
 Found 8 NDJSON files (2,845 resources total)
@@ -168,7 +147,6 @@ Sorted by dependency order:
   Step 2: Location (1 file, 35 resources)
   Step 3: Patient (1 file, 250 resources)
   Step 4: Encounter (1 file, 420 resources)
-  Step 5: Clinical (4 files, 2,128 resources)
 
 Starting upload...
 
@@ -191,7 +169,12 @@ Starting upload...
   Batch 5/5 (20 resources)... ✓ (20 created, 0 failed) - 1.5s
 
 [Step 5/5] Clinical Resources (Observation, Procedure, Condition, MedicationRequest)
-  ...
+  Observation_labs.ndjson
+    Batch 1/8 (100 resources)... ✓ (100 created, 0 failed) - 7.2s
+    ...
+  Procedure.ndjson
+    Batch 1/2 (100 resources)... ✓ (100 created, 0 failed) - 5.8s
+    ...
 
 === Summary ===
 Total files: 8
@@ -203,35 +186,34 @@ Duration: 3m 24s
 Failed resources logged to: upload_failures.log
 ```
 
-### 6. Dependencies
+## Dependencies (requirements.txt)
 ```txt
 minio>=7.2.0
 python-dotenv>=1.0.0
 requests>=2.31.0
 ```
 
-### 7. Error Handling
+## Error Handling
 - Test FHIR server before upload
-- Validate NDJSON format
 - Handle batch failures gracefully
-- Log failed resources with details
-- Option to continue on error
+- Track failed resources
+- Log failures to file
 - Retry logic for network errors
 - Clear error messages
 
-### 8. Code Structure
+## Code Structure
 
 ```python
 #!/usr/bin/env python3
 """
 HAPI FHIR Batch Uploader
 Upload FHIR NDJSON files to HAPI FHIR server using batch transactions.
+Respects referential integrity by uploading resources in dependency order.
 """
 
-import os
-import sys
 import json
 import argparse
+import time
 from pathlib import Path
 from dotenv import load_dotenv
 import requests
@@ -241,12 +223,16 @@ from typing import List, Dict, Tuple
 RESOURCE_ORDER = [
     'Organization',
     'Location',
-    'Medication',
-    'Specimen',
     'Patient',
     'Encounter',
-    ['Procedure', 'Observation', 'Condition', 
-     'MedicationRequest', 'MedicationDispense', 'MedicationStatement']
+    'Condition',
+    'Observation',
+    'Procedure',
+    'Medication',
+    'Specimen',
+    'MedicationRequest',
+    'MedicationDispense',
+    ['MedicationStatement', 'MedicationAdministration']
 ]
 
 def parse_arguments():
@@ -254,18 +240,20 @@ def parse_arguments():
     pass
 
 def load_config(input_override=None):
-    """Load and validate environment variables."""
+    """Load environment variables."""
     pass
 
-def test_fhir_server(config):
+def test_fhir_server(fhir_url, auth=None):
     """Test HAPI FHIR server connectivity."""
     # GET /metadata
-    # Check server is accessible
-    # Check authentication if enabled
     pass
 
 def get_resource_type_from_filename(filename):
     """Extract FHIR resource type from filename."""
+    # Handle patterns like:
+    # - "Patient.ndjson" -> "Patient"
+    # - "MimicPatient.ndjson" -> "Patient"
+    # - "Patient_part1.ndjson" -> "Patient"
     pass
 
 def scan_ndjson_files(directory):
@@ -286,23 +274,20 @@ def create_batch_bundle(resources: List[Dict]) -> Dict:
 
 def upload_batch(fhir_url: str, bundle: Dict, auth=None) -> Tuple[int, int]:
     """Upload batch bundle to FHIR server."""
-    # POST bundle
+    # PUT bundle
     # Parse response
-    # Count successes/failures
     # Return (success_count, failure_count)
     pass
 
-def upload_file(filepath, resource_type, fhir_config, batch_size, continue_on_error):
+def upload_file(filepath, fhir_url, batch_size, auth=None):
     """Upload all resources from a single NDJSON file."""
     # Read file
     # Create batches
     # Upload each batch
-    # Track stats
     # Return stats
     pass
 
-def upload_all_files(files_by_type, fhir_config, batch_size, 
-                     continue_on_error, dry_run):
+def upload_all_files(sorted_files, fhir_url, batch_size, auth=None):
     """Upload all files in correct order."""
     pass
 
@@ -321,17 +306,12 @@ if __name__ == "__main__":
 ## Success Criteria
 ✅ Tests FHIR server connectivity  
 ✅ Reads NDJSON files correctly  
-✅ Groups and sorts files by resource order  
+✅ Groups files by resource type
+✅ Sorts files by dependency order  
 ✅ Creates valid FHIR batch bundles  
 ✅ Uploads batches successfully  
 ✅ Tracks success/failure per resource  
+✅ Logs failures for review  
 ✅ Handles errors gracefully  
 ✅ Displays clear progress  
-✅ Logs failures for review  
-✅ Respects referential integrity order  
-
-## Deliverables
-1. `upload_to_fhir.py` - Main script
-2. Update `requirements.txt` if needed (add requests)
-3. Brief usage instructions in comments or docstring
-```
+✅ Respects referential integrity order

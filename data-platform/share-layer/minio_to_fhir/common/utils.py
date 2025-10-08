@@ -28,7 +28,8 @@ def get_resource_type_from_filename(filename: str) -> Optional[str]:
         'Organization', 'Location', 'Medication', 'Specimen',
         'Patient', 'Encounter', 'Procedure', 'Observation',
         'Condition', 'MedicationRequest', 'MedicationDispense',
-        'MedicationStatement', 'Practitioner', 'PractitionerRole',
+        'MedicationStatement', 'MedicationAdministration',
+        'Practitioner', 'PractitionerRole',
         'Device', 'DiagnosticReport', 'Immunization'
     ]
 

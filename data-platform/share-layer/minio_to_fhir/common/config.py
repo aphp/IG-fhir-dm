@@ -13,14 +13,18 @@ class Config:
 
     # FHIR resource loading order (maintains referential integrity)
     RESOURCE_ORDER = [
-        'Organization',
-        'Location',
-        'Medication',
-        'Specimen',
-        'Patient',
-        'Encounter',
-        ['Procedure', 'Observation', 'Condition',
-         'MedicationRequest', 'MedicationDispense', 'MedicationStatement']
+        'Organization',      # Step 1
+        'Location',          # Step 2
+        'Patient',           # Step 3
+        'Encounter',         # Step 4
+        'Condition',         # Step 5
+        'Observation',       # Step 6
+        'Procedure',         # Step 7
+        'Medication',        # Step 8
+        'Specimen',          # Step 9
+        'MedicationRequest', # Step 10
+        'MedicationDispense', # Step 11
+        ['MedicationStatement', 'MedicationAdministration']  # Step 12 (grouped)
     ]
 
     def __init__(self, env_file: Optional[str] = None):
