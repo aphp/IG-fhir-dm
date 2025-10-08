@@ -1,13 +1,9 @@
-# MinIO Resource Lister
+# MinIO Resource Lister - Simplified
 
 ## Objective
-Create a Python script to list all FHIR NDJSON files available in a MinIO bucket, grouped by resource type.
+Create a Python script to list all FHIR NDJSON files in a MinIO bucket.
 
-## Context
-
-### Project Structure
-
-minio_to_fhir project following directory structure:
+## Project Structure
 
 ```
 data-platform/
@@ -24,26 +20,10 @@ data-platform/
           │   ├── minio_client.py       # MinIO client wrapper
           │   ├── fhir_client.py        # FHIR client wrapper
           │   └── utils.py              # Common utilities
-          ├── list_minio_resources.py   # Feature 1: List (this feature)
-          ├── download_minio_resources.py # Feature 2: Download
-          ├── upload_to_fhir.py         # Feature 3: Upload
-          ├── cleanup_ndjson_files.py   # Feature 4: Cleanup
-          └── minio_to_fhir.py          # Feature 5: Orchestrator
+          └── list_minio_resources.py   # This script
 ```
 
-### Input
-- **Location**: MinIO bucket (configured in .env)
-- **Format**: NDJSON files (*.ndjson)
-- **Content**: FHIR R4 resources (Organization, Patient, Observation, etc.)
-
-### Output
-- Console output showing all NDJSON files grouped by resource type
-- Statistics: total files, files per resource type
-
-## Requirements
-
-### 1. Configuration File (.env)
-Use the `.env` file from previous features:
+## Configuration (.env)
 ```bash
 # MinIO Configuration
 MINIO_ENDPOINT=localhost:9000
@@ -51,19 +31,9 @@ MINIO_ACCESS_KEY=minioadmin
 MINIO_SECRET_KEY=minioadmin
 MINIO_BUCKET_NAME=fhir-data
 MINIO_SECURE=false
-
-# HAPI FHIR Configuration (for future features)
-FHIR_BASE_URL=http://localhost:8080/fhir
-FHIR_AUTH_ENABLED=false
-FHIR_USERNAME=
-FHIR_PASSWORD=
-
-# Directories (for future features)
-DOWNLOAD_DIR=/tmp/fhir-download
-UPLOAD_DIR=/tmp/fhir-upload
 ```
 
-### 2. Command-Line Interface
+## Command-Line Interface
 ```bash
 # Basic usage
 python list_minio_resources.py
@@ -71,7 +41,7 @@ python list_minio_resources.py
 # With custom bucket
 python list_minio_resources.py --bucket my-bucket
 
-# With detailed output
+# With detailed output (size, modified date)
 python list_minio_resources.py --verbose
 
 # Help
@@ -80,29 +50,17 @@ python list_minio_resources.py --help
 
 **Arguments**:
 - `--bucket` / `-b`: Override bucket name from .env
-- `--verbose` / `-v`: Show detailed file information (size, last modified)
-- `--filter` / `-f`: Filter by resource type (e.g., "Patient,Observation")
+- `--verbose` / `-v`: Show file size and last modified date
 
-### 3. Core Functionality
+## Core Functionality
 
-**Must do**:
 - Load configuration from `.env` file
-- Connect to MinIO with credentials
-- Test bucket accessibility
+- Connect to MinIO
 - List all `.ndjson` files in bucket
-- Extract resource type from filename (e.g., "Patient.ndjson" → "Patient")
-- Group files by resource type
-- Display organized output with statistics
+- Display results with count
 - Handle errors gracefully
 
-**Resource Type Detection**:
-- Pattern: `{Prefix}{ResourceType}.ndjson`
-- Examples:
-  - `Patient.ndjson` → Patient
-  - `MimicPatient.ndjson` → Patient
-  - `Organization.ndjson` → Organization
-
-### 4. Output Format
+## Output Format
 
 **Standard Output**:
 ```
@@ -110,103 +68,75 @@ python list_minio_resources.py --help
 Bucket: fhir-data
 Endpoint: localhost:9000
 
-📋 Found 11 NDJSON files:
-
-Organization (1 file):
+📋 NDJSON Files:
   - Organization.ndjson
-
-Location (1 file):
   - Location.ndjson
-
-Medication (1 file):
-  - Medication.ndjson
-
-Patient (2 files):
   - Patient.ndjson
   - Patient_part2.ndjson
-
-Observation (3 files):
   - Observation_labs.ndjson
   - Observation_vitals.ndjson
-  - Observation_other.ndjson
-
-Encounter (1 file):
   - Encounter.ndjson
-
-Procedure (1 file):
   - Procedure.ndjson
 
-Condition (1 file):
-  - Condition.ndjson
-
-=== Summary ===
-Total files: 11
-Resource types: 8
+Total files: 8
 ```
 
 **Verbose Output** (with --verbose):
 ```
-Organization (1 file, 45.2 KB):
-  - Organization.ndjson (45.2 KB, modified: 2025-10-03 14:23:15)
+📋 NDJSON Files:
+  - Organization.ndjson (45.2 KB, 2025-10-03 14:23:15)
+  - Location.ndjson (12.8 KB, 2025-10-03 14:24:01)
+  - Patient.ndjson (2.3 MB, 2025-10-03 15:10:42)
+  ...
+
+Total files: 8
 ```
 
-### 5. Dependencies (requirements.txt)
+## Dependencies (requirements.txt)
 ```txt
 minio>=7.2.0
 python-dotenv>=1.0.0
 ```
 
-### 6. Error Handling
-- Graceful connection errors
-- Missing bucket handling
-- Invalid credentials handling
-- Empty bucket handling
+## Error Handling
+- Connection errors
+- Missing bucket
+- Invalid credentials
+- Empty bucket
 - Clear error messages
 
-### 7. Code Structure
+## Code Structure
 
 ```python
 #!/usr/bin/env python3
 """
 MinIO Resource Lister
-List all FHIR NDJSON files in MinIO bucket grouped by resource type.
+List all FHIR NDJSON files in MinIO bucket.
 """
 
-import os
-import sys
 import argparse
-from pathlib import Path
 from minio import Minio
 from minio.error import S3Error
 from dotenv import load_dotenv
-from datetime import datetime
 
 def parse_arguments():
     """Parse command-line arguments."""
     pass
 
 def load_config(bucket_override=None):
-    """Load and validate environment variables."""
+    """Load environment variables."""
     pass
 
 def create_minio_client(config):
-    """Create and test MinIO client."""
-    pass
-
-def get_resource_type_from_filename(filename):
-    """Extract FHIR resource type from filename."""
-    # Handle patterns like:
-    # - "Patient.ndjson" -> "Patient"
-    # - "MimicPatient.ndjson" -> "Patient"
-    # - "Patient_part1.ndjson" -> "Patient"
+    """Create MinIO client."""
     pass
 
 def list_ndjson_files(client, bucket_name, verbose=False):
-    """List all NDJSON files grouped by resource type."""
+    """List all NDJSON files."""
     pass
 
-def display_results(files_by_type, total_files, verbose=False):
-    """Display organized results."""
+def display_results(files, verbose=False):
+    """Display results."""
     pass
 
 def main():
@@ -218,18 +148,9 @@ if __name__ == "__main__":
 ```
 
 ## Success Criteria
-✅ Script connects to MinIO successfully  
-✅ Lists all .ndjson files in bucket  
-✅ Groups files by resource type correctly  
-✅ Displays clear, organized output  
-✅ Shows summary statistics  
+✅ Connects to MinIO  
+✅ Lists all .ndjson files  
+✅ Shows file count  
+✅ Verbose mode shows size/date  
 ✅ Handles errors gracefully  
-✅ Supports command-line arguments  
-✅ Has helpful --help text  
-
-## Deliverables
-1. `list_minio_resources.py` - Main script
-2. `.env.example` - Configuration template
-3. `requirements.txt` - Python dependencies
-4. Brief usage instructions in comments or docstring
-```
+✅ Has --help text

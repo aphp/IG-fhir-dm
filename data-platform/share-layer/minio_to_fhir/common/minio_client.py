@@ -74,6 +74,31 @@ class MinIOClientWrapper:
             print(f"❌ Error listing files: {e}")
             return []
 
+    def list_ndjson_files_with_details(self, bucket_name: str) -> List[Dict]:
+        """
+        List all NDJSON files in bucket with metadata.
+
+        Args:
+            bucket_name: Bucket name
+
+        Returns:
+            List of dicts with file details (name, size, last_modified)
+        """
+        try:
+            objects = self.client.list_objects(bucket_name)
+            ndjson_files = []
+            for obj in objects:
+                if obj.object_name.endswith('.ndjson'):
+                    ndjson_files.append({
+                        'name': obj.object_name,
+                        'size': obj.size,
+                        'last_modified': obj.last_modified
+                    })
+            return ndjson_files
+        except S3Error as e:
+            print(f"❌ Error listing files: {e}")
+            return []
+
     def download_file(self, bucket_name: str, object_name: str,
                      local_path: Path) -> bool:
         """
