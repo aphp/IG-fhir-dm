@@ -9,3 +9,6 @@ requests>=2.31.0
 
 # Progress bars (optional, nice to have)
 tqdm>=4.66.0
+
+# Graph analysis for dependency resolution
+networkx>=3.0

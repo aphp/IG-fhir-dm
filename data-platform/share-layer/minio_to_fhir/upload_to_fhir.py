@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 HAPI FHIR Batch Uploader
-Upload FHIR NDJSON files to HAPI FHIR server using batch transactions.
-Respects referential integrity by uploading resources in dependency order.
+Upload FHIR Bundle JSON files to HAPI FHIR server using batch transactions.
+Follows upload-plan.json for dependency-based upload order.
 """
 
 import json
@@ -19,40 +19,36 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from common.config import Config
 from common.fhir_client import FHIRClientWrapper
-from common.utils import format_duration, get_resource_type_from_filename
+from common.utils import format_duration
 
 # Global logger
 logger = None
-
-# Resource loading order (from Config)
-RESOURCE_ORDER = Config.RESOURCE_ORDER
 
 
 def parse_arguments():
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
-        description='Upload FHIR NDJSON files to HAPI FHIR server using batch transactions',
+        description='Upload FHIR Bundle JSON files to HAPI FHIR server',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  %(prog)s                                  # Upload from default directory
-  %(prog)s --input ./data/fhir-files        # Upload from custom directory
-  %(prog)s --batch-size 50                  # Use smaller batches
-  %(prog)s -i /tmp/data -s 200              # Combine options
-  %(prog)s --log-file upload.log            # Specify custom log file
+  %(prog)s --input ./tmp/fhir-upload
+  %(prog)s --input ./tmp/fhir-upload --plan-file ./custom-plan.json
+  %(prog)s -i ./bundles -p ./bundles/upload-plan.json
         """
     )
 
     parser.add_argument(
         '--input', '-i',
         type=str,
-        help='Source directory containing NDJSON files (overrides .env)'
+        required=True,
+        help='Source directory containing upload-plan.json and level-XX/ directories'
     )
 
     parser.add_argument(
-        '--batch-size', '-s',
-        type=int,
-        help='Number of resources per batch transaction (default: 100)'
+        '--plan-file', '-p',
+        type=str,
+        help='Path to upload-plan.json (default: <input>/upload-plan.json)'
     )
 
     parser.add_argument(
@@ -67,7 +63,7 @@ Examples:
 
 def setup_logging(log_file):
     """
-    Setup logging configuration.
+    Setup logging to file and console.
 
     Args:
         log_file: Path to log file
@@ -78,25 +74,24 @@ def setup_logging(log_file):
     global logger
 
     # Create logger
-    logger = logging.getLogger('fhir_uploader')
-    logger.setLevel(logging.DEBUG)
+    logger = logging.getLogger('FHIRUploader')
+    logger.setLevel(logging.INFO)
 
-    # Remove existing handlers
-    logger.handlers = []
+    # File handler
+    fh = logging.FileHandler(log_file, mode='w', encoding='utf-8')
+    fh.setLevel(logging.INFO)
 
-    # Create file handler
-    file_handler = logging.FileHandler(log_file, mode='w', encoding='utf-8')
-    file_handler.setLevel(logging.DEBUG)
+    # Console handler
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.WARNING)
 
-    # Create formatter
-    formatter = logging.Formatter(
-        '%(asctime)s - %(levelname)s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
-    )
-    file_handler.setFormatter(formatter)
+    # Formatter
+    formatter = logging.Formatter('[%(asctime)s] %(levelname)s: %(message)s')
+    fh.setFormatter(formatter)
+    ch.setFormatter(formatter)
 
-    # Add handler to logger
-    logger.addHandler(file_handler)
+    logger.addHandler(fh)
+    logger.addHandler(ch)
 
     logger.info("=" * 80)
     logger.info("FHIR Upload Session Started")
@@ -105,760 +100,390 @@ def setup_logging(log_file):
     return logger
 
 
-def load_config(input_override=None, batch_size_override=None):
+def load_upload_plan(plan_file: Path) -> Dict:
     """
-    Load environment variables from .env file.
+    Load and parse upload-plan.json.
 
     Args:
-        input_override: Optional source directory to override .env value
-        batch_size_override: Optional batch size to override .env value
+        plan_file: Path to upload-plan.json
 
     Returns:
-        Config object with loaded configuration
+        Parsed upload plan dictionary
     """
+    if not plan_file.exists():
+        print(f"ERROR: Upload plan not found: {plan_file}")
+        print("Please run prepare_fhir_bundles.py first to generate the upload plan.")
+        sys.exit(1)
+
     try:
-        config = Config()
+        with open(plan_file, 'r', encoding='utf-8') as f:
+            plan = json.load(f)
 
-        # Override upload directory if specified
-        if input_override:
-            config.upload_dir = Path(input_override)
+        # Validate required fields
+        required_fields = ['dependency_levels', 'total_bundles', 'total_resources']
+        for field in required_fields:
+            if field not in plan:
+                print(f"ERROR: Invalid upload plan - missing field: {field}")
+                sys.exit(1)
 
-        # Override batch size if specified
-        if batch_size_override:
-            config.batch_size = batch_size_override
+        logger.info(f"Loaded upload plan from: {plan_file}")
+        logger.info(f"  Analysis timestamp: {plan.get('analysis_timestamp')}")
+        logger.info(f"  Total bundles: {plan.get('total_bundles')}")
+        logger.info(f"  Total resources: {plan.get('total_resources')}")
+        logger.info(f"  Dependency levels: {len(plan.get('dependency_levels', []))}")
 
-        return config
+        return plan
 
-    except ValueError as e:
-        print(f"❌ Configuration error: {e}")
-        print("\nPlease ensure your .env file is configured correctly.")
-        print("See .env.example for reference.")
+    except json.JSONDecodeError as e:
+        print(f"ERROR: Invalid JSON in upload plan: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Unexpected error loading configuration: {e}")
+        print(f"ERROR: Failed to load upload plan: {e}")
         sys.exit(1)
 
 
-def create_fhir_client(config):
+def display_plan_warnings(plan: Dict):
     """
-    Create FHIR client from configuration.
+    Display warnings from upload plan.
 
     Args:
-        config: Config object
+        plan: Upload plan dictionary
+    """
+    circular_refs = plan.get('circular_references', [])
+    circular_instances = plan.get('circular_reference_instances', [])
+    orphaned_refs = plan.get('orphaned_references', [])
+
+    has_warnings = circular_refs or orphaned_refs
+
+    if not has_warnings:
+        return
+
+    print("\nWARNINGS:")
+
+    if circular_instances:
+        print(f"  - {len(circular_instances)} mutual reference pair(s) detected")
+        print("    These resources reference each other bidirectionally:")
+        for instance in circular_instances[:3]:
+            print(f"      * {instance.get('resource_a')} <-> {instance.get('resource_b')}")
+        if len(circular_instances) > 3:
+            print(f"      ... and {len(circular_instances) - 3} more")
+
+    if orphaned_refs:
+        print(f"  - {len(orphaned_refs)} orphaned reference(s) detected")
+        print("    Some resources reference non-existent resources")
+
+    print("  - See upload-plan.json for full details")
+    print()
+
+    # Log warnings
+    logger.warning(f"Circular reference pairs: {len(circular_instances)}")
+    logger.warning(f"Orphaned references: {len(orphaned_refs)}")
+
+
+def scan_level_directory(level_dir: Path) -> List[Path]:
+    """
+    Scan a level directory for bundle JSON files.
+
+    Args:
+        level_dir: Path to level directory (e.g., level-01/)
 
     Returns:
-        FHIRClientWrapper instance
+        Sorted list of bundle file paths
     """
+    if not level_dir.exists():
+        logger.warning(f"Level directory not found: {level_dir}")
+        return []
+
+    bundle_files = sorted(level_dir.glob("*.json"))
+    logger.info(f"Found {len(bundle_files)} bundle files in {level_dir.name}")
+
+    return bundle_files
+
+
+def upload_bundle_file(bundle_file: Path, client: FHIRClientWrapper) -> Tuple[int, int, float]:
+    """
+    Upload a single bundle JSON file to FHIR server.
+
+    Args:
+        bundle_file: Path to bundle JSON file
+        client: FHIR client
+
+    Returns:
+        Tuple of (success_count, failure_count, duration)
+    """
+    start_time = time.time()
+
     try:
+        # Read bundle file
+        with open(bundle_file, 'r', encoding='utf-8') as f:
+            bundle = json.load(f)
+
+        # Validate bundle
+        if bundle.get('resourceType') != 'Bundle':
+            logger.error(f"Invalid bundle in {bundle_file.name}: not a Bundle resource")
+            return (0, 0, time.time() - start_time)
+
+        if bundle.get('type') != 'batch':
+            logger.warning(f"Bundle {bundle_file.name} is not type 'batch', type is: {bundle.get('type')}")
+
+        # Upload bundle
+        logger.info(f"Uploading {bundle_file.name}...")
+        success, response = client.post_bundle(bundle)
+
+        duration = time.time() - start_time
+
+        if not success:
+            logger.error(f"Failed to upload {bundle_file.name}: {response}")
+            return (0, len(bundle.get('entry', [])), duration)
+
+        # Parse response
+        success_count = 0
+        failure_count = 0
+
+        entries = response.get('entry', [])
+        for idx, entry in enumerate(entries, 1):
+            response_entry = entry.get('response', {})
+            status = response_entry.get('status', '')
+
+            if status.startswith('2'):  # 2xx success
+                success_count += 1
+                logger.debug(f"  [{idx}] SUCCESS - Status: {status}")
+            else:
+                failure_count += 1
+                location = response_entry.get('location', '')
+                outcome = response_entry.get('outcome', {})
+                logger.error(f"  [{idx}] FAILED - Status: {status}, Location: {location}")
+                if outcome:
+                    logger.error(f"       Outcome: {json.dumps(outcome)}")
+
+        logger.info(f"{bundle_file.name}: {success_count} succeeded, {failure_count} failed")
+
+        return (success_count, failure_count, duration)
+
+    except json.JSONDecodeError as e:
+        duration = time.time() - start_time
+        logger.error(f"Invalid JSON in {bundle_file.name}: {e}")
+        return (0, 0, duration)
+    except Exception as e:
+        duration = time.time() - start_time
+        logger.error(f"Error uploading {bundle_file.name}: {e}")
+        return (0, 0, duration)
+
+
+def upload_level(level_info: Dict, base_dir: Path, client: FHIRClientWrapper, total_levels: int) -> Dict:
+    """
+    Upload all bundles for a specific dependency level.
+
+    Args:
+        level_info: Level information from upload plan
+        base_dir: Base directory containing level directories
+        client: FHIR client
+        total_levels: Total number of levels
+
+    Returns:
+        Statistics dictionary
+    """
+    level_num = level_info.get('level')
+    level_name = level_info.get('name')
+    expected_bundles = level_info.get('bundles', 0)
+    resource_types = level_info.get('resource_types', [])
+
+    # Find level directory
+    level_dir = base_dir / f"level-{level_num:02d}"
+
+    print(f"\n[Level {level_num}/{total_levels}] {level_name} ({expected_bundles} bundles)")
+    logger.info(f"\n{'=' * 80}")
+    logger.info(f"Level {level_num}: {level_name}")
+    logger.info(f"Resource types: {', '.join(resource_types)}")
+    logger.info(f"Expected bundles: {expected_bundles}")
+    logger.info(f"{'=' * 80}")
+
+    # Scan for bundle files
+    bundle_files = scan_level_directory(level_dir)
+
+    if not bundle_files:
+        print(f"  WARNING: No bundle files found in {level_dir.name}")
+        logger.warning(f"No bundle files found in {level_dir}")
+        return {
+            'level': level_num,
+            'bundles': 0,
+            'success': 0,
+            'failed': 0,
+            'duration': 0
+        }
+
+    if len(bundle_files) != expected_bundles:
+        logger.warning(f"Found {len(bundle_files)} bundles but expected {expected_bundles}")
+
+    # Upload each bundle
+    total_success = 0
+    total_failed = 0
+    level_start = time.time()
+
+    for bundle_file in bundle_files:
+        success, failed, duration = upload_bundle_file(bundle_file, client)
+        total_success += success
+        total_failed += failed
+
+        status = "OK" if failed == 0 else "FAILED"
+        print(f"  {bundle_file.name} ... {status} ({success} created, {failed} failed) - {duration:.1f}s")
+
+    level_duration = time.time() - level_start
+
+    print(f"  Level {level_num} complete: {total_success:,} resources uploaded")
+    logger.info(f"Level {level_num} summary: {total_success} succeeded, {total_failed} failed, {format_duration(level_duration)}")
+
+    return {
+        'level': level_num,
+        'bundles': len(bundle_files),
+        'success': total_success,
+        'failed': total_failed,
+        'duration': level_duration
+    }
+
+
+def display_summary(stats: List[Dict], total_duration: float):
+    """
+    Display upload summary.
+
+    Args:
+        stats: List of level statistics
+        total_duration: Total upload duration
+    """
+    total_bundles = sum(s['bundles'] for s in stats)
+    total_success = sum(s['success'] for s in stats)
+    total_failed = sum(s['failed'] for s in stats)
+    total_resources = total_success + total_failed
+
+    print("\n" + "=" * 50)
+    print("Summary")
+    print("=" * 50)
+    print(f"Total bundles: {total_bundles}")
+    print(f"Total resources: {total_resources:,}")
+    print(f"Successfully uploaded: {total_success:,}")
+    print(f"Failed: {total_failed}")
+    print(f"Duration: {format_duration(total_duration)}")
+    print("=" * 50)
+
+    # Log summary
+    logger.info("\n" + "=" * 80)
+    logger.info("Upload Summary")
+    logger.info("=" * 80)
+    logger.info(f"Total bundles: {total_bundles}")
+    logger.info(f"Total resources: {total_resources:,}")
+    logger.info(f"Successfully uploaded: {total_success:,}")
+    logger.info(f"Failed: {total_failed}")
+    logger.info(f"Duration: {format_duration(total_duration)}")
+
+    for stat in stats:
+        logger.info(f"  Level {stat['level']}: {stat['success']} succeeded, {stat['failed']} failed")
+
+    if total_failed > 0:
+        logger.warning(f"Upload completed with {total_failed} failures")
+        print(f"\nFailed resources logged to: {logger.handlers[0].baseFilename}")
+    else:
+        logger.info("Upload completed successfully")
+
+    logger.info("=" * 80)
+
+
+def main():
+    """Main entry point."""
+    overall_start = time.time()
+
+    # Parse arguments
+    args = parse_arguments()
+
+    # Setup logging
+    setup_logging(args.log_file)
+
+    # Determine paths
+    input_dir = Path(args.input)
+    if args.plan_file:
+        plan_file = Path(args.plan_file)
+    else:
+        plan_file = input_dir / 'upload-plan.json'
+
+    # Display header
+    print("=" * 50)
+    print("HAPI FHIR Batch Uploader")
+    print("=" * 50)
+    print(f"Mode: Plan-Based Upload")
+    print(f"Source: {input_dir}")
+    print(f"Plan: {plan_file}")
+    print()
+
+    # Log configuration
+    logger.info(f"Configuration:")
+    logger.info(f"  Input directory: {input_dir}")
+    logger.info(f"  Upload plan: {plan_file}")
+    logger.info(f"  Log file: {args.log_file}")
+
+    # Load upload plan
+    print("Loading upload plan...")
+    plan = load_upload_plan(plan_file)
+
+    # Display plan info
+    print(f"  Analysis timestamp: {plan.get('analysis_timestamp')}")
+    print(f"  Total bundles: {plan.get('total_bundles')} across {len(plan.get('dependency_levels'))} levels")
+    print(f"  Total resources: {plan.get('total_resources'):,}")
+
+    # Display warnings
+    display_plan_warnings(plan)
+
+    # Create FHIR client from config
+    try:
+        config = Config()
         client = FHIRClientWrapper(
             base_url=config.fhir_base_url,
             auth_enabled=config.fhir_auth_enabled,
             username=config.fhir_username,
             password=config.fhir_password
         )
-        return client
-
     except Exception as e:
-        print(f"❌ Error creating FHIR client: {e}")
+        print(f"ERROR: Failed to create FHIR client: {e}")
+        logger.error(f"Failed to create FHIR client: {e}")
         sys.exit(1)
 
-
-def test_fhir_server(client):
-    """
-    Test FHIR server connectivity.
-
-    Args:
-        client: FHIRClientWrapper instance
-
-    Returns:
-        True if connection successful, False otherwise
-    """
+    # Test FHIR server
+    print(f"Destination: {config.fhir_base_url}")
     print("Testing FHIR server... ", end='', flush=True)
     success, version = client.test_connection()
 
     if success:
-        print(f"✓ (version: {version})")
-        return True
+        print(f"OK (HAPI FHIR {version})")
+        logger.info(f"FHIR server connection successful: {config.fhir_base_url} (version: {version})")
     else:
-        print("✗")
-        return False
-
-
-def count_resources_in_file(filepath):
-    """
-    Count total resources in an NDJSON file.
-
-    Args:
-        filepath: Path to NDJSON file
-
-    Returns:
-        Number of resources
-    """
-    count = 0
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            for line in f:
-                line = line.strip()
-                if line:
-                    count += 1
-    except Exception as e:
-        logger.warning(f"Error counting resources in {filepath.name}: {e}")
-    return count
-
-
-def group_files_by_resource_type(directory):
-    """
-    Scan directory and group NDJSON files by resource type.
-
-    Args:
-        directory: Path to directory
-
-    Returns:
-        Dict mapping resource type to list of (filepath, resource_count) tuples
-    """
-    if not directory.exists():
-        print(f"❌ Directory does not exist: {directory}")
-        return {}
-
-    if not directory.is_dir():
-        print(f"❌ Not a directory: {directory}")
-        return {}
-
-    # Find all NDJSON files
-    ndjson_files = list(directory.glob('*.ndjson'))
-
-    if not ndjson_files:
-        return {}
-
-    # Group by resource type
-    grouped = {}
-    unknown_files = []
-
-    for filepath in ndjson_files:
-        resource_type = get_resource_type_from_filename(filepath.name)
-
-        if resource_type:
-            if resource_type not in grouped:
-                grouped[resource_type] = []
-
-            # Count resources in file
-            resource_count = count_resources_in_file(filepath)
-            grouped[resource_type].append((filepath, resource_count))
-        else:
-            unknown_files.append(filepath.name)
-
-    # Warn about unknown files
-    if unknown_files:
-        logger.warning(f"Files with unknown resource types (will be skipped): {unknown_files}")
-        print(f"⚠️  Warning: {len(unknown_files)} file(s) with unknown resource type will be skipped")
-
-    return grouped
-
-
-def sort_files_by_dependency_order(grouped_files):
-    """
-    Sort grouped files according to RESOURCE_ORDER for referential integrity.
-
-    Args:
-        grouped_files: Dict mapping resource type to list of (filepath, count) tuples
-
-    Returns:
-        List of steps, where each step is:
-        {
-            'step_num': int,
-            'resource_types': list of str,
-            'files': list of (filepath, count) tuples,
-            'total_resources': int
-        }
-    """
-    steps = []
-    step_num = 0
-
-    for order_item in RESOURCE_ORDER:
-        # order_item can be a single resource type (str) or a list of types
-        if isinstance(order_item, list):
-            # Clinical resources - group multiple types together
-            resource_types = order_item
-            step_files = []
-            total_resources = 0
-
-            for resource_type in resource_types:
-                if resource_type in grouped_files:
-                    files_with_counts = grouped_files[resource_type]
-                    step_files.extend(files_with_counts)
-                    total_resources += sum(count for _, count in files_with_counts)
-
-            if step_files:
-                step_num += 1
-                steps.append({
-                    'step_num': step_num,
-                    'resource_types': resource_types,
-                    'files': sorted(step_files, key=lambda x: x[0].name),
-                    'total_resources': total_resources
-                })
-
-        else:
-            # Single resource type
-            resource_type = order_item
-            if resource_type in grouped_files:
-                files_with_counts = grouped_files[resource_type]
-                total_resources = sum(count for _, count in files_with_counts)
-
-                step_num += 1
-                steps.append({
-                    'step_num': step_num,
-                    'resource_types': [resource_type],
-                    'files': sorted(files_with_counts, key=lambda x: x[0].name),
-                    'total_resources': total_resources
-                })
-
-    return steps
-
-
-def scan_ndjson_files(directory):
-    """
-    Scan directory for NDJSON files and sort by dependency order.
-
-    Args:
-        directory: Path to directory
-
-    Returns:
-        List of steps (sorted by dependency order)
-    """
-    # Group files by resource type
-    grouped = group_files_by_resource_type(directory)
-
-    if not grouped:
-        return []
-
-    # Sort by dependency order
-    steps = sort_files_by_dependency_order(grouped)
-
-    return steps
-
-
-def read_ndjson_file(filepath):
-    """
-    Read NDJSON file and yield resources.
-
-    Args:
-        filepath: Path to NDJSON file
-
-    Yields:
-        Parsed FHIR resource (dict)
-    """
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            for line_num, line in enumerate(f, 1):
-                line = line.strip()
-                if not line:
-                    continue
-
-                try:
-                    resource = json.loads(line)
-                    yield resource
-                except json.JSONDecodeError as e:
-                    print(f"⚠️  Skipping invalid JSON at line {line_num}: {e}")
-                    continue
-
-    except Exception as e:
-        print(f"❌ Error reading file {filepath}: {e}")
-
-
-def create_batch_bundle(resources: List[Dict]) -> Dict:
-    """
-    Create FHIR Bundle of type 'batch'.
-
-    Uses PUT method to preserve original resource IDs.
-
-    Args:
-        resources: List of FHIR resources
-
-    Returns:
-        FHIR Bundle resource
-    """
-    entries = []
-    for resource in resources:
-        resource_type = resource.get('resourceType', 'Unknown')
-        resource_id = resource.get('id')
-
-        # Build URL with resource ID
-        if resource_id:
-            # Use PUT with full URL to preserve the original resource ID
-            url = f"{resource_type}/{resource_id}"
-            method = "PUT"
-        else:
-            # If no ID, use POST and let server assign one
-            url = resource_type
-            method = "POST"
-            logger.warning(f"Resource {resource_type} has no ID, using POST instead of PUT")
-
-        entry = {
-            "request": {
-                "method": method,
-                "url": url
-            },
-            "resource": resource
-        }
-        entries.append(entry)
-
-    bundle = {
-        "resourceType": "Bundle",
-        "type": "batch",
-        "entry": entries
-    }
-
-    return bundle
-
-
-def parse_bundle_response(response_bundle: Dict, batch_num: int, filename: str) -> Tuple[int, int]:
-    """
-    Parse bundle response to count successes and failures.
-
-    Args:
-        response_bundle: Response Bundle from FHIR server
-        batch_num: Batch number for logging
-        filename: Filename for logging
-
-    Returns:
-        Tuple of (success_count, failure_count)
-    """
-    success_count = 0
-    failure_count = 0
-
-    logger.info(f"\n--- Batch {batch_num} Response for {filename} ---")
-
-    entries = response_bundle.get('entry', [])
-    for idx, entry in enumerate(entries, 1):
-        response = entry.get('response', {})
-        status = response.get('status', '')
-        location = response.get('location', '')
-        outcome = response.get('outcome', {})
-
-        # Check if status starts with 2xx (success)
-        # 200 OK = resource updated (PUT)
-        # 201 Created = resource created (POST)
-        if status.startswith('2'):
-            success_count += 1
-            action = "created/updated" if status.startswith('20') else "processed"
-            logger.info(f"  [{idx}] SUCCESS - Status: {status} ({action}), Location: {location}")
-        else:
-            failure_count += 1
-            logger.error(f"  [{idx}] FAILED - Status: {status}")
-            logger.error(f"       Location: {location}")
-
-            # Log outcome details if available
-            if outcome:
-                logger.error(f"       Outcome: {json.dumps(outcome, indent=6)}")
-
-    logger.info(f"Batch {batch_num} Summary: {success_count} succeeded, {failure_count} failed")
-
-    return success_count, failure_count
-
-
-def upload_batch(client, bundle: Dict, batch_num: int, filename: str) -> Tuple[int, int, bool]:
-    """
-    Upload batch bundle to FHIR server.
-
-    Args:
-        client: FHIRClientWrapper instance
-        bundle: FHIR Bundle to upload
-        batch_num: Batch number for logging
-        filename: Filename for logging
-
-    Returns:
-        Tuple of (success_count, failure_count, upload_success)
-    """
-    # Log the request
-    logger.info(f"\n>>> Uploading Batch {batch_num} for {filename}")
-    logger.debug(f"Request Bundle:\n{json.dumps(bundle, indent=2)}")
-
-    success, response_bundle = client.post_bundle(bundle)
-
-    if not success or not response_bundle:
-        # Entire batch failed
-        resource_count = len(bundle.get('entry', []))
-        logger.error(f"!!! Batch {batch_num} completely failed - no response from server")
-        return 0, resource_count, False
-
-    # Log the response
-    logger.debug(f"Response Bundle:\n{json.dumps(response_bundle, indent=2)}")
-
-    # Parse individual resource responses
-    success_count, failure_count = parse_bundle_response(response_bundle, batch_num, filename)
-    return success_count, failure_count, True
-
-
-def upload_mixed_resources(files_with_counts, resource_types, client, batch_size, indent="  "):
-    """
-    Upload resources from multiple files, mixing them in the same batches.
-
-    This is used when multiple resource types should be uploaded together
-    (e.g., Organization + Location in the same batch bundles).
-
-    Args:
-        files_with_counts: List of (filepath, count) tuples
-        resource_types: List of resource type names being processed
-        client: FHIRClientWrapper instance
-        batch_size: Number of resources per batch
-        indent: Indentation string for console output
-
-    Returns:
-        Dict with upload statistics
-    """
-    all_resources = []
-    total_resources = 0
-
-    # Collect all resources from all files
-    for filepath, _count in files_with_counts:
-        filename = filepath.name
-        logger.info(f"Reading {filename}...")
-
-        for resource in read_ndjson_file(filepath):
-            all_resources.append(resource)
-            total_resources += 1
-
-    if total_resources == 0:
-        logger.warning(f"No resources found in files: {[f.name for f, _ in files_with_counts]}")
-        return {
-            'total_resources': 0,
-            'total_success': 0,
-            'total_failed': 0,
-            'batches': 0
-        }
-
-    logger.info(f"Total resources collected: {total_resources}")
-
-    # Upload in batches
-    batch_num = 0
-    total_batches = (total_resources + batch_size - 1) // batch_size
-    total_success = 0
-    total_failed = 0
-    processed = 0
-
-    while processed < total_resources:
-        batch_resources = all_resources[processed:processed + batch_size]
-        batch_num += 1
-
-        print(f"{indent}Batch {batch_num}/{total_batches} ({len(batch_resources)} resources)... ", end='', flush=True)
-
-        start_time = time.time()
-
-        # Create and upload batch
-        bundle = create_batch_bundle(batch_resources)
-        success_count, failure_count, upload_ok = upload_batch(
-            client, bundle, batch_num,
-            f"{', '.join(resource_types)}"
-        )
-
-        duration = time.time() - start_time
-
-        # Display result
-        if upload_ok:
-            total_success += success_count
-            total_failed += failure_count
-            print(f"✓ ({success_count} created/updated, {failure_count} failed) - {format_duration(duration)}")
-        else:
-            total_failed += len(batch_resources)
-            print(f"✗ (batch failed) - {format_duration(duration)}")
-
-        processed += len(batch_resources)
-
-    logger.info(f"Mixed resources upload completed: {total_success} succeeded, {total_failed} failed")
-
-    return {
-        'total_resources': total_resources,
-        'total_success': total_success,
-        'total_failed': total_failed,
-        'batches': batch_num
-    }
-
-
-def upload_file(filepath, client, batch_size, indent="  "):
-    """
-    Upload all resources from a single NDJSON file.
-
-    Args:
-        filepath: Path to NDJSON file
-        client: FHIRClientWrapper instance
-        batch_size: Number of resources per batch
-        indent: Indentation string for console output
-
-    Returns:
-        Dict with file upload statistics
-    """
-    filename = filepath.name
-    resources = []
-    batch_num = 0
-    total_batches = 0
-    total_resources = 0
-    total_success = 0
-    total_failed = 0
-
-    logger.info(f"\n{'='*80}")
-    logger.info(f"Processing file: {filename}")
-    logger.info(f"{'='*80}")
-
-    # First pass: count resources for batch calculation
-    resource_count = sum(1 for _ in read_ndjson_file(filepath))
-    if resource_count == 0:
-        logger.warning(f"File {filename} contains no resources")
-        return {
-            'total_resources': 0,
-            'total_success': 0,
-            'total_failed': 0,
-            'batches': 0
-        }
-
-    total_batches = (resource_count + batch_size - 1) // batch_size
-    logger.info(f"Total resources: {resource_count}, Total batches: {total_batches}")
-
-    # Second pass: upload in batches
-    for resource in read_ndjson_file(filepath):
-        resources.append(resource)
-        total_resources += 1
-
-        # When batch is full or last resource
-        if len(resources) >= batch_size or total_resources == resource_count:
-            batch_num += 1
-            print(f"{indent}Batch {batch_num}/{total_batches} ({len(resources)} resources)... ", end='', flush=True)
-
-            start_time = time.time()
-
-            # Create and upload batch
-            bundle = create_batch_bundle(resources)
-            success_count, failure_count, upload_ok = upload_batch(client, bundle, batch_num, filename)
-
-            duration = time.time() - start_time
-
-            # Display result
-            if upload_ok:
-                total_success += success_count
-                total_failed += failure_count
-                print(f"✓ ({success_count} created/updated, {failure_count} failed) - {format_duration(duration)}")
-            else:
-                total_failed += len(resources)
-                print(f"✗ (batch failed) - {format_duration(duration)}")
-
-            # Reset batch
-            resources = []
-
-    logger.info(f"\nFile {filename} completed: {total_success} succeeded, {total_failed} failed")
-
-    return {
-        'total_resources': total_resources,
-        'total_success': total_success,
-        'total_failed': total_failed,
-        'batches': batch_num
-    }
-
-
-def upload_all_files(steps, client, batch_size):
-    """
-    Upload all NDJSON files in dependency order.
-
-    Args:
-        steps: List of steps (each step contains files for specific resource types)
-        client: FHIRClientWrapper instance
-        batch_size: Number of resources per batch
-
-    Returns:
-        Dict with overall statistics
-    """
-    overall_start = time.time()
-
-    total_steps = len(steps)
-    total_files = 0
-    total_resources = 0
-    total_success = 0
-    total_failed = 0
-
-    for step in steps:
-        step_num = step['step_num']
-        resource_types = step['resource_types']
-        files_with_counts = step['files']
-
-        # Display step header
-        if len(resource_types) == 1:
-            # Single resource type
-            resource_type = resource_types[0]
-            print(f"\n[Step {step_num}/{total_steps}] {resource_type}")
-            logger.info(f"\n{'='*80}")
-            logger.info(f"Step {step_num}/{total_steps}: {resource_type}")
-            logger.info(f"{'='*80}")
-        else:
-            # Multiple resource types (Clinical resources)
-            types_str = ', '.join(resource_types)
-            print(f"\n[Step {step_num}/{total_steps}] Clinical Resources ({types_str})")
-            logger.info(f"\n{'='*80}")
-            logger.info(f"Step {step_num}/{total_steps}: Clinical Resources")
-            logger.info(f"  Types: {types_str}")
-            logger.info(f"{'='*80}")
-
-        # Upload each file in this step
-        for filepath, _count in files_with_counts:
-            total_files += 1
-
-            # Determine indentation based on number of files in step
-            if len(files_with_counts) > 1:
-                # Multiple files - show filename and indent batches more
-                print(f"  {filepath.name}")
-                batch_indent = "    "
-            else:
-                # Single file - filename shown in step header
-                batch_indent = "  "
-
-            stats = upload_file(filepath, client, batch_size, indent=batch_indent)
-
-            total_resources += stats['total_resources']
-            total_success += stats['total_success']
-            total_failed += stats['total_failed']
-
-    overall_duration = time.time() - overall_start
-
-    return {
-        'total_files': total_files,
-        'total_resources': total_resources,
-        'total_success': total_success,
-        'total_failed': total_failed,
-        'duration': overall_duration
-    }
-
-
-def display_summary(stats):
-    """
-    Display upload summary.
-
-    Args:
-        stats: Dict with overall statistics
-    """
-    print("\n" + "=" * 50)
-    print("Summary")
-    print("=" * 50)
-    print(f"Total files: {stats['total_files']}")
-    print(f"Total resources: {stats['total_resources']:,}")
-    print(f"Successfully uploaded: {stats['total_success']:,}")
-    print(f"Failed: {stats['total_failed']:,}")
-    print(f"Duration: {format_duration(stats['duration'])}")
-    print("=" * 50)
-
-    # Log summary
-    logger.info("\n" + "=" * 80)
-    logger.info("UPLOAD SUMMARY")
-    logger.info("=" * 80)
-    logger.info(f"Total files: {stats['total_files']}")
-    logger.info(f"Total resources: {stats['total_resources']:,}")
-    logger.info(f"Successfully uploaded: {stats['total_success']:,}")
-    logger.info(f"Failed: {stats['total_failed']:,}")
-    logger.info(f"Duration: {format_duration(stats['duration'])}")
-    logger.info("=" * 80)
-
-
-def main():
-    """Main entry point."""
-    # Parse arguments
-    args = parse_arguments()
-
-    # Setup logging
-    log = setup_logging(args.log_file)
-
-    # Load configuration
-    config = load_config(
-        input_override=args.input,
-        batch_size_override=args.batch_size
-    )
-
-    # Display header
-    print("=" * 50)
-    print("HAPI FHIR Batch Uploader")
-    print("=" * 50)
-    print(f"Source: {config.upload_dir}")
-    print(f"Destination: {config.fhir_base_url}")
-    print(f"Batch Size: {config.batch_size}")
-    print(f"Log File: {args.log_file}")
-    print()
-
-    # Log configuration
-    logger.info(f"Configuration:")
-    logger.info(f"  Source Directory: {config.upload_dir}")
-    logger.info(f"  FHIR Base URL: {config.fhir_base_url}")
-    logger.info(f"  Batch Size: {config.batch_size}")
-    logger.info(f"  Auth Enabled: {config.fhir_auth_enabled}")
-
-    # Create FHIR client
-    client = create_fhir_client(config)
-
-    # Test FHIR server
-    if not test_fhir_server(client):
-        logger.error("FHIR server test failed")
+        print("FAILED")
+        logger.error("FHIR server connection failed")
         sys.exit(1)
 
-    logger.info("FHIR server test passed")
+    # Display upload order
+    print("\nUpload order:")
+    for level_info in plan.get('dependency_levels', []):
+        level_num = level_info.get('level')
+        resource_types = level_info.get('resource_types', [])
+        bundles = level_info.get('bundles', 0)
+        resources = level_info.get('total_resources', 0)
+        types_str = ", ".join(resource_types)
+        print(f"  Level {level_num}: {types_str} ({bundles} bundles, {resources:,} resources)")
 
-    # Scan for NDJSON files and sort by dependency order
-    print("\nScanning directory...")
-    steps = scan_ndjson_files(config.upload_dir)
-
-    if not steps:
-        print("❌ No NDJSON files found")
-        logger.error(f"No NDJSON files found in {config.upload_dir}")
-        sys.exit(1)
-
-    # Calculate totals
-    total_files = sum(len(step['files']) for step in steps)
-    total_resources = sum(step['total_resources'] for step in steps)
-
-    print(f"Found {total_files} NDJSON files ({total_resources:,} resources total)")
-    print("\nSorted by dependency order:")
-
-    # Display grouped summary
-    for step in steps:
-        step_num = step['step_num']
-        resource_types = step['resource_types']
-        files_with_counts = step['files']
-        step_resources = step['total_resources']
-
-        if len(resource_types) == 1:
-            # Single resource type
-            type_name = resource_types[0]
-        else:
-            # Clinical or other multi-resource groups
-            type_name = f"Clinical ({', '.join(resource_types[:3])}{'...' if len(resource_types) > 3 else ''})"
-
-        print(f"  Step {step_num}: {type_name} ({len(files_with_counts)} file(s), {step_resources:,} resources)")
-
-    # Log detailed file list
-    logger.info(f"\nFound {total_files} NDJSON files ({total_resources:,} resources):")
-    logger.info("Sorted by dependency order:")
-    for step in steps:
-        step_num = step['step_num']
-        resource_types = step['resource_types']
-        files_with_counts = step['files']
-
-        logger.info(f"\n  Step {step_num}: {', '.join(resource_types)}")
-        for filepath, count in files_with_counts:
-            logger.info(f"    - {filepath.name} ({count} resources)")
-
-    # Upload all files
+    # Upload by level
     print("\nStarting upload...")
-    stats = upload_all_files(steps, client, config.batch_size)
+    level_stats = []
+    total_levels = len(plan.get('dependency_levels', []))
+
+    for level_info in plan.get('dependency_levels', []):
+        stats = upload_level(level_info, input_dir, client, total_levels)
+        level_stats.append(stats)
 
     # Display summary
-    display_summary(stats)
+    overall_duration = time.time() - overall_start
+    display_summary(level_stats, overall_duration)
 
-    # Log completion
-    logger.info("\n" + "=" * 80)
-    if stats['total_failed'] > 0:
-        logger.warning("Upload completed with errors")
-    else:
-        logger.info("Upload completed successfully")
-    logger.info("=" * 80)
-
-    print(f"\nDetailed log saved to: {args.log_file}")
-
-    # Exit with error code if any uploads failed
-    if stats['total_failed'] > 0:
-        sys.exit(1)
+    # Exit with appropriate code
+    total_failed = sum(s['failed'] for s in level_stats)
+    sys.exit(1 if total_failed > 0 else 0)
 
 
 if __name__ == "__main__":

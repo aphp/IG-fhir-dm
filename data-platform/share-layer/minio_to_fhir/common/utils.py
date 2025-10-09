@@ -23,14 +23,27 @@ def get_resource_type_from_filename(filename: str) -> Optional[str]:
     Returns:
         Resource type or None if not recognized
     """
-    # Known FHIR resource types
+    # Known FHIR resource types - ORDER MATTERS!
+    # Longer/more specific names must come before shorter ones
     known_types = [
-        'Organization', 'Location', 'Medication', 'Specimen',
-        'Patient', 'Encounter', 'Procedure', 'Observation',
-        'Condition', 'MedicationRequest', 'MedicationDispense',
-        'MedicationStatement', 'MedicationAdministration',
-        'Practitioner', 'PractitionerRole',
-        'Device', 'DiagnosticReport', 'Immunization'
+        'MedicationAdministration',
+        'MedicationStatement',
+        'MedicationDispense',
+        'MedicationRequest',
+        'PractitionerRole',
+        'DiagnosticReport',
+        'Organization',
+        'Observation',
+        'Practitioner',
+        'Medication',
+        'Procedure',
+        'Encounter',
+        'Condition',
+        'Specimen',
+        'Location',
+        'Patient',
+        'Device',
+        'Immunization'
     ]
 
     # Remove .ndjson extension
