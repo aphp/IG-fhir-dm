@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-HAPI FHIR Batch Uploader
-Upload FHIR Bundle JSON files to HAPI FHIR server using batch transactions.
+HAPI FHIR Transaction Uploader
+Upload FHIR Bundle JSON files to HAPI FHIR server using transaction bundles.
 Follows upload-plan.json for dependency-based upload order.
 """
 
@@ -223,8 +223,8 @@ def upload_bundle_file(bundle_file: Path, client: FHIRClientWrapper) -> Tuple[in
             logger.error(f"Invalid bundle in {bundle_file.name}: not a Bundle resource")
             return (0, 0, time.time() - start_time)
 
-        if bundle.get('type') != 'batch':
-            logger.warning(f"Bundle {bundle_file.name} is not type 'batch', type is: {bundle.get('type')}")
+        if bundle.get('type') not in ['transaction', 'batch']:
+            logger.warning(f"Bundle {bundle_file.name} has unexpected type: {bundle.get('type')} (expected 'transaction' or 'batch')")
 
         # Upload bundle
         logger.info(f"Uploading {bundle_file.name}...")
