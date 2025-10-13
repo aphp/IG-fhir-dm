@@ -38,45 +38,20 @@ Pour supporter l'approche, plusieurs outils sont facilitant notamment :
 Le guide d'implémentation **Data Management with FHIR** s'appuie sur l'outil [HL7 FHIR IG Publisher](https://github.com/HL7/fhir-ig-publisher) impactant le rendu. Dans la barre de navigation où se trouve les entrées de premier niveau du guide. Les entrées sont :
 
 1. Accueil (cette page)
-2. [Gestion des données](data-management.html) : présente les éléments méthodologiques
-3. [La Health Data Platform (démo)](data-platform.html) : présente les éléments opérationnels
-3. [Variables socles pour les EDSH](use-core-variables.html) : présente notamment la standardisation des données au format **FHIR**
-5. [Ressources de conformité](artifacts.html) : présente tous les artefacts FHIR
-6. [Notes de version](change_log.html)
-7. Plus
+2. [Variables socles pour les EDSH](use-core-variables.html) : présente notamment la standardisation des données au format **FHIR**
+3. [Health Data Platform (démo)](data-platform.html) : présente les éléments opérationnels
+4. [Ressources de conformité](artifacts.html) : présente tous les artefacts FHIR
+5. [Notes de version](change_log.html)
+6. Plus
 
 ### Auteurs et contributeurs
 
-<table style="width: 100%">
-  <thead>
-    <tr>
-      <th>Rôle</th>
-      <th>Nom</th>
-      <th>Organisation</th>
-      <th>Contact</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Primary Editor</strong></td>
-      <td>Christel Gérardin</td>
-      <td>Assistance Publique - Hôpitaux de Paris</td>
-      <td>christel.gerardin@aphp.fr</td>
-    </tr>
-    <tr>
-      <td><strong>Primary Editor</strong></td>
-      <td>David Ouagne</td>
-      <td>Assistance Publique - Hôpitaux de Paris</td>
-      <td>david.ouagne@aphp.fr</td>
-    </tr>
-    <tr>
-      <td><strong>Primary Editor</strong></td>
-      <td>Nicolas Griffon</td>
-      <td>Assistance Publique - Hôpitaux de Paris</td>
-      <td>nicolas.griffon@aphp.fr</td>
-    </tr>
-  </tbody>
-</table>
+| Rôle | Nom | Organisation | Contact |
+|------|-----|--------------|---------|
+| **Primary Editor** | Christel Gérardin | Assistance Publique - Hôpitaux de Paris | christel.gerardin@aphp.fr |
+| **Primary Editor** | David Ouagne | Assistance Publique - Hôpitaux de Paris | david.ouagne@aphp.fr |
+| **Primary Editor** | Nicolas Griffon | Assistance Publique - Hôpitaux de Paris | nicolas.griffon@aphp.fr |
+{: .grid}
 
 ### Dépendances
 

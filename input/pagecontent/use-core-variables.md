@@ -36,5 +36,4 @@ Les [exigences de l'usage **Variables socles pour les EDSH** (fichier MSExcel)](
 référencées issues des travaux du GT Standards & Interopérabilité. 
 
 
->* [Le processus de standardisation des données au format FHIR](use-core-variables-process.html)
-
+>* [Processus de représentation d'un domaine de connaissance selon le format FHIR](use-core-variables-process.html)

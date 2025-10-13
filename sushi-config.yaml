@@ -26,10 +26,6 @@ dependencies:
 pages:
   index.md:
     title: Accueil
-  data-management.md:
-    title: Gestion des données
-    best-practice.md:
-      title: Bonnes pratiques
   use-case.md:
     title: Usages
     use-core-variables.md:
@@ -45,7 +41,7 @@ pages:
       use-core-variables-evaluation.md:
         title: Evaluation
   data-platform.md:
-    title: La Health Data Platform (démo)
+    title: Health Data Platform (démo)
     data-platform-raw-layer.md:
       title: Raw layer
     data-platform-transform-layer.md:
@@ -67,7 +63,11 @@ pages:
 
 menu:
   Accueil: index.html
-  Gestion des données: data-management.html
+  Recommandation:
+    Gestion des données: new-tab https://interop.aphp.fr/ig/fhir/core/data-management.html
+    Bonnes pratiques: new-tab https://interop.aphp.fr/ig/fhir/core/best-practice.html
+    Processus de représentation d'un domaine de connaissance: https://interop.aphp.fr/ig/fhir/core/knowledge-process.html
+    Processus de standardisation des données: https://interop.aphp.fr/ig/fhir/core/standardization-process.html
   Variables du socle: use-core-variables.html
   La Health Data Platform: data-platform.html
   Ressources de conformité: artifacts.html
@@ -80,8 +80,7 @@ menu:
 parameters:  # see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html
   shownav: false
   pin-canonicals: pin-multiples # Avoid raising many warnings when there are no version for URLs. "pin-multiples": pinning the canonical reference will only happen if there is multiple versions found in the package dependencies
-  path-expansion-params: 
-    - ../../input/data/expansion-params.json # for using French SNOMED CT Extension
+  path-expansion-params: '../../input/data/expansion-params.json' # for using French SNOMED CT Extension
   path-resource:
     - input/resources/usages/core
     - input/fml
