@@ -44,6 +44,7 @@ Le tableau ci-dessous référence tous les profils FHIR résultat du processus d
 | Style de vie | [Consommation d'alcool](StructureDefinition-DMObservationAlcoholUseStatus.html) | Données d'intérêt |
 | Style de vie | [Consommation d'autres drogues](StructureDefinition-DMObservationSubstanceUseStatus.html) | Données d'intérêt |
 | Style de vie | [Activité physique](StructureDefinition-DMObservationExerciceStatus.html) | Données d'intérêt |
+{: .grid}
 
 Indications de lecture : 
 - Colonne "Groupe" : Il s'agit souvent d'une information issue du fichier du [GT socle de données](DocumentReference-CoreExigences.html).
