@@ -37,3 +37,18 @@ Profil des résultats de fonction rénale du socle commun des EDS
     * code from DMLaboratoryEstimatedDFGUnit (extensible)
   * referenceRange 1..
   * referenceRange MS
+
+Instance: 02323e68-3c00-4304-88a8-3b9ffdc1f8ec
+InstanceOf: Provenance
+Title: "WIP adding EDSH vars"
+Description: """WIP adding EDSH vars"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationLaboratoryFonctionRenale)
+* occurredDateTime = "2025-03-24"
+* reason.text = """WIP adding EDSH vars"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "David Ouagne"
+* recorded = "2025-03-24T09:26:15+01:00"

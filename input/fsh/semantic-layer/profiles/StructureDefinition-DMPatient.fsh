@@ -28,7 +28,22 @@ Description: "Profil Patient du socle commun des EDSH"
   * extension contains
     DeathSource named DeathSource 0..1
 
-* address MS 
+* address MS
 * address only DMAddress
 
 * multipleBirthInteger MS
+
+Instance: a5b6c7d8-9e0f-1a2b-3c4d-5e6f7a8b9c0d
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DMPatient)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

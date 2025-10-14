@@ -19,3 +19,18 @@ Description: "Ce profil définit la manière de représenter les observations de
 * value[x] ^short = "Valeur de la mesure. Les signes vitaux sont enregistrés sous forme de quantité, exprimés en unité du Système International."
 
 * method from HeightLengthMeasurementMethod (example)
+
+Instance: 9be02e59-c737-45b0-a64a-53484a5b79d4
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationBodyHeight)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

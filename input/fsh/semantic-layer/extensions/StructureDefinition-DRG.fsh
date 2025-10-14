@@ -33,3 +33,18 @@ Description: "Cette extension permet de renseigner le Groupe Homogène de Malade
 * extension[vClassif].url only uri
 * extension[vClassif].value[x] 1..1
 * extension[vClassif].value[x] only string
+
+Instance: 62690a78-6029-481a-90ba-32dba3219695
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DRG)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

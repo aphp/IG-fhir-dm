@@ -27,3 +27,18 @@ Description: "A complex medication composed of two to many simple médication. T
 * ingredient.strength ..0
 * ingredient.strength ^requirements = "The amount and strength of the medication component are described in the item element referencing a Medication ressource profiled fr-medication-1."
 * batch ..0
+
+Instance: ab6b8dbc-0cf1-4c2a-b5dd-93799ba638ba
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(FrMedicationCompound)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

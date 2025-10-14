@@ -88,3 +88,18 @@ Description: "Profil pour les Résumés d'Unité Médicale (RUM) du PMSI MCO."
   * category = FrMCOClaimItemCategory#0    //Procédure
   * productOrService from CcamVS (extensible)
 
+Instance: 6f9a35f2-9752-4a11-a4a1-027e0e34433a
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DMClaimRUM)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"
+

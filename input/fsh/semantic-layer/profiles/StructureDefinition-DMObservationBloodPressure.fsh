@@ -17,3 +17,18 @@ Description: "Profil de la pression artérielle du socle commun des EDS"
 
 * bodySite from BloodPressureMeasurementBodyLocationPrecoodinated (example)
 * method from BloodPressureMeasurementMethod (example)
+
+Instance: 5236693c-8f6f-46fc-8ba6-63665228922e
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationBloodPressure)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

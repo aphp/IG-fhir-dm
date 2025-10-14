@@ -11,3 +11,18 @@ Description: "simple quantity datatype requiring a UCUM unit"
 * system ^requirements = "UCUM requiered."
 * code 1.. MS
 * code ^comment = "UCUM code required."
+
+Instance: f3fb1ab8-ef39-45b7-82d8-87fca1496132
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(FrSimpleQuantityUcum)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

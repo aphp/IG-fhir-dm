@@ -73,3 +73,33 @@ remplacé dans l'IG, dans l'arbo, le yaml
 voir dans le FB de prod ?
 
 */
+
+Instance: a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+InstanceOf: Provenance
+Title: "refactor(docs): reorganize knowledge acquisition process documentation"
+Description: """refactor(docs): reorganize knowledge acquisition process documentation"""
+Usage: #definition
+
+* target[0] = Reference(SpecialitesMedicalesFSM)
+* occurredDateTime = "2025-10-14"
+* reason.text = """refactor(docs): reorganize knowledge acquisition process documentation"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "David Ouagne"
+* recorded = "2025-10-14T11:36:20+02:00"
+
+Instance: b2c3d4e5-6f7a-8b9c-0d1e-2f3a4b5c6d7e
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(SpecialitesMedicalesFSM)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

@@ -6676,3 +6676,18 @@ Description: "Ce codage permet d'anonymiser le codage des communes dont la popul
 * #99521
 * #99522
 * #99699
+
+Instance: b4c5d6e7-8f9a-0b1c-2d3e-4f5a6b7c8d9e
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(PmsiCodeGeo)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

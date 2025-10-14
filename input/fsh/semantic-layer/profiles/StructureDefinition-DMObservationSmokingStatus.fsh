@@ -49,3 +49,18 @@ Description: "Profil pour la consommation de tabac."
 * valueCodeableConcept ^sliceName = "valueCodeableConcept"
 * valueCodeableConcept ^short = "Coded Response"
 * valueCodeableConcept ^binding.description = "Smoking status comprehensive"
+
+Instance: 895534a8-5966-4830-9527-676a9533ca63
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationSmokingStatus)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"
