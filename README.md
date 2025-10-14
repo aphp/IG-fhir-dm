@@ -76,6 +76,27 @@ propre :
   Ceux-ci sont automatiquement convertis en SVG par l'éditeur IG et insérés en ligne dans les fichiers Markdown à l'aide
   de `{%include some-diagram.svg%}` (qui correspond à `input/images-source/some-diagram.plantuml`).
 
+## Plateforme de Données (Data Platform)
+
+Le répertoire [data-platform/](data-platform/) contient l'infrastructure et les outils pour gérer les données de santé à travers différentes couches :
+
+### Couche Raw Layer
+La [couche de données brutes](data-platform/raw-layer/) fournit :
+- Infrastructure PostgreSQL conteneurisée avec support français optimisé
+- Schéma de base de données EHR (Electronic Health Records)
+- [Loader Python](data-platform/raw-layer/test/loader/) pour le chargement des données de test
+- Données de test avec 10 patients et support complet des caractères français
+
+**Démarrage rapide :**
+```bash
+cd data-platform/raw-layer/ehr-docker
+docker-compose up -d
+cd ../test/loader
+python load_test_patients.py --database ehr --user ehr_user --clear
+```
+
+Voir la [documentation complète de la raw layer](data-platform/raw-layer/README.md) pour plus d'informations.
+
 ## Acronymes
 
 * IG : Implementation Guide

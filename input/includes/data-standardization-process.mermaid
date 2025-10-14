@@ -18,9 +18,9 @@ flowchart LR
  subgraph s3["Livrables (Standardisation)"]
     C1["Ressources FHIR"]
   end
-    Start((" ")) --> A(Acquisition des connaissances)
-    A --> B(Formalisation des connaissances) & A1 & A2 & A3
-    B --> C(Standardisation des connaissances) & B1 & B2
+    Start((" ")) --> A(Acquisition des variables)
+    A --> B(Formalisation des variables) & A1 & A2 & A3
+    B --> C(Standardisation des variables) & B1 & B2
     C --> End((" ")) & C1
     Start:::startNode
     A1@{ shape: doc}

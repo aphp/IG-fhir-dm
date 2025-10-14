@@ -1,4 +1,4 @@
-Instance: deadPatient
+/*Instance: deadPatient
 InstanceOf: DMPatient
 Description: "Patient contextualisant les autres exemples et notament le monorum"
 Usage: #example
@@ -12,3 +12,4 @@ Usage: #example
 * deceasedDateTime.extension.url = "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource"
 * deceasedDateTime.extension.valueCode = #cepidc
 * gender = #male
+*/

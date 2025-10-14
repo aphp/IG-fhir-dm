@@ -1,10 +1,11 @@
 Profile: DMPatient
-Parent: FRCorePatientProfile
+Parent: FRCorePatientINSProfile
 Title: "Patient"
-Description: "Profil Patient du socle commun des EDS"
+Description: "Profil Patient du socle commun des EDSH"
 
 * identifier[NSS] MS
 
+/*
 * identifier contains
     INS-NIR 0..*
 
@@ -21,6 +22,7 @@ Description: "Profil Patient du socle commun des EDS"
 * gender ^short = "male | female | unknown"
 
 * birthDate MS
+*/
 * deceased[x] MS
 * deceased[x] 
   * extension contains
