@@ -8,6 +8,8 @@ Alias: $icd-10                               = http://hl7.org/fhir/sid/icd-10
 Alias: $administrative-gender                = http://hl7.org/fhir/administrative-gender
 Alias: $observation-category                 = http://terminology.hl7.org/CodeSystem/observation-category
 Alias: $cs-v3-ActCode                        = http://terminology.hl7.org/CodeSystem/v3-ActCode
+Alias: $v3-DataOperation                     = http://terminology.hl7.org/CodeSystem/v3-DataOperation
+Alias: $provenance-participant-type          = http://terminology.hl7.org/CodeSystem/provenance-participant-type
 
 // Extension from FHIR Extensions Pack
 Alias: $geolocation                          = http://hl7.org/fhir/StructureDefinition/geolocation

@@ -38,3 +38,18 @@ Profil générique des résultats de laboratoire du socle commun des EDS.
   * value[x] MS
 
   * referenceRange MS
+
+Instance: 1f3e2728-1d70-4ca7-ac28-a4c1b11c4b80
+InstanceOf: Provenance
+Title: "WIP adding EDSH vars"
+Description: """WIP adding EDSH vars"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationLaboratoryGeneric)
+* occurredDateTime = "2025-03-24"
+* reason.text = """WIP adding EDSH vars"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "David Ouagne"
+* recorded = "2025-03-24T09:26:15+01:00"

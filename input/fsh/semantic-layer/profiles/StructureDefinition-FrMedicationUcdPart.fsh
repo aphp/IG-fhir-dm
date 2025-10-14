@@ -33,3 +33,18 @@ Description: "Part of a multipart branded medication."
 * ingredient.strength ^comment = "The quantity of this ingredient defining the medication. For instance, 50 mg/mL defining the glucose quantity for the glucose 5% or 500 mg medicine and 30 mg respectively defining the paracetamol and the codeine quantity for the association paracetamol+codeine 500 mg+30 mg medicine."
 * batch ^definition = "This applies for the proprietary named medication involved in a MedicationDispense, MedicationAdministration or a MedicationUse."
 * batch ^comment = "WARNING: it is the batch number of the part.\r\nIf it is not discerned for each part, it SHALL NOT be provided here but at the grouping level where it is defined, most often the UCD."
+
+Instance: 24c199dd-9381-46fa-a855-89b85b5dfafb
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(FrMedicationUcdPart)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

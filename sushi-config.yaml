@@ -32,12 +32,12 @@ pages:
       title: Variables socles pour les EDSH
       use-core-variables-process.md:
         title: Standardisation de données au format FHIR
-        use-core-variables-knowledge-acquisition.md:
-          title: Acquisition des connaissances
-        use-core-variables-knowledge-formalization.md:
-          title: Formalisation des connaissances
-        use-core-variables-knowledge-standardization.md:
-          title: Standardisation des connaissances
+        use-core-variables-acquisition.md:
+          title: Acquisition de la liste des variables
+        use-core-variables-formalization.md:
+          title: Formalisation des variables
+        use-core-variables-standardization.md:
+          title: Standardisation des variables
       use-core-variables-evaluation.md:
         title: Evaluation
   data-platform.md:
@@ -66,10 +66,9 @@ menu:
   Recommandation:
     Gestion des données: new-tab https://interop.aphp.fr/ig/fhir/core/data-management.html
     Bonnes pratiques: new-tab https://interop.aphp.fr/ig/fhir/core/best-practice.html
-    Processus de représentation d'un domaine de connaissance: https://interop.aphp.fr/ig/fhir/core/knowledge-process.html
     Processus de standardisation des données: https://interop.aphp.fr/ig/fhir/core/standardization-process.html
   Variables du socle: use-core-variables.html
-  La Health Data Platform: data-platform.html
+  Health Data Platform: data-platform.html
   Ressources de conformité: artifacts.html
   Autres:
     Aide: help.html

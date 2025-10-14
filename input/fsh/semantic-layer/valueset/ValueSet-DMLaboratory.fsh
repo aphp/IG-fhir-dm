@@ -43,3 +43,17 @@ Liste des analyses LOINC correspondant aux besoins du socle EDS et extrait du je
 * include $loinc#50197-3 // code demande TCA
 * include $loinc#45066-8 // code demande fonction rénale
 
+Instance: 33e0b2a0-e79d-4f2e-b269-62dfd65bbea3
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DMLaboratory)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

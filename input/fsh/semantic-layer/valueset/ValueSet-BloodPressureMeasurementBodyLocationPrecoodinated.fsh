@@ -22,3 +22,18 @@ Description: "SELECT SNOMED CT code system values that describe the location on 
 * $sct#281130003 "Descending aorta structure (body structure)"
 * $sct#57034009 "Aortic arch structure (body structure)"
 * $sct#7832008 "Abdominal aorta structure (body structure)"
+
+Instance: cd4510db-9337-4350-8a35-4a77e26ab498
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(BloodPressureMeasurementBodyLocationPrecoodinated)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

@@ -32,3 +32,18 @@ interdit
 * #J41.1 "Bronchite chronique mucopurulente"
 * #J41.1 ^property[+].code = #typeMcoHad
 * #J41.1 ^property[=].valueCode = #0
+
+Instance: c3d4e5f6-7a8b-9c0d-1e2f-3a4b5c6d7e8f
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(CIM10)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

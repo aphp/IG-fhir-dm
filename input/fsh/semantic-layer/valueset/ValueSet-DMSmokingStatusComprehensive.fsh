@@ -21,3 +21,18 @@ Description: """
 * include $sct#16090771000119104
 * include codes from system $sct
     where concept is-a #275105001
+
+Instance: 94de41dc-47e2-4b7b-ae63-fde3a23dc760
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(DMSmokingStatusComprehensive)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"

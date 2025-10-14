@@ -40,6 +40,21 @@ Description: "Typage des claim en France, dans le cadre du PMSI"
 * #subtype 
 * #subtype ^property[+].code = #type
 * #subtype ^property[=].valueCode = #property
-* #property 
+* #property
 * #property ^property[+].code = #type
 * #property ^property[=].valueCode = #property
+
+Instance: a7b8c9d0-1e2f-3a4b-5c6d-7e8f9a0b1c2d
+InstanceOf: Provenance
+Title: "first import"
+Description: """first import"""
+Usage: #definition
+
+* target[0] = Reference(FrClaimType)
+* occurredDateTime = "2025-02-02"
+* reason.text = """first import"""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "@ngr"
+* recorded = "2025-02-02T21:36:10+01:00"
