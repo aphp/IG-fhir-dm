@@ -11,7 +11,7 @@ Taux de glucose dans le sang à jeun (c'est à dire après une période sans app
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #mmol/L (exactly)
-* valueQuantity.unit = #mmol/L (exactly)
+* valueQuantity.unit = "mmol/L"
 
 Instance: 83e237db-e8c4-43d0-a24e-f4ec76da1aa6
 InstanceOf: Provenance

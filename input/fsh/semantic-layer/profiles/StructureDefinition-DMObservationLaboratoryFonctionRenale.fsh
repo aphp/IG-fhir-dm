@@ -23,7 +23,8 @@ Profil des résultats de fonction rénale du socle commun des EDS
   * valueQuantity ^short = "Valeur mesurée"
   * valueQuantity
     * system = $ucum (exactly)
-    * code = $ucum#umol/L (exactly)
+    * code = #umol/L (exactly)
+    * unit = "umol/L"
   * referenceRange 1..
   * referenceRange MS
 

@@ -11,7 +11,7 @@ Profil Eosinophiles du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #10*3/uL (exactly)
-* valueQuantity.unit = #10*3/uL (exactly)
+* valueQuantity.unit = "10*3/uL"
 
 Instance: 2237429f-4de7-41bb-bfd9-37544b427e37
 InstanceOf: Provenance

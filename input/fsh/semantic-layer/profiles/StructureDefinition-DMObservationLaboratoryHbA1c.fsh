@@ -11,7 +11,7 @@ Forme glycquée de la molécule de l'hémoglobine dans le sang. Sa valeur biolog
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #% (exactly)
-* valueQuantity.unit = #% (exactly)
+* valueQuantity.unit = "%"
 
 Instance: e8f4d2c1-3a5b-4c6d-7e8f-9a0b1c2d3e4f
 InstanceOf: Provenance

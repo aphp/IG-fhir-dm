@@ -11,7 +11,7 @@ Profil Hématocrite du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #% (exactly)
-* valueQuantity.unit = #% (exactly)
+* valueQuantity.unit = "%"
 
 Instance: 4d4fc139-9817-48cc-821a-53723d371ecb
 InstanceOf: Provenance

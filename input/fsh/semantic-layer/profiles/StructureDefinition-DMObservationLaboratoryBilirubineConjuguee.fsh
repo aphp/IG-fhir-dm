@@ -11,7 +11,7 @@ Profil Bilirubine conjuguée du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #umol/L (exactly)
-* valueQuantity.unit = #umol/L (exactly)
+* valueQuantity.unit = "umol/L"
 
 Instance: 8f95027b-e9fd-40fb-b8c8-7de2bd39b6f1
 InstanceOf: Provenance

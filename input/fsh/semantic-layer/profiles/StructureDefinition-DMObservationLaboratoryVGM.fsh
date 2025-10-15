@@ -11,7 +11,7 @@ Profil Volume globulaire moyen du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #fL (exactly)
-* valueQuantity.unit = #fL (exactly)
+* valueQuantity.unit = "fL"
 
 Instance: e7f8a9b0-1c2d-3e4f-5a6b-7c8d9e0f1a2b
 InstanceOf: Provenance
