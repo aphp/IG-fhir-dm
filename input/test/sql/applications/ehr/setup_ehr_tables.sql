@@ -23,10 +23,11 @@ VALUES
 -- Insert test diagnostics
 INSERT INTO diagnostics (diagnostic_id, pmsi_id, code_diagnostic, type_diagnostic, libelle_diagnostic, date_diagnostic, sequence_diagnostic, date_recueil, created_at, updated_at)
 VALUES 
-(2001, 1001, 'I21.0', 'Principal', 'Infarctus aigu du myocarde de la paroi antérieure', '2024-01-10', 1, '2024-01-15', '2024-01-15 16:00:00', '2024-01-15 16:00:00'),
-(2002, 1001, 'E11.9', 'Associé', 'Diabète de type 2 sans complication', '2024-01-10', 2, '2024-01-15', '2024-01-15 16:00:00', '2024-01-15 16:00:00'),
-(2003, 1002, 'O80.0', 'Principal', 'Accouchement spontané par voie basse', '2024-02-02', 1, '2024-02-04', '2024-02-04 14:00:00', '2024-02-04 14:00:00'),
-(2004, 1003, 'J44.0', 'Principal', 'BPCO avec infection respiratoire aiguë', '2024-03-05', 1, '2024-03-15', '2024-03-15 14:00:00', '2024-03-15 14:00:00');
+(2001, 1001, 'I21.0', 'Principal', 'Infarctus transmural aigu du myocarde, de la paroi antérieure', '2024-01-10', 1, '2024-01-15', '2024-01-15 16:00:00', '2024-01-15 16:00:00'),
+(2002, 1001, 'E11.9', 'Associé', 'Diabète sucré de type 2, sans complication', '2024-01-10', 2, '2024-01-15', '2024-01-15 16:00:00', '2024-01-15 16:00:00'),
+(2003, 1002, 'O80.0', 'Principal', 'Accouchement spontané par présentation du sommet', '2024-02-02', 1, '2024-02-04', '2024-02-04 14:00:00', '2024-02-04 14:00:00'),
+(2004, 1003, 'J44.0', 'Principal', 'Maladie pulmonaire obstructive chronique avec infection aigüe des voies
+respiratoires inférieures', '2024-03-05', 1, '2024-03-15', '2024-03-15 14:00:00', '2024-03-15 14:00:00');
 
 -- Insert test biology data
 INSERT INTO biologie (biologie_id, pmsi_id, patient_id, code_loinc, libelle_test, type_examen, valeur, unite, valeur_texte, date_prelevement, statut_validation, borne_inf_normale, borne_sup_normale, commentaire, methode_analyse, laboratoire, created_at, updated_at)

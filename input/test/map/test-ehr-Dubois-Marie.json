@@ -45,7 +45,7 @@
       "diagnosticId": "diag-006",
       "patientId": "patient-003",
       "pmsiId": "pmsi-003",
-      "codeDiagnostic": "R570",
+      "codeDiagnostic": "R57.0",
       "typeDiagnostic": "DP",
       "libelleDiagnostic": "Choc cardiogénique",
       "dateRecueil": "2025-08-25",

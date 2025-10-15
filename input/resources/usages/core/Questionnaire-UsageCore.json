@@ -540,14 +540,14 @@
                 },
                 {
                   "valueCoding": {
-                    "code": "N183",
+                    "code": "N18.3",
                     "display": "Maladie rénale chronique, stade 3"
                   }
                 },
                 {
                   "valueCoding": {
-                    "code": "E6604",
-                    "display": "Obésité due à un excès calorique de l'adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l'enfant"
+                    "code": "K70.3",
+                    "display": "Cirrhose alcoolique du foie"
                   }
                 },
                 {

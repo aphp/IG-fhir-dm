@@ -1,21 +1,21 @@
 diagnostic_id,patient_id,pmsi_id,code_diagnostic,type_diagnostic,libelle_diagnostic,date_recueil,created_at,updated_at
-1,1,1,E119,DP,"Diabete sucre de type 2 sans complication",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
-2,1,1,E6604,DAS,"Obesite due a un exces calorique de l'adulte avec IMC superieur a 30 kg/m2 et inferieur a 35 kg/m2",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
-3,1,1,N183,DAS,"Maladie renale chronique stade 3",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
-4,2,2,I219,DP,"Infarctus aigu du myocarde sans precision",2025-08-20,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
-5,2,2,Z958,DR,Présence d'autres implants et greffes cardio-vasculaires,2025-08-21,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
-6,3,3,R570,DP,Choc cardiogénique,2025-08-25,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
-7,5,4,C780,DP,Métastase maligne du poumon,2025-08-20,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
-8,5,4,C25,DAS,Tumeur maligne du pancréas,2025-08-20,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
-9,5,4,R060,DAD,Dyspnée,2025-08-25,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
-10,6,5,O80,DP,Accouchement par voie basse unique spontané,2025-08-15,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
-11,7,6,S721,DP,Fracture pertrochantérienne,2025-08-18,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
-12,8,7,F320,DP,Épisode dépressif léger,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
-13,8,7,F411,DAS,Trouble anxieux généralisé,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
-14,9,8,S064,DP,Contusion cérébrale,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
-15,9,8,S020,DAS,Fracture de la voûte du crâne,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
-16,10,9,L409,DP,"Psoriasis, sans précision",2025-08-05,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
-17,10,9,M0690,DAS,"Rhumatisme psoriasique, siège non précisé",2025-08-05,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+1,1,1,E11.9,DP,"Diabete sucre de type 2, sans complication",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+2,1,1,E66.0,DAS,"Obesite due a un exces calorique",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+3,1,1,N18.3,DAS,"Maladie renale chronique, stade 3",2025-08-22,2025-08-30T10:00:00Z,2025-08-30T10:00:00Z
+4,2,2,I21.9,DP,"Infarctus aigu du myocarde, sans precision",2025-08-20,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+5,2,2,Z95.8,DR,Présence d'autres implants et greffes cardiaques et vasculaires,2025-08-21,2025-08-30T11:00:00Z,2025-08-30T11:00:00Z
+6,3,3,R57.0,DP,Choc cardiogénique,2025-08-25,2025-08-30T12:00:00Z,2025-08-30T12:00:00Z
+7,5,4,C78.0,DP,Tumeur maligne secondaire du poumon,2025-08-20,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+8,5,4,C25.3,DAS,Tumeur maligne du canal pancréatique,2025-08-20,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+9,5,4,R06.0,DAD,Dyspnée,2025-08-25,2025-08-30T14:00:00Z,2025-08-30T14:00:00Z
+10,6,5,O80.0,DP,Accouchement spontané par présentation du sommet,2025-08-15,2025-08-30T15:00:00Z,2025-08-30T15:00:00Z
+11,7,6,S72.1,DP,Fracture du trochanter,2025-08-18,2025-08-30T16:00:00Z,2025-08-30T16:00:00Z
+12,8,7,F32.0,DP,Épisode dépressif léger,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+13,8,7,F41.1,DAS,Anxiété généralisée,2025-08-12,2025-08-30T17:00:00Z,2025-08-30T17:00:00Z
+14,9,8,S06.4,DP,Hémorragie épidurale,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+15,9,8,S02.0,DAS,Fracture de la voûte du crâne,2025-08-10,2025-08-30T18:00:00Z,2025-08-30T18:00:00Z
+16,10,9,L40.9,DP,"Psoriasis, sans précision",2025-08-05,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
+17,10,9,M07.3,DAS,"Autres arthropathies psoriasiques",2025-08-05,2025-08-30T19:00:00Z,2025-08-30T19:00:00Z
 18,11,10,F03,DP,"Démence, sans précision",2025-08-01,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
-19,11,10,Z741,DAS,Nécessité d'une assistance pour des soins personnels permanents,2025-08-01,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
-20,11,10,R2688,DAD,Autres troubles de la démarche et de la mobilité précisés,2025-08-03,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+19,11,10,Z74.1,DAS,Besoin d'assistance et de soins d'hygiène,2025-08-01,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
+20,11,10,R26.8,DAD,"Anomalies de la démarche et de la motilité, autres et non précisées",2025-08-03,2025-08-30T20:00:00Z,2025-08-30T20:00:00Z
