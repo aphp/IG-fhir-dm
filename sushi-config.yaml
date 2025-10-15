@@ -26,6 +26,8 @@ dependencies:
 pages:
   index.md:
     title: Accueil
+  data-dictionary.md:
+    title: Dictionnaire des données
   use-case.md:
     title: Usages
     use-core-variables.md:
@@ -54,7 +56,7 @@ pages:
     title: Autre
     help.md:
       title: Aide
-    change_log.md:
+    changelog.md:
       title: Notes de version
     glossary.md:
       title: Glossaire
@@ -63,7 +65,7 @@ pages:
 
 menu:
   Accueil: index.html
-  Dictionnaire des données: use-core-variables-standardization.html
+  Dictionnaire des données: data-dictionary.html
   Variables du socle commun: use-core-variables.html
   Health Data Platform: data-platform.html
   Guide:
