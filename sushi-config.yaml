@@ -63,12 +63,13 @@ pages:
 
 menu:
   Accueil: index.html
-  Recommandation:
+  Dictionnaire des données: use-core-variables-standardization.html
+  Variables du socle commun: use-core-variables.html
+  Health Data Platform: data-platform.html
+  Guide:
     Gestion des données: new-tab https://interop.aphp.fr/ig/fhir/core/data-management.html
     Bonnes pratiques: new-tab https://interop.aphp.fr/ig/fhir/core/best-practice.html
-    Processus de standardisation des données: https://interop.aphp.fr/ig/fhir/core/standardization-process.html
-  Variables du socle: use-core-variables.html
-  Health Data Platform: data-platform.html
+    Processus de standardisation des données: new-tab https://interop.aphp.fr/ig/fhir/core/standardization-process.html
   Ressources de conformité: artifacts.html
   Autres:
     Aide: help.html
