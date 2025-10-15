@@ -1,25 +1,25 @@
 soin_id,patient_id,code_loinc,libelle_test,valeur,unite,valeur_code,valeur_texte,date_mesure,unite_soins,professionnel,created_at,updated_at
-1,1,8867-4,Fréquence cardiaque,72.0,bpm,,,2024-01-10,USC Cardiologie,IDE,2024-01-15 11:50:00+01,2024-01-15 11:50:00+01
-2,1,8480-6,Pression artérielle systolique,135.0,mmHg,,,2024-01-10,USC Cardiologie,IDE,2024-01-15 11:51:00+01,2024-01-15 11:51:00+01
-3,1,8462-4,Pression artérielle diastolique,85.0,mmHg,,,2024-01-10,USC Cardiologie,IDE,2024-01-15 11:52:00+01,2024-01-15 11:52:00+01
+1,1,8867-4,Fréquence cardiaque,72.0,/min,,,2024-01-10,USC Cardiologie,IDE,2024-01-15 11:50:00+01,2024-01-15 11:50:00+01
+2,1,8480-6,Pression artérielle systolique,135.0,mm[Hg],,,2024-01-10,USC Cardiologie,IDE,2024-01-15 11:51:00+01,2024-01-15 11:51:00+01
+3,1,8462-4,Pression artérielle diastolique,85.0,mm[Hg],,,2024-01-10,USC Cardiologie,IDE,2024-01-15 11:52:00+01,2024-01-15 11:52:00+01
 4,1,8310-5,Température corporelle,36.8,Cel,,,2024-01-10,USC Cardiologie,IDE,2024-01-15 11:53:00+01,2024-01-15 11:53:00+01
-5,2,8867-4,Fréquence cardiaque,88.0,bpm,,,2024-01-08,Gastroentérologie,IDE,2024-01-15 11:54:00+01,2024-01-15 11:54:00+01
+5,2,8867-4,Fréquence cardiaque,88.0,/min,,,2024-01-08,Gastroentérologie,IDE,2024-01-15 11:54:00+01,2024-01-15 11:54:00+01
 6,2,8310-5,Température corporelle,37.2,Cel,,,2024-01-08,Gastroentérologie,IDE,2024-01-15 11:55:00+01,2024-01-15 11:55:00+01
 7,3,29463-7,Poids corporel,68.5,kg,,,2024-01-15,Maternité,Sage-femme,2024-01-15 11:56:00+01,2024-01-15 11:56:00+01
 8,3,8302-2,Taille,165.0,cm,,,2024-01-15,Maternité,Sage-femme,2024-01-15 11:57:00+01,2024-01-15 11:57:00+01
-9,3,8480-6,Pression artérielle systolique,125.0,mmHg,,,2024-01-15,Maternité,Sage-femme,2024-01-15 11:58:00+01,2024-01-15 11:58:00+01
-10,4,8867-4,Fréquence cardiaque,125.0,bpm,,,2023-11-05,REA Polyvalente,IDE,2024-01-15 11:59:00+01,2024-01-15 11:59:00+01
-11,4,8480-6,Pression artérielle systolique,75.0,mmHg,,,2023-11-05,REA Polyvalente,IDE,2024-01-15 12:00:00+01,2024-01-15 12:00:00+01
+9,3,8480-6,Pression artérielle systolique,125.0,mm[Hg],,,2024-01-15,Maternité,Sage-femme,2024-01-15 11:58:00+01,2024-01-15 11:58:00+01
+10,4,8867-4,Fréquence cardiaque,125.0,/min,,,2023-11-05,REA Polyvalente,IDE,2024-01-15 11:59:00+01,2024-01-15 11:59:00+01
+11,4,8480-6,Pression artérielle systolique,75.0,mm[Hg],,,2023-11-05,REA Polyvalente,IDE,2024-01-15 12:00:00+01,2024-01-15 12:00:00+01
 12,4,8310-5,Température corporelle,35.8,Cel,,,2023-11-05,REA Polyvalente,IDE,2024-01-15 12:01:00+01,2024-01-15 12:01:00+01
 13,5,8310-5,Température corporelle,38.5,Cel,,,2024-01-12,Service Adolescents,IDE,2024-01-15 12:02:00+01,2024-01-15 12:02:00+01
-14,5,8867-4,Fréquence cardiaque,95.0,bpm,,,2024-01-12,Service Adolescents,IDE,2024-01-15 12:03:00+01,2024-01-15 12:03:00+01
-15,6,8867-4,Fréquence cardiaque,68.0,bpm,,,2024-01-05,Coronarographie,IDE,2024-01-15 12:04:00+01,2024-01-15 12:04:00+01
-16,6,8480-6,Pression artérielle systolique,145.0,mmHg,,,2024-01-05,Coronarographie,IDE,2024-01-15 12:05:00+01,2024-01-15 12:05:00+01
-17,7,8867-4,Fréquence cardiaque,78.0,bpm,,,2024-01-14,UNV,IDE,2024-01-15 12:06:00+01,2024-01-15 12:06:00+01
-18,7,8480-6,Pression artérielle systolique,120.0,mmHg,,,2024-01-14,UNV,IDE,2024-01-15 12:07:00+01,2024-01-15 12:07:00+01
-19,8,8867-4,Fréquence cardiaque,85.0,bpm,,,2024-01-11,Chirurgie Orthopédique,IDE,2024-01-15 12:08:00+01,2024-01-15 12:08:00+01
+14,5,8867-4,Fréquence cardiaque,95.0,/min,,,2024-01-12,Service Adolescents,IDE,2024-01-15 12:03:00+01,2024-01-15 12:03:00+01
+15,6,8867-4,Fréquence cardiaque,68.0,/min,,,2024-01-05,Coronarographie,IDE,2024-01-15 12:04:00+01,2024-01-15 12:04:00+01
+16,6,8480-6,Pression artérielle systolique,145.0,mm[Hg],,,2024-01-05,Coronarographie,IDE,2024-01-15 12:05:00+01,2024-01-15 12:05:00+01
+17,7,8867-4,Fréquence cardiaque,78.0,/min,,,2024-01-14,UNV,IDE,2024-01-15 12:06:00+01,2024-01-15 12:06:00+01
+18,7,8480-6,Pression artérielle systolique,120.0,mm[Hg],,,2024-01-14,UNV,IDE,2024-01-15 12:07:00+01,2024-01-15 12:07:00+01
+19,8,8867-4,Fréquence cardiaque,85.0,/min,,,2024-01-11,Chirurgie Orthopédique,IDE,2024-01-15 12:08:00+01,2024-01-15 12:08:00+01
 20,8,8310-5,Température corporelle,36.9,Cel,,,2024-01-11,Chirurgie Orthopédique,IDE,2024-01-15 12:09:00+01,2024-01-15 12:09:00+01
 21,9,29463-7,Poids corporel,58.2,kg,,,2024-01-13,Hépatologie B,IDE,2024-01-15 12:10:00+01,2024-01-15 12:10:00+01
 22,9,8302-2,Taille,162.0,cm,,,2024-01-13,Hépatologie B,IDE,2024-01-15 12:11:00+01,2024-01-15 12:11:00+01
-23,10,8867-4,Fréquence cardiaque,105.0,bpm,,,2024-01-16,Pneumologie A,IDE,2024-01-15 12:12:00+01,2024-01-15 12:12:00+01
+23,10,8867-4,Fréquence cardiaque,105.0,/min,,,2024-01-16,Pneumologie A,IDE,2024-01-15 12:12:00+01,2024-01-15 12:12:00+01
 24,10,9279-1,Fréquence respiratoire,28.0,/min,,,2024-01-16,Pneumologie A,IDE,2024-01-15 12:13:00+01,2024-01-15 12:13:00+01
