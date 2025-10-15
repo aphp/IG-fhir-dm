@@ -88,7 +88,7 @@ RETURNING pmsi_id INTO v_pmsi_id;
 -- linkId: "9391816419630" (Diagnostics) - 3 occurrences in QuestionnaireResponse
 -- ========================================================================
 
--- Diagnostic 1: E119 - Diabète sucré de type 2, sans complication (DP)
+-- Diagnostic 1: E11.9 - Diabète sucré de type 2, sans complication (DP)
 INSERT INTO diagnostics (
     pmsi_id,
     code_diagnostic,        -- linkId: "5505101189372" (Diagnostique)
@@ -97,13 +97,13 @@ INSERT INTO diagnostics (
     date_recueil          -- linkId: "7114466839467" (Date du recueil)
 ) VALUES (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
-    'E119',                 -- From QuestionnaireResponse valueCoding.code
+    'E11.9',                 -- From QuestionnaireResponse valueCoding.code
     'DP',                   -- From QuestionnaireResponse valueCoding.display
     'Diabète sucré de type 2, sans complication', -- From valueCoding.display
     '2025-08-22'           -- From QuestionnaireResponse valueDate
 );
 
--- Diagnostic 2: E6604 - Obésité (DAS)
+-- Diagnostic 2: E66.0 - Obésité (DAS)
 INSERT INTO diagnostics (
     pmsi_id,
     code_diagnostic,
@@ -113,13 +113,13 @@ INSERT INTO diagnostics (
     sequence_diagnostic
 ) VALUES (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
-    'E6604',                -- From QuestionnaireResponse valueCoding.code
+    'E66.0',                -- From QuestionnaireResponse valueCoding.code
     'DAS',                  -- From QuestionnaireResponse valueCoding.display
-    'Obésité due à un excès calorique de l''adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l''enfant', -- From valueCoding.display
+    'Obésité due à un excès calorique', -- From valueCoding.display
     '2025-08-22'           -- From QuestionnaireResponse valueDate
 );
 
--- Diagnostic 3: N183 - Maladie rénale chronique, stade 3a (DAS)
+-- Diagnostic 3: N18.3 - Maladie rénale chronique, stade 3a (DAS)
 INSERT INTO diagnostics (
     pmsi_id,
     code_diagnostic,
@@ -129,7 +129,7 @@ INSERT INTO diagnostics (
     sequence_diagnostic
 ) VALUES (
     v_pmsi_id,              -- References donnees_pmsi.pmsi_id from INSERT above
-    'N183',                 -- From QuestionnaireResponse valueCoding.code
+    'N18.3',                 -- From QuestionnaireResponse valueCoding.code
     'DAS',                  -- From QuestionnaireResponse valueCoding.display
     'Maladie rénale chronique, stade 3', -- From valueCoding.display
     '2025-08-22'           -- From QuestionnaireResponse valueDate

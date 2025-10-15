@@ -290,6 +290,13 @@
                 {
                   "valueCoding": {
                     "system": "https://inse.fr/IRIS-cs",
+                    "code": "751151001",
+                    "display": "GRENELLE"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
                     "code": "765400102",
                     "display": "Vieux Marché Palais de Justice"
                   }
@@ -442,6 +449,13 @@
             {
               "valueCoding": {
                 "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75015",
+                "display": "Paris 15ème arrondissement"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "76000",
                 "display": "ROUEN"
               }
@@ -534,20 +548,32 @@
                 },
                 {
                   "valueCoding": {
-                    "code": "E119",
+                    "code": "E11.9",
                     "display": "Diabète sucré de type 2, sans complication"
                   }
                 },
                 {
                   "valueCoding": {
-                    "code": "N183",
+                    "code": "N18.3",
                     "display": "Maladie rénale chronique, stade 3"
                   }
                 },
                 {
                   "valueCoding": {
-                    "code": "E6604",
-                    "display": "Obésité due à un excès calorique de l'adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l'enfant"
+                    "code": "K70.3",
+                    "display": "Cirrhose alcoolique du foie"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "R18",
+                    "display": "Ascite"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "E66.0",
+                    "display": "Obésité due à un excès calorique"
                   }
                 },
                 {

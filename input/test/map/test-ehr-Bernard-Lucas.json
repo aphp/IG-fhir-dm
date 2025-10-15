@@ -47,9 +47,9 @@
       "diagnosticId": "diag-011",
       "patientId": "patient-007",
       "pmsiId": "pmsi-006",
-      "codeDiagnostic": "S721",
+      "codeDiagnostic": "S72.1",
       "typeDiagnostic": "DP",
-      "libelleDiagnostic": "Fracture pertrochantérienne",
+      "libelleDiagnostic": "Fracture du trochanter",
       "dateRecueil": "2025-08-18",
       "createdAt": "2025-08-30T16:00:00Z",
       "updatedAt": "2025-08-30T16:00:00Z"

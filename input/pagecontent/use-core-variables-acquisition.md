@@ -62,6 +62,8 @@ Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples se
 
 {% include QuestionnaireResponse-test-usage-core-complet-intro.md %}
 
-#### Cas 2 : ???
+#### Cas 2 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
 
-TODO
+(Correspond au patient 9 dans le je de test (data-platform\raw-layer\test\file\patient.csv))
+
+{% include QuestionnaireResponse-patient9-usage-core-intro.md %}

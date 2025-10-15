@@ -59,9 +59,9 @@
       "diagnosticId": "diag-019",
       "patientId": "patient-011",
       "pmsiId": "pmsi-010",
-      "codeDiagnostic": "Z741",
+      "codeDiagnostic": "Z74.1",
       "typeDiagnostic": "DAS",
-      "libelleDiagnostic": "Nécessité d'une assistance pour des soins personnels permanents",
+      "libelleDiagnostic": "Besoin d'assistance et de soins d'hygiène",
       "dateRecueil": "2025-08-01",
       "createdAt": "2025-08-30T20:00:00Z",
       "updatedAt": "2025-08-30T20:00:00Z"
@@ -70,9 +70,9 @@
       "diagnosticId": "diag-020",
       "patientId": "patient-011",
       "pmsiId": "pmsi-010",
-      "codeDiagnostic": "R2688",
+      "codeDiagnostic": "R26.8",
       "typeDiagnostic": "DAD",
-      "libelleDiagnostic": "Autres troubles de la démarche et de la mobilité précisés",
+      "libelleDiagnostic": "Anomalies de la démarche et de la motilité, autres et non précisées",
       "dateRecueil": "2025-08-03",
       "createdAt": "2025-08-30T20:00:00Z",
       "updatedAt": "2025-08-30T20:00:00Z"

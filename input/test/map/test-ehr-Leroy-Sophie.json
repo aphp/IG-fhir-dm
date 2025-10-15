@@ -47,9 +47,9 @@
       "diagnosticId": "diag-010",
       "patientId": "patient-006",
       "pmsiId": "pmsi-005",
-      "codeDiagnostic": "O80",
+      "codeDiagnostic": "O80.0",
       "typeDiagnostic": "DP",
-      "libelleDiagnostic": "Accouchement par voie basse unique spontané",
+      "libelleDiagnostic": "Accouchement spontané par présentation du sommet",
       "dateRecueil": "2025-08-15",
       "createdAt": "2025-08-30T15:00:00Z",
       "updatedAt": "2025-08-30T15:00:00Z"

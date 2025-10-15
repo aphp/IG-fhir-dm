@@ -110,6 +110,10 @@ resources:
     name: Exemple complet
     description: Exemple complet
     exampleBoolean: true
+  QuestionnaireResponse/test-usage-core-patient-9:
+    name: Patient 9 - Madame Blanc
+    description: Exemple correspondant au patient 9 du jeu de test
+    exampleBoolean: true
   Bundle/5616f9ad-61b0-4279-9f41-777228d04665:
     name: Patient test (Bundle)
     description: ???

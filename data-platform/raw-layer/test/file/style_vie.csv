@@ -7,5 +7,5 @@ style_vie_id,patient_id,consommation_tabac,consommation_alcool,consommation_autr
 6,6,Ex-fumeur,Occasionnel,Non,Modérée,2024-01-05,2024-01-15 13:20:00+01,2024-01-15 13:20:00+01
 7,7,Non-fumeur,Occasionnel,Non,Modérée,2024-01-14,2024-01-15 13:21:00+01,2024-01-15 13:21:00+01
 8,8,Non-fumeur,Non,Non,Elevée,2024-01-11,2024-01-15 13:22:00+01,2024-01-15 13:22:00+01
-9,9,Ex-fumeur,Quotidien,Non,Faible,2024-01-13,2024-01-15 13:23:00+01,2024-01-15 13:23:00+01
+9,9,Ex-fumeur,Ex-buveur,Non,Faible,2024-01-13,2024-01-15 13:23:00+01,2024-01-15 13:23:00+01
 10,10,Fumeur actuel,Occasionnel,Non,Faible,2024-01-16,2024-01-15 13:24:00+01,2024-01-15 13:24:00+01

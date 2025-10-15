@@ -170,7 +170,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "code": "E119",
+                    "code": "E11.9",
                     "display": "Diabète sucré de type 2, sans complication"
                   }
                 }
@@ -208,8 +208,8 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "code": "E6604",
-                    "display": "Obésité due à un excès calorique de l'adulte avec indice de masse corporelle [IMC] égal ou supérieur à 30 kg/m² et inférieur à 35 kg/m², ou obésité due à un excès calorique de l'enfant"
+                    "code": "E66.0",
+                    "display": "Obésité due à un excès calorique"
                   }
                 }
               ],
@@ -246,7 +246,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "code": "N183",
+                    "code": "N18.3",
                     "display": "Maladie rénale chronique, stade 3"
                   }
                 }
