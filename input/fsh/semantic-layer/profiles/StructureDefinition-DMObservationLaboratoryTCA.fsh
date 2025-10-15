@@ -23,7 +23,7 @@ Profil Temps de céphaline activée (TCA) du socle commun des EDSH
   * valueQuantity ^short = "Valeur mesurée"
   * valueQuantity
     * code = #s (exactly)
-    * unit = #s (exactly)
+    * unit = "s"
     * system = $ucum (exactly)
 
 * component[ControlTCA] ^short = "pour rapporter le TCA témoin."
@@ -33,7 +33,7 @@ Profil Temps de céphaline activée (TCA) du socle commun des EDSH
   * valueQuantity ^short = "Valeur mesurée"
   * valueQuantity
     * code = #s (exactly)
-    * unit = #s (exactly)
+    * unit = "s"
     * system = $ucum (exactly)
 
 * component[TCARatioPonC] ^short = "pour rapporter le ratio des TCA P/T."

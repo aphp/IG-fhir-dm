@@ -11,7 +11,7 @@ Profil Erythrocytes du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #10*6/uL (exactly)
-* valueQuantity.unit = #10*6/uL (exactly)
+* valueQuantity.unit = "10*6/uL"
 
 Instance: de1f2303-d9a4-485b-80c3-94a12081776f
 InstanceOf: Provenance

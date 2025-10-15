@@ -11,7 +11,7 @@ Profil Neutrophiles du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #10*3/uL (exactly)
-* valueQuantity.unit = #10*3/uL (exactly)
+* valueQuantity.unit = "10*3/uL"
 
 Instance: 225af36e-6347-4cd4-a252-cc5d8e59f856
 InstanceOf: Provenance

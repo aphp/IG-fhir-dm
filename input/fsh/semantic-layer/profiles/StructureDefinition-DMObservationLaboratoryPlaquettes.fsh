@@ -11,7 +11,7 @@ Profil Plaquettes du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #10*3/uL (exactly)
-* valueQuantity.unit = #10*3/uL (exactly)
+* valueQuantity.unit = "10*3/uL"
 
 Instance: c7ac6c79-d3ea-4e80-8859-2217c044b3ec
 InstanceOf: Provenance

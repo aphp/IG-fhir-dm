@@ -11,7 +11,7 @@ Profil Monocytes du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #10*3/uL (exactly)
-* valueQuantity.unit = #10*3/uL (exactly)
+* valueQuantity.unit = "10*3/uL"
 
 Instance: 0a5b5832-86f0-48bd-93b4-ec55b769a863
 InstanceOf: Provenance

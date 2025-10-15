@@ -11,7 +11,7 @@ Taux de bilirubine sanguin. La bilirubine est un pigment jaune produit de la dé
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #umol/L (exactly)
-* valueQuantity.unit = #umol/L (exactly)
+* valueQuantity.unit = "umol/L"
 
 Instance: 34ca9da4-4ca3-418a-aa45-9e001241d6e8
 InstanceOf: Provenance

@@ -11,7 +11,7 @@ Profil Taux prothrombine (TP) du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #% (exactly)
-* valueQuantity.unit = #% (exactly)
+* valueQuantity.unit = "%"
 
 Instance: 8f3edd54-5bca-4003-b07f-c665d6d0b788
 InstanceOf: Provenance

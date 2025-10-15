@@ -11,7 +11,7 @@ Profil Phosphatases alcaline du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #U/L (exactly)
-* valueQuantity.unit = #U/L (exactly)
+* valueQuantity.unit = "U/L"
 
 Instance: 36035e17-dee7-45eb-9f5a-1fa7628524da
 InstanceOf: Provenance

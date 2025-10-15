@@ -11,7 +11,7 @@ Taux sanguin de GGT. Aminoacyltransférase impliquées dans la catalyse d'enzyme
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #U/L (exactly)
-* valueQuantity.unit = #U/L (exactly)
+* valueQuantity.unit = "U/L"
 
 Instance: 0e124f44-28c3-4ce5-a5f2-08e9619ef73f
 InstanceOf: Provenance

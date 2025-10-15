@@ -11,7 +11,7 @@ Profil Hémoglobine du socle commun des EDSH
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
 * valueQuantity.code = #g/dL (exactly)
-* valueQuantity.unit = #g/dL (exactly)
+* valueQuantity.unit = "g/dL"
 
 Instance: d59a5903-cb93-4b12-b9cd-7173c89b1c88
 InstanceOf: Provenance
