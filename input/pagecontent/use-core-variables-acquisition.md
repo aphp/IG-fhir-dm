@@ -52,6 +52,11 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 | Médicament administré | | | | | |
 | Poids | | | | | |
 | Taille | | | | | |
+| Pression artérielle | | | | | |
+| Consommation de tabac | | | | | |
+| Consommation d'alcool | | | | | |
+| Consommation d'autres drogues | | | | | |
+| Activité physique | | | | | |
 {: .grid}
 
 ### Exemples
