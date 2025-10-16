@@ -1,6 +1,6 @@
 {
   "resourceType": "QuestionnaireResponse",
-  "id": "test-usage-core-complet",
+  "id": "cas-11-usage-core",
   "status": "completed",
   "authored": "2025-08-28T13:09:50.295Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
