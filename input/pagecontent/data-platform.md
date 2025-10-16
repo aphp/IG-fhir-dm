@@ -4,16 +4,13 @@ La **Health Data Platform** propose une démonstration complète illustrant comm
 
 ### Architecture fonctionnelle
 
-<!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
-<div id="dm-schema-fonctionnel">
-  <img src="dm-schema-fonctionnel.jpg" alt="Le schéma suivant représente la data platforme cible" height="auto" width="100%" />
-</div>
+{% include data-platform-functional-architecture.md %}
 
-La mise en place d’une platforme de données de santé moderne suppose de combiner rigueur méthodologique et ambition collective. L’architecture prototypique que nous proposons repose sur cinq couches fonctionnelles clairement identifiées. Chaque couche contribue à la robustesse, à la sécurité et à la valorisation des données, depuis leur collecte brute jusqu’à leur exploitation stratégique. 
+La mise en place d'une platforme de données de santé moderne suppose de combiner rigueur méthodologique et ambition collective. L'architecture prototypique que nous proposons repose sur cinq couches fonctionnelles clairement identifiées. Chaque couche contribue à la robustesse, à la sécurité et à la valorisation des données, depuis leur collecte brute jusqu'à leur exploitation stratégique. 
 
 ### [Raw layer](data-platform-raw-layer.html)
 
-Cette première couche accueille les données dans leur état d’origine. Elle intègre :
+Cette première couche accueille les données dans leur état d'origine. Elle intègre :
 
 
 >* les dossiers patients informatisés (DPI),
@@ -22,7 +19,7 @@ Cette première couche accueille les données dans leur état d’origine. Elle 
 >* la facturation et données administratives.
 
 
-Elle joue le rôle de socle, garantissant l’exhaustivité et la traçabilité, tout en respectant les normes de sécurité.
+Elle joue le rôle de socle, garantissant l'exhaustivité et la traçabilité, tout en respectant les normes de sécurité.
 
 ### [Transformation layer](data-platform-transform-layer.html)
 
@@ -58,7 +55,7 @@ Au-delà de ce prototype, la vision stratégique est claire :
 
 >* Consolider la confiance en plaçant la gouvernance et la protection des données au premier plan.
 >* Stimuler l'innovation grâce à un socle technique agile, prêt à intégrer l'IA, l'analyse prédictive et la médecine personnalisée.
->* Fédérer les acteurs autour d’une ambition collective : faire de la donnée de santé un bien commun au service du patient, des soignants et de la recherche.
+>* Fédérer les acteurs autour d'une ambition collective : faire de la donnée de santé un bien commun au service du patient, des soignants et de la recherche.
 
 
 Cette architecture n'est pas seulement technique : elle constitue une boussole stratégique pour guider l'écosystème vers une utilisation responsable, innovante et pérenne de la donnée de santé.

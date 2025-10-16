@@ -37,292 +37,48 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Profil Patient du socle commun des EDS. Démographie et informations administratives sur les individus recevant des soins.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 id</td>
-      <td>VARCHAR(64)</td>
-      <td>PRIMARY KEY</td>
-      <td></td>
-      <td>Identifiant unique FHIR</td>
-    </tr>
-    <tr>
-      <td>last_updated</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Dernière mise à jour</td>
-    </tr>
-    <tr>
-      <td>active</td>
-      <td>BOOLEAN</td>
-      <td></td>
-      <td></td>
-      <td>Si l'enregistrement patient est actif</td>
-    </tr>
-    <tr>
-      <td>identifiers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identifiants métier (tableau)</td>
-    </tr>
-    <tr>
-      <td>nss_identifier</td>
-      <td>VARCHAR(50)</td>
-      <td>CHECK format</td>
-      <td></td>
-      <td>NSS - Numéro de Sécurité Sociale</td>
-    </tr>
-    <tr>
-      <td>ins_nir_identifier</td>
-      <td>VARCHAR(15)</td>
-      <td>CHECK format</td>
-      <td></td>
-      <td>INS-NIR - Identifiant national de santé</td>
-    </tr>
-    <tr>
-      <td>names</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Noms associés au patient</td>
-    </tr>
-    <tr>
-      <td>full_names</td>
-      <td>TEXT</td>
-      <td></td>
-      <td></td>
-      <td>Représentation structurée des noms</td>
-    </tr>
-    <tr>
-      <td>gender</td>
-      <td>VARCHAR(10)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>Genre administratif</td>
-    </tr>
-    <tr>
-      <td>birth_date</td>
-      <td>DATE</td>
-      <td>CHECK range</td>
-      <td></td>
-      <td>Date de naissance</td>
-    </tr>
-    <tr>
-      <td>deceased_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Information de décès</td>
-    </tr>
-    <tr>
-      <td>deceased_date_time</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Date et heure de décès</td>
-    </tr>
-    <tr>
-      <td>deceased_extension_death_source</td>
-      <td>VARCHAR(10)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>Source d'information de décès</td>
-    </tr>
-    <tr>
-      <td>marital_status</td>
-      <td>VARCHAR(4)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>Statut marital</td>
-    </tr>
-    <tr>
-      <td>address</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Adresses physiques</td>
-    </tr>
-    <tr>
-      <td>address_extension_geolocation_latitude</td>
-      <td>FLOAT</td>
-      <td>CHECK range</td>
-      <td></td>
-      <td>Latitude de géolocalisation</td>
-    </tr>
-    <tr>
-      <td>address_extension_geolocation_longitude</td>
-      <td>FLOAT</td>
-      <td>CHECK range</td>
-      <td></td>
-      <td>Longitude de géolocalisation</td>
-    </tr>
-    <tr>
-      <td>address_extension_census_tract</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Code IRIS du recensement</td>
-    </tr>
-    <tr>
-      <td>address_period_start</td>
-      <td>DATE</td>
-      <td></td>
-      <td></td>
-      <td>Date de début de validité d'adresse</td>
-    </tr>
-    <tr>
-      <td>address_extension_pmsi_code_geo</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Extension code géographique PMSI</td>
-    </tr>
-    <tr>
-      <td>address_extension_pmsi_code_geo_code</td>
-      <td>VARCHAR(5)</td>
-      <td>CHECK format</td>
-      <td></td>
-      <td>Code géographique PMSI</td>
-    </tr>
-    <tr>
-      <td>telecoms</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Coordonnées de contact</td>
-    </tr>
-    <tr>
-      <td>contacts</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Contacts d'urgence et tuteurs</td>
-    </tr>
-    <tr>
-      <td>communications</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Langues de communication</td>
-    </tr>
-    <tr>
-      <td>preferred_communication_languages</td>
-      <td>TEXT</td>
-      <td></td>
-      <td></td>
-      <td>Langues préférées</td>
-    </tr>
-    <tr>
-      <td>multiple_birth_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Information sur naissance multiple</td>
-    </tr>
-    <tr>
-      <td>multiple_birth_integer</td>
-      <td>INTEGER</td>
-      <td>CHECK range</td>
-      <td></td>
-      <td>Rang gémellaire</td>
-    </tr>
-    <tr>
-      <td>general_practitioners</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Médecins traitants</td>
-    </tr>
-    <tr>
-      <td>managing_organization</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Organisation gestionnaire</td>
-    </tr>
-    <tr>
-      <td>links</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Liens vers autres patients</td>
-    </tr>
-    <tr>
-      <td>meta</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Métadonnées FHIR</td>
-    </tr>
-    <tr>
-      <td>implicit_rules</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Règles implicites</td>
-    </tr>
-    <tr>
-      <td>resource_language</td>
-      <td>VARCHAR(10)</td>
-      <td></td>
-      <td></td>
-      <td>Langue de la ressource</td>
-    </tr>
-    <tr>
-      <td>text_div</td>
-      <td>TEXT</td>
-      <td></td>
-      <td></td>
-      <td>Résumé textuel</td>
-    </tr>
-    <tr>
-      <td>contained</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Ressources contenues</td>
-    </tr>
-    <tr>
-      <td>extensions</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Extensions</td>
-    </tr>
-    <tr>
-      <td>modifier_extensions</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Extensions modificatrices</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Identifiant unique FHIR |
+| last_updated | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Dernière mise à jour |
+| active | BOOLEAN | | | Si l'enregistrement patient est actif |
+| identifiers | JSONB | | | Identifiants métier (tableau) |
+| nss_identifier | VARCHAR(50) | CHECK format | | NSS - Numéro de Sécurité Sociale |
+| ins_nir_identifier | VARCHAR(15) | CHECK format | | INS-NIR - Identifiant national de santé |
+| names | JSONB | | | Noms associés au patient |
+| full_names | TEXT | | | Représentation structurée des noms |
+| gender | VARCHAR(10) | CHECK enum | | Genre administratif |
+| birth_date | DATE | CHECK range | | Date de naissance |
+| deceased_x | JSONB | | | Information de décès |
+| deceased_date_time | TIMESTAMP WITH TIME ZONE | | | Date et heure de décès |
+| deceased_extension_death_source | VARCHAR(10) | CHECK enum | | Source d'information de décès |
+| marital_status | VARCHAR(4) | CHECK enum | | Statut marital |
+| address | JSONB | | | Adresses physiques |
+| address_extension_geolocation_latitude | FLOAT | CHECK range | | Latitude de géolocalisation |
+| address_extension_geolocation_longitude | FLOAT | CHECK range | | Longitude de géolocalisation |
+| address_extension_census_tract | VARCHAR(255) | | | Code IRIS du recensement |
+| address_period_start | DATE | | | Date de début de validité d'adresse |
+| address_extension_pmsi_code_geo | JSONB | | | Extension code géographique PMSI |
+| address_extension_pmsi_code_geo_code | VARCHAR(5) | CHECK format | | Code géographique PMSI |
+| telecoms | JSONB | | | Coordonnées de contact |
+| contacts | JSONB | | | Contacts d'urgence et tuteurs |
+| communications | JSONB | | | Langues de communication |
+| preferred_communication_languages | TEXT | | | Langues préférées |
+| multiple_birth_x | JSONB | | | Information sur naissance multiple |
+| multiple_birth_integer | INTEGER | CHECK range | | Rang gémellaire |
+| general_practitioners | JSONB | | | Médecins traitants |
+| managing_organization | JSONB | | | Organisation gestionnaire |
+| links | JSONB | | | Liens vers autres patients |
+| meta | JSONB | | | Métadonnées FHIR |
+| implicit_rules | VARCHAR(255) | | | Règles implicites |
+| resource_language | VARCHAR(10) | | | Langue de la ressource |
+| text_div | TEXT | | | Résumé textuel |
+| contained | JSONB | | | Ressources contenues |
+| extensions | JSONB | | | Extensions |
+| modifier_extensions | JSONB | | | Extensions modificatrices |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_patient_identifiers` : Index GIN sur identifiers
@@ -341,264 +97,50 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Interaction entre un patient et des prestataires de soins pour fournir des services de santé.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 id</td>
-      <td>VARCHAR(64)</td>
-      <td>PRIMARY KEY</td>
-      <td></td>
-      <td>Identifiant unique FHIR</td>
-    </tr>
-    <tr>
-      <td>last_updated</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Dernière mise à jour</td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>VARCHAR(20)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>État actuel de la rencontre</td>
-    </tr>
-    <tr>
-      <td>status_history</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Historique des statuts</td>
-    </tr>
-    <tr>
-      <td>class</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Classification de la rencontre</td>
-    </tr>
-    <tr>
-      <td>class_display</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Texte d'affichage de la classe</td>
-    </tr>
-    <tr>
-      <td>class_history</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Historique des classes</td>
-    </tr>
-    <tr>
-      <td>types</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Types spécifiques de rencontre</td>
-    </tr>
-    <tr>
-      <td>service_type</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Catégorisation large du service</td>
-    </tr>
-    <tr>
-      <td>priority</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Urgence de la rencontre</td>
-    </tr>
-    <tr>
-      <td>identifiers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identifiants métier</td>
-    </tr>
-    <tr>
-      <td>subject</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Patient ou groupe présent</td>
-    </tr>
-    <tr>
-      <td>🔗 subject_patient_id</td>
-      <td>VARCHAR(64)</td>
-      <td>NOT NULL, FK</td>
-      <td></td>
-      <td>Référence obligatoire au patient</td>
-    </tr>
-    <tr>
-      <td>episodes_of_care</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Épisodes de soins</td>
-    </tr>
-    <tr>
-      <td>based_on_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Rendez-vous planifiés</td>
-    </tr>
-    <tr>
-      <td>participants</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Personnes impliquées</td>
-    </tr>
-    <tr>
-      <td>appointments</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Rendez-vous</td>
-    </tr>
-    <tr>
-      <td>period_start</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Heure de début</td>
-    </tr>
-    <tr>
-      <td>period_end</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Heure de fin</td>
-    </tr>
-    <tr>
-      <td>length</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Durée de la rencontre</td>
-    </tr>
-    <tr>
-      <td>length_number_of_day</td>
-      <td>INTEGER</td>
-      <td>CHECK ≥ 0</td>
-      <td></td>
-      <td>Durée en jours</td>
-    </tr>
-    <tr>
-      <td>reason_codes</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Raisons codées</td>
-    </tr>
-    <tr>
-      <td>reason_references</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Références aux raisons</td>
-    </tr>
-    <tr>
-      <td>diagnoses</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Diagnostics</td>
-    </tr>
-    <tr>
-      <td>account</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Comptes</td>
-    </tr>
-    <tr>
-      <td>hospitalization</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Détails d'hospitalisation</td>
-    </tr>
-    <tr>
-      <td>admit_source_text</td>
-      <td>VARCHAR(255)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>Source d'admission</td>
-    </tr>
-    <tr>
-      <td>discharge_disposition_text</td>
-      <td>VARCHAR(255)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>Disposition de sortie</td>
-    </tr>
-    <tr>
-      <td>locations</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Emplacements</td>
-    </tr>
-    <tr>
-      <td>service_provider</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Prestataire de service</td>
-    </tr>
-    <tr>
-      <td>service_provider_organization_display</td>
-      <td>VARCHAR(64)</td>
-      <td></td>
-      <td></td>
-      <td>Nom d'affichage du prestataire</td>
-    </tr>
-    <tr>
-      <td>part_of</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Rencontre parent</td>
-    </tr>
-    <tr>
-      <td>[Métadonnées FHIR standard]</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Identifiant unique FHIR |
+| last_updated | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Dernière mise à jour |
+| status | VARCHAR(20) | CHECK enum | | État actuel de la rencontre |
+| status_history | JSONB | | | Historique des statuts |
+| class | JSONB | | | Classification de la rencontre |
+| class_display | VARCHAR(255) | | | Texte d'affichage de la classe |
+| class_history | JSONB | | | Historique des classes |
+| types | JSONB | | | Types spécifiques de rencontre |
+| service_type | JSONB | | | Catégorisation large du service |
+| priority | JSONB | | | Urgence de la rencontre |
+| identifiers | JSONB | | | Identifiants métier |
+| subject | JSONB | | | Patient ou groupe présent |
+| 🔗 subject_patient_id | VARCHAR(64) | NOT NULL, FK | | Référence obligatoire au patient |
+| episodes_of_care | JSONB | | | Épisodes de soins |
+| based_on_s | JSONB | | | Rendez-vous planifiés |
+| participants | JSONB | | | Personnes impliquées |
+| appointments | JSONB | | | Rendez-vous |
+| period_start | TIMESTAMP WITH TIME ZONE | | | Heure de début |
+| period_end | TIMESTAMP WITH TIME ZONE | | | Heure de fin |
+| length | JSONB | | | Durée de la rencontre |
+| length_number_of_day | INTEGER | CHECK ≥ 0 | | Durée en jours |
+| reason_codes | JSONB | | | Raisons codées |
+| reason_references | JSONB | | | Références aux raisons |
+| diagnoses | JSONB | | | Diagnostics |
+| account | JSONB | | | Comptes |
+| hospitalization | JSONB | | | Détails d'hospitalisation |
+| admit_source_text | VARCHAR(255) | CHECK enum | | Source d'admission |
+| discharge_disposition_text | VARCHAR(255) | CHECK enum | | Disposition de sortie |
+| locations | JSONB | | | Emplacements |
+| service_provider | JSONB | | | Prestataire de service |
+| service_provider_organization_display | VARCHAR(64) | | | Nom d'affichage du prestataire |
+| part_of | JSONB | | | Rencontre parent |
+| meta | JSONB | | | Métadonnées FHIR |
+| implicit_rules | VARCHAR(255) | | | Règles implicites |
+| resource_language | VARCHAR(10) | | | Langue de la ressource |
+| text_div | TEXT | | | Résumé textuel |
+| contained | JSONB | | | Ressources contenues |
+| extensions | JSONB | | | Extensions |
+| modifier_extensions | JSONB | | | Extensions modificatrices |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_encounter_patient` : Index sur subject_patient_id
@@ -615,215 +157,43 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Condition clinique, problème, diagnostic ou autre événement de préoccupation clinique.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 id</td>
-      <td>VARCHAR(64)</td>
-      <td>PRIMARY KEY</td>
-      <td></td>
-      <td>Identifiant unique FHIR</td>
-    </tr>
-    <tr>
-      <td>last_updated</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Dernière mise à jour</td>
-    </tr>
-    <tr>
-      <td>clinical_status</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Statut clinique de la condition</td>
-    </tr>
-    <tr>
-      <td>clinical_status_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Texte du statut clinique</td>
-    </tr>
-    <tr>
-      <td>verification_status</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Statut de vérification</td>
-    </tr>
-    <tr>
-      <td>verification_status_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Texte du statut de vérification</td>
-    </tr>
-    <tr>
-      <td>categories</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Catégories assignées</td>
-    </tr>
-    <tr>
-      <td>categories_text</td>
-      <td>TEXT</td>
-      <td></td>
-      <td></td>
-      <td>Texte des catégories</td>
-    </tr>
-    <tr>
-      <td>severity</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Sévérité subjective</td>
-    </tr>
-    <tr>
-      <td>code</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identification de la condition (CIM-10)</td>
-    </tr>
-    <tr>
-      <td>code_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Texte du code</td>
-    </tr>
-    <tr>
-      <td>body_sites</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Localisation anatomique</td>
-    </tr>
-    <tr>
-      <td>identifiers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identifiants métier</td>
-    </tr>
-    <tr>
-      <td>subject</td>
-      <td>JSONB</td>
-      <td>NOT NULL</td>
-      <td></td>
-      <td>Patient concerné</td>
-    </tr>
-    <tr>
-      <td>🔗 subject_patient_id</td>
-      <td>VARCHAR(64)</td>
-      <td>NOT NULL, FK</td>
-      <td></td>
-      <td>Référence au patient</td>
-    </tr>
-    <tr>
-      <td>encounter</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Rencontre d'assertion</td>
-    </tr>
-    <tr>
-      <td>🔗 encounter_id</td>
-      <td>VARCHAR(64)</td>
-      <td>FK</td>
-      <td></td>
-      <td>Référence à la rencontre</td>
-    </tr>
-    <tr>
-      <td>onset_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Début de la condition</td>
-    </tr>
-    <tr>
-      <td>abatement_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Résolution de la condition</td>
-    </tr>
-    <tr>
-      <td>recorded_date</td>
-      <td>DATE</td>
-      <td></td>
-      <td></td>
-      <td>Date d'enregistrement</td>
-    </tr>
-    <tr>
-      <td>recorder</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Personne ayant enregistré</td>
-    </tr>
-    <tr>
-      <td>asserter</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Personne affirmant</td>
-    </tr>
-    <tr>
-      <td>stages</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Stades de la condition</td>
-    </tr>
-    <tr>
-      <td>evidences</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Preuves</td>
-    </tr>
-    <tr>
-      <td>notes</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Notes</td>
-    </tr>
-    <tr>
-      <td>[Métadonnées FHIR standard]</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Identifiant unique FHIR |
+| last_updated | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Dernière mise à jour |
+| clinical_status | JSONB | | | Statut clinique de la condition |
+| clinical_status_text | VARCHAR(255) | | | Texte du statut clinique |
+| verification_status | JSONB | | | Statut de vérification |
+| verification_status_text | VARCHAR(255) | | | Texte du statut de vérification |
+| categories | JSONB | | | Catégories assignées |
+| categories_text | TEXT | | | Texte des catégories |
+| severity | JSONB | | | Sévérité subjective |
+| code | JSONB | | | Identification de la condition (CIM-10) |
+| code_text | VARCHAR(255) | | | Texte du code |
+| body_sites | JSONB | | | Localisation anatomique |
+| identifiers | JSONB | | | Identifiants métier |
+| subject | JSONB | NOT NULL | | Patient concerné |
+| 🔗 subject_patient_id | VARCHAR(64) | NOT NULL, FK | | Référence au patient |
+| encounter | JSONB | | | Rencontre d'assertion |
+| 🔗 encounter_id | VARCHAR(64) | FK | | Référence à la rencontre |
+| onset_x | JSONB | | | Début de la condition |
+| abatement_x | JSONB | | | Résolution de la condition |
+| recorded_date | DATE | | | Date d'enregistrement |
+| recorder | JSONB | | | Personne ayant enregistré |
+| asserter | JSONB | | | Personne affirmant |
+| stages | JSONB | | | Stades de la condition |
+| evidences | JSONB | | | Preuves |
+| notes | JSONB | | | Notes |
+| meta | JSONB | | | Métadonnées FHIR |
+| implicit_rules | VARCHAR(255) | | | Règles implicites |
+| resource_language | VARCHAR(10) | | | Langue de la ressource |
+| text_div | TEXT | | | Résumé textuel |
+| contained | JSONB | | | Ressources contenues |
+| extensions | JSONB | | | Extensions |
+| modifier_extensions | JSONB | | | Extensions modificatrices |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_condition_patient` : Index sur subject_patient_id
@@ -839,285 +209,53 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Action qui est ou a été effectuée sur un patient (avec codage CCAM).
 
-<table style="width: 100%;">
-    <thead>
-        <tr>
-            <th>Colonne</th>
-            <th>Type</th>
-            <th>Contraintes</th>
-            <th>Défaut</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>🔑 id</td>
-            <td>VARCHAR(64)</td>
-            <td>PRIMARY KEY</td>
-            <td></td>
-            <td>Identifiant unique FHIR</td>
-        </tr>
-        <tr>
-            <td>last_updated</td>
-            <td>TIMESTAMP WITH TIME ZONE</td>
-            <td></td>
-            <td>CURRENT_TIMESTAMP</td>
-            <td>Dernière mise à jour</td>
-        </tr>
-        <tr>
-            <td>instantiates_canonical_s</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Références canoniques</td>
-        </tr>
-        <tr>
-            <td>instantiates_uri_s</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>URIs d'instanciation</td>
-        </tr>
-        <tr>
-            <td>status</td>
-            <td>VARCHAR(20)</td>
-            <td>CHECK enum</td>
-            <td></td>
-            <td>État de la procédure</td>
-        </tr>
-        <tr>
-            <td>status_reason</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Raison du statut</td>
-        </tr>
-        <tr>
-            <td>category</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Catégorie</td>
-        </tr>
-        <tr>
-            <td>code</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Code de procédure (CCAM)</td>
-        </tr>
-        <tr>
-            <td>code_text</td>
-            <td>VARCHAR(255)</td>
-            <td></td>
-            <td></td>
-            <td>Texte du code</td>
-        </tr>
-        <tr>
-            <td>identifiers</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Identifiants métier</td>
-        </tr>
-        <tr>
-            <td>based_on_s</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Basé sur</td>
-        </tr>
-        <tr>
-            <td>part_of_s</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Partie de</td>
-        </tr>
-        <tr>
-            <td>subject</td>
-            <td>JSONB</td>
-            <td>NOT NULL</td>
-            <td></td>
-            <td>Patient</td>
-        </tr>
-        <tr>
-            <td>🔗 subject_patient_id</td>
-            <td>VARCHAR(64)</td>
-            <td>NOT NULL, FK</td>
-            <td></td>
-            <td>Référence au patient</td>
-        </tr>
-        <tr>
-            <td>encounter</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Rencontre</td>
-        </tr>
-        <tr>
-            <td>🔗 encounter_id</td>
-            <td>VARCHAR(64)</td>
-            <td>FK</td>
-            <td></td>
-            <td>Référence à la rencontre</td>
-        </tr>
-        <tr>
-            <td>performed_x</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Timing d'exécution</td>
-        </tr>
-        <tr>
-            <td>performed_date_time</td>
-            <td>TIMESTAMP WITH TIME ZONE</td>
-            <td></td>
-            <td></td>
-            <td>Date de réalisation</td>
-        </tr>
-        <tr>
-            <td>recorder</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Enregistreur</td>
-        </tr>
-        <tr>
-            <td>asserter</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Affirmant</td>
-        </tr>
-        <tr>
-            <td>performers</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Exécutants</td>
-        </tr>
-        <tr>
-            <td>performer_actor_practitioner_text</td>
-            <td>TEXT</td>
-            <td></td>
-            <td></td>
-            <td>Praticien exécutant</td>
-        </tr>
-        <tr>
-            <td>location</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Emplacement</td>
-        </tr>
-        <tr>
-            <td>reason_codes</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Codes de raison</td>
-        </tr>
-        <tr>
-            <td>reason_references</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Références de raison</td>
-        </tr>
-        <tr>
-            <td>body_sites</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Sites corporels</td>
-        </tr>
-        <tr>
-            <td>outcome</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Résultat</td>
-        </tr>
-        <tr>
-            <td>reports</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Rapports</td>
-        </tr>
-        <tr>
-            <td>complications</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Complications</td>
-        </tr>
-        <tr>
-            <td>complication_details</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Détails des complications</td>
-        </tr>
-        <tr>
-            <td>follow_up_s</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Suivi</td>
-        </tr>
-        <tr>
-            <td>notes</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Notes</td>
-        </tr>
-        <tr>
-            <td>focal_devices</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Dispositifs focaux</td>
-        </tr>
-        <tr>
-            <td>used_references</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Références utilisées</td>
-        </tr>
-        <tr>
-            <td>used_codes</td>
-            <td>JSONB</td>
-            <td></td>
-            <td></td>
-            <td>Codes utilisés</td>
-        </tr>
-        <tr>
-            <td>[Métadonnées FHIR standard]</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>created_at</td>
-            <td>TIMESTAMP WITH TIME ZONE</td>
-            <td></td>
-            <td>CURRENT_TIMESTAMP</td>
-            <td>Date de création</td>
-        </tr>
-        <tr>
-            <td>updated_at</td>
-            <td>TIMESTAMP WITH TIME ZONE</td>
-            <td></td>
-            <td>CURRENT_TIMESTAMP</td>
-            <td>Date de modification</td>
-        </tr>
-    </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Identifiant unique FHIR |
+| last_updated | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Dernière mise à jour |
+| instantiates_canonical_s | JSONB | | | Références canoniques |
+| instantiates_uri_s | JSONB | | | URIs d'instanciation |
+| status | VARCHAR(20) | CHECK enum | | État de la procédure |
+| status_reason | JSONB | | | Raison du statut |
+| category | JSONB | | | Catégorie |
+| code | JSONB | | | Code de procédure (CCAM) |
+| code_text | VARCHAR(255) | | | Texte du code |
+| identifiers | JSONB | | | Identifiants métier |
+| based_on_s | JSONB | | | Basé sur |
+| part_of_s | JSONB | | | Partie de |
+| subject | JSONB | NOT NULL | | Patient |
+| 🔗 subject_patient_id | VARCHAR(64) | NOT NULL, FK | | Référence au patient |
+| encounter | JSONB | | | Rencontre |
+| 🔗 encounter_id | VARCHAR(64) | FK | | Référence à la rencontre |
+| performed_x | JSONB | | | Timing d'exécution |
+| performed_date_time | TIMESTAMP WITH TIME ZONE | | | Date de réalisation |
+| recorder | JSONB | | | Enregistreur |
+| asserter | JSONB | | | Affirmant |
+| performers | JSONB | | | Exécutants |
+| performer_actor_practitioner_text | TEXT | | | Praticien exécutant |
+| location | JSONB | | | Emplacement |
+| reason_codes | JSONB | | | Codes de raison |
+| reason_references | JSONB | | | Références de raison |
+| body_sites | JSONB | | | Sites corporels |
+| outcome | JSONB | | | Résultat |
+| reports | JSONB | | | Rapports |
+| complications | JSONB | | | Complications |
+| complication_details | JSONB | | | Détails des complications |
+| follow_up_s | JSONB | | | Suivi |
+| notes | JSONB | | | Notes |
+| focal_devices | JSONB | | | Dispositifs focaux |
+| used_references | JSONB | | | Références utilisées |
+| used_codes | JSONB | | | Codes utilisés |
+| meta | JSONB | | | Métadonnées FHIR |
+| implicit_rules | VARCHAR(255) | | | Règles implicites |
+| resource_language | VARCHAR(10) | | | Langue de la ressource |
+| text_div | TEXT | | | Résumé textuel |
+| contained | JSONB | | | Ressources contenues |
+| extensions | JSONB | | | Extensions |
+| modifier_extensions | JSONB | | | Extensions modificatrices |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_procedure_patient` : Index sur subject_patient_id
@@ -1133,285 +271,53 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Mesures et assertions simples faites sur un patient. Table générique pour tous les profils d'observation DM.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 id</td>
-      <td>VARCHAR(64)</td>
-      <td>PRIMARY KEY</td>
-      <td></td>
-      <td>Identifiant unique FHIR</td>
-    </tr>
-    <tr>
-      <td>last_updated</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Dernière mise à jour</td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>VARCHAR(20)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>Statut du résultat</td>
-    </tr>
-    <tr>
-      <td>categories</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Classification du type</td>
-    </tr>
-    <tr>
-      <td>categories_text</td>
-      <td>TEXT</td>
-      <td></td>
-      <td></td>
-      <td>Texte des catégories</td>
-    </tr>
-    <tr>
-      <td>code</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Type d'observation (LOINC)</td>
-    </tr>
-    <tr>
-      <td>code_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Nom de l'observation</td>
-    </tr>
-    <tr>
-      <td>identifiers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identifiants métier</td>
-    </tr>
-    <tr>
-      <td>based_on_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Basé sur</td>
-    </tr>
-    <tr>
-      <td>part_of_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Partie de</td>
-    </tr>
-    <tr>
-      <td>subject</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Sujet de l'observation</td>
-    </tr>
-    <tr>
-      <td>🔗 subject_patient_id</td>
-      <td>VARCHAR(64)</td>
-      <td>FK</td>
-      <td></td>
-      <td>Référence au patient</td>
-    </tr>
-    <tr>
-      <td>encounter</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Rencontre</td>
-    </tr>
-    <tr>
-      <td>🔗 encounter_id</td>
-      <td>VARCHAR(64)</td>
-      <td>FK</td>
-      <td></td>
-      <td>Référence à la rencontre</td>
-    </tr>
-    <tr>
-      <td>focus_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Focus</td>
-    </tr>
-    <tr>
-      <td>effective_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Timing effectif</td>
-    </tr>
-    <tr>
-      <td>effective_date_time</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Date/heure cliniquement pertinente</td>
-    </tr>
-    <tr>
-      <td>issued</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Date d'émission</td>
-    </tr>
-    <tr>
-      <td>performers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Responsables</td>
-    </tr>
-    <tr>
-      <td>performer_organization_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Organisation exécutante</td>
-    </tr>
-    <tr>
-      <td>value_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Valeur de résultat</td>
-    </tr>
-    <tr>
-      <td>value_quantity_value</td>
-      <td>FLOAT</td>
-      <td>CHECK ≥ 0</td>
-      <td></td>
-      <td>Valeur numérique</td>
-    </tr>
-    <tr>
-      <td>value_quantity_unit</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Unité de mesure</td>
-    </tr>
-    <tr>
-      <td>data_absent_reason</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Raison d'absence de données</td>
-    </tr>
-    <tr>
-      <td>interpretations</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Interprétations</td>
-    </tr>
-    <tr>
-      <td>notes</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Notes</td>
-    </tr>
-    <tr>
-      <td>body_site</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Site corporel</td>
-    </tr>
-    <tr>
-      <td>method</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Méthode</td>
-    </tr>
-    <tr>
-      <td>specimen</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Échantillon</td>
-    </tr>
-    <tr>
-      <td>device</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Dispositif</td>
-    </tr>
-    <tr>
-      <td>reference_ranges</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Plages de référence</td>
-    </tr>
-    <tr>
-      <td>reference_ranges_value</td>
-      <td>TEXT</td>
-      <td></td>
-      <td></td>
-      <td>Valeurs de référence</td>
-    </tr>
-    <tr>
-      <td>has_members</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Membres</td>
-    </tr>
-    <tr>
-      <td>derived_from_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Dérivé de</td>
-    </tr>
-    <tr>
-      <td>components</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Composants</td>
-    </tr>
-    <tr>
-      <td>[Métadonnées FHIR standard]</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Identifiant unique FHIR |
+| last_updated | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Dernière mise à jour |
+| status | VARCHAR(20) | CHECK enum | | Statut du résultat |
+| categories | JSONB | | | Classification du type |
+| categories_text | TEXT | | | Texte des catégories |
+| code | JSONB | | | Type d'observation (LOINC) |
+| code_text | VARCHAR(255) | | | Nom de l'observation |
+| identifiers | JSONB | | | Identifiants métier |
+| based_on_s | JSONB | | | Basé sur |
+| part_of_s | JSONB | | | Partie de |
+| subject | JSONB | | | Sujet de l'observation |
+| 🔗 subject_patient_id | VARCHAR(64) | FK | | Référence au patient |
+| encounter | JSONB | | | Rencontre |
+| 🔗 encounter_id | VARCHAR(64) | FK | | Référence à la rencontre |
+| focus_s | JSONB | | | Focus |
+| effective_x | JSONB | | | Timing effectif |
+| effective_date_time | TIMESTAMP WITH TIME ZONE | | | Date/heure cliniquement pertinente |
+| issued | TIMESTAMP WITH TIME ZONE | | | Date d'émission |
+| performers | JSONB | | | Responsables |
+| performer_organization_text | VARCHAR(255) | | | Organisation exécutante |
+| value_x | JSONB | | | Valeur de résultat |
+| value_quantity_value | FLOAT | CHECK ≥ 0 | | Valeur numérique |
+| value_quantity_unit | VARCHAR(255) | | | Unité de mesure |
+| data_absent_reason | JSONB | | | Raison d'absence de données |
+| interpretations | JSONB | | | Interprétations |
+| notes | JSONB | | | Notes |
+| body_site | JSONB | | | Site corporel |
+| method | JSONB | | | Méthode |
+| specimen | JSONB | | | Échantillon |
+| device | JSONB | | | Dispositif |
+| reference_ranges | JSONB | | | Plages de référence |
+| reference_ranges_value | TEXT | | | Valeurs de référence |
+| has_members | JSONB | | | Membres |
+| derived_from_s | JSONB | | | Dérivé de |
+| components | JSONB | | | Composants |
+| meta | JSONB | | | Métadonnées FHIR |
+| implicit_rules | VARCHAR(255) | | | Règles implicites |
+| resource_language | VARCHAR(10) | | | Langue de la ressource |
+| text_div | TEXT | | | Résumé textuel |
+| contained | JSONB | | | Ressources contenues |
+| extensions | JSONB | | | Extensions |
+| modifier_extensions | JSONB | | | Extensions modificatrices |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_observation_patient` : Index sur subject_patient_id
@@ -1429,110 +335,22 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Composants d'observations pour les mesures multi-composants.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 id</td>
-      <td>VARCHAR(64)</td>
-      <td>PRIMARY KEY</td>
-      <td></td>
-      <td>Clé technique</td>
-    </tr>
-    <tr>
-      <td>🔗 observation_id</td>
-      <td>VARCHAR(64)</td>
-      <td>FK CASCADE</td>
-      <td></td>
-      <td>Référence à l'observation</td>
-    </tr>
-    <tr>
-      <td>code</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Code LOINC</td>
-    </tr>
-    <tr>
-      <td>code_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Texte du code</td>
-    </tr>
-    <tr>
-      <td>value_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Valeur</td>
-    </tr>
-    <tr>
-      <td>value_quantity_value</td>
-      <td>FLOAT</td>
-      <td>CHECK ≥ 0</td>
-      <td></td>
-      <td>Valeur numérique</td>
-    </tr>
-    <tr>
-      <td>value_quantity_unit</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Unité</td>
-    </tr>
-    <tr>
-      <td>data_absent_reason</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Raison d'absence</td>
-    </tr>
-    <tr>
-      <td>interpretations</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Interprétations</td>
-    </tr>
-    <tr>
-      <td>reference_ranges</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Plages de référence</td>
-    </tr>
-    <tr>
-      <td>reference_ranges_value</td>
-      <td>TEXT</td>
-      <td></td>
-      <td></td>
-      <td>Valeurs de référence</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Clé technique |
+| 🔗 observation_id | VARCHAR(64) | FK CASCADE | | Référence à l'observation |
+| code | JSONB | | | Code LOINC |
+| code_text | VARCHAR(255) | | | Texte du code |
+| value_x | JSONB | | | Valeur |
+| value_quantity_value | FLOAT | CHECK ≥ 0 | | Valeur numérique |
+| value_quantity_unit | VARCHAR(255) | | | Unité |
+| data_absent_reason | JSONB | | | Raison d'absence |
+| interpretations | JSONB | | | Interprétations |
+| reference_ranges | JSONB | | | Plages de référence |
+| reference_ranges_value | TEXT | | | Valeurs de référence |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_observation_component_parent` : Index sur observation_id
@@ -1543,327 +361,60 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Ordre ou demande de fourniture de médicament et instructions d'administration.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 id</td>
-      <td>VARCHAR(64)</td>
-      <td>PRIMARY KEY</td>
-      <td></td>
-      <td>Identifiant unique FHIR</td>
-    </tr>
-    <tr>
-      <td>last_updated</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Dernière mise à jour</td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>VARCHAR(20)</td>
-      <td>NOT NULL, CHECK enum</td>
-      <td></td>
-      <td>État actuel de l'ordre</td>
-    </tr>
-    <tr>
-      <td>status_reason</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Raison du statut</td>
-    </tr>
-    <tr>
-      <td>intent</td>
-      <td>VARCHAR(20)</td>
-      <td>NOT NULL, CHECK enum</td>
-      <td></td>
-      <td>Intention de la demande</td>
-    </tr>
-    <tr>
-      <td>categories</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Type d'usage</td>
-    </tr>
-    <tr>
-      <td>priority</td>
-      <td>VARCHAR(20)</td>
-      <td>CHECK enum</td>
-      <td></td>
-      <td>Urgence</td>
-    </tr>
-    <tr>
-      <td>do_not_perform</td>
-      <td>BOOLEAN</td>
-      <td></td>
-      <td></td>
-      <td>Si interdiction d'action</td>
-    </tr>
-    <tr>
-      <td>identifiers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identifiants métier</td>
-    </tr>
-    <tr>
-      <td>based_on_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Basé sur</td>
-    </tr>
-    <tr>
-      <td>reported_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Rapporté</td>
-    </tr>
-    <tr>
-      <td>group_identifier</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identifiant de groupe</td>
-    </tr>
-    <tr>
-      <td>course_of_therapy_type</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Type de cure</td>
-    </tr>
-    <tr>
-      <td>insurances</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Assurances</td>
-    </tr>
-    <tr>
-      <td>notes</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Notes</td>
-    </tr>
-    <tr>
-      <td>medication_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Médicament</td>
-    </tr>
-    <tr>
-      <td>medication_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Texte du médicament</td>
-    </tr>
-    <tr>
-      <td>🔗 subject_patient_id</td>
-      <td>VARCHAR(64)</td>
-      <td>NOT NULL, FK</td>
-      <td></td>
-      <td>Référence au patient</td>
-    </tr>
-    <tr>
-      <td>🔗 encounter_id</td>
-      <td>VARCHAR(64)</td>
-      <td>FK</td>
-      <td></td>
-      <td>Référence à la rencontre</td>
-    </tr>
-    <tr>
-      <td>supporting_informations</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Informations de support</td>
-    </tr>
-    <tr>
-      <td>authored_on</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>requester</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Demandeur</td>
-    </tr>
-    <tr>
-      <td>requester_practitioner_display</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Praticien demandeur</td>
-    </tr>
-    <tr>
-      <td>performer</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Exécutant</td>
-    </tr>
-    <tr>
-      <td>performer_type</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Type d'exécutant</td>
-    </tr>
-    <tr>
-      <td>recorder</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Enregistreur</td>
-    </tr>
-    <tr>
-      <td>reason_codes</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Codes de raison</td>
-    </tr>
-    <tr>
-      <td>reason_references</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Références de raison</td>
-    </tr>
-    <tr>
-      <td>instantiates_canonical_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Instancie canonique</td>
-    </tr>
-    <tr>
-      <td>instantiates_uri_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Instancie URI</td>
-    </tr>
-    <tr>
-      <td>dosage_instructions</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Instructions de dosage</td>
-    </tr>
-    <tr>
-      <td>dosage_instruction_route_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Voie d'administration</td>
-    </tr>
-    <tr>
-      <td>dosage_instruction_dose_quantity_value</td>
-      <td>FLOAT</td>
-      <td>CHECK > 0</td>
-      <td></td>
-      <td>Dose</td>
-    </tr>
-    <tr>
-      <td>dosage_instruction_dose_quantity_unit</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Unité de dose</td>
-    </tr>
-    <tr>
-      <td>dosage_instruction_timing_bounds_period_start</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Début de période</td>
-    </tr>
-    <tr>
-      <td>dosage_instruction_timing_bounds_period_end</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Fin de période</td>
-    </tr>
-    <tr>
-      <td>dispense_request</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Demande de dispensation</td>
-    </tr>
-    <tr>
-      <td>substitution</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Substitution</td>
-    </tr>
-    <tr>
-      <td>prior_prescription</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Prescription antérieure</td>
-    </tr>
-    <tr>
-      <td>detected_issues</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Problèmes détectés</td>
-    </tr>
-    <tr>
-      <td>event_history</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Historique d'événements</td>
-    </tr>
-    <tr>
-      <td>[Métadonnées FHIR standard]</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Identifiant unique FHIR |
+| last_updated | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Dernière mise à jour |
+| status | VARCHAR(20) | NOT NULL, CHECK enum | | État actuel de l'ordre |
+| status_reason | JSONB | | | Raison du statut |
+| intent | VARCHAR(20) | NOT NULL, CHECK enum | | Intention de la demande |
+| categories | JSONB | | | Type d'usage |
+| priority | VARCHAR(20) | CHECK enum | | Urgence |
+| do_not_perform | BOOLEAN | | | Si interdiction d'action |
+| identifiers | JSONB | | | Identifiants métier |
+| based_on_s | JSONB | | | Basé sur |
+| reported_x | JSONB | | | Rapporté |
+| group_identifier | JSONB | | | Identifiant de groupe |
+| course_of_therapy_type | JSONB | | | Type de cure |
+| insurances | JSONB | | | Assurances |
+| notes | JSONB | | | Notes |
+| medication_x | JSONB | | | Médicament |
+| medication_text | VARCHAR(255) | | | Texte du médicament |
+| subject | JSONB | | | Patient concerné |
+| 🔗 subject_patient_id | VARCHAR(64) | NOT NULL, FK | | Référence au patient |
+| 🔗 encounter_id | VARCHAR(64) | FK | | Référence à la rencontre |
+| supporting_informations | JSONB | | | Informations de support |
+| authored_on | TIMESTAMP WITH TIME ZONE | | | Date de création |
+| requester | JSONB | | | Demandeur |
+| requester_practitioner_display | VARCHAR(255) | | | Praticien demandeur |
+| performer | JSONB | | | Exécutant |
+| performer_type | JSONB | | | Type d'exécutant |
+| recorder | JSONB | | | Enregistreur |
+| reason_codes | JSONB | | | Codes de raison |
+| reason_references | JSONB | | | Références de raison |
+| instantiates_canonical_s | JSONB | | | Instancie canonique |
+| instantiates_uri_s | JSONB | | | Instancie URI |
+| dosage_instructions | JSONB | | | Instructions de dosage |
+| dosage_instruction_route_text | VARCHAR(255) | | | Voie d'administration |
+| dosage_instruction_dose_quantity_value | FLOAT | CHECK > 0 | | Dose |
+| dosage_instruction_dose_quantity_unit | VARCHAR(255) | | | Unité de dose |
+| dosage_instruction_timing_bounds_period_start | TIMESTAMP WITH TIME ZONE | | | Début de période |
+| dosage_instruction_timing_bounds_period_end | TIMESTAMP WITH TIME ZONE | | | Fin de période |
+| dispense_request | JSONB | | | Demande de dispensation |
+| substitution | JSONB | | | Substitution |
+| prior_prescription | JSONB | | | Prescription antérieure |
+| detected_issues | JSONB | | | Problèmes détectés |
+| event_history | JSONB | | | Historique d'événements |
+| meta | JSONB | | | Métadonnées FHIR |
+| implicit_rules | VARCHAR(255) | | | Règles implicites |
+| resource_language | VARCHAR(10) | | | Langue de la ressource |
+| text_div | TEXT | | | Résumé textuel |
+| contained | JSONB | | | Ressources contenues |
+| extensions | JSONB | | | Extensions |
+| modifier_extensions | JSONB | | | Extensions modificatrices |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_med_request_patient` : Index sur subject_patient_id
@@ -1881,236 +432,47 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 **Description** : Événement de consommation ou d'administration d'un médicament à un patient.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 id</td>
-      <td>VARCHAR(64)</td>
-      <td>PRIMARY KEY</td>
-      <td></td>
-      <td>Identifiant unique FHIR</td>
-    </tr>
-    <tr>
-      <td>last_updated</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Dernière mise à jour</td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>VARCHAR(20)</td>
-      <td>NOT NULL, CHECK enum</td>
-      <td></td>
-      <td>État de l'administration</td>
-    </tr>
-    <tr>
-      <td>status_reasons</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Raisons du statut</td>
-    </tr>
-    <tr>
-      <td>category</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Catégorie</td>
-    </tr>
-    <tr>
-      <td>identifiers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Identifiants métier</td>
-    </tr>
-    <tr>
-      <td>instantiates_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Instancie</td>
-    </tr>
-    <tr>
-      <td>part_of_s</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Partie de</td>
-    </tr>
-    <tr>
-      <td>medication_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Médicament</td>
-    </tr>
-    <tr>
-      <td>medication_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Texte du médicament</td>
-    </tr>
-    <tr>
-      <td>🔗 subject_patient_id</td>
-      <td>VARCHAR(64)</td>
-      <td>NOT NULL, FK</td>
-      <td></td>
-      <td>Référence au patient</td>
-    </tr>
-    <tr>
-      <td>context</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Contexte</td>
-    </tr>
-    <tr>
-      <td>🔗 context_encounter_id</td>
-      <td>VARCHAR(64)</td>
-      <td>FK</td>
-      <td></td>
-      <td>Référence à la rencontre</td>
-    </tr>
-    <tr>
-      <td>supporting_informations</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Informations de support</td>
-    </tr>
-    <tr>
-      <td>effective_x</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Timing effectif</td>
-    </tr>
-    <tr>
-      <td>effective_date_time</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td></td>
-      <td>Date/heure effective</td>
-    </tr>
-    <tr>
-      <td>performers</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Exécutants</td>
-    </tr>
-    <tr>
-      <td>reason_codes</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Codes de raison</td>
-    </tr>
-    <tr>
-      <td>reason_references</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Références de raison</td>
-    </tr>
-    <tr>
-      <td>request</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Demande</td>
-    </tr>
-    <tr>
-      <td>🔗 request_medication_request_id</td>
-      <td>VARCHAR(64)</td>
-      <td>FK</td>
-      <td></td>
-      <td>Référence à la prescription</td>
-    </tr>
-    <tr>
-      <td>devices</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Dispositifs</td>
-    </tr>
-    <tr>
-      <td>notes</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Notes</td>
-    </tr>
-    <tr>
-      <td>dosage</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Dosage</td>
-    </tr>
-    <tr>
-      <td>dosage_route_text</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Voie d'administration</td>
-    </tr>
-    <tr>
-      <td>dosage_dose_value</td>
-      <td>FLOAT</td>
-      <td>CHECK > 0</td>
-      <td></td>
-      <td>Dose administrée</td>
-    </tr>
-    <tr>
-      <td>dosage_dose_unit</td>
-      <td>VARCHAR(255)</td>
-      <td></td>
-      <td></td>
-      <td>Unité de dose</td>
-    </tr>
-    <tr>
-      <td>event_history</td>
-      <td>JSONB</td>
-      <td></td>
-      <td></td>
-      <td>Historique d'événements</td>
-    </tr>
-    <tr>
-      <td>[Métadonnées FHIR standard]</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td></td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Date de modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 id | VARCHAR(64) | PRIMARY KEY | | Identifiant unique FHIR |
+| last_updated | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Dernière mise à jour |
+| status | VARCHAR(20) | NOT NULL, CHECK enum | | État de l'administration |
+| status_reasons | JSONB | | | Raisons du statut |
+| category | JSONB | | | Catégorie |
+| identifiers | JSONB | | | Identifiants métier |
+| instantiates_s | JSONB | | | Instancie |
+| part_of_s | JSONB | | | Partie de |
+| medication_x | JSONB | | | Médicament |
+| medication_text | VARCHAR(255) | | | Texte du médicament |
+| subject | JSONB | | | Patient concerné |
+| 🔗 subject_patient_id | VARCHAR(64) | NOT NULL, FK | | Référence au patient |
+| context | JSONB | | | Contexte |
+| 🔗 context_encounter_id | VARCHAR(64) | FK | | Référence à la rencontre |
+| supporting_informations | JSONB | | | Informations de support |
+| effective_x | JSONB | | | Timing effectif |
+| effective_date_time | TIMESTAMP WITH TIME ZONE | | | Date/heure effective |
+| performers | JSONB | | | Exécutants |
+| reason_codes | JSONB | | | Codes de raison |
+| reason_references | JSONB | | | Références de raison |
+| request | JSONB | | | Demande |
+| 🔗 request_medication_request_id | VARCHAR(64) | FK | | Référence à la prescription |
+| devices | JSONB | | | Dispositifs |
+| notes | JSONB | | | Notes |
+| dosage | JSONB | | | Dosage |
+| dosage_route_text | VARCHAR(255) | | | Voie d'administration |
+| dosage_dose_value | FLOAT | CHECK > 0 | | Dose administrée |
+| dosage_dose_unit | VARCHAR(255) | | | Unité de dose |
+| event_history | JSONB | | | Historique d'événements |
+| meta | JSONB | | | Métadonnées FHIR |
+| implicit_rules | VARCHAR(255) | | | Règles implicites |
+| resource_language | VARCHAR(10) | | | Langue de la ressource |
+| text_div | TEXT | | | Résumé textuel |
+| contained | JSONB | | | Ressources contenues |
+| extensions | JSONB | | | Extensions |
+| modifier_extensions | JSONB | | | Extensions modificatrices |
+| created_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | | CURRENT_TIMESTAMP | Date de modification |
+{: .grid}
 
 **Index Principaux :**
 - `idx_med_admin_patient` : Index sur subject_patient_id
@@ -2125,110 +487,22 @@ Le schéma FSL permet le stockage et la manipulation de données de santé selon
 
 ### Matrice des Relations
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Table Source</th>
-      <th>Table Cible</th>
-      <th>Type de Relation</th>
-      <th>Colonne FK</th>
-      <th>Cascade</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>fhir_encounter</td>
-      <td>fhir_patient</td>
-      <td>Plusieurs vers Un</td>
-      <td>subject_patient_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_condition</td>
-      <td>fhir_patient</td>
-      <td>Plusieurs vers Un</td>
-      <td>subject_patient_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_condition</td>
-      <td>fhir_encounter</td>
-      <td>Plusieurs vers Un</td>
-      <td>encounter_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_procedure</td>
-      <td>fhir_patient</td>
-      <td>Plusieurs vers Un</td>
-      <td>subject_patient_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_procedure</td>
-      <td>fhir_encounter</td>
-      <td>Plusieurs vers Un</td>
-      <td>encounter_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_observation</td>
-      <td>fhir_patient</td>
-      <td>Plusieurs vers Un</td>
-      <td>subject_patient_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_observation</td>
-      <td>fhir_encounter</td>
-      <td>Plusieurs vers Un</td>
-      <td>encounter_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_observation_component</td>
-      <td>fhir_observation</td>
-      <td>Plusieurs vers Un</td>
-      <td>observation_id</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>fhir_medication_request</td>
-      <td>fhir_patient</td>
-      <td>Plusieurs vers Un</td>
-      <td>subject_patient_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_medication_request</td>
-      <td>fhir_encounter</td>
-      <td>Plusieurs vers Un</td>
-      <td>encounter_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_medication_administration</td>
-      <td>fhir_patient</td>
-      <td>Plusieurs vers Un</td>
-      <td>subject_patient_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_medication_administration</td>
-      <td>fhir_encounter</td>
-      <td>Plusieurs vers Un</td>
-      <td>context_encounter_id</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>fhir_medication_administration</td>
-      <td>fhir_medication_request</td>
-      <td>Plusieurs vers Un</td>
-      <td>request_medication_request_id</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
+| Table Source | Table Cible | Type de Relation | Colonne FK | Cascade |
+|--------------|-------------|------------------|------------|---------|
+| fhir_encounter | fhir_patient | Plusieurs vers Un | subject_patient_id | - |
+| fhir_condition | fhir_patient | Plusieurs vers Un | subject_patient_id | - |
+| fhir_condition | fhir_encounter | Plusieurs vers Un | encounter_id | - |
+| fhir_procedure | fhir_patient | Plusieurs vers Un | subject_patient_id | - |
+| fhir_procedure | fhir_encounter | Plusieurs vers Un | encounter_id | - |
+| fhir_observation | fhir_patient | Plusieurs vers Un | subject_patient_id | - |
+| fhir_observation | fhir_encounter | Plusieurs vers Un | encounter_id | - |
+| fhir_observation_component | fhir_observation | Plusieurs vers Un | observation_id | CASCADE |
+| fhir_medication_request | fhir_patient | Plusieurs vers Un | subject_patient_id | - |
+| fhir_medication_request | fhir_encounter | Plusieurs vers Un | encounter_id | - |
+| fhir_medication_administration | fhir_patient | Plusieurs vers Un | subject_patient_id | - |
+| fhir_medication_administration | fhir_encounter | Plusieurs vers Un | context_encounter_id | - |
+| fhir_medication_administration | fhir_medication_request | Plusieurs vers Un | request_medication_request_id | - |
+{: .grid}
 
 ### Règles Métier
 
