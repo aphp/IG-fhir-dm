@@ -38,103 +38,21 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Table consolidée des informations démographiques et d'identité patient, combinant les éléments d'identité (linkId: 2958000860428) et de géocodage (linkId: 5491974639955) du questionnaire FHIR.
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 patient_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique du patient</td>
-    </tr>
-    <tr>
-      <td>nom</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Nom patient (linkId: 8605698058770)</td>
-    </tr>
-    <tr>
-      <td>prenom</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Prénom patient (linkId: 6214879623503)</td>
-    </tr>
-    <tr>
-      <td>nir</td>
-      <td>VARCHAR(15)</td>
-      <td>CHECK format</td>
-      <td>-</td>
-      <td>Numéro inscription au Répertoire - NIR (linkId: 5711960356160)</td>
-    </tr>
-    <tr>
-      <td>ins</td>
-      <td>VARCHAR(50)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Identité Nationale de Santé - INS (linkId: 3764723550987)</td>
-    </tr>
-    <tr>
-      <td>date_naissance</td>
-      <td>DATE</td>
-      <td>CHECK validité</td>
-      <td>-</td>
-      <td>Date de naissance (linkId: 5036133558154)</td>
-    </tr>
-    <tr>
-      <td>sexe</td>
-      <td>VARCHAR(20)</td>
-      <td>CHECK ('h', 'f')</td>
-      <td>-</td>
-      <td>Sexe consolidé depuis PMSI (linkId: 3894630481120)</td>
-    </tr>
-    <tr>
-      <td>date_deces</td>
-      <td>DATE</td>
-      <td>CHECK cohérence</td>
-      <td>-</td>
-      <td>Date de décès (linkId: 5633552097315)</td>
-    </tr>
-    <tr>
-      <td>source_deces</td>
-      <td>VARCHAR(50)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Source de la date de décès (linkId: 9098810065693)</td>
-    </tr>
-    <tr>
-      <td>rang_gemellaire</td>
-      <td>INTEGER</td>
-      <td>CHECK (1-10)</td>
-      <td>-</td>
-      <td>Rang gémellaire du bénéficiaire (linkId: 6931296968515)</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 patient_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique du patient |
+| nom | VARCHAR(255) | - | - | Nom patient (linkId: 8605698058770) |
+| prenom | VARCHAR(255) | - | - | Prénom patient (linkId: 6214879623503) |
+| nir | VARCHAR(15) | CHECK format | - | Numéro inscription au Répertoire - NIR (linkId: 5711960356160) |
+| ins | VARCHAR(50) | - | - | Identité Nationale de Santé - INS (linkId: 3764723550987) |
+| date_naissance | DATE | CHECK validité | - | Date de naissance (linkId: 5036133558154) |
+| sexe | VARCHAR(20) | CHECK ('h', 'f') | - | Sexe consolidé depuis PMSI (linkId: 3894630481120) |
+| date_deces | DATE | CHECK cohérence | - | Date de décès (linkId: 5633552097315) |
+| source_deces | VARCHAR(50) | - | - | Source de la date de décès (linkId: 9098810065693) |
+| rang_gemellaire | INTEGER | CHECK (1-10) | - | Rang gémellaire du bénéficiaire (linkId: 6931296968515) |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index principaux** :
 - `idx_patient_nir` : Index sur NIR (WHERE nir IS NOT NULL)
@@ -151,96 +69,20 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Informations de géolocalisation et adressage patient (linkId: 5491974639955).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 patient_adresse_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique de l'adresse</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>latitude</td>
-      <td>DECIMAL(10,7)</td>
-      <td>CHECK (-90 à 90)</td>
-      <td>-</td>
-      <td>Latitude du domicile patient (linkId: 3709843054556)</td>
-    </tr>
-    <tr>
-      <td>longitude</td>
-      <td>DECIMAL(10,7)</td>
-      <td>CHECK (-180 à 180)</td>
-      <td>-</td>
-      <td>Longitude du domicile patient (linkId: 7651448032665)</td>
-    </tr>
-    <tr>
-      <td>code_iris</td>
-      <td>VARCHAR(20)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Code IRIS du lieu de résidence</td>
-    </tr>
-    <tr>
-      <td>libelle_iris</td>
-      <td>VARCHAR(200)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Libellé IRIS du lieu de résidence</td>
-    </tr>
-    <tr>
-      <td>code_geographique_residence</td>
-      <td>VARCHAR(10)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Code géographique de résidence</td>
-    </tr>
-    <tr>
-      <td>libelle_geographique_residence</td>
-      <td>VARCHAR(200)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Libellé géographique de résidence</td>
-    </tr>
-    <tr>
-      <td>date_recueil</td>
-      <td>DATE</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Date de recueil de l'information</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 patient_adresse_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique de l'adresse |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| latitude | DECIMAL(10,7) | CHECK (-90 à 90) | - | Latitude du domicile patient (linkId: 3709843054556) |
+| longitude | DECIMAL(10,7) | CHECK (-180 à 180) | - | Longitude du domicile patient (linkId: 7651448032665) |
+| code_iris | VARCHAR(20) | - | - | Code IRIS du lieu de résidence |
+| libelle_iris | VARCHAR(200) | - | - | Libellé IRIS du lieu de résidence |
+| code_geographique_residence | VARCHAR(10) | - | - | Code géographique de résidence |
+| libelle_geographique_residence | VARCHAR(200) | - | - | Libellé géographique de résidence |
+| date_recueil | DATE | - | - | Date de recueil de l'information |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index spécialisés** :
 - `idx_patient_coords_gist` : Index spatial GIST pour les coordonnées géographiques
@@ -253,103 +95,21 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Table centrale des données de séjour PMSI (Programme de médicalisation des systèmes d'information) - point de liaison pour toutes les données cliniques (linkId: 2825244231605).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 pmsi_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique du séjour PMSI</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>mode_sortie</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Mode de sortie du séjour</td>
-    </tr>
-    <tr>
-      <td>age_admission</td>
-      <td>INTEGER</td>
-      <td>CHECK (0-150)</td>
-      <td>-</td>
-      <td>Âge à l'admission (nécessaire si pas de date de naissance)</td>
-    </tr>
-    <tr>
-      <td>date_debut_sejour</td>
-      <td>DATE</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Date de début du séjour</td>
-    </tr>
-    <tr>
-      <td>date_fin_sejour</td>
-      <td>DATE</td>
-      <td>CHECK cohérence dates</td>
-      <td>-</td>
-      <td>Date de fin du séjour</td>
-    </tr>
-    <tr>
-      <td>mode_entree</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Mode d'entrée dans l'établissement</td>
-    </tr>
-    <tr>
-      <td>etablissement</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Établissement de soins</td>
-    </tr>
-    <tr>
-      <td>service</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Service médical</td>
-    </tr>
-    <tr>
-      <td>unite_fonctionnelle</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Unité fonctionnelle</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 pmsi_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique du séjour PMSI |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| mode_sortie | VARCHAR(100) | - | - | Mode de sortie du séjour |
+| age_admission | INTEGER | CHECK (0-150) | - | Âge à l'admission (nécessaire si pas de date de naissance) |
+| date_debut_sejour | DATE | - | - | Date de début du séjour |
+| date_fin_sejour | DATE | CHECK cohérence dates | - | Date de fin du séjour |
+| mode_entree | VARCHAR(100) | - | - | Mode d'entrée dans l'établissement |
+| etablissement | VARCHAR(255) | - | - | Établissement de soins |
+| service | VARCHAR(255) | - | - | Service médical |
+| unite_fonctionnelle | VARCHAR(255) | - | - | Unité fonctionnelle |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index de performance** :
 - `idx_pmsi_patient_id` : Index sur patient_id
@@ -366,82 +126,18 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Codes diagnostiques et informations liées aux séjours utilisant les classifications CIM-10 (linkId: 9391816419630).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 diagnostic_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique du diagnostic</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>🔗 pmsi_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers séjour PMSI</td>
-    </tr>
-    <tr>
-      <td>code_diagnostic</td>
-      <td>VARCHAR(20)</td>
-      <td>NOT NULL, CHECK longueur</td>
-      <td>-</td>
-      <td>Code diagnostic CIM-10</td>
-    </tr>
-    <tr>
-      <td>type_diagnostic</td>
-      <td>VARCHAR(50)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Type de diagnostic (principal, associé, etc.)</td>
-    </tr>
-    <tr>
-      <td>libelle_diagnostic</td>
-      <td>TEXT</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Libellé descriptif du diagnostic</td>
-    </tr>
-    <tr>
-      <td>date_recueil</td>
-      <td>DATE</td>
-      <td>CHECK ≤ CURRENT_DATE</td>
-      <td>-</td>
-      <td>Date de recueil de l'information</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 diagnostic_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique du diagnostic |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| 🔗 pmsi_id | BIGINT | NOT NULL, FK | - | Référence vers séjour PMSI |
+| code_diagnostic | VARCHAR(20) | NOT NULL, CHECK longueur | - | Code diagnostic CIM-10 |
+| type_diagnostic | VARCHAR(50) | - | - | Type de diagnostic (principal, associé, etc.) |
+| libelle_diagnostic | TEXT | - | - | Libellé descriptif du diagnostic |
+| date_recueil | DATE | CHECK ≤ CURRENT_DATE | - | Date de recueil de l'information |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index de recherche** :
 - `idx_diagnostics_pmsi_id` : Index sur pmsi_id
@@ -456,89 +152,19 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Actes médicaux et procédures réalisés durant les séjours utilisant les classifications CCAM et autres standards (linkId: 591926901726).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 acte_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique de l'acte</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>🔗 pmsi_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers séjour PMSI</td>
-    </tr>
-    <tr>
-      <td>code_acte</td>
-      <td>VARCHAR(20)</td>
-      <td>NOT NULL, CHECK longueur</td>
-      <td>-</td>
-      <td>Code de l'acte médical (CCAM, etc.)</td>
-    </tr>
-    <tr>
-      <td>libelle_acte</td>
-      <td>TEXT</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Libellé descriptif de l'acte</td>
-    </tr>
-    <tr>
-      <td>date_acte</td>
-      <td>TIMESTAMP</td>
-      <td>CHECK ≤ CURRENT_TIMESTAMP</td>
-      <td>-</td>
-      <td>Date et heure de réalisation de l'acte</td>
-    </tr>
-    <tr>
-      <td>executant</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Professionnel exécutant (non prévu dans le socle)</td>
-    </tr>
-    <tr>
-      <td>date_recueil</td>
-      <td>DATE</td>
-      <td>CHECK ≤ CURRENT_DATE</td>
-      <td>-</td>
-      <td>Date de recueil de l'information</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 acte_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique de l'acte |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| 🔗 pmsi_id | BIGINT | NOT NULL, FK | - | Référence vers séjour PMSI |
+| code_acte | VARCHAR(20) | NOT NULL, CHECK longueur | - | Code de l'acte médical (CCAM, etc.) |
+| libelle_acte | TEXT | - | - | Libellé descriptif de l'acte |
+| date_acte | TIMESTAMP | CHECK ≤ CURRENT_TIMESTAMP | - | Date et heure de réalisation de l'acte |
+| executant | VARCHAR(255) | - | - | Professionnel exécutant (non prévu dans le socle) |
+| date_recueil | DATE | CHECK ≤ CURRENT_DATE | - | Date de recueil de l'information |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index optimisés** :
 - `idx_actes_pmsi_id` : Index sur pmsi_id
@@ -554,124 +180,24 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Table consolidée des résultats d'examens biologiques, différenciés par codes LOINC et types d'examens incluant fonction rénale, bilan hépatique, hémogramme et autres tests (linkId: 7702944131447).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 biologie_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique du résultat biologique</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>code_loinc</td>
-      <td>VARCHAR(20)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Code LOINC identifiant le test biologique</td>
-    </tr>
-    <tr>
-      <td>libelle_test</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Libellé descriptif du test</td>
-    </tr>
-    <tr>
-      <td>type_examen</td>
-      <td>VARCHAR(100)</td>
-      <td>CHECK types valides</td>
-      <td>-</td>
-      <td>Type examen: fonction_renale, bilan_hepatique, hemogramme, autres</td>
-    </tr>
-    <tr>
-      <td>valeur</td>
-      <td>DECIMAL(15,6)</td>
-      <td>CHECK ≥ 0</td>
-      <td>-</td>
-      <td>Valeur numérique du résultat</td>
-    </tr>
-    <tr>
-      <td>unite</td>
-      <td>VARCHAR(50)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Unité de mesure</td>
-    </tr>
-    <tr>
-      <td>valeur_texte</td>
-      <td>TEXT</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Valeur textuelle du résultat</td>
-    </tr>
-    <tr>
-      <td>date_prelevement</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>CHECK ≤ CURRENT_TIMESTAMP</td>
-      <td>-</td>
-      <td>Date et heure du prélèvement</td>
-    </tr>
-    <tr>
-      <td>statut_validation</td>
-      <td>VARCHAR(50)</td>
-      <td>CHECK valeurs valides</td>
-      <td>-</td>
-      <td>Statut de validation (en_attente, valide, rejete, en_cours)</td>
-    </tr>
-    <tr>
-      <td>borne_inf_normale</td>
-      <td>DECIMAL(15,6)</td>
-      <td>CHECK cohérence bornes</td>
-      <td>-</td>
-      <td>Borne inférieure de normalité</td>
-    </tr>
-    <tr>
-      <td>borne_sup_normale</td>
-      <td>DECIMAL(15,6)</td>
-      <td>CHECK cohérence bornes</td>
-      <td>-</td>
-      <td>Borne supérieure de normalité</td>
-    </tr>
-    <tr>
-      <td>laboratoire</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Laboratoire d'analyse (non prévu dans le socle)</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 biologie_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique du résultat biologique |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| code_loinc | VARCHAR(20) | - | - | Code LOINC identifiant le test biologique |
+| libelle_test | VARCHAR(255) | - | - | Libellé descriptif du test |
+| type_examen | VARCHAR(100) | CHECK types valides | - | Type examen: fonction_renale, bilan_hepatique, hemogramme, autres |
+| valeur | DECIMAL(15,6) | CHECK ≥ 0 | - | Valeur numérique du résultat |
+| unite | VARCHAR(50) | - | - | Unité de mesure |
+| valeur_texte | TEXT | - | - | Valeur textuelle du résultat |
+| date_prelevement | TIMESTAMP WITH TIME ZONE | CHECK ≤ CURRENT_TIMESTAMP | - | Date et heure du prélèvement |
+| statut_validation | VARCHAR(50) | CHECK valeurs valides | - | Statut de validation (en_attente, valide, rejete, en_cours) |
+| borne_inf_normale | DECIMAL(15,6) | CHECK cohérence bornes | - | Borne inférieure de normalité |
+| borne_sup_normale | DECIMAL(15,6) | CHECK cohérence bornes | - | Borne supérieure de normalité |
+| laboratoire | VARCHAR(255) | - | - | Laboratoire d'analyse (non prévu dans le socle) |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index spécialisés pour biologie** :
 - `idx_biologie_patient_id` : Index sur patient_id
@@ -692,96 +218,20 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Données de prescription médicamenteuse avec codage ATC pour la pharmacovigilance et la recherche clinique (linkId: 817801935685).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 prescription_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique de la prescription</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>prescripteur</td>
-      <td>VARCHAR(50)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Professionnel prescripteur</td>
-    </tr>
-    <tr>
-      <td>denomination</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Dénomination du médicament</td>
-    </tr>
-    <tr>
-      <td>code_atc</td>
-      <td>VARCHAR(20)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Code ATC du médicament</td>
-    </tr>
-    <tr>
-      <td>voie_administration</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Voie d'administration prévue</td>
-    </tr>
-    <tr>
-      <td>date_prescription</td>
-      <td>DATE</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Date de la prescription (non prévu dans le socle)</td>
-    </tr>
-    <tr>
-      <td>date_debut_prescription</td>
-      <td>DATE</td>
-      <td>CHECK cohérence dates</td>
-      <td>-</td>
-      <td>Date de début de la prescription</td>
-    </tr>
-    <tr>
-      <td>date_fin_prescription</td>
-      <td>DATE</td>
-      <td>CHECK cohérence dates</td>
-      <td>-</td>
-      <td>Date de fin de la prescription</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 prescription_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique de la prescription |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| prescripteur | VARCHAR(50) | - | - | Professionnel prescripteur |
+| denomination | VARCHAR(255) | - | - | Dénomination du médicament |
+| code_atc | VARCHAR(20) | - | - | Code ATC du médicament |
+| voie_administration | VARCHAR(100) | - | - | Voie d'administration prévue |
+| date_prescription | DATE | - | - | Date de la prescription (non prévu dans le socle) |
+| date_debut_prescription | DATE | CHECK cohérence dates | - | Date de début de la prescription |
+| date_fin_prescription | DATE | CHECK cohérence dates | - | Date de fin de la prescription |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index de prescription** :
 - `idx_prescription_patient_id` : Index sur patient_id
@@ -799,82 +249,18 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Informations détaillées de posologie pour les médicaments (linkId: 6348237104421).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 posologie_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique de la posologie</td>
-    </tr>
-    <tr>
-      <td>🔗 prescription_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers prescription</td>
-    </tr>
-    <tr>
-      <td>nombre_prises_par_jour</td>
-      <td>INTEGER</td>
-      <td>CHECK (1-24)</td>
-      <td>-</td>
-      <td>Nombre de prises par jour</td>
-    </tr>
-    <tr>
-      <td>quantite</td>
-      <td>DECIMAL(10,3)</td>
-      <td>CHECK > 0</td>
-      <td>-</td>
-      <td>Quantité par prise</td>
-    </tr>
-    <tr>
-      <td>unite_quantite</td>
-      <td>VARCHAR(20)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Unité de la quantité</td>
-    </tr>
-    <tr>
-      <td>date_heure_debut</td>
-      <td>TIMESTAMP</td>
-      <td>CHECK cohérence dates</td>
-      <td>-</td>
-      <td>Date et heure de début</td>
-    </tr>
-    <tr>
-      <td>date_heure_fin</td>
-      <td>TIMESTAMP</td>
-      <td>CHECK cohérence dates</td>
-      <td>-</td>
-      <td>Date et heure de fin</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 posologie_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique de la posologie |
+| 🔗 prescription_id | BIGINT | NOT NULL, FK | - | Référence vers prescription |
+| nombre_prises_par_jour | INTEGER | CHECK (1-24) | - | Nombre de prises par jour |
+| quantite | DECIMAL(10,3) | CHECK > 0 | - | Quantité par prise |
+| unite_quantite | VARCHAR(20) | - | - | Unité de la quantité |
+| date_heure_debut | TIMESTAMP | CHECK cohérence dates | - | Date et heure de début |
+| date_heure_fin | TIMESTAMP | CHECK cohérence dates | - | Date et heure de fin |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 ---
 
@@ -882,103 +268,21 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Données d'exposition médicamenteuse avec codage ATC pour la pharmacovigilance et la recherche clinique, traçant les administrations réelles (linkId: 817801935685).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 administration_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique de l'administration</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>🔗 prescription_id</td>
-      <td>BIGINT</td>
-      <td>FK</td>
-      <td>-</td>
-      <td>Référence vers prescription (optionnelle)</td>
-    </tr>
-    <tr>
-      <td>denomination</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Dénomination du médicament administré</td>
-    </tr>
-    <tr>
-      <td>code_atc</td>
-      <td>VARCHAR(20)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Code ATC du médicament</td>
-    </tr>
-    <tr>
-      <td>voie_administration</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Voie d'administration réelle</td>
-    </tr>
-    <tr>
-      <td>quantite</td>
-      <td>DECIMAL(10,3)</td>
-      <td>CHECK > 0</td>
-      <td>-</td>
-      <td>Quantité administrée</td>
-    </tr>
-    <tr>
-      <td>unite_quantite</td>
-      <td>VARCHAR(20)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Unité de la quantité</td>
-    </tr>
-    <tr>
-      <td>date_heure_debut</td>
-      <td>TIMESTAMP</td>
-      <td>CHECK cohérence dates</td>
-      <td>-</td>
-      <td>Date et heure de début d'administration</td>
-    </tr>
-    <tr>
-      <td>date_heure_fin</td>
-      <td>TIMESTAMP</td>
-      <td>CHECK cohérence dates</td>
-      <td>-</td>
-      <td>Date et heure de fin d'administration</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 administration_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique de l'administration |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| 🔗 prescription_id | BIGINT | FK | - | Référence vers prescription (optionnelle) |
+| denomination | VARCHAR(255) | - | - | Dénomination du médicament administré |
+| code_atc | VARCHAR(20) | - | - | Code ATC du médicament |
+| voie_administration | VARCHAR(100) | - | - | Voie d'administration réelle |
+| quantite | DECIMAL(10,3) | CHECK > 0 | - | Quantité administrée |
+| unite_quantite | VARCHAR(20) | - | - | Unité de la quantité |
+| date_heure_debut | TIMESTAMP | CHECK cohérence dates | - | Date et heure de début d'administration |
+| date_heure_fin | TIMESTAMP | CHECK cohérence dates | - | Date et heure de fin d'administration |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index d'administration** :
 - `idx_administration_patient_id` : Index sur patient_id
@@ -994,110 +298,22 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Mesures et observations cliniques incluant signes vitaux, mesures physiques et données de soins infirmiers (linkId: 305831246173).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 soin_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique de l'observation</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>code_loinc</td>
-      <td>VARCHAR(20)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Code LOINC de l'observation</td>
-    </tr>
-    <tr>
-      <td>libelle_test</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Libellé de l'observation</td>
-    </tr>
-    <tr>
-      <td>valeur</td>
-      <td>DECIMAL(15,6)</td>
-      <td>CHECK ≥ 0</td>
-      <td>-</td>
-      <td>Valeur numérique mesurée</td>
-    </tr>
-    <tr>
-      <td>unite</td>
-      <td>VARCHAR(50)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Unité de mesure</td>
-    </tr>
-    <tr>
-      <td>valeur_code</td>
-      <td>VARCHAR(50)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Valeur codée</td>
-    </tr>
-    <tr>
-      <td>valeur_texte</td>
-      <td>TEXT</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Valeur textuelle</td>
-    </tr>
-    <tr>
-      <td>date_mesure</td>
-      <td>DATE</td>
-      <td>CHECK ≤ CURRENT_DATE</td>
-      <td>-</td>
-      <td>Date de la mesure</td>
-    </tr>
-    <tr>
-      <td>unite_soins</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Unité de soins (non prévu dans le socle)</td>
-    </tr>
-    <tr>
-      <td>professionnel</td>
-      <td>VARCHAR(255)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Professionnel réalisant la mesure (non prévu dans le socle)</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 soin_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique de l'observation |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| code_loinc | VARCHAR(20) | - | - | Code LOINC de l'observation |
+| libelle_test | VARCHAR(255) | - | - | Libellé de l'observation |
+| valeur | DECIMAL(15,6) | CHECK ≥ 0 | - | Valeur numérique mesurée |
+| unite | VARCHAR(50) | - | - | Unité de mesure |
+| valeur_code | VARCHAR(50) | - | - | Valeur codée |
+| valeur_texte | TEXT | - | - | Valeur textuelle |
+| date_mesure | DATE | CHECK ≤ CURRENT_DATE | - | Date de la mesure |
+| unite_soins | VARCHAR(255) | - | - | Unité de soins (non prévu dans le socle) |
+| professionnel | VARCHAR(255) | - | - | Professionnel réalisant la mesure (non prévu dans le socle) |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 **Index de soins** :
 - `idx_soins_patient_id` : Index sur patient_id
@@ -1111,205 +327,39 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 
 **Description** : Informations consolidées sur le mode de vie incluant tabac, alcool, drogues et activité physique (linkId: 1693164086678).
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Colonne</th>
-      <th>Type</th>
-      <th>Contraintes</th>
-      <th>Défaut</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>🔑 style_vie_id</td>
-      <td>BIGSERIAL</td>
-      <td>PRIMARY KEY</td>
-      <td>-</td>
-      <td>Identifiant unique du style de vie</td>
-    </tr>
-    <tr>
-      <td>🔗 patient_id</td>
-      <td>BIGINT</td>
-      <td>NOT NULL, FK</td>
-      <td>-</td>
-      <td>Référence vers patient</td>
-    </tr>
-    <tr>
-      <td>consommation_tabac</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Information sur la consommation de tabac</td>
-    </tr>
-    <tr>
-      <td>consommation_alcool</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Information sur la consommation d'alcool</td>
-    </tr>
-    <tr>
-      <td>consommation_autres_drogues</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Information sur la consommation d'autres drogues</td>
-    </tr>
-    <tr>
-      <td>activite_physique</td>
-      <td>VARCHAR(100)</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Information sur l'activité physique</td>
-    </tr>
-    <tr>
-      <td>date_recueil</td>
-      <td>DATE</td>
-      <td>CHECK ≤ CURRENT_DATE</td>
-      <td>-</td>
-      <td>Date de recueil de l'information</td>
-    </tr>
-    <tr>
-      <td>created_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de création</td>
-    </tr>
-    <tr>
-      <td>updated_at</td>
-      <td>TIMESTAMP WITH TIME ZONE</td>
-      <td>-</td>
-      <td>CURRENT_TIMESTAMP</td>
-      <td>Horodatage de dernière modification</td>
-    </tr>
-  </tbody>
-</table>
+| Colonne | Type | Contraintes | Défaut | Description |
+|---------|------|-------------|--------|-------------|
+| 🔑 style_vie_id | BIGSERIAL | PRIMARY KEY | - | Identifiant unique du style de vie |
+| 🔗 patient_id | BIGINT | NOT NULL, FK | - | Référence vers patient |
+| consommation_tabac | VARCHAR(100) | - | - | Information sur la consommation de tabac |
+| consommation_alcool | VARCHAR(100) | - | - | Information sur la consommation d'alcool |
+| consommation_autres_drogues | VARCHAR(100) | - | - | Information sur la consommation d'autres drogues |
+| activite_physique | VARCHAR(100) | - | - | Information sur l'activité physique |
+| date_recueil | DATE | CHECK ≤ CURRENT_DATE | - | Date de recueil de l'information |
+| created_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de création |
+| updated_at | TIMESTAMP WITH TIME ZONE | - | CURRENT_TIMESTAMP | Horodatage de dernière modification |
+{: .grid}
 
 ---
 
 ### Matrice des Relations
 
-<table style="width: 100%;">
-  <thead>
-    <tr>
-      <th>Table Source</th>
-      <th>Colonne</th>
-      <th>Table Référencée</th>
-      <th>Colonne Référencée</th>
-      <th>Type de Relation</th>
-      <th>Action DELETE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>patient_adresse</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>donnees_pmsi</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>diagnostics</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>diagnostics</td>
-      <td>pmsi_id</td>
-      <td>donnees_pmsi</td>
-      <td>pmsi_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>actes</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>actes</td>
-      <td>pmsi_id</td>
-      <td>donnees_pmsi</td>
-      <td>pmsi_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>biologie</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>prescription</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>posologie</td>
-      <td>prescription_id</td>
-      <td>prescription</td>
-      <td>prescription_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>administration</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>administration</td>
-      <td>prescription_id</td>
-      <td>prescription</td>
-      <td>prescription_id</td>
-      <td>1:N</td>
-      <td>RESTRICT</td>
-    </tr>
-    <tr>
-      <td>dossier_soins</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-    <tr>
-      <td>style_vie</td>
-      <td>patient_id</td>
-      <td>patient</td>
-      <td>patient_id</td>
-      <td>1:N</td>
-      <td>CASCADE</td>
-    </tr>
-  </tbody>
-</table>
+| Table Source | Colonne | Table Référencée | Colonne Référencée | Type de Relation | Action DELETE |
+|--------------|---------|------------------|-------------------|------------------|---------------|
+| patient_adresse | patient_id | patient | patient_id | 1:N | CASCADE |
+| donnees_pmsi | patient_id | patient | patient_id | 1:N | CASCADE |
+| diagnostics | patient_id | patient | patient_id | 1:N | CASCADE |
+| diagnostics | pmsi_id | donnees_pmsi | pmsi_id | 1:N | CASCADE |
+| actes | patient_id | patient | patient_id | 1:N | CASCADE |
+| actes | pmsi_id | donnees_pmsi | pmsi_id | 1:N | CASCADE |
+| biologie | patient_id | patient | patient_id | 1:N | CASCADE |
+| prescription | patient_id | patient | patient_id | 1:N | CASCADE |
+| posologie | prescription_id | prescription | prescription_id | 1:N | CASCADE |
+| administration | patient_id | patient | patient_id | 1:N | CASCADE |
+| administration | prescription_id | prescription | prescription_id | 1:N | RESTRICT |
+| dossier_soins | patient_id | patient | patient_id | 1:N | CASCADE |
+| style_vie | patient_id | patient | patient_id | 1:N | CASCADE |
+{: .grid}
 
 ---
 
@@ -1363,35 +413,6 @@ Le schéma comprend **11 tables principales** organisées autour de l'entité ce
 - **`chk_actes_code_format`** : Code acte entre 4 et 20 caractères
 - **`chk_actes_date_acte`** : Date d'acte ≤ timestamp actuel
 - **`chk_actes_date_recueil`** : Date de recueil ≤ date courante
-
----
-
-### Notes d'Implémentation
-
-#### Conventions de Nommage
-
-- **Tables** : Noms en français, en minuscules avec underscores
-- **Clés primaires** : `<table>_id` avec type BIGSERIAL
-- **Clés étrangères** : `<table_référencée>_id`
-- **Index** : Préfixe `idx_` suivi du nom de table et colonne(s)
-- **Contraintes** : Préfixe `chk_`, `fk_` selon le type
-
-#### Considérations Particulières
-
-1. **Dénormalisation contrôlée** : Table biologie consolidée au lieu de tables séparées par type d'examen
-2. **Flexibilité temporelle** : Biologie non liée obligatoirement à un séjour PMSI
-3. **Extensibilité** : Champs commentés "non prévu dans le socle" pour extensions futures
-4. **Audit complet** : Colonnes created_at/updated_at sur toutes les tables
-5. **Validation robuste** : Contraintes CHECK pour l'intégrité métier
-6. **Performance** : Index spécialisés pour les requêtes analytiques communes
-
-#### Alignement FHIR
-
-Le schéma maintient la traçabilité vers les linkId du questionnaire FHIR original, facilitant :
-- Le mapping bidirectionnel avec les ressources FHIR
-- La validation de conformité
-- L'évolution contrôlée du modèle de données
-- L'interopérabilité avec les systèmes FHIR
 
 ---
 

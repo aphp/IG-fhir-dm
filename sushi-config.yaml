@@ -44,6 +44,8 @@ pages:
         title: Evaluation
   data-platform.md:
     title: Health Data Platform (démo)
+    data-platform-functional-architecture.md:
+      title: Architecture fonctionnelle
     data-platform-raw-layer.md:
       title: Raw layer
     data-platform-transform-layer.md:
@@ -67,7 +69,12 @@ menu:
   Accueil: index.html
   Dictionnaire des données: data-dictionary.html
   Variables du socle commun: use-core-variables.html
-  Health Data Platform: data-platform.html
+  Health Data Platform:
+    Architecture fonctionnelle: data-platform-functional-architecture.html
+    Raw layer: data-platform-raw-layer.html
+    Transform layer: data-platform-transform-layer.html
+    Semantic layer: data-platform-semantic-layer.html
+    Share layer: data-platform-share-layer.html
   Guide:
     Gestion des données: new-tab https://interop.aphp.fr/ig/fhir/core/data-management.html
     Bonnes pratiques: new-tab https://interop.aphp.fr/ig/fhir/core/best-practice.html
