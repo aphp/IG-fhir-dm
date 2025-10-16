@@ -10,8 +10,8 @@ Taux d'ASAT dans le sang. L'ASAT est une enzyme faisant partie des transaminases
 * value[x] only Quantity
 * valueQuantity.value ^short = "Valeur mesurée"
 * valueQuantity.system = $ucum (exactly)
-* valueQuantity.code = #U/L (exactly)
-* valueQuantity.unit = "U/L"
+* valueQuantity.code = #[IU]/L (exactly)
+* valueQuantity.unit = "[IU]/L"
 
 Instance: 54a2948b-6ae1-4fa7-8a99-d5db61701273
 InstanceOf: Provenance

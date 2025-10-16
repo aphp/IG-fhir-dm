@@ -9,7 +9,7 @@
 
 #### Cas 1 : ???
 
-{% include QuestionnaireResponse-test-usage-core-complet-html.xhtml %}
+{% include QuestionnaireResponse-cas-11-usage-core-html.xhtml %}
 
 #### Cas 2 : ???
 

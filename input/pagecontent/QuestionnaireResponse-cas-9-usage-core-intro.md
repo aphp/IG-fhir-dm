@@ -1,6 +1,6 @@
-### Synthèse
+#### Synthèse
 
-**Isabelle**_[Prénom]_ **Blanc**_[Nom]_, **47 ans**_[age]_, hospitalisée du **13**_[Date-début-séjour]_ au **14 janvier 2024**_[Date-fin-séjour]_ dans le **service d'hépatologie de l'hôpital Beaujon** pour une **ponction d'ascite**_[acte]_ sur une **cirrhose alcolique**_[diagnostic]_.
+**Isabelle**_[Prénom]_ **Blanc**_[Nom]_, **née le 6 mai 1978**_[date-naissance]_, hospitalisée du **13**_[Date-début-séjour]_ au **14 janvier 2024**_[Date-fin-séjour]_ dans le **service d'hépatologie de l'hôpital Beaujon** pour une **ponction d'ascite**_[acte]_ sur une **cirrhose alcolique**_[diagnostic]_.
 
 La patiente est suivi dans le service depuis 7 ans pour sa **cirrhose hépatique**_[diagnostic]_.
 Depuis quelques mois son **insuffisance hépatique**_[diagnostic]_ semble s'aggraver avec une **ascite qui résiste aux traitements diurétique**_[diagnostic]_ et qui doit être ponctionnée régulièrement.
@@ -16,18 +16,19 @@ Examen pneumo normal, pas de dyspnée, pas de cyanose
 Elle pèse **58.2 kg**_[poids]_ à l'entré, soit 9 kg de plus que son poids de forme.
 
 Examens complémentaires
-Les analyses biologiques montrent :
+
+Les analyses biologiques du 13/01/2024 montrent :
 
 - une IH stable depuis la dernière venue avec :
-  - **asat : 1.5 N**_[asat]_
-  - **alat : 1.5 N**_[alat]_
-  - **PAL : 100 U/L**_[phosphatase-alcaline]_
-  - **GGT : 30 UI/L**_[ggt]_
-  - alb : 40 g/L
-  - **bilirubine : 25umol/L**_[bilirubine-totale]_
-  - **TP : 80%**_[taux-prothrombine]_
+  - **asat       :     1.5 N**_[asat]_
+  - **alat       :     1.5 N**_[alat]_
+  - **PAL        :    100 U/L**_[phosphatase-alcaline]_
+  - **GGT        :     30 UI/L**_[ggt]_
+  - alb        :     40 g/L
+  - **bilirubine :     25 umol/L**_[bilirubine-totale]_
+  - **TP         :     80 %**_[taux-prothrombine]_
 
---> Child Pugh B
+Le score de Child Pugh est à B
 
 - l'analyse du liquide d'ascite ne révèle pas d'infection (57 PNN/mm3)
 
@@ -44,4 +45,6 @@ Renouvellement de la **prescription de diurétique**_[prescription]_ :
 - **furosémide**_[prescription]_
 - **spironolactone**_[prescription]_
 
-Mme **Blanc**_[Nom]_ recontacte le service pour sa prochaine ponction évacuatrice. Information sur la surveillance des saignements digestifs. 
+Mme **Blanc**_[Nom]_ recontacte le service pour sa prochaine ponction évacuatrice. Information sur la surveillance des saignements digestifs.
+
+Fait à Beaujon le 15 janvier 2024

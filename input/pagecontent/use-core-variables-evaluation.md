@@ -127,7 +127,7 @@ Evaluation du Quoi ...
         <li>On enregistre la ressource QuestionnaireResponse via le bouton bleu "Show Form Data As ..." en choisissant l'option "FHIR SDC QuestionnaireResponse"</li>
       </ol>
     </p>
-    <p><b>Le résultat</b> : <a href="QuestionnaireResponse-test-usage-core-complet.html">un exemple de réponse</a></p>
+    <p><b>Le résultat</b> : <a href="QuestionnaireResponse-cas-11-usage-core.html">un exemple de réponse</a></p>
   </li>
   <li>
     <p><b>Transformation d'une ressource `QuestionnaireResponse` en une instance du modèle physique de notre DPI théorique</b> :</p>
@@ -135,7 +135,7 @@ Evaluation du Quoi ...
       <ol>
         <li>ouvrir le fichier `input/fml/usages/core/StructureMap-CoreBusiness2Physical.fml`,</li>
         <li>puis dans le menu contextuel (clic droit dans le fichier) choisir l'entrée `Validate StructureMap (With input selection)`,</li>
-        <li>puis choisir le fichier `input/test-map/usages/core/QuestionnaireResponse-test-usage-core-complet.json`</li>
+        <li>puis choisir le fichier `input/test-map/usages/core/QuestionnaireResponse-cas-11-usage-core.json`</li>
       </ol>
     </p>
     <p><b>Le résultat doit être équivalent à</b> : `input/test-map/usages/core/CoreDataSet-UsageCoreTestFull.json`</p>

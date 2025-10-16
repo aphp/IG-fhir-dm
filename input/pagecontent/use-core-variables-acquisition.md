@@ -63,12 +63,30 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 
 Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples serviront également pour valider le processus de formalisation des données et le processus de standardisation.
 
-#### Cas 1 : ???
+#### Cas 1 : à faire
 
-{% include QuestionnaireResponse-test-usage-core-complet-intro.md %}
+#### Cas 2 : à faire
 
-#### Cas 2 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
+#### Cas 3 : à faire
+
+#### Cas 4 : à faire
+
+#### Cas 5 : à faire
+
+#### Cas 6 : à faire
+
+#### Cas 7 : à faire
+
+#### Cas 8 : à faire
+
+#### Cas 9 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
 
 (Correspond au patient 9 dans le je de test (data-platform\raw-layer\test\file\patient.csv))
 
-{% include QuestionnaireResponse-patient9-usage-core-intro.md %}
+{% include QuestionnaireResponse-cas-9-usage-core-intro.md %}
+
+#### Cas 10 : à faire
+
+#### Cas 11 : Suivi diabète de type 2
+
+{% include QuestionnaireResponse-cas-11-usage-core-intro.md %}

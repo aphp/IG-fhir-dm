@@ -31,27 +31,13 @@ Description: """
 * performer MS
 * performer ^type[0].targetProfile[0].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
 * performer ^type[=].targetProfile[=].extension.valueBoolean = false
-* performer ^type[=].targetProfile[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* performer ^type[=].targetProfile[=].extension.valueBoolean = false
-* performer ^type[=].targetProfile[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* performer ^type[=].targetProfile[=].extension.valueBoolean = false
-* performer ^type[=].targetProfile[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* performer ^type[=].targetProfile[=].extension.valueBoolean = false
-* performer ^type[=].targetProfile[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* performer ^type[=].targetProfile[=].extension.valueBoolean = false
-* performer ^type[=].targetProfile[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* performer ^type[=].targetProfile[=].extension.valueBoolean = false
+
 
 * value[x] only Quantity or CodeableConcept or string or boolean or integer or Range or Ratio or SampledData or time or dateTime or Period
 * value[x] MS
 * value[x] ^type[0].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
 * value[x] ^type[=].extension.valueBoolean = true
-* value[x] ^type[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* value[x] ^type[=].extension.valueBoolean = true
-* value[x] ^type[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* value[x] ^type[=].extension.valueBoolean = true
-* value[x] ^type[+].extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support"
-* value[x] ^type[=].extension.valueBoolean = true
+
 
 Instance: d866165e-1ab4-4ece-96b8-4dbfadcc26fd
 InstanceOf: Provenance

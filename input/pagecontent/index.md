@@ -41,7 +41,7 @@ Le guide d'implémentation **Data Management with FHIR** s'appuie sur l'outil [H
 2. [Variables socles pour les EDSH](use-core-variables.html) : présente notamment la standardisation des données au format **FHIR**
 3. [Health Data Platform (démo)](data-platform.html) : présente les éléments opérationnels
 4. [Ressources de conformité](artifacts.html) : présente tous les artefacts FHIR
-5. [Notes de version](change_log.html)
+5. [Notes de version](changelog.html)
 6. Plus
 
 ### Auteurs et contributeurs

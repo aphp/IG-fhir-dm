@@ -1,6 +1,6 @@
 {
   "resourceType": "QuestionnaireResponse",
-  "id": "test-usage-core-patient-9",
+  "id": "cas-9-usage-core",
   "status": "completed",
   "authored": "2025-10-14T16:14:57.160Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
@@ -26,6 +26,15 @@
               "answer": [
                 {
                   "valueString": "Isabelle"
+                }
+              ],
+              "linkId": "6214879623503",
+              "text": "Prénom patient"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "278056432187654"
                 }
               ],
               "linkId": "5711960356160",

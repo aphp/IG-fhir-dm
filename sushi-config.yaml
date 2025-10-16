@@ -82,7 +82,7 @@ menu:
   Ressources de conformité: artifacts.html
   Autres:
     Aide: help.html
-    Notes de version: change_log.html
+    Notes de version: changelog.html
     Glossaire: glossary.html
     Télécharger spécifications: downloads.html
 
@@ -116,11 +116,11 @@ resources:
     name: Exemple simple
     description: Exemple simple
     exampleBoolean: true
-  QuestionnaireResponse/test-usage-core-complet:
+  QuestionnaireResponse/cas-11-usage-core:
     name: Exemple complet
     description: Exemple complet
     exampleBoolean: true
-  QuestionnaireResponse/test-usage-core-patient-9:
+  QuestionnaireResponse/cas-9-usage-core:
     name: Patient 9 - Madame Blanc
     description: Exemple correspondant au patient 9 du jeu de test
     exampleBoolean: true
