@@ -1,6 +1,6 @@
 {% include markdown-link-references.md %}
 
-<div id="standardization-data-process" style="height: 745px;" markdown="1">
+<div id="standardization-data-process" style="height: 750px;" markdown="1">
 {% include data-standardization-process.mermaid %}
 </div>
 
@@ -8,7 +8,7 @@ La méthodologie de **gestion des données avec FHIR (Data Management with FHIR)
 Pour traduire efficacement les besoins métiers en composants informatiques, nous adoptons une approche progressive articulée en **trois étapes**.
 
 
->* [Acquisition des connaissances](use-core-variables-acquisition.html)
->* [Formalisation des connaissances](use-core-variables-formalization.html)
->* [Standardisation des connaissances](use-core-variables-standardization.html)
+>* [Acquisition des variables](use-core-variables-acquisition.html)
+>* [Formalisation des variables](use-core-variables-formalization.html)
+>* [Standardisation des variables](use-core-variables-standardization.html)
 
