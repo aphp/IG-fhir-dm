@@ -1,5 +1,5 @@
 Profile: DMPatient
-Parent: FRCorePatientINSProfile
+Parent: FRCorePatientProfile
 Title: "Patient"
 Description: "Profil Patient du socle commun des EDSH"
 

@@ -4,7 +4,7 @@ Title: "Correction des codes cim10 (ajout du '.')"
 Description: """Correction des codes cim10 (ajout du '.')"""
 Usage: #definition
 
-* target[0] = Reference(test-usage-core-complet)
+* target[0] = Reference(cas-11-usage-core)
 * target[+] = Reference(df9c9a9c-854b-46f4-9687-1fbe40c06540)
 * target[+] = Reference(UsageCore)
 * occurredDateTime = "2025-10-15"
@@ -21,7 +21,7 @@ Title: "Création du QuestionnaireResponse correspondant au patient de test n°9
 Description: """Création du QuestionnaireResponse correspondant au patient de test n°9"""
 Usage: #definition
 
-* target[0] = Reference(test-usage-core-patient-9)
+* target[0] = Reference(cas-9-usage-core)
 * occurredDateTime = "2025-10-15"
 * reason.text = """Création du QuestionnaireResponse correspondant au patient de test n°9"""
 * activity = $v3-DataOperation#UPDATE
