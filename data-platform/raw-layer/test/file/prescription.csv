@@ -11,7 +11,7 @@ prescription_id,patient_id,prescripteur,denomination,code_atc,voie_administratio
 10,6,Dr. Cardiologue,Ramipril 5mg,C09AA05,Orale,2024-01-05,2024-01-06,2024-07-06,2024-01-15 12:25:00+01,2024-01-15 12:25:00+01
 11,7,Dr. Neurologue,Sumatriptan 50mg,N02CC01,Orale,2024-01-14,2024-01-14,2024-02-14,2024-01-15 12:26:00+01,2024-01-15 12:26:00+01
 12,8,Dr. Orthopédiste,Morphine 10mg,N02AA01,Intraveineuse,2024-01-11,2024-01-11,2024-01-14,2024-01-15 12:27:00+01,2024-01-15 12:27:00+01
-13,8,Dr. Orthopédiste,Enoxaparine 40mg,B01AB05,Sous-cutanée,2024-01-11,2024-01-11,2024-01-21,2024-01-15 12:28:00+01,2024-01-15 12:28:00+01
+13,8,Dr. Orthopédiste,Enoxaparine,B01AB05,Sous-cutanée,2024-01-11,2024-01-11,2024-01-21,2024-01-15 12:28:00+01,2024-01-15 12:28:00+01
 14,9,Dr. Hépatologue,Furosémide 40mg,C03CA01,Orale,2024-01-13,2024-01-13,2024-02-13,2024-01-15 12:29:00+01,2024-01-15 12:29:00+01
 15,9,Dr. Hépatologue,Spironolactone 25mg,C03DA01,Orale,2024-01-13,2024-01-13,2024-04-13,2024-01-15 12:30:00+01,2024-01-15 12:30:00+01
 16,9,Dr. Hépatologue,Albumine 20%,B05AA01,Intraveineuse,2024-01-13,2024-01-13,2024-01-13,2024-01-15 12:30:00+01,2024-01-15 12:30:00+01
