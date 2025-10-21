@@ -50,13 +50,13 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 | Administration médicamenteuse | | | | | |
 | Dosage | | | | | |
 | Médicament administré | | | | | |
-| Poids | | | | | |
-| Taille | | | | | |
-| Pression artérielle | | | | | |
+| Poids | | | | | [29463-7](https://loinc.org/29463-7/){:target="_blank"} |
+| Taille | | | | | [8302-2](https://loinc.org/8302-2/){:target="_blank"} |
+| Pression artérielle | | | | | diastolique : [8462-4](https://loinc.org/8462-4/){:target="_blank"}<br/> systolique : [8480-6](https://loinc.org/8480-6/){:target="_blank"} |
 | Consommation de tabac | | | | | |
-| Consommation d'alcool | | | | | |
-| Consommation d'autres drogues | | | | | |
-| Activité physique | | | | | |
+| Consommation d'alcool | | | | | [11331-6](https://loinc.org/11331-6/){:target="_blank"} |
+| Consommation d'autres drogues | | | | | [11343-1](https://loinc.org/11343-1/){:target="_blank"} |
+| Activité physique | | | | | [99285-9](https://loinc.org/99285-9/){:target="_blank"} |
 {: .grid}
 
 ### Exemples
