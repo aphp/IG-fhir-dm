@@ -15,10 +15,10 @@ Usage: #example
 
 * effectiveDateTime = "2024-01-13T08:30:00+01:00"
 
-* valueQuantity.value = 80
+* valueQuantity = 80 '%' "%"
 
 * referenceRange
-  * low.value = 50
+  * low = 50 '%' "%"
 
 * performer.display = "Laboratoire Beaujon"
 
