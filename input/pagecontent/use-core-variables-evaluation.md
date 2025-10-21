@@ -120,7 +120,7 @@ Evaluation du Quoi ...
 <ol>
   <li>
     <p><b>Un exemple de réponse issue du <a href="Questionnaire-UsageCore.html">questionnaire des variables socles</a></b> :</p>
-    <p>On peut  utiliser le <a href="https://lhcforms.nlm.nih.gov/lhcforms">LHC-Forms Widget</a>, un outil open source qui propose une interface de saisie et qui génère la ressource QuestionnaireResponse correspondant aux données saisies dans l'interface : 
+    <p>On peut utiliser le <a href="https://lhcforms.nlm.nih.gov/lhcforms">LHC-Forms Widget</a>, un outil open source qui propose une interface de saisie et qui génère la ressource QuestionnaireResponse correspondant aux données saisies dans l'interface :
       <ol>
         <li>On charge <a href="Questionnaire-UsageCore.html">le JSON du Questionnaire</a> via le bouton vert "Load From File",</li>
         <li>On saisi les données que l'on souhaite dans l'interface,</li>
@@ -460,4 +460,4 @@ Evaluation du Quoi ...
   </li>
 </ol>
 
-### Le Comment 
+### Le Comment
