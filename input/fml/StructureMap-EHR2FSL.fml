@@ -205,9 +205,13 @@ group setAddress(source src, target tgtPat : Patient) {
             tgtLong.url = 'longitude', 
             tgtLong.value = srcLong "setLong";
         } "setCoordinates" ;
-      src where src.codeIris.exists() or src.libelleIris.exists() -> newAddress.extension as irisExtension, 
+      src where src.codeIris.exists() or src.libelleIris.exists() -> newAddress.line = (%src.libelleIris) as irisLine, 
+        irisLine.extension = create('Extension') as irisExtension, 
         irisExtension.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract', 
-        irisExtension.value = (iif(%src.codeIris.exists() and %src.libelleIris.exists(), %src.codeIris & ' - ' & %src.libelleIris, %src.codeIris & %src.libelleIris)) "setIris";
+        irisExtension.value = (%src.codeIris) "setIris" ;
+//      src where src.codeIris.exists() or src.libelleIris.exists() -> newAddress.extension as irisExtension, 
+//        irisExtension.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract', 
+//        irisExtension.value = (iif(%src.codeIris.exists() and %src.libelleIris.exists(), %src.codeIris & ' - ' & %src.libelleIris, %src.codeIris & %src.libelleIris)) "setIris";
       src.codeGeographiqueResidence as srcCodeGeographiqueResidence where src.codeGeographiqueResidence.exists() -> newAddress.extension as residencePmsiExtension, 
         residencePmsiExtension.url = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo' ,
         residencePmsiExtension.value = cast(srcCodeGeographiqueResidence, 'code') "SetResidencePmsi";
