@@ -22,7 +22,7 @@ biologie_id,patient_id,code_loinc,libelle_test,type_examen,valeur,unite,valeur_t
 21,9,1751-7,Albumine sérique,bilan_hepatique,40.0,g/L,,2024-01-13 08:30:00+01,valide,35.0,50.0,Laboratoire Beaujon,2024-01-15 11:45:00+01,2024-01-15 11:45:00+01
 22,9,1920-8,Aspartate aminotransferase,bilan_hepatique,37.0,UI/L,,2024-01-13 08:30:00+01,valide,6.0,25.0,Laboratoire Beaujon,2024-01-15 11:43:00+01,2024-01-15 11:43:00+01
 23,9,6768-6,Alkaline phosphatase,bilan_hepatique,100,U/L,,2024-01-13 08:30:00+01,valide,35,104,Laboratoire Beaujon,2024-01-15 11:43:00+01,2024-01-15 11:43:00+01
-24,9,2324-2,Gamma glutamyl transferase,bilan_hepatique,30,UI/L,,2024-01-13 08:30:00+01,valide,,35,Laboratoire Beaujon,2024-01-15 11:43:00+01,2024-01-15 11:43:00+01
+24,9,2324-2,Gamma glutamyl transferase,bilan_hepatique,30,U/L,,2024-01-13 08:30:00+01,valide,,35,Laboratoire Beaujon,2024-01-15 11:43:00+01,2024-01-15 11:43:00+01
 25,9,5894-1,Prothrombin time,bilan_hepatique,80,%,,2024-01-13 08:30:00+01,valide,50,,Laboratoire Beaujon,2024-01-15 11:43:00+01,2024-01-15 11:43:00+01
 26,9,758-3,Polynucléaires neutrophiles,bilan_hepatique,57,/mm3,,2024-01-13 08:30:00+01,valide,,250,Laboratoire Beaujon,2024-01-15 11:43:00+01,2024-01-15 11:43:00+01
 27,10,718-7,Hémoglobine,hemogramme,11.2,g/dL,,2024-01-16 07:30:00+01,valide,12.0,16.0,Laboratoire Avicenne,2024-01-15 11:46:00+01,2024-01-15 11:46:00+01
