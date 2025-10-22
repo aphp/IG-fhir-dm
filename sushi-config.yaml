@@ -120,9 +120,45 @@ resources:
     name: Exemple complet
     description: Exemple complet
     exampleBoolean: true
+  QuestionnaireResponse/cas-1-usage-core:
+    name: Patient 1 - Madame Dupont
+    description: Exemple correspondant au patient 1 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-2-usage-core:
+    name: Patient 2 - Monsieur Martin
+    description: Exemple correspondant au patient 2 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-3-usage-core:
+    name: Patient 3 - Monsieur Leroy
+    description: Exemple correspondant au patient 3 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-4-usage-core:
+    name: Patient 4 - Madame Moreau
+    description: Exemple correspondant au patient 4 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-5-usage-core:
+    name: Patient 5 - Monsieur Simon
+    description: Exemple correspondant au patient 5 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-6-usage-core:
+    name: Patient 6 - Monsieur Petit
+    description: Exemple correspondant au patient 6 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-7-usage-core:
+    name: Patient 7 - Madame Garcia 
+    description: Exemple correspondant au patient 7 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-8-usage-core:
+    name: Patient 8 - Monsieur Roux 
+    description: Exemple correspondant au patient 8 du jeu de test
+    exampleBoolean: true
   QuestionnaireResponse/cas-9-usage-core:
     name: Patient 9 - Madame Blanc
     description: Exemple correspondant au patient 9 du jeu de test
+    exampleBoolean: true
+  QuestionnaireResponse/cas-10-usage-core:
+    name: Patient 10 - Monsieur David
+    description: Exemple correspondant au patient 10 du jeu de test
     exampleBoolean: true
   Bundle/5616f9ad-61b0-4279-9f41-777228d04665:
     name: Patient test (Bundle)

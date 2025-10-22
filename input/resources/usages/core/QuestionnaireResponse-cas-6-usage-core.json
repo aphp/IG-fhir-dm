@@ -1,0 +1,1047 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "cas-6-usage-core",
+  "meta": {
+    "profile": [
+      "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/dm-questionnaire-response"
+    ]
+  },
+  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "status": "completed",
+  "subject": {
+    "reference": "Patient/6"
+  },
+  "authored": "2024-01-08",
+  "item": [
+    {
+      "linkId": "4647259356106",
+      "text": "Données socio-démographiques",
+      "item": [
+        {
+          "linkId": "2958000860428",
+          "text": "Identité patient",
+          "item": [
+            {
+              "linkId": "8605698058770",
+              "text": "Nom patient",
+              "answer": [
+                {
+                  "valueString": "Petit"
+                }
+              ]
+            },
+            {
+              "linkId": "6214879623503",
+              "text": "Prénom patient",
+              "answer": [
+                {
+                  "valueString": "Nicolas"
+                }
+              ]
+            },
+            {
+              "linkId": "5711960356160",
+              "text": "Numéro d'inscription au Répertoire (NIR)",
+              "answer": [
+                {
+                  "valueString": "165094587321654"
+                }
+              ]
+            },
+            {
+              "linkId": "5036133558154",
+              "text": "Date de naissance",
+              "answer": [
+                {
+                  "valueDate": "1965-09-05"
+                }
+              ]
+            },
+            {
+              "linkId": "6298238654399",
+              "text": "Sexe",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://hl7.org/fhir/administrative-gender",
+                    "code": "male"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "4982854868869",
+          "text": "Données de géocodage",
+          "item": [
+            {
+              "linkId": "9128003755933",
+              "text": "Géolocalisation du lieu de résidence",
+              "item": [
+                {
+                  "linkId": "4637216863544",
+                  "text": "Latitude",
+                  "answer": [
+                    {
+                      "valueDecimal": 48.8322
+                    }
+                  ]
+                },
+                {
+                  "linkId": "6331653161889",
+                  "text": "Longitude",
+                  "answer": [
+                    {
+                      "valueDecimal": 2.3597
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "5549781251074",
+              "text": "Code IRIS (Îlots Regroupés pour l'Information Statistique)",
+              "answer": [
+                {
+                  "valueString": "751131201"
+                }
+              ]
+            },
+            {
+              "linkId": "2611936050399",
+              "text": "Libellé de l'IRIS",
+              "answer": [
+                {
+                  "valueString": "GOBELINS"
+                }
+              ]
+            },
+            {
+              "linkId": "2343857367595",
+              "text": "Code géographique de la commune de résidence",
+              "answer": [
+                {
+                  "valueString": "75013"
+                }
+              ]
+            },
+            {
+              "linkId": "4637162752093",
+              "text": "Libellé de la commune de résidence",
+              "answer": [
+                {
+                  "valueString": "Paris 13ème arrondissement"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "4473758958862",
+          "text": "Style de vie",
+          "item": [
+            {
+              "linkId": "7835176452787",
+              "text": "Consommation de tabac",
+              "answer": [
+                {
+                  "valueString": "Ex-fumeur"
+                }
+              ]
+            },
+            {
+              "linkId": "2394881854859",
+              "text": "Consommation d'alcool",
+              "answer": [
+                {
+                  "valueString": "Occasionnel"
+                }
+              ]
+            },
+            {
+              "linkId": "7476481562366",
+              "text": "Consommation d'autres drogues",
+              "answer": [
+                {
+                  "valueString": "Non"
+                }
+              ]
+            },
+            {
+              "linkId": "3583481168758",
+              "text": "Niveau d'activité physique",
+              "answer": [
+                {
+                  "valueString": "Modérée"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "6437854961897",
+      "text": "Séjours hospitaliers",
+      "item": [
+        {
+          "linkId": "4373857167589",
+          "text": "Séjour",
+          "item": [
+            {
+              "linkId": "7756481459863",
+              "text": "Établissement d'accueil",
+              "answer": [
+                {
+                  "valueString": "AP-HP Hôpital Européen Georges-Pompidou"
+                }
+              ]
+            },
+            {
+              "linkId": "7637854166485",
+              "text": "Pôle",
+              "answer": [
+                {
+                  "valueString": "Cardiologie"
+                }
+              ]
+            },
+            {
+              "linkId": "8637854963589",
+              "text": "Unité de soins",
+              "answer": [
+                {
+                  "valueString": "Coronarographie"
+                }
+              ]
+            },
+            {
+              "linkId": "4547854962581",
+              "text": "Date d'entrée dans l'établissement",
+              "answer": [
+                {
+                  "valueDate": "2024-01-05"
+                }
+              ]
+            },
+            {
+              "linkId": "9527854963589",
+              "text": "Date de sortie de l'établissement",
+              "answer": [
+                {
+                  "valueDate": "2024-01-08"
+                }
+              ]
+            },
+            {
+              "linkId": "5647854166587",
+              "text": "Mode d'entrée dans l'établissement",
+              "answer": [
+                {
+                  "valueString": "Domicile"
+                }
+              ]
+            },
+            {
+              "linkId": "2847854862589",
+              "text": "Mode de sortie de l'établissement",
+              "answer": [
+                {
+                  "valueString": "Domicile"
+                }
+              ]
+            },
+            {
+              "linkId": "7538854963589",
+              "text": "Groupe Homogène de Malades (GHM)",
+              "answer": [
+                {
+                  "valueString": "58"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "3647854867592",
+      "text": "Données de santé",
+      "item": [
+        {
+          "linkId": "7647854262583",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "linkId": "8647854168585",
+              "text": "Diagnostique",
+              "item": [
+                {
+                  "linkId": "5505101189372",
+                  "text": "Diagnostique",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "code": "I25.1"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4982746175943",
+                  "text": "Type",
+                  "answer": [
+                    {
+                      "valueString": "Principal"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "8637846785986",
+                  "text": "Libellé",
+                  "answer": [
+                    {
+                      "valueString": "Cardiopathie artérioscléreuse"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "8647854168585",
+              "text": "Diagnostique",
+              "item": [
+                {
+                  "linkId": "5505101189372",
+                  "text": "Diagnostique",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "code": "I10"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4982746175943",
+                  "text": "Type",
+                  "answer": [
+                    {
+                      "valueString": "Associé"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "8637846785986",
+                  "text": "Libellé",
+                  "answer": [
+                    {
+                      "valueString": "Hypertension essentielle (primitive)"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "2647854363584",
+          "text": "Actes médicaux et chirurgicaux",
+          "item": [
+            {
+              "linkId": "3647854464585",
+              "text": "Acte",
+              "item": [
+                {
+                  "linkId": "5647854565586",
+                  "text": "Code de l'acte (CCAM)",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                        "code": "DEQP003"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "6647854666587",
+                  "text": "Libellé de l'acte",
+                  "answer": [
+                    {
+                      "valueString": "Électrocardiographie sur au moins 12 dérivations"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7647854767588",
+                  "text": "Date et heure de l'acte",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-05T11:00:00"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "8647854868589",
+                  "text": "Exécutant",
+                  "answer": [
+                    {
+                      "valueString": "Dr. Cardiologue"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "3647854464585",
+              "text": "Acte",
+              "item": [
+                {
+                  "linkId": "5647854565586",
+                  "text": "Code de l'acte (CCAM)",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                        "code": "DDQH009"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "6647854666587",
+                  "text": "Libellé de l'acte",
+                  "answer": [
+                    {
+                      "valueString": "Artériographie coronaire sans ventriculographie gauche, par voie artérielle transcutanée"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7647854767588",
+                  "text": "Date et heure de l'acte",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-05T11:30:00"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "8647854868589",
+                  "text": "Exécutant",
+                  "answer": [
+                    {
+                      "valueString": "Dr. Cardiologue"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "4647856785989",
+          "text": "Biologie",
+          "item": [
+            {
+              "linkId": "9647856789583",
+              "text": "Résultat de biologie",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "http://loinc.org",
+                        "code": "1742-6"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4837856785983",
+                  "text": "Libellé du test",
+                  "answer": [
+                    {
+                      "valueString": "Alanine aminotransférase"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7637856785983",
+                  "text": "Valeur numérique",
+                  "answer": [
+                    {
+                      "valueDecimal": 42.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "8837856785983",
+                  "text": "Unité",
+                  "answer": [
+                    {
+                      "valueString": "UI/L"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5637856785983",
+                  "text": "Date de prélèvement",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-05T07:45:00+01:00"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "2837856785983",
+                  "text": "Statut du résultat",
+                  "answer": [
+                    {
+                      "valueString": "valide"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "1837856785983",
+                  "text": "Valeur de référence basse",
+                  "answer": [
+                    {
+                      "valueDecimal": 6.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "9837856785984",
+                  "text": "Valeur de référence haute",
+                  "answer": [
+                    {
+                      "valueDecimal": 25.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3837856785983",
+                  "text": "Laboratoire",
+                  "answer": [
+                    {
+                      "valueString": "Laboratoire HEGP"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "9647856789583",
+              "text": "Résultat de biologie",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "http://loinc.org",
+                        "code": "14682-9"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4837856785983",
+                  "text": "Libellé du test",
+                  "answer": [
+                    {
+                      "valueString": "Créatinine sérique"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7637856785983",
+                  "text": "Valeur numérique",
+                  "answer": [
+                    {
+                      "valueDecimal": 89.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "8837856785983",
+                  "text": "Unité",
+                  "answer": [
+                    {
+                      "valueString": "umol/L"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5637856785983",
+                  "text": "Date de prélèvement",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-05T07:45:00+01:00"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "2837856785983",
+                  "text": "Statut du résultat",
+                  "answer": [
+                    {
+                      "valueString": "valide"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "1837856785983",
+                  "text": "Valeur de référence basse",
+                  "answer": [
+                    {
+                      "valueDecimal": 62.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "9837856785984",
+                  "text": "Valeur de référence haute",
+                  "answer": [
+                    {
+                      "valueDecimal": 106.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3837856785983",
+                  "text": "Laboratoire",
+                  "answer": [
+                    {
+                      "valueString": "Laboratoire HEGP"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5647856789585",
+          "text": "Médicaments",
+          "item": [
+            {
+              "linkId": "8647856789586",
+              "text": "Prescription",
+              "item": [
+                {
+                  "linkId": "2837856789587",
+                  "text": "Dénomination",
+                  "answer": [
+                    {
+                      "valueString": "Clopidogrel 75mg"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7837856789588",
+                  "text": "Codification ATC",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "B01AC04"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3837856789589",
+                  "text": "Voie d'administration",
+                  "answer": [
+                    {
+                      "valueString": "Orale"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4837856789590",
+                  "text": "Prescripteur",
+                  "answer": [
+                    {
+                      "valueString": "Dr. Cardiologue"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5837856789591",
+                  "text": "Date de prescription",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-05"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "8647856789586",
+              "text": "Prescription",
+              "item": [
+                {
+                  "linkId": "2837856789587",
+                  "text": "Dénomination",
+                  "answer": [
+                    {
+                      "valueString": "Ramipril 5mg"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7837856789588",
+                  "text": "Codification ATC",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "C09AA05"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3837856789589",
+                  "text": "Voie d'administration",
+                  "answer": [
+                    {
+                      "valueString": "Orale"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4837856789590",
+                  "text": "Prescripteur",
+                  "answer": [
+                    {
+                      "valueString": "Dr. Cardiologue"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5837856789591",
+                  "text": "Date de prescription",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-05"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "9647856789592",
+              "text": "Administration",
+              "item": [
+                {
+                  "linkId": "1837856789593",
+                  "text": "Dénomination du médicament administré",
+                  "answer": [
+                    {
+                      "valueString": "Clopidogrel 75mg"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "2837856789594",
+                  "text": "Codification ATC du médicament administré",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "B01AC04"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3837856789595",
+                  "text": "Voie d'administration du médicament administré",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "Orale"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4837856789596",
+                  "text": "Quantité administrée",
+                  "answer": [
+                    {
+                      "valueDecimal": 75.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5837856789597",
+                  "text": "Unité de la quantité administrée",
+                  "answer": [
+                    {
+                      "valueString": "mg"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "6837856789598",
+                  "text": "Date et heure de début d'administration",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-06T08:00:00"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7837856789599",
+                  "text": "Date et heure de fin d'administration",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-06T08:05:00"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "9647856789592",
+              "text": "Administration",
+              "item": [
+                {
+                  "linkId": "1837856789593",
+                  "text": "Dénomination du médicament administré",
+                  "answer": [
+                    {
+                      "valueString": "Ramipril 5mg"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "2837856789594",
+                  "text": "Codification ATC du médicament administré",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "C09AA05"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3837856789595",
+                  "text": "Voie d'administration du médicament administré",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "Orale"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4837856789596",
+                  "text": "Quantité administrée",
+                  "answer": [
+                    {
+                      "valueDecimal": 5.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5837856789597",
+                  "text": "Unité de la quantité administrée",
+                  "answer": [
+                    {
+                      "valueString": "mg"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "6837856789598",
+                  "text": "Date et heure de début d'administration",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-06T08:00:00"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7837856789599",
+                  "text": "Date et heure de fin d'administration",
+                  "answer": [
+                    {
+                      "valueDateTime": "2024-01-06T08:05:00"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6647856789600",
+          "text": "Données du dossier de soins",
+          "item": [
+            {
+              "linkId": "7647856789601",
+              "text": "Mesure",
+              "item": [
+                {
+                  "linkId": "8647856789602",
+                  "text": "Code LOINC de la mesure",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "http://loinc.org",
+                        "code": "8867-4"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "9647856789603",
+                  "text": "Libellé de la mesure",
+                  "answer": [
+                    {
+                      "valueString": "Fréquence cardiaque"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "1647856789604",
+                  "text": "Valeur de la mesure",
+                  "answer": [
+                    {
+                      "valueDecimal": 68.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "2647856789605",
+                  "text": "Unité de la mesure",
+                  "answer": [
+                    {
+                      "valueString": "/min"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3647856789606",
+                  "text": "Date de la mesure",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-05"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4647856789607",
+                  "text": "Unité de soins où la mesure a été effectuée",
+                  "answer": [
+                    {
+                      "valueString": "Coronarographie"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5647856789608",
+                  "text": "Professionnel ayant effectué la mesure",
+                  "answer": [
+                    {
+                      "valueString": "IDE"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "7647856789601",
+              "text": "Mesure",
+              "item": [
+                {
+                  "linkId": "8647856789602",
+                  "text": "Code LOINC de la mesure",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "http://loinc.org",
+                        "code": "8480-6"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "9647856789603",
+                  "text": "Libellé de la mesure",
+                  "answer": [
+                    {
+                      "valueString": "Pression artérielle systolique"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "1647856789604",
+                  "text": "Valeur de la mesure",
+                  "answer": [
+                    {
+                      "valueDecimal": 145.0
+                    }
+                  ]
+                },
+                {
+                  "linkId": "2647856789605",
+                  "text": "Unité de la mesure",
+                  "answer": [
+                    {
+                      "valueString": "mm[Hg]"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "3647856789606",
+                  "text": "Date de la mesure",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-05"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "4647856789607",
+                  "text": "Unité de soins où la mesure a été effectuée",
+                  "answer": [
+                    {
+                      "valueString": "Coronarographie"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "5647856789608",
+                  "text": "Professionnel ayant effectué la mesure",
+                  "answer": [
+                    {
+                      "valueString": "IDE"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
