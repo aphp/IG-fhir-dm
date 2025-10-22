@@ -1,17 +1,9 @@
 {
   "resourceType": "QuestionnaireResponse",
   "id": "cas-5-usage-core",
-  "meta": {
-    "profile": [
-      "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/dm-questionnaire-response"
-    ]
-  },
-  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "status": "completed",
-  "subject": {
-    "reference": "Patient/5"
-  },
   "authored": "2024-01-13",
+  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
       "linkId": "4647259356106",
@@ -58,29 +50,26 @@
               ]
             },
             {
-              "linkId": "6298238654399",
-              "text": "Sexe",
+              "linkId": "6931296968515",
+              "text": "Rang gémellaire du bénéficiaire",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "http://hl7.org/fhir/administrative-gender",
-                    "code": "female"
-                  }
+                  "valueInteger": 1
                 }
               ]
             }
           ]
         },
         {
-          "linkId": "4982854868869",
-          "text": "Données de géocodage",
+          "linkId": "5491974639955",
+          "text": "Environnement",
           "item": [
             {
-              "linkId": "9128003755933",
-              "text": "Géolocalisation du lieu de résidence",
+              "linkId": "3816475533472",
+              "text": "Géocodage",
               "item": [
                 {
-                  "linkId": "4637216863544",
+                  "linkId": "3709843054556",
                   "text": "Latitude",
                   "answer": [
                     {
@@ -89,91 +78,45 @@
                   ]
                 },
                 {
-                  "linkId": "6331653161889",
+                  "linkId": "7651448032665",
                   "text": "Longitude",
                   "answer": [
                     {
                       "valueDecimal": 2.3474
                     }
                   ]
+                },
+                {
+                  "linkId": "1185653257776",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-12"
+                    }
+                  ]
                 }
               ]
             },
             {
-              "linkId": "5549781251074",
-              "text": "Code IRIS (Îlots Regroupés pour l'Information Statistique)",
+              "linkId": "7621032273792",
+              "text": "IRIS",
               "answer": [
                 {
-                  "valueString": "751181101"
-                }
-              ]
-            },
-            {
-              "linkId": "2611936050399",
-              "text": "Libellé de l'IRIS",
-              "answer": [
-                {
-                  "valueString": "MONTMARTRE"
-                }
-              ]
-            },
-            {
-              "linkId": "2343857367595",
-              "text": "Code géographique de la commune de résidence",
-              "answer": [
-                {
-                  "valueString": "75018"
-                }
-              ]
-            },
-            {
-              "linkId": "4637162752093",
-              "text": "Libellé de la commune de résidence",
-              "answer": [
-                {
-                  "valueString": "Paris 18ème arrondissement"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "linkId": "4473758958862",
-          "text": "Style de vie",
-          "item": [
-            {
-              "linkId": "7835176452787",
-              "text": "Consommation de tabac",
-              "answer": [
-                {
-                  "valueString": "Non-fumeur"
-                }
-              ]
-            },
-            {
-              "linkId": "2394881854859",
-              "text": "Consommation d'alcool",
-              "answer": [
-                {
-                  "valueString": "Non"
-                }
-              ]
-            },
-            {
-              "linkId": "7476481562366",
-              "text": "Consommation d'autres drogues",
-              "answer": [
-                {
-                  "valueString": "Non"
-                }
-              ]
-            },
-            {
-              "linkId": "3583481168758",
-              "text": "Niveau d'activité physique",
-              "answer": [
-                {
-                  "valueString": "Elevée"
+                  "valueCoding": {
+                    "system": "urn:oid:2.16.840.1.113883.2.8.1.5.5",
+                    "code": "751181101"
+                  },
+                  "item": [
+                    {
+                      "linkId": "4999580038872",
+                      "text": "Date du recueil de l'information",
+                      "answer": [
+                        {
+                          "valueDate": "2024-01-12"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -182,43 +125,71 @@
       ]
     },
     {
-      "linkId": "6437854961897",
-      "text": "Séjours hospitaliers",
+      "linkId": "2825244231605",
+      "text": "Données PMSI",
       "item": [
         {
-          "linkId": "4373857167589",
-          "text": "Séjour",
+          "linkId": "8164976487070",
+          "text": "Age",
+          "answer": [
+            {
+              "valueInteger": 20,
+              "item": [
+                {
+                  "linkId": "1690778867802",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-12"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "3894630481120",
+          "text": "Sexe",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "code": "female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM",
+                "code": "75018"
+              },
+              "item": [
+                {
+                  "linkId": "1537511139540",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-12"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
           "item": [
             {
-              "linkId": "7756481459863",
-              "text": "Établissement d'accueil",
-              "answer": [
-                {
-                  "valueString": "AP-HP Hôpital Robert-Debré"
-                }
-              ]
-            },
-            {
-              "linkId": "7637854166485",
-              "text": "Pôle",
-              "answer": [
-                {
-                  "valueString": "Médecine Interne"
-                }
-              ]
-            },
-            {
-              "linkId": "8637854963589",
-              "text": "Unité de soins",
-              "answer": [
-                {
-                  "valueString": "Service Adolescents"
-                }
-              ]
-            },
-            {
-              "linkId": "4547854962581",
-              "text": "Date d'entrée dans l'établissement",
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information",
               "answer": [
                 {
                   "valueDate": "2024-01-12"
@@ -226,331 +197,126 @@
               ]
             },
             {
-              "linkId": "9527854963589",
-              "text": "Date de sortie de l'établissement",
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueDate": "2024-01-13"
+                  "valueCoding": {
+                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
+                    "code": "DP"
+                  }
                 }
               ]
             },
             {
-              "linkId": "5647854166587",
-              "text": "Mode d'entrée dans l'établissement",
+              "linkId": "5505101189372",
+              "text": "Diagnostique",
               "answer": [
                 {
-                  "valueString": "Domicile"
+                  "valueCoding": {
+                    "code": "R50.9"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information",
+              "answer": [
+                {
+                  "valueDate": "2024-01-12"
                 }
               ]
             },
             {
-              "linkId": "2847854862589",
-              "text": "Mode de sortie de l'établissement",
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueString": "Domicile"
+                  "valueCoding": {
+                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
+                    "code": "DA"
+                  }
                 }
               ]
             },
             {
-              "linkId": "7538854963589",
-              "text": "Groupe Homogène de Malades (GHM)",
+              "linkId": "5505101189372",
+              "text": "Diagnostique",
               "answer": [
                 {
-                  "valueString": "20"
+                  "valueCoding": {
+                    "code": "J06.9"
+                  }
                 }
               ]
+            }
+          ]
+        },
+        {
+          "linkId": "5991443718282",
+          "text": "Date de début de séjour",
+          "answer": [
+            {
+              "valueDate": "2024-01-12"
+            }
+          ]
+        },
+        {
+          "linkId": "6114780320846",
+          "text": "Date de fin de séjour",
+          "answer": [
+            {
+              "valueDate": "2024-01-13"
+            }
+          ]
+        },
+        {
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R049-ModeEntree/FHIR/TRE-R049-ModeEntree",
+                "code": "8"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R048-ModeSortie/FHIR/TRE-R048-ModeSortie",
+                "code": "8"
+              }
             }
           ]
         }
       ]
     },
     {
-      "linkId": "3647854867592",
-      "text": "Données de santé",
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
       "item": [
         {
-          "linkId": "7647854262583",
-          "text": "Diagnostics",
-          "item": [
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
             {
-              "linkId": "8647854168585",
-              "text": "Diagnostique",
-              "item": [
-                {
-                  "linkId": "5505101189372",
-                  "text": "Diagnostique",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "code": "R50.9"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4982746175943",
-                  "text": "Type",
-                  "answer": [
-                    {
-                      "valueString": "Principal"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8637846785986",
-                  "text": "Libellé",
-                  "answer": [
-                    {
-                      "valueString": "Fièvre, sans précision"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "8647854168585",
-              "text": "Diagnostique",
-              "item": [
-                {
-                  "linkId": "5505101189372",
-                  "text": "Diagnostique",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "code": "J06.9"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4982746175943",
-                  "text": "Type",
-                  "answer": [
-                    {
-                      "valueString": "Associé"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8637846785986",
-                  "text": "Libellé",
-                  "answer": [
-                    {
-                      "valueString": "Infection des voies respiratoires supérieures, sans précision"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "linkId": "4647856785989",
-          "text": "Biologie",
-          "item": [
-            {
-              "linkId": "9647856789583",
-              "text": "Résultat de biologie",
+              "valueString": "Paracétamol",
               "item": [
                 {
                   "linkId": "1923143398283",
                   "text": "codification",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "6690-2"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856785983",
-                  "text": "Libellé du test",
-                  "answer": [
-                    {
-                      "valueString": "Globules blancs"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7637856785983",
-                  "text": "Valeur numérique",
-                  "answer": [
-                    {
-                      "valueDecimal": 12.8
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8837856785983",
-                  "text": "Unité",
-                  "answer": [
-                    {
-                      "valueString": "10e9/L"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5637856785983",
-                  "text": "Date de prélèvement",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-12T09:00:00+01:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856785983",
-                  "text": "Statut du résultat",
-                  "answer": [
-                    {
-                      "valueString": "valide"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1837856785983",
-                  "text": "Valeur de référence basse",
-                  "answer": [
-                    {
-                      "valueDecimal": 4.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "9837856785984",
-                  "text": "Valeur de référence haute",
-                  "answer": [
-                    {
-                      "valueDecimal": 11.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856785983",
-                  "text": "Laboratoire",
-                  "answer": [
-                    {
-                      "valueString": "Laboratoire Robert-Debré"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "9647856789583",
-              "text": "Résultat de biologie",
-              "item": [
-                {
-                  "linkId": "1923143398283",
-                  "text": "codification",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "26499-4"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856785983",
-                  "text": "Libellé du test",
-                  "answer": [
-                    {
-                      "valueString": "Neutrophiles"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7637856785983",
-                  "text": "Valeur numérique",
-                  "answer": [
-                    {
-                      "valueDecimal": 8.9
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8837856785983",
-                  "text": "Unité",
-                  "answer": [
-                    {
-                      "valueString": "10e9/L"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5637856785983",
-                  "text": "Date de prélèvement",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-12T09:00:00+01:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856785983",
-                  "text": "Statut du résultat",
-                  "answer": [
-                    {
-                      "valueString": "valide"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1837856785983",
-                  "text": "Valeur de référence basse",
-                  "answer": [
-                    {
-                      "valueDecimal": 1.8
-                    }
-                  ]
-                },
-                {
-                  "linkId": "9837856785984",
-                  "text": "Valeur de référence haute",
-                  "answer": [
-                    {
-                      "valueDecimal": 7.7
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856785983",
-                  "text": "Laboratoire",
-                  "answer": [
-                    {
-                      "valueString": "Laboratoire Robert-Debré"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "linkId": "5647856789585",
-          "text": "Médicaments",
-          "item": [
-            {
-              "linkId": "8647856789586",
-              "text": "Prescription",
-              "item": [
-                {
-                  "linkId": "2837856789587",
-                  "text": "Dénomination",
-                  "answer": [
-                    {
-                      "valueString": "Paracétamol 500mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7837856789588",
-                  "text": "Codification ATC",
                   "answer": [
                     {
                       "valueCoding": {
@@ -561,50 +327,46 @@
                   ]
                 },
                 {
-                  "linkId": "3837856789589",
+                  "linkId": "387026794874",
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueString": "Orale"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856789590",
-                  "text": "Prescripteur",
-                  "answer": [
-                    {
-                      "valueString": "Dr. Pédiatre"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5837856789591",
-                  "text": "Date de prescription",
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-12"
+                      "valueCoding": {
+                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "code": "26643006"
+                      }
                     }
                   ]
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
             {
-              "linkId": "9647856789592",
-              "text": "Administration",
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription",
+              "answer": [
+                {
+                  "valueDate": "2024-01-12"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Paracétamol",
               "item": [
                 {
-                  "linkId": "1837856789593",
-                  "text": "Dénomination du médicament administré",
-                  "answer": [
-                    {
-                      "valueString": "Paracétamol 500mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856789594",
-                  "text": "Codification ATC du médicament administré",
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
                       "valueCoding": {
@@ -615,125 +377,14 @@
                   ]
                 },
                 {
-                  "linkId": "3837856789595",
-                  "text": "Voie d'administration du médicament administré",
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration",
                   "answer": [
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "Orale"
+                        "code": "26643006"
                       }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856789596",
-                  "text": "Quantité administrée",
-                  "answer": [
-                    {
-                      "valueDecimal": 500.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5837856789597",
-                  "text": "Unité de la quantité administrée",
-                  "answer": [
-                    {
-                      "valueString": "mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "6837856789598",
-                  "text": "Date et heure de début d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-12T08:00:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7837856789599",
-                  "text": "Date et heure de fin d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-12T08:05:00"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "9647856789592",
-              "text": "Administration",
-              "item": [
-                {
-                  "linkId": "1837856789593",
-                  "text": "Dénomination du médicament administré",
-                  "answer": [
-                    {
-                      "valueString": "Acide folique 5mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856789594",
-                  "text": "Codification ATC du médicament administré",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B03BB01"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856789595",
-                  "text": "Voie d'administration du médicament administré",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "Orale"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856789596",
-                  "text": "Quantité administrée",
-                  "answer": [
-                    {
-                      "valueDecimal": 5.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5837856789597",
-                  "text": "Unité de la quantité administrée",
-                  "answer": [
-                    {
-                      "valueString": "mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "6837856789598",
-                  "text": "Date et heure de début d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T08:00:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7837856789599",
-                  "text": "Date et heure de fin d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T08:05:00"
                     }
                   ]
                 }
@@ -742,150 +393,36 @@
           ]
         },
         {
-          "linkId": "6647856789600",
-          "text": "Données du dossier de soins",
+          "linkId": "5720103839343",
+          "text": "Dosage",
           "item": [
             {
-              "linkId": "7647856789601",
-              "text": "Mesure",
-              "item": [
+              "linkId": "4765772671997",
+              "text": "Quantité administrée",
+              "answer": [
                 {
-                  "linkId": "8647856789602",
-                  "text": "Code LOINC de la mesure",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "8310-5"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "9647856789603",
-                  "text": "Libellé de la mesure",
-                  "answer": [
-                    {
-                      "valueString": "Température corporelle"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1647856789604",
-                  "text": "Valeur de la mesure",
-                  "answer": [
-                    {
-                      "valueDecimal": 38.5
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2647856789605",
-                  "text": "Unité de la mesure",
-                  "answer": [
-                    {
-                      "valueString": "Cel"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3647856789606",
-                  "text": "Date de la mesure",
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-12"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4647856789607",
-                  "text": "Unité de soins où la mesure a été effectuée",
-                  "answer": [
-                    {
-                      "valueString": "Service Adolescents"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5647856789608",
-                  "text": "Professionnel ayant effectué la mesure",
-                  "answer": [
-                    {
-                      "valueString": "IDE"
-                    }
-                  ]
+                  "valueQuantity": {
+                    "value": 500.0,
+                    "unit": "mg"
+                  }
                 }
               ]
             },
             {
-              "linkId": "7647856789601",
-              "text": "Mesure",
-              "item": [
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration",
+              "answer": [
                 {
-                  "linkId": "8647856789602",
-                  "text": "Code LOINC de la mesure",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "8867-4"
-                      }
-                    }
-                  ]
-                },
+                  "valueDateTime": "2024-01-12T08:00:00+01:00"
+                }
+              ]
+            },
+            {
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration",
+              "answer": [
                 {
-                  "linkId": "9647856789603",
-                  "text": "Libellé de la mesure",
-                  "answer": [
-                    {
-                      "valueString": "Fréquence cardiaque"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1647856789604",
-                  "text": "Valeur de la mesure",
-                  "answer": [
-                    {
-                      "valueDecimal": 95.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2647856789605",
-                  "text": "Unité de la mesure",
-                  "answer": [
-                    {
-                      "valueString": "/min"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3647856789606",
-                  "text": "Date de la mesure",
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-12"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4647856789607",
-                  "text": "Unité de soins où la mesure a été effectuée",
-                  "answer": [
-                    {
-                      "valueString": "Service Adolescents"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5647856789608",
-                  "text": "Professionnel ayant effectué la mesure",
-                  "answer": [
-                    {
-                      "valueString": "IDE"
-                    }
-                  ]
+                  "valueDateTime": "2024-01-12T08:05:00+01:00"
                 }
               ]
             }

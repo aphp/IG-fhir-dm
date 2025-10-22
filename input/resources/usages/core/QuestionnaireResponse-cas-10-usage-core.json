@@ -1,17 +1,9 @@
 {
   "resourceType": "QuestionnaireResponse",
   "id": "cas-10-usage-core",
-  "meta": {
-    "profile": [
-      "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/dm-questionnaire-response"
-    ]
-  },
-  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "status": "completed",
-  "subject": {
-    "reference": "Patient/10"
-  },
   "authored": "2024-01-19",
+  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
       "linkId": "4647259356106",
@@ -26,7 +18,7 @@
               "text": "Nom patient",
               "answer": [
                 {
-                  "valueString": "David"
+                  "valueString": "Moreau"
                 }
               ]
             },
@@ -35,7 +27,7 @@
               "text": "Prénom patient",
               "answer": [
                 {
-                  "valueString": "Thomas"
+                  "valueString": "Jean"
                 }
               ]
             },
@@ -44,7 +36,7 @@
               "text": "Numéro d'inscription au Répertoire (NIR)",
               "answer": [
                 {
-                  "valueString": "189127865432109"
+                  "valueString": "176085487651234"
                 }
               ]
             },
@@ -53,18 +45,196 @@
               "text": "Date de naissance",
               "answer": [
                 {
-                  "valueDate": "1989-12-07"
+                  "valueDate": "1976-08-15"
                 }
               ]
             },
             {
-              "linkId": "6298238654399",
-              "text": "Sexe",
+              "linkId": "6931296968515",
+              "text": "Rang gémellaire du bénéficiaire",
+              "answer": [
+                {
+                  "valueInteger": 1
+                }
+              ]
+            },
+            {
+              "linkId": "5633552097315",
+              "text": "Date de décès",
+              "answer": [
+                {
+                  "valueDate": "2023-11-10"
+                }
+              ],
+              "item": [
+                {
+                  "linkId": "9098810065693",
+                  "text": "Source de la date de décès",
+                  "answer": [
+                    {
+                      "valueString": "insee"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5491974639955",
+          "text": "Environnement",
+          "item": [
+            {
+              "linkId": "3816475533472",
+              "text": "Géocodage",
+              "item": [
+                {
+                  "linkId": "3709843054556",
+                  "text": "Latitude",
+                  "answer": [
+                    {
+                      "valueDecimal": 48.8584
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7651448032665",
+                  "text": "Longitude",
+                  "answer": [
+                    {
+                      "valueDecimal": 2.2945
+                    }
+                  ]
+                },
+                {
+                  "linkId": "1185653257776",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2023-10-15"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "7621032273792",
+              "text": "IRIS",
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "http://hl7.org/fhir/administrative-gender",
-                    "code": "male"
+                    "system": "urn:oid:2.16.840.1.113883.2.8.1.5.5",
+                    "code": "751161301"
+                  },
+                  "item": [
+                    {
+                      "linkId": "4999580038872",
+                      "text": "Date du recueil de l'information",
+                      "answer": [
+                        {
+                          "valueDate": "2023-10-15"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2825244231605",
+      "text": "Données PMSI",
+      "item": [
+        {
+          "linkId": "8164976487070",
+          "text": "Age",
+          "answer": [
+            {
+              "valueInteger": 47,
+              "item": [
+                {
+                  "linkId": "1690778867802",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2023-11-05"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "3894630481120",
+          "text": "Sexe",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "code": "male"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM",
+                "code": "75016"
+              },
+              "item": [
+                {
+                  "linkId": "1537511139540",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2023-10-15"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information",
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ]
+            },
+            {
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
+                    "code": "DP"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "5505101189372",
+              "text": "Diagnostique",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "code": "R57.0"
                   }
                 }
               ]
@@ -72,323 +242,271 @@
           ]
         },
         {
-          "linkId": "4982854868869",
-          "text": "Données de géocodage",
-          "item": [
-            {
-              "linkId": "9128003755933",
-              "text": "Géolocalisation du lieu de résidence",
-              "item": [
-                {
-                  "linkId": "4637216863544",
-                  "text": "Latitude",
-                  "answer": [
-                    {
-                      "valueDecimal": 48.8606
-                    }
-                  ]
-                },
-                {
-                  "linkId": "6331653161889",
-                  "text": "Longitude",
-                  "answer": [
-                    {
-                      "valueDecimal": 2.3376
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "5549781251074",
-              "text": "Code IRIS (Îlots Regroupés pour l'Information Statistique)",
-              "answer": [
-                {
-                  "valueString": "751061101"
-                }
-              ]
-            },
-            {
-              "linkId": "2611936050399",
-              "text": "Libellé de l'IRIS",
-              "answer": [
-                {
-                  "valueString": "SAINT-GERMAIN-L'AUXERROIS"
-                }
-              ]
-            },
-            {
-              "linkId": "2343857367595",
-              "text": "Code géographique de la commune de résidence",
-              "answer": [
-                {
-                  "valueString": "75006"
-                }
-              ]
-            },
-            {
-              "linkId": "4637162752093",
-              "text": "Libellé de la commune de résidence",
-              "answer": [
-                {
-                  "valueString": "Paris 6ème arrondissement"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "linkId": "4473758958862",
-          "text": "Style de vie",
-          "item": [
-            {
-              "linkId": "7835176452787",
-              "text": "Consommation de tabac",
-              "answer": [
-                {
-                  "valueString": "Fumeur actuel"
-                }
-              ]
-            },
-            {
-              "linkId": "2394881854859",
-              "text": "Consommation d'alcool",
-              "answer": [
-                {
-                  "valueString": "Occasionnel"
-                }
-              ]
-            },
-            {
-              "linkId": "7476481562366",
-              "text": "Consommation d'autres drogues",
-              "answer": [
-                {
-                  "valueString": "Non"
-                }
-              ]
-            },
-            {
-              "linkId": "3583481168758",
-              "text": "Niveau d'activité physique",
-              "answer": [
-                {
-                  "valueString": "Faible"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "6437854961897",
-      "text": "Séjours hospitaliers",
-      "item": [
-        {
-          "linkId": "4373857167589",
-          "text": "Séjour",
-          "item": [
-            {
-              "linkId": "7756481459863",
-              "text": "Établissement d'accueil",
-              "answer": [
-                {
-                  "valueString": "AP-HP Hôpital Avicenne"
-                }
-              ]
-            },
-            {
-              "linkId": "7637854166485",
-              "text": "Pôle",
-              "answer": [
-                {
-                  "valueString": "Pneumologie"
-                }
-              ]
-            },
-            {
-              "linkId": "8637854963589",
-              "text": "Unité de soins",
-              "answer": [
-                {
-                  "valueString": "Pneumologie A"
-                }
-              ]
-            },
-            {
-              "linkId": "4547854962581",
-              "text": "Date d'entrée dans l'établissement",
-              "answer": [
-                {
-                  "valueDate": "2024-01-16"
-                }
-              ]
-            },
-            {
-              "linkId": "9527854963589",
-              "text": "Date de sortie de l'établissement",
-              "answer": [
-                {
-                  "valueDate": "2024-01-19"
-                }
-              ]
-            },
-            {
-              "linkId": "5647854166587",
-              "text": "Mode d'entrée dans l'établissement",
-              "answer": [
-                {
-                  "valueString": "Domicile"
-                }
-              ]
-            },
-            {
-              "linkId": "2847854862589",
-              "text": "Mode de sortie de l'établissement",
-              "answer": [
-                {
-                  "valueString": "Domicile"
-                }
-              ]
-            },
-            {
-              "linkId": "7538854963589",
-              "text": "Groupe Homogène de Malades (GHM)",
-              "answer": [
-                {
-                  "valueString": "34"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "3647854867592",
-      "text": "Données de santé",
-      "item": [
-        {
-          "linkId": "7647854262583",
+          "linkId": "9391816419630",
           "text": "Diagnostics",
           "item": [
             {
-              "linkId": "8647854168585",
-              "text": "Diagnostique",
-              "item": [
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information",
+              "answer": [
                 {
-                  "linkId": "5505101189372",
-                  "text": "Diagnostique",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "code": "J44.1"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4982746175943",
-                  "text": "Type",
-                  "answer": [
-                    {
-                      "valueString": "Principal"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8637846785986",
-                  "text": "Libellé",
-                  "answer": [
-                    {
-                      "valueString": "Maladie pulmonaire obstructive chronique avec épisodes aigus, sans précision"
-                    }
-                  ]
+                  "valueDate": "2023-11-05"
                 }
               ]
             },
             {
-              "linkId": "8647854168585",
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
+                    "code": "DA"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "5505101189372",
               "text": "Diagnostique",
-              "item": [
+              "answer": [
                 {
-                  "linkId": "5505101189372",
-                  "text": "Diagnostique",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "code": "Z88.0"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4982746175943",
-                  "text": "Type",
-                  "answer": [
-                    {
-                      "valueString": "Associé"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8637846785986",
-                  "text": "Libellé",
-                  "answer": [
-                    {
-                      "valueString": "Antécédents personnels d'allergie à la pénicilline"
-                    }
-                  ]
+                  "valueCoding": {
+                    "code": "I25.9"
+                  }
                 }
               ]
             }
           ]
         },
         {
-          "linkId": "2647854363584",
-          "text": "Actes médicaux et chirurgicaux",
+          "linkId": "591926901726",
+          "text": "Actes",
           "item": [
             {
-              "linkId": "3647854464585",
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information",
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ]
+            },
+            {
+              "linkId": "5066866286682",
+              "text": "Date de l'acte",
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T22:15:00+01:00"
+                }
+              ]
+            },
+            {
+              "linkId": "7758110033600",
               "text": "Acte",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "code": "GELD004"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information",
+              "answer": [
+                {
+                  "valueDate": "2023-11-06"
+                }
+              ]
+            },
+            {
+              "linkId": "5066866286682",
+              "text": "Date de l'acte",
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-06T09:00:00+01:00"
+                }
+              ]
+            },
+            {
+              "linkId": "7758110033600",
+              "text": "Acte",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "code": "DDQH012"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5991443718282",
+          "text": "Date de début de séjour",
+          "answer": [
+            {
+              "valueDate": "2023-11-05"
+            }
+          ]
+        },
+        {
+          "linkId": "6114780320846",
+          "text": "Date de fin de séjour",
+          "answer": [
+            {
+              "valueDate": "2023-11-10"
+            }
+          ]
+        },
+        {
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R049-ModeEntree/FHIR/TRE-R049-ModeEntree",
+                "code": "8"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R048-ModeSortie/FHIR/TRE-R048-ModeSortie",
+                "code": "9"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "7702944131447",
+      "text": "Biologie",
+      "item": [
+        {
+          "linkId": "5241323453538",
+          "text": "Fonction rénale",
+          "item": [
+            {
+              "linkId": "500408205043",
+              "text": "Créatininémie",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 156.0,
+                    "unit": "umol/L"
+                  },
+                  "item": [
+                    {
+                      "linkId": "977768150991",
+                      "text": "code loinc",
+                      "answer": [
+                        {
+                          "valueCoding": {
+                            "system": "http://loinc.org",
+                            "code": "14682-9"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "279176538278",
+                      "text": "Date et heure du prélèvement",
+                      "answer": [
+                        {
+                          "valueDateTime": "2023-11-05T21:00:00+01:00"
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "271848662924",
+                      "text": "Statut de validation",
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "488869963230",
+                      "text": "Borne inférieure de normalité du résultat",
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 62.0,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "984480974142",
+                      "text": "Borne supérieure de normalité du résultat",
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 106.0,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Noradrénaline",
               "item": [
                 {
-                  "linkId": "5647854565586",
-                  "text": "Code de l'acte (CCAM)",
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-ccam",
-                        "code": "GLQP008"
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "C01CA03"
                       }
                     }
                   ]
                 },
                 {
-                  "linkId": "6647854666587",
-                  "text": "Libellé de l'acte",
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueString": "Mesure de la capacité vitale lente et de l'expiration forcée, avec gazométrie sanguine artérielle [Spirométrie standard avec gaz du sang]"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7647854767588",
-                  "text": "Date et heure de l'acte",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-19T10:45:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8647854868589",
-                  "text": "Exécutant",
-                  "answer": [
-                    {
-                      "valueString": "Dr. Pneumologue"
+                      "valueCoding": {
+                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "code": "38233005"
+                      }
                     }
                   ]
                 }
@@ -397,538 +515,48 @@
           ]
         },
         {
-          "linkId": "4647856785989",
-          "text": "Biologie",
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
           "item": [
             {
-              "linkId": "9647856789583",
-              "text": "Résultat de biologie",
-              "item": [
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription",
+              "answer": [
                 {
-                  "linkId": "1923143398283",
-                  "text": "codification",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "718-7"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856785983",
-                  "text": "Libellé du test",
-                  "answer": [
-                    {
-                      "valueString": "Hémoglobine"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7637856785983",
-                  "text": "Valeur numérique",
-                  "answer": [
-                    {
-                      "valueDecimal": 11.2
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8837856785983",
-                  "text": "Unité",
-                  "answer": [
-                    {
-                      "valueString": "g/dL"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5637856785983",
-                  "text": "Date de prélèvement",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T07:30:00+01:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856785983",
-                  "text": "Statut du résultat",
-                  "answer": [
-                    {
-                      "valueString": "valide"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1837856785983",
-                  "text": "Valeur de référence basse",
-                  "answer": [
-                    {
-                      "valueDecimal": 12.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "9837856785984",
-                  "text": "Valeur de référence haute",
-                  "answer": [
-                    {
-                      "valueDecimal": 16.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856785983",
-                  "text": "Laboratoire",
-                  "answer": [
-                    {
-                      "valueString": "Laboratoire Avicenne"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "9647856789583",
-              "text": "Résultat de biologie",
-              "item": [
-                {
-                  "linkId": "1923143398283",
-                  "text": "codification",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "6690-2"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856785983",
-                  "text": "Libellé du test",
-                  "answer": [
-                    {
-                      "valueString": "Globules blancs"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7637856785983",
-                  "text": "Valeur numérique",
-                  "answer": [
-                    {
-                      "valueDecimal": 14.5
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8837856785983",
-                  "text": "Unité",
-                  "answer": [
-                    {
-                      "valueString": "10e9/L"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5637856785983",
-                  "text": "Date de prélèvement",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T07:30:00+01:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856785983",
-                  "text": "Statut du résultat",
-                  "answer": [
-                    {
-                      "valueString": "valide"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1837856785983",
-                  "text": "Valeur de référence basse",
-                  "answer": [
-                    {
-                      "valueDecimal": 4.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "9837856785984",
-                  "text": "Valeur de référence haute",
-                  "answer": [
-                    {
-                      "valueDecimal": 11.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856785983",
-                  "text": "Laboratoire",
-                  "answer": [
-                    {
-                      "valueString": "Laboratoire Avicenne"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "9647856789583",
-              "text": "Résultat de biologie",
-              "item": [
-                {
-                  "linkId": "1923143398283",
-                  "text": "codification",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "1988-5"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856785983",
-                  "text": "Libellé du test",
-                  "answer": [
-                    {
-                      "valueString": "Protéine C-réactive"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7637856785983",
-                  "text": "Valeur numérique",
-                  "answer": [
-                    {
-                      "valueDecimal": 58.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "8837856785983",
-                  "text": "Unité",
-                  "answer": [
-                    {
-                      "valueString": "mg/L"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5637856785983",
-                  "text": "Date de prélèvement",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T07:30:00+01:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856785983",
-                  "text": "Statut du résultat",
-                  "answer": [
-                    {
-                      "valueString": "valide"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1837856785983",
-                  "text": "Valeur de référence basse",
-                  "answer": [
-                    {
-                      "valueDecimal": 0.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "9837856785984",
-                  "text": "Valeur de référence haute",
-                  "answer": [
-                    {
-                      "valueDecimal": 3.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856785983",
-                  "text": "Laboratoire",
-                  "answer": [
-                    {
-                      "valueString": "Laboratoire Avicenne"
-                    }
-                  ]
+                  "valueDate": "2023-11-05"
                 }
               ]
             }
           ]
         },
         {
-          "linkId": "5647856789585",
-          "text": "Médicaments",
-          "item": [
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
             {
-              "linkId": "8647856789586",
-              "text": "Prescription",
+              "valueString": "Noradrénaline",
               "item": [
                 {
-                  "linkId": "2837856789587",
-                  "text": "Dénomination",
-                  "answer": [
-                    {
-                      "valueString": "Prednisolone 40mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7837856789588",
-                  "text": "Codification ATC",
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "H02AB06"
+                        "code": "C01CA03"
                       }
                     }
                   ]
                 },
                 {
-                  "linkId": "3837856789589",
+                  "linkId": "811931484859",
                   "text": "Voie d'administration",
-                  "answer": [
-                    {
-                      "valueString": "Orale"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856789590",
-                  "text": "Prescripteur",
-                  "answer": [
-                    {
-                      "valueString": "Dr. Pneumologue"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5837856789591",
-                  "text": "Date de prescription",
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-16"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "8647856789586",
-              "text": "Prescription",
-              "item": [
-                {
-                  "linkId": "2837856789587",
-                  "text": "Dénomination",
-                  "answer": [
-                    {
-                      "valueString": "Salbutamol"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7837856789588",
-                  "text": "Codification ATC",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "R03AC02"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856789589",
-                  "text": "Voie d'administration",
-                  "answer": [
-                    {
-                      "valueString": "Inhalation"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856789590",
-                  "text": "Prescripteur",
-                  "answer": [
-                    {
-                      "valueString": "Dr. Pneumologue"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5837856789591",
-                  "text": "Date de prescription",
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-16"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "9647856789592",
-              "text": "Administration",
-              "item": [
-                {
-                  "linkId": "1837856789593",
-                  "text": "Dénomination du médicament administré",
-                  "answer": [
-                    {
-                      "valueString": "Prednisolone 40mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856789594",
-                  "text": "Codification ATC du médicament administré",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "H02AB06"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856789595",
-                  "text": "Voie d'administration du médicament administré",
                   "answer": [
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "Orale"
+                        "code": "38233005"
                       }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856789596",
-                  "text": "Quantité administrée",
-                  "answer": [
-                    {
-                      "valueDecimal": 40.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5837856789597",
-                  "text": "Unité de la quantité administrée",
-                  "answer": [
-                    {
-                      "valueString": "mg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "6837856789598",
-                  "text": "Date et heure de début d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T08:00:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7837856789599",
-                  "text": "Date et heure de fin d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T08:05:00"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "9647856789592",
-              "text": "Administration",
-              "item": [
-                {
-                  "linkId": "1837856789593",
-                  "text": "Dénomination du médicament administré",
-                  "answer": [
-                    {
-                      "valueString": "Salbutamol"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2837856789594",
-                  "text": "Codification ATC du médicament administré",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "R03AC02"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3837856789595",
-                  "text": "Voie d'administration du médicament administré",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "Inhalation"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4837856789596",
-                  "text": "Quantité administrée",
-                  "answer": [
-                    {
-                      "valueDecimal": 100.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5837856789597",
-                  "text": "Unité de la quantité administrée",
-                  "answer": [
-                    {
-                      "valueString": "mcg"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "6837856789598",
-                  "text": "Date et heure de début d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T06:00:00"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "7837856789599",
-                  "text": "Date et heure de fin d'administration",
-                  "answer": [
-                    {
-                      "valueDateTime": "2024-01-16T06:05:00"
                     }
                   ]
                 }
@@ -937,148 +565,196 @@
           ]
         },
         {
-          "linkId": "6647856789600",
-          "text": "Données du dossier de soins",
+          "linkId": "5720103839343",
+          "text": "Dosage",
           "item": [
             {
-              "linkId": "7647856789601",
-              "text": "Mesure",
-              "item": [
+              "linkId": "4765772671997",
+              "text": "Quantité administrée",
+              "answer": [
                 {
-                  "linkId": "8647856789602",
-                  "text": "Code LOINC de la mesure",
-                  "answer": [
-                    {
-                      "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "8867-4"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "linkId": "9647856789603",
-                  "text": "Libellé de la mesure",
-                  "answer": [
-                    {
-                      "valueString": "Fréquence cardiaque"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "1647856789604",
-                  "text": "Valeur de la mesure",
-                  "answer": [
-                    {
-                      "valueDecimal": 105.0
-                    }
-                  ]
-                },
-                {
-                  "linkId": "2647856789605",
-                  "text": "Unité de la mesure",
-                  "answer": [
-                    {
-                      "valueString": "/min"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "3647856789606",
-                  "text": "Date de la mesure",
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-16"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "4647856789607",
-                  "text": "Unité de soins où la mesure a été effectuée",
-                  "answer": [
-                    {
-                      "valueString": "Pneumologie A"
-                    }
-                  ]
-                },
-                {
-                  "linkId": "5647856789608",
-                  "text": "Professionnel ayant effectué la mesure",
-                  "answer": [
-                    {
-                      "valueString": "IDE"
-                    }
-                  ]
+                  "valueQuantity": {
+                    "value": 0.5,
+                    "unit": "mg"
+                  }
                 }
               ]
             },
             {
-              "linkId": "7647856789601",
-              "text": "Mesure",
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration",
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T22:30:00+01:00"
+                }
+              ]
+            },
+            {
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration",
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T23:30:00+01:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Héparine sodique",
               "item": [
                 {
-                  "linkId": "8647856789602",
-                  "text": "Code LOINC de la mesure",
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "http://loinc.org",
-                        "code": "9279-1"
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "B01AB01"
                       }
                     }
                   ]
                 },
                 {
-                  "linkId": "9647856789603",
-                  "text": "Libellé de la mesure",
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueString": "Fréquence respiratoire"
+                      "valueCoding": {
+                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "code": "38233005"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription",
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Héparine sodique",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "B01AB01"
+                      }
                     }
                   ]
                 },
                 {
-                  "linkId": "1647856789604",
-                  "text": "Valeur de la mesure",
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueDecimal": 28.0
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "38233005"
+                      }
                     }
                   ]
-                },
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "linkId": "4765772671997",
+              "text": "Quantité administrée",
+              "answer": [
                 {
-                  "linkId": "2647856789605",
-                  "text": "Unité de la mesure",
-                  "answer": [
-                    {
-                      "valueString": "/min"
-                    }
-                  ]
-                },
+                  "valueQuantity": {
+                    "value": 5000.0,
+                    "unit": "UI"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration",
+              "answer": [
                 {
-                  "linkId": "3647856789606",
-                  "text": "Date de la mesure",
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-16"
-                    }
-                  ]
-                },
+                  "valueDateTime": "2023-11-05T22:00:00+01:00"
+                }
+              ]
+            },
+            {
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration",
+              "answer": [
                 {
-                  "linkId": "4647856789607",
-                  "text": "Unité de soins où la mesure a été effectuée",
-                  "answer": [
-                    {
-                      "valueString": "Pneumologie A"
-                    }
-                  ]
-                },
+                  "valueDateTime": "2023-11-05T22:30:00+01:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "214880328197",
+      "text": "Examen clinique",
+      "item": [
+        {
+          "linkId": "305831246173",
+          "text": "Dossier de soins",
+          "item": [
+            {
+              "linkId": "4160905247955",
+              "text": "Pression artérielle systolique",
+              "answer": [
                 {
-                  "linkId": "5647856789608",
-                  "text": "Professionnel ayant effectué la mesure",
-                  "answer": [
+                  "valueQuantity": {
+                    "value": 75.0,
+                    "unit": "mm[Hg]"
+                  },
+                  "item": [
                     {
-                      "valueString": "IDE"
+                      "linkId": "987654638442",
+                      "text": "Date de la mesure",
+                      "answer": [
+                        {
+                          "valueDate": "2023-11-05"
+                        }
+                      ]
                     }
                   ]
                 }

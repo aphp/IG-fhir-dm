@@ -11,6 +11,22 @@ Le tableau ci-dessous référence tous les profils FHIR résultat du processus d
 
 ### Exemples
 
+#### Cas 1 :
+
+#### Cas 2 :
+
+#### Cas 3 :
+
+#### Cas 4 :
+
+#### Cas 5 :
+
+#### Cas 6 :
+
+#### Cas 7 :
+
+#### Cas 8 :
+
 #### Cas 9 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
 
 Dans l'histoire du cas 9 on peut représenter plusieurs informations dans le modèle standard :
@@ -35,6 +51,8 @@ Dans l'histoire du cas 9 on peut représenter plusieurs informations dans le mod
   - [J1 spironolactone](MedicationAdministration-spironolactone-j1-cas-9.html)
   - [J2 spironolactone](MedicationAdministration-spironolactone-j2-cas-9.html)
   - [Albumine](MedicationAdministration-albumine-j1-cas-9.html)
+
+#### Cas 10 :
 
 #### Cas 11 : Suivi diabète de type 2
 

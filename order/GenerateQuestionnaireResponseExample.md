@@ -3970,21 +3970,28 @@ Les données des exemples se trouve `data-platform/raw-layer/test/file/*.csv`
 3. Mapper TOUTES les données disponibles du patient dans les items appropriés
 4. Respecter la ressource Questionnaire disponible dans la section **MODÈLE du Questionnaire**
 5. Assurer la cohérence des dates et références
-6. Utiliser les linkId de la ressource Questionnaire Générer des IDs uniques et valides
-7. Pour les réponses codées, utiliser strictement les choix possible issue du Questionnaire et ne pas mettre les display
-8. Générer les items que si il y a des réponses, pas de tableau vide
-9. Les actes doivent provenir du système de codage : https://smt.esante.gouv.fr/terminologie-ccam (suivre l'exemple)
-10. Les diagnostics, et autres codes PMSI ne pas mettre de système (suivre l'exemple)
-11. Le système de codage des médicaments est : https://smt.esante.gouv.fr/terminologie-atc (suivre l'exemple)
-12. Le système de codage des voies d'administration est : https://smt.esante.gouv.fr/terminologie-standardterms (suivre l'exemple)
-13. Le résutlat doit se trouver dans `input/resources/usages/core/`
-14. Le nom du fichier doit être `QuestionnaireResponse-cas-NUMERO-usage-core.json` NUMERO étant le numéro patient
-15. Ne PAS générer d'autres ressources QuestionnaireResponse
+6. Ne PAS ajouter l'élement `subject`
+7. Utiliser les linkId de la ressource Questionnaire et seulement (pas de nouveau linkid)
+8. Pour les réponses codées, utiliser strictement les choix possible issue du Questionnaire et ne pas mettre les display
+9. Générer les items que si il y a des réponses, pas de tableau vide
+10. Prendre les systèmes de codage définis dans la ressource Questionnaire (suivre l'exemple)
+11. Les actes doivent provenir du système de codage : https://smt.esante.gouv.fr/terminologie-ccam (suivre l'exemple)
+12. Les médicament doivent provenir du système de codage : https://smt.esante.gouv.fr/terminologie-atc (suivre l'exemple)
+13. Les voies d'administration doivent provenir du système de codage : https://smt.esante.gouv.fr/terminologie-standardterms (suivre l'exemple)
+14. Le résutlat doit se trouver dans `input/resources/usages/core/`
+15. Le nom du fichier doit être `QuestionnaireResponse-cas-NUMERO-usage-core.json` NUMERO étant le numéro patient
+16. Ne PAS générer d'autres ressources QuestionnaireResponse
 
 ## COMMANDE
 
-Génère la ressource FHIR QuestionnaireResponse uniquement pour le patient numéro **10**
+Génère la ressource FHIR QuestionnaireResponse uniquement pour le patient numéro **4**
 
 ## FORMAT DE SORTIE
 
 JSON uniquement, valide FHIR, sans commentaires.
+
+## Vérifications
+
+- Tous les item.linkId de la ressource QuestionnareResponse générée doivent être présent dans la ressource Questionnaire `input/resources/usages/core/Questionnaire-UsageCore.json`
+- Tous les item.text de la ressource QuestionnareResponse générée doivent être identique dans la ressource Questionnaire `input/resources/usages/core/Questionnaire-UsageCore.json`
+- Tous les item.answer valeur de type valueCoding doivent tenir compte de la listes des réponses possibles définis dnas la ressource Questionnaire `input/resources/usages/core/Questionnaire-UsageCore.json`
