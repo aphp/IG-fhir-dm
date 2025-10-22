@@ -133,7 +133,7 @@ resources:
     description: Exemple correspondant au patient 3 du jeu de test
     exampleBoolean: true
   QuestionnaireResponse/cas-4-usage-core:
-    name: Patient 4 - Madame Moreau
+    name: Patient 4 - Monsieur Moreau
     description: Exemple correspondant au patient 4 du jeu de test
     exampleBoolean: true
   QuestionnaireResponse/cas-5-usage-core:
