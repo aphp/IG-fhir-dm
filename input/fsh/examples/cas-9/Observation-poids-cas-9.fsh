@@ -1,7 +1,7 @@
-Instance: alcool-cas-9
-InstanceOf: DMObservationAlcoholUseStatus
-Title: "Consommation d'alcool du patient 9"
-Description: """Consommation d'alcool [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Instance: poids-cas-9
+InstanceOf: DMObservationBodyWeight
+Title: "Poids du patient 9"
+Description: """Poids [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * status = #final
@@ -10,21 +10,20 @@ Usage: #example
 * encounter = Reference(sejour-cas-9)
 
 * effectiveDateTime = "2024-01-13"
+* valueQuantity = 58.2 'kg' "kg"
 
-* valueString = "Ex-buveur"
 
-
-Instance: 640fca34-d16d-41af-8812-fd7aec335db4
+Instance: e370e99d-f7f1-4a8a-aaaa-578320aeebbe
 InstanceOf: Provenance
 Title: "Création des ressources de la couche sémantique pour la représentation du cas 9"
 Description: """Création des ressources de la couche sémantique pour la représentation du cas 9"""
 Usage: #definition
 
-* target[0] = Reference(alcool-cas-9)
-* occurredDateTime = "2025-10-16"
+* target[0] = Reference(poids-cas-9)
+* occurredDateTime = "2025-10-21"
 * reason.text = """Création des ressources de la couche sémantique pour la représentation du cas 9"""
 * activity = $v3-DataOperation#CREATE
 * agent
   * type = $provenance-participant-type#author
   * who.display = "Nicolas Griffon"
-* recorded = "2025-10-16T16:00:00+02:00"
+* recorded = "2025-10-21T16:00:00+02:00"

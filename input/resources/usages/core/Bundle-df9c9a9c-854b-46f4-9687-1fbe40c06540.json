@@ -57,12 +57,15 @@
           "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
         },
         {
-          "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
-          "valueString" : "010040102 - Longeray-Gare"
-        },
-        {
           "url" : "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo",
           "valueCode" : "75009"
+        }],
+        "line" : ["Longeray-Gare"],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "010040102"
+          }]
         }],
         "period" : {
           "start" : "2025-08-22"

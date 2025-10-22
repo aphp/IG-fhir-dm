@@ -10,7 +10,7 @@ Usage: #example
 
 * clinicalStatus = http://terminology.hl7.org/CodeSystem/condition-clinical#active "Active"
 * verificationStatus = http://terminology.hl7.org/CodeSystem/condition-ver-status#confirmed "Confirmed"
-* category = #encounter-diagnosis
+* category = http://terminology.hl7.org/CodeSystem/condition-category#encounter-diagnosis
 * code[+] = http://hl7.org/fhir/sid/icd-10#R18 "Ascites"
 
 * subject = Reference(cas-9)

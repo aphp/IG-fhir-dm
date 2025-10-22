@@ -15,11 +15,11 @@ Usage: #example
 
 * effectiveDateTime = "2024-01-13T08:30:00+01:00"
 
-* valueQuantity.value = 38.0
+* valueQuantity = 38.0 '[IU]/L' "[IU]/L"
 
 * referenceRange
-  * low.value = 6.0
-  * high.value = 25.0
+  * low = 6.0 '[IU]/L' "[IU]/L"
+  * high = 25.0 '[IU]/L' "[IU]/L"
 
 * performer.display = "Laboratoire Beaujon"
 
