@@ -65,27 +65,43 @@ Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples se
 
 #### Cas 1 : à faire
 
+{% include QuestionnaireResponse-cas-1-usage-core-intro.md %}
+
 #### Cas 2 : à faire
+
+{% include QuestionnaireResponse-cas-2-usage-core-intro.md %}
 
 #### Cas 3 : à faire
 
+{% include QuestionnaireResponse-cas-3-usage-core-intro.md %}
+
 #### Cas 4 : à faire
+
+{% include QuestionnaireResponse-cas-4-usage-core-intro.md %}
 
 #### Cas 5 : à faire
 
+{% include QuestionnaireResponse-cas-5-usage-core-intro.md %}
+
 #### Cas 6 : à faire
+
+{% include QuestionnaireResponse-cas-6-usage-core-intro.md %}
 
 #### Cas 7 : à faire
 
+{% include QuestionnaireResponse-cas-7-usage-core-intro.md %}
+
 #### Cas 8 : à faire
 
-#### Cas 9 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
+{% include QuestionnaireResponse-cas-8-usage-core-intro.md %}
 
-(Correspond au patient 9 dans le je de test (data-platform\raw-layer\test\file\patient.csv))
+#### Cas 9 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
 
 {% include QuestionnaireResponse-cas-9-usage-core-intro.md %}
 
 #### Cas 10 : à faire
+
+{% include QuestionnaireResponse-cas-10-usage-core-intro.md %}
 
 #### Cas 11 : Suivi diabète de type 2
 

@@ -1,0 +1,432 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "cas-7-usage-core",
+  "status": "completed",
+  "authored": "2024-01-16",
+  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "item": [
+    {
+      "linkId": "4647259356106",
+      "text": "Données socio-démographiques",
+      "item": [
+        {
+          "linkId": "2958000860428",
+          "text": "Identité patient",
+          "item": [
+            {
+              "linkId": "8605698058770",
+              "text": "Nom patient",
+              "answer": [
+                {
+                  "valueString": "Garcia"
+                }
+              ]
+            },
+            {
+              "linkId": "6214879623503",
+              "text": "Prénom patient",
+              "answer": [
+                {
+                  "valueString": "Elena"
+                }
+              ]
+            },
+            {
+              "linkId": "5711960356160",
+              "text": "Numéro d'inscription au Répertoire (NIR)",
+              "answer": [
+                {
+                  "valueString": "285113498765123"
+                }
+              ]
+            },
+            {
+              "linkId": "5036133558154",
+              "text": "Date de naissance",
+              "answer": [
+                {
+                  "valueDate": "1985-11-13"
+                }
+              ]
+            },
+            {
+              "linkId": "6931296968515",
+              "text": "Rang gémellaire du bénéficiaire",
+              "answer": [
+                {
+                  "valueInteger": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5491974639955",
+          "text": "Environnement",
+          "item": [
+            {
+              "linkId": "3816475533472",
+              "text": "Géocodage",
+              "item": [
+                {
+                  "linkId": "3709843054556",
+                  "text": "Latitude",
+                  "answer": [
+                    {
+                      "valueDecimal": 48.8867
+                    }
+                  ]
+                },
+                {
+                  "linkId": "7651448032665",
+                  "text": "Longitude",
+                  "answer": [
+                    {
+                      "valueDecimal": 2.3431
+                    }
+                  ]
+                },
+                {
+                  "linkId": "1185653257776",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-14"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "7621032273792",
+              "text": "IRIS",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "urn:oid:2.16.840.1.113883.2.8.1.5.5",
+                    "code": "751091401"
+                  },
+                  "item": [
+                    {
+                      "linkId": "4999580038872",
+                      "text": "Date du recueil de l'information",
+                      "answer": [
+                        {
+                          "valueDate": "2024-01-14"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2825244231605",
+      "text": "Données PMSI",
+      "item": [
+        {
+          "linkId": "8164976487070",
+          "text": "Age",
+          "answer": [
+            {
+              "valueInteger": 38,
+              "item": [
+                {
+                  "linkId": "1690778867802",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-14"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "3894630481120",
+          "text": "Sexe",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "code": "female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM",
+                "code": "75009"
+              },
+              "item": [
+                {
+                  "linkId": "1537511139540",
+                  "text": "Date du recueil de l'information",
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-14"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information",
+              "answer": [
+                {
+                  "valueDate": "2024-01-14"
+                }
+              ]
+            },
+            {
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
+                    "code": "DP"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "5505101189372",
+              "text": "Diagnostique",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "code": "G43.2"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information",
+              "answer": [
+                {
+                  "valueDate": "2024-01-14"
+                }
+              ]
+            },
+            {
+              "linkId": "5066866286682",
+              "text": "Date de l'acte",
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-14T16:45:00+01:00"
+                }
+              ]
+            },
+            {
+              "linkId": "7758110033600",
+              "text": "Acte",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "code": "ACQJ002"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5991443718282",
+          "text": "Date de début de séjour",
+          "answer": [
+            {
+              "valueDate": "2024-01-14"
+            }
+          ]
+        },
+        {
+          "linkId": "6114780320846",
+          "text": "Date de fin de séjour",
+          "answer": [
+            {
+              "valueDate": "2024-01-16"
+            }
+          ]
+        },
+        {
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R049-ModeEntree/FHIR/TRE-R049-ModeEntree",
+                "code": "8"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://mos.esante.gouv.fr/NOS/TRE_R048-ModeSortie/FHIR/TRE-R048-ModeSortie",
+                "code": "8"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Sumatriptan",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "N02CC01"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "code": "26643006"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription",
+              "answer": [
+                {
+                  "valueDate": "2024-01-14"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Sumatriptan",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
+                        "code": "N02CC01"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration",
+                  "answer": [
+                    {
+                      "valueCoding": {
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "26643006"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "linkId": "4765772671997",
+              "text": "Quantité administrée",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 50.0,
+                    "unit": "mg"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration",
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-14T08:00:00+01:00"
+                }
+              ]
+            },
+            {
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration",
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-14T08:05:00+01:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
