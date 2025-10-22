@@ -1,12 +1,12 @@
 #### Synthèse
 
-**Elena**_[Prénom]_ **Garcia**_[Nom]_, **née le 13 novembre 1985**_[date-naissance]_, hospitalisée du **14**_[Date-début-séjour]_ au **16 janvier 2024**_[Date-fin-séjour]_ dans le **service de neurologie de l'hôpital Tenon, unité neuro-vasculaire**, pour un **état de mal migraineux**_[diagnostic]_.
+**Elena**_[Prénom]_ **Garcia**_[Nom]_, **née le 13 novembre 1985**_[date-naissance]_, hospitalisée du **14**_[Date-début-séjour]_ au **16 janvier 2024**_[Date-fin-séjour]_ dans le service de neurologie de l'hôpital Tenon, unité neuro-vasculaire, pour un **état de mal migraineux**_[diagnostic]_.
 
-La patiente, âgée de 38 ans, se présente aux urgences de l'hôpital Tenon le 14 janvier 2024 en début de matinée pour une céphalée sévère, continue, évoluant depuis 4 jours sans amélioration malgré la prise répétée d'antalgiques à domicile (paracétamol, ibuprofène).
+La patiente, âgée de 38 ans, se présente aux urgences de l'hôpital Tenon le 14 janvier 2024 en début de matinée pour une céphalée sévère, continue, évoluant depuis 4 jours sans amélioration malgré la prise répétée d'antalgiques à domicile **(paracétamol, ibuprofène)**_[administration]_.
 
 La céphalée, d'apparition progressive, est de type pulsatile, prédominant sur l'hémicrâne gauche, d'intensité très sévère (cotée à 9/10 sur l'échelle visuelle analogique). Elle s'accompagne de nausées importantes avec plusieurs épisodes de vomissements, d'une photophobie intense obligeant la patiente à rester dans l'obscurité, et d'une phonophobie marquée. La patiente est dans l'incapacité totale de poursuivre ses activités habituelles.
 
-Devant la persistance de la céphalée au-delà de 72 heures (définissant un état de mal migraineux) et son caractère réfractaire aux traitements usuels, ainsi que l'intensité des symptômes, une hospitalisation en unité neuro-vasculaire est décidée pour prise en charge spécialisée et exclusion d'une pathologie intracrânienne secondaire.
+Devant la persistance de la céphalée au-delà de 72 heures (définissant un **état de mal migraineux**_[diagnostic]_) et son caractère réfractaire aux traitements usuels, ainsi que l'intensité des symptômes, une hospitalisation en unité neuro-vasculaire est décidée pour prise en charge spécialisée et exclusion d'une pathologie intracrânienne secondaire.
 
 Antécédents médicaux
 
@@ -16,8 +16,8 @@ La patiente présente un profil de santé favorable. Elle **ne fume pas**_[conso
 
 Examen clinique à l'admission :
 Patiente en souffrance évidente, sensible à la lumière et au bruit, préférant rester dans l'obscurité.
-**Fréquence cardiaque : 78 /min**_[frequence-cardiaque]_ (régulière)
-**Pression artérielle systolique : 120 mmHg**_[pression-arterielle]_, pression artérielle diastolique : 75 mmHg (normale)
+*Fréquence cardiaque : 78 /min (régulière)
+**Pression artérielle systolique : 120 mmHg**_[pression-arterielle]_, **pression artérielle diastolique : 75 mmHg**_[pression-arterielle]_ (normale)
 Température : 36.7°C
 
 Examen neurologique :
@@ -63,7 +63,7 @@ Le sumatriptan est un agoniste sélectif des récepteurs 5-HT1B/1D, spécifiquem
 
 Évolution
 
-L'évolution sous traitement est progressivement favorable. Dès le premier jour, une diminution de l'intensité de la céphalée est constatée (passage de 9/10 à 6/10). Les nausées et vomissements s'améliorent grâce au traitement antiémétique.
+L'évolution sous traitement est progressivement favorable. Dès le premier jour, une diminution de l'intensité de la céphalée est constatée (passage de 9/10 à 6/10). Les nausées et vomissements s'améliorent grâce au **traitement antiémétique**_[administration]_.
 
 Le deuxième jour (15 janvier), la céphalée continue à s'améliorer (intensité à 4/10), la photophobie et la phonophobie diminuent, la patiente tolère mieux la lumière ambiante. Elle peut s'alimenter normalement.
 

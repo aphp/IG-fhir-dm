@@ -1,6 +1,6 @@
 #### Synthèse
 
-**Isabelle**_[Prénom]_ **Blanc**_[Nom]_, **née le 6 mai 1978**_[date-naissance]_, hospitalisée du **13**_[Date-début-séjour]_ au **14 janvier 2024**_[Date-fin-séjour]_ dans le **service d'hépatologie de l'hôpital Beaujon** pour une **ponction d'ascite**_[acte]_ sur une **cirrhose alcolique**_[diagnostic]_.
+**Isabelle**_[Prénom]_ **Blanc**_[Nom]_, **née le 6 mai 1978**_[date-naissance]_, hospitalisée du **13**_[Date-début-séjour]_ au **14 janvier 2024**_[Date-fin-séjour]_ dans le service d'hépatologie de l'hôpital Beaujon pour une **ponction d'ascite**_[acte]_ sur une **cirrhose alcolique**_[diagnostic]_.
 
 La patiente est suivi dans le service depuis 7 ans pour sa **cirrhose hépatique**_[diagnostic]_.
 Depuis quelques mois son **insuffisance hépatique**_[diagnostic]_ semble s'aggraver avec une **ascite qui résiste aux traitements diurétique**_[diagnostic]_ et qui doit être ponctionnée régulièrement.

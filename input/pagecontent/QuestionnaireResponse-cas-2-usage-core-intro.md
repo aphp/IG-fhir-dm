@@ -1,8 +1,8 @@
 #### Synthèse
 
-**Pierre**_[Prénom]_ **Martin**_[Nom]_, **né le 5 avril 1970**_[date-naissance]_, hospitalisé du **8**_[Date-début-séjour]_ au **10 janvier 2024**_[Date-fin-séjour]_ dans le **service de gastroentérologie de l'hôpital Pitié-Salpêtrière** pour une **endoscopie oeso-gastro-duodénale**_[acte]_ dans le cadre d'un **ulcère de l'estomac**_[diagnostic]_.
+**Pierre**_[Prénom]_ **Martin**_[Nom]_, **né le 5 avril 1970**_[date-naissance]_, hospitalisé du **8**_[Date-début-séjour]_ au **10 janvier 2024**_[Date-fin-séjour]_ dans le service de gastroentérologie de l'hôpital Pitié-Salpêtrière pour une **endoscopie oeso-gastro-duodénale**_[acte]_ dans le cadre d'un **ulcère de l'estomac**_[diagnostic]_.
 
-Le patient, âgé de 53 ans, consulte aux urgences le 8 janvier 2024 pour des douleurs épigastriques intenses évoluant depuis plusieurs semaines, associées à des brûlures d'estomac et des nausées. Ces derniers jours, il rapporte également la présence de selles noires (méléna), évocatrices d'un saignement digestif haut. Devant ce tableau clinique, une **endoscopie oeso-gastro-duodénale**_[acte]_ est programmée en urgence.
+Le patient, âgé de 53 ans, consulte aux urgences le 8 janvier 2024 pour des douleurs épigastriques intenses évoluant depuis plusieurs semaines, associées à des brûlures d'estomac et des nausées. Ces derniers jours, il rapporte également la présence de selles noires (**méléna**_[diagnostic]_), évocatrices d'un saignement digestif haut. Devant ce tableau clinique, une **endoscopie oeso-gastro-duodénale**_[acte]_ est programmée en urgence.
 
 Dans ses antécédents, on note des **antécédents personnels de maladies de la peau et du tissu cellulaire sous-cutané**_[diagnostic]_.
 
@@ -10,8 +10,8 @@ Le patient présente plusieurs facteurs de risque pour l'ulcère gastrique. Il e
 
 Examen clinique à l'admission :
 État général conservé.
-**Fréquence cardiaque : 88 /min**_[frequence-cardiaque]_
-**Température corporelle : 37.2°C**_[temperature]_
+Fréquence cardiaque : 88 /min
+Température corporelle : 37.2°C
 Pâleur conjonctivale modérée
 Abdomen souple, sensible à la palpation épigastrique, sans défense ni contracture
 Toucher rectal : présence de selles noires confirmant le méléna

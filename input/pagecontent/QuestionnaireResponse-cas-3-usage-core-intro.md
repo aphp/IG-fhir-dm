@@ -1,6 +1,6 @@
 #### Synthèse
 
-**Sophie**_[Prénom]_ **Leroy**_[Nom]_, **née le 3 décembre 1994**_[date-naissance]_, hospitalisée du **15**_[Date-début-séjour]_ au **18 janvier 2024**_[Date-fin-séjour]_ dans le **service de gynécologie-obstétrique de l'hôpital Cochin** pour un **accouchement céphalique unique par voie naturelle**_[acte]_ : **accouchement spontané par présentation du sommet**_[diagnostic]_.
+**Sophie**_[Prénom]_ **Leroy**_[Nom]_, **née le 3 décembre 1994**_[date-naissance]_, hospitalisée du **15**_[Date-début-séjour]_ au **18 janvier 2024**_[Date-fin-séjour]_ dans le service de gynécologie-obstétrique de l'hôpital Cochin pour un **accouchement céphalique unique par voie naturelle**_[acte]_ : **accouchement spontané par présentation du sommet**_[diagnostic]_.
 
 La patiente, âgée de 29 ans, primipare, se présente à la maternité le 15 janvier 2024 à 5h00 du matin pour un début de travail spontané à 39 semaines et 4 jours d'aménorrhée. Les contractions utérines sont régulières et douloureuses. La rupture de la poche des eaux est spontanée à l'arrivée, avec un liquide amniotique clair.
 
@@ -61,7 +61,5 @@ Consignes de sortie :
 - Contraception : information donnée, prescription différée à la consultation post-natale
 
 Numéros d'urgence communiqués. Information sur les signes d'alerte nécessitant une consultation : fièvre, saignements abondants, douleurs abdominales intenses, difficultés d'allaitement majeures.
-
-Félicitations à la famille pour cette première naissance qui s'est déroulée dans d'excellentes conditions.
 
 Fait à Cochin le 18 janvier 2024
