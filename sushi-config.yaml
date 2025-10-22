@@ -35,7 +35,7 @@ pages:
       use-core-variables-process.md:
         title: Standardisation de données au format FHIR
         use-core-variables-acquisition.md:
-          title: Acquisition de la liste des variables
+          title: Acquisition des variables
         use-core-variables-formalization.md:
           title: Formalisation des variables
         use-core-variables-standardization.md:
@@ -68,7 +68,10 @@ pages:
 menu:
   Accueil: index.html
   Dictionnaire des données: data-dictionary.html
-  Variables du socle commun: use-core-variables.html
+  Variables du socle commun:
+    Acquisition des variables: use-core-variables-acquisition.html
+    Formalisation des variables: use-core-variables-formalization.html
+    Standardisation des variables: use-core-variables-standardization.html
   Health Data Platform:
     Architecture fonctionnelle: data-platform-functional-architecture.html
     Raw layer: data-platform-raw-layer.html
@@ -154,7 +157,7 @@ resources:
     exampleBoolean: true
   QuestionnaireResponse/cas-9-usage-core:
     name: Patient 9 - Madame Blanc
-    description: Exemple correspondant au patient 9 du jeu de test
+    description: Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
     exampleBoolean: true
   QuestionnaireResponse/cas-10-usage-core:
     name: Patient 10 - Monsieur David
