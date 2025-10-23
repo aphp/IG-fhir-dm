@@ -1,0 +1,788 @@
+/// url = 'https://interop.aphp.fr/ig/fhir/dm/StructureMap/Q2FSL'
+/// name = 'Q2FSL'
+/// title = 'Questionnaire to FHIR Semantic Layer'
+/// status = 'draft'
+/// description = 'Transforms QuestionnaireResponse based on Questionnaire Usage Variables socles into FHIR resources conforming to DM profiles'
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as produced
+uses "http://hl7.org/fhir/StructureDefinition/Location" alias Location as produced
+uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias Encounter as produced
+uses "http://hl7.org/fhir/StructureDefinition/Condition" alias Condition as produced
+uses "http://hl7.org/fhir/StructureDefinition/Procedure" alias Procedure as produced
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as produced
+uses "http://hl7.org/fhir/StructureDefinition/Medication" alias Medication as produced
+uses "http://hl7.org/fhir/StructureDefinition/MedicationRequest" alias MedicationRequest as produced
+uses "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" alias MedicationAdministration as produced
+
+// Main entry point: Transform QuestionnaireResponse to Bundle
+group QuestionnaireResponseToBundle(source src : QuestionnaireResponse, target bundle : Bundle) {
+  // Initialize Bundle
+  src -> bundle.id = uuid() "bundle-id";
+  src -> bundle.type = 'collection' "bundle-type";
+  src -> bundle.timestamp = (now()) "setTimestamp";
+
+  // Create Patient resource
+  src -> bundle.entry as patientEntry then {
+    src -> patientEntry.resource = create('Patient') as patient then {
+      src then CreatePatient(src, patient) "create-patient";
+      src -> patient.id as patientId, patientEntry.fullUrl = append('urn:uuid:', patientId) "set-fullUrl";  
+
+      // Create Locations from geocoding data
+      //src then CreateLocations(src, patient, bundle) "create-locations";
+
+      // Create Encounters from PMSI data
+      src then CreateEncounters(src, patient, bundle) "create-encounters";
+
+      // Create Laboratory Observations
+      src then CreateLaboratoryObservations(src, patient, bundle) "create-lab-observations";
+
+      // Create Medication Requests
+      src then CreateMedicationRequests(src, patient, bundle) "create-medication-requests";
+
+      // Create Medication Administrations
+      src then CreateMedicationAdministrations(src, patient, bundle) "create-medication-administrations";
+
+      // Create Vital Sign Observations
+      src then CreateVitalSignObservations(src, patient, bundle) "create-vital-signs";
+
+    } "create-patient-resource";
+  } "patient-entry";
+}
+
+
+// Group: Create Patient from QuestionnaireResponse
+group CreatePatient(source src : QuestionnaireResponse, target patient : Patient) {
+  src -> patient.id = uuid() "patient-id";
+  src -> patient.meta = create('Meta') as meta then {
+    src -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient' "patient-profile";
+  } "patient-meta";
+
+  // Extract patient identity data from linkId 4647259356106 > 2958000860428
+  src.item as socioDemo where (linkId = '4647259356106') then {
+    socioDemo.item as identity where (linkId = '2958000860428') then {
+
+      // Patient name (linkId 8605698058770 = family, 6214879623503 = given)
+      identity -> patient.name = create('HumanName') as name then {
+        identity.item as familyItem where (linkId = '8605698058770') then {
+          familyItem.answer as ans -> name.family = (ans.valueString) "set-family";
+        } "extract-family";
+        identity.item as givenItem where (linkId = '6214879623503') then {
+          givenItem.answer as ans -> name.given = (ans.valueString) "set-given";
+        } "extract-given";
+      } "set-name";
+
+      // NIR identifier (linkId 5711960356160)
+      identity.item as nirItem where (linkId = '5711960356160') then {
+        nirItem.answer as ans -> patient.identifier = create('Identifier') as nir then {
+          ans -> nir.system = 'urn:oid:1.2.250.1.213.1.4.8' "nir-system";
+          ans -> nir.value = (ans.valueString) "nir-value";
+          ans -> nir.type = cc('http://interopsante.org/fhir/CodeSystem/fr-v2-0203', 'NIR') "nir-type";
+        } "set-nir";
+      } "extract-nir";
+
+      // INS identifier (linkId 3764723550987)
+      identity.item as insItem where (linkId = '3764723550987') then {
+        insItem.answer as ans -> patient.identifier = create('Identifier') as ins then {
+          ans -> ins.system = 'urn:oid:1.2.250.1.213.1.4.10' "ins-system";
+          ans -> ins.value = (ans.valueString) "ins-value";
+          ans -> ins.type = cc('http://interopsante.org/fhir/CodeSystem/fr-v2-0203', 'INS-C') "ins-type";
+        } "set-ins";
+      } "extract-ins";
+
+      // Birth date (linkId 5036133558154)
+      identity.item as birthItem where (linkId = '5036133558154') then {
+        birthItem.answer as ans -> patient.birthDate = (ans.valueDate) "set-birthdate";
+      } "extract-birthdate";
+
+      // Death date (linkId 5633552097315)
+      identity.item as deathItem where (linkId = '5633552097315') then {
+        deathItem.answer as ans -> patient.deceased = (ans.valueDate) "set-deceased-date";
+        // Death source (linkId 9098810065693)
+        deathItem.item as deathSource where (linkId = '9098810065693') then {
+          deathSource.answer as sourceAns -> patient.extension = create('Extension') as ext then {
+            sourceAns -> ext.url = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/death-source' "death-source-url";
+            sourceAns -> ext.value = (sourceAns.valueCoding) "death-source-value";
+          } "set-death-source-ext";
+        } "extract-death-source";
+      } "extract-death";
+
+      // Multiple birth rank (linkId 6931296968515)
+      identity.item as multipleItem where (linkId = '6931296968515') then {
+        multipleItem.answer as ans then {
+          ans.valueInteger as valueInteger -> patient.multipleBirth = valueInteger "set-multiple-birth";
+        } "navigate-value";
+      } "extract-multiple-birth";
+
+    } "process-identity";
+
+    // Gender from PMSI data (linkId 3894630481120 within 2825244231605)
+    src.item as pmsiGroup where (linkId = '2825244231605') then {
+      pmsiGroup.item as sexItem where (linkId = '3894630481120') then {
+        sexItem.answer as ans then {
+          ans.valueCoding as valueCoding -> patient.gender = translate(valueCoding, 'https://interop.aphp.fr/ig/fhir/dm/ConceptMap/dpi-gender-2-hl7-gender', 'code') "set-gender";
+        } "valueCoding";
+      } "extract-gender";
+
+      // Address from code géographique (linkId 2446369196222)
+      pmsiGroup.item as codeGeoItem where (linkId = '2446369196222') then {
+        codeGeoItem.answer as ans -> patient.address = create('Address') as addr then {
+          ans -> addr.extension = create('Extension') as ext then {
+            ans -> ext.url = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/pmsi-code-geo' "codegeo-url";
+            ans -> ext.value = (ans.valueCoding) "codegeo-value";
+          } "set-codegeo-ext";
+        } "set-address";
+      } "extract-codegeo";
+    } "extract-pmsi-demographics";
+
+  } "process-sociodemographics";
+}
+
+// Group: Create Locations from geocoding and IRIS data
+group CreateLocations(source src : QuestionnaireResponse, target patient : Patient, target bundle : Bundle) {
+  // Extract geocoding data from linkId 4647259356106 > 5491974639955 > 3816475533472
+  src.item as socioDemo where (linkId = '4647259356106') then {
+    socioDemo.item as environment where (linkId = '5491974639955') then {
+
+      // Geocoding locations (repeating group 3816475533472)
+      environment.item as geocodingItem where (linkId = '3816475533472') -> bundle.entry as locationEntry then {
+        geocodingItem -> locationEntry.resource = create('Location') as location then {
+          geocodingItem -> location.id = uuid() "location-id";
+          geocodingItem -> location.meta = create('Meta') as meta then {
+            geocodingItem -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMLocation' "location-profile";
+          } "location-meta";
+
+          // Position with latitude and longitude
+          geocodingItem -> location.position = create('LocationPosition') as pos then {
+            // Latitude (linkId 3709843054556)
+            geocodingItem.item as latItem where (linkId = '3709843054556') then {
+              latItem.answer as ans -> pos.latitude = (ans.valueDecimal) "set-latitude";
+            } "extract-latitude";
+            // Longitude (linkId 7651448032665)
+            geocodingItem.item as longItem where (linkId = '7651448032665') then {
+              longItem.answer as ans -> pos.longitude = (ans.valueDecimal) "set-longitude";
+            } "extract-longitude";
+          } "set-position";
+
+          // Extension for collection date (linkId 1185653257776)
+          /*geocodingItem.item as dateItem where (linkId = '1185653257776') then {
+            dateItem.answer as ans -> location.extension = create('Extension') as ext then {
+              ans -> ext.url = 'http://hl7.org/fhir/StructureDefinition/data-collection-date' "date-url";
+              ans -> ext.value = (ans.valueDate) "date-value";
+            } "set-collection-date";
+          } "extract-collection-date";*/
+
+          location -> locationEntry.request as request then {
+            location -> request.method = 'POST' "set-method";
+            location -> request.url = 'Location' "set-url";
+          } "set-request";
+          location.id as locId -> locationEntry.fullUrl = append('urn:uuid:', locId) "set-fullUrl";
+
+        } "create-location";
+      } "geocoding-location-entry";
+
+      // IRIS locations (repeating item 7621032273792)
+      environment.item as irisItem where (linkId = '7621032273792') then {
+        irisItem.answer as irisAnswer -> bundle.entry as locationEntry then {
+          irisAnswer -> locationEntry.resource = create('Location') as location then {
+            irisAnswer -> location.id = uuid() "location-id";
+            irisAnswer -> location.meta = create('Meta') as meta then {
+              irisAnswer -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMLocation' "location-profile";
+            } "location-meta";
+
+            // IRIS code as identifier
+            irisAnswer -> location.identifier = create('Identifier') as identifier then {
+              irisAnswer -> identifier.system = 'urn:oid:2.16.840.1.113883.2.8.1.5.5' "iris-system";
+              irisAnswer -> identifier.value = (irisAnswer.valueCoding.code) "iris-value";
+            } "set-iris-identifier";
+
+            // Collection date from nested item (linkId 4999580038872)
+            /*irisAnswer.item as dateItem where (linkId = '4999580038872') then {
+              dateItem.answer as ans -> location.extension = create('Extension') as ext then {
+                ans -> ext.url = 'http://hl7.org/fhir/StructureDefinition/data-collection-date' "date-url";
+                ans -> ext.value = (ans.valueDate) "date-value";
+              } "set-collection-date";
+            } "extract-iris-date";*/
+
+            location -> locationEntry.request as request then {
+              location -> request.method = 'POST' "set-method";
+              location -> request.url = 'Location' "set-url";
+            } "set-request";
+            location.id as locId -> locationEntry.fullUrl = append('urn:uuid:', locId) "set-fullUrl";
+
+          } "create-iris-location";
+        } "iris-location-entry";
+      } "process-iris";
+
+    } "process-environment";
+  } "process-sociodemographics-location";
+}
+
+// Group: Create Encounters from PMSI data
+group CreateEncounters(source src : QuestionnaireResponse, target patient : Patient, target bundle : Bundle) {
+  // PMSI data group (linkId 2825244231605) - Note: This can repeat in the structure
+  src.item as pmsiItem where (linkId = '2825244231605') -> bundle.entry as encounterEntry then {
+    pmsiItem -> encounterEntry.resource = create('Encounter') as encounter then {
+      pmsiItem -> encounter.id = uuid() "encounter-id";
+      pmsiItem -> encounter.meta = create('Meta') as meta then {
+        pmsiItem -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMEncounter' "encounter-profile";
+      } "encounter-meta";
+
+      // Link to patient
+      src -> encounter.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+
+      // Encounter period (start: 5991443718282, end: 6114780320846)
+      pmsiItem -> encounter.period = create('Period') as period then {
+        pmsiItem.item as startItem where (linkId = '5991443718282') then {
+          startItem.answer as ans -> period.start = (ans.valueDate) "set-start";
+        } "extract-start";
+        pmsiItem.item as endItem where (linkId = '6114780320846') then {
+          endItem.answer as ans -> period.end = (ans.valueDate) "set-end";
+        } "extract-end";
+      } "set-period";
+
+      // Mode d'entrée (linkId 6172398101212)
+      pmsiItem.item as modeInItem where (linkId = '6172398101212') then {
+        /*modeInItem.answer as ans -> encounter.hospitalization = create('EncounterHospitalization') as hosp then {
+          ans -> hosp.admitSource = (ans.valueCoding) "set-admit-source";
+        } "set-hospitalization-in";*/
+      } "extract-mode-in";
+
+      // Mode de sortie (linkId 3354867075704)
+      pmsiItem.item as modeOutItem where (linkId = '3354867075704') then {
+        /*modeOutItem.answer as ans -> encounter.hospitalization = create('EncounterHospitalization') as hosp then {
+          ans -> hosp.dischargeDisposition = (ans.valueCoding) "set-discharge-disposition";
+        } "set-hospitalization-out";*/
+      } "extract-mode-out";
+
+      src -> encounter.id as encId, encounterEntry.fullUrl = append('urn:uuid:', encId) "set-fullUrl";
+
+      // Create nested Conditions and Procedures
+      pmsiItem then CreateConditions(pmsiItem, patient, encounter, bundle) "create-conditions";
+      pmsiItem then CreateProcedures(pmsiItem, patient, encounter, bundle) "create-procedures";
+
+    } "create-encounter";
+  } "encounter-entry";
+}
+
+// Group: Create Conditions from nested diagnostics
+group CreateConditions(source pmsiItem, target patient : Patient, target encounter : Encounter, target bundle : Bundle) {
+  // Diagnostics group (linkId 9391816419630) - can repeat
+  pmsiItem.item as diagGroup where (linkId = '9391816419630') -> bundle.entry as conditionEntry then {
+    diagGroup -> conditionEntry.resource = create('Condition') as condition then {
+      diagGroup -> condition.id = uuid() "condition-id";
+      diagGroup -> condition.meta = create('Meta') as meta then {
+        diagGroup -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition' "condition-profile";
+      } "condition-meta";
+
+      // Link to patient
+      diagGroup -> condition.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+      
+      // Link to encounter
+      diagGroup -> encounter.id as encId, condition.encounter = create('Reference') as ref, ref.reference = append('Encounter/', encId) "set-encounter";
+
+      // Diagnostic code (linkId 5505101189372) - CIM-10
+      diagGroup.item as diagCodeItem where (linkId = '5505101189372') then {
+        diagCodeItem.answer as ans -> condition.code = create('CodeableConcept') as code then {
+          ans -> code.coding = (ans.valueCoding) "set-coding";
+        } "set-code";
+      } "extract-diag-code";
+
+      // Type de diagnostic (linkId 6427586743735) - DP/DAS/DR
+      diagGroup.item as diagTypeItem where (linkId = '6427586743735') then {
+        diagTypeItem.answer as ans -> condition.category = create('CodeableConcept') as category then {
+          ans -> category.coding = create('Coding') as coding then {
+            ans -> coding.system = 'https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type' "diag-type-system";
+            ans -> coding.code = (ans.valueCoding.code) "diag-type-code";
+            ans -> coding.display = (ans.valueCoding.display) "diag-type-display";
+          } "set-category-coding";
+        } "set-category";
+      } "extract-diag-type";
+
+      // Recorded date (linkId 7114466839467)
+      diagGroup.item as dateItem where (linkId = '7114466839467') then {
+        dateItem.answer as ans -> condition.recordedDate = (ans.valueDate) "set-recorded-date";
+      } "extract-recorded-date";
+
+    } "create-condition";
+  } "condition-entry";
+}
+
+// Group: Create Procedures from nested actes
+group CreateProcedures(source pmsiItem, target patient : Patient, target encounter : Encounter, target bundle : Bundle) {
+  // Actes group (linkId 591926901726) - can repeat
+  pmsiItem.item as acteGroup where (linkId = '591926901726') -> bundle.entry as procedureEntry then {
+    acteGroup -> procedureEntry.resource = create('Procedure') as procedure then {
+      acteGroup -> procedure.id = uuid() "procedure-id";
+      acteGroup -> procedure.meta = create('Meta') as meta then {
+        acteGroup -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure' "procedure-profile";
+      } "procedure-meta";
+
+      // Link to patient
+      acteGroup -> procedure.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+      
+      // Link to encounter
+      acteGroup -> encounter.id as encId, procedure.encounter = create('Reference') as ref, ref.reference = append('Encounter/', encId) "set-encounter";
+
+      // Acte code (linkId 7758110033600) - CCAM
+      acteGroup.item as acteCodeItem where (linkId = '7758110033600') then {
+        acteCodeItem.answer as ans -> procedure.code = create('CodeableConcept') as code then {
+          ans -> code.coding = (ans.valueCoding) "set-coding";
+        } "set-code";
+      } "extract-acte-code";
+
+      // Date de l'acte (linkId 5066866286682)
+      acteGroup.item as dateItem where (linkId = '5066866286682') then {
+        dateItem.answer as ans -> procedure.performed = (ans.valueDateTime) "set-performed";
+      } "extract-performed-date";
+
+      // Collection date (linkId 9436509453137)
+      /*acteGroup.item as collectionDateItem where (linkId = '9436509453137') then {
+        collectionDateItem.answer as ans -> procedure.extension = create('Extension') as ext then {
+          ans -> ext.url = 'http://hl7.org/fhir/StructureDefinition/data-collection-date' "date-url";
+          ans -> ext.value = (ans.valueDate) "date-value";
+        } "set-collection-date";
+      } "extract-collection-date";*/
+
+    } "create-procedure";
+  } "procedure-entry";
+}
+
+// Group: Create Medication Requests
+group CreateMedicationRequests(source src : QuestionnaireResponse, target patient : Patient, target bundle : Bundle) {
+  // Exposition médicamenteuse (linkId 817801935685)
+  src.item as medExpoGroup where (linkId = '817801935685') then {
+
+    // Médicament prescrit (linkId 156631794800) - repeating
+    medExpoGroup.item as prescribedGroup where (linkId = '156631794800') -> bundle.entry as medReqEntry then {
+      prescribedGroup -> medReqEntry.resource = create('MedicationRequest') as medReq then {
+        prescribedGroup -> medReq.id = uuid() "medreq-id";
+        prescribedGroup -> medReq.meta = create('Meta') as meta then {
+          prescribedGroup -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest' "medreq-profile";
+        } "medreq-meta";
+
+        // Link to patient
+        prescribedGroup -> medReq.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+      
+        // Status and intent
+        prescribedGroup -> medReq.status = 'active' "set-status";
+        prescribedGroup -> medReq.intent = 'order' "set-intent";
+
+        // Create Medication resource and reference
+        prescribedGroup -> bundle.entry as medEntry then {
+          prescribedGroup -> medEntry.resource = create('Medication') as medication then {
+            prescribedGroup -> medication.id = uuid() "med-id";
+
+            // ATC code from nested items
+            prescribedGroup.item as atcItem where (linkId.contains('ATC')) then {
+              atcItem.answer as ans -> medication.code = create('CodeableConcept') as code then {
+                ans -> code.coding = (ans.valueCoding) "set-atc-coding";
+              } "set-med-code";
+            } "extract-atc";
+
+            prescribedGroup -> medication.id as medId, medEntry.fullUrl = append('urn:uuid:', medId) "set-fullUrl";
+
+            // Link MedicationRequest to Medication
+            prescribedGroup -> medication.id as medId, medReq.medication = create('Reference') as ref, ref.reference = append('Medication/', medId) "set-medication-reference";
+
+          } "create-medication";
+        } "medication-entry";
+
+        // Dosage instructions
+        prescribedGroup -> medReq.dosageInstruction = create('Dosage') as dosage then {
+          // Route
+          prescribedGroup.item as routeItem where (linkId.contains('voie')) then {
+            routeItem.answer as ans -> dosage.route = create('CodeableConcept') as route then {
+              ans -> route.coding = (ans.valueCoding) "set-route-coding";
+            } "set-route";
+          } "extract-route";
+
+          // Timing
+          prescribedGroup.item as timingItem where (linkId.contains('timing') or linkId.contains('fréquence')) then {
+            timingItem.answer as ans -> dosage.timing = create('Timing') as timing then {
+              ans -> timing.repeat = create('TimingRepeat') as repeat "set-timing";
+            } "set-timing-structure";
+          } "extract-timing";
+        } "set-dosage";
+
+      } "create-medreq";
+    } "medreq-entry";
+
+  } "process-med-expo";
+}
+
+// Group: Create Medication Administrations
+group CreateMedicationAdministrations(source src : QuestionnaireResponse, target patient : Patient, target bundle : Bundle) {
+  // Exposition médicamenteuse (linkId 817801935685)
+  src.item as medExpoGroup where (linkId = '817801935685') then {
+
+    // Médicament administré (linkId 266852453304) - repeating
+    medExpoGroup.item as adminGroup where (linkId = '266852453304') -> bundle.entry as medAdminEntry then {
+      adminGroup -> medAdminEntry.resource = create('MedicationAdministration') as medAdmin then {
+        adminGroup -> medAdmin.id = uuid() "medadmin-id";
+        adminGroup -> medAdmin.meta = create('Meta') as meta then {
+          adminGroup -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration' "medadmin-profile";
+        } "medadmin-meta";
+
+        // Link to patient
+        adminGroup -> medAdmin.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+        
+        // Status
+        adminGroup -> medAdmin.status = 'completed' "set-status";
+
+        // Create Medication resource and reference
+        adminGroup -> bundle.entry as medEntry then {
+          adminGroup -> medEntry.resource = create('Medication') as medication then {
+            adminGroup -> medication.id = uuid() "med-id";
+
+            // ATC code from nested items
+            adminGroup.item as atcItem where (linkId.contains('ATC')) then {
+              atcItem.answer as ans -> medication.code = create('CodeableConcept') as code then {
+                ans -> code.coding = (ans.valueCoding) "set-atc-coding";
+              } "set-med-code";
+            } "extract-atc";
+
+            adminGroup -> medication.id as medId, medEntry.fullUrl = append('Medication/', medId) "set-fullUrl";
+
+            // Link MedicationAdministration to Medication
+            adminGroup -> medication.id as medId, medAdmin.medication = create('Reference') as ref, ref.reference = append('urn:uuid:', medId) "set-medication-reference";
+
+          } "create-medication";
+        } "medication-entry";
+
+        // Effective period
+        adminGroup -> medAdmin.effective = create('Period') as period then {
+          adminGroup.item as startItem where (linkId.contains('début')) then {
+            startItem.answer as ans -> period.start = (ans.valueDateTime) "set-start";
+          } "extract-start";
+          adminGroup.item as endItem where (linkId.contains('fin')) then {
+            endItem.answer as ans -> period.end = (ans.valueDateTime) "set-end";
+          } "extract-end";
+        } "set-effective";
+
+        // Dosage
+        adminGroup -> medAdmin.dosage = create('Dosage') as dosage then {
+          // Route
+          adminGroup.item as routeItem where (linkId.contains('voie')) then {
+            routeItem.answer as ans -> dosage.route = create('CodeableConcept') as route then {
+              ans -> route.coding = (ans.valueCoding) "set-route-coding";
+            } "set-route";
+          } "extract-route";
+
+          // Dose
+          adminGroup.item as doseItem where (linkId.contains('dose')) then {
+            doseItem.answer as ans -> dosage.dose = (ans.valueQuantity) "set-dose";
+          } "extract-dose";
+        } "set-dosage";
+
+      } "create-medadmin";
+    } "medadmin-entry";
+
+  } "process-med-expo-admin";
+}
+
+// Group: Create Vital Sign Observations
+group CreateVitalSignObservations(source src : QuestionnaireResponse, target patient : Patient, target bundle : Bundle) {
+  // Examen clinique (linkId 214880328197)
+  src.item as examGroup where (linkId = '214880328197') then {
+
+    // Dossier de soins (linkId 305831246173) - repeating
+    examGroup.item as dossierGroup where (linkId = '305831246173') then {
+
+      // Height (linkId 4846902346416)
+      dossierGroup.item as heightItem where (linkId = '4846902346416') then {
+        heightItem.answer as ans -> bundle.entry as obsEntry then {
+          ans -> obsEntry.resource = create('Observation') as obs then {
+            ans -> obs.id = uuid() "obs-id";
+            ans -> obs.id as obsId, obsEntry.fullUrl = append('urn:uuid:', obsId) "set-fullUrl";
+            ans -> obs.meta = create('Meta') as meta then {
+              ans -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBodyHeight' "obs-profile";
+            } "obs-meta";
+
+            ans -> obs.status = 'final' "obs-status";
+            ans -> obs.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs') "obs-category";
+            ans -> obs.code = cc('http://loinc.org', '8302-2', 'Body height') "obs-code";
+
+            // Link to patient
+            ans -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+            
+            // Value
+            ans -> obs.value = (ans.valueQuantity) "set-value";
+
+            // Effective date from nested item
+            heightItem.item as dateItem where (linkId.contains('Date')) then {
+              dateItem.answer as dateAns -> obs.effective = (dateAns.valueDate) "set-effective";
+            } "extract-effective";
+          } "create-height-obs";
+        } "height-obs-entry";
+      } "extract-height";
+
+      // Weight (linkId 451513217936)
+      dossierGroup.item as weightItem where (linkId = '451513217936') then {
+        weightItem.answer as ans -> bundle.entry as obsEntry then {
+          ans -> obsEntry.resource = create('Observation') as obs then {
+            ans -> obs.id = uuid() "obs-id";
+            ans -> obs.id as obsId, obsEntry.fullUrl = append('urn:uuid:', obsId) "set-fullUrl";
+            ans -> obs.meta = create('Meta') as meta then {
+              ans -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBodyWeight' "obs-profile";
+            } "obs-meta";
+
+            ans -> obs.status = 'final' "obs-status";
+            ans -> obs.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs') "obs-category";
+            ans -> obs.code = cc('http://loinc.org', '29463-7', 'Body weight') "obs-code";
+
+            // Link to patient
+            ans -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+
+            // Value
+            ans -> obs.value = (ans.valueQuantity) "set-value";
+
+            // Effective date from nested item
+            weightItem.item as dateItem where (linkId.contains('Date')) then {
+              dateItem.answer as dateAns -> obs.effective = (dateAns.valueDate) "set-effective";
+            } "extract-effective";
+          } "create-weight-obs";
+        } "weight-obs-entry";
+      } "extract-weight";
+
+      // Blood Pressure - need both systolic and diastolic
+      dossierGroup.item as sysItem where (linkId = '4160905247955') then {
+        sysItem.answer as sysAns then {
+          dossierGroup.item as diaItem where (linkId = '848797127998') then {
+            diaItem.answer as diaAns -> bundle.entry as obsEntry then {
+              sysAns -> obsEntry.resource = create('Observation') as obs then {
+                sysAns -> obs.id = uuid() "obs-id";
+                sysAns -> obs.id as obsId, obsEntry.fullUrl = append('urn:uuid:', obsId) "set-fullUrl";
+                sysAns -> obs.meta = create('Meta') as meta then {
+                  sysAns -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBloodPressure' "obs-profile";
+                } "obs-meta";
+
+                sysAns -> obs.status = 'final' "obs-status";
+                sysAns -> obs.category = cc('http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs') "obs-category";
+                sysAns -> obs.code = cc('http://loinc.org', '85354-9', 'Blood pressure panel') "obs-code";
+
+                // Link to patient
+                sysAns -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+
+                // Systolic component
+                sysAns -> obs.component = create('Observation') as sysComp then {
+                  sysAns -> sysComp.code = cc('http://loinc.org', '8480-6', 'Systolic blood pressure') "sys-code";
+                  sysAns -> sysComp.value = (sysAns.valueQuantity) "sys-value";
+                } "set-systolic";
+
+                // Diastolic component
+                diaAns -> obs.component = create('Observation') as diaComp then {
+                  diaAns -> diaComp.code = cc('http://loinc.org', '8462-4', 'Diastolic blood pressure') "dia-code";
+                  diaAns -> diaComp.value = (diaAns.valueQuantity) "dia-value";
+                } "set-diastolic";
+
+                // Effective date from nested item
+                sysItem.item as dateItem where (linkId.contains('Date')) then {
+                  dateItem.answer as dateAns -> obs.effective = (dateAns.valueDate) "set-effective";
+                } "extract-effective";
+
+              } "create-bp-obs";
+            } "bp-obs-entr";
+          } "extract-diastolic";
+        } "process-systolic";
+      } "extract-blood-pressure";
+
+    } "process-dossier";
+
+  } "process-exam";
+}
+
+// Group: Create Laboratory Observations
+group CreateLaboratoryObservations(source src : QuestionnaireResponse, target patient : Patient, target bundle : Bundle) {
+  // Biologie group (linkId 7702944131447)
+  src.item as bioGroup where (linkId = '7702944131447') then {
+
+    // Fonction rénale (linkId 5241323453538)
+    bioGroup.item as renalGroup where (linkId = '5241323453538') then {
+      // Urée (linkId 7169026818760)
+      renalGroup.item as ureaItem where (linkId = '7169026818760') then {
+        ureaItem.answer as ans -> bundle then CreateLabObservation(ans, ureaItem, patient, bundle) "create-urea-obs";
+      } "extract-urea";
+
+      // Créatininémie (linkId 500408205043)
+      renalGroup.item as creatItem where (linkId = '500408205043') then {
+        creatItem.answer as ans -> bundle then CreateLabObservation(ans, creatItem, patient, bundle) "create-creat-obs";
+      } "extract-creat";
+
+      // DFG (linkId 786621340679)
+      renalGroup.item as dfgItem where (linkId = '786621340679') then {
+        dfgItem.answer as ans -> bundle then CreateLabObservation(ans, dfgItem, patient, bundle) "create-dfg-obs";
+      } "extract-dfg";
+    } "process-renal";
+
+    // Hémogramme (linkId 419282985970)
+    bioGroup.item as hemoGroup where (linkId = '419282985970') then {
+      // Leucocytes (linkId 210077225604)
+      hemoGroup.item as leukoItem where (linkId = '210077225604') then {
+        leukoItem.answer as ans -> bundle then CreateLabObservation(ans, leukoItem, patient, bundle) "create-leuko-obs";
+      } "extract-leuko";
+
+      // Hémoglobine (linkId 304159088493)
+      hemoGroup.item as hemoItem where (linkId = '304159088493') then {
+        hemoItem.answer as ans -> bundle then CreateLabObservation(ans, hemoItem, patient, bundle) "create-hemo-obs";
+      } "extract-hemo";
+
+      // Hématocrite (linkId 5687959006070)
+      hemoGroup.item as hematItem where (linkId = '5687959006070') then {
+        hematItem.answer as ans -> bundle then CreateLabObservation(ans, hematItem, patient, bundle) "create-hemat-obs";
+      } "extract-hemat";
+
+      // Erythrocytes (linkId 8697447896867)
+      hemoGroup.item as eryItem where (linkId = '8697447896867') then {
+        eryItem.answer as ans -> bundle then CreateLabObservation(ans, eryItem, patient, bundle) "create-ery-obs";
+      } "extract-ery";
+
+      // VGM (linkId 5584978899134)
+      hemoGroup.item as vgmItem where (linkId = '5584978899134') then {
+        vgmItem.answer as ans -> bundle then CreateLabObservation(ans, vgmItem, patient, bundle) "create-vgm-obs";
+      } "extract-vgm";
+
+      // Plaquettes (linkId 2881119993430)
+      hemoGroup.item as platItem where (linkId = '2881119993430') then {
+        platItem.answer as ans -> bundle then CreateLabObservation(ans, platItem, patient, bundle) "create-plat-obs";
+      } "extract-plat";
+
+      // Neutrophiles (linkId 7408951746270)
+      hemoGroup.item as neutItem where (linkId = '7408951746270') then {
+        neutItem.answer as ans -> bundle then CreateLabObservation(ans, neutItem, patient, bundle) "create-neut-obs";
+      } "extract-neut";
+
+      // Lymphocytes (linkId 809808816195)
+      hemoGroup.item as lymphItem where (linkId = '809808816195') then {
+        lymphItem.answer as ans -> bundle then CreateLabObservation(ans, lymphItem, patient, bundle) "create-lymph-obs";
+      } "extract-lymph";
+
+      // Eosinophiles (linkId 6451887990893)
+      hemoGroup.item as eosiItem where (linkId = '6451887990893') then {
+        eosiItem.answer as ans -> bundle then CreateLabObservation(ans, eosiItem, patient, bundle) "create-eosi-obs";
+      } "extract-eosi";
+
+      // Monocytes (linkId 7935935816936)
+      hemoGroup.item as monoItem where (linkId = '7935935816936') then {
+        monoItem.answer as ans -> bundle then CreateLabObservation(ans, monoItem, patient, bundle) "create-mono-obs";
+      } "extract-mono";
+
+      // TP (linkId 2055949655770)
+      hemoGroup.item as tpItem where (linkId = '2055949655770') then {
+        tpItem.answer as ans -> bundle then CreateLabObservation(ans, tpItem, patient, bundle) "create-tp-obs";
+      } "extract-tp";
+
+      // TCA (linkId 2527095476817)
+      hemoGroup.item as tcaItem where (linkId = '2527095476817') then {
+        tcaItem.answer as ans -> bundle then CreateLabObservation(ans, tcaItem, patient, bundle) "create-tca-obs";
+      } "extract-tca";
+    } "process-hemo";
+
+    // Bilan hépatique (linkId 3893612773040)
+    bioGroup.item as liverGroup where (linkId = '3893612773040') then {
+      // ASAT (linkId 3028330976100)
+      liverGroup.item as asatItem where (linkId = '3028330976100') then {
+        asatItem.answer as ans -> bundle then CreateLabObservation(ans, asatItem, patient, bundle) "create-asat-obs";
+      } "extract-asat";
+
+      // ALAT (linkId 8486813893880)
+      liverGroup.item as alatItem where (linkId = '8486813893880') then {
+        alatItem.answer as ans -> bundle then CreateLabObservation(ans, alatItem, patient, bundle) "create-alat-obs";
+      } "extract-alat";
+
+      // GGT (linkId 3663296044037)
+      liverGroup.item as ggtItem where (linkId = '3663296044037') then {
+        ggtItem.answer as ans -> bundle then CreateLabObservation(ans, ggtItem, patient, bundle) "create-ggt-obs";
+      } "extract-ggt";
+
+      // PAL (linkId 2690026606933)
+      liverGroup.item as palItem where (linkId = '2690026606933') then {
+        palItem.answer as ans -> bundle then CreateLabObservation(ans, palItem, patient, bundle) "create-pal-obs";
+      } "extract-pal";
+
+      // Bilirubine totale (linkId 9068831071023)
+      liverGroup.item as bilTotItem where (linkId = '9068831071023') then {
+        bilTotItem.answer as ans -> bundle then CreateLabObservation(ans, bilTotItem, patient, bundle) "create-biltot-obs";
+      } "extract-biltot";
+
+      // Bilirubine conjuguée (linkId 8893717988787)
+      liverGroup.item as bilConjItem where (linkId = '8893717988787') then {
+        bilConjItem.answer as ans -> bundle then CreateLabObservation(ans, bilConjItem, patient, bundle) "create-bilconj-obs";
+      } "extract-bilconj";
+    } "process-liver";
+
+    // Métabolisme glucidique (linkId 8929068894076)
+    bioGroup.item as glucoseGroup where (linkId = '8929068894076') then {
+      // Glycémie à jeun (linkId 8193929027997)
+      glucoseGroup.item as glycItem where (linkId = '8193929027997') then {
+        glycItem.answer as ans -> bundle then CreateLabObservation(ans, glycItem, patient, bundle) "create-glyc-obs";
+      } "extract-glyc";
+
+      // HbA1c (linkId 7063892830923)
+      glucoseGroup.item as hba1cItem where (linkId = '7063892830923') then {
+        hba1cItem.answer as ans -> bundle then CreateLabObservation(ans, hba1cItem, patient, bundle) "create-hba1c-obs";
+      } "extract-hba1c";
+    } "process-glucose";
+
+  } "process-biology";
+}
+
+// Helper: Create a single Laboratory Observation
+group CreateLabObservation(source ans, source parentItem, target patient : Patient, target bundle : Bundle) {
+  ans -> bundle.entry as obsEntry then {
+    ans -> obsEntry.resource = create('Observation') as obs then {
+      ans -> obs.id = uuid() "obs-id";
+      ans -> obs.id as obsId, obsEntry.fullUrl = append('urn:uuid:', obsId) "set-fullUrl";
+      ans -> obs.meta = create('Meta') as meta then {
+        ans -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/dm-observation-laboratory-generic' "obs-profile";
+      } "obs-meta";
+
+      // Status
+      ans -> obs.status = 'final' "obs-status";
+
+      // Category
+      ans -> obs.category = create('CodeableConcept') as cat then {
+        ans -> cat.coding = create('Coding') as coding then {
+          ans -> coding.system = 'http://terminology.hl7.org/CodeSystem/observation-category' "cat-system";
+          ans -> coding.code = 'laboratory' "cat-code";
+        } "set-category-coding";
+      } "set-category";
+
+      // Link to patient
+      ans -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
+
+      // Value as Quantity
+      ans -> obs.value = (ans.valueQuantity) "set-value";
+
+      // Extract nested items - LOINC code, effective date, status, reference ranges
+      parentItem.item as loincItem where (linkId.contains('code loinc')) then {
+        loincItem.answer as loincAns -> obs.code = create('CodeableConcept') as code then {
+          loincAns -> code.coding = (loincAns.valueCoding) "set-loinc-coding";
+        } "set-code";
+      } "extract-loinc";
+
+      parentItem.item as dateItem where (linkId.contains('Date et heure du prélèvement')) then {
+        dateItem.answer as dateAns -> obs.effective = (dateAns.valueDateTime) "set-effective";
+      } "extract-effective";
+
+      /*parentItem.item as statusItem where (linkId.contains('Statut de validation')) then {
+        statusItem.answer as statusAns -> obs.extension = create('Extension') as ext then {
+          statusAns -> ext.url = 'http://hl7.org/fhir/StructureDefinition/observation-status' "status-url";
+          statusAns -> ext.value = (statusAns.valueString) "status-value";
+        } "set-status-ext";
+      } "extract-validation-status";*/
+
+      // Reference ranges (low and high)
+      /*parentItem -> obs.referenceRange = create('ObservationReferenceRange') as refRange then {
+        parentItem.item as lowItem where (linkId.contains('Borne inférieure')) then {
+          lowItem.answer as lowAns -> refRange.low = (lowAns.valueQuantity) "set-low";
+        } "extract-low";
+        parentItem.item as highItem where (linkId.contains('Borne supérieure')) then {
+          highItem.answer as highAns -> refRange.high = (highAns.valueQuantity) "set-high";
+        } "extract-high";
+      } "set-ref-range";*/
+
+    } "create-obs";
+  } "obs-entry";
+}
