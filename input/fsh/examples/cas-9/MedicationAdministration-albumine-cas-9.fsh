@@ -1,7 +1,7 @@
 Instance: albumine-j1-cas-9
 InstanceOf: DMMedicationAdministration
-Title: "Administration d'albumine du patient 9"
-Description: """Administration d'albumine [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "Administration d'albumine de Madame Blanc"
+Description: """Administration d'albumine [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * status = #completed

@@ -1,7 +1,7 @@
 Instance: ggt-cas-9
 InstanceOf: DMObservationLaboratoryGGT
-Title: "GGT du patient 9"
-Description: """Représente le taux de gamma glutamyl transferase [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "GGT de Madame Blanc"
+Description: """Représente le taux de gamma glutamyl transferase [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * identifier

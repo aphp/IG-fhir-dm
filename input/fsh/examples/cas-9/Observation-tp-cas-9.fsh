@@ -1,7 +1,7 @@
 Instance: tp-cas-9
 InstanceOf: DMObservationLaboratoryTP
-Title: "Taux de prothrombine du patient 9"
-Description: """Représente le taux de prothrombine [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "Taux de prothrombine de Madame Blanc"
+Description: """Représente le taux de prothrombine [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * identifier

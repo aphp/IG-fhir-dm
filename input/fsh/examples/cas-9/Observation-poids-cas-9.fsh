@@ -1,7 +1,7 @@
 Instance: poids-cas-9
 InstanceOf: DMObservationBodyWeight
-Title: "Poids du patient 9"
-Description: """Poids [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "Poids de Madame Blanc"
+Description: """Poids [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * status = #final

@@ -11,21 +11,37 @@ Le tableau ci-dessous référence tous les profils FHIR résultat du processus d
 
 ### Exemples
 
-#### Cas 1 :
+#### Cas 1 : Prise en charge d'un infarctus du myocarde
 
-#### Cas 2 :
+à faire 
 
-#### Cas 3 :
+#### Cas 2 : Traitement d'un ulcère
 
-#### Cas 4 :
+à faire 
 
-#### Cas 5 :
+#### Cas 3 : Accouchement simple
 
-#### Cas 6 :
+à faire 
 
-#### Cas 7 :
+#### Cas 4 : Choc cardiogénique en réanimation
 
-#### Cas 8 :
+à faire 
+
+#### Cas 5 : Surveillance d'une fièvre avec altération de l'état général
+
+à faire 
+
+#### Cas 6 : Suivi de cardiopathie
+
+à faire 
+
+#### Cas 7 : État de mal migraineux
+
+à faire 
+
+#### Cas 8 : Chirurgie d'une fracture fémorale
+
+à faire 
 
 #### Cas 9 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
 
@@ -52,8 +68,10 @@ Dans l'histoire du cas 9 on peut représenter plusieurs informations dans le mod
   - [J2 spironolactone](MedicationAdministration-spironolactone-j2-cas-9.html)
   - [Albumine](MedicationAdministration-albumine-j1-cas-9.html)
 
-#### Cas 10 :
+#### Cas 10 : Insuffisance respiratoire sur BPCO
+
+à faire
 
 #### Cas 11 : Suivi diabète de type 2
 
-TO DO
+à faire

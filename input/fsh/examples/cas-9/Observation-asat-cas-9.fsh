@@ -1,7 +1,7 @@
 Instance: asat-cas-9
 InstanceOf: DMObservationLaboratoryASAT
-Title: "ASAT du patient 9"
-Description: """Représente le taux d'ASAT [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "ASAT de Madame Blanc"
+Description: """Représente le taux d'ASAT [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * identifier
