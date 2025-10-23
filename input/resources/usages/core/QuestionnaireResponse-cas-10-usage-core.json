@@ -2,7 +2,7 @@
   "resourceType": "QuestionnaireResponse",
   "id": "cas-10-usage-core",
   "status": "completed",
-  "authored": "2024-01-19",
+  "authored": "2025-10-23",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -18,7 +18,7 @@
               "text": "Nom patient",
               "answer": [
                 {
-                  "valueString": "Moreau"
+                  "valueString": "David"
                 }
               ]
             },
@@ -27,7 +27,7 @@
               "text": "Prénom patient",
               "answer": [
                 {
-                  "valueString": "Jean"
+                  "valueString": "Thomas"
                 }
               ]
             },
@@ -36,7 +36,7 @@
               "text": "Numéro d'inscription au Répertoire (NIR)",
               "answer": [
                 {
-                  "valueString": "176085487651234"
+                  "valueString": "189127865432109"
                 }
               ]
             },
@@ -45,36 +45,7 @@
               "text": "Date de naissance",
               "answer": [
                 {
-                  "valueDate": "1976-08-15"
-                }
-              ]
-            },
-            {
-              "linkId": "6931296968515",
-              "text": "Rang gémellaire du bénéficiaire",
-              "answer": [
-                {
-                  "valueInteger": 1
-                }
-              ]
-            },
-            {
-              "linkId": "5633552097315",
-              "text": "Date de décès",
-              "answer": [
-                {
-                  "valueDate": "2023-11-10"
-                }
-              ],
-              "item": [
-                {
-                  "linkId": "9098810065693",
-                  "text": "Source de la date de décès",
-                  "answer": [
-                    {
-                      "valueString": "insee"
-                    }
-                  ]
+                  "valueDate": "1989-12-07"
                 }
               ]
             }
@@ -93,7 +64,7 @@
                   "text": "Latitude",
                   "answer": [
                     {
-                      "valueDecimal": 48.8584
+                      "valueDecimal": 48.8606
                     }
                   ]
                 },
@@ -102,7 +73,7 @@
                   "text": "Longitude",
                   "answer": [
                     {
-                      "valueDecimal": 2.2945
+                      "valueDecimal": 2.3376
                     }
                   ]
                 },
@@ -111,7 +82,7 @@
                   "text": "Date du recueil de l'information",
                   "answer": [
                     {
-                      "valueDate": "2023-10-15"
+                      "valueDate": "2024-01-01"
                     }
                   ]
                 }
@@ -123,8 +94,9 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "urn:oid:2.16.840.1.113883.2.8.1.5.5",
-                    "code": "751161301"
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751061101",
+                    "display": "SAINT-GERMAIN-L'AUXERROIS"
                   },
                   "item": [
                     {
@@ -132,7 +104,7 @@
                       "text": "Date du recueil de l'information",
                       "answer": [
                         {
-                          "valueDate": "2023-10-15"
+                          "valueDate": "2024-01-01"
                         }
                       ]
                     }
@@ -149,33 +121,14 @@
       "text": "Données PMSI",
       "item": [
         {
-          "linkId": "8164976487070",
-          "text": "Age",
-          "answer": [
-            {
-              "valueInteger": 47,
-              "item": [
-                {
-                  "linkId": "1690778867802",
-                  "text": "Date du recueil de l'information",
-                  "answer": [
-                    {
-                      "valueDate": "2023-11-05"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "linkId": "3894630481120",
           "text": "Sexe",
           "answer": [
             {
               "valueCoding": {
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "code": "male"
+                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "code": "h",
+                "display": "Homme"
               }
             }
           ]
@@ -186,8 +139,9 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM",
-                "code": "75016"
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75006",
+                "display": "Paris 6ème arrondissement"
               },
               "item": [
                 {
@@ -195,7 +149,7 @@
                   "text": "Date du recueil de l'information",
                   "answer": [
                     {
-                      "valueDate": "2023-10-15"
+                      "valueDate": "2024-01-01"
                     }
                   ]
                 }
@@ -212,7 +166,7 @@
               "text": "Date du recueil de l'information",
               "answer": [
                 {
-                  "valueDate": "2023-11-05"
+                  "valueDate": "2024-01-16"
                 }
               ]
             },
@@ -222,8 +176,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DP"
+                    "display": "Principal"
                   }
                 }
               ]
@@ -234,7 +187,8 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "code": "R57.0"
+                    "code": "J44.1",
+                    "display": "Maladie pulmonaire obstructive chronique avec épisodes aigus, sans précision"
                   }
                 }
               ]
@@ -250,7 +204,7 @@
               "text": "Date du recueil de l'information",
               "answer": [
                 {
-                  "valueDate": "2023-11-05"
+                  "valueDate": "2024-01-16"
                 }
               ]
             },
@@ -260,8 +214,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DA"
+                    "display": "Associé"
                   }
                 }
               ]
@@ -272,7 +225,8 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "code": "I25.9"
+                    "code": "Z88.0",
+                    "display": "Antécédents personnels d'allergie à la pénicilline"
                   }
                 }
               ]
@@ -288,7 +242,7 @@
               "text": "Date du recueil de l'information",
               "answer": [
                 {
-                  "valueDate": "2023-11-05"
+                  "valueDate": "2024-01-16"
                 }
               ]
             },
@@ -297,7 +251,7 @@
               "text": "Date de l'acte",
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T22:15:00+01:00"
+                  "valueDateTime": "2024-01-19T10:45:00.000Z"
                 }
               ]
             },
@@ -307,44 +261,9 @@
               "answer": [
                 {
                   "valueCoding": {
+                    "code": "GLQP008",
                     "system": "https://smt.esante.gouv.fr/terminologie-ccam",
-                    "code": "GELD004"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "linkId": "591926901726",
-          "text": "Actes",
-          "item": [
-            {
-              "linkId": "9436509453137",
-              "text": "Date du recueil de l'information",
-              "answer": [
-                {
-                  "valueDate": "2023-11-06"
-                }
-              ]
-            },
-            {
-              "linkId": "5066866286682",
-              "text": "Date de l'acte",
-              "answer": [
-                {
-                  "valueDateTime": "2023-11-06T09:00:00+01:00"
-                }
-              ]
-            },
-            {
-              "linkId": "7758110033600",
-              "text": "Acte",
-              "answer": [
-                {
-                  "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
-                    "code": "DDQH012"
+                    "display": "Mesure de la capacité vitale lente et de l'expiration forcée, avec gazométrie sanguine artérielle [Spirométrie standard avec gaz du sang]"
                   }
                 }
               ]
@@ -356,7 +275,7 @@
           "text": "Date de début de séjour",
           "answer": [
             {
-              "valueDate": "2023-11-05"
+              "valueDate": "2024-01-16"
             }
           ]
         },
@@ -365,7 +284,7 @@
           "text": "Date de fin de séjour",
           "answer": [
             {
-              "valueDate": "2023-11-10"
+              "valueDate": "2024-01-19"
             }
           ]
         },
@@ -375,8 +294,8 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R049-ModeEntree/FHIR/TRE-R049-ModeEntree",
-                "code": "8"
+                "code": "8",
+                "display": "Domicile"
               }
             }
           ]
@@ -387,8 +306,8 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R048-ModeSortie/FHIR/TRE-R048-ModeSortie",
-                "code": "9"
+                "code": "8",
+                "display": "Domicile"
               }
             }
           ]
@@ -400,69 +319,121 @@
       "text": "Biologie",
       "item": [
         {
-          "linkId": "5241323453538",
-          "text": "Fonction rénale",
+          "linkId": "419282985970",
+          "text": "Hémogramme",
           "item": [
             {
-              "linkId": "500408205043",
-              "text": "Créatininémie",
+              "linkId": "304159088493",
+              "text": "Hémoglobine",
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 156.0,
-                    "unit": "umol/L"
+                    "value": 11.2,
+                    "unit": "g/dL"
                   },
                   "item": [
                     {
-                      "linkId": "977768150991",
+                      "linkId": "597082091886",
                       "text": "code loinc",
                       "answer": [
                         {
                           "valueCoding": {
                             "system": "http://loinc.org",
-                            "code": "14682-9"
+                            "code": "718-7",
+                            "display": "Hémoglobine"
                           }
                         }
                       ]
                     },
                     {
-                      "linkId": "279176538278",
+                      "linkId": "471894150678",
                       "text": "Date et heure du prélèvement",
                       "answer": [
                         {
-                          "valueDateTime": "2023-11-05T21:00:00+01:00"
+                          "valueDateTime": "2024-01-16T07:30:00.000Z"
                         }
                       ]
                     },
                     {
-                      "linkId": "271848662924",
-                      "text": "Statut de validation",
-                      "answer": [
-                        {
-                          "valueString": "valide"
-                        }
-                      ]
-                    },
-                    {
-                      "linkId": "488869963230",
+                      "linkId": "404489113722",
                       "text": "Borne inférieure de normalité du résultat",
                       "answer": [
                         {
                           "valueQuantity": {
-                            "value": 62.0,
-                            "unit": "umol/L"
+                            "value": 12.0,
+                            "unit": "g/dL"
                           }
                         }
                       ]
                     },
                     {
-                      "linkId": "984480974142",
+                      "linkId": "849522090945",
                       "text": "Borne supérieure de normalité du résultat",
                       "answer": [
                         {
                           "valueQuantity": {
-                            "value": 106.0,
-                            "unit": "umol/L"
+                            "value": 16.0,
+                            "unit": "g/dL"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "210077225604",
+              "text": "Leucocytes",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 14.5,
+                    "unit": "10e9/L"
+                  },
+                  "item": [
+                    {
+                      "linkId": "695484403752",
+                      "text": "code loinc",
+                      "answer": [
+                        {
+                          "valueCoding": {
+                            "system": "http://loinc.org",
+                            "code": "6690-2",
+                            "display": "Globules blancs"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "578695171519",
+                      "text": "Date et heure du prélèvement",
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-01-16T07:30:00.000Z"
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "147832677057",
+                      "text": "Borne inférieure de normalité du résultat",
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 4.0,
+                            "unit": "10e9/L"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "175377691907",
+                      "text": "Borne supérieure de normalité du résultat",
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 11.0,
+                            "unit": "10e9/L"
                           }
                         }
                       ]
@@ -484,7 +455,7 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "Noradrénaline",
+              "valueString": "Prednisolone 40mg",
               "item": [
                 {
                   "linkId": "1923143398283",
@@ -493,7 +464,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "C01CA03"
+                        "code": "H02AB06",
+                        "display": "Prednisolone"
                       }
                     }
                   ]
@@ -504,8 +476,9 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
-                        "code": "38233005"
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "90001146",
+                        "display": "Oral"
                       }
                     }
                   ]
@@ -523,7 +496,16 @@
               "text": "Date de début de la prescription",
               "answer": [
                 {
-                  "valueDate": "2023-11-05"
+                  "valueDate": "2024-01-16"
+                }
+              ]
+            },
+            {
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription",
+              "answer": [
+                {
+                  "valueDate": "2024-01-26"
                 }
               ]
             }
@@ -534,7 +516,7 @@
           "text": "Médicament administré",
           "answer": [
             {
-              "valueString": "Noradrénaline",
+              "valueString": "Prednisolone 40mg",
               "item": [
                 {
                   "linkId": "631972144976",
@@ -543,7 +525,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "C01CA03"
+                        "code": "H02AB06",
+                        "display": "Prednisolone"
                       }
                     }
                   ]
@@ -555,7 +538,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "38233005"
+                        "code": "90001146",
+                        "display": "Oral"
                       }
                     }
                   ]
@@ -574,7 +558,7 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 0.5,
+                    "value": 40.0,
                     "unit": "mg"
                   }
                 }
@@ -585,7 +569,7 @@
               "text": "Date et heure de début d'administration",
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T22:30:00+01:00"
+                  "valueDateTime": "2024-01-16T08:00:00.000Z"
                 }
               ]
             },
@@ -594,7 +578,7 @@
               "text": "Date et heure de fin d'administration",
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T23:30:00+01:00"
+                  "valueDateTime": "2024-01-16T08:05:00.000Z"
                 }
               ]
             }
@@ -611,7 +595,7 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "Héparine sodique",
+              "valueString": "Salbutamol",
               "item": [
                 {
                   "linkId": "1923143398283",
@@ -620,7 +604,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B01AB01"
+                        "code": "R03AC02",
+                        "display": "Salbutamol"
                       }
                     }
                   ]
@@ -631,8 +616,9 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
-                        "code": "38233005"
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "90001148",
+                        "display": "Inhalation"
                       }
                     }
                   ]
@@ -650,7 +636,16 @@
               "text": "Date de début de la prescription",
               "answer": [
                 {
-                  "valueDate": "2023-11-05"
+                  "valueDate": "2024-01-16"
+                }
+              ]
+            },
+            {
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription",
+              "answer": [
+                {
+                  "valueDate": "2024-04-16"
                 }
               ]
             }
@@ -661,7 +656,7 @@
           "text": "Médicament administré",
           "answer": [
             {
-              "valueString": "Héparine sodique",
+              "valueString": "Salbutamol",
               "item": [
                 {
                   "linkId": "631972144976",
@@ -670,7 +665,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B01AB01"
+                        "code": "R03AC02",
+                        "display": "Salbutamol"
                       }
                     }
                   ]
@@ -682,7 +678,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "38233005"
+                        "code": "90001148",
+                        "display": "Inhalation"
                       }
                     }
                   ]
@@ -701,8 +698,8 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 5000.0,
-                    "unit": "UI"
+                    "value": 100.0,
+                    "unit": "mcg"
                   }
                 }
               ]
@@ -712,7 +709,7 @@
               "text": "Date et heure de début d'administration",
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T22:00:00+01:00"
+                  "valueDateTime": "2024-01-16T06:00:00.000Z"
                 }
               ]
             },
@@ -721,42 +718,7 @@
               "text": "Date et heure de fin d'administration",
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T22:30:00+01:00"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "214880328197",
-      "text": "Examen clinique",
-      "item": [
-        {
-          "linkId": "305831246173",
-          "text": "Dossier de soins",
-          "item": [
-            {
-              "linkId": "4160905247955",
-              "text": "Pression artérielle systolique",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 75.0,
-                    "unit": "mm[Hg]"
-                  },
-                  "item": [
-                    {
-                      "linkId": "987654638442",
-                      "text": "Date de la mesure",
-                      "answer": [
-                        {
-                          "valueDate": "2023-11-05"
-                        }
-                      ]
-                    }
-                  ]
+                  "valueDateTime": "2024-01-16T06:05:00.000Z"
                 }
               ]
             }

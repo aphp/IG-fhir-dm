@@ -3984,7 +3984,7 @@ Les données des exemples se trouve `data-platform/raw-layer/test/file/*.csv`
 
 ## COMMANDE
 
-Génère la ressource FHIR QuestionnaireResponse uniquement pour le patient numéro **4**
+Génère la ressource FHIR QuestionnaireResponse uniquement pour le patient numéro **10**
 
 ## FORMAT DE SORTIE
 
