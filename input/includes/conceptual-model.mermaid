@@ -1,0 +1,90 @@
+```mermaid
+---
+title: Carte Conceptuelle - Entrepôt de Données de Santé (EDSH)
+---
+graph TD
+    %% Styles par domaine
+    classDef core fill:#fcd34d,stroke:#f59e0b,stroke-width:4px,color:#000
+    classDef attribut fill:#bfdbfe,stroke:#3b82f6,stroke-width:2px,stroke-dasharray: 5 5
+    classDef physical fill:#fed7aa,stroke:#ea580c,stroke-width:2px
+    classDef clinical fill:#fecaca,stroke:#dc2626,stroke-width:2px
+    classDef biology fill:#d9f99d,stroke:#65a30d,stroke-width:2px
+    classDef lifestyle fill:#e9d5ff,stroke:#9333ea,stroke-width:2px
+    classDef care fill:#fbcfe8,stroke:#db2777,stroke-width:2px
+    classDef drug fill:#fef3c7,stroke:#ca8a04,stroke-width:2px
+    classDef group fill:#f0f0f0,stroke:#666,stroke-width:2px
+    
+    %% Concept central
+    Patient["👤 PATIENT"]:::core
+    
+    %% Groupes conceptuels
+    Soins["📏 SOINS"]:::group
+    Bio["🔬 ANALYSES BIOLOGIQUES<br/>Examens de laboratoire"]:::group
+    Lifestyle["🚶 HABITUDES DE VIE<br/>Comportements quotidiens"]:::group
+    Parcours["🏨 PARCOURS DE SOINS<br/>Épisodes hospitaliers"]:::group
+    Medic["💉 THÉRAPEUTIQUE<br/>MÉDICAMENTEUSE<br/>Traitements médicamenteux"]:::group
+    
+    %% Concepts identité
+    Sexe["⚥ Sexe"]:::attribut
+    Age["📅 Âge"]:::attribut
+    
+    %% Concepts soins
+    Taille["Taille"]:::physical
+    Poids["Poids"]:::physical
+    PA["Pression<br/>Artérielle"]:::physical
+    
+    %% Concepts biologie
+    Biochimie["Biochimie"]:::biology
+    Hemato["Hématologie"]:::biology
+    
+    %% Concepts mode de vie
+    Alcool["🍷 Alcool"]:::lifestyle
+    Tabac["🚬 Tabac"]:::lifestyle
+    Drogue["💊 Drogues"]:::lifestyle
+    Sport["🏃 Activité<br/>Physique"]:::lifestyle
+    
+    %% Concepts parcours
+    Sejour["Séjour"]:::care
+    Acte["Acte"]:::care
+    Diag["Diagnostic"]:::care
+    
+    %% Concepts médicaments
+    Prescription["Prescription"]:::drug
+    Admin["Administration"]:::drug
+    Med["Médicament"]:::drug
+    
+    %% Relations Patient -> Groupes
+    Patient -->|"est caractérisé par"| Sexe
+    Patient -->|"est caractérisé par"| Age
+    Patient -->|"a des"| Soins
+    Patient -->|"subit des"| Bio
+    Patient -->|"déclare des"| Lifestyle
+    Patient -->|"suit un"| Parcours
+    Patient -->|"bénéficie d'une"| Medic
+    
+    %% Relations Soins
+    Soins -->|"inclut"| Taille
+    Soins -->|"inclut"| Poids
+    Soins -->|"mesure"| PA
+    
+    %% Relations Biologie
+    Bio -->|"comprend"| Biochimie
+    Bio -->|"comprend"| Hemato
+    
+    %% Relations Mode de vie
+    Lifestyle -->|"évalue"| Alcool
+    Lifestyle -->|"évalue"| Tabac
+    Lifestyle -->|"évalue"| Drogue
+    Lifestyle -->|"évalue"| Sport
+    
+    %% Relations Parcours
+    Parcours -->|"se compose de"| Sejour
+    Sejour -->|"donne lieu à"| Acte
+    Sejour -->|"établit des"| Diag
+    
+    %% Relations Médicaments
+    Medic -->|"débute par"| Prescription
+    Medic -->|"se réalise par"| Admin
+    Prescription -->|"spécifie un"| Med
+    Admin -->|"utilise un"| Med
+```

@@ -3,14 +3,10 @@
 Les [exigences de l'usage **Variables socles pour les EDSH** (fichier MSExcel)](DocumentReference-CoreExigences.html)
 référencées issues des travaux du GT Standards & Interopérabilité.
 
-
 ### Modéle conceptuel
 
-<!-- If the image below is not wrapped in a div tag, the publisher tries to wrap text around the image, which is not desired. -->
-<div class="viewer-container" style="height: 592px;">
-  <div class="svg-container" id="conceptual-model">
-    {% include use-core-conceptual.svg %}
-  </div>
+<div id="conceptual-model" style="height: 270px;" markdown="1">
+{% include conceptual-model.mermaid %}
 </div>
 
 ### Glossaire métier
