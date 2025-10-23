@@ -2,7 +2,7 @@
   "resourceType": "QuestionnaireResponse",
   "id": "cas-4-usage-core",
   "status": "completed",
-  "authored": "2023-11-10",
+  "authored": "2024-01-19",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -57,26 +57,6 @@
                   "valueInteger": 1
                 }
               ]
-            },
-            {
-              "linkId": "5633552097315",
-              "text": "Date de décès",
-              "answer": [
-                {
-                  "valueDate": "2023-11-10"
-                }
-              ],
-              "item": [
-                {
-                  "linkId": "9098810065693",
-                  "text": "Source de la date de décès",
-                  "answer": [
-                    {
-                      "valueString": "insee"
-                    }
-                  ]
-                }
-              ]
             }
           ]
         },
@@ -123,8 +103,8 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "urn:oid:2.16.840.1.113883.2.8.1.5.5",
-                    "code": "751161301"
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751166402"
                   },
                   "item": [
                     {
@@ -174,8 +154,8 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "code": "male"
+                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "code": "h"
               }
             }
           ]
@@ -186,7 +166,7 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "75016"
               },
               "item": [
@@ -222,8 +202,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DP"
+                    "display": "DP"
                   }
                 }
               ]
@@ -234,7 +213,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "code": "R57.0"
+                    "code": "J44.1"
                   }
                 }
               ]
@@ -260,8 +239,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DA"
+                    "display": "DA"
                   }
                 }
               ]
@@ -272,7 +250,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "code": "I25.9"
+                    "code": "Z88.0"
                   }
                 }
               ]
@@ -307,7 +285,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "code": "GELD004"
                   }
                 }
@@ -343,7 +321,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "code": "DDQH012"
                   }
                 }
@@ -375,7 +353,6 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R049-ModeEntree/FHIR/TRE-R049-ModeEntree",
                 "code": "8"
               }
             }
@@ -387,8 +364,7 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R048-ModeSortie/FHIR/TRE-R048-ModeSortie",
-                "code": "9"
+                "code": "8"
               }
             }
           ]
@@ -504,8 +480,8 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
-                        "code": "38233005"
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "20045000"
                       }
                     }
                   ]
@@ -555,7 +531,7 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "38233005"
+                        "code": "20045000"
                       }
                     }
                   ]
@@ -631,8 +607,8 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
-                        "code": "38233005"
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
+                        "code": "20045000"
                       }
                     }
                   ]
@@ -682,7 +658,7 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "38233005"
+                        "code": "20045000"
                       }
                     }
                   ]

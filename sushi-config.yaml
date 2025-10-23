@@ -120,8 +120,8 @@ resources:
     description: Exemple simple
     exampleBoolean: true
   QuestionnaireResponse/cas-11-usage-core:
-    name: Exemple complet
-    description: Exemple complet
+    name: Patient 11 - Madame Doré
+    description: Suivi diabète de type 2
     exampleBoolean: true
   QuestionnaireResponse/cas-1-usage-core:
     name: Patient 1 - Madame Dupont
@@ -132,7 +132,7 @@ resources:
     description: Exemple correspondant au patient 2 du jeu de test
     exampleBoolean: true
   QuestionnaireResponse/cas-3-usage-core:
-    name: Patient 3 - Monsieur Leroy
+    name: Patient 3 - Madame Leroy
     description: Exemple correspondant au patient 3 du jeu de test
     exampleBoolean: true
   QuestionnaireResponse/cas-4-usage-core:
@@ -140,7 +140,7 @@ resources:
     description: Exemple correspondant au patient 4 du jeu de test
     exampleBoolean: true
   QuestionnaireResponse/cas-5-usage-core:
-    name: Patient 5 - Monsieur Simon
+    name: Patient 5 - Madame Simon
     description: Exemple correspondant au patient 5 du jeu de test
     exampleBoolean: true
   QuestionnaireResponse/cas-6-usage-core:

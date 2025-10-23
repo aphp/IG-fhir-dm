@@ -51,7 +51,7 @@
             },
             {
               "linkId": "6931296968515",
-              "text": "Rang gemellaire du beneficiaire",
+              "text": "Rang gémellaire du bénéficiaire",
               "answer": [
                 {
                   "valueInteger": 1
@@ -103,8 +103,8 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "urn:oid:2.16.840.1.113883.2.8.1.5.5",
-                    "code": "750152301"
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "920500508"
                   },
                   "item": [
                     {
@@ -154,8 +154,8 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "code": "male"
+                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "code": "h"
               }
             }
           ]
@@ -166,7 +166,7 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "92000"
               },
               "item": [
@@ -202,8 +202,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DP"
+                    "display": "DP"
                   }
                 }
               ]
@@ -240,8 +239,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DA"
+                    "display": "DA"
                   }
                 }
               ]
@@ -287,7 +285,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "code": "HEQE002"
                   }
                 }
@@ -319,7 +317,6 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R049-ModeEntree/FHIR/TRE-R049-ModeEntree",
                 "code": "8"
               }
             }
@@ -331,7 +328,6 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R048-ModeSortie/FHIR/TRE-R048-ModeSortie",
                 "code": "8"
               }
             }
