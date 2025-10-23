@@ -1,14 +1,14 @@
 #### Synthèse
 
-**Thomas**_[Prénom]_ **David**_[Nom]_, **né le 7 décembre 1989**_[date-naissance]_, hospitalisé du **16**_[Date-début-séjour]_ au **19 janvier 2024**_[Date-fin-séjour]_ dans le **service de pneumologie de l'hôpital Avicenne** pour une **maladie pulmonaire obstructive chronique avec épisodes aigus**_[diagnostic]_.
+**Thomas**_[Prénom]_ **David**_[Nom]_, **né le 7 décembre 1989**_[date-naissance]_, hospitalisé du **16**_[Date-début-séjour]_ au **19 janvier 2024**_[Date-fin-séjour]_ dans le service de pneumologie de l'hôpital Avicenne pour une **maladie pulmonaire obstructive chronique avec épisodes aigus**_[diagnostic]_.
 
-Le patient, âgé de 34 ans seulement, se présente aux urgences de l'hôpital Avicenne le 16 janvier 2024 en milieu de matinée pour une dyspnée d'aggravation progressive depuis 5 jours, devenue invalidante et ne répondant plus au traitement bronchodilatateur habituel.
+Le patient, âgé de 34 ans seulement, se présente aux urgences de l'hôpital Avicenne le 16 janvier 2024 en milieu de matinée pour une **dyspnée d'aggravation progressive**_[diagnostic]_ depuis 5 jours, devenue invalidante et ne répondant plus au traitement bronchodilatateur habituel.
 
 Il décrit une majoration importante de son essoufflement, une toux productive avec expectorations purulentes verdâtres, des sibilants (sifflements respiratoires) permanents et une sensation d'oppression thoracique. La nuit précédant l'admission, il n'a pas pu dormir en position allongée et a dû rester assis dans son fauteuil. L'essoufflement survient désormais au moindre effort, l'empêchant de réaliser ses activités quotidiennes habituelles.
 
 Antécédents médicaux
 
-M. **David**_[Nom]_ est suivi depuis 3 ans pour une **bronchopneumopathie chronique obstructive** (BPCO) diagnostiquée de façon précoce à l'âge de 31 ans. Il s'agit d'une forme sévère de la maladie, inhabituelle à cet âge, directement liée à un tabagisme massif débuté à l'adolescence.
+M. **David**_[Nom]_ est suivi depuis 3 ans pour une **bronchopneumopathie chronique obstructive**_[diagnostic]_ (BPCO) diagnostiquée de façon précoce à l'âge de 31 ans. Il s'agit d'une forme sévère de la maladie, inhabituelle à cet âge, directement liée à un **tabagisme massif débuté à l'adolescence**_[consommation-tabac]_.
 
 Il présente également un **antécédent personnel d'allergie à la pénicilline**_[diagnostic]_, information capitale à prendre en compte pour toute prescription antibiotique.
 
@@ -16,9 +16,9 @@ Le patient présente des facteurs de risque respiratoire majeurs. Il est **fumeu
 
 Examen clinique à l'admission :
 Patient en détresse respiratoire modérée, assis penché en avant, utilisant ses muscles respiratoires accessoires.
-**Fréquence cardiaque : 105 /min**_[frequence-cardiaque]_ (tachycardie)
-**Fréquence respiratoire : 28 /min**_[frequence-respiratoire]_ (polypnée marquée, la normale étant de 12-20/min)
-Pression artérielle : 135/85 mmHg
+Fréquence cardiaque : 105 /min (tachycardie)
+Fréquence respiratoire : 28 /min (polypnée marquée, la normale étant de 12-20/min)
+**Pression artérielle : 135/85 mmHg**_[pression-arterielle]_
 Température : 37.8°C (subfébrile)
 Saturation en oxygène : 88% en air ambiant (hypoxémie)
 
@@ -42,15 +42,15 @@ Les analyses biologiques du 16/01/2024 à 7h30 montrent :
   - **leucocytes : 14.5 x10⁹/L**_[leucocytes]_ (hyperleucocytose témoignant d'un processus infectieux)
 
 - marqueurs inflammatoires :
-  - **protéine C-réactive : 58 mg/L** (très élevée, confirmant une inflammation importante et un probable processus infectieux bactérien)
+  - protéine C-réactive : 58 mg/L (très élevée, confirmant une inflammation importante et un probable processus infectieux bactérien)
 
-La radiographie thoracique montre un thorax distendu avec aplatissement des coupoles diaphragmatiques, évocateur d'un emphysème, sans foyer de condensation pulmonaire (pas de pneumonie franche).
+La **radiographie thoracique**_[acte]_ montre un thorax distendu avec aplatissement des coupoles diaphragmatiques, évocateur d'un emphysème, sans foyer de condensation pulmonaire (pas de pneumonie franche).
 
 Une **spirométrie standard avec gazométrie sanguine artérielle**_[acte]_ est réalisée le 19 janvier 2024 à 10h45, avant la sortie, par le Dr. Pneumologue.
 
 Les résultats montrent :
-- Spirométrie : VEMS (volume expiratoire maximal en 1 seconde) à 45% de la théorique, rapport VEMS/CVF abaissé à 55% (confirmant le trouble ventilatoire obstructif)
-- Gazométrie artérielle : PaO2 = 62 mmHg (hypoxémie modérée), PaCO2 = 48 mmHg (discrète hypercapnie), pH = 7.38 (compensé)
+- **Spirométrie**_[acte]_ : VEMS (volume expiratoire maximal en 1 seconde) à 45% de la théorique, rapport VEMS/CVF abaissé à 55% (confirmant le trouble ventilatoire obstructif)
+- **Gazométrie artérielle**_[acte]_ : PaO2 = 62 mmHg (hypoxémie modérée), PaCO2 = 48 mmHg (discrète hypercapnie), pH = 7.38 (compensé)
 
 Ces résultats confirment une BPCO stade sévère (GOLD 3) avec insuffisance respiratoire chronique partielle en cours de décompensation.
 
@@ -69,7 +69,7 @@ Corticothérapie systémique :
 **Prescription de prednisolone 40 mg**_[prescription]_ par voie orale. L'**administration de prednisolone 40 mg**_[administration]_ débute le 16 janvier à 8h00, à poursuivre pendant 10 jours. La corticothérapie systémique courte est un traitement essentiel de l'exacerbation de BPCO, permettant de réduire l'inflammation bronchique et d'accélérer la récupération.
 
 Antibiothérapie :
-Compte tenu de l'**allergie à la pénicilline**_[diagnostic]_, prescription d'azithromycine (macrolide) pendant 5 jours pour traiter la surinfection bactérienne bronchique, mise en évidence par la purulence des expectorations et l'hyperleucocytose.
+Compte tenu de l'**allergie à la pénicilline**_[diagnostic]_, prescription d'**azithromycine (macrolide) pendant 5 jours**_[prescription]_ pour traiter la surinfection bactérienne bronchique, mise en évidence par la purulence des expectorations et l'hyperleucocytose.
 
 Kinésithérapie respiratoire pour drainage bronchique et aide à l'expectoration.
 
@@ -77,7 +77,7 @@ Kinésithérapie respiratoire pour drainage bronchique et aide à l'expectoratio
 
 L'évolution est progressivement favorable sous traitement. La dyspnée s'améliore dès le 2ème jour d'hospitalisation. Les sibilants diminuent, les expectorations deviennent moins abondantes et moins purulentes. La saturation en oxygène se stabilise à 92-93% sous 2 litres d'oxygène.
 
-Le 3ème jour (18 janvier), le patient est sevré de l'oxygène en continu, ne le nécessitant plus que lors des efforts. La **fréquence respiratoire**_[frequence-respiratoire]_ diminue à 20/min, la **fréquence cardiaque**_[frequence-cardiaque]_ se normalise à 85/min.
+Le 3ème jour (18 janvier), le patient est sevré de l'oxygène en continu, ne le nécessitant plus que lors des efforts. La fréquence respiratoire diminue à 20/min, la fréquence cardiaque se normalise à 85/min.
 
 Le 4ème jour (19 janvier), la **gazométrie artérielle de contrôle**_[acte]_ montre une amélioration significative avec normalisation des paramètres respiratoires. L'état clinique permet d'envisager une sortie à domicile.
 
@@ -89,8 +89,8 @@ Prescriptions de sortie :
 
 - **Prednisolone 40 mg**_[prescription]_ à poursuivre jusqu'au 26 janvier (fin du traitement de 10 jours)
 - **Salbutamol 100 mcg**_[prescription]_ en inhalation : 2 bouffées 4 fois par jour et à la demande en cas de gêne respiratoire
-- Bronchodilatateurs de longue durée d'action (association LABA/LAMA) en inhalation quotidienne pour le traitement de fond de la BPCO
-- Azithromycine (fin du traitement antibiotique à J5)
+- **Bronchodilatateurs de longue durée d'action**_[prescription]_ (association LABA/LAMA) en inhalation quotidienne pour le traitement de fond de la BPCO
+- **Azithromycine**_[prescription]_ (fin du traitement antibiotique à J5)
 
 Consignes de sortie et prise en charge au long cours :
 
@@ -106,7 +106,7 @@ M. **David**_[Nom]_ est informé de façon claire et solennelle de la gravité d
 
 **L'arrêt du tabac est la SEULE intervention qui peut ralentir la progression de la maladie.** C'est un impératif vital absolu.
 
-Une consultation avec le service de tabacologie est programmée dans les 15 jours. Des substituts nicotiniques (patchs + formes orales) sont prescrits immédiatement. Un traitement par varénicline (Champix) est envisagé si échec des substituts. Un accompagnement psychologique est proposé.
+Une consultation avec le service de tabacologie est programmée dans les 15 jours. Des **substituts nicotiniques**_[prescription]_ (patchs + formes orales) sont prescrits immédiatement. Un traitement par varénicline (Champix) est envisagé si échec des substituts. Un accompagnement psychologique est proposé.
 
 Réhabilitation respiratoire
 

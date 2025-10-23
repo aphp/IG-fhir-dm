@@ -95,8 +95,8 @@
                 {
                   "valueCoding": {
                     "system": "https://inse.fr/IRIS-cs",
-                    "code": "751061101",
-                    "display": "SAINT-GERMAIN-L'AUXERROIS"
+                    "code": "751062307",
+                    "display": "Notre-Dame des Champs 7"
                   },
                   "item": [
                     {
@@ -262,7 +262,7 @@
                 {
                   "valueCoding": {
                     "code": "GLQP008",
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "display": "Mesure de la capacité vitale lente et de l'expiration forcée, avec gazométrie sanguine artérielle [Spirométrie standard avec gaz du sang]"
                   }
                 }
@@ -323,66 +323,6 @@
           "text": "Hémogramme",
           "item": [
             {
-              "linkId": "304159088493",
-              "text": "Hémoglobine",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 11.2,
-                    "unit": "g/dL"
-                  },
-                  "item": [
-                    {
-                      "linkId": "597082091886",
-                      "text": "code loinc",
-                      "answer": [
-                        {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "718-7",
-                            "display": "Hémoglobine"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "linkId": "471894150678",
-                      "text": "Date et heure du prélèvement",
-                      "answer": [
-                        {
-                          "valueDateTime": "2024-01-16T07:30:00.000Z"
-                        }
-                      ]
-                    },
-                    {
-                      "linkId": "404489113722",
-                      "text": "Borne inférieure de normalité du résultat",
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 12.0,
-                            "unit": "g/dL"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "linkId": "849522090945",
-                      "text": "Borne supérieure de normalité du résultat",
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 16.0,
-                            "unit": "g/dL"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "linkId": "210077225604",
               "text": "Leucocytes",
               "answer": [
@@ -400,7 +340,7 @@
                           "valueCoding": {
                             "system": "http://loinc.org",
                             "code": "6690-2",
-                            "display": "Globules blancs"
+                            "display": "Leucocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
                           }
                         }
                       ]
@@ -434,6 +374,66 @@
                           "valueQuantity": {
                             "value": 11.0,
                             "unit": "10e9/L"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "304159088493",
+              "text": "Hémoglobine",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 11.2,
+                    "unit": "g/dL"
+                  },
+                  "item": [
+                    {
+                      "linkId": "597082091886",
+                      "text": "code loinc",
+                      "answer": [
+                        {
+                          "valueCoding": {
+                            "system": "http://loinc.org",
+                            "code": "718-7",
+                            "display": "Hémoglobine [Masse/Volume] Sang ; Numérique"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "471894150678",
+                      "text": "Date et heure du prélèvement",
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-01-16T07:30:00.000Z"
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "404489113722",
+                      "text": "Borne inférieure de normalité du résultat",
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 12.0,
+                            "unit": "g/dL"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "linkId": "849522090945",
+                      "text": "Borne supérieure de normalité du résultat",
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 16.0,
+                            "unit": "g/dL"
                           }
                         }
                       ]
@@ -617,8 +617,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001148",
-                        "display": "Inhalation"
+                        "code": "20020000",
+                        "display": "Voie inhalée"
                       }
                     }
                   ]
@@ -678,8 +678,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001148",
-                        "display": "Inhalation"
+                        "code": "20020000",
+                        "display": "Voie inhalée"
                       }
                     }
                   ]

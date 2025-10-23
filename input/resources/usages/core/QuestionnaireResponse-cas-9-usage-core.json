@@ -95,8 +95,7 @@
                 {
                   "valueCoding": {
                     "system": "https://inse.fr/IRIS-cs",
-                    "code": "751151001",
-                    "display": "GRENELLE"
+                    "code": "751155805"
                   },
                   "item": [
                     {
@@ -260,8 +259,7 @@
                 {
                   "valueCoding": {
                     "code": "HPHB003",
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
-                    "display": "Ponction d'un épanchement péritonéal, par voie transcutanée"
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam"
                   }
                 }
               ],
@@ -297,8 +295,7 @@
                 {
                   "valueCoding": {
                     "code": "HEQE002",
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
-                    "display": "Endoscopie oeso-gastro-duodénale"
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam"
                   }
                 }
               ],

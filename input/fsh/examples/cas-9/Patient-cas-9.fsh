@@ -1,7 +1,7 @@
 Instance: cas-9
 InstanceOf: DMPatient
-Title: "Patient 9"
-Description: """Resource patient illustrant [le cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "de Madame Blanc"
+Description: """Resource patient illustrant [le patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 //* extension[identityReliability]
