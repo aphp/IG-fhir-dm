@@ -1,7 +1,7 @@
 Instance: spironolactone-j2-cas-9
 InstanceOf: DMMedicationAdministration
-Title: "Administration de spironolactone au patient 9, J2"
-Description: """Administration J2 de spironolactone [au cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "Administration à J2 de spironolactone de Madame Blanc"
+Description: """Administration J2 de spironolactone [au patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * status = #completed

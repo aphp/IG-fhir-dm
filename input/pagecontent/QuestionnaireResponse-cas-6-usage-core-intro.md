@@ -1,8 +1,8 @@
 #### Synthèse
 
-**Nicolas**_[Prénom]_ **Petit**_[Nom]_, **né le 5 septembre 1965**_[date-naissance]_, hospitalisé du **5**_[Date-début-séjour]_ au **8 janvier 2024**_[Date-fin-séjour]_ dans le **service de cardiologie de l'hôpital Européen Georges-Pompidou** pour une **artériographie coronaire**_[acte]_ dans le cadre d'une **cardiopathie artérioscléreuse**_[diagnostic]_.
+**Nicolas**_[Prénom]_ **Petit**_[Nom]_, **né le 5 septembre 1965**_[date-naissance]_, hospitalisé du **5**_[Date-début-séjour]_ au **8 janvier 2024**_[Date-fin-séjour]_ dans le service de cardiologie de l'hôpital Européen Georges-Pompidou pour une **artériographie coronaire**_[acte]_ dans le cadre d'une **cardiopathie artérioscléreuse**_[diagnostic]_.
 
-Le patient, âgé de 58 ans, est adressé par son cardiologue traitant pour la réalisation d'une coronarographie diagnostique. Depuis plusieurs mois, M. **Petit**_[Nom]_ présente des douleurs thoraciques atypiques à l'effort, soulagées par le repos, évocatrices d'un angor d'effort stable. Une épreuve d'effort réalisée en ambulatoire s'est révélée positive avec apparition de signes électriques d'ischémie myocardique à un niveau d'effort modéré, motivant la réalisation d'une exploration coronarographique.
+Le patient, âgé de 58 ans, est adressé par son cardiologue traitant pour la réalisation d'une coronarographie diagnostique. Depuis plusieurs mois, M. **Petit**_[Nom]_ présente des douleurs thoraciques atypiques à l'effort, soulagées par le repos, évocatrices d'un angor d'effort stable. Une **épreuve d'effort**_[acte]_ réalisée en ambulatoire s'est révélée positive avec apparition de signes électriques d'ischémie myocardique à un niveau d'effort modéré, motivant la réalisation d'une exploration coronarographique.
 
 Dans ses antécédents, on note une **hypertension artérielle essentielle**_[diagnostic]_ connue depuis une dizaine d'années, traitée mais dont le contrôle tensionnel reste imparfait. Le patient ne présente pas d'antécédent d'infarctus du myocarde ni d'accident vasculaire cérébral.
 
@@ -10,9 +10,9 @@ Le patient présente plusieurs facteurs de risque cardiovasculaire. Il est **anc
 
 Examen clinique à l'admission :
 État général conservé, patient asymptomatique au repos.
-**Fréquence cardiaque : 68 /min**_[frequence-cardiaque]_ (régulière)
-**Pression artérielle systolique : 145 mmHg**_[pression-arterielle]_, pression artérielle diastolique : 90 mmHg (hypertension artérielle de grade 1 insuffisamment contrôlée)
-Poids : 82 kg, taille : 175 cm, IMC : 26.8 kg/m² (surpoids modéré)
+Fréquence cardiaque : 68 /min (régulière)
+**Pression artérielle systolique : 145 mmHg**_[pression-arterielle]_, **pression artérielle diastolique : 90 mmHg**_[pression-arterielle]_ (hypertension artérielle de grade 1 insuffisamment contrôlée)
+**Poids : 82 kg**_[poids]_, **taille : 175 cm**_[taille]_, IMC : 26.8 kg/m² (surpoids modéré)
 
 Examen cardiovasculaire :
 Auscultation cardiaque : bruits du cœur réguliers, pas de souffle
@@ -43,7 +43,7 @@ L'examen met en évidence :
 - Artère circonflexe : athérome diffus sans sténose significative (< 50%)
 - Flux coronaire distal conservé (TIMI 3)
 
-La fonction ventriculaire gauche apparaît préservée à l'échographie cardiaque réalisée en parallèle (fraction d'éjection estimée à 55%).
+La fonction ventriculaire gauche apparaît préservée à l'**échographie cardiaque**_[acte]_ réalisée en parallèle (fraction d'éjection estimée à 55%).
 
 Décision thérapeutique
 
@@ -61,7 +61,7 @@ Le patient bénéficie d'un traitement médical optimal comprenant :
 
 L'**administration de clopidogrel 75 mg**_[administration]_ et l'**administration de ramipril 5 mg**_[administration]_ débutent le 6 janvier à 8h00.
 
-Le patient est également mis sous traitement par statine à forte dose (non documenté dans les administrations enregistrées), bêta-bloquant et aspirine à faible dose dans le cadre de la prévention secondaire cardiovasculaire.
+Le patient est également mis sous traitement par **statine à forte dose**_[prescription]_ (non documenté dans les administrations enregistrées), **bêta-bloquant**_[prescription]_ et **aspirine à faible dose**_[prescription]_ dans le cadre de la prévention secondaire cardiovasculaire.
 
 Sortie
 
@@ -70,9 +70,9 @@ M. **Petit**_[Nom]_ sort à domicile le 8 janvier 2024, après une surveillance 
 Prescriptions de sortie :
 - **Clopidogrel 75 mg**_[prescription]_ pour 3 mois minimum
 - **Ramipril 5 mg**_[prescription]_ au long cours pour l'hypertension artérielle et la cardioprotection
-- Statine à forte dose au long cours
-- Bêta-bloquant (bisoprolol ou autre)
-- Aspirine 75 mg au long cours
+- **Statine à forte dose**_[prescription]_ au long cours
+- **Bêta-bloquant**_[prescription]_ (bisoprolol ou autre)
+- **Aspirine 75 mg**_[prescription]_ au long cours
 
 Consignes de sortie et prévention secondaire :
 - Surveillance régulière de la pression artérielle à domicile avec objectif < 130/80 mmHg

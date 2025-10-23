@@ -95,8 +95,8 @@
                 {
                   "valueCoding": {
                     "system": "https://inse.fr/IRIS-cs",
-                    "code": "751111501",
-                    "display": "BASTILLE"
+                    "code": "751114106",
+                    "display": "Folie Méricourt 6"
                   },
                   "item": [
                     {
@@ -221,7 +221,7 @@
                 {
                   "valueCoding": {
                     "code": "NBCA008",
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "display": "Ostéosynthèse de fracture du grand trochanter"
                   }
                 }
@@ -280,11 +280,77 @@
       "text": "Biologie",
       "item": [
         {
+          "linkId": "5241323453538",
+          "text": "Fonction rénale",
+          "item": [
+            {
+              "linkId": "500408205043",
+              "text": "Créatininémie",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 76.0,
+                    "unit": "umol/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueCoding": {
+                            "system": "http://loinc.org",
+                            "code": "14682-9",
+                            "display": "Créatinine [Moles/Volume] Sérum/Plasma ; Numérique"
+                          }
+                        }
+                      ],
+                      "linkId": "977768150991",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-01-11T07:00:00.000Z"
+                        }
+                      ],
+                      "linkId": "279176538278",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 62.0,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ],
+                      "linkId": "488869963230",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 106.0,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ],
+                      "linkId": "984480974142",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "linkId": "419282985970",
           "text": "Hémogramme",
           "item": [
             {
-              "linkId": "576990881606",
+              "linkId": "304159088493",
               "text": "Hémoglobine",
               "answer": [
                 {
@@ -303,7 +369,7 @@
                           }
                         }
                       ],
-                      "linkId": "222346097821",
+                      "linkId": "597082091886",
                       "text": "code loinc"
                     },
                     {
@@ -312,7 +378,7 @@
                           "valueDateTime": "2024-01-11T07:00:00.000Z"
                         }
                       ],
-                      "linkId": "969943041536",
+                      "linkId": "471894150678",
                       "text": "Date et heure du prélèvement"
                     },
                     {
@@ -324,7 +390,7 @@
                           }
                         }
                       ],
-                      "linkId": "853063743859",
+                      "linkId": "404489113722",
                       "text": "Borne inférieure de normalité du résultat"
                     },
                     {
@@ -336,73 +402,7 @@
                           }
                         }
                       ],
-                      "linkId": "294820088337",
-                      "text": "Borne supérieure de normalité du résultat"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "linkId": "878887166754",
-          "text": "Bilan rénal",
-          "item": [
-            {
-              "linkId": "438467031074",
-              "text": "Créatinine sérique",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 76.0,
-                    "unit": "umol/L"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "14682-9",
-                            "display": "Créatinine [Masse/Volume] Sérum/Plasma ; Numérique"
-                          }
-                        }
-                      ],
-                      "linkId": "699734835127",
-                      "text": "code loinc"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueDateTime": "2024-01-11T07:00:00.000Z"
-                        }
-                      ],
-                      "linkId": "811976976886",
-                      "text": "Date et heure du prélèvement"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 62.0,
-                            "unit": "umol/L"
-                          }
-                        }
-                      ],
-                      "linkId": "596826318509",
-                      "text": "Borne inférieure de normalité du résultat"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 106.0,
-                            "unit": "umol/L"
-                          }
-                        }
-                      ],
-                      "linkId": "986877449308",
+                      "linkId": "849522090945",
                       "text": "Borne supérieure de normalité du résultat"
                     }
                   ]
@@ -570,7 +570,7 @@
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "B01AB05",
-                        "display": "Enoxaparine"
+                        "display": "énoxaparine"
                       }
                     }
                   ],
@@ -582,8 +582,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001147",
-                        "display": "Sous-cutanée"
+                        "code": "20066000",
+                        "display": "Voie sous-cutanée"
                       }
                     }
                   ],
@@ -631,7 +631,7 @@
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "B01AB05",
-                        "display": "Enoxaparine"
+                        "display": "énoxaparine"
                       }
                     }
                   ],
@@ -643,8 +643,8 @@
                     {
                       "valueCoding": {
                         "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001147",
-                        "display": "Sous-cutanée"
+                        "code": "20066000",
+                        "display": "Voie sous-cutanée"
                       }
                     }
                   ],
@@ -688,64 +688,6 @@
               ],
               "linkId": "780829110731",
               "text": "Date et heure de fin d'administration"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "214880328197",
-      "text": "Examen clinique",
-      "item": [
-        {
-          "linkId": "305831246173",
-          "text": "Dossier de soins",
-          "item": [
-            {
-              "linkId": "822743163012",
-              "text": "Fréquence cardiaque",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 85.0,
-                    "unit": "/min"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-11"
-                        }
-                      ],
-                      "linkId": "826829868088",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "786547087990",
-              "text": "Température",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 36.9,
-                    "unit": "Cel"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-11"
-                        }
-                      ],
-                      "linkId": "875309653502",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
             }
           ]
         }

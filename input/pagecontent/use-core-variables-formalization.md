@@ -7,35 +7,35 @@
 
 ### Exemples
 
-#### Cas 1 : 
+#### Cas 1 : Prise en charge d'un infarctus du myocarde
 
 {% include QuestionnaireResponse-cas-1-usage-core-html.xhtml %}
 
-#### Cas 2 : 
+#### Cas 2 : Traitement d'un ulcère
 
 {% include QuestionnaireResponse-cas-2-usage-core-html.xhtml %}
 
-#### Cas 3 : 
+#### Cas 3 : Accouchement simple
 
 {% include QuestionnaireResponse-cas-3-usage-core-html.xhtml %}
 
-#### Cas 4 : 
+#### Cas 4 : Choc cardiogénique en réanimation
 
 {% include QuestionnaireResponse-cas-4-usage-core-html.xhtml %}
 
-#### Cas 5 : 
+#### Cas 5 : Surveillance d'une fièvre avec altération de l'état général
 
 {% include QuestionnaireResponse-cas-5-usage-core-html.xhtml %}
 
-#### Cas 6 : 
+#### Cas 6 : Suivi de cardiopathie
 
 {% include QuestionnaireResponse-cas-6-usage-core-html.xhtml %}
 
-#### Cas 7 : 
+#### Cas 7 : État de mal migraineux
 
 {% include QuestionnaireResponse-cas-7-usage-core-html.xhtml %}
 
-#### Cas 8 : 
+#### Cas 8 : Chirurgie d'une fracture fémorale
 
 {% include QuestionnaireResponse-cas-8-usage-core-html.xhtml %}
 
@@ -43,7 +43,7 @@
 
 {% include QuestionnaireResponse-cas-9-usage-core-html.xhtml %}
 
-#### Cas 10 : 
+#### Cas 10 : Insuffisance respiratoire sur BPCO
 
 {% include QuestionnaireResponse-cas-10-usage-core-html.xhtml %}
 

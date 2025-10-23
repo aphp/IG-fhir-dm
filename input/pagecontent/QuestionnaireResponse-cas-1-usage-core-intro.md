@@ -1,8 +1,8 @@
 #### Synthèse
 
-**Marie**_[Prénom]_ **Dupont**_[Nom]_, **née le 21 septembre 1985**_[date-naissance]_, hospitalisée du **10**_[Date-début-séjour]_ au **12 janvier 2024**_[Date-fin-séjour]_ dans le **service de cardiologie de l'hôpital Saint-Louis** pour une **dilatation intraluminale de 2 vaisseaux coronaires avec pose d'endoprothèse**_[acte]_ suite à un **infarctus aigu du myocarde**_[diagnostic]_.
+**Marie**_[Prénom]_ **Dupont**_[Nom]_, **née le 21 septembre 1985**_[date-naissance]_, hospitalisée du **10**_[Date-début-séjour]_ au **12 janvier 2024**_[Date-fin-séjour]_ dans le service de cardiologie de l'hôpital Saint-Louis pour une **dilatation intraluminale de 2 vaisseaux coronaires avec pose d'endoprothèse**_[acte]_ suite à un **infarctus aigu du myocarde**_[diagnostic]_.
 
-La patiente, âgée de 38 ans, se présente aux urgences le 10 janvier 2024 pour une douleur thoracique intense d'apparition brutale, accompagnée de sueurs et de dyspnée. L'**électrocardiographie sur au moins 12 dérivations**_[acte]_ réalisée à l'admission révèle des signes d'**infarctus aigu du myocarde**_[diagnostic]_. Le diagnostic d'infarctus du myocarde est retenu et la patiente est immédiatement transférée en **USC Cardiologie** pour prise en charge en urgence.
+La patiente, âgée de 38 ans, se présente aux urgences le 10 janvier 2024 pour une douleur thoracique intense d'apparition brutale, accompagnée de sueurs et de dyspnée. L'**électrocardiographie sur au moins 12 dérivations**_[acte]_ réalisée à l'admission révèle des signes d'**infarctus aigu du myocarde**_[diagnostic]_. Le diagnostic d'infarctus du myocarde est retenu et la patiente est immédiatement transférée en USC Cardiologie pour prise en charge en urgence.
 
 Dans ses antécédents, on note une **hypercholestérolémie essentielle**_[diagnostic]_ connue mais non traitée jusqu'à présent.
 
@@ -10,9 +10,9 @@ La patiente est **ex-fumeuse**_[consommation-tabac]_, avec une consommation **oc
 
 Examen clinique à l'admission :
 État hémodynamique stable après la phase aiguë.
-**Fréquence cardiaque : 72 /min**_[frequence-cardiaque]_
+Fréquence cardiaque : 72 /min**
 **Pression artérielle : 135/85 mmHg**_[pression-arterielle]_
-**Température corporelle : 36.8°C**_[temperature]_
+Température corporelle : 36.8°C
 Auscultation cardiaque : bruits du cœur réguliers, pas de souffle
 Auscultation pulmonaire : normale
 
@@ -40,7 +40,7 @@ Prescription de sortie :
 - **atorvastatine 40 mg**_[prescription]_ : 1 comprimé le soir par voie orale, traitement hypolipémiant
 - **métoprolol 50 mg**_[prescription]_ : 1 comprimé par jour par voie orale, bêta-bloquant
 
-Les **administrations**_[administration]_ de ces traitements ont débuté le 11 janvier à 8h00 pour l'**aspirine**_[administration]_ et le **métoprolol**_[administration]_, et à 20h00 pour l'**atorvastatine**_[administration]_.
+Les administrations de ces traitements ont débuté le 11 janvier à 8h00 pour l'**aspirine**_[administration]_ et le **métoprolol**_[administration]_, et à 20h00 pour l'**atorvastatine**_[administration]_.
 
 Mme **Dupont**_[Nom]_ est convoquée en consultation de cardiologie à un mois pour réévaluation clinique et adaptation thérapeutique. Information sur les signes d'alerte cardiovasculaires nécessitant une consultation en urgence. Conseils sur l'hygiène de vie : arrêt définitif du tabac, régime alimentaire adapté, reprise progressive de l'activité physique.
 

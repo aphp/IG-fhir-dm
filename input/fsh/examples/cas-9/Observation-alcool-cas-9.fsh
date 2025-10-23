@@ -1,7 +1,7 @@
 Instance: alcool-cas-9
 InstanceOf: DMObservationAlcoholUseStatus
-Title: "Consommation d'alcool du patient 9"
-Description: """Consommation d'alcool [du cas 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Title: "Consommation d'alcool de Madame Blanc"
+Description: """Consommation d'alcool [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
 
 * status = #final

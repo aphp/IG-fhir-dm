@@ -1,6 +1,6 @@
 #### Synthèse
 
-**Antoine**_[Prénom]_ **Roux**_[Nom]_, **né le 6 février 1992**_[date-naissance]_, hospitalisé du **11**_[Date-début-séjour]_ au **14 janvier 2024**_[Date-fin-séjour]_ dans le **service de chirurgie orthopédique de l'hôpital Henri-Mondor** pour une **ostéosynthèse de fracture du grand trochanter**_[acte]_ suite à une **fracture du trochanter**_[diagnostic]_.
+**Antoine**_[Prénom]_ **Roux**_[Nom]_, **né le 6 février 1992**_[date-naissance]_, hospitalisé du **11**_[Date-début-séjour]_ au **14 janvier 2024**_[Date-fin-séjour]_ dans le service de chirurgie orthopédique de l'hôpital Henri-Mondor pour une **ostéosynthèse de fracture du grand trochanter**_[acte]_ suite à une **fracture du trochanter**_[diagnostic]_.
 
 Le patient, jeune homme âgé de 31 ans, sportif régulier, se présente aux urgences de l'hôpital Henri-Mondor le 11 janvier 2024 au matin suite à un traumatisme de la hanche droite survenu lors d'une sortie en VTT la veille. Il rapporte une chute latérale sur la hanche droite à vitesse modérée sur terrain accidenté.
 
@@ -12,9 +12,9 @@ Il présente un profil de santé optimal. Il **ne fume pas**_[consommation-tabac
 
 Examen clinique à l'admission :
 Bon état général, patient algique mais hémodynamiquement stable.
-**Fréquence cardiaque : 85 /min**_[frequence-cardiaque]_ (légère tachycardie liée à la douleur)
-**Température corporelle : 36.9°C**_[temperature]_ (normale, pas de signe infectieux)
-Pression artérielle : 130/75 mmHg (normale)
+Fréquence cardiaque : 85 /min (légère tachycardie liée à la douleur)
+Température corporelle : 36.9°C (normale, pas de signe infectieux)
+**Pression artérielle : 130/75 mmHg**_[pression-arterielle]_ (normale)
 
 Examen locorégional de la hanche droite :
 Attitude spontanée : membre inférieur droit en rotation externe et légère adduction
@@ -44,7 +44,7 @@ Le bilan biologique est compatible avec une intervention chirurgicale sous anest
 
 Les radiographies standard du bassin et de la hanche droite réalisées aux urgences mettent en évidence une **fracture du grand trochanter fémoral droit**_[diagnostic]_ avec un déplacement modéré du fragment osseux fracturé. Il n'y a pas d'atteinte du col fémoral ni de la tête fémorale. Le reste du fémur proximal est intact.
 
-Un scanner de la hanche droite est réalisé pour préciser le trait de fracture et planifier la stratégie chirurgicale. L'examen confirme une fracture du grand trochanter avec un fragment principal déplacé de 8 mm en dehors et en haut, et quelques petits fragments osseux secondaires.
+Un **scanner de la hanche droite**_[acte]_ est réalisé pour préciser le trait de fracture et planifier la stratégie chirurgicale. L'examen confirme une **fracture du grand trochanter**_[diagnostic]_ avec un fragment principal déplacé de 8 mm en dehors et en haut, et quelques petits fragments osseux secondaires.
 
 Prise en charge chirurgicale
 
@@ -77,7 +77,7 @@ Prévention thromboembolique :
 **Prescription d'énoxaparine**_[prescription]_ (héparine de bas poids moléculaire) par voie sous-cutanée à dose prophylactique. L'**administration d'énoxaparine 120 mg**_[administration]_ débute le soir de l'intervention à 20h00 et sera poursuivie pendant 10 jours au total (durant l'hospitalisation puis à domicile) pour prévenir le risque de thrombose veineuse profonde et d'embolie pulmonaire, complications fréquentes après chirurgie orthopédique du membre inférieur.
 
 Rééducation :
-Dès le lendemain de l'intervention (12 janvier), le patient débute la kinésithérapie avec mobilisation douce de la hanche, travail musculaire isométrique et verticalisation progressive. L'appui est autorisé selon la tolérance douloureuse avec utilisation de deux cannes anglaises.
+Dès le lendemain de l'intervention (12 janvier), le patient débute la **kinésithérapie**_[acte]_ avec mobilisation douce de la hanche, travail musculaire isométrique et verticalisation progressive. L'appui est autorisé selon la tolérance douloureuse avec utilisation de deux cannes anglaises.
 
 À J2 postopératoire (13 janvier), le patient marche avec les deux cannes et un appui partiel sur le membre opéré. La douleur est bien contrôlée par les antalgiques oraux. Les pansements sont propres, pas de signe d'infection locale.
 
@@ -88,7 +88,7 @@ Sortie
 M. **Roux**_[Nom]_ sort à domicile le 14 janvier 2024 avec un programme de rééducation ambulatoire.
 
 Prescriptions de sortie :
-- Antalgiques oraux : paracétamol 1g toutes les 6h et tramadol 50 mg si besoin
+- Antalgiques oraux : **paracétamol 1g toutes les 6h**_[prescription]_ et **tramadol 50 mg**_[prescription]_ si besoin
 - **Énoxaparine 120 mg**_[prescription]_ en injection sous-cutanée quotidienne jusqu'au 21 janvier (fin du traitement à J10 postopératoire)
 - Traitement local : pansements à refaire tous les 2 jours jusqu'à cicatrisation
 - Ablation des fils prévue à J15 (consultation infirmière)

@@ -51,7 +51,7 @@
             },
             {
               "linkId": "6931296968515",
-              "text": "Rang gemellaire du beneficiaire",
+              "text": "Rang gémellaire du bénéficiaire",
               "answer": [
                 {
                   "valueInteger": 1
@@ -103,8 +103,8 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "urn:oid:2.16.840.1.113883.2.8.1.5.5",
-                    "code": "751010501"
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751010105"
                   },
                   "item": [
                     {
@@ -154,8 +154,8 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "http://hl7.org/fhir/administrative-gender",
-                "code": "female"
+                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
+                "code": "f"
               }
             }
           ]
@@ -166,7 +166,7 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R13-CommuneOM/FHIR/TRE-R13-CommuneOM",
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "75001"
               },
               "item": [
@@ -202,8 +202,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DP"
+                    "display": "DP"
                   }
                 }
               ]
@@ -240,8 +239,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://mos.esante.gouv.fr/NOS/TRE_R316-TypeDiagnostic/FHIR/TRE-R316-TypeDiagnostic",
-                    "code": "DA"
+                    "display": "DA"
                   }
                 }
               ]
@@ -287,7 +285,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "code": "DDAF007"
                   }
                 }
@@ -323,7 +321,7 @@
               "answer": [
                 {
                   "valueCoding": {
-                    "system": "https://smt.esante.gouv.fr/terminologie-ccam",
+                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
                     "code": "DEQP003"
                   }
                 }
@@ -355,7 +353,6 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R049-ModeEntree/FHIR/TRE-R049-ModeEntree",
                 "code": "8"
               }
             }
@@ -367,7 +364,6 @@
           "answer": [
             {
               "valueCoding": {
-                "system": "https://mos.esante.gouv.fr/NOS/TRE_R048-ModeSortie/FHIR/TRE-R048-ModeSortie",
                 "code": "8"
               }
             }
@@ -688,7 +684,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "http://www.whocc.no/atc",
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "B01AC06"
                       }
                     }
@@ -700,7 +696,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
                         "code": "20053000"
                       }
                     }
@@ -747,7 +743,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "http://www.whocc.no/atc",
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "B01AC06"
                       }
                     }
@@ -759,7 +755,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
                         "code": "20053000"
                       }
                     }
@@ -824,7 +820,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "http://www.whocc.no/atc",
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "C10AA05"
                       }
                     }
@@ -836,7 +832,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
                         "code": "20053000"
                       }
                     }
@@ -883,7 +879,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "http://www.whocc.no/atc",
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "C10AA05"
                       }
                     }
@@ -895,7 +891,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
                         "code": "20053000"
                       }
                     }
@@ -960,7 +956,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "http://www.whocc.no/atc",
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "C07AB02"
                       }
                     }
@@ -972,7 +968,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
                         "code": "20053000"
                       }
                     }
@@ -1019,7 +1015,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "http://www.whocc.no/atc",
+                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
                         "code": "C07AB02"
                       }
                     }
@@ -1031,7 +1027,7 @@
                   "answer": [
                     {
                       "valueCoding": {
-                        "system": "https://mos.esante.gouv.fr/NOS/TRE_R38-VoieAdministration/FHIR/TRE-R38-VoieAdministration",
+                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
                         "code": "20053000"
                       }
                     }

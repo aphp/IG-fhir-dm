@@ -290,8 +290,71 @@
                 {
                   "valueCoding": {
                     "system": "https://inse.fr/IRIS-cs",
-                    "code": "751151001",
-                    "display": "GRENELLE"
+                    "code": "751062307",
+                    "display": "Notre-Dame des Champs 7"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751155805",
+                    "display": "Necker 5"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751114106",
+                    "display": "Folie Méricourt 6"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751093306",
+                    "display": "Saint-Georges 6"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751135007",
+                    "display": "Gare 7"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751187209",
+                    "display": "Chapelle 9"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751166402",
+                    "display": "Chaillot 2"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751041404",
+                    "display": "Saint-Gervais 4"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "920500508",
+                    "display": "Picasso Colombe"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "system": "https://inse.fr/IRIS-cs",
+                    "code": "751010105",
+                    "display": "Tuileries"
                   }
                 },
                 {
@@ -442,15 +505,55 @@
             {
               "valueCoding": {
                 "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75009",
-                "display": "PARIS 9E ARRONDISSEMENT"
+                "code": "75001"
               }
             },
             {
               "valueCoding": {
                 "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75015",
-                "display": "Paris 15ème arrondissement"
+                "code": "75004"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75006"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75009"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75011"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75013"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75015"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75016"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "75018"
               }
             },
             {
@@ -458,6 +561,12 @@
                 "system": "https://atih.sante.fr/CodesGeographiques-cs",
                 "code": "76000",
                 "display": "ROUEN"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "https://atih.sante.fr/CodesGeographiques-cs",
+                "code": "92000"
               }
             },
             {
@@ -536,12 +645,6 @@
               "answerOption": [
                 {
                   "valueCoding": {
-                    "code": "I10",
-                    "display": "Hypertension essentielle (primitive)"
-                  }
-                },
-                {
-                  "valueCoding": {
                     "code": "C01",
                     "display": "Tumeur maligne de la base de la langue"
                   }
@@ -554,8 +657,62 @@
                 },
                 {
                   "valueCoding": {
-                    "code": "N18.3",
-                    "display": "Maladie rénale chronique, stade 3"
+                    "code": "E66.0",
+                    "display": "Obésité due à un excès calorique"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "E78.0",
+                    "display": "hypercholestérolémie essentielle"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "G43.2",
+                    "display": "Etat de mal migraineux"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "I10",
+                    "display": "Hypertension essentielle (primitive)"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "I21.9",
+                    "display": "Infarctus aigu du myocarde, sans précision"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "I25.1",
+                    "display": "Cardiopathie artérioscléreuse"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "J06.9",
+                    "display": "Infection des voies respiratoires supérieures, sans précision"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "J44.1",
+                    "display": "Maladie pulmonaire obstructive chronique avec épisodes aigus, sans précision"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "K20",
+                    "display": "Œsophagite"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "K25",
+                    "display": "Ulcère de l'estomac"
                   }
                 },
                 {
@@ -566,20 +723,50 @@
                 },
                 {
                   "valueCoding": {
+                    "code": "N18.3",
+                    "display": "Maladie rénale chronique, stade 3"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "O80.0",
+                    "display": "Accouchement unique et spontané par présentation du sommet"
+                  }
+                },
+                {
+                  "valueCoding": {
                     "code": "R18",
                     "display": "Ascite"
                   }
                 },
                 {
                   "valueCoding": {
-                    "code": "E66.0",
-                    "display": "Obésité due à un excès calorique"
+                    "code": "R50.9",
+                    "display": "Fièvre, sans précision"
                   }
                 },
                 {
                   "valueCoding": {
-                    "code": "K20",
-                    "display": "Œsophagite"
+                    "code": "S72.1",
+                    "display": "Fracture du trochanter"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "Z37.0",
+                    "display": "Naissance unique, enfant vivant"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "Z87.2",
+                    "display": "Antécédents personnels de maladies de la peau et du tissu cellulaire sous-cutané"
+                  }
+                },
+                {
+                  "valueCoding": {
+                    "code": "Z88.0",
+                    "display": "Antécédents personnels d'allergie à la pénicilline"
                   }
                 }
               ],
@@ -648,7 +835,7 @@
               "linkId": "7758110033600",
               "text": "Acte",
               "type": "choice",
-              "answerValueSet": "https://interop.aphp.fr/ig/fhir/dm/ValueSet/Ccam",
+              "answerValueSet": "https://interop.aphp.fr/ig/fhir/dm/ValueSet/CcamVS",
               "item": [
                 {
                   "extension": [

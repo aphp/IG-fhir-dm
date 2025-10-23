@@ -1,14 +1,15 @@
 ### Synthèse (par un humain)
 
-Ce questionnaire response concerne une patiente de 66 ans pour laquelle on dispose d'information sur une hospitalisation intervenue le 22/08/2025 pour le bilan d'un diabète de type 2 non compliqué. 
+Ce questionnaire response concerne une patiente de 66 ans pour laquelle on dispose d'information sur une hospitalisation intervenue le 22/08/2025 pour le bilan d'un **diabète de type 2 non compliqué**_[diagnostic]_.
 
-Elle a bénéficié pendant son séjour de : 
-- un ECG
-- un examen ophtalmologique
+Elle a bénéficié pendant son séjour de :
+
+- un **ECG**_[acte]_
+- un **examen ophtalmologique**_[acte]_
 - un bilan biologique
 - une consultation avec un diabétologue
 
-à la fin de ce séjour, on lui a remis une ordonnance pour le traitement médicamenteux de son diabète (glucophage et forxiga).
+à la fin de ce séjour, on lui a remis une ordonnance pour le traitement médicamenteux de son diabète (**glucophage**_[prescription]_ et **forxiga**_[prescription]_).
 
 
 ### Synthèse proposée par Gemini 2.5 pro
