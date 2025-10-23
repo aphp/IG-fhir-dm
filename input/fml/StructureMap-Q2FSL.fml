@@ -6,15 +6,6 @@
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
-uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as produced
-uses "http://hl7.org/fhir/StructureDefinition/Location" alias Location as produced
-uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias Encounter as produced
-uses "http://hl7.org/fhir/StructureDefinition/Condition" alias Condition as produced
-uses "http://hl7.org/fhir/StructureDefinition/Procedure" alias Procedure as produced
-uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as produced
-uses "http://hl7.org/fhir/StructureDefinition/Medication" alias Medication as produced
-uses "http://hl7.org/fhir/StructureDefinition/MedicationRequest" alias MedicationRequest as produced
-uses "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" alias MedicationAdministration as produced
 
 // Main entry point: Transform QuestionnaireResponse to Bundle
 group QuestionnaireResponseToBundle(source src : QuestionnaireResponse, target bundle : Bundle) {
