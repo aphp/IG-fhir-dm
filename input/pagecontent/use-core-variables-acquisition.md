@@ -63,35 +63,35 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 
 Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples serviront également pour valider le processus de formalisation des données et le processus de standardisation.
 
-#### Cas 1 : à faire
+#### Cas 1 : Prise en charge d'un infarctus du myocarde
 
 {% include QuestionnaireResponse-cas-1-usage-core-intro.md %}
 
-#### Cas 2 : à faire
+#### Cas 2 : Traitement d'un ulcère
 
 {% include QuestionnaireResponse-cas-2-usage-core-intro.md %}
 
-#### Cas 3 : à faire
+#### Cas 3 : Accouchement simple
 
 {% include QuestionnaireResponse-cas-3-usage-core-intro.md %}
 
-#### Cas 4 : à faire
+#### Cas 4 : Choc cardiogénique en réanimation
 
 {% include QuestionnaireResponse-cas-4-usage-core-intro.md %}
 
-#### Cas 5 : à faire
+#### Cas 5 : Surveillance d'une fièvre avec altération de l'état général
 
 {% include QuestionnaireResponse-cas-5-usage-core-intro.md %}
 
-#### Cas 6 : à faire
+#### Cas 6 : Suivi de cardiopathie
 
 {% include QuestionnaireResponse-cas-6-usage-core-intro.md %}
 
-#### Cas 7 : à faire
+#### Cas 7 : État de mal migraineux
 
 {% include QuestionnaireResponse-cas-7-usage-core-intro.md %}
 
-#### Cas 8 : à faire
+#### Cas 8 : Chirurgie d'une fracture fémorale
 
 {% include QuestionnaireResponse-cas-8-usage-core-intro.md %}
 
@@ -99,7 +99,7 @@ Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples se
 
 {% include QuestionnaireResponse-cas-9-usage-core-intro.md %}
 
-#### Cas 10 : à faire
+#### Cas 10 : Insuffisance respiratoire sur BPCO
 
 {% include QuestionnaireResponse-cas-10-usage-core-intro.md %}
 
