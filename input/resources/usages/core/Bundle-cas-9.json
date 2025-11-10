@@ -1,0 +1,984 @@
+{
+  "resourceType" : "Bundle",
+  "id" : "cas-9",
+  "type" : "collection",
+  "timestamp" : "2025-11-10T17:50:23+01:00",
+  "entry" : [{
+    "fullUrl" : "urn:uuid:f0d66337-4252-4e47-b81e-88fb9a6f6261",
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "f0d66337-4252-4e47-b81e-88fb9a6f6261",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+            "code" : "NH",
+            "display" : "National Health Plan Identifier"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "278056432187654"
+      }],
+      "name" : [{
+        "family" : "Blanc",
+        "given" : ["Isabelle"]
+      }],
+      "gender" : "female",
+      "birthDate" : "1978-05-06",
+      "address" : [{
+        "extension" : [{
+          "extension" : [{
+            "url" : "latitude",
+            "valueDecimal" : 48.8499
+          },
+          {
+            "url" : "longitude",
+            "valueDecimal" : 2.2943
+          }],
+          "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
+        },
+        {
+          "url" : "https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo",
+          "valueCode" : "75015"
+        }],
+        "line" : ["IRIS : 751155805"],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "751155805"
+          }]
+        }],
+        "period" : {
+          "start" : "2024-01-01",
+          "end" : "2024-01-01"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:22ba32de-5277-4b7a-97e5-c2a0f7393d5a",
+    "resource" : {
+      "resourceType" : "Encounter",
+      "id" : "22ba32de-5277-4b7a-97e5-c2a0f7393d5a",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMEncounter"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "https://hl7.fr/ig/fhir/core/CodeSystem/fr-core-cs-identifier-type",
+            "code" : "VN"
+          }]
+        },
+        "system" : "https://interop.aphp.fr/info/Encouter/demo-dm",
+        "value" : "dc05172e-5603-4c43-97cf-63971c5048f4"
+      }],
+      "status" : "finished",
+      "class" : {
+        "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+        "code" : "IMP",
+        "display" : "inpatient encounter"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "period" : {
+        "start" : "2024-01-13",
+        "end" : "2024-01-14"
+      },
+      "hospitalization" : {
+        "admitSource" : {
+          "coding" : [{
+            "code" : "8",
+            "display" : "Domicile"
+          }]
+        },
+        "dischargeDisposition" : {
+          "coding" : [{
+            "code" : "8",
+            "display" : "Domicile"
+          }]
+        }
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:0f907e30-a818-4aae-821e-4bddb8f24d11",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "0f907e30-a818-4aae-821e-4bddb8f24d11",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "display" : "DP"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "code" : "R18",
+          "display" : "Ascite"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "encounter" : {
+        "reference" : "Encounter/22ba32de-5277-4b7a-97e5-c2a0f7393d5a"
+      },
+      "recordedDate" : "2024-01-15"
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:a2fd141e-cff6-4f6a-bdff-d53c0ba09299",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "a2fd141e-cff6-4f6a-bdff-d53c0ba09299",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "display" : "DAS"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "code" : "K70.3",
+          "display" : "Cirrhose alcoolique du foie"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "encounter" : {
+        "reference" : "Encounter/22ba32de-5277-4b7a-97e5-c2a0f7393d5a"
+      },
+      "recordedDate" : "2024-01-15"
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:24a0cfd6-6e3a-4cac-8a39-489277a7062a",
+    "resource" : {
+      "resourceType" : "Procedure",
+      "id" : "24a0cfd6-6e3a-4cac-8a39-489277a7062a",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure"]
+      },
+      "status" : "completed",
+      "code" : {
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
+          "code" : "HPHB003"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "encounter" : {
+        "reference" : "Encounter/22ba32de-5277-4b7a-97e5-c2a0f7393d5a"
+      },
+      "performedDateTime" : "2024-01-13T12:15:00.000Z"
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:e1d37618-8a07-45c5-8395-8d245c253737",
+    "resource" : {
+      "resourceType" : "Procedure",
+      "id" : "e1d37618-8a07-45c5-8395-8d245c253737",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure"]
+      },
+      "status" : "completed",
+      "code" : {
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
+          "code" : "HEQE002"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "encounter" : {
+        "reference" : "Encounter/22ba32de-5277-4b7a-97e5-c2a0f7393d5a"
+      },
+      "performedDateTime" : "2024-01-14T07:00:00.000Z"
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:85ddbbf2-dddd-4e62-a61e-b020737d2041",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "85ddbbf2-dddd-4e62-a61e-b020737d2041",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationLaboratoryTp"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "5894-1",
+          "display" : "Temps de quick Patient (%) [Temps relatif] Plasma pauvre en plaquettes ; Numérique ; Coagulation"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectiveDateTime" : "2024-01-13T07:30:00.000Z",
+      "valueQuantity" : {
+        "value" : 80,
+        "unit" : "%"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 50,
+          "unit" : "%"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:fd44cfe0-077b-44a8-8358-b764fa82825b",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "fd44cfe0-077b-44a8-8358-b764fa82825b",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationLaboratoryAsat"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "1920-8",
+          "display" : "Aspartate aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectiveDateTime" : "2024-01-13T07:30:00.000Z",
+      "valueQuantity" : {
+        "value" : 37,
+        "unit" : "[IU]/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 6,
+          "unit" : "[IU]/L"
+        }
+      },
+      {
+        "high" : {
+          "value" : 25,
+          "unit" : "[IU]/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:f1ccd7b9-997a-4d04-8ebf-5a5f613eb0dd",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "f1ccd7b9-997a-4d04-8ebf-5a5f613eb0dd",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationLaboratoryAlat"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "1742-6",
+          "display" : "Alanine aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectiveDateTime" : "2024-01-13T07:30:00.000Z",
+      "valueQuantity" : {
+        "value" : 38,
+        "unit" : "[IU]/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 6,
+          "unit" : "[IU]/L"
+        }
+      },
+      {
+        "high" : {
+          "value" : 25,
+          "unit" : "[IU]/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:ff55c9f8-8bb5-4e36-b306-344252bd8dc1",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "ff55c9f8-8bb5-4e36-b306-344252bd8dc1",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationLaboratoryGgt"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "2324-2",
+          "display" : "Gamma glutamyltransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectiveDateTime" : "2024-01-13T07:30:00.000Z",
+      "valueQuantity" : {
+        "value" : 30,
+        "unit" : "[IU]/L"
+      },
+      "referenceRange" : [{
+        "high" : {
+          "value" : 35,
+          "unit" : "[IU]/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:c7ee1b93-addd-4b53-9e7c-c6610ae55c7a",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "c7ee1b93-addd-4b53-9e7c-c6610ae55c7a",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationLaboratoryPal"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "6768-6",
+          "display" : "Phosphatases alcalines [Catalytique/Volume] Sérum/Plasma ; Numérique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "valueQuantity" : {
+        "value" : 100,
+        "unit" : "U/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 35,
+          "unit" : "U/L"
+        }
+      },
+      {
+        "high" : {
+          "value" : 104,
+          "unit" : "U/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:f99fba1a-e52e-4257-b5a6-233a50a3d58d",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "f99fba1a-e52e-4257-b5a6-233a50a3d58d",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationLaboratoryBilirubineTotale"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory",
+          "display" : "Laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "14631-6",
+          "display" : "Bilirubine [Moles/Volume] Sérum/Plasma ; Numérique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "valueQuantity" : {
+        "value" : 25,
+        "unit" : "umol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "value" : 5,
+          "unit" : "umol/L"
+        }
+      },
+      {
+        "high" : {
+          "value" : 21,
+          "unit" : "umol/L"
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:f5c3cc1b-9518-43e5-bbc7-a131ef205b9c",
+    "resource" : {
+      "resourceType" : "MedicationRequest",
+      "id" : "f5c3cc1b-9518-43e5-bbc7-a131ef205b9c",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "completed",
+      "intent" : "original-order",
+      "medicationReference" : {
+        "display" : "furosémide 40mg"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "note" : [{
+        "text" : "ATC - C03CA01 : furosémide"
+      }],
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-13",
+              "end" : "2024-02-13"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001146",
+            "display" : "Oral"
+          }]
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:7ffcb819-1a6b-4e51-89d0-1f1a18cfb3af",
+    "resource" : {
+      "resourceType" : "MedicationAdministration",
+      "id" : "7ffcb819-1a6b-4e51-89d0-1f1a18cfb3af",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationReference" : {
+        "display" : "furosémide 40mg"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-13T07:00:00.000Z",
+        "end" : "2024-01-13T07:05:00.000Z"
+      },
+      "request" : {
+        "reference" : "MedicationRequest/f5c3cc1b-9518-43e5-bbc7-a131ef205b9c"
+      },
+      "note" : [{
+        "text" : "ATC : C03CA01 - furosémide"
+      }],
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001146",
+            "display" : "Oral"
+          }]
+        },
+        "dose" : {
+          "system" : "http://unitsofmeasure.org",
+          "value" : 40,
+          "unit" : "mg"
+        }
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:2570dd18-a9af-487b-976a-9f0eae4862db",
+    "resource" : {
+      "resourceType" : "MedicationAdministration",
+      "id" : "2570dd18-a9af-487b-976a-9f0eae4862db",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationReference" : {
+        "display" : "furosémide 40mg"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-14T07:00:00.000Z",
+        "end" : "2024-01-14T07:05:00.000Z"
+      },
+      "request" : {
+        "reference" : "MedicationRequest/f5c3cc1b-9518-43e5-bbc7-a131ef205b9c"
+      },
+      "note" : [{
+        "text" : "ATC : C03CA01 - furosémide"
+      }],
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001146",
+            "display" : "Oral"
+          }]
+        },
+        "dose" : {
+          "system" : "http://unitsofmeasure.org",
+          "value" : 40,
+          "unit" : "mg"
+        }
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:e2070624-440d-4f20-9322-1300f58e9edb",
+    "resource" : {
+      "resourceType" : "MedicationRequest",
+      "id" : "e2070624-440d-4f20-9322-1300f58e9edb",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "completed",
+      "intent" : "original-order",
+      "medicationReference" : {
+        "display" : "spironolactone 25mg"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "note" : [{
+        "text" : "ATC - C03DA01 : spironolactone"
+      }],
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-13",
+              "end" : "2024-02-13"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001146",
+            "display" : "Oral"
+          }]
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:cbad5785-efda-472f-9ebd-439d0f138b6b",
+    "resource" : {
+      "resourceType" : "MedicationAdministration",
+      "id" : "cbad5785-efda-472f-9ebd-439d0f138b6b",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationReference" : {
+        "display" : "spironolactone 25mg"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-13T07:00:00.000Z",
+        "end" : "2024-01-13T07:05:00.000Z"
+      },
+      "request" : {
+        "reference" : "MedicationRequest/e2070624-440d-4f20-9322-1300f58e9edb"
+      },
+      "note" : [{
+        "text" : "ATC : C03DA01 - spironolactone"
+      }],
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001146",
+            "display" : "Oral"
+          }]
+        },
+        "dose" : {
+          "system" : "http://unitsofmeasure.org",
+          "value" : 25,
+          "unit" : "mg"
+        }
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:a106f912-b1d0-40bf-92e5-98a095409ccb",
+    "resource" : {
+      "resourceType" : "MedicationAdministration",
+      "id" : "a106f912-b1d0-40bf-92e5-98a095409ccb",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationReference" : {
+        "display" : "spironolactone 25mg"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-14T07:00:00.000Z",
+        "end" : "2024-01-14T07:05:00.000Z"
+      },
+      "request" : {
+        "reference" : "MedicationRequest/e2070624-440d-4f20-9322-1300f58e9edb"
+      },
+      "note" : [{
+        "text" : "ATC : C03DA01 - spironolactone"
+      }],
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001146",
+            "display" : "Oral"
+          }]
+        },
+        "dose" : {
+          "system" : "http://unitsofmeasure.org",
+          "value" : 25,
+          "unit" : "mg"
+        }
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:f6d99113-9044-4ee4-acff-ba270e62c628",
+    "resource" : {
+      "resourceType" : "MedicationRequest",
+      "id" : "f6d99113-9044-4ee4-acff-ba270e62c628",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "completed",
+      "intent" : "original-order",
+      "medicationReference" : {
+        "display" : "albumine 50g"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "note" : [{
+        "text" : "ATC - B05AA01 : albumine"
+      }],
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-13",
+              "end" : "2024-01-13"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001141",
+            "display" : "Intraveineux"
+          }]
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:4636bbe4-be0d-4223-9464-e655e7237516",
+    "resource" : {
+      "resourceType" : "MedicationAdministration",
+      "id" : "4636bbe4-be0d-4223-9464-e655e7237516",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationReference" : {
+        "display" : "albumine 20%"
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-13T08:30:00.000Z",
+        "end" : "2024-01-13T10:14:00.000Z"
+      },
+      "request" : {
+        "reference" : "MedicationRequest/f6d99113-9044-4ee4-acff-ba270e62c628"
+      },
+      "note" : [{
+        "text" : "ATC : B05AA01 - albumine"
+      }],
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "system" : "https://smt.esante.gouv.fr/terminologie-standardterms",
+            "code" : "90001141",
+            "display" : "Intraveineux"
+          }]
+        },
+        "dose" : {
+          "system" : "http://unitsofmeasure.org",
+          "value" : 50,
+          "unit" : "g"
+        }
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:bdf2b379-c517-479b-906d-392210c3165c",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "bdf2b379-c517-479b-906d-392210c3165c",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBodyHeight"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "vital-signs",
+          "display" : "Vital Signs"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "8302-2"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectiveDateTime" : "2024-01-13",
+      "valueQuantity" : {
+        "value" : 162,
+        "unit" : "cm",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "cm"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:7c335657-aebd-4a64-9571-9af85f34d916",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "7c335657-aebd-4a64-9571-9af85f34d916",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBodyWeight"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "vital-signs",
+          "display" : "Vital Signs"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "29463-7"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "effectiveDate" : "2024-01-13",
+      "valueQuantity" : {
+        "value" : 58.2,
+        "unit" : "kg",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "kg"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:96f96a6d-1e80-4bd8-a29a-8c9abfb8d2e6",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "96f96a6d-1e80-4bd8-a29a-8c9abfb8d2e6",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationSmokingStatus"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "social-history",
+          "display" : "Social History"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "72166-2"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "valueCodeableConcept" : {
+        "text" : "Ex-fumeur"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:db57f046-69a5-4468-9f9c-2dbd2c518c31",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "db57f046-69a5-4468-9f9c-2dbd2c518c31",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationAlcoholUseStatus"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "social-history",
+          "display" : "Social History"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "11331-6"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "valueCodeableConcept" : {
+        "text" : "Ex-buveur"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:33dc03b4-9ffa-423a-8698-51f1e55312fe",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "33dc03b4-9ffa-423a-8698-51f1e55312fe",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationSubstanceUseStatus"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "social-history",
+          "display" : "Social History"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "11343-1"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "valueCodeableConcept" : {
+        "text" : "Non"
+      }
+    }
+  },
+  {
+    "fullUrl" : "urn:uuid:e0708cad-cd80-4643-b554-33bb0ac9be6c",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "e0708cad-cd80-4643-b554-33bb0ac9be6c",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationExerciceStatus"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "social-history",
+          "display" : "Social History"
+        }]
+      },
+      {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "activity",
+          "display" : "Activity"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "77242-6"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/f0d66337-4252-4e47-b81e-88fb9a6f6261"
+      },
+      "valueCodeableConcept" : {
+        "text" : "Faible"
+      }
+    }
+  }]
+}
