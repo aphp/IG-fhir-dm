@@ -644,8 +644,8 @@
                         {
                           "valueCoding": {
                             "system": "http://loinc.org",
-                            "code": "1975-2",
-                            "display": "Bilirubine [Masse/Volume] Sérum/Plasma ; Numérique"
+                            "code": "14631-6",
+                            "display": "Bilirubine [Moles/Volume] Sérum/Plasma ; Numérique"
                           }
                         }
                       ],
@@ -1045,7 +1045,7 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "albumine 20%",
+              "valueString": "albumine 50g",
               "item": [
                 {
                   "answer": [
