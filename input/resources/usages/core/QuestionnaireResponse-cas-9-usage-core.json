@@ -417,7 +417,7 @@
                 {
                   "valueQuantity": {
                     "value": 37,
-                    "unit": "UI/L"
+                    "unit": "[IU]/L"
                   },
                   "item": [
                     {
@@ -447,7 +447,7 @@
                         {
                           "valueQuantity": {
                             "value": 6,
-                            "unit": "UI/L"
+                            "unit": "[IU]/L"
                           }
                         }
                       ],
@@ -459,7 +459,7 @@
                         {
                           "valueQuantity": {
                             "value": 25,
-                            "unit": "UI/L"
+                            "unit": "[IU]/L"
                           }
                         }
                       ],
@@ -477,7 +477,7 @@
                 {
                   "valueQuantity": {
                     "value": 38,
-                    "unit": "UI/L"
+                    "unit": "[IU]/L"
                   },
                   "item": [
                     {
@@ -507,7 +507,7 @@
                         {
                           "valueQuantity": {
                             "value": 6,
-                            "unit": "UI/L"
+                            "unit": "[IU]/L"
                           }
                         }
                       ],
@@ -519,7 +519,7 @@
                         {
                           "valueQuantity": {
                             "value": 25,
-                            "unit": "UI/L"
+                            "unit": "[IU]/L"
                           }
                         }
                       ],
@@ -537,7 +537,7 @@
                 {
                   "valueQuantity": {
                     "value": 30,
-                    "unit": "UI/L"
+                    "unit": "[IU]/L"
                   },
                   "item": [
                     {
@@ -567,7 +567,7 @@
                         {
                           "valueQuantity": {
                             "value": 35,
-                            "unit": "UI/L"
+                            "unit": "[IU]/L"
                           }
                         }
                       ],

@@ -602,7 +602,7 @@
                 {
                   "valueQuantity": {
                     "value": 45.0,
-                    "unit": "UI/L"
+                    "unit": "[IU]/L"
                   },
                   "item": [
                     {
@@ -642,7 +642,7 @@
                         {
                           "valueQuantity": {
                             "value": 6.0,
-                            "unit": "UI/L"
+                            "unit": "[IU]/L"
                           }
                         }
                       ]
@@ -654,7 +654,7 @@
                         {
                           "valueQuantity": {
                             "value": 25.0,
-                            "unit": "UI/L"
+                            "unit": "[IU]/L"
                           }
                         }
                       ]
