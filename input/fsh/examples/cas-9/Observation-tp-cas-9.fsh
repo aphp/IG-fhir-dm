@@ -1,5 +1,5 @@
 Instance: tp-cas-9
-InstanceOf: DMObservationLaboratoryTP
+InstanceOf: DMObservationLaboratoryTp
 Title: "Taux de prothrombine de Madame Blanc"
 Description: """Représente le taux de prothrombine [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
@@ -22,6 +22,21 @@ Usage: #example
 
 * performer.display = "Laboratoire Beaujon"
 
+
+Instance: f79b9c20-9c0a-440e-bbb4-859dc9c6abd3
+InstanceOf: Provenance
+Title: "Modification du nom du profil"
+Description: """Modification du nom du profil"""
+Usage: #definition
+
+* target[0] = Reference(tp-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Modification du nom du profil"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T16:00:00+02:00"
 
 Instance: 78cb0ad0-1089-4c65-b61b-5323602b15bc
 InstanceOf: Provenance

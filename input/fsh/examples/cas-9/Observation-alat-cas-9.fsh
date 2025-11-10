@@ -1,5 +1,5 @@
 Instance: alat-cas-9
-InstanceOf: DMObservationLaboratoryALAT
+InstanceOf: DMObservationLaboratoryAlat
 Title: "ALAT de Madame Blanc"
 Description: """Représente le taux d'ALAT [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
@@ -23,6 +23,20 @@ Usage: #example
 
 * performer.display = "Laboratoire Beaujon"
 
+Instance: 7c900ced-e107-4160-a549-d16c1c219297
+InstanceOf: Provenance
+Title: "Modification du nom du profil"
+Description: """Modification du nom du profil"""
+Usage: #definition
+
+* target[0] = Reference(alat-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Modification du nom du profil"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T16:00:00+02:00"
 
 Instance: b2c718a6-8e77-45ea-84ac-264b00872849 
 InstanceOf: Provenance

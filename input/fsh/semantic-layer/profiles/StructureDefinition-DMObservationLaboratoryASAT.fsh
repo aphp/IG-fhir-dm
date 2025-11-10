@@ -1,4 +1,4 @@
-Profile: DMObservationLaboratoryASAT
+Profile: DMObservationLaboratoryAsat
 Parent: DMObservationLaboratoryGeneric
 Title: "Aspartate aminotransférase (ASAT)"
 Description: """
@@ -13,13 +13,29 @@ Taux d'ASAT dans le sang. L'ASAT est une enzyme faisant partie des transaminases
 * valueQuantity.code = #[IU]/L (exactly)
 * valueQuantity.unit = "[IU]/L"
 
+
+Instance: 6feb05dc-9bdd-491d-925d-9840a535fbb7
+InstanceOf: Provenance
+Title: "Modification du nom du profil pour respect des conventions"
+Description: """Modification du nom du profil pour respect des conventions"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationLaboratoryAsat)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Modification du nom du profil pour respect des conventions"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T16:00:00+02:00"
+
 Instance: 54a2948b-6ae1-4fa7-8a99-d5db61701273
 InstanceOf: Provenance
 Title: "feat(fhir-profiles): add 18 laboratory observation profiles for EDSH core variables"
 Description: """feat(fhir-profiles): add 18 laboratory observation profiles for EDSH core variables"""
 Usage: #definition
 
-* target[0] = Reference(DMObservationLaboratoryASAT)
+* target[0] = Reference(DMObservationLaboratoryAsat)
 * occurredDateTime = "2025-10-14"
 * reason.text = """feat(fhir-profiles): add 18 laboratory observation profiles for EDSH core variables"""
 * activity = $v3-DataOperation#CREATE

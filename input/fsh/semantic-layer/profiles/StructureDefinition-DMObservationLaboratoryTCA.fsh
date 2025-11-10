@@ -1,4 +1,4 @@
-Profile: DMObservationLaboratoryTCA
+Profile: DMObservationLaboratoryTca
 Parent: DMObservationLaboratoryGeneric
 Title: "Temps de céphaline activée (TCA)"
 Description: """
@@ -42,13 +42,28 @@ Profil Temps de céphaline activée (TCA) du socle commun des EDSH
   * value[x] only Quantity
   * valueQuantity ^short = "Valeur mesurée"
 
+Instance: e73cda09-2f17-454b-a05a-e68451e50d25
+InstanceOf: Provenance
+Title: "Modification du nom du profil pour respect des conventions"
+Description: """Modification du nom du profil pour respect des conventions"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationLaboratoryTca)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Modification du nom du profil pour respect des conventions"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T16:00:00+02:00"
+
 Instance: f8a9b0c1-2d3e-4f5a-6b7c-8d9e0f1a2b3c
 InstanceOf: Provenance
 Title: "fixing QA assessment"
 Description: """fixing QA assessment"""
 Usage: #definition
 
-* target[0] = Reference(DMObservationLaboratoryTCA)
+* target[0] = Reference(DMObservationLaboratoryTca)
 * occurredDateTime = "2025-03-27"
 * reason.text = """fixing QA assessment"""
 * activity = $v3-DataOperation#UPDATE
@@ -63,7 +78,7 @@ Title: "WIP adding EDSH vars"
 Description: """WIP adding EDSH vars"""
 Usage: #definition
 
-* target[0] = Reference(DMObservationLaboratoryTCA)
+* target[0] = Reference(DMObservationLaboratoryTca)
 * occurredDateTime = "2025-03-24"
 * reason.text = """WIP adding EDSH vars"""
 * activity = $v3-DataOperation#CREATE

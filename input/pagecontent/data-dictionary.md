@@ -12,17 +12,17 @@
 | Résultats d'examens biologiques | [Hémoglobine](StructureDefinition-DMObservationLaboratoryHemoglobine.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Hématocrite](StructureDefinition-DMObservationLaboratoryHematocrite.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Globules rouges](StructureDefinition-DMObservationLaboratoryErythrocytes.html) | Données d'intérêt |
-| Résultats d'examens biologiques | [Volume Globulaire Moyen (VGM)](StructureDefinition-DMObservationLaboratoryVGM.html) | Données d'intérêt |
+| Résultats d'examens biologiques | [Volume Globulaire Moyen (VGM)](StructureDefinition-DMObservationLaboratoryVgm.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Plaquettes](StructureDefinition-DMObservationLaboratoryPlaquettes.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Neutrophiles](StructureDefinition-DMObservationLaboratoryNeutrophiles.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Lymphocytes](StructureDefinition-DMObservationLaboratoryLymphocytes.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Eosinophiles](StructureDefinition-DMObservationLaboratoryEosinophiles.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Monocytes](StructureDefinition-DMObservationLaboratoryMonocytes.html) | Données d'intérêt |
-| Résultats d'examens biologiques | [Taux de prothrombine (TP)](StructureDefinition-DMObservationLaboratoryTP.html) | Données d'intérêt |
-| Résultats d'examens biologiques | [Temps de céphaline activée (TCA)](StructureDefinition-DMObservationLaboratoryTCA.html) | Données d'intérêt |
-| Résultats d'examens biologiques | [Aspartate aminotransférase (AST)](StructureDefinition-DMObservationLaboratoryASAT.html) | Données d'intérêt |
-| Résultats d'examens biologiques | [Gamma-glutamyl transférase (GGT)](StructureDefinition-DMObservationLaboratoryGGT.html) | Données d'intérêt |
-| Résultats d'examens biologiques | [Phosphatases alcalines (PAL)](StructureDefinition-DMObservationLaboratoryPAL.html) | Données d'intérêt |
+| Résultats d'examens biologiques | [Taux de prothrombine (TP)](StructureDefinition-DMObservationLaboratoryTp.html) | Données d'intérêt |
+| Résultats d'examens biologiques | [Temps de céphaline activée (TCA)](StructureDefinition-DMObservationLaboratoryTca.html) | Données d'intérêt |
+| Résultats d'examens biologiques | [Aspartate aminotransférase (ASAT)](StructureDefinition-DMObservationLaboratoryAsat.html) | Données d'intérêt |
+| Résultats d'examens biologiques | [Gamma-glutamyl transférase (GGT)](StructureDefinition-DMObservationLaboratoryGgt.html) | Données d'intérêt |
+| Résultats d'examens biologiques | [Phosphatases alcalines (PAL)](StructureDefinition-DMObservationLaboratoryPal.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Bilirubine totale](StructureDefinition-DMObservationLaboratoryBilirubineTotale.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Bilirubine conjuguée](StructureDefinition-DMObservationLaboratoryBilirubineConjuguee.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Glycémie à jeun](StructureDefinition-DMObservationLaboratoryGlycemieAJeun.html) | Données d'intérêt |

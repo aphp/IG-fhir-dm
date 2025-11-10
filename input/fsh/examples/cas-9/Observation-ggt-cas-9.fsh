@@ -1,5 +1,5 @@
 Instance: ggt-cas-9
-InstanceOf: DMObservationLaboratoryGGT
+InstanceOf: DMObservationLaboratoryGgt
 Title: "GGT de Madame Blanc"
 Description: """Représente le taux de gamma glutamyl transferase [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
 Usage: #example
@@ -22,6 +22,21 @@ Usage: #example
 
 * performer.display = "Laboratoire Beaujon"
 
+
+Instance: b275833d-0e45-4a3d-bacc-6806ed6ebb1d
+InstanceOf: Provenance
+Title: "Modification du nom du profil"
+Description: """Modification du nom du profil"""
+Usage: #definition
+
+* target[0] = Reference(ggt-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Modification du nom du profil"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T16:00:00+02:00"
 
 Instance: c624f2d2-8522-4288-9916-4b5a6c27e729
 InstanceOf: Provenance
