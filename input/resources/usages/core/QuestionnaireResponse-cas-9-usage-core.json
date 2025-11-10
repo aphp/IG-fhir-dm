@@ -1231,6 +1231,48 @@
               ]
             }
           ]
+        }, 
+        {
+          "linkId": "1693164086678",
+          "text": "Style de vie",
+          "item":[
+            {
+              "linkId": "6516656388671",
+              "text": "Consommation de tabac (A définir dans des travaux complémentaires)",
+              "answer": [
+                {
+                  "valueString": "Ex-fumeur"
+                }
+              ]
+            },
+            {
+              "linkId": "8218964737490",
+              "text": "Consommation d'alcool (A définir dans des travaux complémentaires)",
+              "answer": [
+                {
+                  "valueString": "Ex-buveur"
+                }
+              ]
+            },
+            {
+              "linkId": "7063448155344",
+              "text": "Consommation d'autres drogues (A définir dans des travaux complémentaires)",
+              "answer": [
+                {
+                  "valueString": "Non"
+                }
+              ]
+            },
+            {
+              "linkId": "485428113240",
+              "text": "Activité physique (A définir dans des travaux complémentaires)",
+              "answer": [
+                {
+                  "valueString": "Faible"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

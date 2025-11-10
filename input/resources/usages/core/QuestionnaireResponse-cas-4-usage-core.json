@@ -50,6 +50,28 @@
               ]
             },
             {
+              "linkId": "5633552097315",
+              "text": "Date de décès",
+              "answer": [
+                {
+                  "valueDate": "2023-11-10",
+                  "item": [
+                    {
+                      "linkId": "9098810065693",
+                      "text": "Source de la date de décès",
+                      "answer": [
+                        {
+                          "valueCoding": {
+                            "display": "insee"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "linkId": "6931296968515",
               "text": "Rang gémellaire du bénéficiaire",
               "answer": [

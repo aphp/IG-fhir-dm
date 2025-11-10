@@ -133,17 +133,17 @@
                   "answerOption": [
                     {
                       "valueCoding": {
-                        "display": "INSEE"
+                        "display": "insee"
                       }
                     },
                     {
                       "valueCoding": {
-                        "display": "CepiDc"
+                        "display": "cepidc"
                       }
                     },
                     {
                       "valueCoding": {
-                        "display": "SIH"
+                        "display": "sih"
                       }
                     }
                   ]
@@ -2393,7 +2393,7 @@
           "linkId": "156631794800",
           "text": "Médicament prescrit",
           "type": "string",
-          "repeats": true,
+          "repeats": false,
           "item": [
             {
               "extension": [
@@ -2487,7 +2487,7 @@
           "linkId": "266852453304",
           "text": "Médicament administré",
           "type": "string",
-          "repeats": true,
+          "repeats": false,
           "item": [
             {
               "extension": [
@@ -2772,12 +2772,12 @@
           "linkId": "1693164086678",
           "text": "Style de vie",
           "type": "group",
-          "repeats": true,
+          "repeats": false,
           "item": [
             {
               "linkId": "6516656388671",
               "text": "Consommation de tabac (A définir dans des travaux complémentaires)",
-              "type": "group",
+              "type": "string",
               "item": [
                 {
                   "extension": [
@@ -2804,7 +2804,7 @@
             {
               "linkId": "8218964737490",
               "text": "Consommation d'alcool (A définir dans des travaux complémentaires)",
-              "type": "group",
+              "type": "string",
               "item": [
                 {
                   "extension": [
@@ -2831,7 +2831,7 @@
             {
               "linkId": "7063448155344",
               "text": "Consommation d'autres drogues (A définir dans des travaux complémentaires)",
-              "type": "group",
+              "type": "string",
               "item": [
                 {
                   "extension": [
@@ -2858,7 +2858,7 @@
             {
               "linkId": "485428113240",
               "text": "Activité physique (A définir dans des travaux complémentaires)",
-              "type": "group",
+              "type": "string",
               "item": [
                 {
                   "extension": [
