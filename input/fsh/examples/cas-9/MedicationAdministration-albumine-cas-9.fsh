@@ -6,7 +6,7 @@ Usage: #example
 
 * status = #completed
 
-* medicationReference = Reference(albumine)
+* medicationReference.display = "albumine"
 * subject = Reference(cas-9)
 * context = Reference(sejour-cas-9)
 
@@ -20,6 +20,21 @@ Usage: #example
   * route = http://snomed.info/sct#47625008 "voie intraveineuse"
   * dose = 2 '{poche}' "poche"
 
+
+Instance: db945738-c0be-461d-ac52-349f0aca45ba
+InstanceOf: Provenance
+Title: "Simplification des references aux medications"
+Description: """Simplification des references aux medications"""
+Usage: #definition
+
+* target[0] = Reference(albumine-j1-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Simplification des references aux medications"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T17:00:00+02:00"
 
 Instance: 9af6d9c2-8913-4525-8e9d-c0d5c168d714
 InstanceOf: Provenance

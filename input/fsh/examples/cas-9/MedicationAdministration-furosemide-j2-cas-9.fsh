@@ -6,7 +6,7 @@ Usage: #example
 
 * status = #completed
 
-* medicationReference = Reference(furosemide)
+* medicationReference.display = "furosemide"
 * subject = Reference(cas-9)
 * context = Reference(sejour-cas-9)
 
@@ -18,6 +18,21 @@ Usage: #example
   * route = http://snomed.info/sct#26643006 "voie orale"
   * dose = 1 '{comprimé}' "comprimé"
 
+
+Instance: 95d08896-0529-4312-b7f2-a3eb7d6b831c
+InstanceOf: Provenance
+Title: "Simplification des references aux medications"
+Description: """Simplification des references aux medications"""
+Usage: #definition
+
+* target[0] = Reference(furosemide-j2-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Simplification des references aux medications"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T17:00:00+02:00"
 
 Instance: 92f36775-f3d7-4925-83ad-58658f0e19d0
 InstanceOf: Provenance

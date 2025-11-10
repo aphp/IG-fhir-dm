@@ -6,7 +6,7 @@ Usage: #example
 
 * status = #completed
 
-* medicationReference = Reference(spironolactone)
+* medicationReference.display = "spironolactone"
 * subject = Reference(cas-9)
 * context = Reference(sejour-cas-9)
 
@@ -18,6 +18,21 @@ Usage: #example
   * route = http://snomed.info/sct#26643006 "voie orale"
   * dose = 1 '{comprimé}' "comprimé"
 
+
+Instance: 5d969540-5b70-4bd1-bf09-952f8fe0031d
+InstanceOf: Provenance
+Title: "Simplification des references aux medications"
+Description: """Simplification des references aux medications"""
+Usage: #definition
+
+* target[0] = Reference(spironolactone-j1-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Simplification des references aux medications"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T17:00:00+02:00"
 
 Instance: a2bcef94-7d70-4822-bd90-35d91a77360f
 InstanceOf: Provenance

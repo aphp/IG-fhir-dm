@@ -7,7 +7,7 @@ Usage: #example
 * status = #completed
 * intent = #original-order
 
-* medicationReference = Reference(furosemide)
+* medicationReference.display = "furosemide"
 * subject = Reference(cas-9)
 * encounter = Reference(sejour-cas-9)
 
@@ -23,6 +23,21 @@ Usage: #example
   * doseAndRate
     * doseQuantity = 1 '{comprimé}' "comprimé"
 
+
+Instance: f75bcdeb-4200-4935-b2c6-9333419f9049
+InstanceOf: Provenance
+Title: "Simplification des references aux medications"
+Description: """Simplification des references aux medications"""
+Usage: #definition
+
+* target[0] = Reference(furosemide-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Simplification des references aux medications"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T17:00:00+02:00"
 
 Instance: a9ab68cd-0e9a-4629-8e57-489322dbf6da
 InstanceOf: Provenance

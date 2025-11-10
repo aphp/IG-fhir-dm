@@ -7,7 +7,7 @@ Usage: #example
 * status = #completed
 * intent = #original-order
 
-* medicationReference = Reference(furosemide)
+* medicationReference.display = "spironolactone"
 * subject = Reference(cas-9)
 * encounter = Reference(sejour-cas-9)
 
@@ -23,6 +23,21 @@ Usage: #example
   * doseAndRate
     * doseQuantity = 1 '{comprimé}' "comprimé"
 
+
+Instance: f6f4c734-ce09-4913-98ce-e0a2dff6e90c
+InstanceOf: Provenance
+Title: "Simplification des references aux medications"
+Description: """Simplification des references aux medications"""
+Usage: #definition
+
+* target[0] = Reference(spironolactone-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Simplification des references aux medications"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T17:00:00+02:00"
 
 Instance: 557c2beb-0512-4242-952a-8903b2e8aa6f
 InstanceOf: Provenance

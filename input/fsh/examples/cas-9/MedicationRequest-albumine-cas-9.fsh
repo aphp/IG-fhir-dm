@@ -7,7 +7,7 @@ Usage: #example
 * status = #completed
 * intent = #original-order
 
-* medicationReference = Reference(albumine)
+* medicationReference.display = "albumine"
 * subject = Reference(cas-9)
 * encounter = Reference(sejour-cas-9)
 
@@ -18,6 +18,21 @@ Usage: #example
   * doseAndRate
     * doseQuantity = 2 '{poche}' "poche"
 
+
+Instance: bd006fd2-5649-4770-b210-6a7ec78b7cfa
+InstanceOf: Provenance
+Title: "Simplification des references aux medications"
+Description: """Simplification des references aux medications"""
+Usage: #definition
+
+* target[0] = Reference(albumine-cas-9)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Simplification des references aux medications"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T17:00:00+02:00"
 
 Instance: aba28439-bba0-4219-b570-28bdc2ff1c4c
 InstanceOf: Provenance
