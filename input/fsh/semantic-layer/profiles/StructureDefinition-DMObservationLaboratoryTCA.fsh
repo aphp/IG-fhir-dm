@@ -12,9 +12,9 @@ Profil Temps de céphaline activée (TCA) du socle commun des EDSH
 * component ^slicing.rules = #open
 * component ^short = "Permet de rapporter le temps patient, le temps témoins et le ratio."
 * component contains
-    PatientTCA 1..1 MS and
-    ControlTCA 1..1 MS and
-    TCARatioPonC 1..1 MS
+    PatientTCA 0..1 MS and
+    ControlTCA 0..1 MS and
+    TCARatioPOnC 0..1 MS
 
 * component[PatientTCA] ^short = "pour rapporter le TCA patient."
 * component[PatientTCA]
@@ -36,8 +36,8 @@ Profil Temps de céphaline activée (TCA) du socle commun des EDSH
     * unit = "s"
     * system = $ucum (exactly)
 
-* component[TCARatioPonC] ^short = "pour rapporter le ratio des TCA P/T."
-* component[TCARatioPonC]
+* component[TCARatioPOnC] ^short = "pour rapporter le ratio des TCA P/T."
+* component[TCARatioPOnC]
   * code = $loinc#63561-5 (exactly)
   * value[x] only Quantity
   * valueQuantity ^short = "Valeur mesurée"
@@ -56,6 +56,21 @@ Usage: #definition
   * type = $provenance-participant-type#author
   * who.display = "Nicolas Griffon"
 * recorded = "2025-11-10T16:00:00+02:00"
+
+Instance: 25a47004-caba-482d-86c1-1c17c43d57ce
+InstanceOf: Provenance
+Title: "Assouplissement des contraintes de cardinalité face à la réalité des données à intégrer + coquille de nom de slice"
+Description: """Assouplissement des contraintes de cardinalité face à la réalité des données à intégrer + coquille de nom de slice"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationLaboratoryTca)
+* occurredDateTime = "2025-11-05"
+* reason.text = """Assouplissement des contraintes de cardinalité face à la réalité des données à intégrer + coquille de nom de slice"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-05T14:00:00+01:00"
 
 Instance: f8a9b0c1-2d3e-4f5a-6b7c-8d9e0f1a2b3c
 InstanceOf: Provenance

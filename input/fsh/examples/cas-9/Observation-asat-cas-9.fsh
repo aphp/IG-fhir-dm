@@ -13,6 +13,8 @@ Usage: #example
 * subject = Reference(cas-9)
 * encounter = Reference(sejour-cas-9)
 
+* code = $loinc#1920-8
+
 * effectiveDateTime = "2024-01-13T08:30:00+01:00"
 
 * valueQuantity = 37.0 '[IU]/L' "[IU]/L"
@@ -26,13 +28,13 @@ Usage: #example
 
 Instance: 421bdd2a-1d29-48da-9933-aa023f4326eb
 InstanceOf: Provenance
-Title: "Modification du nom du profil"
-Description: """Modification du nom du profil"""
+Title: "Modification du nom du profil + ajout du code (antérieurement contraint par le profil)"
+Description: """Modification du nom du profil + ajout du code (antérieurement contraint par le profil)"""
 Usage: #definition
 
 * target[0] = Reference(asat-cas-9)
 * occurredDateTime = "2025-11-10"
-* reason.text = """Modification du nom du profil"""
+* reason.text = """Modification du nom du profil + ajout du code (antérieurement contraint par le profil)"""
 * activity = $v3-DataOperation#UPDATE
 * agent
   * type = $provenance-participant-type#author

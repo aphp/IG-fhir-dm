@@ -11,7 +11,7 @@ Profil générique des résultats de laboratoire du socle commun des EDS.
 
 * category MS
 * category 1..1
-* category = $observation-category#laboratory (exactly)
+* category = $observation-category#laboratory
 
 * code MS
 * code from DMLaboratory (required)
@@ -38,6 +38,22 @@ Profil générique des résultats de laboratoire du socle commun des EDS.
   * value[x] MS
 
   * referenceRange MS
+
+
+Instance: e2497c8a-87ce-48f3-bf3a-46f7af5d6fdb
+InstanceOf: Provenance
+Title: "Assouplissement de la contrainte sur la category"
+Description: """Assouplissement de la contrainte sur la category"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationLaboratoryGeneric)
+* occurredDateTime = "2025-11-10"
+* reason.text = """Assouplissement de la contrainte sur la category"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-10T09:26:15+01:00"
 
 Instance: 1f3e2728-1d70-4ca7-ac28-a4c1b11c4b80
 InstanceOf: Provenance

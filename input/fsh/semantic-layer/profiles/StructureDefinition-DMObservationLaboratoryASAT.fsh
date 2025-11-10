@@ -5,7 +5,8 @@ Description: """
 Taux d'ASAT dans le sang. L'ASAT est une enzyme faisant partie des transaminases qui intervient dans la navette malate-aspartate de transfert des électrons du NADH cytosolique vers le NAD+ mitochondrial.
 """
 
-* code = $loinc#30239-8 "Aspartate aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique ; Avec phosphate de pyridoxal" (exactly)
+// * code = $loinc#30239-8 "Aspartate aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique ; Avec phosphate de pyridoxal" (exactly)
+* code from DMLaboratoryAsat
 
 * value[x] only Quantity
 * valueQuantity.value ^short = "Valeur mesurée"
@@ -16,13 +17,13 @@ Taux d'ASAT dans le sang. L'ASAT est une enzyme faisant partie des transaminases
 
 Instance: 6feb05dc-9bdd-491d-925d-9840a535fbb7
 InstanceOf: Provenance
-Title: "Modification du nom du profil pour respect des conventions"
-Description: """Modification du nom du profil pour respect des conventions"""
+Title: "Assouplissement du code (VS plutôt que valeur fixe). Modification du nom du profil pour respect des conventions"
+Description: """Assouplissement du code (VS plutôt que valeur fixe). Modification du nom du profil pour respect des conventions"""
 Usage: #definition
 
 * target[0] = Reference(DMObservationLaboratoryAsat)
 * occurredDateTime = "2025-11-10"
-* reason.text = """Modification du nom du profil pour respect des conventions"""
+* reason.text = """Assouplissement du code (VS plutôt que valeur fixe). Modification du nom du profil pour respect des conventions"""
 * activity = $v3-DataOperation#UPDATE
 * agent
   * type = $provenance-participant-type#author

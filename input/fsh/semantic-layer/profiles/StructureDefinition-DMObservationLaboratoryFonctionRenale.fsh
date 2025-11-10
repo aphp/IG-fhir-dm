@@ -12,8 +12,8 @@ Profil des résultats de fonction rénale du socle commun des EDS
 * component ^slicing.rules = #open
 * component ^short = "Permet de rapporter la créatininémie et l'estimation du DFG."
 * component contains
-    Creat 1..1 MS and
-    Dfg 1..1 MS 
+    Creat 0..1 MS and
+    Dfg 0..1 MS 
 
 
 * component[Creat] ^short = "Créatininémie"
@@ -38,6 +38,22 @@ Profil des résultats de fonction rénale du socle commun des EDS
     * code from DMLaboratoryEstimatedDFGUnit (extensible)
   * referenceRange 1..
   * referenceRange MS
+
+
+Instance: 1f41c018-a0a0-4b0e-b868-e2ba6ba11741
+InstanceOf: Provenance
+Title: "Assouplissement des contraintes de cardinalité face à la réalité des données à intégrer"
+Description: """Assouplissement des contraintes de cardinalité face à la réalité des données à intégrer"""
+Usage: #definition
+
+* target[0] = Reference(DMObservationLaboratoryFonctionRenale)
+* occurredDateTime = "2025-11-05"
+* reason.text = """Assouplissement des contraintes de cardinalité face à la réalité des données à intégrer"""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "Nicolas Griffon"
+* recorded = "2025-11-05T14:00:00+01:00"
 
 Instance: 02323e68-3c00-4304-88a8-3b9ffdc1f8ec
 InstanceOf: Provenance

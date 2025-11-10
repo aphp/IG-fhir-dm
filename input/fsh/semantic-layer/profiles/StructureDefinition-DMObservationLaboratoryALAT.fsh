@@ -5,7 +5,8 @@ Description: """
 Taux d'ALAT dans le sang. L'alanine-aminotransférase est capable de transférer le groupement amine de l'acide glutamique sur l'acide pyruvique avec formation d'une molécule d'acide α-cétoglutarique et d'alanine.
 """
 
-* code = $loinc#1743-4 "Alanine aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique ; Avec phosphate de pyridoxal" (exactly)
+// * code = $loinc#1743-4 "Alanine aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique ; Avec phosphate de pyridoxal" (exactly)
+* code from DMLaboratoryAlat
 
 * value[x] only Quantity
 * valueQuantity.value ^short = "Valeur mesurée"
@@ -16,13 +17,13 @@ Taux d'ALAT dans le sang. L'alanine-aminotransférase est capable de transférer
 
 Instance: 4244bd90-f876-4507-945f-7f57c116e6c2
 InstanceOf: Provenance
-Title: "Modification du nom du profil pour respect des conventions"
-Description: """Modification du nom du profil pour respect des conventions"""
+Title: "Assouplissement du code (VS plutôt que valeur fixe). Modification du nom du profil pour respect des conventions"
+Description: """Assouplissement du code (VS plutôt que valeur fixe). Modification du nom du profil pour respect des conventions"""
 Usage: #definition
 
 * target[0] = Reference(DMObservationLaboratoryAlat)
 * occurredDateTime = "2025-11-10"
-* reason.text = """Modification du nom du profil pour respect des conventions"""
+* reason.text = """Assouplissement du code (VS plutôt que valeur fixe). Modification du nom du profil pour respect des conventions"""
 * activity = $v3-DataOperation#UPDATE
 * agent
   * type = $provenance-participant-type#author
