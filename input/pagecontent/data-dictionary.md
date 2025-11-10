@@ -21,6 +21,7 @@
 | Résultats d'examens biologiques | [Taux de prothrombine (TP)](StructureDefinition-DMObservationLaboratoryTp.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Temps de céphaline activée (TCA)](StructureDefinition-DMObservationLaboratoryTca.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Aspartate aminotransférase (ASAT)](StructureDefinition-DMObservationLaboratoryAsat.html) | Données d'intérêt |
+| Résultats d'examens biologiques | [Alanine aminotransférase (ALAT)](StructureDefinition-DMObservationLaboratoryAlat.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Gamma-glutamyl transférase (GGT)](StructureDefinition-DMObservationLaboratoryGgt.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Phosphatases alcalines (PAL)](StructureDefinition-DMObservationLaboratoryPal.html) | Données d'intérêt |
 | Résultats d'examens biologiques | [Bilirubine totale](StructureDefinition-DMObservationLaboratoryBilirubineTotale.html) | Données d'intérêt |
