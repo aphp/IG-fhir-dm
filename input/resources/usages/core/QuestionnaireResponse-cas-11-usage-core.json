@@ -1206,6 +1206,63 @@
                   ]
                 }
               ]
+            },
+            {
+              "linkId": "795145096241",
+              "text": "Temps de céphaline activée (TCA)",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 0.91
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueCoding": {
+                            "system": "http://loinc.org",
+                            "code": "63561-5",
+                            "display": "Temps de céphaline activée Patient/témoin [Temps relatif] Plasma pauvre en plaquettes ; Numérique ; Coagulation"
+                          }
+                        }
+                      ],
+                      "linkId": "664804454505",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2025-08-22T06:12:32.000Z"
+                        }
+                      ],
+                      "linkId": "339688288601",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 0.8
+                          }
+                        }
+                      ],
+                      "linkId": "680824187549",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 1.2
+                          }
+                        }
+                      ],
+                      "linkId": "293820463780",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
