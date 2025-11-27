@@ -7,6 +7,10 @@ Description: "Profil pour les Résumés d'Unité Médicale (RUM) du PMSI MCO."
     DRG named DRG 0..1
     and ItemRank named ItemRank 1..1
 
+* extension[DRG] MS
+* extension[DRG].extension[GHM] ^short = "short de GHM du séjour" // short modified against extension definition -> it render well
+* extension[DRG].extension[vClassif] ^definition = "Version de la classification des GHM" // It seems that it is by adding this line that I have a rendering trouble. 
+
 * subType 1..1
 * subType = FrClaimType#RUM
 
