@@ -1,3 +1,0 @@
-
-
-{% include ehr-ddl.md %}

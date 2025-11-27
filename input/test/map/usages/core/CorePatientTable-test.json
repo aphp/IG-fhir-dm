@@ -1,9 +1,0 @@
-{
-  "resourceType": "CorePatient",
-  "patientNi": 1,
-  "vip": "no",
-  "name": "doe",
-  "firstName": "john",
-  "gender": "h",
-  "birthDate": "1948-07-16"
-}
