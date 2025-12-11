@@ -13,8 +13,8 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 
 | Concept | Description | Note | Aussi connu comme | Lien/Dépendance | Références |
 |---------|-------------|------|-------------------|-----------------|------------|
-| Patient | | | | | |
-| Séjour | | | | | |
+| Patient | Identifiant du patient | | | | |
+| Séjour | Identifiant du séjour | | | | |
 | Acte | Ensemble des actes dont le patient a bénéficié | | | | |
 | Diagnostic | Ensemble des diagnostics qui ont été faits | | | | |
 | Erythrocytes | Taux d'érythocrytes circulants dans le sang. Les érythrocytes sont des cellules issues de la moëlle osseuse qui produise l'hémoglogine pour transporter l'oxygène. | Paramètre peu utilisé pour le raisonnement clinique. Valeur normale comprise entre 4 et 5.5 T/L. | Hématies, Globules rouges, GR | | [789-8](https://loinc.org/789-8/){:target="_blank"} |
@@ -46,8 +46,8 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 | Administration médicamenteuse | Ensemble de chaque médicament administré avec sa dose | | | | |
 | Dosage | Il semble peu pertinent de dissocier le dosage du médicament. | | | | |
 | Médicament administré | Il semble peu pertinent de dissocier le médicament du dosage. | | | | |
-| Poids | Dernier poids mesuré en kg | | | | [29463-7](https://loinc.org/29463-7/){:target="_blank"} |
-| Taille | Dernière taille mesurée ou déclarée en cm | | | | [8302-2](https://loinc.org/8302-2/){:target="_blank"} |
+| Poids | Masse du patient exprimée en kg (ou g en pédiatrie) | | | | [29463-7](https://loinc.org/29463-7/){:target="_blank"} |
+| Taille | Taille du patient exprimée en m ou cm | | | | [8302-2](https://loinc.org/8302-2/){:target="_blank"} |
 | Pression artérielle | Pression qui s'exerce sur la paroi des artères. On distingue la pression artérielle systolique, qui correspond à la pression pendant la phase d'éjection du sang par le coeur, de la pression artérielle diastolique, qui correspond à la pression pendant la phase de remplissage du coeur. | Elle est souvent notée selon le format X/Y mmHg où X correspond à la pression artérielle systolique (PAS), Y correspond à la pression artérielle diastolique (PAD) et mmHg correspond à l'unité dans laquelle la pression artérielle est exprimée. Valeurs usuelles de la PAS entre 100 et 140 mmHg et de la PAD entre 60 et 90 mmHg | | | diastolique : [8462-4](https://loinc.org/8462-4/){:target="_blank"}<br/> systolique : [8480-6](https://loinc.org/8480-6/){:target="_blank"} |
 | Consommation de tabac | Statut tabagique du patient (non-fumeur/sevré/actif) avec estimation quantitative | On utilise le nombre de paquet-année pour l'estimation quantitative de la consommation tabagique cumulée. Un paquet-année correspond à la consommation d'un paquet de cigarette par jour pendant un an.| | | |
 | Consommation d'alcool | Préciser formellement ce qui est attendu. | | | | [11331-6](https://loinc.org/11331-6/){:target="_blank"} |
