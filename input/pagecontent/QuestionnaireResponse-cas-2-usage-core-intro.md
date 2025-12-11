@@ -1,55 +1,40 @@
 #### Synthèse
 
-**Pierre**_[Prénom]_ **Martin**_[Nom]_, **né le 5 avril 1970**_[date-naissance]_, hospitalisé du **8**_[Date-début-séjour]_ au **10 janvier 2024**_[Date-fin-séjour]_ dans le service de gastroentérologie de l'hôpital Pitié-Salpêtrière pour une **endoscopie oeso-gastro-duodénale**_[acte]_ dans le cadre d'un **ulcère de l'estomac**_[diagnostic]_.
+**Synthèse**
 
-Le patient, âgé de 53 ans, consulte aux urgences le 8 janvier 2024 pour des douleurs épigastriques intenses évoluant depuis plusieurs semaines, associées à des brûlures d'estomac et des nausées. Ces derniers jours, il rapporte également la présence de selles noires (**méléna**_[diagnostic]_), évocatrices d'un saignement digestif haut. Devant ce tableau clinique, une **endoscopie oeso-gastro-duodénale**_[acte]_ est programmée en urgence.
+**Pierre**_\[prénom\]_ **Martin**_\[nom\]_, **né le 5 avril 1970**_\[date-naissance\]_, a été hospitalisé du **8**_\[date-début-séjour\]_ au **10 janvier 2024**_\[date-fin-séjour\]_ dans le service de gastroentérologie de l'hôpital Pitié-Salpêtrière pour une **endoscopie oeso-gastro-duodénale**_\[acte\]_ dans le cadre d'une suspicion d'**ulcère de l'estomac**_\[diagnostic\]_.
 
-Dans ses antécédents, on note des **antécédents personnels de maladies de la peau et du tissu cellulaire sous-cutané**_[diagnostic]_.
+Histoire de la maladie :  
+Le patient s'est présenté aux urgences le 8 janvier 2024 pour des douleurs épigastriques intenses évoluant depuis plusieurs semaines, associées à des brûlures d'estomac et des nausées. Ces derniers jours, il rapporte également la présence de selles noires et malodorantes (suspicion de **méléna**_\[diagnostic\]_).
 
-Le patient présente plusieurs facteurs de risque pour l'ulcère gastrique. Il est **fumeur actif**_[consommation-tabac]_ et présente une **consommation quotidienne d'alcool**_[consommation-alcool]_. Son **activité physique est faible**_[activite-physique]_.
+Mode de vie :  
+Travail dans l'informatique, **tabagisme actif à 40 PA**_\[consommation-tabac\]_, **consommation d'alcool entre 1 et 2 bières de 50 cL par jour**_\[consommation-alcool\]_. **Sédentaire**_\[activite-physique\]_.
 
-Examen clinique à l'admission :
-État général conservé.
-Fréquence cardiaque : 88 /min
-Température corporelle : 37.2°C
-Pâleur conjonctivale modérée
-Abdomen souple, sensible à la palpation épigastrique, sans défense ni contracture
-Toucher rectal : présence de selles noires confirmant le méléna
+Dans ses antécédents, on note un **psoriasis cutané** **isolé**_\[diagnostic\]_.
 
-Examens complémentaires
+Examen clinique à l'admission : État général conservé. Fréquence cardiaque : 88 /min Température corporelle : 37.2°C Pâleur conjonctivale modérée Abdomen souple, sensible à la palpation épigastrique, sans défense ni contracture Toucher rectal : présence de selles noires confirmant le méléna
 
-Les analyses biologiques du 08/01/2024 à 7h30 montrent :
+Les examens complémentaires à son arrivée mon une anémie normocytaire régénérative : **hémoglobine à 7 g/dL**_\[hemoglobine\]_, **VGM 87 fL**_\[volume-globulaire-moyen\]_ Réticulocytes 190 G/L.  
+Le reste du bilan est sans particularité, la **créatininémie est à 98 µmol/L**_\[creatinine\]._
 
-- fonction rénale normale :
-  - **créatinine sérique : 98 µmol/L**_[creatinine]_
+La **FOGD**_\[acte\]_ réalisée le 8 janvier retrouve un **ulcère gastrique**_\[diagnostic\]_ de 1,5 cm de diamètre au niveau de l'antre gastrique. L'ulcère présente un fond fibrineux sans stigmate de saignement actif au moment de l'examen. Pas de signe de perforation. L'œsophage et le duodénum sont d'aspect normal. Des biopsies gastriques sont réalisées pour recherche d'Helicobacter pylori et analyse anatomopathologique.
 
-- bilan hépatique :
-  - **alanine aminotransférase : 38 UI/L**_[alat]_ (légèrement augmentée)
-  - **bilirubine totale : 15 µmol/L**_[bilirubine-totale]_ (normale)
-
-L'**endoscopie oeso-gastro-duodénale**_[acte]_ réalisée le 8 janvier 2024 à 10h15 révèle la présence d'un ulcère gastrique de 1,5 cm de diamètre au niveau de l'antre gastrique. L'ulcère présente un fond fibrineux sans stigmate de saignement actif au moment de l'examen. Pas de signe de perforation. L'oesophage et le duodénum sont d'aspect normal. Des biopsies gastriques sont réalisées pour recherche d'Helicobacter pylori et analyse anatomopathologique.
-
-Traitement et évolution
-
-Le patient est mis sous traitement par inhibiteur de la pompe à protons à forte dose.
-
-**Prescription d'oméprazole 20 mg**_[prescription]_ par voie orale, à prendre deux fois par jour avant les repas.
-
-L'**administration d'oméprazole 20 mg**_[administration]_ débute le 9 janvier à 8h00.
+Introduction d'un traitement par **oméprazole 20 mg**_\[prescription\]_ 2 fois par jour à partir du 8 janvier.
 
 L'évolution est favorable avec une amélioration rapide des douleurs épigastriques. Pas de récidive du saignement digestif durant l'hospitalisation. L'hémodynamique reste stable.
 
 Sortie
 
-Le patient sort à domicile le 10 janvier 2024 avec la **prescription d'oméprazole 20 mg**_[prescription]_ pour une durée d'un mois.
+Le patient sort à domicile le 10 janvier avec la **prescription d'oméprazole 20 mg**_\[prescription\]_ pour une durée de 8 semaines.
 
 Consignes de sortie :
-- Poursuite du traitement par oméprazole pendant au moins 4 semaines
+
+- Poursuite du traitement par oméprazole pendant 8 semaines
 - Éradication d'Helicobacter pylori si la recherche s'avère positive (résultats des biopsies en attente)
 - Consultation de contrôle avec endoscopie à 6-8 semaines pour vérifier la cicatrisation
-- **Arrêt impératif du tabac**_[consommation-tabac]_ et **réduction significative de la consommation d'alcool**_[consommation-alcool]_, facteurs aggravant l'ulcère gastrique
+- **Arrêt du tabac**_\[consommation-tabac\]_ et **réduction de la consommation d'alcool**_\[consommation-alcool\]_, facteurs aggravant l'ulcère gastrique
 - Éviter les anti-inflammatoires non stéroïdiens (AINS) et l'aspirine
 
-M. **Martin**_[Nom]_ est informé des signes d'alerte nécessitant une consultation en urgence : douleurs abdominales intenses, vomissements de sang, selles noires, malaise.
+M. **Martin**_\[nom\]_ est informé des signes d'alerte nécessitant une consultation en urgence : douleurs abdominales intenses, vomissements de sang, selles noires, malaise.
 
-Fait à Pitié-Salpêtrière le 10 janvier 2024
+Fait à la Pitié-Salpêtrière le 10 janvier 2024

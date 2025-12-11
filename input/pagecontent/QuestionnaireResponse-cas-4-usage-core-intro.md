@@ -1,73 +1,51 @@
 #### Synthèse
 
-**Jean**_[Prénom]_ **Moreau**_[Nom]_, **né le 15 août 1976**_[date-naissance]_, hospitalisé du **5**_[Date-début-séjour]_ au **10 novembre 2023**_[Date-fin-séjour]_ dans le service de réanimation de l'hôpital Bichat pour un **choc cardiogénique**_[diagnostic]_ sur **cardiopathie ischémique chronique**_[diagnostic]_. Le patient est décédé le 10 novembre 2023 malgré la mise en œuvre de l'ensemble des thérapeutiques de réanimation.
+**Synthèse**
 
-Le patient, âgé de 47 ans, est admis en urgence aux urgences de l'hôpital Bichat le 5 novembre 2023 à 21h00 dans un tableau de détresse cardio-respiratoire aiguë. Il présente une douleur thoracique intense d'apparition brutale survenue au domicile, associée à une dyspnée majeure, des sueurs profuses et un état de choc. Le SAMU est appelé et le patient est transféré en urgence.
+**Jean**_\[prénom\]_ **Moreau**_\[nom\]_, **né le 15 août 1961**_\[date-naissance\]_, a été hospitalisé du **5**_\[date-début-séjour\]_ au **7 novembre 2023**_\[date-fin-séjour\]_ dans le service de réanimation médical de l'hôpital Bichat pour un **choc cardiogénique**_\[diagnostic\]_.
 
-À l'arrivée aux urgences, le patient est en état de choc cardiogénique sévère avec des signes de bas débit majeur. L'**électrocardiogramme**_[acte]_ révèle des signes d'**infarctus du myocarde étendu**_[diagnostic]_.
+Le patient, âgé de 62 ans, est admis en urgence en réanimation médicale de l'hôpital Bichat le 5 novembre 2023 à 21h00 transporté par SAMU dans un contexte de **détresse respiratoire aiguë**_\[diagnostic\]_. Il a en effet présenté une douleur thoracique intense d'apparition brutale survenue au domicile 30 min plus tôt, associée à une dyspnée majeure et des sueurs profuses. Sa compagne a d'emblée contacté les secours.
 
-Dans ses antécédents, on suspecte une **cardiopathie ischémique chronique non suivie**_[diagnostic]_, le patient n'ayant pas consulté de cardiologue depuis plusieurs années malgré des douleurs thoraciques occasionnelles.
+A l'arrivée du SAMU, le patient est en état de choc avec une pression artérielle imprenable, des marbrures diffuses des membres inférieurs et des troubles de la vigilance avec un Glasgow à 12. L'**électrocardiogramme sur 18 dérivations**_\[acte\]_ retrouve un rythme sinusal à 110 bpm avec sus-décalage ST étendu à tout le territoire antérieur et latéral évocateur d'un **infarctus du myocarde étendu**_\[diagnostic\]_.
 
-Le patient présente de multiples facteurs de risque cardiovasculaire. Il est **fumeur actif**_[consommation-tabac]_ avec une consommation de 1 paquet par jour depuis 30 ans, présente une **consommation quotidienne d'alcool**_[consommation-alcool]_, et son **activité physique est faible**_[activite-physique]_ avec un mode de vie sédentaire.
+La prise en charge immédiate a consisté en :
+
+- Dose de charge de charge d'**Aspirine 250 mg**_\[administration-médicamenteuse\]_
+- Dose de charge de **Ticagrelor 180 mg**_\[administration-médicamenteuse\]_
+- Bolus d'**HNF 4000 UI en IVD**_\[administration-médicamenteuse\]_
+- Remplissage vasculaire par **1 L de NaCl 0.9%**_\[administration-médicamenteuse\]_
+
+La patiente transférée en dans le service de réanimation médicale de l'hôpital Bichat.
+
+Dans ses antécédents, on note un **carcinome épidermoïde pulmonaire métastatique (plèvre)**_\[diagnostic\]_ diagnostiqué en mars 2023 pour lequel le patient a été perdu de vue à l'issue du diagnostic, une notion d'**angor d'effort non exploré**_\[diagnostic\]_, un **diabète de type 2**_\[diagnostic\]_ non traité et non suivi.
+
+Par ailleurs, le patient est **fumeur actif**_\[consommation-tabac\]_ avec une consommation de 1 paquet par jour depuis 30 ans et a une **consommation quotidienne d'alcool à 3 verres de vin par jour**_\[consommation-alcool\]_. **Pas d'activité physique**_\[activite-physique\]_.
 
 Examen clinique à l'admission en réanimation :
-État de choc cardiogénique sévère nécessitant une prise en charge immédiate.
-Fréquence cardiaque : 125 /min (tachycardie sinusale)
-**Pression artérielle systolique : 75 mmHg**_[pression-arterielle]_ (hypotension sévère)
-Température corporelle : 35.8°C (hypothermie liée au bas débit)
-Marbrures cutanées diffuses, extrémités froides et cyanosées
-Auscultation cardiaque : tachycardie, galop, souffle d'insuffisance mitrale
-Auscultation pulmonaire : crépitants bilatéraux évoquant un œdème aigu du poumon
-Oligurie
 
-Prise en charge initiale
+Fréquence cardiaque : 125 /min (tachycardie sinusale) **Pression artérielle : 75/30 mmHg**_\[pression-arterielle\]_. Température corporelle : 35.8°C, marbrures cutanées diffuses, extrémités froides et cyanosées Auscultation cardiaque : tachycardie, galop, souffle d'insuffisance mitrale Auscultation pulmonaire : crépitants bilatéraux jusqu'à mi-champs. Oligurie. GCS 10.
 
-Devant la gravité du tableau clinique avec détresse respiratoire et hémodynamique majeure, une **intubation trachéale**_[acte]_ est réalisée en urgence le 5 novembre à 22h15 par le médecin réanimateur. Le patient est placé sous **ventilation mécanique**_[acte]_.
+Prise en charge initiale :
 
-Un traitement vasopresseur par **noradrénaline**_[prescription]_ est immédiatement débuté en intraveineux pour soutenir la pression artérielle. L'**administration de noradrénaline 0.5 mg**_[administration]_ débute à 22h30 avec titration progressive des doses selon l'objectif de pression artérielle moyenne > 65 mmHg.
+- **Intubation oro-trachéale**_\[acte\]_ est réalisée en urgence le 5 novembre à 22h15 avec mise en place d'une **ventilation mécanique invasive par ventilation assistée contrôlée**_\[acte\]_ devant la défaillance hémodynamique, respiratoire et neurologique
+- **Pose d'un cathéter veineux central et d'un cathéter artériel en fémoral droit**_\[acte\]_
+- **Support vasopresseur par Dobutamine 10 µg/kg/min + Noradrénaline à 3 mg/h**_\[administration-médicamenteuse\]_ et poursuite du remplissage vasculaire par **1 L de NaCl 0.9% en débit libre**_\[administration-médicamenteuse\]_
 
-Une anticoagulation curative par **héparine sodique**_[prescription]_ est prescrite et l'**administration d'héparine sodique 5000 UI**_[administration]_ en intraveineux débute à 22h00.
+L'**échocardiographie transthoracique**_\[acte\]_ à l'admission révèle une altération sévère de la fonction ventriculaire gauche avec une fraction d'éjection effondrée à 20%, une akinésie étendue de la paroi antérieure et septale, et une insuffisance mitrale significative. Péricarde sec.
 
-Un **cathéter artériel**_[acte]_ et une **voie veineuse centrale**_[acte]_ sont posés pour la surveillance hémodynamique continue et l'administration des traitements.
+Le 5 novembre à 23h00, réalisation d'une **coronarographie**_\[acte\]_ et met en évidence une **occlusion complète du tronc commun**_\[diagnostic\]_, ainsi qu'une **sténose à 60% de l'artère coronaire droite proximale**_\[diagnostic\]_.  
+Mise en place d'un **stent actif sur le tronc commun**_\[acte\]._
 
-Examens complémentaires
+Echec de revascularisation avec persistance de la dysfonction myocardique et de la défaillance hémodynamique malgré la titration progressive en catécholamines.
 
-Les analyses biologiques du 05/11/2023 à 21h00 montrent :
+Compte tenu des comorbidités du patient, à savoir un cancer pulmonaire métastatique pour lequel il a été perdu de vue dès le diagnostic, une cardiopathie ischémique et un diabète non suivis, il est décidé collégialement (réanimateur, cardiologue) de limiter le patient et de ne pas recourir à une pose d'ECMO artério-veineuse et à d'autres thérapeutiques invasives. La décision est expliquée à son épouse qui la comprend.
 
-- marqueurs cardiaques :
-  - troponine I cardiaque : 125.5 ng/L (valeur positive, très élevée, confirmant un infarctus du myocarde massif)
+L'évolution est rapidement défavorable avec **une défaillance multiviscérale (hémodynamique, cardiaque, rénale et hépatique)**_\[diagnostic\]_.
 
-- fonction rénale altérée :
-  - **créatinine sérique : 156 µmol/L**_[creatinine]_ (augmentée, témoignant d'une insuffisance rénale aiguë secondaire au choc)
-
-L'**échocardiographie transthoracique**_[acte]_ réalisée en urgence révèle une altération sévère de la fonction ventriculaire gauche avec une fraction d'éjection effondrée à 20%, une akinésie étendue de la paroi antérieure et septale, et une insuffisance mitrale importante.
-
-Le 6 novembre à 9h00, une **artériographie coronaire avec ventriculographie gauche**_[acte]_ est réalisée en urgence par voie artérielle transcutanée. L'examen met en évidence une occlusion complète de l'artère interventriculaire antérieure proximale, ainsi que des lésions sténosantes sévères sur l'artère coronaire droite et l'artère circonflexe. La ventriculographie confirme l'altération majeure de la fonction contractile.
-
-Évolution
-
-Malgré une angioplastie coronaire avec tentative de recanalisation de l'artère interventriculaire antérieure, l'évolution est défavorable avec un **choc cardiogénique**_[diagnostic]_ réfractaire.
-
-Le patient nécessite des doses croissantes de **noradrénaline**_[prescription]_ (jusqu'à 2 mg/h), associées à l'introduction d'adrénaline et de dobutamine pour tenter de maintenir une hémodynamique minimale. Une assistance circulatoire mécanique de type contre-pulsion intra-aortique est discutée mais jugée insuffisante au regard de la gravité du tableau.
-
-L'insuffisance rénale s'aggrave progressivement avec une oligo-anurie complète nécessitant la mise en place d'une hémodialyse continue.
-
-Une défaillance multi-viscérale s'installe avec :
-- **Insuffisance rénale aiguë anurique**_[diagnostic]_
-- **Insuffisance hépatique**_[diagnostic]_ avec cytolyse hépatique majeure
-- Troubles de l'hémostase avec **CIVD**_[diagnostic]_ débutante
-- **Acidose métabolique**_[diagnostic]_ réfractaire
-
-Malgré l'intensification maximale des thérapeutiques (ventilation mécanique, support hémodynamique par amines vasoactives à fortes doses, **épuration extra-rénale**_[acte]_ continue, correction des troubles métaboliques), aucune amélioration n'est observée.
-
-Le 10 novembre 2023, après 5 jours de réanimation lourde, le patient présente un arrêt cardiaque réfractaire aux manœuvres de réanimation. Le décès est constaté à 14h30.
+Le patient présentera finalement un arrêt cardiaque avec un décès constaté le 7 novembre à 09h32.
 
 Conclusion
 
-Le décès de M. **Moreau**_[Nom]_ est survenu dans un contexte de choc cardiogénique réfractaire compliquant un infarctus du myocarde antérieur étendu avec défaillance multiviscérale. Malgré la mise en œuvre de l'ensemble des thérapeutiques de réanimation disponibles, l'évolution a été fatale.
+**Choc cardiogénique réfractaire**_\[diagnostic\]_ compliquant un **infarctus du myocarde antérieur aigu étendu**_\[diagnostic\]_. Evolution défavorable avec décès du patient le 7 novembre 2023 à 09h32
 
-La famille a été accompagnée tout au long de l'hospitalisation et informée régulièrement de la gravité de la situation. Un entretien de fin de vie a été réalisé avec les proches. Le décès a été déclaré auprès de l'INSEE et un certificat de décès a été établi.
-
-Les facteurs de risque cardiovasculaire majeurs (**tabagisme actif**_[consommation-tabac]_ de longue date, **consommation d'alcool quotidienne**_[consommation-alcool]_, **sédentarité**_[activite-physique]_) et l'absence de suivi médical ont probablement contribué à la survenue de cet événement dramatique à un âge relativement jeune.
-
-Fait à Bichat le 10 novembre 2023
+Fait à l'hôpital Bichat le 7 novembre 2023

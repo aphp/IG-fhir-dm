@@ -1,75 +1,56 @@
 #### Synthèse
 
-**Camille**_[Prénom]_ **Simon**_[Nom]_, **née le 4 juillet 2003**_[date-naissance]_, hospitalisée du **12**_[Date-début-séjour]_ au **13 janvier 2024**_[Date-fin-séjour]_ dans le service de médecine interne pour adolescents de l'hôpital Robert-Debré pour une **fièvre**_[diagnostic]_ dans le cadre d'une **infection des voies respiratoires supérieures**_[diagnostic]_.
+**Camille**_\[prénom\]_ **Simon**_\[nom\]_, **née le 4 juillet 1945**_\[date-naissance\]_, a été hospitalisée du **12**_\[date-début-séjour\]_ au **16 janvier 2024**_\[date-fin-séjour\]_ dans le service de médecine de maladies infectieuses de l'hôpital Saint-Louis **pyélonéphrite aigue**_\[diagnostic\]_.
 
-La patiente, jeune adulte âgée de 20 ans, étudiante, se présente aux urgences de l'hôpital Robert-Debré le 12 janvier 2024 pour une fièvre persistante évoluant depuis 3 jours. Elle rapporte une température maximale à 39°C à domicile, associée à des frissons, une rhinorrhée claire, une odynophagie (douleur à la déglutition) et une toux sèche. Elle se plaint également d'une asthénie importante et de céphalées.
+La patiente de 78 ans s'est présentée aux urgences de Saint-Louis dans un contexte d'altération de l'état général avec fièvre à 39°C à domicile, signes fonctionnels urinaires et douleurs en fosse lombaire gauche.
 
-Devant la persistance de la fièvre malgré la **prise de paracétamol à domicile**_[administration]_ et l'altération de l'état général, une hospitalisation de courte durée pour surveillance et bilan est décidée. La patiente est admise au service de médecine interne, unité spécialisée pour adolescents et jeunes adultes.
+Elle a pour seul antécédent notable une **hypertension artérielle essentielle**_\[diagnostic\]_ sous monothérapie par Amlodipine bien équilibrée.  
+Elle n'a **jamais fumé**_\[consommation-tabac\]_ et a une **consommation occasionnelle d'alcool**_\[consommation-alcool\]_.  
+Elle est autonome et pratique la **marche à pied 1 h 3 fois par semaine**_\[activité-physique\]_
 
-La patiente ne présente pas d'antécédent médical particulier. Elle est en bonne santé habituelle et n'a pas de traitement au long cours.
+Aux urgences :
 
-Elle présente un profil de santé excellent. Elle **ne fume pas**_[consommation-tabac]_, **ne consomme pas d'alcool**_[consommation-alcool]_ et maintient une **activité physique élevée**_[activite-physique]_ avec une pratique régulière du sport (course à pied et natation).
+Patiente hémodynamiquement stable avec fièvre à 38.5°C.  
+Bandelette urinaire avec leucocyturie +++ et hématurie +.
 
-Examen clinique à l'admission :
-État général légèrement altéré par la fièvre, patiente asthénique mais consciente et bien orientée.
-Température corporelle : 38.5°C (fièvre)
-Fréquence cardiaque : 95 /min (légère tachycardie physiologique liée à la fièvre)
-**Pression artérielle : 110/70 mmHg**_[pression-arterielle]_ (normale)
-Fréquence respiratoire : 18 /min (normale)
-Saturation en oxygène : 98% en air ambiant
+Le bilan biologique retrouve :
 
-Examen ORL :
-Pharynx érythémateux avec amygdales légèrement hypertrophiées mais sans enduit purulent
-Rhinorrhée claire
-Pas d'adénopathie cervicale significative
+- Syndrome inflammatoire biologique avec **leucocytes à 18 g/L**_\[leucocytes\]_ dont **PNN 15 G/L**_\[neutrophiles\]_
+- **Insuffisance rénale aigue**_\[diagnostic\]_ avec **créatininémie à 150 µmol/L**_\[créatininémie\]_
 
-Examen pulmonaire :
-Auscultation pulmonaire normale, pas de foyer de râles crépitants
-Pas de signe de détresse respiratoire
-Pas d'argument pour une pneumonie
+La prise en charge initiale a consisté en :
+
+- Antibiothérapie probabiliste par voie intraveineuse par **Ceftriaxone 1 g/jour**_\[prescription\]_
+- Hydratation intraveineuse par 1 L/jour de NaCl 0.9%_\[prescription\]_
+
+Une **échographie rénale**_\[acte\]_ est réalisée et ne retrouve des reins de bonne morphologie sans dilatation des cavités pyélocalicielles ni d'abcès visualisé à gauche.
+
+La patiente est transférée dans le service de maladies infectieuses pour la suite de la prise en charge.
+
+Examen clinique à l'admission : État général légèrement altéré avec patiente asthénique mais consciente et bien orientée. Température corporelle : 38.5°C Fréquence cardiaque : 95 /min. **Pression artérielle : 110/70 mmHg**_\[pression-arterielle\]_, Fréquence respiratoire : 15 /min, saturation en oxygène : 98% en air ambiant
+
+Examen pulmonaire : Auscultation pulmonaire normale, pas de foyer de râles crépitants. Pas de signe de détresse respiratoire.
 
 Examen cardiovasculaire et abdominal : normaux
 
-Examens complémentaires
-
-Les analyses biologiques du 12/01/2024 à 9h00 montrent :
-
-- hémogramme :
-  - **leucocytes : 12.8 x10⁹/L**_[leucocytes]_ (augmentés, hyperleucocytose modérée témoignant d'une réaction inflammatoire)
-  - **neutrophiles : 8.9 x10⁹/L**_[neutrophiles]_ (augmentés, prédominance polynucléaire évoquant une composante bactérienne possible)
-
-L'hyperleucocytose à prédominance neutrophilique, dans le contexte d'une infection des voies respiratoires supérieures avec fièvre persistante, justifie une surveillance hospitalière pour s'assurer de l'absence de complication bactérienne (sinusite, otite, surinfection bronchique).
-
 Prise en charge et évolution
 
-La patiente bénéficie d'une surveillance clinique et d'un traitement symptomatique.
+Evolution rapidement favorable sur le plan septique et néphrologique avec amendement de la fièvre à J1, décroissance progressive du syndrome inflammatoire biologique et stabilisation de la **créatininémie autour de 60 µmol/L**_\[créatininémie\]_ à J3.
 
-**Prescription de paracétamol 500 mg**_[prescription]_ par voie orale, à prendre toutes les 6 heures si besoin, pour contrôler la fièvre et soulager les douleurs.
+L'**ECBU**_\[acte\]_ réalisé aux urgences revient positif à E. coli avec une pénicillinase de bas niveau.
 
-L'**administration de paracétamol 500 mg**_[administration]_ débute le 12 janvier à 8h00.
+L'antibiothérapie est donc secondairement adaptée à partir du 14 janvier avec relais par **Amoxicilline + acide clavulanique 1 g /125 mg 3 fois par jour**_\[prescription\]_ par voie orale à poursuivre pour 10 jours de traitement au total.
 
-Une réhydratation orale abondante est conseillée. La patiente est encouragée à se reposer.
+Conclusion
 
-L'évolution durant les 24 heures d'hospitalisation est favorable. La fièvre diminue progressivement avec le traitement antipyrétique. À J1 de l'hospitalisation (13 janvier), la température est à 37.5°C, la patiente se sent mieux, l'asthénie s'améliore et l'appétit revient.
+Il s'agit d'une **pyélonéphrite aigue**_\[diagnostic\]_ documentée à E. coli avec une pénicillinase de bas niveau compliquée initialement d'une insuffisance rénale aigue.  
+Evolution rapidement favorable après antibiothérapie et réhydratation.
 
-L'examen clinique de contrôle ne révèle aucun signe de complication (pas d'otite, pas de sinusite aiguë, pas de foyer pulmonaire). L'infection des voies respiratoires supérieures évolue favorablement vers la guérison.
+La patiente rentre à domicile le 16 janvier.
 
-Sortie
+Prescription de sortie :
 
-Mlle **Simon**_[Nom]_ sort à domicile le 13 janvier 2024 après 24 heures d'observation, son état général étant satisfaisant.
+- **Amlodipine 10 mg le soir**_\[_prescription\]
+- **Amoxicilline + acide clavulanique 1 g / 125 mg matin, midi et soir à poursuivre jusqu'au 21 janvier inclus**
 
-**Prescription de paracétamol 500 mg**_[prescription]_ pour 3 jours, à poursuivre à domicile en cas de fièvre ou de douleurs.
-
-Consignes de sortie :
-- Repos à domicile pendant 2-3 jours
-- Hydratation abondante (au moins 1.5 litre d'eau par jour)
-- Poursuite du **paracétamol**_[prescription]_ si besoin (maximum 3 g par jour)
-- Reprise progressive des activités selon l'amélioration
-- Consultation en médecine de ville si aggravation des symptômes, apparition de douleurs d'oreille, de douleurs sinusiennes, d'une toux productive purulente, ou persistance de la fièvre au-delà de 48 heures
-- Pas d'antibiothérapie nécessaire à ce stade compte tenu de l'évolution favorable
-
-Information sur les signes d'alerte nécessitant une reconsultation en urgence : fièvre élevée persistante, dyspnée, douleur thoracique, altération importante de l'état général.
-
-La patiente est rassurée sur le caractère bénin de son infection et sur l'évolution favorable attendue dans les prochains jours. Autorisation de reprendre ses études et son **activité physique**_[activite-physique]_ dès disparition complète des symptômes.
-
-Fait à Robert-Debré le 13 janvier 2024
+Fait à Saint-Louis le 16 janvier 2024
