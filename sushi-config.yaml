@@ -29,6 +29,7 @@ pages:
 
 menu:
   Accueil: index.html
+  Ressources de conformité: artifacts.html
 
 parameters:  # see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html
   shownav: false
