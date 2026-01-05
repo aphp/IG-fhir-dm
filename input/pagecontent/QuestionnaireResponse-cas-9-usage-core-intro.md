@@ -6,7 +6,7 @@ Patiente suivie dans le service depuis 7 ans dans un contexte de **cirrhose alco
 
 Examen clinique :
 
-Abdomen tendu avec matité à la percussion, périmètre abdo : 92 cm.  Poids **58.2 kg**_[poids]_ à l'entré, soit 9 kg de plus que son poids de forme.  
+Abdomen tendu avec matité à la percussion, périmètre abdo : 92 cm. Poids **58.2 kg**_[poids]_ à l'entré, soit 9 kg de plus que son poids de forme.  
 Examen neurologique normal, en particulier pas de signe d'encéphalopathie.  
 Le reste de l'examen est sans particularité.
 
@@ -21,8 +21,6 @@ Soit un score de Child Pugh B7.
 Réalisation d'une **ponction évacuatrice d'ascite**_[acte]_ de 7 L avec **perfusion de 50 g d'Albumine**_[administration]_.
 
 L'analyse du liquide d'ascite retrouve 57 PNN/mm3.
-
-- l'analyse du liquide d'ascite ne révèle pas d'infection (57 PNN/mm3)
 
 La patiente rentre à domicile le 14 janvier 2025.
 

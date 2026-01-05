@@ -1,6 +1,6 @@
 #### Synthèse
 
-**Elena**_[prénom]_ **Garcia**_[nom]_, **née le 13 novembre 1985**_[date-naissance]_, hospitalisée du **14**_[date-début-séjour]_ au **16 janvier 2024**_[date-fin-séjour]_ dans le service de neurologie de l'hôpital Tenon, unité neuro-vasculaire, pour un céphalées inhabituelles.
+**Elena**_[prénom]_ **Garcia**_[nom]_, **née le 13 novembre 1985**_[date-naissance]_, hospitalisée du **14**_[date-début-séjour]_ au **16 janvier 2024**_[date-fin-séjour]_ dans le service de neurologie de l'hôpital Tenon, unité neuro-vasculaire, pour des céphalées inhabituelles.
 
 Patiente de 38 ans se présentant aux urgences de l'hôpital Tenon le 14 janvier 2024 en début de matinée pour une céphalée sévère, continue, évoluant depuis 4 jours sans amélioration malgré la prise répétée d'antalgiques à domicile (paracétamol, ibuprofène).
 

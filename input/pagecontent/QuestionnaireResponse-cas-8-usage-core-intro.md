@@ -34,7 +34,7 @@ Prise en charge chirurgicale en urgence avec réalisation d'une **ostéosynthès
 
 Les suites opératoires sont simples avec reprise d'appui possible à J1.
 
-Antalgie multimodale post-opératoire par **Paracetamol 1 g, Nefopam 20 mg, Skenan 10 mg et Actiskenan 5 mg**_[prescription]_.
+Antalgie multimodale post-opératoire par **Paracetamol 1 g**_[prescription]_, **Nefopam 20 mg**_[prescription]_, **Skenan 10 mg**_[prescription]_ et **Actiskenan 5 mg**_[prescription]_.
 
 Introduction d'une anticoagulation préventive par **Enoxaparine 4000 UI par jour par voie sous cutanée**_[prescription]_ le 11 janvier, à poursuivre pendant 1 mois.
 

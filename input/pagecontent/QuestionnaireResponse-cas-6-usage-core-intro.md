@@ -3,7 +3,7 @@
 **Nicolas**_[prénom]_ **Petit**_[nom]_, **né le 5 septembre 1965**_[date-naissance]_, hospitalisé du **5**_[date-début-séjour]_ au **7 janvier 2024**_[date-fin-séjour]_ dans le service de cardiologie de l'hôpital Européen Georges-Pompidou pour réalisation d'une **coronarographie**_[acte]_ pour exploration d'un **angor stable**_[diagnostic]_.
 
 Patient de 58 ans adressé par son cardiologue traitant dans un contexte de douleur thoracique d'effort évocatrice d'angor stable évoluant depuis plusieurs mois.  
-Une **épreuve par** **ECG d'effort**_[acte]_ avait été réalisée en ambulatoire et s'était révélée positive cliniquement et électriquement avec apparition d'un sus-décalage ST dans le territoire inférieur.
+Une **épreuve par ECG d'effort**_[acte]_ avait été réalisée en ambulatoire et s'était révélée positive cliniquement et électriquement avec apparition d'un sus-décalage ST dans le territoire inférieur.
 
 Facteurs de risque cardiovasculaire :
 
@@ -42,7 +42,7 @@ La **coronarographie**_[acte]_, réalisée le 6 janvier 2024 à 11h30 par le Dr.
 - Artère circonflexe : pas de sténose significative
 
 Décision d'opter pour un traitement médical optimal dans un premier temps avec réévaluation clinique et fonctionnelle rapprochée.  
-Introduction de **Bisoprolol 5 mg, Ramipril 5 mg, Simvastatine 20 mg et Aspirine 75 mg à partir du 6 janvier 2024**_[prescription]_.  
+Introduction de **Bisoprolol 5 mg**_[prescription]_, **Ramipril 5 mg**_[prescription]_, **Simvastatine 20 mg**_[prescription]_ et **Aspirine 75 mg**_[prescription]_ à partir du 6 janvier 2024.  
 En cas d'aggravation ou de persistance, il y aura une indication formelle à un geste de revascularisation.
 
 Règles hygiéno-diététiques :

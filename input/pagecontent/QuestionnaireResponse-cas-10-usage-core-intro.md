@@ -6,7 +6,7 @@ Patient de 34 ans se présentant aux urgences de l'hôpital Avicenne le 16 janvi
 
 Antécédents :
 
-- **Bronchopneumopathie chronique obstructive GOLD 3**_[diagnostic]_ diagnostiquée à 31 ans diagnostiquée de façon précoce à l'âge de 31 ans.
+- **Bronchopneumopathie chronique obstructive GOLD 3**_[diagnostic]_ diagnostiquée de façon précoce à l'âge de 31 ans.
 - **Allergie à la pénicilline**_[diagnostic]_
 - **Tabagisme actif** **avec consommation estimée à 20 paquets-années**_[consommation-tabac]_ (1 paquet par jour depuis l'âge de 15 ans)
 - **Consommation d'alcool occasionnelle**_[consommation-alcool]_
