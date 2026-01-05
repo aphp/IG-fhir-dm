@@ -1,7 +1,7 @@
 Instance: cirrhose-cas-9
 InstanceOf: DMCondition
 Title: "Cirrhose de Madame Blanc"
-Description: """Représente la cirrhose dont souffre [le patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Description: """Représente la cirrhose dont souffre [le patient 9](use-core-variables-acquisition.html#cas-9--ponction-évacuatrice-dascite)"""
 Usage: #example
 
 * identifier

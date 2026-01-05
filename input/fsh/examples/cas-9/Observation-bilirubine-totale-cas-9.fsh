@@ -1,7 +1,7 @@
 Instance: bilirubine-totale-cas-9
 InstanceOf: DMObservationLaboratoryBilirubineTotale
 Title: "Bilirubine totale de Madame Blanc"
-Description: """Représente le taux de bilirubine totale [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Description: """Représente le taux de bilirubine totale [du patient 9](use-core-variables-acquisition.html#cas-9--ponction-évacuatrice-dascite)"""
 Usage: #example
 
 * identifier

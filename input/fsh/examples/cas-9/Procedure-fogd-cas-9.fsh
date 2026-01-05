@@ -1,7 +1,7 @@
 Instance: fogd-cas-9
 InstanceOf: DMProcedure
 Title: "Fibroscopie oeso-gastroduodénale de Madame Blanc"
-Description: """Représente la Fibroscopie oeso-gastroduodénale  dont a bénéficié [le patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Description: """Représente la Fibroscopie oeso-gastroduodénale  dont a bénéficié [le patient 9](use-core-variables-acquisition.html#cas-9--ponction-évacuatrice-dascite)"""
 Usage: #example
 
 * identifier

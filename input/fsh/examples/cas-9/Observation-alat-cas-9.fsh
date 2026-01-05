@@ -1,7 +1,7 @@
 Instance: alat-cas-9
 InstanceOf: DMObservationLaboratoryALAT
 Title: "ALAT de Madame Blanc"
-Description: """Représente le taux d'ALAT [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Description: """Représente le taux d'ALAT [du patient 9](use-core-variables-acquisition.html#cas-9--ponction-évacuatrice-dascite)"""
 Usage: #example
 
 * identifier
