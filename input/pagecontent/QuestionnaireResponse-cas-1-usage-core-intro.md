@@ -1,47 +1,53 @@
 #### Synthèse
 
-**Marie**_[Prénom]_ **Dupont**_[Nom]_, **née le 21 septembre 1985**_[date-naissance]_, hospitalisée du **10**_[Date-début-séjour]_ au **12 janvier 2024**_[Date-fin-séjour]_ dans le service de cardiologie de l'hôpital Saint-Louis pour une **dilatation intraluminale de 2 vaisseaux coronaires avec pose d'endoprothèse**_[acte]_ suite à un **infarctus aigu du myocarde**_[diagnostic]_.
+**Marie**_[prénom]_ **Dupont**_[nom]_, **née le 21 septembre 1965**_[date-naissance]_, a été hospitalisée du **10**_[date-début-séjour]_ au **14 janvier 2024**_[date-fin-séjour]_ dans le service de cardiologie de l'hôpital Lariboisière pour un **infarctus du myocarde**_[diagnostic]_ pris en charge par **coronarographie avec pose de stents**_[acte]._
 
-La patiente, âgée de 38 ans, se présente aux urgences le 10 janvier 2024 pour une douleur thoracique intense d'apparition brutale, accompagnée de sueurs et de dyspnée. L'**électrocardiographie sur au moins 12 dérivations**_[acte]_ réalisée à l'admission révèle des signes d'**infarctus aigu du myocarde**_[diagnostic]_. Le diagnostic d'infarctus du myocarde est retenu et la patiente est immédiatement transférée en USC Cardiologie pour prise en charge en urgence.
+Histoire de la maladie :  
+La patiente, âgée de 59 ans, s'est présentée aux urgences le 10 janvier 2024 pour une douleur thoracique intense d'apparition brutale au travail plus tôt dans la journée, accompagnée de sueurs et de dyspnée. A l'arrivée du SAMU, l'**ECG 12 dérivations**_[acte]_ confirme un **SCA ST+**_[diagnostic]_ avec un sus-décalage ST dans le territoire antérieur.  
+La prise en charge immédiate a consisté en :
 
-Dans ses antécédents, on note une **hypercholestérolémie essentielle**_[diagnostic]_ connue mais non traitée jusqu'à présent.
+- Dose de charge de charge d'**Aspirine 250 mg**_[administration-médicamenteuse]_
+- Dose de charge de **Ticagrelor 180 mg**_[administration-médicamenteuse]_
+- Bolus d'**HNF 3500 UI en IVD**_[administration-médicamenteuse]_
 
-La patiente est **ex-fumeuse**_[consommation-tabac]_, avec une consommation **occasionnelle d'alcool**_[consommation-alcool]_. Elle pratique une **activité physique modérée**_[activite-physique]_.
+La patiente transférée en coronarographie en urgence.
 
-Examen clinique à l'admission :
-État hémodynamique stable après la phase aiguë.
-Fréquence cardiaque : 72 /min**
-**Pression artérielle : 135/85 mmHg**_[pression-arterielle]_
-Température corporelle : 36.8°C
-Auscultation cardiaque : bruits du cœur réguliers, pas de souffle
-Auscultation pulmonaire : normale
+La **coronarographie**_[acte]_ par ponction radiale droite réalisée le 10 janvier à H+1 met en évidence une **occlusion de l'IVA**_[diagnostic]_. Une **dilatation intraluminale avec pose de stents actifs**_[acte]_ sur l'IVA est réalisée dans le même temps. Absence de complication per procédure ou post geste.
+
+La patiente est transférée en USIC pour suite de la prise en charge.
+
+Dans ses antécédents, on note une **hypercholestérolémie essentielle**_[diagnostic]_ isolée connue mais non traitée jusqu'à présent.
+
+La patiente présente par ailleurs un **tabagisme estimé à 35 sevré depuis 1 an**_[consommation-tabac]_, et une consommation **occasionnelle d'alcool**_[consommation-alcool]_. Elle pratique la **marche à pied 30 minutes par jour**_[activite-physique]_.
+
+Cliniquement à l'admission : État hémodynamique stable. Fréquence cardiaque : 72 /min **Pression artérielle : 135/85 mmHg**_[pression-arterielle]_ Température corporelle : 36.8°C. A l'auscultation : bruits du cœur réguliers, pas de souffle, pouls périphériques tous perçus, mollets souples, pas de signe d'insuffisance cardiaque gauche ou droite. Auscultation pulmonaire : normale
 
 Examens complémentaires
 
-Les analyses biologiques du 10/01/2024 à 8h00 montrent :
+Son dernier bilan du 10/01/2024 montrent :
 
-- fonction rénale préservée :
-  - **créatinine sérique : 85 µmol/L**_[creatinine]_
-  - **DFG estimé : 74 mL/min/1.73m²**_[dfg]_
+- NFS normale (**hémoglobine : 14.2 g/dL**_[hemoglobine]_, **leucocytes 7G/L**_[leucocytes]_ , **plaquettes 295 G/L**_[plaquettes]_)
+- **Créatinine sérique : 85 µmol/L**_[creatinine]_ avec **DFG estimé : 74 mL/min/1.73m²**_[dfg]_
+- Bilan hépatique sans particularité :
+  - **ASAT 50 UI/L**_[asat]_
+  - **alanine aminotransférase : 45 UI/L**_[alat]_
+  - **GGT 70 UI/L**_[ggt]_
+  - **PAL 30 UI/L**_[pal]_
 
-- **hémoglobine : 14.2 g/dL**_[hemoglobine]_ (normale)
+L'évolution en USIC est favorable avec amendement rapide de la douleur thoracique et décroissance progressive de la troponinémie (à 1900 ng/mL à l'acmé).
 
-- bilan hépatique :
-  - **alanine aminotransférase : 45 UI/L**_[alat]_ (légèrement augmentée)
+L'**échocardiographie transthoracique**_[acte]_ réalisée en post-coronarographie le 10 janvier 2024 retrouve une bonne fonction ventriculaire gauche avec FEVG à 65% sans trouble de la cinétique segmentaire et absence de valvulopathie significative.
 
-La **coronarographie**_[acte]_ réalisée en urgence le 10 janvier à 14h30 met en évidence des lésions coronaires sévères sur deux vaisseaux. Une **dilatation intraluminale avec pose d'endoprothèse sur 2 vaisseaux coronaires**_[acte]_ est réalisée avec succès par voie artérielle transcutanée. La procédure se déroule sans complication.
+Mme **Dupont**_[nom]_ rentre à domicile le 14 janvier 2024 et est convoquée en consultation de cardiologie à un mois pour réévaluation clinique et adaptation thérapeutique. Information sur les signes d'alerte cardiovasculaires nécessitant une consultation en urgence. Conseils sur l'hygiène de vie : arrêt définitif du tabac, régime alimentaire adapté, reprise progressive de l'activité physique.
 
-Sortie
-
-L'évolution en USC est favorable. La patiente est stabilisée et sortie à domicile le 12 janvier 2024 avec un traitement médicamenteux adapté :
+Elle sera également convoquée prochainement en SMR de réadaptation cardiovasculaire.
 
 Prescription de sortie :
-- **aspirine 75 mg**_[prescription]_ : 1 comprimé par jour par voie orale, traitement antiagrégant plaquettaire
-- **atorvastatine 40 mg**_[prescription]_ : 1 comprimé le soir par voie orale, traitement hypolipémiant
-- **métoprolol 50 mg**_[prescription]_ : 1 comprimé par jour par voie orale, bêta-bloquant
 
-Les administrations de ces traitements ont débuté le 11 janvier à 8h00 pour l'**aspirine**_[administration]_ et le **métoprolol**_[administration]_, et à 20h00 pour l'**atorvastatine**_[administration]_.
+- **Aspirine 75 mg**_[prescription]_ : 1 comprimé midi par jour par voie orale, traitement antiagrégant plaquettaire le midi
+- **Ticagrelor 90 mg**_[prescription_] : 1 comprimé matin et soir par jour par voie orale, traitement antiagrégant plaquettaire, à poursuivre pendant 1 an
+- **Atorvastatine 40 mg**_[prescription]_ : 1 comprimé le soir par voie orale, traitement hypolipémiant
+- **Bisoprolol 10 mg**_[prescription]_ : 1 comprimé le matin par voie orale, bêta-bloquant
+- **Ramipril 5 mg**_[prescription]_ : 1 comprimé le matin par voie orale
 
-Mme **Dupont**_[Nom]_ est convoquée en consultation de cardiologie à un mois pour réévaluation clinique et adaptation thérapeutique. Information sur les signes d'alerte cardiovasculaires nécessitant une consultation en urgence. Conseils sur l'hygiène de vie : arrêt définitif du tabac, régime alimentaire adapté, reprise progressive de l'activité physique.
-
-Fait à Saint-Louis le 12 janvier 2024
+Fait à Lariboisière le 14 janvier 2024
