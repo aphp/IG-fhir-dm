@@ -1,7 +1,7 @@
 Instance: albumine-cas-9
 InstanceOf: DMMedicationRequest
 Title: "Prescription d'albumine de Madame Blanc"
-Description: """Prescription d'albumine [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Description: """Prescription d'albumine [du patient 9](use-core-variables-acquisition.html#cas-9--ponction-évacuatrice-dascite)"""
 Usage: #example
 
 * status = #completed

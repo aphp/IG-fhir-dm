@@ -13,10 +13,10 @@ référencées issues des travaux du GT Standards & Interopérabilité.
 
 | Concept | Description | Note | Aussi connu comme | Lien/Dépendance | Références |
 |---------|-------------|------|-------------------|-----------------|------------|
-| Patient | Identifiant du patient | | | | |
-| Séjour | Identifiant du séjour | | | | |
-| Acte | Ensemble des actes dont le patient a bénéficié | | | | |
-| Diagnostic | Ensemble des diagnostics qui ont été faits | | | | |
+| Patient | Personne prise en charge par le système de santé, qui bénéficie des soins | Le patient est caractérisé par des traits d'identités et par un, ou plusieurs, identifiant(s) | Sujet, bénéficiaire | | |
+| Séjour | Il s'agit d'un contact entre un patient et une structure de santé, sur une période données, pour la prise en charge de la santé du patient. | On s'inscrit ici dans le cadre du PMSI MCO qui défini positivement : <br/>1. hospitalisation complète <br/>2. hospitalisation partielle <br/>3. hopsitalisation de jour <br/> On exclue ici la notion d'hospitalisation à domicile. | Hospitalisation | | |
+| Acte (médical) | Ce sont des actes dont la réalisation par des moyens verbaux, écrits, physiques ou instrumentaux est effectué par un membre d’une profession médicale dans le cadre de son exercice et les limites de sa compétence. <br/>Les actes médicaux sont de complexité variable. Ils sont réalisables de façon indépendante | | Procédure | | |
+| Diagnostic | tout événement, situation, enjeu ou concept clinique ayant atteint un niveau justifiant une attention particulière. | | Condition | | |
 | Erythrocytes | Taux d'érythocrytes circulants dans le sang. Les érythrocytes sont des cellules issues de la moëlle osseuse qui produise l'hémoglogine pour transporter l'oxygène. | Paramètre peu utilisé pour le raisonnement clinique. Valeur normale comprise entre 4 et 5.5 T/L. | Hématies, Globules rouges, GR | | [789-8](https://loinc.org/789-8/){:target="_blank"} |
 | Hémoglobine | Taux d'hémoglobine dans le sang. L'hémoglobine est une molécule présente dans les globules rouges permettant de transporter l'oxygène vers les tissus. | Un taux anormal peut être observé dans de nombreuses situations notamment en cas de carence en fer ou vitaminique, de pathologie hématologique néoplasique, d'infection, de prise médicamenteuse, de maladie génétique. Valeur normale comprise entre 13 et 17 g/dL chez les hommes et 12-16 g/dL chez les femmes.| Hb | | [718-7](https://loinc.org/718-7/){:target="_blank"} |
 | Hématocrite | Rapport du volume occupé par les érythrocytes sur le volume sanguin. | Un niveau anormal peut être observé en cas en cas d'anémie, de pathologie hématologique néoplasique, de maladie respiratoire chronique. Valeur normale comprise entre 40 et 50% chez l'homme et 37-45% chez la femme. | Ht | Volume globulaire moyen, Erythrocytes | [4544-3](https://loinc.org/4544-3/){:target="_blank"} |

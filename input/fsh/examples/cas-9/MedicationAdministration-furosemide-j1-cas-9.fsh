@@ -1,7 +1,7 @@
 Instance: furosemide-j1-cas-9
 InstanceOf: DMMedicationAdministration
 Title: "Administration à J1 de furosemide de Madame Blanc"
-Description: """Administration J1 de furosemide [au patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Description: """Administration J1 de furosemide [au patient 9](use-core-variables-acquisition.html#cas-9--ponction-évacuatrice-dascite)"""
 Usage: #example
 
 * status = #completed

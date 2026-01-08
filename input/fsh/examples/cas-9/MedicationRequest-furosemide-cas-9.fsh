@@ -1,7 +1,7 @@
 Instance: furosemide-cas-9
 InstanceOf: DMMedicationRequest
 Title: "Prescription de furosémide de Madame Blanc"
-Description: """Prescription de furosémide [du patient 9](use-core-variables-acquisition.html#cas-9--patiente-bénéficiant-dune-ponction-dascite-évacuatrice-et-dexploration-de-sa-cirrhose)"""
+Description: """Prescription de furosémide [du patient 9](use-core-variables-acquisition.html#cas-9--ponction-évacuatrice-dascite)"""
 Usage: #example
 
 * status = #completed

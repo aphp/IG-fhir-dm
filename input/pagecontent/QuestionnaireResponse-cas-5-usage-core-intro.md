@@ -21,7 +21,7 @@ Le bilan biologique retrouve :
 La prise en charge initiale a consisté en :
 
 - Antibiothérapie probabiliste par voie intraveineuse par **Ceftriaxone 1 g/jour**_[prescription]_
-- Hydratation intraveineuse par 1 L/jour de NaCl 0.9%_[prescription]_
+- Hydratation intraveineuse par **1 L/jour de NaCl 0.9%**_[prescription]_
 
 Une **échographie rénale**_[acte]_ est réalisée et ne retrouve des reins de bonne morphologie sans dilatation des cavités pyélocalicielles ni d'abcès visualisé à gauche.
 

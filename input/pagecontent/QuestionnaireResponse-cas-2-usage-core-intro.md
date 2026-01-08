@@ -1,7 +1,5 @@
 #### Synthèse
 
-**Synthèse**
-
 **Pierre**_[prénom]_ **Martin**_[nom]_, **né le 5 avril 1970**_[date-naissance]_, a été hospitalisé du **8**_[date-début-séjour]_ au **10 janvier 2024**_[date-fin-séjour]_ dans le service de gastroentérologie de l'hôpital Pitié-Salpêtrière pour une **endoscopie oeso-gastro-duodénale**_[acte]_ dans le cadre d'une suspicion d'**ulcère de l'estomac**_[diagnostic]_.
 
 Histoire de la maladie :  
@@ -10,9 +8,10 @@ Le patient s'est présenté aux urgences le 8 janvier 2024 pour des douleurs ép
 Mode de vie :  
 Travail dans l'informatique, **tabagisme actif à 40 PA**_[consommation-tabac]_, **consommation d'alcool entre 1 et 2 bières de 50 cL par jour**_[consommation-alcool]_. **Sédentaire**_[activite-physique]_.
 
-Dans ses antécédents, on note un **psoriasis cutané** **isolé**_[diagnostic]_.
+Dans ses antécédents, on note un **psoriasis cutané isolé**_[diagnostic]_.
 
-Examen clinique à l'admission : État général conservé. Fréquence cardiaque : 88 /min Température corporelle : 37.2°C Pâleur conjonctivale modérée Abdomen souple, sensible à la palpation épigastrique, sans défense ni contracture Toucher rectal : présence de selles noires confirmant le méléna
+Examen clinique à l'admission : État général conservé. Fréquence cardiaque : 88 /min Température corporelle : 37.2°C Pâleur cutanée. Abdomen souple, sensible à la palpation épigastrique, sans défense ni contracture. Toucher rectal : présence de selles noires confirmant le méléna.
+Le reste de l'examen clinique est sans particularité par ailleurs.
 
 Les examens complémentaires à son arrivée mon une anémie normocytaire régénérative : **hémoglobine à 7 g/dL**_[hemoglobine]_, **VGM 87 fL**_[volume-globulaire-moyen]_ Réticulocytes 190 G/L.  
 Le reste du bilan est sans particularité, la **créatininémie est à 98 µmol/L**_[creatinine]._

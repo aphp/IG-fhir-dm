@@ -8,7 +8,7 @@ A l'arrivée du SAMU, le patient est en état de choc avec une pression artérie
 
 La prise en charge immédiate a consisté en :
 
-- Dose de charge de charge d'**Aspirine 250 mg**_[administration-médicamenteuse]_
+- Dose de charge d'**Aspirine 250 mg**_[administration-médicamenteuse]_
 - Dose de charge de **Ticagrelor 180 mg**_[administration-médicamenteuse]_
 - Bolus d'**HNF 4000 UI en IVD**_[administration-médicamenteuse]_
 - Remplissage vasculaire par **1 L de NaCl 0.9%**_[administration-médicamenteuse]_
@@ -32,7 +32,7 @@ Prise en charge initiale :
 L'**échocardiographie transthoracique**_[acte]_ à l'admission révèle une altération sévère de la fonction ventriculaire gauche avec une fraction d'éjection effondrée à 20%, une akinésie étendue de la paroi antérieure et septale, et une insuffisance mitrale significative. Péricarde sec.
 
 Le 5 novembre à 23h00, réalisation d'une **coronarographie**_[acte]_ et met en évidence une **occlusion complète du tronc commun**_[diagnostic]_, ainsi qu'une **sténose à 60% de l'artère coronaire droite proximale**_[diagnostic]_.  
-Mise en place d'un **stent actif sur le tronc commun**_[acte]._
+Mise en place d'un **stent actif sur le tronc commun**_[acte]_.
 
 Echec de revascularisation avec persistance de la dysfonction myocardique et de la défaillance hémodynamique malgré la titration progressive en catécholamines.
 
