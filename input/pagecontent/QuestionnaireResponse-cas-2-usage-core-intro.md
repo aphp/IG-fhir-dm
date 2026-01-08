@@ -10,7 +10,8 @@ Travail dans l'informatique, **tabagisme actif à 40 PA**_[consommation-tabac]_,
 
 Dans ses antécédents, on note un **psoriasis cutané isolé**_[diagnostic]_.
 
-Examen clinique à l'admission : État général conservé. Fréquence cardiaque : 88 /min Température corporelle : 37.2°C Pâleur conjonctivale modérée abdomen souple, sensible à la palpation épigastrique, sans défense ni contracture Toucher rectal : présence de selles noires confirmant le méléna
+Examen clinique à l'admission : État général conservé. Fréquence cardiaque : 88 /min Température corporelle : 37.2°C Pâleur cutanée. Abdomen souple, sensible à la palpation épigastrique, sans défense ni contracture. Toucher rectal : présence de selles noires confirmant le méléna.
+Le reste de l'examen clinique est sans particularité par ailleurs.
 
 Les examens complémentaires à son arrivée mon une anémie normocytaire régénérative : **hémoglobine à 7 g/dL**_[hemoglobine]_, **VGM 87 fL**_[volume-globulaire-moyen]_ Réticulocytes 190 G/L.  
 Le reste du bilan est sans particularité, la **créatininémie est à 98 µmol/L**_[creatinine]._

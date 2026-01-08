@@ -3,7 +3,7 @@
 **Nicolas**_[prénom]_ **Petit**_[nom]_, **né le 5 septembre 1965**_[date-naissance]_, hospitalisé du **5**_[date-début-séjour]_ au **7 janvier 2024**_[date-fin-séjour]_ dans le service de cardiologie de l'hôpital Européen Georges-Pompidou pour réalisation d'une **coronarographie**_[acte]_ pour exploration d'un **angor stable**_[diagnostic]_.
 
 Patient de 58 ans adressé par son cardiologue traitant dans un contexte de douleur thoracique d'effort évocatrice d'angor stable évoluant depuis plusieurs mois.  
-Une **épreuve par ECG d'effort**_[acte]_ avait été réalisée en ambulatoire et s'était révélée positive cliniquement et électriquement avec apparition d'un sus-décalage ST dans le territoire inférieur.
+Un **ECG d'effort**_[acte]_ avait été réalisé en ambulatoire et s'était révélé positive cliniquement et électriquement avec apparition d'une douleur thoracique associée à un sus-décalage ST dans le territoire inférieur soulagée au repos.
 
 Facteurs de risque cardiovasculaire :
 
