@@ -11,11 +11,11 @@ Le tableau ci-dessous référence tous les profils FHIR résultat du processus d
 
 ### Exemples
 
-#### Cas 1 : Prise en charge d'un infarctus du myocarde
+#### Cas 1 : Infarctus du myocarde
 
 à faire 
 
-#### Cas 2 : Traitement d'un ulcère
+#### Cas 2 : Ulcère gastrique
 
 à faire 
 
@@ -23,15 +23,15 @@ Le tableau ci-dessous référence tous les profils FHIR résultat du processus d
 
 à faire 
 
-#### Cas 4 : Choc cardiogénique en réanimation
+#### Cas 4 : Choc cardiogénique
 
 à faire 
 
-#### Cas 5 : Surveillance d'une fièvre avec altération de l'état général
+#### Cas 5 : Pyélonéphrite aigue
 
 à faire 
 
-#### Cas 6 : Suivi de cardiopathie
+#### Cas 6 : Suivi de cardiopathie ischémique
 
 à faire 
 
@@ -43,7 +43,7 @@ Le tableau ci-dessous référence tous les profils FHIR résultat du processus d
 
 à faire 
 
-#### Cas 9 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
+#### Cas 9 : Ponction évacuatrice d'ascite
 
 Dans l'histoire du cas 9 on peut représenter plusieurs informations dans le modèle standard :
 
@@ -68,7 +68,7 @@ Dans l'histoire du cas 9 on peut représenter plusieurs informations dans le mod
   - [J2 spironolactone](MedicationAdministration-spironolactone-j2-cas-9.html)
   - [Albumine](MedicationAdministration-albumine-j1-cas-9.html)
 
-#### Cas 10 : Insuffisance respiratoire sur BPCO
+#### Cas 10 : Exacerbation de BPCO
 
 à faire
 
