@@ -7,11 +7,11 @@
 
 ### Exemples
 
-#### Cas 1 : Prise en charge d'un infarctus du myocarde
+#### Cas 1 : Infarctus du myocarde
 
 {% include QuestionnaireResponse-cas-1-usage-core-html.xhtml %}
 
-#### Cas 2 : Traitement d'un ulcère
+#### Cas 2 : Ulcère gastrique
 
 {% include QuestionnaireResponse-cas-2-usage-core-html.xhtml %}
 
@@ -19,15 +19,15 @@
 
 {% include QuestionnaireResponse-cas-3-usage-core-html.xhtml %}
 
-#### Cas 4 : Choc cardiogénique en réanimation
+#### Cas 4 : Choc cardiogénique
 
 {% include QuestionnaireResponse-cas-4-usage-core-html.xhtml %}
 
-#### Cas 5 : Surveillance d'une fièvre avec altération de l'état général
+#### Cas 5 : Pyélonéphrite aigue
 
 {% include QuestionnaireResponse-cas-5-usage-core-html.xhtml %}
 
-#### Cas 6 : Suivi de cardiopathie
+#### Cas 6 : Suivi de cardiopathie ischémique
 
 {% include QuestionnaireResponse-cas-6-usage-core-html.xhtml %}
 
@@ -39,11 +39,11 @@
 
 {% include QuestionnaireResponse-cas-8-usage-core-html.xhtml %}
 
-#### Cas 9 : Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
+#### Cas 9 : Ponction évacuatrice d'ascite
 
 {% include QuestionnaireResponse-cas-9-usage-core-html.xhtml %}
 
-#### Cas 10 : Insuffisance respiratoire sur BPCO
+#### Cas 10 : Exacerbation de BPCO
 
 {% include QuestionnaireResponse-cas-10-usage-core-html.xhtml %}
 
