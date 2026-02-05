@@ -20,7 +20,7 @@ import java.nio.file.Files
 plugins {
   id("java")
   id("com.github.node-gradle.node") version "7.1.0"
-  id("de.undercouch.download") version "5.6.0"
+  id("de.undercouch.download") version "5.7.0"
 }
 
 group = "fr.aphp"
@@ -69,7 +69,7 @@ val sushiInstall = tasks.register<NpmTask>("sushiInstall") {
   )
 }
 
-val sushiBuild = tasks.register<NpxTask>("sushiBuild") {
+tasks.register<NpxTask>("sushiBuild") {
   command.set("sushi")
   args.set(
     listOf(
@@ -89,53 +89,80 @@ val igPublisherInstall = installRemoteJar(
   "https://github.com/HL7/fhir-ig-publisher/releases/download/${properties["publisherVersion"]}/publisher.jar",
 )
 
-val igPublisherBuild = tasks.register<JavaExec>("igPublisherBuild") {
-  group = "build"
+tasks.register<JavaExec>("igPublisherBuild") {
+    group = "build"
 
-  jvmArgs("-Dfile.encoding=UTF-8")
-  classpath(igPublisherPath)
-  args = listOf(
-    "-no-sushi",
-    "-authorise-non-conformant-tx-servers",
-    "-ig",
-    projectDir.absolutePath
-  )
-  dependsOn(
-    igPublisherInstall
-  )
+    jvmArgs("-Dfile.encoding=UTF-8")
+    classpath(igPublisherPath)
+    args = listOf(
+        "-no-sushi",
+        "-authorise-non-conformant-tx-servers",
+        "-ig",
+        "."
+    )
+    dependsOn(
+        igPublisherInstall
+    )
 }
 
-val buildIG = tasks.register<GradleBuild>("buildIG") {
-  group = "build"
+tasks.register<JavaExec>("igPublisherBuildRapido") {
+    group = "build"
 
-  tasks = listOf(
-    "sushiBuild",
-    "igPublisherBuild"
-  )
+    jvmArgs("-Dfile.encoding=UTF-8")
+    classpath(igPublisherPath)
+    args = listOf(
+        "-rapido",
+        "-no-sushi",
+        "-authorise-non-conformant-tx-servers",
+        "-ig",
+        "."
+    )
+    dependsOn(
+        igPublisherInstall
+    )
 }
 
-val reBuildIG = tasks.register<GradleBuild>("reBuildIG") {
-  group = "build"
+tasks.register<GradleBuild>("buildIG (Rapido mode)") {
+    group = "build"
 
-  tasks = listOf(
-    "cleanIG",
-    "buildIG"
-  )
+    tasks = listOf(
+        "sushiBuild",
+        "igPublisherBuildRapido"
+    )
 }
 
-val cleanIG = tasks.register<Delete>("cleanIG") {
-  group = "build"
+tasks.register<GradleBuild>("buildIG") {
+    group = "build"
 
-  delete(
-    "fml-generated",
-    "fsh-generated",
-    "output",
-    "temp",
-    "template",
-    "input-cache",
-    ".gradle/nodejs",
-    "node_modules",
-    "package.json",
-    "package-lock.json"
-  )
+    tasks = listOf(
+        "sushiBuild",
+        "igPublisherBuild"
+    )
+}
+
+tasks.register<GradleBuild>("reBuildIG") {
+    group = "build"
+
+    tasks = listOf(
+        "cleanIG",
+        "sushiBuild",
+        "igPublisherBuild"
+    )
+}
+
+tasks.register<Delete>("cleanIG") {
+    group = "build"
+
+    delete(
+      "fml-generated",
+      "fsh-generated",
+      "output",
+      "temp",
+      "template",
+      "input-cache",
+      ".gradle/nodejs",
+      "node_modules",
+      "package.json",
+      "package-lock.json"
+    )
 }
