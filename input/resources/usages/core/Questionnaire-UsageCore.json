@@ -129,24 +129,8 @@
                 {
                   "linkId": "9098810065693",
                   "text": "Source de la date de décès",
-                  "type": "choice",
-                  "answerOption": [
-                    {
-                      "valueCoding": {
-                        "display": "INSEE"
-                      }
-                    },
-                    {
-                      "valueCoding": {
-                        "display": "CepiDc"
-                      }
-                    },
-                    {
-                      "valueCoding": {
-                        "display": "SIH"
-                      }
-                    }
-                  ]
+                  "type": "string"
+
                 },
                 {
                   "extension": [
@@ -223,7 +207,7 @@
           "linkId": "5491974639955",
           "text": "Environnement",
           "type": "group",
-          "item": [
+          "item":[
             {
               "linkId": "3816475533472",
               "text": "Géocodage",
@@ -270,108 +254,8 @@
             {
               "linkId": "7621032273792",
               "text": "IRIS",
-              "type": "choice",
+              "type": "string",
               "repeats": true,
-              "answerOption": [
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "010010000",
-                    "display": "L'Abergement-Clémenciat (commune non irisée)"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "010040102",
-                    "display": "Longeray-Gare"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751062307",
-                    "display": "Notre-Dame des Champs 7"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751155805",
-                    "display": "Necker 5"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751114106",
-                    "display": "Folie Méricourt 6"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751093306",
-                    "display": "Saint-Georges 6"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751135007",
-                    "display": "Gare 7"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751187209",
-                    "display": "Chapelle 9"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751166402",
-                    "display": "Chaillot 2"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751041404",
-                    "display": "Saint-Gervais 4"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "920500508",
-                    "display": "Picasso Colombe"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751010105",
-                    "display": "Tuileries"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "765400102",
-                    "display": "Vieux Marché Palais de Justice"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "391900000",
-                    "display": "Dampierre (commune non irisée)"
-                  }
-                }
-              ],
               "item": [
                 {
                   "linkId": "4999580038872",
@@ -399,7 +283,7 @@
                   "type": "display"
                 }
               ]
-            },
+            },      
             {
               "extension": [
                 {
@@ -465,118 +349,12 @@
         {
           "linkId": "3894630481120",
           "text": "Sexe",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "h",
-                "display": "Homme"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "f",
-                "display": "Femme"
-              }
-            }
-          ]
+          "type": "string"
         },
         {
           "linkId": "2446369196222",
           "text": "Code géographique de résidence",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "04C01",
-                "display": "LA CONDAMINE CHATELARD"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "01290",
-                "display": "PONT DE VEYLE"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75001"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75004"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75006"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75009"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75011"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75013"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75015"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75016"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75018"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "76000",
-                "display": "ROUEN"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "92000"
-              }
-            },
-            {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "70180",
-                "display": "DAMPIERRE SUR SALON"
-              }
-            }
-          ],
+          "type": "string",
           "item": [
             {
               "linkId": "1537511139540",
@@ -619,157 +397,12 @@
             {
               "linkId": "6427586743735",
               "text": "Type de diagnostic",
-              "type": "choice",
-              "answerOption": [
-                {
-                  "valueCoding": {
-                    "display": "DP"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "display": "DAS"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "display": "DR"
-                  }
-                }
-              ]
+              "type": "string"
             },
             {
               "linkId": "5505101189372",
               "text": "Diagnostique",
-              "type": "choice",
-              "answerOption": [
-                {
-                  "valueCoding": {
-                    "code": "C01",
-                    "display": "Tumeur maligne de la base de la langue"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "E11.9",
-                    "display": "Diabète sucré de type 2, sans complication"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "E66.0",
-                    "display": "Obésité due à un excès calorique"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "E78.0",
-                    "display": "hypercholestérolémie essentielle"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "G43.2",
-                    "display": "Etat de mal migraineux"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "I10",
-                    "display": "Hypertension essentielle (primitive)"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "I21.9",
-                    "display": "Infarctus aigu du myocarde, sans précision"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "I25.1",
-                    "display": "Cardiopathie artérioscléreuse"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "J06.9",
-                    "display": "Infection des voies respiratoires supérieures, sans précision"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "J44.1",
-                    "display": "Maladie pulmonaire obstructive chronique avec épisodes aigus, sans précision"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "K20",
-                    "display": "Œsophagite"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "K25",
-                    "display": "Ulcère de l'estomac"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "K70.3",
-                    "display": "Cirrhose alcoolique du foie"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "N18.3",
-                    "display": "Maladie rénale chronique, stade 3"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "O80.0",
-                    "display": "Accouchement unique et spontané par présentation du sommet"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "R18",
-                    "display": "Ascite"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "R50.9",
-                    "display": "Fièvre, sans précision"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "S72.1",
-                    "display": "Fracture du trochanter"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "Z37.0",
-                    "display": "Naissance unique, enfant vivant"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "Z87.2",
-                    "display": "Antécédents personnels de maladies de la peau et du tissu cellulaire sous-cutané"
-                  }
-                },
-                {
-                  "valueCoding": {
-                    "code": "Z88.0",
-                    "display": "Antécédents personnels d'allergie à la pénicilline"
-                  }
-                }
-              ],
+              "type": "string",
               "item": [
                 {
                   "extension": [
@@ -834,8 +467,7 @@
             {
               "linkId": "7758110033600",
               "text": "Acte",
-              "type": "choice",
-              "answerValueSet": "https://interop.aphp.fr/ig/fhir/dm/ValueSet/CcamVS",
+              "type": "string",
               "item": [
                 {
                   "extension": [
@@ -938,45 +570,7 @@
         {
           "linkId": "6172398101212",
           "text": "Mode d'entrée du séjour",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "6",
-                "display": "Mutation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "7",
-                "display": "Transfert définitif"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "0",
-                "display": "Transfert provisoire"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "N",
-                "display": "Naissance"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "O",
-                "display": "Patient entré décédé pour prélèvement d'organes"
-              }
-            }
-          ],
+          "type": "string",
           "item": [
             {
               "extension": [
@@ -1003,39 +597,7 @@
         {
           "linkId": "3354867075704",
           "text": "Mode de sortie du séjour",
-          "type": "choice",
-          "answerOption": [
-            {
-              "valueCoding": {
-                "code": "6",
-                "display": "Mutation"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "7",
-                "display": "Transfert définitif"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "0",
-                "display": "Transfert provisoire"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
-            },
-            {
-              "valueCoding": {
-                "code": "9",
-                "display": "Décès"
-              }
-            }
-          ],
+          "type": "string",
           "item": [
             {
               "extension": [
@@ -1102,8 +664,7 @@
                 {
                   "linkId": "8712072639576",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "554606544143",
@@ -1156,8 +717,7 @@
                 {
                   "linkId": "977768150991",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "279176538278",
@@ -1210,8 +770,7 @@
                 {
                   "linkId": "974417569313",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "600008092136",
@@ -1272,8 +831,7 @@
                 {
                   "linkId": "695484403752",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "578695171519",
@@ -1326,8 +884,7 @@
                 {
                   "linkId": "597082091886",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "471894150678",
@@ -1380,8 +937,7 @@
                 {
                   "linkId": "814457693114",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "717817548701",
@@ -1434,8 +990,7 @@
                 {
                   "linkId": "274747215145",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "394008758803",
@@ -1488,8 +1043,7 @@
                 {
                   "linkId": "117718572179",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "766800452654",
@@ -1542,8 +1096,7 @@
                 {
                   "linkId": "555876654291",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "504411027287",
@@ -1596,8 +1149,7 @@
                 {
                   "linkId": "971737782589",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "255457777106",
@@ -1650,8 +1202,7 @@
                 {
                   "linkId": "663015267867",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "548571990081",
@@ -1704,8 +1255,7 @@
                 {
                   "linkId": "283372872777",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "732609383475",
@@ -1758,8 +1308,7 @@
                 {
                   "linkId": "651849853076",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "773480648641",
@@ -1812,8 +1361,7 @@
                 {
                   "linkId": "219513623269",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "379165914699",
@@ -1866,8 +1414,7 @@
                 {
                   "linkId": "664804454505",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "339688288601",
@@ -1928,8 +1475,7 @@
                 {
                   "linkId": "757363598159",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "884511824515",
@@ -1982,8 +1528,7 @@
                 {
                   "linkId": "698926487710",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "881040341675",
@@ -2036,8 +1581,7 @@
                 {
                   "linkId": "688754894578",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "191793018592",
@@ -2090,8 +1634,7 @@
                 {
                   "linkId": "726897332003",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "576101241859",
@@ -2144,8 +1687,7 @@
                 {
                   "linkId": "657001208566",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "943765996333",
@@ -2198,8 +1740,7 @@
                 {
                   "linkId": "572609665342",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "481261763129",
@@ -2260,8 +1801,7 @@
                 {
                   "linkId": "398039571990",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "632111374848",
@@ -2314,8 +1854,7 @@
                 {
                   "linkId": "305948197507",
                   "text": "code loinc",
-                  "type": "choice",
-                  "answerValueSet": "http://hl7.org/fhir/ValueSet/observation-codes"
+                  "type": "string"
                 },
                 {
                   "linkId": "249760336391",
@@ -2404,9 +1943,8 @@
               ],
               "linkId": "1923143398283",
               "text": "codification",
-              "type": "choice",
-              "repeats": true,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs"
+              "type": "string",
+              "repeats": true
             },
             {
               "extension": [
@@ -2417,9 +1955,8 @@
               ],
               "linkId": "387026794874",
               "text": "Voie d'administration",
-              "type": "choice",
-              "repeats": false,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs"
+              "type": "string",
+              "repeats": false
             },
             {
               "extension": [
@@ -2498,9 +2035,8 @@
               ],
               "linkId": "631972144976",
               "text": "codification",
-              "type": "choice",
-              "repeats": true,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-atc?vs"
+              "type": "string",
+              "repeats": true
             },
             {
               "extension": [
@@ -2511,9 +2047,8 @@
               ],
               "linkId": "811931484859",
               "text": "Voie d'administration",
-              "type": "choice",
-              "repeats": false,
-              "answerValueSet": "https://smt.esante.gouv.fr/terminologie-standardterms?vs"
+              "type": "string",
+              "repeats": false
             },
             {
               "extension": [
