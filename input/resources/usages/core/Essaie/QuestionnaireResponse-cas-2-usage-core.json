@@ -1,8 +1,17 @@
 {
   "resourceType": "QuestionnaireResponse",
-  "id": "cas-3-usage-core",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/QuestionnaireResponse"
+    ],
+    "tag": [
+      {
+        "code": "lformsVersion: 36.16.1"
+      }
+    ]
+  },
   "status": "completed",
-  "authored": "2026-03-20T15:27:56.544Z",
+  "authored": "2026-03-20T14:55:18.756Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -16,7 +25,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Leroy"
+                  "valueString": "Martin"
                 }
               ],
               "linkId": "8605698058770",
@@ -25,7 +34,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Sophie"
+                  "valueString": "Pierre"
                 }
               ],
               "linkId": "6214879623503",
@@ -34,7 +43,7 @@
             {
               "answer": [
                 {
-                  "valueString": "294123876543210"
+                  "valueString": "170045298765432"
                 }
               ],
               "linkId": "5711960356160",
@@ -43,7 +52,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "1994-12-03"
+                  "valueDate": "1970-04-05"
                 }
               ],
               "linkId": "5036133558154",
@@ -52,7 +61,7 @@
             {
               "answer": [
                 {
-                  "valueInteger": 2
+                  "valueInteger": 1
                 }
               ],
               "linkId": "6931296968515",
@@ -71,7 +80,7 @@
                 {
                   "answer": [
                     {
-                      "valueDecimal": 48.8467
+                      "valueDecimal": 48.8738
                     }
                   ],
                   "linkId": "3709843054556",
@@ -80,7 +89,7 @@
                 {
                   "answer": [
                     {
-                      "valueDecimal": 2.3431
+                      "valueDecimal": 2.295
                     }
                   ],
                   "linkId": "7651448032665",
@@ -102,7 +111,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueString": "751041404",
+                  "valueString": "920500508",
                   "item": [
                     {
                       "answer": [
@@ -128,12 +137,12 @@
         {
           "answer": [
             {
-              "valueInteger": 29,
+              "valueInteger": 53,
               "item": [
                 {
                   "answer": [
                     {
-                      "valueDate": "2024-01-15"
+                      "valueDate": "2024-01-08"
                     }
                   ],
                   "linkId": "1690778867802",
@@ -148,7 +157,7 @@
         {
           "answer": [
             {
-              "valueString": "f"
+              "valueString": "h"
             }
           ],
           "linkId": "3894630481120",
@@ -157,7 +166,7 @@
         {
           "answer": [
             {
-              "valueString": "75004",
+              "valueString": "92000",
               "item": [
                 {
                   "answer": [
@@ -181,7 +190,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-08"
                 }
               ],
               "linkId": "7114466839467",
@@ -199,7 +208,7 @@
             {
               "answer": [
                 {
-                  "valueString": "O80.0"
+                  "valueString": "K25"
                 }
               ],
               "linkId": "5505101189372",
@@ -214,7 +223,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-08"
                 }
               ],
               "linkId": "7114466839467",
@@ -232,7 +241,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Z37.0"
+                  "valueString": "Z87.2"
                 }
               ],
               "linkId": "5505101189372",
@@ -247,7 +256,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-08"
                 }
               ],
               "linkId": "9436509453137",
@@ -256,7 +265,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-15T07:30:00.000Z"
+                  "valueDateTime": "2024-01-08T09:15:00.000Z"
                 }
               ],
               "linkId": "5066866286682",
@@ -265,7 +274,7 @@
             {
               "answer": [
                 {
-                  "valueString": "JQGD010"
+                  "valueString": "HEQE002"
                 }
               ],
               "linkId": "7758110033600",
@@ -276,7 +285,7 @@
         {
           "answer": [
             {
-              "valueDate": "2024-01-15"
+              "valueDate": "2024-01-08"
             }
           ],
           "linkId": "5991443718282",
@@ -285,7 +294,7 @@
         {
           "answer": [
             {
-              "valueDate": "2024-01-18"
+              "valueDate": "2024-01-10"
             }
           ],
           "linkId": "6114780320846",
@@ -325,8 +334,8 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 60,
-                    "unit": "µmol/L"
+                    "value": 98,
+                    "unit": "umol/L"
                   },
                   "item": [
                     {
@@ -341,7 +350,7 @@
                     {
                       "answer": [
                         {
-                          "valueDateTime": "2024-01-15T07:16:33.632Z"
+                          "valueDateTime": "2024-01-08T06:30:00.000Z"
                         }
                       ],
                       "linkId": "279176538278",
@@ -361,7 +370,7 @@
                         {
                           "valueQuantity": {
                             "value": 62,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
@@ -373,7 +382,7 @@
                         {
                           "valueQuantity": {
                             "value": 106,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
@@ -396,7 +405,7 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 11.8,
+                    "value": 7,
                     "unit": "g/dL"
                   },
                   "item": [
@@ -412,7 +421,7 @@
                     {
                       "answer": [
                         {
-                          "valueDateTime": "2024-01-15T05:00:00.000Z"
+                          "valueDateTime": "2024-01-08T07:11:19.176Z"
                         }
                       ],
                       "linkId": "471894150678",
@@ -431,7 +440,7 @@
                       "answer": [
                         {
                           "valueQuantity": {
-                            "value": 12,
+                            "value": 13,
                             "unit": "g/dL"
                           }
                         }
@@ -443,7 +452,7 @@
                       "answer": [
                         {
                           "valueQuantity": {
-                            "value": 16,
+                            "value": 17,
                             "unit": "g/dL"
                           }
                         }
@@ -456,31 +465,31 @@
               ]
             },
             {
-              "linkId": "794156787471",
-              "text": "Plaquettes",
+              "linkId": "163624088831",
+              "text": "Volume Globulaire Moyen (VGM)",
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 285,
-                    "unit": "10e9/L"
+                    "value": 87,
+                    "unit": "fL"
                   },
                   "item": [
                     {
                       "answer": [
                         {
-                          "valueString": "777-3"
+                          "valueString": "30428-7"
                         }
                       ],
-                      "linkId": "555876654291",
+                      "linkId": "117718572179",
                       "text": "code loinc"
                     },
                     {
                       "answer": [
                         {
-                          "valueDateTime": "2024-01-15T05:00:00.000Z"
+                          "valueDateTime": "2024-01-08T07:12:07.313Z"
                         }
                       ],
-                      "linkId": "504411027287",
+                      "linkId": "766800452654",
                       "text": "Date et heure du prélèvement"
                     },
                     {
@@ -489,31 +498,31 @@
                           "valueString": "valide"
                         }
                       ],
-                      "linkId": "639812945465",
+                      "linkId": "490513081670",
                       "text": "Statut de validation"
                     },
                     {
                       "answer": [
                         {
                           "valueQuantity": {
-                            "value": 150,
-                            "unit": "10e9/L"
+                            "value": 80,
+                            "unit": "fL"
                           }
                         }
                       ],
-                      "linkId": "491138393211",
+                      "linkId": "472419988966",
                       "text": "Borne inférieure de normalité du résultat"
                     },
                     {
                       "answer": [
                         {
                           "valueQuantity": {
-                            "value": 450,
-                            "unit": "10e9/L"
+                            "value": 100,
+                            "unit": "fL"
                           }
                         }
                       ],
-                      "linkId": "859081902103",
+                      "linkId": "781499407274",
                       "text": "Borne supérieure de normalité du résultat"
                     }
                   ]
@@ -533,14 +542,14 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "Acide folique 5mg",
+              "valueString": "Oméprazole 20mg",
               "item": [
                 {
                   "linkId": "1923143398283",
                   "text": "codification",
                   "answer": [
                     {
-                      "valueString": "B03BB01"
+                      "valueString": "A02BC01"
                     }
                   ]
                 },
@@ -564,7 +573,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-16"
+                  "valueDate": "2024-01-09"
                 }
               ],
               "linkId": "316347573327",
@@ -573,7 +582,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-04-16"
+                  "valueDate": "2024-02-08"
                 }
               ],
               "linkId": "429570775935",
@@ -586,14 +595,14 @@
           "text": "Médicament administré",
           "answer": [
             {
-              "valueString": "Acide folique 5mg",
+              "valueString": "Oméprazole 20mg",
               "item": [
                 {
                   "linkId": "631972144976",
                   "text": "codification",
                   "answer": [
                     {
-                      "valueString": "B03BB01"
+                      "valueString": "A02BC01"
                     }
                   ]
                 },
@@ -618,7 +627,7 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 5,
+                    "value": 20,
                     "unit": "mg"
                   }
                 }
@@ -629,7 +638,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-16T07:00:00.000Z"
+                  "valueDateTime": "2024-01-09T07:00:00.000Z"
                 }
               ],
               "linkId": "1443558617577",
@@ -638,115 +647,11 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-16T07:05:00.000Z"
+                  "valueDateTime": "2024-01-09T07:05:00.000Z"
                 }
               ],
               "linkId": "780829110731",
               "text": "Date et heure de fin d'administration"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "linkId": "214880328197",
-      "text": "Examen clinique",
-      "item": [
-        {
-          "linkId": "305831246173",
-          "text": "Dossier de soins",
-          "item": [
-            {
-              "linkId": "4846902346416",
-              "text": "Taille",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 165,
-                    "unit": "cm"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-15"
-                        }
-                      ],
-                      "linkId": "941821315470",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "451513217936",
-              "text": "Poids",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 68.5,
-                    "unit": "kg"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-15"
-                        }
-                      ],
-                      "linkId": "151269044052",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 125,
-                    "unit": "mm[Hg]"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-15"
-                        }
-                      ],
-                      "linkId": "987654638442",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ],
-              "linkId": "4160905247955",
-              "text": "Pression artérielle systolique"
-            },
-            {
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 73,
-                    "unit": "mm[Hg]"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-15"
-                        }
-                      ],
-                      "linkId": "820981783585",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ],
-              "linkId": "848797127998",
-              "text": "Pression artérielle diastolique"
             }
           ]
         }

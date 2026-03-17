@@ -1,6 +1,15 @@
 {
   "resourceType": "QuestionnaireResponse",
-  "id": "cas-3-usage-core",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/QuestionnaireResponse"
+    ],
+    "tag": [
+      {
+        "code": "lformsVersion: 36.16.1"
+      }
+    ]
+  },
   "status": "completed",
   "authored": "2026-03-20T15:27:56.544Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",

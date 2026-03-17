@@ -108,11 +108,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "f",
-                "display": "Femme"
-              }
+              "valueString": "Femme"
             }
           ],
           "linkId": "3894630481120",
@@ -121,11 +117,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75009",
-                "display": "PARIS 9E ARRONDISSEMENT"
-              },
+              "valueString":"PARIS 9E ARRONDISSEMENT",
               "item": [
                 {
                   "answer": [
@@ -158,9 +150,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DP"
-                  }
+                  "valueString": "DP"
                 }
               ],
               "linkId": "6427586743735",
@@ -169,10 +159,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "E11.9",
-                    "display": "Diabète sucré de type 2, sans complication"
-                  }
+                  "valueString": "Diabète sucré de type 2, sans complication"
                 }
               ],
               "linkId": "5505101189372",
@@ -196,9 +183,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DAS"
-                  }
+                  "valueString": "DAS"
                 }
               ],
               "linkId": "6427586743735",
@@ -207,10 +192,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "E66.0",
-                    "display": "Obésité due à un excès calorique"
-                  }
+                  "valueString": "Obésité due à un excès calorique"
                 }
               ],
               "linkId": "5505101189372",
@@ -234,9 +216,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DAS"
-                  }
+                  "valueString":"DAS"
                 }
               ],
               "linkId": "6427586743735",
@@ -245,10 +225,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "N18.3",
-                    "display": "Maladie rénale chronique, stade 3"
-                  }
+                  "valueString":"Maladie rénale chronique, stade 3"
                 }
               ],
               "linkId": "5505101189372",
@@ -281,11 +258,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
-                    "code": "DEQP003...01.",
-                    "display": "Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA"
-                  }
+                  "valueString": "Électrocardiographie sur au moins 12 dérivations - Phase par defaut - 1° activité chir/med - NA"
                 }
               ],
               "linkId": "7758110033600",
@@ -318,11 +291,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
-                    "code": "BGQP002...01.",
-                    "display": "Examen du fond d'oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA"
-                  }
+                  "valueString":"Examen du fond d'oeil par biomicroscopie avec verre de contact - Phase par defaut - 1° activité chir/med - NA"
                 }
               ],
               "linkId": "7758110033600",
@@ -351,10 +320,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString": "Domicile"
             }
           ],
           "linkId": "6172398101212",
@@ -363,10 +329,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString": "Domicile"
             }
           ],
           "linkId": "3354867075704",
@@ -396,11 +359,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "22664-7",
-                            "display": "Urée [Moles/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString":"Urée [Moles/Volume] Sérum/Plasma ; Numérique"
                         }
                       ],
                       "linkId": "8712072639576",
@@ -459,11 +418,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "14682-9",
-                            "display": "Créatinine [Moles/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString":"Créatinine [Moles/Volume] Sérum/Plasma ; Numérique"
                         }
                       ],
                       "linkId": "977768150991",
@@ -522,11 +477,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "62238-1",
-                            "display": "Filtration glomérulaire corrigée/1,73m2 calculée [Volume arbitraire/Temps] Sérum/Plasma/Sang ; Numérique ; Créatinine,Formule CKD-EPI"
-                          }
+                          "valueString":"Filtration glomérulaire corrigée/1,73m2 calculée [Volume arbitraire/Temps] Sérum/Plasma/Sang ; Numérique ; Créatinine,Formule CKD-EPI"
                         }
                       ],
                       "linkId": "974417569313",
@@ -591,11 +542,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "6690-2",
-                            "display": "Leucocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
-                          }
+                          "valueString":"Leucocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
                         }
                       ],
                       "linkId": "695484403752",
@@ -654,11 +601,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "718-7",
-                            "display": "Hémoglobine [Masse/Volume] Sang ; Numérique"
-                          }
+                          "valueString":"Hémoglobine [Masse/Volume] Sang ; Numérique"
                         }
                       ],
                       "linkId": "597082091886",
@@ -717,11 +660,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "4544-3",
-                            "display": "Hématocrite [Fraction volumique] Sang ; Numérique ; Comptage automate"
-                          }
+                          "valueString":"Hématocrite [Fraction volumique] Sang ; Numérique ; Comptage automate"
                         }
                       ],
                       "linkId": "814457693114",
@@ -780,11 +719,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "789-8",
-                            "display": "Érythrocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
-                          }
+                          "valueString":"Érythrocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
                         }
                       ],
                       "linkId": "274747215145",
@@ -843,11 +778,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "30428-7",
-                            "display": "Volume globulaire moyen [Volume d'entité] Érythrocytes ; Numérique"
-                          }
+                          "valueString":"Volume globulaire moyen [Volume d'entité] Érythrocytes ; Numérique"
                         }
                       ],
                       "linkId": "117718572179",
@@ -906,11 +837,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "777-3",
-                            "display": "Plaquettes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
-                          }
+                          "valueString":"Plaquettes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
                         }
                       ],
                       "linkId": "555876654291",
@@ -969,11 +896,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "751-8",
-                            "display": "Polynucléaires neutrophiles [Nombre/Volume] Sang ; Numérique ; Comptage automate"
-                          }
+                          "valueString":"Polynucléaires neutrophiles [Nombre/Volume] Sang ; Numérique ; Comptage automate"
                         }
                       ],
                       "linkId": "971737782589",
@@ -1032,11 +955,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "26474-7",
-                            "display": "Lymphocytes totaux [Nombre/Volume] Sang ; Numérique"
-                          }
+                          "valueString":"Lymphocytes totaux [Nombre/Volume] Sang ; Numérique"
                         }
                       ],
                       "linkId": "663015267867",
@@ -1095,11 +1014,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "26449-9",
-                            "display": "Polynucléaires éosinophiles [Nombre/Volume] Sang ; Numérique"
-                          }
+                          "valueString":"Polynucléaires éosinophiles [Nombre/Volume] Sang ; Numérique"
                         }
                       ],
                       "linkId": "283372872777",
@@ -1158,11 +1073,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "26484-6",
-                            "display": "Monocytes [Nombre/Volume] Sang ; Numérique"
-                          }
+                          "valueString": "Monocytes [Nombre/Volume] Sang ; Numérique"
                         }
                       ],
                       "linkId": "651849853076",
@@ -1227,11 +1138,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "40193-5",
-                            "display": "Glucose à jeun [Moles/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString":"Glucose à jeun [Moles/Volume] Sérum/Plasma ; Numérique"
                         }
                       ],
                       "linkId": "398039571990",
@@ -1290,11 +1197,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "4548-4",
-                            "display": "Hémoglobine A1c/hémoglobine totale [Fraction massique] Sang ; Numérique"
-                          }
+                          "valueString":"Hémoglobine A1c/hémoglobine totale [Fraction massique] Sang ; Numérique"
                         }
                       ],
                       "linkId": "305948197507",
@@ -1344,11 +1247,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "A10BA02",
-                        "display": "metformine"
-                      }
+                      "valueString":"metformine"
                     }
                   ],
                   "linkId": "1923143398283",
@@ -1357,11 +1256,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000",
-                        "display": "Voie orale"
-                      }
+                      "valueString":"Voie orale"
                     }
                   ],
                   "linkId": "387026794874",
@@ -1375,11 +1270,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "A10BK01",
-                        "display": "dapagliflozine"
-                      }
+                      "valueString": "dapagliflozine"
                     }
                   ],
                   "linkId": "1923143398283",
@@ -1388,11 +1279,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000",
-                        "display": "Voie orale"
-                      }
+                      "valueString": "Voie orale"
                     }
                   ],
                   "linkId": "387026794874",

@@ -1,8 +1,17 @@
 {
   "resourceType": "QuestionnaireResponse",
-  "id": "cas-3-usage-core",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/QuestionnaireResponse"
+    ],
+    "tag": [
+      {
+        "code": "lformsVersion: 36.16.1"
+      }
+    ]
+  },
   "status": "completed",
-  "authored": "2026-03-20T15:27:56.544Z",
+  "authored": "2026-03-23T09:23:38.435Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -16,7 +25,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Leroy"
+                  "valueString": "Moreau"
                 }
               ],
               "linkId": "8605698058770",
@@ -25,7 +34,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Sophie"
+                  "valueString": "Jean"
                 }
               ],
               "linkId": "6214879623503",
@@ -34,7 +43,7 @@
             {
               "answer": [
                 {
-                  "valueString": "294123876543210"
+                  "valueString": "176085487651234"
                 }
               ],
               "linkId": "5711960356160",
@@ -43,7 +52,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "1994-12-03"
+                  "valueDate": "1965-08-15"
                 }
               ],
               "linkId": "5036133558154",
@@ -52,7 +61,16 @@
             {
               "answer": [
                 {
-                  "valueInteger": 2
+                  "valueDate": "2023-11-07"
+                }
+              ],
+              "linkId": "5633552097315",
+              "text": "Date de décès"
+            },
+            {
+              "answer": [
+                {
+                  "valueInteger": 1
                 }
               ],
               "linkId": "6931296968515",
@@ -71,7 +89,7 @@
                 {
                   "answer": [
                     {
-                      "valueDecimal": 48.8467
+                      "valueDecimal": 48.8584
                     }
                   ],
                   "linkId": "3709843054556",
@@ -80,7 +98,7 @@
                 {
                   "answer": [
                     {
-                      "valueDecimal": 2.3431
+                      "valueDecimal": 2.2945
                     }
                   ],
                   "linkId": "7651448032665",
@@ -89,7 +107,7 @@
                 {
                   "answer": [
                     {
-                      "valueDate": "2024-01-01"
+                      "valueDate": "2023-10-15"
                     }
                   ],
                   "linkId": "1185653257776",
@@ -102,12 +120,12 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueString": "751041404",
+                  "valueString": "751166402",
                   "item": [
                     {
                       "answer": [
                         {
-                          "valueDate": "2024-01-01"
+                          "valueDate": "2023-10-15"
                         }
                       ],
                       "linkId": "4999580038872",
@@ -128,12 +146,12 @@
         {
           "answer": [
             {
-              "valueInteger": 29,
+              "valueInteger": 58,
               "item": [
                 {
                   "answer": [
                     {
-                      "valueDate": "2024-01-15"
+                      "valueDate": "2023-11-05"
                     }
                   ],
                   "linkId": "1690778867802",
@@ -148,7 +166,7 @@
         {
           "answer": [
             {
-              "valueString": "f"
+              "valueString": "h"
             }
           ],
           "linkId": "3894630481120",
@@ -157,12 +175,12 @@
         {
           "answer": [
             {
-              "valueString": "75004",
+              "valueString": "75016",
               "item": [
                 {
                   "answer": [
                     {
-                      "valueDate": "2024-01-01"
+                      "valueDate": "2023-10-15"
                     }
                   ],
                   "linkId": "1537511139540",
@@ -181,7 +199,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2023-11-05"
                 }
               ],
               "linkId": "7114466839467",
@@ -199,7 +217,7 @@
             {
               "answer": [
                 {
-                  "valueString": "O80.0"
+                  "valueString": "J44.1"
                 }
               ],
               "linkId": "5505101189372",
@@ -214,7 +232,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2023-11-05"
                 }
               ],
               "linkId": "7114466839467",
@@ -232,7 +250,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Z37.0"
+                  "valueString": "Z88.0"
                 }
               ],
               "linkId": "5505101189372",
@@ -247,7 +265,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2023-11-05"
                 }
               ],
               "linkId": "9436509453137",
@@ -256,7 +274,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-15T07:30:00.000Z"
+                  "valueDateTime": "2023-11-05T21:15:00.000Z"
                 }
               ],
               "linkId": "5066866286682",
@@ -265,7 +283,40 @@
             {
               "answer": [
                 {
-                  "valueString": "JQGD010"
+                  "valueString": "GELD004"
+                }
+              ],
+              "linkId": "7758110033600",
+              "text": "Acte"
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-06T08:00:00.000Z"
+                }
+              ],
+              "linkId": "5066866286682",
+              "text": "Date de l'acte"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DDQH012"
                 }
               ],
               "linkId": "7758110033600",
@@ -276,7 +327,7 @@
         {
           "answer": [
             {
-              "valueDate": "2024-01-15"
+              "valueDate": "2023-11-05"
             }
           ],
           "linkId": "5991443718282",
@@ -285,7 +336,7 @@
         {
           "answer": [
             {
-              "valueDate": "2024-01-18"
+              "valueDate": "2023-11-10"
             }
           ],
           "linkId": "6114780320846",
@@ -325,8 +376,8 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 60,
-                    "unit": "µmol/L"
+                    "value": 156,
+                    "unit": "umol/L"
                   },
                   "item": [
                     {
@@ -341,7 +392,7 @@
                     {
                       "answer": [
                         {
-                          "valueDateTime": "2024-01-15T07:16:33.632Z"
+                          "valueDateTime": "2023-11-05T20:00:00.000Z"
                         }
                       ],
                       "linkId": "279176538278",
@@ -361,7 +412,7 @@
                         {
                           "valueQuantity": {
                             "value": 62,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
@@ -373,147 +424,11 @@
                         {
                           "valueQuantity": {
                             "value": 106,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
                       "linkId": "984480974142",
-                      "text": "Borne supérieure de normalité du résultat"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "linkId": "419282985970",
-          "text": "Hémogramme",
-          "item": [
-            {
-              "linkId": "304159088493",
-              "text": "Hémoglobine",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 11.8,
-                    "unit": "g/dL"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueString": "718-7"
-                        }
-                      ],
-                      "linkId": "597082091886",
-                      "text": "code loinc"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueDateTime": "2024-01-15T05:00:00.000Z"
-                        }
-                      ],
-                      "linkId": "471894150678",
-                      "text": "Date et heure du prélèvement"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueString": "valide"
-                        }
-                      ],
-                      "linkId": "958333284757",
-                      "text": "Statut de validation"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 12,
-                            "unit": "g/dL"
-                          }
-                        }
-                      ],
-                      "linkId": "404489113722",
-                      "text": "Borne inférieure de normalité du résultat"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 16,
-                            "unit": "g/dL"
-                          }
-                        }
-                      ],
-                      "linkId": "849522090945",
-                      "text": "Borne supérieure de normalité du résultat"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "794156787471",
-              "text": "Plaquettes",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 285,
-                    "unit": "10e9/L"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueString": "777-3"
-                        }
-                      ],
-                      "linkId": "555876654291",
-                      "text": "code loinc"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueDateTime": "2024-01-15T05:00:00.000Z"
-                        }
-                      ],
-                      "linkId": "504411027287",
-                      "text": "Date et heure du prélèvement"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueString": "valide"
-                        }
-                      ],
-                      "linkId": "639812945465",
-                      "text": "Statut de validation"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 150,
-                            "unit": "10e9/L"
-                          }
-                        }
-                      ],
-                      "linkId": "491138393211",
-                      "text": "Borne inférieure de normalité du résultat"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 450,
-                            "unit": "10e9/L"
-                          }
-                        }
-                      ],
-                      "linkId": "859081902103",
                       "text": "Borne supérieure de normalité du résultat"
                     }
                   ]
@@ -533,21 +448,21 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "Acide folique 5mg",
+              "valueString": "Noradrénaline",
               "item": [
                 {
                   "linkId": "1923143398283",
                   "text": "codification",
                   "answer": [
                     {
-                      "valueString": "B03BB01"
+                      "valueString": "C01CA03"
                     }
                   ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString": "20053000"
+                      "valueString": "20045000"
                     }
                   ],
                   "linkId": "387026794874",
@@ -564,20 +479,11 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-16"
+                  "valueDate": "2023-11-05"
                 }
               ],
               "linkId": "316347573327",
               "text": "Date de début de la prescription"
-            },
-            {
-              "answer": [
-                {
-                  "valueDate": "2024-04-16"
-                }
-              ],
-              "linkId": "429570775935",
-              "text": "Date de fin de la prescription"
             }
           ]
         },
@@ -586,21 +492,21 @@
           "text": "Médicament administré",
           "answer": [
             {
-              "valueString": "Acide folique 5mg",
+              "valueString": "Noradrénaline",
               "item": [
                 {
                   "linkId": "631972144976",
                   "text": "codification",
                   "answer": [
                     {
-                      "valueString": "B03BB01"
+                      "valueString": "C01CA03"
                     }
                   ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString": "20053000"
+                      "valueString": "20045000"
                     }
                   ],
                   "linkId": "811931484859",
@@ -618,7 +524,7 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 5,
+                    "value": 3,
                     "unit": "mg"
                   }
                 }
@@ -629,7 +535,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-16T07:00:00.000Z"
+                  "valueDateTime": "2023-11-05T21:30:00.000Z"
                 }
               ],
               "linkId": "1443558617577",
@@ -638,7 +544,352 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-16T07:05:00.000Z"
+                  "valueDateTime": "2023-11-05T22:30:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Héparine sodique",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "B01AB01"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Héparine sodique",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "B01AB01"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 4000,
+                    "unit": "UI"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T21:00:00.000Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T21:30:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Aspirine",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "00005"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Aspirine",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "00005"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 20,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T20:00:35.783Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2026-03-02T20:30:41.961Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Ticagrelor ",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "37533"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Ticagrelor ",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "37533"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 180,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T20:00:35.137Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T20:30:10.534Z"
                 }
               ],
               "linkId": "780829110731",
@@ -657,63 +908,17 @@
           "text": "Dossier de soins",
           "item": [
             {
-              "linkId": "4846902346416",
-              "text": "Taille",
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 165,
-                    "unit": "cm"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-15"
-                        }
-                      ],
-                      "linkId": "941821315470",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "linkId": "451513217936",
-              "text": "Poids",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 68.5,
-                    "unit": "kg"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-15"
-                        }
-                      ],
-                      "linkId": "151269044052",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 125,
+                    "value": 75,
                     "unit": "mm[Hg]"
                   },
                   "item": [
                     {
                       "answer": [
                         {
-                          "valueDate": "2024-01-15"
+                          "valueDate": "2023-11-05"
                         }
                       ],
                       "linkId": "987654638442",
@@ -729,14 +934,14 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 73,
+                    "value": 30,
                     "unit": "mm[Hg]"
                   },
                   "item": [
                     {
                       "answer": [
                         {
-                          "valueDate": "2024-01-15"
+                          "valueDate": "2023-11-05"
                         }
                       ],
                       "linkId": "820981783585",

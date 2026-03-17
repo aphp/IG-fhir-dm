@@ -1,8 +1,17 @@
 {
   "resourceType": "QuestionnaireResponse",
-  "id": "cas-2-usage-core",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/QuestionnaireResponse"
+    ],
+    "tag": [
+      {
+        "code": "lformsVersion: 36.16.1"
+      }
+    ]
+  },
   "status": "completed",
-  "authored": "2026-03-20T14:55:18.756Z",
+  "authored": "2026-03-24T10:22:49.492Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -16,7 +25,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Martin"
+                  "valueString": "Roux"
                 }
               ],
               "linkId": "8605698058770",
@@ -25,7 +34,7 @@
             {
               "answer": [
                 {
-                  "valueString": "Pierre"
+                  "valueString": "Antoine"
                 }
               ],
               "linkId": "6214879623503",
@@ -34,7 +43,7 @@
             {
               "answer": [
                 {
-                  "valueString": "170045298765432"
+                  "valueString": "192026754321098"
                 }
               ],
               "linkId": "5711960356160",
@@ -43,7 +52,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "1970-04-05"
+                  "valueDate": "1992-02-06"
                 }
               ],
               "linkId": "5036133558154",
@@ -71,7 +80,7 @@
                 {
                   "answer": [
                     {
-                      "valueDecimal": 48.8738
+                      "valueDecimal": 48.8427
                     }
                   ],
                   "linkId": "3709843054556",
@@ -80,7 +89,7 @@
                 {
                   "answer": [
                     {
-                      "valueDecimal": 2.295
+                      "valueDecimal": 2.373
                     }
                   ],
                   "linkId": "7651448032665",
@@ -102,7 +111,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueString": "920500508",
+                  "valueString": "Folie Méricourt 6",
                   "item": [
                     {
                       "answer": [
@@ -128,26 +137,6 @@
         {
           "answer": [
             {
-              "valueInteger": 53,
-              "item": [
-                {
-                  "answer": [
-                    {
-                      "valueDate": "2024-01-08"
-                    }
-                  ],
-                  "linkId": "1690778867802",
-                  "text": "Date du recueil de l'information"
-                }
-              ]
-            }
-          ],
-          "linkId": "8164976487070",
-          "text": "Age"
-        },
-        {
-          "answer": [
-            {
               "valueString": "h"
             }
           ],
@@ -157,7 +146,7 @@
         {
           "answer": [
             {
-              "valueString": "92000",
+              "valueString": "Paris 11ème arrondissement",
               "item": [
                 {
                   "answer": [
@@ -181,7 +170,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-08"
+                  "valueDate": "2024-01-11"
                 }
               ],
               "linkId": "7114466839467",
@@ -190,7 +179,7 @@
             {
               "answer": [
                 {
-                  "valueString": "DP"
+                  "valueString": "Principal"
                 }
               ],
               "linkId": "6427586743735",
@@ -199,40 +188,7 @@
             {
               "answer": [
                 {
-                  "valueString": "K25"
-                }
-              ],
-              "linkId": "5505101189372",
-              "text": "Diagnostique"
-            }
-          ]
-        },
-        {
-          "linkId": "9391816419630",
-          "text": "Diagnostics",
-          "item": [
-            {
-              "answer": [
-                {
-                  "valueDate": "2024-01-08"
-                }
-              ],
-              "linkId": "7114466839467",
-              "text": "Date du recueil de l'information"
-            },
-            {
-              "answer": [
-                {
-                  "valueString": "DA"
-                }
-              ],
-              "linkId": "6427586743735",
-              "text": "Type de diagnostic"
-            },
-            {
-              "answer": [
-                {
-                  "valueString": "Z87.2"
+                  "valueString": "Fracture du trochanter"
                 }
               ],
               "linkId": "5505101189372",
@@ -247,7 +203,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-08"
+                  "valueDate": "2024-01-11"
                 }
               ],
               "linkId": "9436509453137",
@@ -256,7 +212,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-08T09:15:00.000Z"
+                  "valueDateTime": "2024-01-11T09:30:00.000Z"
                 }
               ],
               "linkId": "5066866286682",
@@ -265,7 +221,7 @@
             {
               "answer": [
                 {
-                  "valueString": "HEQE002"
+                  "valueString": "NBCA008"
                 }
               ],
               "linkId": "7758110033600",
@@ -276,7 +232,7 @@
         {
           "answer": [
             {
-              "valueDate": "2024-01-08"
+              "valueDate": "2024-01-11"
             }
           ],
           "linkId": "5991443718282",
@@ -285,7 +241,7 @@
         {
           "answer": [
             {
-              "valueDate": "2024-01-10"
+              "valueDate": "2024-01-14"
             }
           ],
           "linkId": "6114780320846",
@@ -294,7 +250,7 @@
         {
           "answer": [
             {
-              "valueString": "8"
+              "valueString": "Domicile"
             }
           ],
           "linkId": "6172398101212",
@@ -303,7 +259,7 @@
         {
           "answer": [
             {
-              "valueString": "8"
+              "valueString": "Domicile"
             }
           ],
           "linkId": "3354867075704",
@@ -312,213 +268,124 @@
       ]
     },
     {
-      "linkId": "7702944131447",
-      "text": "Biologie",
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
       "item": [
         {
-          "linkId": "5241323453538",
-          "text": "Fonction rénale",
-          "item": [
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
             {
-              "linkId": "500408205043",
-              "text": "Créatininémie",
-              "answer": [
+              "valueString": "Enoxaparine ",
+              "item": [
                 {
-                  "valueQuantity": {
-                    "value": 98,
-                    "unit": "umol/L"
-                  },
-                  "item": [
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
                     {
-                      "answer": [
-                        {
-                          "valueString": "14682-9"
-                        }
-                      ],
-                      "linkId": "977768150991",
-                      "text": "code loinc"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueDateTime": "2024-01-08T06:30:00.000Z"
-                        }
-                      ],
-                      "linkId": "279176538278",
-                      "text": "Date et heure du prélèvement"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueString": "valide"
-                        }
-                      ],
-                      "linkId": "271848662924",
-                      "text": "Statut de validation"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 62,
-                            "unit": "umol/L"
-                          }
-                        }
-                      ],
-                      "linkId": "488869963230",
-                      "text": "Borne inférieure de normalité du résultat"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 106,
-                            "unit": "umol/L"
-                          }
-                        }
-                      ],
-                      "linkId": "984480974142",
-                      "text": "Borne supérieure de normalité du résultat"
+                      "valueString": "08351"
                     }
                   ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "C38299"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
                 }
               ]
             }
           ]
         },
         {
-          "linkId": "419282985970",
-          "text": "Hémogramme",
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
           "item": [
             {
-              "linkId": "304159088493",
-              "text": "Hémoglobine",
               "answer": [
                 {
-                  "valueQuantity": {
-                    "value": 7,
-                    "unit": "g/dL"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueString": "718-7"
-                        }
-                      ],
-                      "linkId": "597082091886",
-                      "text": "code loinc"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueDateTime": "2024-01-08T07:11:19.176Z"
-                        }
-                      ],
-                      "linkId": "471894150678",
-                      "text": "Date et heure du prélèvement"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueString": "valide"
-                        }
-                      ],
-                      "linkId": "958333284757",
-                      "text": "Statut de validation"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 13,
-                            "unit": "g/dL"
-                          }
-                        }
-                      ],
-                      "linkId": "404489113722",
-                      "text": "Borne inférieure de normalité du résultat"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 17,
-                            "unit": "g/dL"
-                          }
-                        }
-                      ],
-                      "linkId": "849522090945",
-                      "text": "Borne supérieure de normalité du résultat"
-                    }
-                  ]
+                  "valueDate": "2024-01-11"
                 }
-              ]
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
             },
             {
-              "linkId": "163624088831",
-              "text": "Volume Globulaire Moyen (VGM)",
+              "answer": [
+                {
+                  "valueDate": "2024-01-21"
+                }
+              ],
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Enoxaparine",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "08351"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "C38299"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 87,
-                    "unit": "fL"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueString": "30428-7"
-                        }
-                      ],
-                      "linkId": "117718572179",
-                      "text": "code loinc"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueDateTime": "2024-01-08T07:12:07.313Z"
-                        }
-                      ],
-                      "linkId": "766800452654",
-                      "text": "Date et heure du prélèvement"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueString": "valide"
-                        }
-                      ],
-                      "linkId": "490513081670",
-                      "text": "Statut de validation"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 80,
-                            "unit": "fL"
-                          }
-                        }
-                      ],
-                      "linkId": "472419988966",
-                      "text": "Borne inférieure de normalité du résultat"
-                    },
-                    {
-                      "answer": [
-                        {
-                          "valueQuantity": {
-                            "value": 100,
-                            "unit": "fL"
-                          }
-                        }
-                      ],
-                      "linkId": "781499407274",
-                      "text": "Borne supérieure de normalité du résultat"
-                    }
-                  ]
+                    "value": 4000,
+                    "unit": "UI"
+                  }
                 }
-              ]
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T20:00:00.000Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T20:05:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
             }
           ]
         }
@@ -533,14 +400,14 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "Oméprazole 20mg",
+              "valueString": "Paracétamol",
               "item": [
                 {
                   "linkId": "1923143398283",
                   "text": "codification",
                   "answer": [
                     {
-                      "valueString": "A02BC01"
+                      "valueString": "02202"
                     }
                   ]
                 },
@@ -564,20 +431,11 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-09"
+                  "valueDate": "2024-01-11"
                 }
               ],
               "linkId": "316347573327",
               "text": "Date de début de la prescription"
-            },
-            {
-              "answer": [
-                {
-                  "valueDate": "2024-02-08"
-                }
-              ],
-              "linkId": "429570775935",
-              "text": "Date de fin de la prescription"
             }
           ]
         },
@@ -586,14 +444,14 @@
           "text": "Médicament administré",
           "answer": [
             {
-              "valueString": "Oméprazole 20mg",
+              "valueString": "Paracétamol",
               "item": [
                 {
                   "linkId": "631972144976",
                   "text": "codification",
                   "answer": [
                     {
-                      "valueString": "A02BC01"
+                      "valueString": "02202"
                     }
                   ]
                 },
@@ -618,7 +476,122 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 20,
+                    "value": 1,
+                    "unit": "g"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T21:23:08.404Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T21:37:45.463Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Tramadol",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "35415"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-14"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Tramadol",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "35415"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 50,
                     "unit": "mg"
                   }
                 }
@@ -629,7 +602,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-09T07:00:00.000Z"
+                  "valueDateTime": "2024-01-14T07:43:18.046Z"
                 }
               ],
               "linkId": "1443558617577",
@@ -638,11 +611,69 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2024-01-09T07:05:00.000Z"
+                  "valueDateTime": "2024-01-14T07:46:11.000Z"
                 }
               ],
               "linkId": "780829110731",
               "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "214880328197",
+      "text": "Examen clinique",
+      "item": [
+        {
+          "linkId": "305831246173",
+          "text": "Dossier de soins",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 130,
+                    "unit": " mmHg"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2024-01-11"
+                        }
+                      ],
+                      "linkId": "987654638442",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "4160905247955",
+              "text": "Pression artérielle systolique"
+            },
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 75,
+                    "unit": " mmHg"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2024-01-11"
+                        }
+                      ],
+                      "linkId": "820981783585",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "848797127998",
+              "text": "Pression artérielle diastolique"
             }
           ]
         }
