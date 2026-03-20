@@ -93,11 +93,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751062307",
-                    "display": "Notre-Dame des Champs 7"
-                  },
+                  "valueString":"Notre-Dame des Champs 7",
                   "item": [
                     {
                       "linkId": "4999580038872",
@@ -125,11 +121,7 @@
           "text": "Sexe",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "h",
-                "display": "Homme"
-              }
+              "valueString":"Homme"
             }
           ]
         },
@@ -138,11 +130,7 @@
           "text": "Code géographique de résidence",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75006",
-                "display": "Paris 6ème arrondissement"
-              },
+              "valueString": "Paris 6ème arrondissement",
               "item": [
                 {
                   "linkId": "1537511139540",
@@ -175,9 +163,7 @@
               "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "Principal"
-                  }
+                  "valueString":"Principal"
                 }
               ]
             },
@@ -186,10 +172,7 @@
               "text": "Diagnostique",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "J44.1",
-                    "display": "Maladie pulmonaire obstructive chronique avec épisodes aigus, sans précision"
-                  }
+                  "valueString": "Maladie pulmonaire obstructive chronique avec épisodes aigus, sans précision"
                 }
               ]
             }
@@ -213,9 +196,7 @@
               "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "Associé"
-                  }
+                  "valueString": "Associé"
                 }
               ]
             },
@@ -224,10 +205,7 @@
               "text": "Diagnostique",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "Z88.0",
-                    "display": "Antécédents personnels d'allergie à la pénicilline"
-                  }
+                  "valueString":"Antécédents personnels d'allergie à la pénicilline"
                 }
               ]
             }
@@ -260,11 +238,7 @@
               "text": "Acte",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "GLQP008",
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
-                    "display": "Mesure de la capacité vitale lente et de l'expiration forcée, avec gazométrie sanguine artérielle [Spirométrie standard avec gaz du sang]"
-                  }
+                  "valueString":"Mesure de la capacité vitale lente et de l'expiration forcée, avec gazométrie sanguine artérielle [Spirométrie standard avec gaz du sang]"
                 }
               ]
             }
@@ -293,10 +267,7 @@
           "text": "Mode d'entrée du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString": "Domicile"
             }
           ]
         },
@@ -305,10 +276,7 @@
           "text": "Mode de sortie du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString":"Domicile"
             }
           ]
         }
@@ -337,11 +305,7 @@
                       "text": "code loinc",
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "6690-2",
-                            "display": "Leucocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
-                          }
+                          "valueString": "Leucocytes [Nombre/Volume] Sang ; Numérique ; Comptage automate"
                         }
                       ]
                     },
@@ -397,11 +361,7 @@
                       "text": "code loinc",
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "718-7",
-                            "display": "Hémoglobine [Masse/Volume] Sang ; Numérique"
-                          }
+                          "valueString": "Hémoglobine [Masse/Volume] Sang ; Numérique"
                         }
                       ]
                     },
@@ -462,11 +422,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "H02AB06",
-                        "display": "Prednisolone"
-                      }
+                      "valueString": "Prednisolone"
                     }
                   ]
                 },
@@ -475,11 +431,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001146",
-                        "display": "Oral"
-                      }
+                      "valueString": "Oral"
                     }
                   ]
                 }
@@ -523,11 +475,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "H02AB06",
-                        "display": "Prednisolone"
-                      }
+                      "valueString":"Prednisolone"
                     }
                   ]
                 },
@@ -536,11 +484,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001146",
-                        "display": "Oral"
-                      }
+                      "valueString":"Oral"
                     }
                   ]
                 }
@@ -602,11 +546,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "R03AC02",
-                        "display": "Salbutamol"
-                      }
+                      "valueString":"Salbutamol"
                     }
                   ]
                 },
@@ -615,11 +555,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20020000",
-                        "display": "Voie inhalée"
-                      }
+                      "valueString": "Voie inhalée"
                     }
                   ]
                 }
@@ -663,11 +599,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "R03AC02",
-                        "display": "Salbutamol"
-                      }
+                      "valueString":"Salbutamol"
                     }
                   ]
                 },
@@ -676,11 +608,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20020000",
-                        "display": "Voie inhalée"
-                      }
+                      "valueString":  "Voie inhalée"
                     }
                   ]
                 }

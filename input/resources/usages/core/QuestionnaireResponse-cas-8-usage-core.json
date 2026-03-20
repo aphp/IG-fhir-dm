@@ -93,11 +93,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751114106",
-                    "display": "Folie Méricourt 6"
-                  },
+                  "valueString":  "Folie Méricourt 6",
                   "item": [
                     {
                       "answer": [
@@ -123,10 +119,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "h"
-              }
+              "valueString": "h"
             }
           ],
           "linkId": "3894630481120",
@@ -135,11 +128,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75011",
-                "display": "Paris 11ème arrondissement"
-              },
+              "valueString": "Paris 11ème arrondissement",
               "item": [
                 {
                   "answer": [
@@ -172,9 +161,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "Principal"
-                  }
+                  "valueString": "Principal"
                 }
               ],
               "linkId": "6427586743735",
@@ -183,10 +170,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "S72.1",
-                    "display": "Fracture du trochanter"
-                  }
+                  "valueString":"Fracture du trochanter"
                 }
               ],
               "linkId": "5505101189372",
@@ -219,11 +203,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "NBCA008",
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
-                    "display": "Ostéosynthèse de fracture du grand trochanter"
-                  }
+                  "valueString":"Ostéosynthèse de fracture du grand trochanter"
                 }
               ],
               "linkId": "7758110033600",
@@ -252,10 +232,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString": "Domicile"
             }
           ],
           "linkId": "6172398101212",
@@ -264,10 +241,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString": "Domicile"
             }
           ],
           "linkId": "3354867075704",
@@ -296,11 +270,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "14682-9",
-                            "display": "Créatinine [Moles/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString":"Créatinine [Moles/Volume] Sérum/Plasma ; Numérique"
                         }
                       ],
                       "linkId": "977768150991",
@@ -362,11 +332,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "718-7",
-                            "display": "Hémoglobine [Masse/Volume] Sang ; Numérique"
-                          }
+                          "valueString":"Hémoglobine [Masse/Volume] Sang ; Numérique"
                         }
                       ],
                       "linkId": "597082091886",
@@ -427,11 +393,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "N02AA01",
-                        "display": "Morphine"
-                      }
+                      "valueString":"Morphine"
                     }
                   ],
                   "linkId": "1923143398283",
@@ -440,11 +402,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001141",
-                        "display": "Intraveineux"
-                      }
+                      "valueString":"Intraveineux"
                     }
                   ],
                   "linkId": "387026794874",
@@ -488,11 +446,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "N02AA01",
-                        "display": "Morphine"
-                      }
+                      "valueString":"Morphine"
                     }
                   ],
                   "linkId": "631972144976",
@@ -501,11 +455,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001141",
-                        "display": "Intraveineux"
-                      }
+                      "valueString":"Intraveineux"
                     }
                   ],
                   "linkId": "811931484859",
@@ -567,11 +517,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B01AB05",
-                        "display": "énoxaparine"
-                      }
+                      "valueString": "énoxaparine"
                     }
                   ],
                   "linkId": "1923143398283",
@@ -580,11 +526,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20066000",
-                        "display": "Voie sous-cutanée"
-                      }
+                      "valueString": "Voie sous-cutanée"
                     }
                   ],
                   "linkId": "387026794874",
@@ -628,11 +570,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B01AB05",
-                        "display": "énoxaparine"
-                      }
+                      "valueString": "énoxaparine"
                     }
                   ],
                   "linkId": "631972144976",
@@ -641,11 +579,7 @@
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20066000",
-                        "display": "Voie sous-cutanée"
-                      }
+                      "valueString":"Voie sous-cutanée"
                     }
                   ],
                   "linkId": "811931484859",

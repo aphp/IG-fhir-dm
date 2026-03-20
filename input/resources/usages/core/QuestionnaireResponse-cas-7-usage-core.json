@@ -102,10 +102,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751093306"
-                  },
+                  "valueString": "751093306",
                   "item": [
                     {
                       "linkId": "4999580038872",
@@ -153,10 +150,7 @@
           "text": "Sexe",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "f"
-              }
+              "valueString": "f"
             }
           ]
         },
@@ -165,10 +159,7 @@
           "text": "Code géographique de résidence",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75009"
-              },
+              "valueString": "75009",
               "item": [
                 {
                   "linkId": "1537511139540",
@@ -201,9 +192,7 @@
               "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DP"
-                  }
+                  "valueString": "DP"
                 }
               ]
             },
@@ -212,9 +201,7 @@
               "text": "Diagnostique",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "G43.2"
-                  }
+                  "valueString": "G43.2"
                 }
               ]
             }
@@ -247,10 +234,7 @@
               "text": "Acte",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
-                    "code": "ACQJ002"
-                  }
+                  "valueString": "ACQJ002"
                 }
               ]
             }
@@ -279,9 +263,7 @@
           "text": "Mode d'entrée du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8"
-              }
+              "valueString": "8"
             }
           ]
         },
@@ -290,9 +272,7 @@
           "text": "Mode de sortie du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8"
-              }
+              "valueString": "8"
             }
           ]
         }
@@ -314,10 +294,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "N02CC01"
-                      }
+                      "valueString": "N02CC01"
                     }
                   ]
                 },
@@ -326,10 +303,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000"
-                      }
+                      "valueString":"20053000"
                     }
                   ]
                 }
@@ -364,10 +338,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "N02CC01"
-                      }
+                      "valueString": "N02CC01"
                     }
                   ]
                 },
@@ -376,10 +347,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000"
-                      }
+                      "valueString": "20053000"
                     }
                   ]
                 }

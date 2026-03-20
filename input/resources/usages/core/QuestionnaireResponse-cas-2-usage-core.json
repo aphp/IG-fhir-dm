@@ -102,10 +102,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "920500508"
-                  },
+                  "valueString":"920500508",
                   "item": [
                     {
                       "linkId": "4999580038872",
@@ -153,10 +150,7 @@
           "text": "Sexe",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "h"
-              }
+              "valueString":"h"
             }
           ]
         },
@@ -165,10 +159,7 @@
           "text": "Code géographique de résidence",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "92000"
-              },
+              "valueString": "92000",
               "item": [
                 {
                   "linkId": "1537511139540",
@@ -201,9 +192,7 @@
               "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DP"
-                  }
+                  "valueString": "DP"
                 }
               ]
             },
@@ -212,9 +201,7 @@
               "text": "Diagnostique",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "K25"
-                  }
+                  "valueString": "K25"
                 }
               ]
             }
@@ -238,10 +225,8 @@
               "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DA"
+                  "valueString":"DA"
                   }
-                }
               ]
             },
             {
@@ -249,9 +234,7 @@
               "text": "Diagnostique",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "Z87.2"
-                  }
+                  "valueString":"Z87.2"
                 }
               ]
             }
@@ -284,10 +267,7 @@
               "text": "Acte",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
-                    "code": "HEQE002"
-                  }
+                  "valueString": "HEQE002"
                 }
               ]
             }
@@ -316,9 +296,7 @@
           "text": "Mode d'entrée du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8"
-              }
+              "valueString": "8"
             }
           ]
         },
@@ -327,9 +305,7 @@
           "text": "Mode de sortie du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8"
-              }
+              "valueString": "8"
             }
           ]
         }
@@ -358,10 +334,7 @@
                       "text": "code loinc",
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "14682-9"
-                          }
+                          "valueString":"14682-9"
                         }
                       ]
                     },
@@ -432,10 +405,7 @@
                       "text": "code loinc",
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "1742-6"
-                          }
+                          "valueString": "1742-6"
                         }
                       ]
                     },
@@ -500,10 +470,7 @@
                       "text": "code loinc",
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "14631-6"
-                          }
+                          "valueString": "14631-6"
                         }
                       ]
                     },
@@ -573,10 +540,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "A02BC01"
-                      }
+                      "valueString": "A02BC01"
                     }
                   ]
                 },
@@ -585,10 +549,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000"
-                      }
+                      "valueString":"20053000"
                     }
                   ]
                 }
@@ -632,10 +593,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "A02BC01"
-                      }
+                      "valueString": "A02BC01"
                     }
                   ]
                 },
@@ -644,10 +602,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000"
-                      }
+                      "valueString": "20053000"
                     }
                   ]
                 }

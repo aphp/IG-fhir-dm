@@ -102,10 +102,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751041404"
-                  },
+                  "valueString": "751041404",
                   "item": [
                     {
                       "linkId": "4999580038872",
@@ -153,10 +150,7 @@
           "text": "Sexe",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "f"
-              }
+              "valueString":"f"
             }
           ]
         },
@@ -165,10 +159,7 @@
           "text": "Code géographique de résidence",
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75004"
-              },
+              "valueString":"75004",
               "item": [
                 {
                   "linkId": "1537511139540",
@@ -201,9 +192,7 @@
               "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DP"
-                  }
+                  "valueString":"DP"
                 }
               ]
             },
@@ -212,9 +201,7 @@
               "text": "Diagnostique",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "O80.0"
-                  }
+                  "valueString":"O80.0"
                 }
               ]
             }
@@ -238,10 +225,8 @@
               "text": "Type de diagnostic",
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DA"
+                  "valueString":"DA"
                   }
-                }
               ]
             },
             {
@@ -249,9 +234,7 @@
               "text": "Diagnostique",
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "Z37.0"
-                  }
+                  "valueString": "Z37.0"
                 }
               ]
             }
@@ -284,10 +267,7 @@
               "text": "Acte",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam",
-                    "code": "JQGD010"
-                  }
+                  "valueString": "JQGD010"
                 }
               ]
             }
@@ -316,9 +296,7 @@
           "text": "Mode d'entrée du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8"
-              }
+              "valueString":"8"
             }
           ]
         },
@@ -327,9 +305,7 @@
           "text": "Mode de sortie du séjour",
           "answer": [
             {
-              "valueCoding": {
-                "code": "8"
-              }
+              "valueString": "8"
             }
           ]
         }
@@ -358,10 +334,7 @@
                       "text": "code loinc",
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "718-7"
-                          }
+                          "valueString":"718-7"
                         }
                       ]
                     },
@@ -426,10 +399,7 @@
                       "text": "code loinc",
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "777-3"
-                          }
+                          "valueString": "777-3"
                         }
                       ]
                     },
@@ -499,10 +469,8 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B03BB01"
-                      }
+                      "valueString":"B03BB01"
+
                     }
                   ]
                 },
@@ -511,10 +479,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000"
-                      }
+                      "valueString": "20053000"
                     }
                   ]
                 }
@@ -558,10 +523,7 @@
                   "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B03BB01"
-                      }
+                      "valueString":"B03BB01"
                     }
                   ]
                 },
@@ -570,10 +532,7 @@
                   "text": "Voie d'administration",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "20053000"
-                      }
+                      "valueString":"20053000"
                     }
                   ]
                 }
