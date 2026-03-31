@@ -1,0 +1,969 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/QuestionnaireResponse"
+    ],
+    "tag": [
+      {
+        "code": "lformsVersion: 36.16.1"
+      }
+    ]
+  },
+  "status": "completed",
+  "authored": "2026-03-23T09:23:38.435Z",
+  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "item": [
+    {
+      "linkId": "4647259356106",
+      "text": "Données socio-démographiques",
+      "item": [
+        {
+          "linkId": "2958000860428",
+          "text": "Identité patient",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueString": "Moreau"
+                }
+              ],
+              "linkId": "8605698058770",
+              "text": "Nom patient"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "Jean"
+                }
+              ],
+              "linkId": "6214879623503",
+              "text": "Prénom patient"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "176085487651234"
+                }
+              ],
+              "linkId": "5711960356160",
+              "text": "Numéro d'inscription au Répertoire (NIR)"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "1965-08-15"
+                }
+              ],
+              "linkId": "5036133558154",
+              "text": "Date de naissance"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-07"
+                }
+              ],
+              "linkId": "5633552097315",
+              "text": "Date de décès"
+            },
+            {
+              "answer": [
+                {
+                  "valueInteger": 1
+                }
+              ],
+              "linkId": "6931296968515",
+              "text": "Rang gémellaire du bénéficiaire"
+            }
+          ]
+        },
+        {
+          "linkId": "5491974639955",
+          "text": "Environnement",
+          "item": [
+            {
+              "linkId": "3816475533472",
+              "text": "Géocodage",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDecimal": 48.8584
+                    }
+                  ],
+                  "linkId": "3709843054556",
+                  "text": "Latitude"
+                },
+                {
+                  "answer": [
+                    {
+                      "valueDecimal": 2.2945
+                    }
+                  ],
+                  "linkId": "7651448032665",
+                  "text": "Longitude"
+                },
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2023-10-15"
+                    }
+                  ],
+                  "linkId": "1185653257776",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            },
+            {
+              "linkId": "7621032273792",
+              "text": "IRIS",
+              "answer": [
+                {
+                  "valueString": "751166402",
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2023-10-15"
+                        }
+                      ],
+                      "linkId": "4999580038872",
+                      "text": "Date du recueil de l'information"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2825244231605",
+      "text": "Données PMSI",
+      "item": [
+        {
+          "answer": [
+            {
+              "valueInteger": 58,
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2023-11-05"
+                    }
+                  ],
+                  "linkId": "1690778867802",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            }
+          ],
+          "linkId": "8164976487070",
+          "text": "Age"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "h"
+            }
+          ],
+          "linkId": "3894630481120",
+          "text": "Sexe"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "75016",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2023-10-15"
+                    }
+                  ],
+                  "linkId": "1537511139540",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            }
+          ],
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence"
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DP"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "J44.1"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DA"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "Z88.0"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T21:15:00.000Z"
+                }
+              ],
+              "linkId": "5066866286682",
+              "text": "Date de l'acte"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "GELD004"
+                }
+              ],
+              "linkId": "7758110033600",
+              "text": "Acte"
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-06T08:00:00.000Z"
+                }
+              ],
+              "linkId": "5066866286682",
+              "text": "Date de l'acte"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DDQH012"
+                }
+              ],
+              "linkId": "7758110033600",
+              "text": "Acte"
+            }
+          ]
+        },
+        {
+          "answer": [
+            {
+              "valueDate": "2023-11-05"
+            }
+          ],
+          "linkId": "5991443718282",
+          "text": "Date de début de séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueDate": "2023-11-10"
+            }
+          ],
+          "linkId": "6114780320846",
+          "text": "Date de fin de séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "8"
+            }
+          ],
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "8"
+            }
+          ],
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour"
+        }
+      ]
+    },
+    {
+      "linkId": "7702944131447",
+      "text": "Biologie",
+      "item": [
+        {
+          "linkId": "5241323453538",
+          "text": "Fonction rénale",
+          "item": [
+            {
+              "linkId": "500408205043",
+              "text": "Créatininémie",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 156,
+                    "unit": "umol/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "14682-9"
+                        }
+                      ],
+                      "linkId": "977768150991",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2023-11-05T20:00:00.000Z"
+                        }
+                      ],
+                      "linkId": "279176538278",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "271848662924",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 62,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ],
+                      "linkId": "488869963230",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 106,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ],
+                      "linkId": "984480974142",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Noradrénaline",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "C01CA03"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Noradrénaline",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "C01CA03"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 3,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T21:30:00.000Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T22:30:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Héparine sodique",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "B01AB01"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Héparine sodique",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "B01AB01"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 4000,
+                    "unit": "UI"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T21:00:00.000Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T21:30:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Aspirine",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "00005"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Aspirine",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "00005"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 20,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T20:00:35.783Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2026-03-02T20:30:41.961Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Ticagrelor ",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "37533"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Ticagrelor ",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "37533"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20045000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 180,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T20:00:35.137Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2023-11-05T20:30:10.534Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "214880328197",
+      "text": "Examen clinique",
+      "item": [
+        {
+          "linkId": "305831246173",
+          "text": "Dossier de soins",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 75,
+                    "unit": "mm[Hg]"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2023-11-05"
+                        }
+                      ],
+                      "linkId": "987654638442",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "4160905247955",
+              "text": "Pression artérielle systolique"
+            },
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 30,
+                    "unit": "mm[Hg]"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2023-11-05"
+                        }
+                      ],
+                      "linkId": "820981783585",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "848797127998",
+              "text": "Pression artérielle diastolique"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "Patient/example",
+    "display": "Peter James Chalmers"
+  },
+  "author": {
+    "reference": "Practitioner/example",
+    "display": "Dr Adam Careful"
+  }
+}

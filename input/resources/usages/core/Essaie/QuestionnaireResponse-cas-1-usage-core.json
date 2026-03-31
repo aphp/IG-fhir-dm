@@ -1,0 +1,1652 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0/StructureDefinition/QuestionnaireResponse"
+    ],
+    "tag": [
+      {
+        "code": "lformsVersion: 36.16.1"
+      }
+    ]
+  },
+  "status": "completed",
+  "authored": "2026-03-19T15:23:57.020Z",
+  "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+  "item": [
+    {
+      "linkId": "4647259356106",
+      "text": "Données socio-démographiques",
+      "item": [
+        {
+          "linkId": "2958000860428",
+          "text": "Identité patient",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueString": "Dupont"
+                }
+              ],
+              "linkId": "8605698058770",
+              "text": "Nom patient"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "Marie"
+                }
+              ],
+              "linkId": "6214879623503",
+              "text": "Prénom patient"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "285094415372654"
+                }
+              ],
+              "linkId": "5711960356160",
+              "text": "Numéro d'inscription au Répertoire (NIR)"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "1985-09-21"
+                }
+              ],
+              "linkId": "5036133558154",
+              "text": "Date de naissance"
+            },
+            {
+              "answer": [
+                {
+                  "valueInteger": 1
+                }
+              ],
+              "linkId": "6931296968515",
+              "text": "Rang gémellaire du bénéficiaire"
+            }
+          ]
+        },
+        {
+          "linkId": "5491974639955",
+          "text": "Environnement",
+          "item": [
+            {
+              "linkId": "3816475533472",
+              "text": "Géocodage",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDecimal": 48.8566
+                    }
+                  ],
+                  "linkId": "3709843054556",
+                  "text": "Latitude"
+                },
+                {
+                  "answer": [
+                    {
+                      "valueDecimal": 2.3522
+                    }
+                  ],
+                  "linkId": "7651448032665",
+                  "text": "Longitude"
+                },
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-01"
+                    }
+                  ],
+                  "linkId": "1185653257776",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            },
+            {
+              "linkId": "7621032273792",
+              "text": "IRIS",
+              "answer": [
+                {
+                  "valueString": "751010105",
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2024-01-01"
+                        }
+                      ],
+                      "linkId": "4999580038872",
+                      "text": "Date du recueil de l'information"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "2825244231605",
+      "text": "Données PMSI",
+      "item": [
+        {
+          "answer": [
+            {
+              "valueInteger": 38,
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-10"
+                    }
+                  ],
+                  "linkId": "1690778867802",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            }
+          ],
+          "linkId": "8164976487070",
+          "text": "Age"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "f"
+            }
+          ],
+          "linkId": "3894630481120",
+          "text": "Sexe"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "75001",
+              "item": [
+                {
+                  "answer": [
+                    {
+                      "valueDate": "2024-01-01"
+                    }
+                  ],
+                  "linkId": "1537511139540",
+                  "text": "Date du recueil de l'information"
+                }
+              ]
+            }
+          ],
+          "linkId": "2446369196222",
+          "text": "Code géographique de résidence"
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-10"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DP"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "I21.9"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-10"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DA"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "E78.0"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-10"
+                }
+              ],
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-10T13:30:00.000Z"
+                }
+              ],
+              "linkId": "5066866286682",
+              "text": "Date de l'acte"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DDAF007"
+                }
+              ],
+              "linkId": "7758110033600",
+              "text": "Acte"
+            }
+          ]
+        },
+        {
+          "linkId": "591926901726",
+          "text": "Actes",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-10"
+                }
+              ],
+              "linkId": "9436509453137",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-10T13:12:00.000Z"
+                }
+              ],
+              "linkId": "5066866286682",
+              "text": "Date de l'acte"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DEQP003"
+                }
+              ],
+              "linkId": "7758110033600",
+              "text": "Acte"
+            }
+          ]
+        },
+        {
+          "answer": [
+            {
+              "valueDate": "2024-01-10"
+            }
+          ],
+          "linkId": "5991443718282",
+          "text": "Date de début de séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueDate": "2024-01-14"
+            }
+          ],
+          "linkId": "6114780320846",
+          "text": "Date de fin de séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "8"
+            }
+          ],
+          "linkId": "6172398101212",
+          "text": "Mode d'entrée du séjour"
+        },
+        {
+          "answer": [
+            {
+              "valueString": "8"
+            }
+          ],
+          "linkId": "3354867075704",
+          "text": "Mode de sortie du séjour"
+        }
+      ]
+    },
+    {
+      "linkId": "7702944131447",
+      "text": "Biologie",
+      "item": [
+        {
+          "linkId": "5241323453538",
+          "text": "Fonction rénale",
+          "item": [
+            {
+              "linkId": "500408205043",
+              "text": "Créatininémie",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 85,
+                    "unit": "umol/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "14682-9"
+                        }
+                      ],
+                      "linkId": "977768150991",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-01-10T07:00:00.000Z"
+                        }
+                      ],
+                      "linkId": "279176538278",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "271848662924",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 62,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ],
+                      "linkId": "488869963230",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 106,
+                            "unit": "umol/L"
+                          }
+                        }
+                      ],
+                      "linkId": "984480974142",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "786621340679",
+              "text": "Débit de filtration glomérulaire (DFG)",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 74,
+                    "unit": "mL/min/1.73m2"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "62238-1"
+                        }
+                      ],
+                      "linkId": "974417569313",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-01-10T07:00:00.000Z"
+                        }
+                      ],
+                      "linkId": "600008092136",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "288013601711",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 60,
+                            "unit": "mL/min/1.73m2"
+                          }
+                        }
+                      ],
+                      "linkId": "809916645548",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 120,
+                            "unit": "mL/min/1.73m2"
+                          }
+                        }
+                      ],
+                      "linkId": "323493215684",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "419282985970",
+          "text": "Hémogramme",
+          "item": [
+            {
+              "linkId": "210077225604",
+              "text": "Leucocytes",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 7,
+                    "unit": "G/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "6690-2"
+                        }
+                      ],
+                      "linkId": "695484403752",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-10-01T06:00:00.325Z"
+                        }
+                      ],
+                      "linkId": "578695171519",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "844270911527",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 4,
+                            "unit": "G/L"
+                          }
+                        }
+                      ],
+                      "linkId": "147832677057",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 10,
+                            "unit": "G/L"
+                          }
+                        }
+                      ],
+                      "linkId": "175377691907",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "304159088493",
+              "text": "Hémoglobine",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 14.2,
+                    "unit": "g/dL"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "718-7"
+                        }
+                      ],
+                      "linkId": "597082091886",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-01-10T07:00:00.000Z"
+                        }
+                      ],
+                      "linkId": "471894150678",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "958333284757",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 12,
+                            "unit": "g/dL"
+                          }
+                        }
+                      ],
+                      "linkId": "404489113722",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 16,
+                            "unit": "g/dL"
+                          }
+                        }
+                      ],
+                      "linkId": "849522090945",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "794156787471",
+              "text": "Plaquettes",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 295,
+                    "unit": "G/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "777-3"
+                        }
+                      ],
+                      "linkId": "555876654291",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-10-01T06:00:00.375Z"
+                        }
+                      ],
+                      "linkId": "504411027287",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "639812945465",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 150,
+                            "unit": "G/L"
+                          }
+                        }
+                      ],
+                      "linkId": "491138393211",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 450,
+                            "unit": "G/L"
+                          }
+                        }
+                      ],
+                      "linkId": "859081902103",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "796308115381",
+          "text": "Bilan hépatique",
+          "item": [
+            {
+              "linkId": "715226319725",
+              "text": "Aspartate aminotransférase (AST)",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 50,
+                    "unit": "UI/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "1920-8"
+                        }
+                      ],
+                      "linkId": "757363598159",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-10-01T06:00:00.285Z"
+                        }
+                      ],
+                      "linkId": "884511824515",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "899626356193",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 20,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "584123691679",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 40,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "935082505777",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "876439410327",
+              "text": "Alanine aminotransférase (ALT)",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 45,
+                    "unit": "UI/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "1742-6"
+                        }
+                      ],
+                      "linkId": "698926487710",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-01-10T07:00:00.000Z"
+                        }
+                      ],
+                      "linkId": "881040341675",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "914082125507",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 20,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "581883215378",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 40,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "594636277238",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "287545455976",
+              "text": "Gamma-glutamyl transférase (GGT)",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 70,
+                    "unit": "UI/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "2324-2"
+                        }
+                      ],
+                      "linkId": "688754894578",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-10-01T06:00:00.191Z"
+                        }
+                      ],
+                      "linkId": "191793018592",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "554823851678",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 10,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "529114499294",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 30,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "930639734905",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "508269571594",
+              "text": "Phosphatases alcalines (PAL)",
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 30,
+                    "unit": "UI/L"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueString": "6768-6"
+                        }
+                      ],
+                      "linkId": "726897332003",
+                      "text": "code loinc"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueDateTime": "2024-10-01T11:53:34.253Z"
+                        }
+                      ],
+                      "linkId": "576101241859",
+                      "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "650432942630",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 30,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "334934131934",
+                      "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 120,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "989367019315",
+                      "text": "Borne supérieure de normalité du résultat"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Aspirine 75mg",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "B01AC06"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-11"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-02-10"
+                }
+              ],
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Aspirine 75mg",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "B01AC06"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 75,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T07:00:00.000Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T07:05:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Atorvastatine 40mg",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "C10AA05"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-11"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-04-11"
+                }
+              ],
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Atorvastatine 40mg",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "C10AA05"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 40,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T19:00:00.000Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T19:05:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Ticagrelor 90mg",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "37533"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-11"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "2025-01-12"
+                }
+              ],
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Ticagrelor 90mg",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "37533"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 90,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T07:00:00.000Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-11T07:05:00.000Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Bisoprolol 10mg",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "97658"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-14"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-02-15"
+                }
+              ],
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Bisoprolol 10mg",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "97658"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 10,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-14T07:45:07.963Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-14T07:49:13.637Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "817801935685",
+      "text": "Exposition médicamenteuse",
+      "item": [
+        {
+          "linkId": "156631794800",
+          "text": "Médicament prescrit",
+          "answer": [
+            {
+              "valueString": "Ramipril 5 mg",
+              "item": [
+                {
+                  "linkId": "1923143398283",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "11532"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "387026794874",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "6348237104421",
+          "text": "Posologie (à détailler)",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-01-14"
+                }
+              ],
+              "linkId": "316347573327",
+              "text": "Date de début de la prescription"
+            },
+            {
+              "answer": [
+                {
+                  "valueDate": "2024-02-15"
+                }
+              ],
+              "linkId": "429570775935",
+              "text": "Date de fin de la prescription"
+            }
+          ]
+        },
+        {
+          "linkId": "266852453304",
+          "text": "Médicament administré",
+          "answer": [
+            {
+              "valueString": "Ramipril 5 mg",
+              "item": [
+                {
+                  "linkId": "631972144976",
+                  "text": "codification",
+                  "answer": [
+                    {
+                      "valueString": "11532"
+                    }
+                  ]
+                },
+                {
+                  "answer": [
+                    {
+                      "valueString": "20053000"
+                    }
+                  ],
+                  "linkId": "811931484859",
+                  "text": "Voie d'administration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "5720103839343",
+          "text": "Dosage",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 5,
+                    "unit": "mg"
+                  }
+                }
+              ],
+              "linkId": "4765772671997",
+              "text": "Quantité administrée"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-14T07:50:20.189Z"
+                }
+              ],
+              "linkId": "1443558617577",
+              "text": "Date et heure de début d'administration"
+            },
+            {
+              "answer": [
+                {
+                  "valueDateTime": "2024-01-14T07:55:12.271Z"
+                }
+              ],
+              "linkId": "780829110731",
+              "text": "Date et heure de fin d'administration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "214880328197",
+      "text": "Examen clinique",
+      "item": [
+        {
+          "linkId": "305831246173",
+          "text": "Dossier de soins",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 135,
+                    "unit": "mm[Hg]"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2024-01-10"
+                        }
+                      ],
+                      "linkId": "987654638442",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "4160905247955",
+              "text": "Pression artérielle systolique"
+            },
+            {
+              "answer": [
+                {
+                  "valueQuantity": {
+                    "value": 85,
+                    "unit": "mm[Hg]"
+                  },
+                  "item": [
+                    {
+                      "answer": [
+                        {
+                          "valueDate": "2024-01-10"
+                        }
+                      ],
+                      "linkId": "820981783585",
+                      "text": "Date de la mesure"
+                    }
+                  ]
+                }
+              ],
+              "linkId": "848797127998",
+              "text": "Pression artérielle diastolique"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "subject": {
+    "reference": "Patient/example",
+    "display": "Peter James Chalmers"
+  },
+  "author": {
+    "reference": "Practitioner/example",
+    "display": "Dr Adam Careful"
+  }
+}
