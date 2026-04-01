@@ -2,7 +2,7 @@
   "resourceType": "QuestionnaireResponse",
   "id": "cas-9-usage-core",
   "status": "completed",
-  "authored": "2025-10-14T16:14:57.160Z",
+  "authored": "2026-03-24T14:32:51.459Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -93,7 +93,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueString":"751155805",
+                  "valueString": "751155805",
                   "item": [
                     {
                       "answer": [
@@ -119,7 +119,7 @@
         {
           "answer": [
             {
-              "valueString":"Femme"
+              "valueString": "Femme"
             }
           ],
           "linkId": "3894630481120",
@@ -128,7 +128,7 @@
         {
           "answer": [
             {
-              "valueString":"Paris 15ème arrondissement",
+              "valueString": "Paris 15ème arrondissement",
               "item": [
                 {
                   "answer": [
@@ -152,7 +152,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-14"
                 }
               ],
               "linkId": "7114466839467",
@@ -161,7 +161,7 @@
             {
               "answer": [
                 {
-                  "valueString":"DP"
+                  "valueString": "DP"
                 }
               ],
               "linkId": "6427586743735",
@@ -185,7 +185,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-14"
                 }
               ],
               "linkId": "7114466839467",
@@ -194,7 +194,7 @@
             {
               "answer": [
                 {
-                  "valueString":"DAS"
+                  "valueString": "DAS"
                 }
               ],
               "linkId": "6427586743735",
@@ -218,7 +218,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-14"
                 }
               ],
               "linkId": "9436509453137",
@@ -336,7 +336,7 @@
                     {
                       "answer": [
                         {
-                          "valueString": "Temps de quick Patient (%) [Temps relatif] Plasma pauvre en plaquettes ; Numérique ; Coagulation"
+                          "valueString": "5894-1"
                         }
                       ],
                       "linkId": "219513623269",
@@ -354,14 +354,35 @@
                     {
                       "answer": [
                         {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "429387291763",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
                           "valueQuantity": {
-                            "value": 50,
+                            "value": 70,
                             "unit": "%"
                           }
                         }
                       ],
                       "linkId": "253311419093",
                       "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 100,
+                            "unit": "%"
+                          }
+                        }
+                      ],
+                      "linkId": "706043904552",
+                      "text": "Borne supérieure de normalité du résultat"
                     }
                   ]
                 }
@@ -386,7 +407,7 @@
                     {
                       "answer": [
                         {
-                          "valueString": "Aspartate aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
+                          "valueString": "1920-8"
                         }
                       ],
                       "linkId": "757363598159",
@@ -442,7 +463,7 @@
                     {
                       "answer": [
                         {
-                          "valueString":"Alanine aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
+                          "valueString": "1742-6"
                         }
                       ],
                       "linkId": "698926487710",
@@ -498,7 +519,7 @@
                     {
                       "answer": [
                         {
-                          "valueString":"Gamma glutamyltransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
+                          "valueString": "2324-2"
                         }
                       ],
                       "linkId": "688754894578",
@@ -512,6 +533,18 @@
                       ],
                       "linkId": "191793018592",
                       "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 7,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "529114499294",
+                      "text": "Borne inférieure de normalité du résultat"
                     },
                     {
                       "answer": [
@@ -542,7 +575,7 @@
                     {
                       "answer": [
                         {
-                          "valueString":"Phosphatases alcalines [Catalytique/Volume] Sérum/Plasma ; Numérique"
+                          "valueString": "6768-6"
                         }
                       ],
                       "linkId": "726897332003",
@@ -589,7 +622,7 @@
                     {
                       "answer": [
                         {
-                          "valueString": "Bilirubine [Masse/Volume] Sérum/Plasma ; Numérique"
+                          "valueString": "1975-2"
                         }
                       ],
                       "linkId": "657001208566",
@@ -639,18 +672,18 @@
               "valueString": "furosémide 40mg",
               "item": [
                 {
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueString":"furosémide"
+                      "valueString": "01958"
                     }
-                  ],
-                  "linkId": "1923143398283",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString":"Oral"
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "387026794874",
@@ -692,18 +725,18 @@
               "valueString": "furosémide 40mg",
               "item": [
                 {
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueString":"furosémide"
+                      "valueString": "01958"
                     }
-                  ],
-                  "linkId": "631972144976",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString":"Oral"
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "811931484859",
@@ -799,18 +832,18 @@
               "valueString": "spironolactone 25mg",
               "item": [
                 {
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueString":"spironolactone"
+                      "valueString": "00977"
                     }
-                  ],
-                  "linkId": "1923143398283",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString":"Oral"
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "387026794874",
@@ -852,18 +885,18 @@
               "valueString": "spironolactone 25mg",
               "item": [
                 {
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueString":"spironolactone"
+                      "valueString": "00977"
                     }
-                  ],
-                  "linkId": "631972144976",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString":"Oral"
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "811931484859",
@@ -959,18 +992,18 @@
               "valueString": "albumine 20%",
               "item": [
                 {
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueString":"albumine"
+                      "valueString": "B05AA01"
                     }
-                  ],
-                  "linkId": "1923143398283",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString":"Intraveineux"
+                      "valueString": "20045000"
                     }
                   ],
                   "linkId": "387026794874",
@@ -1012,18 +1045,18 @@
               "valueString": "albumine 20%",
               "item": [
                 {
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueString": "albumine"
+                      "valueString": "B05AA01"
                     }
-                  ],
-                  "linkId": "631972144976",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueString":"Intraveineux"
+                      "valueString": "20045000"
                     }
                   ],
                   "linkId": "811931484859",
@@ -1080,29 +1113,6 @@
           "text": "Dossier de soins",
           "item": [
             {
-              "linkId": "4846902346416",
-              "text": "Taille",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 162,
-                    "unit": "cm"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-13"
-                        }
-                      ],
-                      "linkId": "941821315470",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "linkId": "451513217936",
               "text": "Poids",
               "answer": [
@@ -1131,6 +1141,11 @@
     }
   ],
   "subject": {
-    "display": "Mme Blanc"
+    "reference": "Patient/example",
+    "display": "Peter James Chalmers"
+  },
+  "author": {
+    "reference": "Practitioner/example",
+    "display": "Dr Adam Careful"
   }
 }
