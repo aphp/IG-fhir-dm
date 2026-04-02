@@ -5,7 +5,7 @@ title: Data Management with FHIR
 description: "Ce guide d'implémentation décrit: (i) le processus d'alimentation d'un hub de données de santé, (ii) les cas d'usages traités et, in fine, (iii) la liste des données présentes dans le hub de données de santé d'un SIH."
 status: draft
 version: 0.1.0
-jurisdiction: urn:iso:std:iso:3166#FR "France"
+jurisdiction: urn:iso:std:iso:3166#FR
 fhirVersion: 4.0.1
 copyrightYear: 2023+
 releaseLabel: ci-build
