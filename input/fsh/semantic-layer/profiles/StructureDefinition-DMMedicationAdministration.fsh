@@ -2,7 +2,7 @@ Profile:  DMMedicationAdministration
 Parent:   MedicationAdministration
 Title:    "Prise de médicaments"
 Description: "Profil pour la prise de médicaments"
-* medication[x] only Reference(FrMedicationUcd or FrMedicationNonproprietaryName or FrMedicationCompound)
+* medication[x] only Reference(FrMedicationUcd or FrMedicationNonproprietaryName or FrMedicationCompound) or CodeableConcept
 * medication[x] MS
 * subject only Reference(DMPatient)
 * subject MS

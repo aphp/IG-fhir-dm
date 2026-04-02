@@ -2,7 +2,7 @@ Profile:  DMMedicationRequest
 Parent:   MedicationRequest
 Title:    "Prescription de médicaments"
 Description:  "Profil pour les prescriptions médicamenteuses"
-* medication[x] only Reference(FrMedicationUcd or FrMedicationNonproprietaryName or FrMedicationCompound)
+* medication[x] only Reference(FrMedicationUcd or FrMedicationNonproprietaryName or FrMedicationCompound) or CodeableConcept
 * medication[x] MS
 * subject only Reference(DMPatient)
 * subject MS
