@@ -6,6 +6,7 @@ Description: "Profil Address du socle commun des EDS"
 * extension contains 
   $geolocation named geolocation 0..1
   and PmsiCodeGeo named PmsiCodeGeo 0..1
+  and http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract named iso21090-ADXP-censusTract 0..1
 
 * extension[geolocation] MS
 * extension[inseeCode] MS
