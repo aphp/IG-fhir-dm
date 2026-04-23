@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "8fd4fae4-461b-4bfa-b1ad-7e77d01ebe8d",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "00823",
+          "display" : "Ketoprofene "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00c2b477-4649-46af-aa82-2337558a1ec8"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-14T07:06:53.857Z",
+        "end" : "2024-01-14T07:10:20.039Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 100,
+          "unit" : "mg"
+        }
+      }
+    }

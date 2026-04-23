@@ -1,0 +1,20 @@
+{
+      "resourceType" : "Procedure",
+      "id" : "1d660111-5062-40f1-930b-39f84be30e48",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure"]
+      },
+      "status" : "completed",
+      "code" : {
+        "coding" : [{
+          "code" : "GELD004"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/05584e1b-3435-415a-af33-aad1fca40fad"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b2cde568-adbf-48b3-bcd9-dd8c7ccf4f7b"
+      },
+      "performedDateTime" : "2023-11-05T21:15:00.000Z"
+    }

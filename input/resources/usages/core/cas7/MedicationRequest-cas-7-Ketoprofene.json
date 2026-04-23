@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "7c2b924a-b043-40df-a7b6-876b9b909be5",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "00823",
+          "display" : "Ketoprofene "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00c2b477-4649-46af-aa82-2337558a1ec8"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-14"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        }
+      }]
+    }

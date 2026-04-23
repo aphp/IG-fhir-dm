@@ -1,0 +1,25 @@
+{
+      "resourceType" : "Condition",
+      "id" : "34a6dfd5-c48e-4284-b4b5-a335b7ceb5a8",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "code" : "DP"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "code" : "K25"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/73285bbe-d64d-44b9-8cb6-864a376384c4"
+      },
+      "encounter" : {
+        "reference" : "Encounter/fa55771d-6636-42ea-996a-8fe57e291f38"
+      },
+      "recordedDate" : "2024-01-08"
+    }

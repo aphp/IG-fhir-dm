@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "eea54286-5e2c-4e2a-8edc-bd29380e18b8",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "B01AB01",
+          "display" : "Héparine sodique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/05584e1b-3435-415a-af33-aad1fca40fad"
+      },
+      "effectivePeriod" : {
+        "start" : "2023-11-05T21:00:00.000Z",
+        "end" : "2023-11-05T21:30:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20045000"
+          }]
+        },
+        "dose" : {
+          "value" : 5000,
+          "unit" : "UI"
+        }
+      }
+    }

@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "9b55df99-2b8b-4f26-aff9-3e93e1cd7ee6",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "00977",
+          "display" : "spironolactone 25mg"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-14T07:00:00.000Z",
+        "end" : "2024-01-14T07:05:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 25,
+          "unit" : "mg"
+        }
+      }
+    }

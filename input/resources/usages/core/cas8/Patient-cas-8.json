@@ -1,0 +1,46 @@
+{
+      "resourceType" : "Patient",
+      "id" : "00d05edd-cffc-46e0-8ddb-91b7e801985a",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0203",
+            "code" : "NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "192026754321098"
+      }],
+      "name" : [{
+        "family" : "Roux",
+        "given" : ["Antoine"]
+      }],"gender" : "male",
+      "birthDate" : "1992-02-06",
+      "address" : [{
+        "extension" : [{
+          "url" : "https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo",
+          "valueCode" : "75011"
+        },
+        {
+          "extension" : [{
+            "url" : "latitude",
+            "valueDecimal" : 48.8427
+          },
+          {
+            "url" : "longitude",
+            "valueDecimal" : 2.373
+          }],
+          "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
+        }],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "Folie Méricourt 6"
+          }]
+        }]
+      }],
+      "multipleBirthInteger" : 1
+    }

@@ -1,0 +1,33 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "2399902c-585f-4eae-9ed8-519f9fe4da34",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "B01AC06",
+          "display" : "Aspirine 75mg"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-11",
+              "end" : "2024-02-10"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        }
+      }]
+    }

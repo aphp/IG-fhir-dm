@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "bd16265b-828a-4506-b4de-376afbae5be1",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "08351",
+          "display" : "Enoxaparine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-11T20:00:00.000Z",
+        "end" : "2024-01-11T20:05:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "C38299"
+          }]
+        },
+        "dose" : {
+          "value" : 4000,
+          "unit" : "UI"
+        }
+      }
+    }

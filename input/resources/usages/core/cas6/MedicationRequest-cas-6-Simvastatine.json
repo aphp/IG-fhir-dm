@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "59e78c89-8d66-4e9c-8443-835847840a48",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "10171",
+          "display" : "Simvastatine "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-05"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        }
+      }]
+    }

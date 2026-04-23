@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "c74b8776-addd-4295-a60f-50487d8db5b6",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "04458",
+          "display" : "Trinitrine "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-05T07:25:36.560Z",
+        "end" : "2024-01-05T07:28:25.594Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 0.15,
+          "unit" : "mg"
+        }
+      }
+    }

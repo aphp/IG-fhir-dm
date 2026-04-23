@@ -1,0 +1,20 @@
+{
+      "resourceType" : "Procedure",
+      "id" : "0a2f8750-d908-4bc4-ac31-700e91daf7b2",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure"]
+      },
+      "status" : "completed",
+      "code" : {
+        "coding" : [{
+          "code" : "HPHB003"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba"
+      },
+      "encounter" : {
+        "reference" : "Encounter/74f2a55a-f256-41c2-8f2c-9677ca2df273"
+      },
+      "performedDateTime" : "2024-01-13T12:15:00.000Z"
+    }

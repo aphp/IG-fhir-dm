@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "17a31049-5fb3-442e-8f5f-e5a804ac195f",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "35232",
+          "display" : "Ceftriaxone"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-12"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "20045000"
+          }]
+        }
+      }]
+    }

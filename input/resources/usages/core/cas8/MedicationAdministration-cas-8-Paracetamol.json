@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "f1d7957f-a490-488b-8352-888d4aa7b4c6",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "02202",
+          "display" : "Paracétamol"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-11T21:23:08.404Z",
+        "end" : "2024-01-11T21:37:45.463Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 1,
+          "unit" : "g"
+        }
+      }
+    }

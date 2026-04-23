@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "9b1da5a2-c14b-442b-8072-421b65ad2cd5",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "00005",
+          "display" : "Aspirine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/05584e1b-3435-415a-af33-aad1fca40fad"
+      },
+      "effectivePeriod" : {
+        "start" : "2023-11-05T20:12:37.982Z",
+        "end" : "2023-11-05T20:48:18.170Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20045000"
+          }]
+        },
+        "dose" : {
+          "value" : 250,
+          "unit" : "mg"
+        }
+      }
+    }

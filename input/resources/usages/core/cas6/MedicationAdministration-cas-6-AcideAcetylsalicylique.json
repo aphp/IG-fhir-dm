@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "23bf1da9-aa93-4f58-bb50-e49799442c21",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "00005",
+          "display" : "Acide acétylsalicylique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-06T07:00:00.000Z",
+        "end" : "2024-01-06T07:05:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 75,
+          "unit" : "mg"
+        }
+      }
+    }

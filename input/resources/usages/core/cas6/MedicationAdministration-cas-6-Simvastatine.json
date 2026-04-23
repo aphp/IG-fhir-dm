@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "ca9057df-b024-4dbc-8439-81f0a8fb85ec",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "10171",
+          "display" : "Simvastatine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-05T07:15:03.888Z",
+        "end" : "2024-01-05T07:18:40.210Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 20,
+          "unit" : "mg"
+        }
+      }
+    }

@@ -1,0 +1,45 @@
+{
+      "resourceType" : "Patient",
+      "id" : "21f4ee98-4940-4d54-b573-523bc7718a6d",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0203",
+            "code" : "NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "189127865432109"
+      }],
+      "name" : [{
+        "family" : "David",
+        "given" : ["Thomas"]
+      }],"gender" : "male",
+      "birthDate" : "1989-12-07",
+      "address" : [{
+        "extension" : [{
+          "url" : "https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo",
+          "valueCode" : "75006"
+        },
+        {
+          "extension" : [{
+            "url" : "latitude",
+            "valueDecimal" : 48.8606
+          },
+          {
+            "url" : "longitude",
+            "valueDecimal" : 2.3376
+          }],
+          "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
+        }],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "Notre-Dame des Champs 7"
+          }]
+        }]
+      }]
+    }

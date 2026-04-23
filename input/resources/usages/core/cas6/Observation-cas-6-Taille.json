@@ -1,0 +1,31 @@
+{
+      "resourceType" : "Observation",
+      "id" : "46d8bd95-9e29-4936-a7b8-e2386219b668",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBodyHeight"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "vital-signs",
+          "display" : "Vital Signs"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "8302-2"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
+      },
+      "effectiveDateTime" : "2024-01-05",
+      "valueQuantity" : {
+        "value" : 175,
+        "unit" : "cm",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "cm"
+      }
+    }

@@ -1,0 +1,33 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "474a076f-7345-4d58-bd96-3439db227ae1",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "08351",
+          "display" : "Enoxaparine "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-11",
+              "end" : "2024-01-21"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "C38299"
+          }]
+        }
+      }]
+    }

@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "5adf9d50-f4c5-4fc4-a5dc-7adafb425dde",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "96035",
+          "display" : "Azithromycine "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-16T07:12:14.557Z",
+        "end" : "2024-01-16T07:15:24.418Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 250,
+          "unit" : "mg"
+        }
+      }
+    }

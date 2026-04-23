@@ -1,0 +1,33 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "ab3ae565-3a7f-491b-a2db-924e388ed918",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "B05AA01",
+          "display" : "albumine 20%"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-13",
+              "end" : "2024-01-13"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "20045000"
+          }]
+        }
+      }]
+    }

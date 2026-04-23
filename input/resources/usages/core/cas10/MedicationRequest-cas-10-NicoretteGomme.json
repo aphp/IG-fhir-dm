@@ -1,0 +1,25 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "2493b9c4-d100-420f-b42a-1c6455069dce",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "94037",
+          "display" : "Nicorette gomme "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "dosageInstruction" : [{
+        "route" : {
+          "coding" : [{
+            "code" : "20054000"
+          }]
+        }
+      }]
+    }

@@ -1,0 +1,43 @@
+{
+      "resourceType" : "Observation",
+      "id" : "b94e5386-5ec3-4f9c-a015-6a1bb2c39023",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/dm-observation-laboratory-generic"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://loinc.org",
+          "code" : "718-7"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "effectiveDateTime" : "2024-01-16T07:30:00.000Z",
+      "valueQuantity" : {
+        "value" : 11.2,
+        "unit" : "g/dL",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "g/dL"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/dL",
+          "value" : 13,
+          "unit" : "g/dL"
+        },
+        "high" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/dL",
+          "value" : 17,
+          "unit" : "g/dL"
+        }
+      }]
+    }

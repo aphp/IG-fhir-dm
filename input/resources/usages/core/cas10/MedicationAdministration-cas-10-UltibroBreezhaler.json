@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "4c713e01-8c39-4932-a60f-ebf0fed0af30",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "62553246",
+          "display" : "Ultibro Breezhaler"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-16T08:00:00.000Z",
+        "end" : "2024-01-16T08:05:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20020000"
+          }]
+        },
+        "dose" : {
+          "value" : 85,
+          "unit" : "43 µg"
+        }
+      }
+    }

@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "0366ab45-bd3a-4d2e-ad1b-875d2a3890be",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "94037",
+          "display" : "Nicopatch"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-16"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "FT162"
+          }]
+        }
+      }]
+    }

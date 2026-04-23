@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "38f05214-a7d0-4f7b-b1f7-e59cebb828ed",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "94037",
+          "display" : "Nicopatch"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-16T07:25:18.515Z",
+        "end" : "2024-01-16T07:45:24.077Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "FT162"
+          }]
+        },
+        "dose" : {
+          "value" : 15,
+          "unit" : "mg"
+        }
+      }
+    }

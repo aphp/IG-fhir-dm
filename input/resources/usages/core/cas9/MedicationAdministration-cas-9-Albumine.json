@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "de43ecdc-5cab-44af-b063-71a25b3e2634",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "B05AA01",
+          "display" : "albumine 20%"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-13T08:30:00.000Z",
+        "end" : "2024-01-13T10:14:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20045000"
+          }]
+        },
+        "dose" : {
+          "value" : 50,
+          "unit" : "g"
+        }
+      }
+    }

@@ -1,0 +1,46 @@
+{
+      "resourceType" : "Patient",
+      "id" : "73285bbe-d64d-44b9-8cb6-864a376384c4",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0203",
+            "code" : "NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "170045298765432"
+      }],
+      "name" : [{
+        "family" : "Martin",
+        "given" : ["Pierre"]
+      }],"gender" : "male",
+      "birthDate" : "1970-04-05",
+      "address" : [{
+        "extension" : [{
+          "url" : "https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo",
+          "valueCode" : "92000"
+        },
+        {
+          "extension" : [{
+            "url" : "latitude",
+            "valueDecimal" : 48.8738
+          },
+          {
+            "url" : "longitude",
+            "valueDecimal" : 2.295
+          }],
+          "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
+        }],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "920500508"
+          }]
+        }]
+      }],
+      "multipleBirthInteger" : 1
+    }

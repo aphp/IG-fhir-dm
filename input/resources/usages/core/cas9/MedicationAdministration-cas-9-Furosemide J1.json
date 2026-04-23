@@ -1,0 +1,32 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "717b4d89-394b-41a6-a5c7-481cbbd8f368",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "01958",
+          "display" : "furosémide 40mg"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-13T07:00:00.000Z",
+        "end" : "2024-01-13T07:05:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        },
+        "dose" : {
+          "value" : 40,
+          "unit" : "mg"
+        }
+      }
+    }

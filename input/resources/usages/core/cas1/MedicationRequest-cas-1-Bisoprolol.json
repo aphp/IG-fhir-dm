@@ -1,0 +1,33 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "f70d0ea6-bf3f-423c-beb3-00fcff587f7f",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "code" : "97658",
+          "display" : "Bisoprolol 10mg"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-14",
+              "end" : "2024-02-15"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "code" : "20053000"
+          }]
+        }
+      }]
+    }
