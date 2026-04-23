@@ -108,10 +108,11 @@ tasks.register<JavaExec>("igPublisherBuild") {
 tasks.register<JavaExec>("igPublisherBuildRapido") {
     group = "build"
 
-    jvmArgs("-Dfile.encoding=UTF-8")
+    jvmArgs("-Dfile.encoding=UTF-8", "-Xmx2g")
     classpath(igPublisherPath)
     args = listOf(
-        "-rapido",
+        "-validation-off",
+        "-generation-off",
         "-no-sushi",
         "-authorise-non-conformant-tx-servers",
         "-ig",
