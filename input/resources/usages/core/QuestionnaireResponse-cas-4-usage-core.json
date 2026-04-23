@@ -2,7 +2,7 @@
   "resourceType": "QuestionnaireResponse",
   "id": "cas-4-usage-core",
   "status": "completed",
-  "authored": "2026-03-23T09:23:38.435Z",
+  "authored": "2026-04-10T09:54:29.479Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -43,7 +43,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "1965-08-15"
+                  "valueDate": "1976-08-15"
                 }
               ],
               "linkId": "5036133558154",
@@ -52,7 +52,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2023-11-07"
+                  "valueDateTime": "2023-11-07T09:32:00.000Z"
                 }
               ],
               "linkId": "5633552097315",
@@ -137,7 +137,7 @@
         {
           "answer": [
             {
-              "valueInteger": 58,
+              "valueInteger": 47,
               "item": [
                 {
                   "answer": [
@@ -157,7 +157,7 @@
         {
           "answer": [
             {
-              "valueString": "h"
+              "valueString": "m"
             }
           ],
           "linkId": "3894630481120",
@@ -208,7 +208,7 @@
             {
               "answer": [
                 {
-                  "valueString": "J44.1"
+                  "valueString": "R57.0"
                 }
               ],
               "linkId": "5505101189372",
@@ -241,7 +241,172 @@
             {
               "answer": [
                 {
-                  "valueString": "Z88.0"
+                  "valueString": "J80"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DA"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "I21"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DA"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "XH84Q4"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DA"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "BA40.0"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-05"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DA"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "E11"
+                }
+              ],
+              "linkId": "5505101189372",
+              "text": "Diagnostique"
+            }
+          ]
+        },
+        {
+          "linkId": "9391816419630",
+          "text": "Diagnostics",
+          "item": [
+            {
+              "answer": [
+                {
+                  "valueDate": "2023-11-07"
+                }
+              ],
+              "linkId": "7114466839467",
+              "text": "Date du recueil de l'information"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "DA"
+                }
+              ],
+              "linkId": "6427586743735",
+              "text": "Type de diagnostic"
+            },
+            {
+              "answer": [
+                {
+                  "valueString": "MG4A"
                 }
               ],
               "linkId": "5505101189372",
@@ -298,7 +463,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2023-11-06T08:00:00.000Z"
+                  "valueDateTime": "2023-11-05T20:10:00.000Z"
                 }
               ],
               "linkId": "5066866286682",
@@ -327,7 +492,7 @@
         {
           "answer": [
             {
-              "valueDate": "2023-11-10"
+              "valueDate": "2023-11-07"
             }
           ],
           "linkId": "6114780320846",
@@ -630,7 +795,7 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 4000,
+                    "value": 5000,
                     "unit": "UI"
                   }
                 }
@@ -745,7 +910,7 @@
               "answer": [
                 {
                   "valueQuantity": {
-                    "value": 20,
+                    "value": 250,
                     "unit": "mg"
                   }
                 }
@@ -756,7 +921,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T20:00:35.783Z"
+                  "valueDateTime": "2023-11-05T20:12:37.982Z"
                 }
               ],
               "linkId": "1443558617577",
@@ -765,7 +930,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2026-03-02T20:30:41.961Z"
+                  "valueDateTime": "2023-11-05T20:48:18.170Z"
                 }
               ],
               "linkId": "780829110731",
@@ -784,7 +949,7 @@
           "text": "Médicament prescrit",
           "answer": [
             {
-              "valueString": "Ticagrelor ",
+              "valueString": "Ticagrélor",
               "item": [
                 {
                   "linkId": "1923143398283",
@@ -828,7 +993,7 @@
           "text": "Médicament administré",
           "answer": [
             {
-              "valueString": "Ticagrelor ",
+              "valueString": "Ticagrélor",
               "item": [
                 {
                   "linkId": "631972144976",
@@ -871,7 +1036,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T20:00:35.137Z"
+                  "valueDateTime": "2023-11-05T20:52:43.419Z"
                 }
               ],
               "linkId": "1443558617577",
@@ -880,7 +1045,7 @@
             {
               "answer": [
                 {
-                  "valueDateTime": "2023-11-05T20:30:10.534Z"
+                  "valueDateTime": "2023-11-05T20:59:17.987Z"
                 }
               ],
               "linkId": "780829110731",
@@ -950,11 +1115,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

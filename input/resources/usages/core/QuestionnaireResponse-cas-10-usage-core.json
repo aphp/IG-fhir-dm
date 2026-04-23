@@ -139,7 +139,7 @@
         {
           "answer": [
             {
-              "valueString": "Homme"
+              "valueString": "m"
             }
           ],
           "linkId": "3894630481120",
@@ -148,7 +148,7 @@
         {
           "answer": [
             {
-              "valueString": "Paris 6ème arrondissement",
+              "valueString": "75006",
               "item": [
                 {
                   "answer": [
@@ -1120,11 +1120,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

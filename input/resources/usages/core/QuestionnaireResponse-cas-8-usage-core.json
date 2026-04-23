@@ -128,7 +128,7 @@
         {
           "answer": [
             {
-              "valueString": "h"
+              "valueString": "m"
             }
           ],
           "linkId": "3894630481120",
@@ -137,7 +137,7 @@
         {
           "answer": [
             {
-              "valueString": "Paris 11ème arrondissement",
+              "valueString": "75011",
               "item": [
                 {
                   "answer": [
@@ -625,7 +625,7 @@
                 {
                   "valueQuantity": {
                     "value": 130,
-                    "unit": " mmHg"
+                    "unit": " mm[Hg]"
                   },
                   "item": [
                     {
@@ -648,7 +648,7 @@
                 {
                   "valueQuantity": {
                     "value": 75,
-                    "unit": " mmHg"
+                    "unit": " mm[Hg]"
                   },
                   "item": [
                     {
@@ -672,11 +672,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

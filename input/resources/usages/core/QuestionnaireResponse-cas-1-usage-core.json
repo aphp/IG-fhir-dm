@@ -424,7 +424,7 @@
                 {
                   "valueQuantity": {
                     "value": 74,
-                    "unit": "mL/min/1.73m2"
+                    "unit": "mL/min/{1.73_m2}"
                   },
                   "item": [
                     {
@@ -459,7 +459,7 @@
                         {
                           "valueQuantity": {
                             "value": 60,
-                            "unit": "mL/min/1.73m2"
+                            "unit": "mL/min/{1.73_m2}"
                           }
                         }
                       ],
@@ -471,7 +471,7 @@
                         {
                           "valueQuantity": {
                             "value": 120,
-                            "unit": "mL/min/1.73m2"
+                            "unit": "mL/min/{1.73_m2}"
                           }
                         }
                       ],
@@ -1633,11 +1633,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

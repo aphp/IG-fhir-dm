@@ -148,7 +148,7 @@
         {
           "answer": [
             {
-              "valueString": "h"
+              "valueString": "m"
             }
           ],
           "linkId": "3894630481120",
@@ -650,11 +650,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

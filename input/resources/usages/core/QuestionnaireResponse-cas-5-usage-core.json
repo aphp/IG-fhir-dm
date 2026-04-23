@@ -232,7 +232,7 @@
             {
               "answer": [
                 {
-                  "valueString": "J06.9"
+                  "valueString": "GB51"
                 }
               ],
               "linkId": "5505101189372",
@@ -293,7 +293,7 @@
                 {
                   "valueQuantity": {
                     "value": 150,
-                    "unit": "µmol/L"
+                    "unit": "umol/L"
                   },
                   "item": [
                     {
@@ -328,7 +328,7 @@
                         {
                           "valueQuantity": {
                             "value": 62,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
@@ -340,7 +340,7 @@
                         {
                           "valueQuantity": {
                             "value": 106,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
@@ -734,7 +734,7 @@
                 {
                   "valueQuantity": {
                     "value": 110,
-                    "unit": " mmHg"
+                    "unit": " mm[Hg]"
                   },
                   "item": [
                     {
@@ -757,7 +757,7 @@
                 {
                   "valueQuantity": {
                     "value": 70,
-                    "unit": " mmHg"
+                    "unit": " mm[Hg]"
                   },
                   "item": [
                     {
@@ -781,11 +781,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

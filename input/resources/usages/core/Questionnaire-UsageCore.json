@@ -16,7 +16,7 @@
             "valueUrl": "https://hapi.fhir.org/baseR4"
         }
     ],
-    "url": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
+    "url": "https://aphp.github.io/IG-fhir-dm/Questionnaire/UsageCore",
     "name": "QuestionnaireUsageVariablesSoclesPourLesEDSH",
     "title": "Questionnaire usage Variables socles pour les EDSH",
     "status": "active",
@@ -128,7 +128,7 @@
                         {
                             "linkId": "5633552097315",
                             "text": "Date de décès",
-                            "type": "date",
+                            "type": "dateTime",
                             "item": [
                                 {
                                     "linkId": "9098810065693",

@@ -119,7 +119,7 @@
         {
           "answer": [
             {
-              "valueString": "Femme"
+              "valueString": "f"
             }
           ],
           "linkId": "3894630481120",
@@ -128,7 +128,7 @@
         {
           "answer": [
             {
-              "valueString": "Paris 15ème arrondissement",
+              "valueString": "75015",
               "item": [
                 {
                   "answer": [
@@ -714,9 +714,9 @@
               ],
               "linkId": "429570775935",
               "text": "Date de fin de la prescription"
-            }
-          ]
-        },
+        }
+      ]
+    },
         {
           "linkId": "266852453304",
           "text": "Médicament administré",
@@ -1141,11 +1141,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

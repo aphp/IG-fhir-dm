@@ -326,7 +326,7 @@
                 {
                   "valueQuantity": {
                     "value": 60,
-                    "unit": "µmol/L"
+                    "unit": "umol/L"
                   },
                   "item": [
                     {
@@ -361,7 +361,7 @@
                         {
                           "valueQuantity": {
                             "value": 62,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
@@ -373,7 +373,7 @@
                         {
                           "valueQuantity": {
                             "value": 106,
-                            "unit": "µmol/L"
+                            "unit": "umol/L"
                           }
                         }
                       ],
@@ -754,11 +754,11 @@
     }
   ],
   "subject": {
-    "reference": "Patient/example",
-    "display": "Peter James Chalmers"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
   },
   "author": {
-    "reference": "Practitioner/example",
-    "display": "Dr Adam Careful"
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }
