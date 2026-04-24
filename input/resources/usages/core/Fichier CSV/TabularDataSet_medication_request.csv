@@ -1,0 +1,33 @@
+medication_request_id,patient_ref,status,intent,medication_code,medication_name,dose_start,dose_end,route_code
+2399902c-585f-4eae-9ed8-519f9fe4da34,Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487,active,order,B01AC06,Aspirine 75mg,2024-01-11,2024-02-10,20053000
+aec11f99-dec8-49ac-bbfe-e8ebb7aa7ff6,Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487,active,order,C10AA05,Atorvastatine 40mg,2024-01-11,2024-04-11,20053000
+f70d0ea6-bf3f-423c-beb3-00fcff587f7f,Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487,active,order,97658,Bisoprolol 10mg,2024-01-14,2024-02-15,20053000
+b7e2578f-2197-45c5-9b7c-4f52a615bb20,Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487,active,order,11532,Ramipril 5 mg,2024-01-14,2024-02-15,20053000
+acb4d2b8-79cb-440b-afb1-5a875eaddb24,Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487,active,order,37533,Ticagrelor 90mg,2024-01-11,2025-01-12,20053000
+d8a78c9f-e91d-4c99-8264-dba3fc89c345,Patient/73285bbe-d64d-44b9-8cb6-864a376384c4,active,order,A02BC01,Oméprazole 20mg,2024-01-09,2024-02-08,20053000
+2dbb8f40-e1c2-4c7e-9857-ea393d321ab6,Patient/e569cdc5-6024-42bf-8e0f-7565583066b0,active,order,B03BB01,Acide folique 5mg,2024-01-16,2024-04-16,20053000
+d30317a8-ad12-4199-aa2a-f06d95733271,Patient/05584e1b-3435-415a-af33-aad1fca40fad,active,order,00005,Aspirine,2023-11-05,,20045000
+8c2c58e2-3996-4611-8533-57aaa9757ca6,Patient/05584e1b-3435-415a-af33-aad1fca40fad,active,order,B01AB01,Héparine sodique,2023-11-05,,20045000
+ed7ce446-a1f6-46ad-8e10-e36574c8110c,Patient/05584e1b-3435-415a-af33-aad1fca40fad,active,order,C01CA03,Noradrénaline,2023-11-05,,20045000
+9521adeb-524f-4e9a-9736-32c0a636758e,Patient/05584e1b-3435-415a-af33-aad1fca40fad,active,order,37533,Ticagrélor,2023-11-05,,20045000
+17a31049-5fb3-442e-8f5f-e5a804ac195f,Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3,active,order,35232,Ceftriaxone,2024-01-12,,20045000
+4f3b8092-12fb-4523-8cea-3e74592802d0,Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3,active,order,N02BE01,Paracétamol,2024-01-12,,20053000
+42223c9d-b1e7-474d-8f10-631f8e099708,Patient/95ad2759-7eed-4146-8088-b74cc5ce847c,active,order,00005,Acide acétylsalicylique,2024-01-05,,20053000
+9cd48957-076c-4fcf-b917-2f6574499835,Patient/95ad2759-7eed-4146-8088-b74cc5ce847c,active,order,97658,Bisoprolol,2024-01-05,,20053000
+e40aa35e-22c3-4e08-8fbd-b8e66c5c835e,Patient/95ad2759-7eed-4146-8088-b74cc5ce847c,active,order,11532,Ramipril,2024-01-05,,20053000
+59e78c89-8d66-4e9c-8443-835847840a48,Patient/95ad2759-7eed-4146-8088-b74cc5ce847c,active,order,10171,Simvastatine,2024-01-05,,20053000
+9065fa99-64fb-4dec-898a-16e6af1a9f83,Patient/95ad2759-7eed-4146-8088-b74cc5ce847c,active,order,04458,Trinitrine,2024-01-05,,20053000
+7c2b924a-b043-40df-a7b6-876b9b909be5,Patient/00c2b477-4649-46af-aa82-2337558a1ec8,active,order,00823,Ketoprofene,2024-01-14,,20053000
+fb41fe33-c8f7-4c21-8b95-9b173e69dfc1,Patient/00c2b477-4649-46af-aa82-2337558a1ec8,active,order,10655,Metoclopramide,2024-01-14,,20053000
+5cf64a35-e3ec-4908-9a71-51a3dc008af4,Patient/00c2b477-4649-46af-aa82-2337558a1ec8,active,order,N02CC01,Sumatriptan,2024-01-14,,20053000
+474a076f-7345-4d58-bd96-3439db227ae1,Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a,active,order,08351,Enoxaparine,2024-01-11,2024-01-21,C38299
+bed770d1-5a51-446e-b55e-6f2ca3d06985,Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a,active,order,02202,Paracétamol,2024-01-11,,20053000
+934ec285-8bac-42b4-92b8-f092aa169349,Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a,active,order,35415,Tramadol,2024-01-14,,20053000
+ab3ae565-3a7f-491b-a2db-924e388ed918,Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba,active,order,B05AA01,albumine 20%,2024-01-13,2024-01-13,20045000
+cdf30d04-f8f8-4394-80b1-6272019086a3,Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba,active,order,01958,furosémide 40mg,2024-01-13,2024-02-13,20053000
+68dcf522-b285-4d25-85ba-539e734e618e,Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba,active,order,00977,spironolactone 25mg,2024-01-13,2024-02-13,20053000
+cb237502-fab1-4741-acbf-a5652ef5c553,Patient/21f4ee98-4940-4d54-b573-523bc7718a6d,active,order,96035,Azithromycine,2024-01-16,,20053000
+0366ab45-bd3a-4d2e-ad1b-875d2a3890be,Patient/21f4ee98-4940-4d54-b573-523bc7718a6d,active,order,94037,Nicopatch,2024-01-16,,FT162
+2493b9c4-d100-420f-b42a-1c6455069dce,Patient/21f4ee98-4940-4d54-b573-523bc7718a6d,active,order,94037,Nicorette gomme,,,20054000
+1a5943a0-adff-4020-8ca3-ee0807bdf587,Patient/21f4ee98-4940-4d54-b573-523bc7718a6d,active,order,00626,Salbutamol,2024-01-16,2024-04-16,20020000
+e587e0cc-b6d4-46f8-9be2-9f3ea76b8ca9,Patient/21f4ee98-4940-4d54-b573-523bc7718a6d,active,order,62553246,Ultibro Breezhaler,2024-01-16,2024-01-26,20020000

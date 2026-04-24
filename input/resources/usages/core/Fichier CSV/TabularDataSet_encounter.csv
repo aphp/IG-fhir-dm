@@ -1,0 +1,11 @@
+encounter_id,patient_ref,status,class_code,class_display,period_start,period_end,admit_source,discharge_disposition
+b3e979e5-b9e6-4ef6-b7b5-ca218cab44c7,Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487,finished,IMP,inpatient encounter,2024-01-10,2024-01-14,8,8
+fa55771d-6636-42ea-996a-8fe57e291f38,Patient/73285bbe-d64d-44b9-8cb6-864a376384c4,finished,IMP,inpatient encounter,2024-01-08,2024-01-10,8,8
+b16544a7-e91b-4e53-9a42-914e38c2727d,Patient/e569cdc5-6024-42bf-8e0f-7565583066b0,finished,IMP,inpatient encounter,2024-01-15,2024-01-18,8,8
+b2cde568-adbf-48b3-bcd9-dd8c7ccf4f7b,Patient/05584e1b-3435-415a-af33-aad1fca40fad,finished,IMP,inpatient encounter,2023-11-05,2023-11-07,8,8
+f769e4e3-c30e-4348-87ad-388d151d63d7,Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3,finished,IMP,inpatient encounter,2024-01-12,2024-01-16,8,8
+8042c565-c914-4a1d-aa31-dd710bd35e87,Patient/95ad2759-7eed-4146-8088-b74cc5ce847c,finished,IMP,inpatient encounter,2024-01-05,2024-01-07,8,8
+775e7473-7fa0-4950-94fe-4bd040437da8,Patient/00c2b477-4649-46af-aa82-2337558a1ec8,finished,IMP,inpatient encounter,2024-01-14,2024-01-16,8,8
+a77d9d30-48cf-478f-b19e-6c90f625b3dc,Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a,finished,IMP,inpatient encounter,2024-01-11,2024-01-14,Domicile,Domicile
+74f2a55a-f256-41c2-8f2c-9677ca2df273,Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba,finished,IMP,inpatient encounter,2024-01-13,2024-01-14,Domicile,Domicile
+1306bf6d-5a47-401e-82a7-19b009f0ae0c,Patient/21f4ee98-4940-4d54-b573-523bc7718a6d,finished,IMP,inpatient encounter,2024-01-16,2024-01-19,Domicile,Domicile
