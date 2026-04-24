@@ -1,0 +1,25 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "observation_simple",
+  "resource": "Observation",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "observation_id" },
+        { "path": "meta.profile.first()", "name": "profile" },
+        { "path": "status", "name": "status" },
+        { "path": "subject.reference", "name": "patient_reference" },
+        { "path": "effectiveDateTime", "name": "effective_date_time" },
+        { "path": "category.first().coding.first().code", "name": "category_code" },
+        { "path": "code.coding.first().code", "name": "loinc_code" },
+        { "path": "valueQuantity.where($this is Quantity).value", "name": "value" },
+        { "path": "valueQuantity.unit", "name": "unit" },
+        { "path": "referenceRange.first().low.value", "name": "ref_range_low" },
+        { "path": "referenceRange.first().high.value", "name": "ref_range_high" }
+      ]
+    }
+  ],
+  "where": [
+    { "path": "component.exists().not()" }
+  ]
+}

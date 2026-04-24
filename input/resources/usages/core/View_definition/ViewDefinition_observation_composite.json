@@ -1,0 +1,35 @@
+{
+  "resourceType": "ViewDefinition",
+  "id": "d0cf677a-fa4e-4a19-96cd-d64a2c6984a9",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/sql-on-fhir/StructureDefinition/ViewDefinition"
+    ]
+  },
+  "name": "observation_composite",
+  "resource": "Observation",
+  "select": [
+    {
+      "column": [
+        { "name": "observation_id", "path": "id" },
+        { "name": "profile", "path": "meta.profile.first()" },
+        { "name": "status", "path": "status" },
+        { "name": "patient_reference", "path": "subject.reference" },
+        { "name": "effective_date_time", "path": "effectiveDateTime" },
+        { "name": "category_code", "path": "category.first().coding.first().code" },
+        { "name": "loinc_code", "path": "code.coding.first().code" }
+      ]
+    },
+    {
+      "column": [
+        { "name": "component_loinc_code", "path": "code.coding.first().code" },
+        { "name": "component_value", "path": "valueQuantity.value" },
+        { "name": "component_unit", "path": "valueQuantity.unit" }
+      ],
+      "forEach": "component"
+    }
+  ],
+  "where": [
+    { "path": "component.exists()" }
+  ]
+}

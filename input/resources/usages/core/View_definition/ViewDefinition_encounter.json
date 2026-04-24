@@ -1,0 +1,20 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "encounter_flat",
+  "resource": "Encounter",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "encounter_id" },
+        { "path": "subject.reference", "name": "patient_ref" },
+        { "path": "status", "name": "status" },
+        { "path": "class.code", "name": "class_code" },
+        { "path": "class.display", "name": "class_display" },
+        { "path": "period.start", "name": "period_start" },
+        { "path": "period.end", "name": "period_end" },
+        { "path": "hospitalization.admitSource.coding.first().code", "name": "admit_source" },
+        { "path": "hospitalization.dischargeDisposition.coding.first().code", "name": "discharge_disposition" }
+      ]
+    }
+  ]
+}

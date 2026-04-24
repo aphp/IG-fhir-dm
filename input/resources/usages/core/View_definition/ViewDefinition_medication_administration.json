@@ -1,0 +1,21 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "medication_administration_flat",
+  "resource": "MedicationAdministration",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "medication_administration_id" },
+        { "path": "subject.reference", "name": "patient_ref" },
+        { "path": "status", "name": "status" },
+        { "path": "medication.ofType(CodeableConcept).coding.first().code", "name": "medication_code" },
+        { "path": "medication.ofType(CodeableConcept).coding.first().display", "name": "medication_name" },
+        { "path": "effective.ofType(Period).start", "name": "administration_start" },
+        { "path": "effective.ofType(Period).end", "name": "administration_end" },
+        { "path": "dosage.route.coding.first().code", "name": "route_code" },
+        { "path": "dosage.dose.value", "name": "dose_value" },
+        { "path": "dosage.dose.unit", "name": "dose_unit" }
+      ]
+    }
+  ]
+}

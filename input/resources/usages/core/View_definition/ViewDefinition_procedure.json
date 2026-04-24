@@ -1,0 +1,17 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "procedure_flat",
+  "resource": "Procedure",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "procedure_id" },
+        { "path": "subject.reference", "name": "patient_ref" },
+        { "path": "encounter.reference", "name": "encounter_ref" },
+        { "path": "status", "name": "status" },
+        { "path": "code.coding.first().code", "name": "code" },
+        { "path": "performed.ofType(dateTime)", "name": "performed_date" }
+      ]
+    }
+  ]
+}
