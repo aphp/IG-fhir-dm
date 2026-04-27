@@ -1,11 +1,11 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "patient_flat",
+  "name": "patient",
   "resource": "Patient",
   "select": [
     {
       "column": [
-        { "path": "id", "name": "patient_id" },
+        { "path": "getResourceKey()", "name": "patient_id" },
         { "path": "gender", "name": "gender" },
         { "path": "birthDate", "name": "birth_date" },
         { "path": "deceasedDateTime", "name": "deceased_date" },

@@ -1,12 +1,12 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "encounter_flat",
+  "name": "encounter",
   "resource": "Encounter",
   "select": [
     {
       "column": [
-        { "path": "id", "name": "encounter_id" },
-        { "path": "subject.reference", "name": "patient_ref" },
+        { "path": "getResourceKey()", "name": "encounter_id" },
+        { "path": "subject.getReferenceKey()", "name": "patient_id" },
         { "path": "status", "name": "status" },
         { "path": "class.code", "name": "class_code" },
         { "path": "class.display", "name": "class_display" },

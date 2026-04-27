@@ -5,10 +5,10 @@
   "select": [
     {
       "column": [
-        { "path": "id", "name": "observation_id" },
+        { "path": "getResourceKey()", "name": "observation_id" },
         { "path": "meta.profile.first()", "name": "profile" },
         { "path": "status", "name": "status" },
-        { "path": "subject.reference", "name": "patient_reference" },
+        { "path": "subject.getReferenceKey()", "name": "patient_id" },
         { "path": "effectiveDateTime", "name": "effective_date_time" },
         { "path": "category.first().coding.first().code", "name": "category_code" },
         { "path": "code.coding.first().code", "name": "loinc_code" },

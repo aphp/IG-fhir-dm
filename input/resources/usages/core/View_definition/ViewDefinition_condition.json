@@ -1,13 +1,13 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "condition_flat",
+  "name": "condition",
   "resource": "Condition",
   "select": [
     {
       "column": [
-        { "path": "id", "name": "condition_id" },
-        { "path": "subject.reference", "name": "patient_ref" },
-        { "path": "encounter.reference", "name": "encounter_ref" },
+        { "path": "getResourceKey()", "name": "condition_id" },
+        { "path": "subject.getReferenceKey()", "name": "patient_id" },
+        { "path": "encounter.getReferenceKey()", "name": "encounter_id" },
         { "path": "code.coding.first().code", "name": "code" },
         { "path": "category.first().coding.first().code", "name": "category" },
         { "path": "recordedDate", "name": "recorded_date" }

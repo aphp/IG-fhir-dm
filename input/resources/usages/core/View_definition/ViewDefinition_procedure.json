@@ -1,13 +1,13 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "procedure_flat",
+  "name": "procedure",
   "resource": "Procedure",
   "select": [
     {
       "column": [
-        { "path": "id", "name": "procedure_id" },
-        { "path": "subject.reference", "name": "patient_ref" },
-        { "path": "encounter.reference", "name": "encounter_ref" },
+        { "path": "getResourceKey()", "name": "procedure_id" },
+        { "path": "subject.getReferenceKey()", "name": "patient_id" },
+        { "path": "encounter.getReferenceKey()", "name": "encounter_id" },
         { "path": "status", "name": "status" },
         { "path": "code.coding.first().code", "name": "code" },
         { "path": "performed.ofType(dateTime)", "name": "performed_date" }

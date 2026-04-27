@@ -1,12 +1,12 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "medication_administration_flat",
+  "name": "medication_administration",
   "resource": "MedicationAdministration",
   "select": [
     {
       "column": [
-        { "path": "id", "name": "medication_administration_id" },
-        { "path": "subject.reference", "name": "patient_ref" },
+        { "path": "getResourceKey()", "name": "medication_administration_id" },
+        { "path": "subject.getReferenceKey()", "name": "patient_id" },
         { "path": "status", "name": "status" },
         { "path": "medication.ofType(CodeableConcept).coding.first().code", "name": "medication_code" },
         { "path": "medication.ofType(CodeableConcept).coding.first().display", "name": "medication_name" },

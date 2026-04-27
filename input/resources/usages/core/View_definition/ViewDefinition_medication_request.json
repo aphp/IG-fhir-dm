@@ -1,12 +1,12 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "medication_request_flat",
+  "name": "medication_request",
   "resource": "MedicationRequest",
   "select": [
     {
       "column": [
-        { "path": "id", "name": "medication_request_id" },
-        { "path": "subject.reference", "name": "patient_ref" },
+        { "path": "getResourceKey()", "name": "medication_request_id" },
+        { "path": "subject.getReferenceKey()", "name": "patient_id" },
         { "path": "status", "name": "status" },
         { "path": "intent", "name": "intent" },
         { "path": "medication.ofType(CodeableConcept).coding.first().code", "name": "medication_code" },
