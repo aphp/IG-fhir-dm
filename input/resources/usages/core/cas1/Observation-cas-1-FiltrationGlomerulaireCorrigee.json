@@ -13,7 +13,8 @@
       }],
       "code" : {
         "coding" : [{"system" : "http://loinc.org",
-          "code" : "62238-1"
+          "code" : "62238-1",
+          "display" : "DFG"
         }]
       },
       "subject" : {

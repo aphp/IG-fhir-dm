@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "NBCA008"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "NBCA008",
+          "display" : "Osteosynthese de fracture du grand trochanter"
         }]
       },
       "subject" : {

@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "ACQJ002"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "ACQJ002",
+          "display" : "Remnographie [IRM] du crâne et de son contenu, avec injection intraveineuse de produit de contraste"
         }]
       },
       "subject" : {

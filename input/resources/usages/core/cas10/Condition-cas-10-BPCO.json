@@ -7,12 +7,14 @@
       "category" : [{
         "coding" : [{
           "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
-          "code" : "Principal"
+          "code" : "DP",
+          "display" : "Diagnostic Principal"
         }]
       }],
       "code" : {
-        "coding" : [{
-          "code" : "Maladie pulmonaire obstructive chronique avec épisodes aigus, sans précision"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "J44.9",
+         "display" : "Maladie pulmonaire obstructive chronique, sans précision"
         }]
       },
       "subject" : {

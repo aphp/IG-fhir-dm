@@ -7,8 +7,8 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "11532",
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "C09AA05",
           "display" : "Ramipril 5 mg"
         }]
       },
@@ -25,8 +25,9 @@
           }
         },
         "route" : {
-          "coding" : [{
-            "code" : "20053000"
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
           }]
         }
       }]

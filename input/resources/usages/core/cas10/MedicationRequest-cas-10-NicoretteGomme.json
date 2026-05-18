@@ -7,18 +7,27 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "94037",
-          "display" : "Nicorette gomme "
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+        "code" : "N07BA01",
+          "display" :  "Nicotine",
+              "text" : "Nicorette gomme "
         }]
       },
       "subject" : {
         "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
       },
-      "dosageInstruction" : [{
+      "dosageInstruction" : [{"timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-16"
+            }
+          }
+        },
         "route" : {
           "coding" : [{
-            "code" : "20054000"
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20054000",
+            "display" : "Voie buccale"
           }]
         }
       }]

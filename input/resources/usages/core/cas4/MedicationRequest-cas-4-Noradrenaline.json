@@ -7,9 +7,10 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
+        "coding" : [{"system" : "http://www.whocc.no/atc",
           "code" : "C01CA03",
-          "display" : "Noradrénaline"
+          "display" : "Norepinephrine",
+          "text": "Noradrénaline"
         }]
       },
       "subject" : {
@@ -25,7 +26,9 @@
         },
         "route" : {
           "coding" : [{
-            "code" : "20045000"
+            "system" : "http://standardterms.edqm.eu",
+            "code" : "20045000",
+            "display" : "Voie intraveineuse"
           }]
         }
       }]

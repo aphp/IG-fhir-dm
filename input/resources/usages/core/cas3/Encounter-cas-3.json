@@ -20,12 +20,16 @@
       "hospitalization" : {
         "admitSource" : {
           "coding" : [{
-            "code" : "8"
+          "system": "http://terminology.hl7.org/CodeSystem/admit-source",
+        "code": "other",
+        "display": "Other"
           }]
         },
         "dischargeDisposition" : {
           "coding" : [{
-            "code" : "8"
+          "system": "http://terminology.hl7.org/CodeSystem/discharge-disposition",
+        "code": "home",
+        "display": "Home"
           }]
         }
       }

@@ -13,7 +13,8 @@
       }],
       "code" : {
         "coding" : [{"system" : "http://loinc.org",
-          "code" : "6690-2"
+          "code" : "6690-2",
+          "display" : "Leucocytes"
         }]
       },
       "subject" : {

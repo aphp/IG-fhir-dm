@@ -6,9 +6,10 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "94037",
-          "display" : "Nicopatch"
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "N07BA01",
+          "display" :  "Nicotine",
+                  "text": "Nicopatch 15 mg/24 heures, dispositif transdermique"
         }]
       },
       "subject" : {
@@ -20,8 +21,9 @@
       },
       "dosage" : {
         "route" : {
-          "coding" : [{
-            "code" : "FT162"
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20070000",
+            "display" : "Voie transdermique"
           }]
         },
         "dose" : {

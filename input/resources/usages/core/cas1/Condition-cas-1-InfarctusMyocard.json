@@ -7,12 +7,14 @@
       "category" : [{
         "coding" : [{
           "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
-          "code" : "DP"
+          "code" : "DP",
+          "display" : "Diagnostic principal"
         }]
       }],
       "code" : {
-        "coding" : [{
-          "code" : "I21.9"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "I21.9",
+          "display" : "Infarctus aigu du myocarde, sans précision"
         }]
       },
       "subject" : {

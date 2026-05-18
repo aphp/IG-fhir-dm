@@ -7,8 +7,8 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "00823",
+        "coding" : [{"system": "http://www.whocc.no/atc",
+          "code" : "M02AA10",
           "display" : "Ketoprofene "
         }]
       },
@@ -25,7 +25,9 @@
         },
         "route" : {
           "coding" : [{
-            "code" : "20053000"
+            "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
           }]
         }
       }]

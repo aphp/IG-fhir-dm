@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "DEQP003"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "DEQP003",
+          "display" : "Electrocardiographie sur au moins 12 dérivations"
         }]
       },
       "subject" : {

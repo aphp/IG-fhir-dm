@@ -7,12 +7,14 @@
       "category" : [{
         "coding" : [{
           "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
-          "code" : "DA"
+          "code" : "DA",
+          "display" : "Diagnostic associe"
         }]
       }],
       "code" : {
-        "coding" : [{
-          "code" : "I10"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "I10",
+          "display" : "Hypertension essentielle"
         }]
       },
       "subject" : {

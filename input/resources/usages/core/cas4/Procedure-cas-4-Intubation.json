@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "GELD004"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "GELD004",
+          "display" : "Intubation tracheale"
         }]
       },
       "subject" : {

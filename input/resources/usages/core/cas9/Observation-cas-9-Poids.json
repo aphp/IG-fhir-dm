@@ -15,7 +15,8 @@
       "code" : {
         "coding" : [{
           "system" : "http://loinc.org",
-          "code" : "29463-7"
+          "code" : "29463-7",
+          "display" : "Poids"
         }]
       },
       "subject" : {

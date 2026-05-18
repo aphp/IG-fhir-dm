@@ -13,7 +13,8 @@
       }],
       "code" : {
         "coding" : [{"system" : "http://loinc.org",
-          "code" : "14682-9"
+          "code" : "14682-9",
+          "display" : "Creatinine"
         }]
       },
       "subject" : {

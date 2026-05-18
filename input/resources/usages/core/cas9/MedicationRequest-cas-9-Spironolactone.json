@@ -7,9 +7,9 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "00977",
-          "display" : "spironolactone 25mg"
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "C03DA01",
+          "display" : "Spironolactone"
         }]
       },
       "subject" : {

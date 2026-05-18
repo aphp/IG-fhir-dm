@@ -6,9 +6,9 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
+        "coding" : [{"system" : "http://www.whocc.no/atc",
           "code" : "A02BC01",
-          "display" : "Oméprazole 20mg"
+          "display" : "Omeprazole 20mg"
         }]
       },
       "subject" : {
@@ -21,7 +21,9 @@
       "dosage" : {
         "route" : {
           "coding" : [{
-            "code" : "20053000"
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie orale"
           }]
         },
         "dose" : {

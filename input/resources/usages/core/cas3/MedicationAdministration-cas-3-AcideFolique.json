@@ -6,7 +6,7 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
+        "coding" : [{"system" : "http://www.whocc.no/atc",
           "code" : "B03BB01",
           "display" : "Acide folique 5mg"
         }]
@@ -21,7 +21,9 @@
       "dosage" : {
         "route" : {
           "coding" : [{
-            "code" : "20053000"
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie orale"
           }]
         },
         "dose" : {

@@ -7,12 +7,14 @@
       "category" : [{
         "coding" : [{
           "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
-          "code" : "Associé"
+          "code" : "DA",
+          "display" : "Diagnostic associe"
         }]
       }],
       "code" : {
-        "coding" : [{
-          "code" : "Antécédents personnels d'allergie à la pénicilline"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "Z88.0",
+          "display" : "Antecedents personnels d'allergie à la penicilline"
         }]
       },
       "subject" : {

@@ -7,8 +7,8 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "10171",
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "C10AA01",
           "display" : "Simvastatine "
         }]
       },
@@ -25,7 +25,9 @@
         },
         "route" : {
           "coding" : [{
-            "code" : "20053000"
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
           }]
         }
       }]

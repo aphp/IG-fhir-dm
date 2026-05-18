@@ -6,8 +6,8 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "00626",
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "R03CC02",
           "display" : "Salbutamol"
         }]
       },
@@ -20,8 +20,9 @@
       },
       "dosage" : {
         "route" : {
-          "coding" : [{
-            "code" : "20020000"
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20020000",
+            "display" : "Voie inhalée"
           }]
         },
         "dose" : {

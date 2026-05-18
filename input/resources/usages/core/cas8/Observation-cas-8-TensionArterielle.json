@@ -15,7 +15,8 @@
       "code" : {
         "coding" : [{
           "system" : "http://loinc.org",
-          "code" : "85354-9"
+          "code" : "85354-9",
+          "display" : "Pression arterielle"
         }]
       },
       "subject" : {
@@ -26,7 +27,8 @@
         "code" : {
           "coding" : [{
             "system" : "http://loinc.org",
-            "code" : "8480-6"
+            "code" : "8480-6",
+            "display" : "Pression arterielle systolique"
           }]
         },
         "valueQuantity" : {
@@ -40,7 +42,8 @@
         "code" : {
           "coding" : [{
             "system" : "http://loinc.org",
-            "code" : "8462-4"
+            "code" : "8462-4",
+            "display" : "Pression arterielle diastolique"
           }]
         },
         "valueQuantity" : {

@@ -6,8 +6,8 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "96035",
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "J01FA10",
           "display" : "Azithromycine "
         }]
       },
@@ -21,7 +21,9 @@
       "dosage" : {
         "route" : {
           "coding" : [{
-            "code" : "20053000"
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
           }]
         },
         "dose" : {

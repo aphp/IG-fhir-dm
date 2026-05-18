@@ -7,12 +7,14 @@
       "category" : [{
         "coding" : [{
           "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
-          "code" : "Principal"
+          "code" : "DP",
+          "display" : "Diagnostic Principal"
         }]
       }],
       "code" : {
-        "coding" : [{
-          "code" : "Fracture du trochanter"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "S72.1",
+          "display" : "Fracture du trochanter"
         }]
       },
       "subject" : {

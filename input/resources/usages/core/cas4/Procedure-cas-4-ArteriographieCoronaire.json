@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "DDQH012"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "DDQH012",
+          "display" : "Artériographie coronaire avec ventriculographie gauche, par voie artérielle transcutanée"
         }]
       },
       "subject" : {

@@ -6,9 +6,9 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "00977",
-          "display" : "spironolactone 25mg"
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "C03DA01",
+          "display" : "Spironolactone"
         }]
       },
       "subject" : {
@@ -21,7 +21,9 @@
       "dosage" : {
         "route" : {
           "coding" : [{
-            "code" : "20053000"
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
           }]
         },
         "dose" : {

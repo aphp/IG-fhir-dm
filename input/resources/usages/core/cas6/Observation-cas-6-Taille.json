@@ -15,7 +15,8 @@
       "code" : {
         "coding" : [{
           "system" : "http://loinc.org",
-          "code" : "8302-2"
+          "code" : "8302-2",
+          "display" : "Taille"
         }]
       },
       "subject" : {

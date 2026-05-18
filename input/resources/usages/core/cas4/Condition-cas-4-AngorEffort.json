@@ -7,12 +7,14 @@
       "category" : [{
         "coding" : [{
           "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
-          "code" : "DA"
+          "code" : "DA", 
+          "display" : "Diagnostic associe"
         }]
       }],
       "code" : {
-        "coding" : [{
-          "code" : "BA40.0"
+        "coding" : [{"system" : "http://id.who.int/fhir/icd/release/11",
+          "code" : "BA40.0",
+          "display" : "Angor instable"
         }]
       },
       "subject" : {

@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "HPHB003"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "HPHB003",
+          "display" : "Ponction d'un épanchement peritoneal, par voie transcutanee"
         }]
       },
       "subject" : {

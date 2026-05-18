@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "DDAF007"
+        "coding" : [{ "system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "DDAF007", 
+          "display" : "Dilatation intraluminale de 2 vaisseaux coronaires avec arteriographie coronaire, avec pose d'endoprothese, par voie arterielle transcutanee"
         }]
       },
       "subject" : {

@@ -7,12 +7,14 @@
       "category" : [{
         "coding" : [{
           "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
-          "code" : "DAS"
+          "code" : "DA",
+          "display" : "Diagnostic Principal"
         }]
       }],
       "code" : {
-        "coding" : [{
-          "code" : "Cirrhose alcoolique du foie"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "K70.3",
+         "display" : "Cirrhose alcoolique du foie"
         }]
       },
       "subject" : {

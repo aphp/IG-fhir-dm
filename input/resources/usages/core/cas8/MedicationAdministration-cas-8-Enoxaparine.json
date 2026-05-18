@@ -6,8 +6,8 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "08351",
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "B01AB05",
           "display" : "Enoxaparine"
         }]
       },
@@ -20,8 +20,9 @@
       },
       "dosage" : {
         "route" : {
-          "coding" : [{
-            "code" : "C38299"
+          "coding" : [{"system" : "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+            "code" : "C38299",
+            "display" : "voie sous-cutanee"
           }]
         },
         "dose" : {

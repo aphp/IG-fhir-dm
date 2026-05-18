@@ -6,10 +6,10 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
+        "coding" : [{"system" : "http://www.whocc.no/atc",
           "code" : "B01AC06",
-          "display" : "Aspirine 75mg"
-        }]
+          "display" : "Acide acetylsalicylique",
+           "text" : "Aspirine 75mg"}]
       },
       "subject" : {
         "reference" : "Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487"
@@ -20,8 +20,9 @@
       },
       "dosage" : {
         "route" : {
-          "coding" : [{
-            "code" : "20053000"
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie orale"
           }]
         },
         "dose" : {

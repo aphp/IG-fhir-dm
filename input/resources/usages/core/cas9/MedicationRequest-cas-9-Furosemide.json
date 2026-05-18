@@ -7,9 +7,9 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "01958",
-          "display" : "furosémide 40mg"
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "C03CA01",
+          "display" : "Furosemide"
         }]
       },
       "subject" : {

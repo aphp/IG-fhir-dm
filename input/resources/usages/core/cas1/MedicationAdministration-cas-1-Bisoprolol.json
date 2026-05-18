@@ -6,9 +6,9 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "97658",
-          "display" : "Bisoprolol 10mg"
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "C07AB07",
+          "display" : "Bisoprolol"
         }]
       },
       "subject" : {
@@ -20,8 +20,9 @@
       },
       "dosage" : {
         "route" : {
-          "coding" : [{
-            "code" : "20053000"
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie orale"
           }]
         },
         "dose" : {

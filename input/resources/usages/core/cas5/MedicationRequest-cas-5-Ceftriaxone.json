@@ -8,7 +8,8 @@
       "intent" : "order",
       "medicationCodeableConcept" : {
         "coding" : [{
-          "code" : "35232",
+          "system" : "http://www.whocc.no/atc",
+          "code" : "J01DD04",
           "display" : "Ceftriaxone"
         }]
       },
@@ -25,7 +26,9 @@
         },
         "route" : {
           "coding" : [{
-            "code" : "20045000"
+            "system" : "http://standardterms.edqm.eu",
+            "code" : "20045000",
+            "display" : "Voie intraveineuse"
           }]
         }
       }]

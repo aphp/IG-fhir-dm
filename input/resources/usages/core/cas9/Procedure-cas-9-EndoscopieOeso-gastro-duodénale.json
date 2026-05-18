@@ -6,8 +6,9 @@
       },
       "status" : "completed",
       "code" : {
-        "coding" : [{
-          "code" : "HEQE002"
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "HEQE002",
+          "display" : "Endoscopie oeso-gastro-duodénale"
         }]
       },
       "subject" : {

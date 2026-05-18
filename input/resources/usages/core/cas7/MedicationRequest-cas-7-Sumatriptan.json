@@ -7,7 +7,7 @@
       "status" : "active",
       "intent" : "order",
       "medicationCodeableConcept" : {
-        "coding" : [{
+        "coding" : [{"system" : "http://www.whocc.no/atc",
           "code" : "N02CC01",
           "display" : "Sumatriptan"
         }]
@@ -25,7 +25,9 @@
         },
         "route" : {
           "coding" : [{
-            "code" : "20053000"
+            "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
           }]
         }
       }]

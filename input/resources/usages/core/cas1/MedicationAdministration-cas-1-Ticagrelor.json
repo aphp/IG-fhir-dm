@@ -6,8 +6,8 @@
       },
       "status" : "completed",
       "medicationCodeableConcept" : {
-        "coding" : [{
-          "code" : "37533",
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "B01AC24",
           "display" : "Ticagrelor 90mg"
         }]
       },
@@ -20,8 +20,9 @@
       },
       "dosage" : {
         "route" : {
-          "coding" : [{
-            "code" : "20053000"
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
           }]
         },
         "dose" : {
