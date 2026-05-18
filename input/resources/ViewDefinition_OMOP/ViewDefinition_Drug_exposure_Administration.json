@@ -1,0 +1,27 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "drug_exposure_administration",
+  "resource": "MedicationAdministration",
+  "select": [
+    {
+      "column": [
+        {"path": "id","name": "drug_exposure_id"},
+        {"path": "subject.reference","name": "person_id"},
+        {"path": "effective.ofType(Period).start","name": "drug_exposure_start_date"},
+        {"path": "effective.ofType(Period).start","name": "drug_exposure_start_datetime"},
+        {"path": "effective.ofType(Period).end","name": "drug_exposure_end_date"},
+        {"path": "effective.ofType(Period).end","name": "drug_exposure_end_datetime"},
+        {"path": "0","name": "drug_concept_id"},
+        {"path": "medication.ofType(CodeableConcept).coding.first().display","name": "drug_source_value"},
+        {"path": "medication.ofType(CodeableConcept).coding.first().code","name": "drug_source_concept_id"},
+        {"path": "medication.ofType(CodeableConcept).coding.first().system","name": "drug_coding_source_system"},
+        {"path": "38000180","name": "drug_type_concept_id"},
+        {"path": "dosage.route.coding.first().display","name": "route_source_value"},
+        {"path": "dosage.route.coding.first().code","name": "route_source_concept_id"},
+        {"path": "dosage.route.coding.first().system","name": "route_coding_source_system"},
+        {"path": "dosage.dose.value","name": "quantity"},
+        {"path": "dosage.dose.unit","name": "dose_unit_source_value"}
+      ]
+    }
+  ]
+}

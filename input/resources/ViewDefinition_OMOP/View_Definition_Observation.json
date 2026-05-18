@@ -1,0 +1,22 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "observation",
+  "resource": "Condition",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "observation_id" },
+        { "path": "subject.reference", "name": "person_id" },
+        { "path": "encounter.reference", "name": "visit_occurrence_id" },
+        { "path": "recordedDate", "name": "observation_date" },
+        { "path": "recordedDate", "name": "observation_datetime" },
+        { "path": "0", "name": "observation_concept_id" },
+        { "path": "code.coding.first().display", "name": "observation_source_value" },
+        { "path": "code.coding.first().code", "name": "observation_source_concept_id" },
+        { "path": "code.coding.first().system", "name": "observation_coding_source_system" },
+        { "path": "38000280", "name": "observation_type_concept_id" }
+      ]
+    }
+  ],
+  "where": [{ "path": "code.coding.where(code = 'Z87.2' or code = 'Z37.0' or code = 'Z88.0').exists()" }]
+}

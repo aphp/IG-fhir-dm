@@ -1,0 +1,31 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "measurement_blood_pressure",
+  "resource": "Observation",
+  "select": [
+    {
+      "column": [
+        {"path": "id","name": "measurement_id"},
+        {"path": "subject.reference","name": "person_id"},
+        {"path": "effectiveDateTime","name": "measurement_date"},
+        {"path": "0","name": "measurement_concept_id"},
+        {"path": "code.coding.first().display","name": "measurement_source_value"},
+        {"path": "code.coding.first().code","name": "measurement_source_concept_id"},
+        {"path": "code.coding.first().system","name": "measurement_coding_source_system"},
+        {"path": "44818702","name": "measurement_type_concept_id"}
+      ]
+    },
+    {
+      "column": [
+        {"path": "code.coding.first().code","name": "component_source_concept_id"},
+        {"path": "code.coding.first().display","name": "component_source_value"},
+        {"path": "code.coding.first().system","name": "component_coding_source_system"},
+        {"path": "valueQuantity.where($this is Quantity).value","name": "value_as_number"},
+        {"path": "valueQuantity.code","name": "unit_concept_id"},
+        {"path": "valueQuantity.code","name": "unit_source_concept_id"},
+        {"path": "valueQuantity.unit","name": "unit_source_value"}
+      ],"forEach": "component"
+    }
+  ],
+  "where": [{"path": "component.exists()"}]
+}
