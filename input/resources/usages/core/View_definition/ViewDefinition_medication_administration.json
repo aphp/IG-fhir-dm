@@ -1,20 +1,23 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "medication_administration",
+  "name": "fhir_medication_administration",
   "resource": "MedicationAdministration",
   "select": [
     {
       "column": [
-        { "path": "getResourceKey()", "name": "medication_administration_id" },
-        { "path": "subject.getReferenceKey()", "name": "patient_id" },
-        { "path": "status", "name": "status" },
+        { "path": "id", "name": "id" },
+        { "path": "subject.reference", "name": "patient_reference" },
+        { "path": "status", "name": "statut" },
+        { "path": "medication.ofType(CodeableConcept).coding.first().system", "name": "medication_system" },
         { "path": "medication.ofType(CodeableConcept).coding.first().code", "name": "medication_code" },
-        { "path": "medication.ofType(CodeableConcept).coding.first().display", "name": "medication_name" },
-        { "path": "effective.ofType(Period).start", "name": "administration_start" },
-        { "path": "effective.ofType(Period).end", "name": "administration_end" },
+        { "path": "medication.ofType(CodeableConcept).coding.first().display", "name": "medication_libelle" },
+        { "path": "effective.ofType(Period).start", "name": "date_debut" },
+        { "path": "effective.ofType(Period).end", "name": "date_fin" },
+        { "path": "dosage.route.coding.first().system", "name": "route_system" },
         { "path": "dosage.route.coding.first().code", "name": "route_code" },
-        { "path": "dosage.dose.value", "name": "dose_value" },
-        { "path": "dosage.dose.unit", "name": "dose_unit" }
+        { "path": "dosage.route.coding.first().display", "name": "route_libelle" },
+        { "path": "dosage.dose.value", "name": "dose_valeur" },
+        { "path": "dosage.dose.unit", "name": "dose_unite" }
       ]
     }
   ]

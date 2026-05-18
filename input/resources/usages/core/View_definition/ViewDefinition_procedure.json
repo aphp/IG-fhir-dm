@@ -1,16 +1,18 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "procedure",
+  "name": "fhir_procedure",
   "resource": "Procedure",
   "select": [
     {
       "column": [
-        { "path": "getResourceKey()", "name": "procedure_id" },
-        { "path": "subject.getReferenceKey()", "name": "patient_id" },
-        { "path": "encounter.getReferenceKey()", "name": "encounter_id" },
-        { "path": "status", "name": "status" },
-        { "path": "code.coding.first().code", "name": "code" },
-        { "path": "performed.ofType(dateTime)", "name": "performed_date" }
+        { "path": "id", "name": "id" },
+        { "path": "subject.reference", "name": "patient_reference" },
+        { "path": "encounter.reference", "name": "visit_medical_reference" },
+        { "path": "status", "name": "statut" },
+        { "path": "code.coding.first().system", "name": "procedure_system" },
+        { "path": "code.coding.first().code", "name": "procedure_code" },
+        { "path": "code.coding.first().display", "name": "procedure_libelle" },
+        { "path": "performed.ofType(dateTime)", "name": "date_heure" }
       ]
     }
   ]
