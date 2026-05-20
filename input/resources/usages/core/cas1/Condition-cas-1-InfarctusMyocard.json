@@ -14,7 +14,7 @@
       "code" : {
         "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
           "code" : "I21.9",
-          "display" : "Infarctus aigu du myocarde, sans précision"
+          "display" : "Infarctus aigu du myocarde, sans precision"
         }]
       },
       "subject" : {

@@ -8,6 +8,7 @@
         { "path": "id", "name": "condition_occurrence_id" },
         { "path": "subject.reference", "name": "person_id" },
         { "path": "encounter.reference", "name": "visit_occurrence_id" },
+        { "path": "encounter.reference", "name": "visit_detail_id" },
         { "path": "recordedDate", "name": "condition_start_date" },
         { "path": "0", "name": "condition_concept_id" },
         { "path": "code.coding.first().display", "name": "condition_source_value" },

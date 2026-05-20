@@ -7,6 +7,8 @@
       "column": [
         {"path": "id","name": "drug_exposure_id"},
         {"path": "subject.reference","name": "person_id"},
+        { "path": "encounter.reference", "name": "visit_occurrence_id" },
+        { "path": "encounter.reference", "name": "visit_detail_id" },
         {"path": "dosageInstruction.first().timing.repeat.bounds.ofType(Period).start","name": "drug_exposure_start_date"},
         {"path": "dosageInstruction.first().timing.repeat.bounds.ofType(Period).end","name": "drug_exposure_end_date"},
         {"path": "0","name": "drug_concept_id"},

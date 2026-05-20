@@ -14,6 +14,9 @@
       "subject" : {
         "reference" : "Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a"
       },
+      "encounter" : {
+        "reference" : "Encounter/a77d9d30-48cf-478f-b19e-6c90f625b3dc"
+      },
       "effectivePeriod" : {
         "start" : "2024-01-11T21:23:08.404Z",
         "end" : "2024-01-11T21:37:45.463Z"

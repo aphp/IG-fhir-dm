@@ -14,7 +14,7 @@
       "code" : {
         "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
           "code" : "R57.0",
-          "display" : "Choc cardiogénique"
+          "display" : "Choc cardiognique"
         }]
       },
       "subject" : {

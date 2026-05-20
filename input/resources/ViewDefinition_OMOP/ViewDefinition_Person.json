@@ -8,6 +8,9 @@
         {"path": "id","name": "person_id"},
         {"path": "gender.where($this = 'female').count() * 8532 + gender.where($this = 'male').count() * 8507","name": "gender_concept_id"},
         {"path": "birthDate","name": "birth_date"},
+        {"path": "birthDate","name": "year_of_birth"},
+        {"path": "birthDate","name": "month_of_birth"},
+        {"path": "birthDate","name": "day_of_birth"},
         {"path": "id","name": "location_id"},
         {"path": "gender","name": "gender_source_value"}
       ]

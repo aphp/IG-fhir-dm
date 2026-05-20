@@ -8,6 +8,7 @@
         { "path": "id", "name": "observation_id" },
         { "path": "subject.reference", "name": "person_id" },
         { "path": "encounter.reference", "name": "visit_occurrence_id" },
+        { "path": "encounter.reference", "name": "visit_detail_id" },
         { "path": "recordedDate", "name": "observation_date" },
         { "path": "recordedDate", "name": "observation_datetime" },
         { "path": "0", "name": "observation_concept_id" },

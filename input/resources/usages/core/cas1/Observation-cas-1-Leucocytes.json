@@ -21,6 +21,9 @@
       "subject" : {
         "reference" : "Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487"
       },
+      "encounter" : {
+        "reference" : "Encounter/b3e979e5-b9e6-4ef6-b7b5-ca218cab44c7"
+      },
       "effectiveDateTime" : "2024-10-01T06:00:00.325Z",
       "valueQuantity" : {
         "value" : 7,

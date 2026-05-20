@@ -15,6 +15,9 @@
       "subject" : {
         "reference" : "Patient/00c2b477-4649-46af-aa82-2337558a1ec8"
       },
+      "encounter" : {
+        "reference" : "Encounter/775e7473-7fa0-4950-94fe-4bd040437da8"
+      },
       "dosageInstruction" : [{
         "timing" : {
           "repeat" : {

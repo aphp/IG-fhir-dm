@@ -8,7 +8,7 @@
       "code" : {
         "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
           "code" : "DDQH009",
-          "display" : "Artériographie coronaire sans ventriculographie gauche, par voie artérielle transcutanée"
+          "display" : "Arteriographie coronaire sans ventriculographie gauche, par voie arterielle transcutanee"
         }]
       },
       "subject" : {

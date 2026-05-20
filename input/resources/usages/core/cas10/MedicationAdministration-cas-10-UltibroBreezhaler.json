@@ -8,12 +8,15 @@
       "medicationCodeableConcept" : {
         "coding" : [{"system" : "http://www.whocc.no/atc",
           "code" : "R03AL04",
-          "display" : "indacatérol et bromure de glycopyrronium",
+          "display" : "indacaterol et bromure de glycopyrronium",
             "text" : "ULTIBRO BREEZHALER 85 microgrammes/43 microgrammes, poudre pour inhalation en gelule"
         }]
       },
       "subject" : {
         "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "encounter" : {
+        "reference" : "Encounter/1306bf6d-5a47-401e-82a7-19b009f0ae0c"
       },
       "effectivePeriod" : {
         "start" : "2024-01-16T08:00:00.000Z",
@@ -24,7 +27,7 @@
           "coding" : [{
           "system" : "http://standardterms.edqm.eu",
             "code" : "20020000",
-            "display" : "Voie inhalée"
+            "display" : "Voie inhalee"
           }]
         },
         "dose" : {

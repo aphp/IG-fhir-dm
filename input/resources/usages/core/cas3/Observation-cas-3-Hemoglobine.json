@@ -20,6 +20,9 @@
       "subject" : {
         "reference" : "Patient/e569cdc5-6024-42bf-8e0f-7565583066b0"
       },
+      "encounter" : {
+        "reference" : "Encounter/b16544a7-e91b-4e53-9a42-914e38c2727d"
+      },
       "effectiveDateTime" : "2024-01-15T05:00:00.000Z",
       "valueQuantity" : {
         "value" : 11.8,

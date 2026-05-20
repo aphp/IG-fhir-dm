@@ -22,6 +22,9 @@
       "subject" : {
         "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
       },
+      "encounter" : {
+        "reference" : "Encounter/8042c565-c914-4a1d-aa31-dd710bd35e87"
+      },
       "effectiveDateTime" : "2024-01-05",
       "component" : [{
         "code" : {

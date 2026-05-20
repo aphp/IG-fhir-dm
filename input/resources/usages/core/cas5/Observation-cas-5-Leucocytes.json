@@ -20,6 +20,9 @@
       "subject" : {
         "reference" : "Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3"
       },
+      "encounter" : {
+        "reference" : "Encounter/f769e4e3-c30e-4348-87ad-388d151d63d7"
+      },
       "effectiveDateTime" : "2024-01-12T07:29:19.180Z",
       "valueQuantity" : {
         "value" : 18,

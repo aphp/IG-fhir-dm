@@ -38,7 +38,7 @@
         "_line" : [{
           "extension" : [{
             "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
-            "valueString" : "Folie Méricourt 6"
+            "valueString" : "Folie Mericourt 6"
           }]
         }]
       }],

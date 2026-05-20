@@ -14,7 +14,7 @@
       "code" : {
         "coding" : [{"system": "http://hl7.org/fhir/sid/icd-10",
           "code" : "J80",
-          "display" : "Syndrome de détresse respiratoire aigüe"
+          "display" : "Syndrome de detresse respiratoire aigüe"
         }]
       },
       "subject" : {

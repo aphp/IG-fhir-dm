@@ -14,6 +14,7 @@
         {"path": "id","name": "procedure_occurrence_id"},
         {"path": "subject.reference","name": "person_id"},
         {"path": "encounter.reference","name": "visit_occurrence_id"},
+        { "path": "encounter.reference", "name": "visit_detail_id" },
         {"path": "performed.ofType(dateTime)","name": "procedure_date"},
         {"path": "performed.ofType(dateTime)","name": "procedure_datetime"},
         {"path": "0","name": "procedure_concept_id"},
