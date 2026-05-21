@@ -1,11 +1,5 @@
 {
   "resourceType": "ViewDefinition",
-  "id": "5a8ee8eb-8063-48d9-b015-54f68b064bad",
-  "meta": {
-    "profile": [
-      "http://hl7.org/fhir/uv/sql-on-fhir/StructureDefinition/ViewDefinition"
-    ]
-  },
   "name": "procedure_occurrence",
   "resource": "Procedure",
   "select": [
