@@ -1,0 +1,24 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "condition_occurrence",
+  "resource": "Condition",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "condition_occurrence_id" },
+        { "path": "subject.reference", "name": "person_id" },
+        { "path": "encounter.reference", "name": "visit_occurrence_id" },
+        { "path": "encounter.reference", "name": "visit_detail_id" },
+        { "path": "recordedDate", "name": "condition_start_date" },
+        { "path": "0", "name": "condition_concept_id" },
+        { "path": "code.coding.first().display", "name": "condition_source_value" },
+        { "path": "code.coding.first().code", "name": "condition_source_concept_id" },
+        { "path": "code.coding.first().system", "name": "condition_coding_source_system" },
+        { "path": "32817", "name": "condition_type_concept_id" },
+        { "path": "category.first().coding.first().code.where($this = 'DP').count() * 4307107 + category.first().coding.first().code.where($this = 'DA').count() * 4230359", "name": "condition_status_concept_id" },
+        { "path": "category.first().coding.first().display", "name": "condition_status_source_value" }
+      ]
+    }
+  ],
+  "where": [{ "path": "code.coding.where(code = 'Z87.2' or code = 'Z37.0' or code = 'Z88.0').exists().not()" }]
+}

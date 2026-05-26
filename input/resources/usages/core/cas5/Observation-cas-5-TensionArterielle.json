@@ -1,0 +1,59 @@
+{
+      "resourceType" : "Observation",
+      "id" : "f66948d9-56c4-4379-8ea2-8d3b2fb12a38",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBloodPressure"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "vital-signs",
+          "display" : "Vital Signs"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "85354-9", 
+          "display" : "Pression arterielle"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3"
+      },
+      "encounter" : {
+        "reference" : "Encounter/f769e4e3-c30e-4348-87ad-388d151d63d7"
+      },
+      "effectiveDateTime" : "2024-01-12",
+      "component" : [{
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "8480-6",
+            "display" : "Pression arterielle systolique"
+          }]
+        },
+        "valueQuantity" : {
+          "value" : 110,
+          "unit" : "mm[Hg]",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mm[Hg]"
+        }
+      },
+      {
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "8462-4",
+            "display" :  "Pression arterielle diastolique"
+          }]
+        },
+        "valueQuantity" : {
+          "value" : 70,
+          "unit" : "mm[Hg]",
+          "system" : "http://unitsofmeasure.org",
+          "code" : "mm[Hg]"
+        }
+      }]
+    }

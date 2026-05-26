@@ -1,0 +1,37 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "42223c9d-b1e7-474d-8f10-631f8e099708",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "B01AC06",
+          "display" : "Acide acetylsalicylique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
+      },
+      "encounter" : {
+        "reference" : "Encounter/8042c565-c914-4a1d-aa31-dd710bd35e87"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-05"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
+          }]
+        }
+      }]
+    }

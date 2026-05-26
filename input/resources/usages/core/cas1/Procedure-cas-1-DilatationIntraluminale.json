@@ -1,0 +1,21 @@
+{
+      "resourceType" : "Procedure",
+      "id" : "1b310860-da98-46fa-a956-8701936db776",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure"]
+      },
+      "status" : "completed",
+      "code" : {
+        "coding" : [{ "system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "DDAF007", 
+          "display" : "Dilatation intraluminale de 2 vaisseaux coronaires avec arteriographie coronaire, avec pose d'endoprothese, par voie arterielle transcutanee"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b3e979e5-b9e6-4ef6-b7b5-ca218cab44c7"
+      },
+      "performedDateTime" : "2024-01-10T13:30:00.000Z"
+    }

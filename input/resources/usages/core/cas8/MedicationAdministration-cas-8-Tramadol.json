@@ -1,0 +1,37 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "d219c803-96fd-4f68-b669-2a9dd6050d2b",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "N02AX02",
+          "display" : "Tramadol"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a"
+      },
+      "encounter" : {
+        "reference" : "Encounter/a77d9d30-48cf-478f-b19e-6c90f625b3dc"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-14T07:43:18.046Z",
+        "end" : "2024-01-14T07:46:11.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
+          }]
+        },
+        "dose" : {
+          "value" : 50,
+          "unit" : "mg"
+        }
+      }
+    }

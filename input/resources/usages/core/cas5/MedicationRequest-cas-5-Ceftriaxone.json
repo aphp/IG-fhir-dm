@@ -1,0 +1,38 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "17a31049-5fb3-442e-8f5f-e5a804ac195f",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{
+          "system" : "http://www.whocc.no/atc",
+          "code" : "J01DD04",
+          "display" : "Ceftriaxone"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3"
+      },
+      "encounter" : {
+        "reference" : "Encounter/f769e4e3-c30e-4348-87ad-388d151d63d7"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-12"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+            "system" : "http://standardterms.edqm.eu",
+            "code" : "20045000",
+            "display" : "Voie intraveineuse"
+          }]
+        }
+      }]
+    }

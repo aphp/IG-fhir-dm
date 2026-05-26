@@ -1,0 +1,37 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "acb4d2b8-79cb-440b-afb1-5a875eaddb24",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "B01AC24",
+          "display" : "Ticagrelor 90mg"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b3e979e5-b9e6-4ef6-b7b5-ca218cab44c7"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-11",
+              "end" : "2025-01-12"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
+          }]
+        }
+      }]
+    }

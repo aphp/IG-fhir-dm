@@ -1,0 +1,21 @@
+{
+      "resourceType" : "Procedure",
+      "id" : "fe4a43eb-b5c9-42f5-9e4b-946a7f876f44",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure"]
+      },
+      "status" : "completed",
+      "code" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "DDQH012",
+          "display" : "Artériographie coronaire avec ventriculographie gauche, par voie artérielle transcutanée"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/05584e1b-3435-415a-af33-aad1fca40fad"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b2cde568-adbf-48b3-bcd9-dd8c7ccf4f7b"
+      },
+      "performedDateTime" : "2023-11-05T20:10:00.000Z"
+    }

@@ -1,0 +1,36 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "d338c225-4b2a-40af-97fb-dcca6dd61a8f",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "R03CC02",
+          "display" : "Salbutamol"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "encounter" : {
+        "reference" : "Encounter/1306bf6d-5a47-401e-82a7-19b009f0ae0c"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-16T06:00:00.000Z",
+        "end" : "2024-01-16T06:05:00.000Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{"system" : "http://standardterms.edqm.eu",
+            "code" : "20020000",
+            "display" : "Voie inhalee"
+          }]
+        },
+        "dose" : {
+          "value" : 100,
+          "unit" : "µg"
+        }
+      }
+    }

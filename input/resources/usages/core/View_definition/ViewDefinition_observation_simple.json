@@ -1,0 +1,26 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "fhir_observation_simple",
+  "resource": "Observation",
+  "select": [
+    {
+      "column": [
+        {"path": "id","name": "observation_id"},
+        {"path": "status","name": "statut"},
+        {"path": "subject.reference","name": "patient_reference"},
+        {"path": "effectiveDateTime","name": "date_heure"},
+        {"path": "category.first().coding.first().code","name": "categorie_code"},
+        {"path": "code.coding.first().code","name": "loinc_code"},
+        {"path": "valueQuantity.where($this is Quantity).value","name": "valeur"},
+        {"path": "valueQuantity.unit","name": "unite"},
+        {"path": "referenceRange.first().low.value","name": "borne_inferieur"},
+        {"path": "referenceRange.first().high.value","name": "borne_superieur"}
+      ]
+    }
+  ],
+  "where": [
+    {
+      "path": "component.exists().not()"
+    }
+  ]
+}

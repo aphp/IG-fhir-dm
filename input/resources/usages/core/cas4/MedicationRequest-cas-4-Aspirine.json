@@ -1,0 +1,38 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "d30317a8-ad12-4199-aa2a-f06d95733271",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "B01AC06",
+          "display": "Acide acetylsalicylique",
+           "text" : "Aspirine 250 mg comprime"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/05584e1b-3435-415a-af33-aad1fca40fad"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b2cde568-adbf-48b3-bcd9-dd8c7ccf4f7b"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2023-11-05"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20045000",
+            "display" : "Voie intraveineuse"
+          }]
+        }
+      }]
+    }

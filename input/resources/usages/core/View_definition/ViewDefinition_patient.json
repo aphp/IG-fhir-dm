@@ -1,0 +1,19 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "fhir_patient",
+  "resource": "Patient",
+  "select": [
+    {
+      "column": [
+        {"path": "id","name": "patient_id","type": "id"},
+        {"path": "gender","name": "sexe","type": "code"},
+        {"path": "birthDate","name": "date_naissance","type": "date"},
+        {"path": "deceasedDateTime","name": "date_deces","type": "dateTime"},
+        {"path": "multipleBirthInteger","name": "rang_naissance","type": "integer"},
+        {"path": "address[0].extension.where(url = 'https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo').valueCode","name": "code_geo_pmsi","type": "code"},
+        {"path": "address[0].extension.where(url = 'http://hl7.org/fhir/StructureDefinition/geolocation').extension.where(url = 'latitude').valueDecimal","name": "latitude","type": "decimal"},
+        {"path": "address[0].extension.where(url = 'http://hl7.org/fhir/StructureDefinition/geolocation').extension.where(url = 'longitude').valueDecimal","name": "longitude","type": "decimal"}
+      ]
+    }
+  ]
+}

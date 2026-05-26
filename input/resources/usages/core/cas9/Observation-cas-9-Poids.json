@@ -1,0 +1,35 @@
+{
+      "resourceType" : "Observation",
+      "id" : "8a41d4d2-dbed-43a5-9135-4c9a357ecf41",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMObservationBodyWeight"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "vital-signs",
+          "display" : "Vital Signs"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "29463-7",
+          "display" : "Poids"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba"
+      },
+      "encounter" : {
+        "reference" : "Encounter/74f2a55a-f256-41c2-8f2c-9677ca2df273"
+      },
+      "effectiveDateTime" : "2024-01-13",
+      "valueQuantity" : {
+        "value" : 58.2,
+        "unit" : "kg",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "kg"
+      }
+    }

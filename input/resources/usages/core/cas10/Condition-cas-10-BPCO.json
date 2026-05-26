@@ -1,0 +1,27 @@
+{
+      "resourceType" : "Condition",
+      "id" : "9fe28c54-4f1a-4e4d-8f06-8636e52f3a33",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "code" : "DP",
+          "display" : "Diagnostic Principal"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "J44.9",
+         "display" : "Maladie pulmonaire obstructive chronique, sans precision"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "encounter" : {
+        "reference" : "Encounter/1306bf6d-5a47-401e-82a7-19b009f0ae0c"
+      },
+      "recordedDate" : "2024-01-16"
+    }

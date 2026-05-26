@@ -1,0 +1,37 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "4f3b8092-12fb-4523-8cea-3e74592802d0",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "N02BE01",
+          "display" : "Paracetamol"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3"
+      },
+      "encounter" : {
+        "reference" : "Encounter/f769e4e3-c30e-4348-87ad-388d151d63d7"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-12"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie orale"
+          }]
+        }
+      }]
+    }

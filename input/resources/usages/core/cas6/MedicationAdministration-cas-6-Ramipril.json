@@ -1,0 +1,37 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "7764d198-3da8-4a76-9299-565c108ae55e",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "C09AA05",
+          "display" : "Ramipril"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/95ad2759-7eed-4146-8088-b74cc5ce847c"
+      },
+      "encounter" : {
+        "reference" : "Encounter/8042c565-c914-4a1d-aa31-dd710bd35e87"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-05T07:09:24.730Z",
+        "end" : "2024-01-05T07:14:36.764Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+            "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
+          }]
+        },
+        "dose" : {
+          "value" : 5,
+          "unit" : "mg"
+        }
+      }
+    }

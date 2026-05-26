@@ -1,0 +1,37 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "583bde31-d79c-4a55-a9ad-afa8d73404e8",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "B01AC24",
+          "display" : "Ticagrelor"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/05584e1b-3435-415a-af33-aad1fca40fad"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b2cde568-adbf-48b3-bcd9-dd8c7ccf4f7b"
+      },
+      "effectivePeriod" : {
+        "start" : "2023-11-05T20:52:43.419Z",
+        "end" : "2023-11-05T20:59:17.987Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20045000",
+            "display" : "Voie intraveineuse"
+          }]
+        },
+        "dose" : {
+          "value" : 180,
+          "unit" : "mg"
+        }
+      }
+    }

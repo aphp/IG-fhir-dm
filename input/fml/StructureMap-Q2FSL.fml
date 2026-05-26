@@ -1,4 +1,4 @@
-/// url = 'https://interop.aphp.fr/ig/fhir/dm/StructureMap/Q2FSL'
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/Q2FSL'
 /// name = 'Q2FSL'
 /// title = 'Questionnaire to FHIR Semantic Layer'
 /// status = 'draft'
@@ -57,10 +57,10 @@ group CreatePatient(source src : QuestionnaireResponse, target patient : Patient
       // Patient name (linkId 8605698058770 = family, 6214879623503 = given)
       identity -> patient.name = create('HumanName') as name then {
         identity.item as familyItem where (linkId = '8605698058770') then {
-          familyItem.answer as ans -> name.family = (ans.valueString) "set-family";
+          familyItem.answer as ans -> name.family = (%ans.valueString) "set-family";
         } "extract-family";
         identity.item as givenItem where (linkId = '6214879623503') then {
-          givenItem.answer as ans -> name.given = (ans.valueString) "set-given";
+          givenItem.answer as ans -> name.given = (%ans.valueString) "set-given";
         } "extract-given";
       } "set-name";
 
@@ -68,7 +68,7 @@ group CreatePatient(source src : QuestionnaireResponse, target patient : Patient
       identity.item as nirItem where (linkId = '5711960356160') then {
         nirItem.answer as ans -> patient.identifier = create('Identifier') as nir then {
           ans -> nir.system = 'urn:oid:1.2.250.1.213.1.4.8' "nir-system";
-          ans -> nir.value = (ans.valueString) "nir-value";
+          ans -> nir.value = (%ans.valueString) "nir-value";
           ans -> nir.type = cc('http://interopsante.org/fhir/CodeSystem/fr-v2-0203', 'NIR') "nir-type";
         } "set-nir";
       } "extract-nir";
@@ -77,33 +77,31 @@ group CreatePatient(source src : QuestionnaireResponse, target patient : Patient
       identity.item as insItem where (linkId = '3764723550987') then {
         insItem.answer as ans -> patient.identifier = create('Identifier') as ins then {
           ans -> ins.system = 'urn:oid:1.2.250.1.213.1.4.10' "ins-system";
-          ans -> ins.value = (ans.valueString) "ins-value";
+          ans -> ins.value = (%ans.valueString) "ins-value";
           ans -> ins.type = cc('http://interopsante.org/fhir/CodeSystem/fr-v2-0203', 'INS-C') "ins-type";
         } "set-ins";
       } "extract-ins";
 
       // Birth date (linkId 5036133558154)
       identity.item as birthItem where (linkId = '5036133558154') then {
-        birthItem.answer as ans -> patient.birthDate = (ans.valueDate) "set-birthdate";
+        birthItem.answer as ans -> patient.birthDate = (%ans.valueDate) "set-birthdate";
       } "extract-birthdate";
 
       // Death date (linkId 5633552097315)
       identity.item as deathItem where (linkId = '5633552097315') then {
-        deathItem.answer as ans -> patient.deceased = (ans.valueDate) "set-deceased-date";
+        deathItem.answer as ans -> patient.deceased = (%ans.valueDate) "set-deceased-date";
         // Death source (linkId 9098810065693)
         deathItem.item as deathSource where (linkId = '9098810065693') then {
           deathSource.answer as sourceAns -> patient.extension = create('Extension') as ext then {
-            sourceAns -> ext.url = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/death-source' "death-source-url";
-            sourceAns -> ext.value = (sourceAns.valueCoding) "death-source-value";
+            sourceAns -> ext.url = 'https://aphp.github.io/IG-fhir-dm/StructureDefinition/DeathSource' "death-source-url";
+            sourceAns -> ext.value = (%sourceAns.valueCoding) "death-source-value";
           } "set-death-source-ext";
         } "extract-death-source";
       } "extract-death";
 
       // Multiple birth rank (linkId 6931296968515)
       identity.item as multipleItem where (linkId = '6931296968515') then {
-        multipleItem.answer as ans then {
-          ans.valueInteger as valueInteger -> patient.multipleBirth = valueInteger "set-multiple-birth";
-        } "navigate-value";
+        multipleItem.answer as ans -> patient.multipleBirth = (%ans.valueInteger) "set-multiple-birth";
       } "extract-multiple-birth";
 
     } "process-identity";
@@ -112,7 +110,9 @@ group CreatePatient(source src : QuestionnaireResponse, target patient : Patient
     src.item as pmsiGroup where (linkId = '2825244231605') then {
       pmsiGroup.item as sexItem where (linkId = '3894630481120') then {
         sexItem.answer as ans then {
-          ans.valueCoding as valueCoding -> patient.gender = translate(valueCoding, 'https://interop.aphp.fr/ig/fhir/dm/ConceptMap/dpi-gender-2-hl7-gender', 'code') "set-gender";
+          ans.valueCoding as valueCoding -> patient.gender = translate(valueCoding, 'https://interop.aphp.fr/ig/fhir/dm/ConceptMap/dpi-gender-2-hl7-gender', 'code') "setGenderFromCode";
+          ans.valueString as female where ($this = 'f') -> patient.gender = 'female' "setGenderF";
+          ans.valueString as female where ($this = 'm') -> patient.gender = 'male' "setGenderM";
         } "valueCoding";
       } "extract-gender";
 
@@ -120,9 +120,30 @@ group CreatePatient(source src : QuestionnaireResponse, target patient : Patient
       pmsiGroup.item as codeGeoItem where (linkId = '2446369196222') then {
         codeGeoItem.answer as ans -> patient.address = create('Address') as addr then {
           ans -> addr.extension = create('Extension') as ext then {
-            ans -> ext.url = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/pmsi-code-geo' "codegeo-url";
-            ans -> ext.value = (ans.valueCoding) "codegeo-value";
+            ans -> ext.url = 'https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo' "codegeo-url";
+            ans.value as val -> ext.value = cast(val, 'code') "codegeo-value";
           } "set-codegeo-ext";
+
+          // Environnement
+          socioDemo.item as environnementItem where (linkId = '5491974639955') then {
+            // geolocation
+            environnementItem.item as geocodageItem where (linkId = '3816475533472') -> addr.extension = create('Extension') as geolocationExt then {
+              geocodageItem.item as latItem where (linkId = '3709843054556') -> geolocationExt.url = 'http://hl7.org/fhir/StructureDefinition/geolocation', geolocationExt.extension = create('Extension') as latExt then {
+                latItem.answer as lat -> latExt.url = 'latitude', latExt.value = (%lat.valueDecimal) then {
+                  geocodageItem.item as longItem where (linkId = '7651448032665') -> geolocationExt.extension = create('Extension') as longExt then {
+                    longItem.answer as long -> longExt.url = 'longitude', longExt.value = (%long.valueDecimal) "setLong";
+                  } "createLongExt";
+                } "setLat";
+              } "createLatExt";
+            } "createGeolocExt";
+            // IRIS
+            environnementItem.item as irisItem where (linkId = '7621032273792') -> addr.line as addrLine, addrLine.extension = create('Extension') as irisExt then {
+              irisItem.answer as ans -> irisExt.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract',
+              irisExt.valueString = (%ans.valueString) "setIrisExt";
+            } "navIrisItem";
+
+          } "navEnv";
+
         } "set-address";
       } "extract-codegeo";
     } "extract-pmsi-demographics";
@@ -148,11 +169,11 @@ group CreateLocations(source src : QuestionnaireResponse, target patient : Patie
           geocodingItem -> location.position = create('LocationPosition') as pos then {
             // Latitude (linkId 3709843054556)
             geocodingItem.item as latItem where (linkId = '3709843054556') then {
-              latItem.answer as ans -> pos.latitude = (ans.valueDecimal) "set-latitude";
+              latItem.answer as ans -> pos.latitude = (%ans.valueDecimal) "set-latitude";
             } "extract-latitude";
             // Longitude (linkId 7651448032665)
             geocodingItem.item as longItem where (linkId = '7651448032665') then {
-              longItem.answer as ans -> pos.longitude = (ans.valueDecimal) "set-longitude";
+              longItem.answer as ans -> pos.longitude = (%ans.valueDecimal) "set-longitude";
             } "extract-longitude";
           } "set-position";
 
@@ -160,7 +181,7 @@ group CreateLocations(source src : QuestionnaireResponse, target patient : Patie
           /*geocodingItem.item as dateItem where (linkId = '1185653257776') then {
             dateItem.answer as ans -> location.extension = create('Extension') as ext then {
               ans -> ext.url = 'http://hl7.org/fhir/StructureDefinition/data-collection-date' "date-url";
-              ans -> ext.value = (ans.valueDate) "date-value";
+              ans -> ext.value = (%ans.valueDate) "date-value";
             } "set-collection-date";
           } "extract-collection-date";*/
 
@@ -185,14 +206,14 @@ group CreateLocations(source src : QuestionnaireResponse, target patient : Patie
             // IRIS code as identifier
             irisAnswer -> location.identifier = create('Identifier') as identifier then {
               irisAnswer -> identifier.system = 'urn:oid:2.16.840.1.113883.2.8.1.5.5' "iris-system";
-              irisAnswer -> identifier.value = (irisAnswer.valueCoding.code) "iris-value";
+              irisAnswer -> identifier.value = (%irisAnswer.valueCoding.code) "iris-value";
             } "set-iris-identifier";
 
             // Collection date from nested item (linkId 4999580038872)
             /*irisAnswer.item as dateItem where (linkId = '4999580038872') then {
               dateItem.answer as ans -> location.extension = create('Extension') as ext then {
                 ans -> ext.url = 'http://hl7.org/fhir/StructureDefinition/data-collection-date' "date-url";
-                ans -> ext.value = (ans.valueDate) "date-value";
+                ans -> ext.value = (%ans.valueDate) "date-value";
               } "set-collection-date";
             } "extract-iris-date";*/
 
@@ -220,31 +241,43 @@ group CreateEncounters(source src : QuestionnaireResponse, target patient : Pati
         pmsiItem -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMEncounter' "encounter-profile";
       } "encounter-meta";
 
+      // status
+      src -> encounter.status = 'finished' "setStatus";
+
+      // class
+      src -> encounter.class = c('http://terminology.hl7.org/CodeSystem/v3-ActCode', 'IMP') "setClass";
+
       // Link to patient
       src -> encounter.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
 
       // Encounter period (start: 5991443718282, end: 6114780320846)
       pmsiItem -> encounter.period = create('Period') as period then {
         pmsiItem.item as startItem where (linkId = '5991443718282') then {
-          startItem.answer as ans -> period.start = (ans.valueDate) "set-start";
+          startItem.answer as ans -> period.start = (%ans.valueDate) "set-start";
         } "extract-start";
         pmsiItem.item as endItem where (linkId = '6114780320846') then {
-          endItem.answer as ans -> period.end = (ans.valueDate) "set-end";
+          endItem.answer as ans -> period.end = (%ans.valueDate) "set-end";
         } "extract-end";
       } "set-period";
 
       // Mode d'entrée (linkId 6172398101212)
       pmsiItem.item as modeInItem where (linkId = '6172398101212') then {
-        /*modeInItem.answer as ans -> encounter.hospitalization = create('EncounterHospitalization') as hosp then {
-          ans -> hosp.admitSource = (ans.valueCoding) "set-admit-source";
-        } "set-hospitalization-in";*/
+        modeInItem.answer as ans then {
+          ans.valueString as valueString -> encounter.hospitalization as hosp,
+            hosp.admitSource as admitSource, 
+            admitSource.coding as admitSourceCoding,
+            admitSourceCoding.code = valueString "set-admit-source";
+        } "navValue";
       } "extract-mode-in";
 
       // Mode de sortie (linkId 3354867075704)
       pmsiItem.item as modeOutItem where (linkId = '3354867075704') then {
-        /*modeOutItem.answer as ans -> encounter.hospitalization = create('EncounterHospitalization') as hosp then {
-          ans -> hosp.dischargeDisposition = (ans.valueCoding) "set-discharge-disposition";
-        } "set-hospitalization-out";*/
+        modeOutItem.answer as ans then {
+          ans.valueString as valueString -> encounter.hospitalization as hosp,
+            hosp.dischargeDisposition as dischargeDisposition, 
+            dischargeDisposition.coding as dischargeDispositionCoding,
+            dischargeDispositionCoding.code = valueString "set-discharge-disposition";
+        } "navValue";
       } "extract-mode-out";
 
       src -> encounter.id as encId, encounterEntry.fullUrl = append('urn:uuid:', encId) "set-fullUrl";
@@ -276,7 +309,8 @@ group CreateConditions(source pmsiItem, target patient : Patient, target encount
       // Diagnostic code (linkId 5505101189372) - CIM-10
       diagGroup.item as diagCodeItem where (linkId = '5505101189372') then {
         diagCodeItem.answer as ans -> condition.code = create('CodeableConcept') as code then {
-          ans -> code.coding = (ans.valueCoding) "set-coding";
+          ans -> code.coding as coding, 
+            coding.code = (%ans.valueString) "set-coding";
         } "set-code";
       } "extract-diag-code";
 
@@ -285,16 +319,19 @@ group CreateConditions(source pmsiItem, target patient : Patient, target encount
         diagTypeItem.answer as ans -> condition.category = create('CodeableConcept') as category then {
           ans -> category.coding = create('Coding') as coding then {
             ans -> coding.system = 'https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type' "diag-type-system";
-            ans -> coding.code = (ans.valueCoding.code) "diag-type-code";
-            ans -> coding.display = (ans.valueCoding.display) "diag-type-display";
+            ans -> coding.code = (%ans.valueString) "diag-type-code";
+            //ans -> coding.display = (%ans.valueCoding.display) "diag-type-display";
           } "set-category-coding";
         } "set-category";
       } "extract-diag-type";
 
       // Recorded date (linkId 7114466839467)
       diagGroup.item as dateItem where (linkId = '7114466839467') then {
-        dateItem.answer as ans -> condition.recordedDate = (ans.valueDate) "set-recorded-date";
+        dateItem.answer as ans -> condition.recordedDate = (%ans.valueDate) "set-recorded-date";
       } "extract-recorded-date";
+
+      // fullurl
+      pmsiItem -> condition.id as condId, conditionEntry.fullUrl = append('urn:uuid:', condId) "set-fullUrl";
 
     } "create-condition";
   } "condition-entry";
@@ -310,6 +347,9 @@ group CreateProcedures(source pmsiItem, target patient : Patient, target encount
         acteGroup -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure' "procedure-profile";
       } "procedure-meta";
 
+      // status
+      acteGroup -> procedure.status =  'completed' "setStatus";
+
       // Link to patient
       acteGroup -> procedure.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
       
@@ -319,20 +359,24 @@ group CreateProcedures(source pmsiItem, target patient : Patient, target encount
       // Acte code (linkId 7758110033600) - CCAM
       acteGroup.item as acteCodeItem where (linkId = '7758110033600') then {
         acteCodeItem.answer as ans -> procedure.code = create('CodeableConcept') as code then {
-          ans -> code.coding = (ans.valueCoding) "set-coding";
+          ans -> code.coding as coding, 
+            coding.code = (%ans.valueString) "set-coding";
         } "set-code";
       } "extract-acte-code";
 
       // Date de l'acte (linkId 5066866286682)
       acteGroup.item as dateItem where (linkId = '5066866286682') then {
-        dateItem.answer as ans -> procedure.performed = (ans.valueDateTime) "set-performed";
+        dateItem.answer as ans -> procedure.performed = (%ans.valueDateTime) "set-performed";
       } "extract-performed-date";
+
+      // fullurl
+      pmsiItem -> procedure.id as procId, procedureEntry.fullUrl = append('urn:uuid:', procId) "set-fullUrl";
 
       // Collection date (linkId 9436509453137)
       /*acteGroup.item as collectionDateItem where (linkId = '9436509453137') then {
         collectionDateItem.answer as ans -> procedure.extension = create('Extension') as ext then {
           ans -> ext.url = 'http://hl7.org/fhir/StructureDefinition/data-collection-date' "date-url";
-          ans -> ext.value = (ans.valueDate) "date-value";
+          ans -> ext.value = (%ans.valueDate) "date-value";
         } "set-collection-date";
       } "extract-collection-date";*/
 
@@ -349,6 +393,9 @@ group CreateMedicationRequests(source src : QuestionnaireResponse, target patien
     medExpoGroup.item as prescribedGroup where (linkId = '156631794800') -> bundle.entry as medReqEntry then {
       prescribedGroup -> medReqEntry.resource = create('MedicationRequest') as medReq then {
         prescribedGroup -> medReq.id = uuid() "medreq-id";
+        // fullurl
+        src -> medReq.id as medReqId, medReqEntry.fullUrl = append('urn:uuid:', medReqId) "set-fullUrl";
+
         prescribedGroup -> medReq.meta = create('Meta') as meta then {
           prescribedGroup -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest' "medreq-profile";
         } "medreq-meta";
@@ -360,15 +407,25 @@ group CreateMedicationRequests(source src : QuestionnaireResponse, target patien
         prescribedGroup -> medReq.status = 'active' "set-status";
         prescribedGroup -> medReq.intent = 'order' "set-intent";
 
+        // MedicationCodeableConcept
+        prescribedGroup.answer as prescribedMedication then {
+          prescribedMedication.item as atcItem where (linkId = '1923143398283') then {
+            atcItem.answer as ans -> medReq.medication = create('CodeableConcept') as medReqCC,
+            medReqCC.coding as medReqC, 
+            medReqC.code = (%ans.valueString),
+            medReqC.display = (%prescribedMedication.valueString) "setAtcCoding";
+          } "navAtcItem";
+        } "navPrescribedMedication";
+        
         // Create Medication resource and reference
-        prescribedGroup -> bundle.entry as medEntry then {
+/*        prescribedGroup -> bundle.entry as medEntry then {
           prescribedGroup -> medEntry.resource = create('Medication') as medication then {
             prescribedGroup -> medication.id = uuid() "med-id";
 
             // ATC code from nested items
             prescribedGroup.item as atcItem where (linkId.contains('ATC')) then {
               atcItem.answer as ans -> medication.code = create('CodeableConcept') as code then {
-                ans -> code.coding = (ans.valueCoding) "set-atc-coding";
+                ans -> code.coding = (%ans.valueCoding) "set-atc-coding";
               } "set-med-code";
             } "extract-atc";
 
@@ -378,23 +435,32 @@ group CreateMedicationRequests(source src : QuestionnaireResponse, target patien
             prescribedGroup -> medication.id as medId, medReq.medication = create('Reference') as ref, ref.reference = append('Medication/', medId) "set-medication-reference";
 
           } "create-medication";
-        } "medication-entry";
+        } "medication-entry"; */
 
         // Dosage instructions
         prescribedGroup -> medReq.dosageInstruction = create('Dosage') as dosage then {
           // Route
-          prescribedGroup.item as routeItem where (linkId.contains('voie')) then {
-            routeItem.answer as ans -> dosage.route = create('CodeableConcept') as route then {
-              ans -> route.coding = (ans.valueCoding) "set-route-coding";
-            } "set-route";
-          } "extract-route";
+          prescribedGroup.answer as prescribedMedication then {
+            prescribedMedication.item as routeItem where (linkId = '387026794874') then {
+              routeItem.answer as ans -> dosage.route as route then {
+                ans -> route.coding as routeCoding, 
+                  routeCoding.code = (%ans.valueString) "set-route-coding";
+              } "set-route";
+            } "navRouteItem" ;
+          } "navPrescribedMedication";
 
           // Timing
-          prescribedGroup.item as timingItem where (linkId.contains('timing') or linkId.contains('fréquence')) then {
-            timingItem.answer as ans -> dosage.timing = create('Timing') as timing then {
-              ans -> timing.repeat = create('TimingRepeat') as repeat "set-timing";
-            } "set-timing-structure";
-          } "extract-timing";
+          medExpoGroup.item as posoGroup where (linkId = '6348237104421') -> dosage.timing as timing,
+            timing.repeat as timingRepeat, 
+            timingRepeat.boundsPeriod as timingPeriod then {
+              posoGroup.item as DateDebItem where (linkId = '316347573327') then {
+                DateDebItem.answer as ans -> timingPeriod.start = (%ans.valueDate) "setDateDeb";
+              } "navDateDeb";
+              posoGroup.item as DateFinItem where (linkId = '429570775935') then {
+                DateFinItem.answer as ans-> timingPeriod.end = (%ans.valueDate) "setDateFin";
+              } "navDateFin";
+          } "navPoso";
+
         } "set-dosage";
 
       } "create-medreq";
@@ -412,6 +478,9 @@ group CreateMedicationAdministrations(source src : QuestionnaireResponse, target
     medExpoGroup.item as adminGroup where (linkId = '266852453304') -> bundle.entry as medAdminEntry then {
       adminGroup -> medAdminEntry.resource = create('MedicationAdministration') as medAdmin then {
         adminGroup -> medAdmin.id = uuid() "medadmin-id";
+        // fullurl
+        src -> medAdmin.id as medAdminId, medAdminEntry.fullUrl = append('urn:uuid:', medAdminId) "set-fullUrl";
+
         adminGroup -> medAdmin.meta = create('Meta') as meta then {
           adminGroup -> meta.profile = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration' "medadmin-profile";
         } "medadmin-meta";
@@ -422,15 +491,26 @@ group CreateMedicationAdministrations(source src : QuestionnaireResponse, target
         // Status
         adminGroup -> medAdmin.status = 'completed' "set-status";
 
+        // MedicationCodeableConcept
+        adminGroup.answer as administeredMedication then {
+          administeredMedication.item as atcItem where (linkId = '631972144976') then {
+            atcItem.answer as ans -> medAdmin.medication = create('CodeableConcept') as medAdminCC,
+            medAdminCC.coding as medAdminC, 
+            medAdminC.code = (%ans.valueString),
+            medAdminC.display = (%administeredMedication.valueString) "setAtcCoding";
+          } "navAtcItem";
+        } "navadministeredMedication";
+
+
         // Create Medication resource and reference
-        adminGroup -> bundle.entry as medEntry then {
+/*        adminGroup -> bundle.entry as medEntry then {
           adminGroup -> medEntry.resource = create('Medication') as medication then {
             adminGroup -> medication.id = uuid() "med-id";
 
             // ATC code from nested items
             adminGroup.item as atcItem where (linkId.contains('ATC')) then {
               atcItem.answer as ans -> medication.code = create('CodeableConcept') as code then {
-                ans -> code.coding = (ans.valueCoding) "set-atc-coding";
+                ans -> code.coding = (%ans.valueCoding) "set-atc-coding";
               } "set-med-code";
             } "extract-atc";
 
@@ -440,31 +520,41 @@ group CreateMedicationAdministrations(source src : QuestionnaireResponse, target
             adminGroup -> medication.id as medId, medAdmin.medication = create('Reference') as ref, ref.reference = append('urn:uuid:', medId) "set-medication-reference";
 
           } "create-medication";
-        } "medication-entry";
+        } "medication-entry"; */
 
-        // Effective period
-        adminGroup -> medAdmin.effective = create('Period') as period then {
-          adminGroup.item as startItem where (linkId.contains('début')) then {
-            startItem.answer as ans -> period.start = (ans.valueDateTime) "set-start";
-          } "extract-start";
-          adminGroup.item as endItem where (linkId.contains('fin')) then {
-            endItem.answer as ans -> period.end = (ans.valueDateTime) "set-end";
-          } "extract-end";
-        } "set-effective";
-
-        // Dosage
-        adminGroup -> medAdmin.dosage = create('Dosage') as dosage then {
+        // Dosage (FHIR)
+        adminGroup -> medAdmin.dosage as dosage then {
           // Route
-          adminGroup.item as routeItem where (linkId.contains('voie')) then {
-            routeItem.answer as ans -> dosage.route = create('CodeableConcept') as route then {
-              ans -> route.coding = (ans.valueCoding) "set-route-coding";
-            } "set-route";
-          } "extract-route";
+          adminGroup.answer as administeredMedication then {
+            administeredMedication.item as routeItem where (linkId = '811931484859') then {
+              routeItem.answer as ans -> dosage.route = create('CodeableConcept') as route then {
+                ans -> route.coding as routeCoding,
+                routeCoding.code = (%ans.valueString) "set-route-coding";
+              } "set-route";
+            } "navRoute";
+          } "navadministeredMedication";
 
-          // Dose
-          adminGroup.item as doseItem where (linkId.contains('dose')) then {
-            doseItem.answer as ans -> dosage.dose = (ans.valueQuantity) "set-dose";
-          } "extract-dose";
+          // Dosage (QR)
+          medExpoGroup.item as doseGroup where (linkId = '5720103839343') then {
+
+            // Dose
+            doseGroup.item as quantityItem where (linkId = '4765772671997') then {
+              quantityItem.answer as ans -> dosage.dose = (%ans.valueQuantity) "setDose";
+            } "navquantity";
+
+            // Effective period
+            doseGroup.item as startItem where (linkId = '1443558617577') then {
+              startItem.answer as startAns then {
+                doseGroup.item as endItem where (linkId = '780829110731') then {
+                  endItem.answer as endAns -> medAdmin.effectivePeriod as adminPeriod,
+                    adminPeriod.start = (%startAns.value),
+                    adminPeriod.end = (%endAns.value) "setAdminPeriod";
+                } "navEnd";
+              } "navStartAns";
+            } "navStart";
+
+          } "navDosage";
+
         } "set-dosage";
 
       } "create-medadmin";
@@ -499,11 +589,15 @@ group CreateVitalSignObservations(source src : QuestionnaireResponse, target pat
             ans -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
             
             // Value
-            ans -> obs.value = (ans.valueQuantity) "set-value";
+            ans -> obs.value = (%ans.valueQuantity) as tgtObsVal, 
+              tgtObsVal.code = (%ans.valueQuantity.unit), 
+              tgtObsVal.system = 'http://unitsofmeasure.org' "set-value";
 
             // Effective date from nested item
-            heightItem.item as dateItem where (linkId.contains('Date')) then {
-              dateItem.answer as dateAns -> obs.effective = (dateAns.valueDate) "set-effective";
+            ans.item as dateItem where (linkId = '941821315470') then {
+              dateItem.answer as dateAns then {
+                dateAns.value as val-> obs.effective = cast(val, 'dateTime') "set-effective";
+              } "navDateAns";
             } "extract-effective";
           } "create-height-obs";
         } "height-obs-entry";
@@ -527,11 +621,15 @@ group CreateVitalSignObservations(source src : QuestionnaireResponse, target pat
             ans -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
 
             // Value
-            ans -> obs.value = (ans.valueQuantity) "set-value";
+            ans -> obs.value = (%ans.valueQuantity) as tgtObsVal, 
+              tgtObsVal.code = (%ans.valueQuantity.unit), 
+              tgtObsVal.system = 'http://unitsofmeasure.org' "set-value";
 
             // Effective date from nested item
-            weightItem.item as dateItem where (linkId.contains('Date')) then {
-              dateItem.answer as dateAns -> obs.effective = (dateAns.valueDate) "set-effective";
+            ans.item as dateItem where (linkId = '151269044052') then {
+              dateItem.answer as dateAns then {
+                dateAns.value as val-> obs.effective = cast(val, 'dateTime') "set-effective";
+              } "navDateAns";
             } "extract-effective";
           } "create-weight-obs";
         } "weight-obs-entry";
@@ -557,21 +655,27 @@ group CreateVitalSignObservations(source src : QuestionnaireResponse, target pat
                 sysAns -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
 
                 // Systolic component
-                sysAns -> obs.component = create('Observation') as sysComp then {
+                sysAns -> obs.component as sysComp then {
                   sysAns -> sysComp.code = cc('http://loinc.org', '8480-6', 'Systolic blood pressure') "sys-code";
-                  sysAns -> sysComp.value = (sysAns.valueQuantity) "sys-value";
+                  sysAns -> sysComp.value = (%sysAns.valueQuantity) as sysVal, 
+                    sysVal.code = (%sysAns.valueQuantity.unit), 
+                    sysVal.system = 'http://unitsofmeasure.org' "sys-value";
                 } "set-systolic";
 
                 // Diastolic component
-                diaAns -> obs.component = create('Observation') as diaComp then {
+                diaAns -> obs.component as diaComp then {
                   diaAns -> diaComp.code = cc('http://loinc.org', '8462-4', 'Diastolic blood pressure') "dia-code";
-                  diaAns -> diaComp.value = (diaAns.valueQuantity) "dia-value";
+                  diaAns -> diaComp.value = (%diaAns.valueQuantity) as diaVal, 
+                    diaVal.code = (%diaAns.valueQuantity.unit), 
+                    diaVal.system = 'http://unitsofmeasure.org' "dia-value";
                 } "set-diastolic";
 
                 // Effective date from nested item
-                sysItem.item as dateItem where (linkId.contains('Date')) then {
-                  dateItem.answer as dateAns -> obs.effective = (dateAns.valueDate) "set-effective";
-                } "extract-effective";
+                sysAns.item as sysDateItem where (linkId = '987654638442') then {
+                  sysDateItem.answer as dateAns then {
+                    dateAns.value as val-> obs.effective = cast(val, 'dateTime') "set-effective";
+                  } "navDateAns";
+                } "navDate";
 
               } "create-bp-obs";
             } "bp-obs-entr";
@@ -744,35 +848,43 @@ group CreateLabObservation(source ans, source parentItem, target patient : Patie
       ans -> obs.subject = create('Reference') as ref, patient.id as patId, ref.reference = append('Patient/', patId) "set-subject";
 
       // Value as Quantity
-      ans -> obs.value = (ans.valueQuantity) "set-value";
+      ans -> obs.value = (%ans.valueQuantity) as tgtObsVal, 
+      tgtObsVal.code = (%ans.valueQuantity.unit), 
+      tgtObsVal.system = 'http://unitsofmeasure.org' "set-value";
 
       // Extract nested items - LOINC code, effective date, status, reference ranges
-      parentItem.item as loincItem where (linkId.contains('code loinc')) then {
-        loincItem.answer as loincAns -> obs.code = create('CodeableConcept') as code then {
-          loincAns -> code.coding = (loincAns.valueCoding) "set-loinc-coding";
-        } "set-code";
+        // LOINC code
+      ans.item as loincItem where (text.contains('code loinc')) then {
+        loincItem.answer as loincAns -> obs.code as code, 
+          code.coding as coding,
+          coding.code = (%loincAns.valueString) "set-loinc-coding";
       } "extract-loinc";
 
-      parentItem.item as dateItem where (linkId.contains('Date et heure du prélèvement')) then {
-        dateItem.answer as dateAns -> obs.effective = (dateAns.valueDateTime) "set-effective";
+        // effectiveDateTime
+      ans.item as dateItem where (text.contains('Date et heure du prélèvement')) then {
+        dateItem.answer as dateAns -> obs.effective = (%dateAns.valueDateTime) "set-effective";
       } "extract-effective";
 
       /*parentItem.item as statusItem where (linkId.contains('Statut de validation')) then {
         statusItem.answer as statusAns -> obs.extension = create('Extension') as ext then {
           statusAns -> ext.url = 'http://hl7.org/fhir/StructureDefinition/observation-status' "status-url";
-          statusAns -> ext.value = (statusAns.valueString) "status-value";
+          statusAns -> ext.value = (%statusAns.valueString) "status-value";
         } "set-status-ext";
       } "extract-validation-status";*/
 
       // Reference ranges (low and high)
-      /*parentItem -> obs.referenceRange = create('ObservationReferenceRange') as refRange then {
-        parentItem.item as lowItem where (linkId.contains('Borne inférieure')) then {
-          lowItem.answer as lowAns -> refRange.low = (lowAns.valueQuantity) "set-low";
+      ans -> obs.referenceRange as refRange then {
+        ans.item as lowItem where (text.contains('Borne inférieure')) then {
+          lowItem.answer as lowAns -> refRange.low = (%lowAns.valueQuantity) as tgtLow, 
+            tgtLow.code = (%ans.valueQuantity.unit), 
+            tgtLow.system = 'http://unitsofmeasure.org' "set-low";
         } "extract-low";
-        parentItem.item as highItem where (linkId.contains('Borne supérieure')) then {
-          highItem.answer as highAns -> refRange.high = (highAns.valueQuantity) "set-high";
+        ans.item as highItem where (text.contains('Borne supérieure')) then {
+          highItem.answer as highAns -> refRange.high = (%highAns.valueQuantity) as tgtHigh, 
+            tgtHigh.code = (%ans.valueQuantity.unit), 
+            tgtHigh.system = 'http://unitsofmeasure.org' "set-high";
         } "extract-high";
-      } "set-ref-range";*/
+      } "set-ref-range";
 
     } "create-obs";
   } "obs-entry";

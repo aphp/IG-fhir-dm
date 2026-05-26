@@ -1,0 +1,21 @@
+{
+      "resourceType" : "Procedure",
+      "id" : "2cb4f3ff-f118-4e12-bfd7-1ac2c8ce1fea",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMProcedure"]
+      },
+      "status" : "completed",
+      "code" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/ccam",
+          "code" : "GLQP008",
+         "display" : "Mesure de la capacite vitale lente et de l'expiration forcee, avec gazometrie sanguine arterielle [Spirometrie standard avec gaz du sang]"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "encounter" : {
+        "reference" : "Encounter/1306bf6d-5a47-401e-82a7-19b009f0ae0c"
+      },
+      "performedDateTime" : "2024-01-19T10:45:00.000Z"
+    }

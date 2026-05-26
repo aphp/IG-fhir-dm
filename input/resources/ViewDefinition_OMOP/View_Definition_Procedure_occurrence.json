@@ -1,0 +1,22 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "procedure_occurrence",
+  "resource": "Procedure",
+  "select": [
+    {
+      "column": [
+        {"path": "id","name": "procedure_occurrence_id"},
+        {"path": "subject.reference","name": "person_id"},
+        {"path": "encounter.reference","name": "visit_occurrence_id"},
+        { "path": "encounter.reference", "name": "visit_detail_id" },
+        {"path": "performed.ofType(dateTime)","name": "procedure_date"},
+        {"path": "performed.ofType(dateTime)","name": "procedure_datetime"},
+        {"path": "0","name": "procedure_concept_id"},
+        {"path": "code.coding.first().display","name": "procedure_source_value"},
+        {"path": "code.coding.first().code","name": "procedure_source_concept_id"},
+        {"path": "code.coding.first().system","name": "procedure_coding_source_system"},
+        {"path": "38000275","name": "procedure_type_concept_id"}
+      ]
+    }
+  ]
+}

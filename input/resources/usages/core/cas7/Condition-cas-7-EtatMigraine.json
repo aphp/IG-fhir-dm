@@ -1,0 +1,27 @@
+{
+      "resourceType" : "Condition",
+      "id" : "b2d90759-563b-49d2-9519-0ff32be0015b",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "code" : "DP",
+          "display" : "Diagnostic Principal"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "G43.2",
+          "display" : "Etat de mal migraineux"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00c2b477-4649-46af-aa82-2337558a1ec8"
+      },
+      "encounter" : {
+        "reference" : "Encounter/775e7473-7fa0-4950-94fe-4bd040437da8"
+      },
+      "recordedDate" : "2024-01-14"
+    }

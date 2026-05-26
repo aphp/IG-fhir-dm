@@ -1,0 +1,27 @@
+{
+      "resourceType" : "Condition",
+      "id" : "94b08cbf-83f8-4b25-a3d3-ae71d4fd7c50",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "code" : "DA",
+          "display" : "Diagnostic associe"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "Z88.0",
+          "display" : "Antecedents personnels d'allergie à la penicilline"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "encounter" : {
+        "reference" : "Encounter/1306bf6d-5a47-401e-82a7-19b009f0ae0c"
+      },
+      "recordedDate" : "2024-01-16"
+    }

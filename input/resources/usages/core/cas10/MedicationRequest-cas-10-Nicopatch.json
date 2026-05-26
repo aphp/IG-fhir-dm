@@ -1,0 +1,38 @@
+{
+      "resourceType" : "MedicationRequest",
+      "id" : "0366ab45-bd3a-4d2e-ad1b-875d2a3890be",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationRequest"]
+      },
+      "status" : "active",
+      "intent" : "order",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://www.whocc.no/atc",
+          "code" : "N07BA01",
+          "display" :  "Nicotine",
+                  "text": "Nicopatch 15 mg/24 heures, dispositif transdermique"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "encounter" : {
+        "reference" : "Encounter/1306bf6d-5a47-401e-82a7-19b009f0ae0c"
+      },
+      "dosageInstruction" : [{
+        "timing" : {
+          "repeat" : {
+            "boundsPeriod" : {
+              "start" : "2024-01-16"
+            }
+          }
+        },
+        "route" : {
+          "coding" : [{
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20070000",
+            "display" : "Voie transdermique"
+          }]
+        }
+      }]
+    }

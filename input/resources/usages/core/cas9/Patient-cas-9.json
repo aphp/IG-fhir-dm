@@ -1,0 +1,45 @@
+{
+      "resourceType" : "Patient",
+      "id" : "2d7c21fd-859a-493b-b20a-1a27237ea5ba",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0203",
+            "code" : "NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "278056432187654"
+      }],
+      "name" : [{
+        "family" : "Blanc",
+        "given" : ["Isabelle"]
+      }],"gender" : "female",
+      "birthDate" : "1978-05-06",
+      "address" : [{
+        "extension" : [{
+          "url" : "https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo",
+          "valueCode" : "75015"
+        },
+        {
+          "extension" : [{
+            "url" : "latitude",
+            "valueDecimal" : 48.8499
+          },
+          {
+            "url" : "longitude",
+            "valueDecimal" : 2.2943
+          }],
+          "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
+        }],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "751155805"
+          }]
+        }]
+      }],"multipleBirthInteger" : 1
+    }

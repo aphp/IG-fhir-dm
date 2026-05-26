@@ -46,7 +46,3 @@
 #### Cas 10 : Exacerbation de BPCO
 
 {% include QuestionnaireResponse-cas-10-usage-core-html.xhtml %}
-
-#### Cas 11 : Suivi diabète de type 2
-
-{% include QuestionnaireResponse-cas-11-usage-core-html.xhtml %}

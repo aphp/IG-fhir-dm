@@ -1,0 +1,27 @@
+ {
+      "resourceType" : "Condition",
+      "id" : "21031872-7e8d-42d4-a1db-7ccf4b0ea211",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "code" : "DA",
+          "display" : "Diagnostic associe"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "E78.0",
+          "display" : "Hypercholesterolemie essentielle"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b3e979e5-b9e6-4ef6-b7b5-ca218cab44c7"
+      },
+      "recordedDate" : "2024-01-10"
+    }

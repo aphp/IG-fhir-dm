@@ -2,7 +2,7 @@
   "resourceType": "QuestionnaireResponse",
   "id": "cas-9-usage-core",
   "status": "completed",
-  "authored": "2025-10-14T16:14:57.160Z",
+  "authored": "2026-03-24T14:32:51.459Z",
   "questionnaire": "https://interop.aphp.fr/ig/fhir/dm/Questionnaire/UsageCore",
   "item": [
     {
@@ -93,10 +93,7 @@
               "text": "IRIS",
               "answer": [
                 {
-                  "valueCoding": {
-                    "system": "https://inse.fr/IRIS-cs",
-                    "code": "751155805"
-                  },
+                  "valueString": "751155805",
                   "item": [
                     {
                       "answer": [
@@ -122,11 +119,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/DpiGender",
-                "code": "f",
-                "display": "Femme"
-              }
+              "valueString": "f"
             }
           ],
           "linkId": "3894630481120",
@@ -135,11 +128,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "system": "https://atih.sante.fr/CodesGeographiques-cs",
-                "code": "75015",
-                "display": "Paris 15ème arrondissement"
-              },
+              "valueString": "75015",
               "item": [
                 {
                   "answer": [
@@ -163,7 +152,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-14"
                 }
               ],
               "linkId": "7114466839467",
@@ -172,9 +161,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DP"
-                  }
+                  "valueString": "DP"
                 }
               ],
               "linkId": "6427586743735",
@@ -183,10 +170,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "R18",
-                    "display": "Ascite"
-                  }
+                  "valueString": "Ascite"
                 }
               ],
               "linkId": "5505101189372",
@@ -201,7 +185,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-14"
                 }
               ],
               "linkId": "7114466839467",
@@ -210,9 +194,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "display": "DAS"
-                  }
+                  "valueString": "DAS"
                 }
               ],
               "linkId": "6427586743735",
@@ -221,10 +203,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "K70.3",
-                    "display": "Cirrhose alcoolique du foie"
-                  }
+                  "valueString": "Cirrhose alcoolique du foie"
                 }
               ],
               "linkId": "5505101189372",
@@ -239,7 +218,7 @@
             {
               "answer": [
                 {
-                  "valueDate": "2024-01-15"
+                  "valueDate": "2024-01-14"
                 }
               ],
               "linkId": "9436509453137",
@@ -257,10 +236,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "HPHB003",
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam"
-                  }
+                  "valueString": "HPHB003"
                 }
               ],
               "linkId": "7758110033600",
@@ -293,10 +269,7 @@
             {
               "answer": [
                 {
-                  "valueCoding": {
-                    "code": "HEQE002",
-                    "system": "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam"
-                  }
+                  "valueString": "HEQE002"
                 }
               ],
               "linkId": "7758110033600",
@@ -325,10 +298,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString": "Domicile"
             }
           ],
           "linkId": "6172398101212",
@@ -337,10 +307,7 @@
         {
           "answer": [
             {
-              "valueCoding": {
-                "code": "8",
-                "display": "Domicile"
-              }
+              "valueString": "Domicile"
             }
           ],
           "linkId": "3354867075704",
@@ -369,11 +336,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "5894-1",
-                            "display": "Temps de quick Patient (%) [Temps relatif] Plasma pauvre en plaquettes ; Numérique ; Coagulation"
-                          }
+                          "valueString": "5894-1"
                         }
                       ],
                       "linkId": "219513623269",
@@ -391,14 +354,35 @@
                     {
                       "answer": [
                         {
+                          "valueString": "valide"
+                        }
+                      ],
+                      "linkId": "429387291763",
+                      "text": "Statut de validation"
+                    },
+                    {
+                      "answer": [
+                        {
                           "valueQuantity": {
-                            "value": 50,
+                            "value": 70,
                             "unit": "%"
                           }
                         }
                       ],
                       "linkId": "253311419093",
                       "text": "Borne inférieure de normalité du résultat"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 100,
+                            "unit": "%"
+                          }
+                        }
+                      ],
+                      "linkId": "706043904552",
+                      "text": "Borne supérieure de normalité du résultat"
                     }
                   ]
                 }
@@ -423,11 +407,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "1920-8",
-                            "display": "Aspartate aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString": "1920-8"
                         }
                       ],
                       "linkId": "757363598159",
@@ -483,11 +463,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "1742-6",
-                            "display": "Alanine aminotransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString": "1742-6"
                         }
                       ],
                       "linkId": "698926487710",
@@ -543,11 +519,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "2324-2",
-                            "display": "Gamma glutamyltransférase [Catalytique/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString": "2324-2"
                         }
                       ],
                       "linkId": "688754894578",
@@ -561,6 +533,18 @@
                       ],
                       "linkId": "191793018592",
                       "text": "Date et heure du prélèvement"
+                    },
+                    {
+                      "answer": [
+                        {
+                          "valueQuantity": {
+                            "value": 7,
+                            "unit": "UI/L"
+                          }
+                        }
+                      ],
+                      "linkId": "529114499294",
+                      "text": "Borne inférieure de normalité du résultat"
                     },
                     {
                       "answer": [
@@ -591,11 +575,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "6768-6",
-                            "display": "Phosphatases alcalines [Catalytique/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString": "6768-6"
                         }
                       ],
                       "linkId": "726897332003",
@@ -642,11 +622,7 @@
                     {
                       "answer": [
                         {
-                          "valueCoding": {
-                            "system": "http://loinc.org",
-                            "code": "1975-2",
-                            "display": "Bilirubine [Masse/Volume] Sérum/Plasma ; Numérique"
-                          }
+                          "valueString": "1975-2"
                         }
                       ],
                       "linkId": "657001208566",
@@ -696,26 +672,18 @@
               "valueString": "furosémide 40mg",
               "item": [
                 {
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "C03CA01",
-                        "display": "furosémide"
-                      }
+                      "valueString": "01958"
                     }
-                  ],
-                  "linkId": "1923143398283",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001146",
-                        "display": "Oral"
-                      }
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "387026794874",
@@ -746,9 +714,9 @@
               ],
               "linkId": "429570775935",
               "text": "Date de fin de la prescription"
-            }
-          ]
-        },
+        }
+      ]
+    },
         {
           "linkId": "266852453304",
           "text": "Médicament administré",
@@ -757,26 +725,18 @@
               "valueString": "furosémide 40mg",
               "item": [
                 {
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "C03CA01",
-                        "display": "furosémide"
-                      }
+                      "valueString": "01958"
                     }
-                  ],
-                  "linkId": "631972144976",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001146",
-                        "display": "Oral"
-                      }
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "811931484859",
@@ -872,26 +832,18 @@
               "valueString": "spironolactone 25mg",
               "item": [
                 {
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "C03DA01",
-                        "display": "spironolactone"
-                      }
+                      "valueString": "00977"
                     }
-                  ],
-                  "linkId": "1923143398283",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001146",
-                        "display": "Oral"
-                      }
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "387026794874",
@@ -933,26 +885,18 @@
               "valueString": "spironolactone 25mg",
               "item": [
                 {
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "C03DA01",
-                        "display": "spironolactone"
-                      }
+                      "valueString": "00977"
                     }
-                  ],
-                  "linkId": "631972144976",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001146",
-                        "display": "Oral"
-                      }
+                      "valueString": "20053000"
                     }
                   ],
                   "linkId": "811931484859",
@@ -1048,26 +992,18 @@
               "valueString": "albumine 20%",
               "item": [
                 {
+                  "linkId": "1923143398283",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B05AA01",
-                        "display": "albumine"
-                      }
+                      "valueString": "B05AA01"
                     }
-                  ],
-                  "linkId": "1923143398283",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001141",
-                        "display": "Intraveineux"
-                      }
+                      "valueString": "20045000"
                     }
                   ],
                   "linkId": "387026794874",
@@ -1109,26 +1045,18 @@
               "valueString": "albumine 20%",
               "item": [
                 {
+                  "linkId": "631972144976",
+                  "text": "codification",
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-atc",
-                        "code": "B05AA01",
-                        "display": "albumine"
-                      }
+                      "valueString": "B05AA01"
                     }
-                  ],
-                  "linkId": "631972144976",
-                  "text": "codification"
+                  ]
                 },
                 {
                   "answer": [
                     {
-                      "valueCoding": {
-                        "system": "https://smt.esante.gouv.fr/terminologie-standardterms",
-                        "code": "90001141",
-                        "display": "Intraveineux"
-                      }
+                      "valueString": "20045000"
                     }
                   ],
                   "linkId": "811931484859",
@@ -1185,29 +1113,6 @@
           "text": "Dossier de soins",
           "item": [
             {
-              "linkId": "4846902346416",
-              "text": "Taille",
-              "answer": [
-                {
-                  "valueQuantity": {
-                    "value": 162,
-                    "unit": "cm"
-                  },
-                  "item": [
-                    {
-                      "answer": [
-                        {
-                          "valueDate": "2024-01-13"
-                        }
-                      ],
-                      "linkId": "941821315470",
-                      "text": "Date de la mesure"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "linkId": "451513217936",
               "text": "Poids",
               "answer": [
@@ -1236,6 +1141,11 @@
     }
   ],
   "subject": {
-    "display": "Mme Blanc"
+    "reference": "Patient/patient-example",
+    "display": "Anyperson John B"
+  },
+  "author": {
+    "reference": "Practitioner/practitioner-example",
+    "display": "Quenum Martin U"
   }
 }

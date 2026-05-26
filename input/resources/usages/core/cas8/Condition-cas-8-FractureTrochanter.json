@@ -1,0 +1,27 @@
+{
+      "resourceType" : "Condition",
+      "id" : "66d4ee0e-f0c5-4056-ba2d-41ab669d8294",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMCondition"]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "https://interop.aphp.fr/ig/fhir/dm/CodeSystem/pmsi-mco-diag-type",
+          "code" : "DP",
+          "display" : "Diagnostic Principal"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "S72.1",
+          "display" : "Fracture du trochanter"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a"
+      },
+      "encounter" : {
+        "reference" : "Encounter/a77d9d30-48cf-478f-b19e-6c90f625b3dc"
+      },
+      "recordedDate" : "2024-01-11"
+    }

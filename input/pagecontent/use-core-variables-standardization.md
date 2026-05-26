@@ -71,7 +71,3 @@ Dans l'histoire du cas 9 on peut représenter plusieurs informations dans le mod
 #### Cas 10 : Exacerbation de BPCO
 
 à faire
-
-#### Cas 11 : Suivi diabète de type 2
-
-à faire

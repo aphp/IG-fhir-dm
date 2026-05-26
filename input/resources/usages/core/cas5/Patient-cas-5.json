@@ -1,0 +1,47 @@
+{
+      "resourceType" : "Patient",
+      "id" : "ee82429a-e183-409e-bcf6-d01fb7a4d2e3",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0203",
+            "code" : "NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "203074521234567"
+      }],
+      "name" : [{
+        "family" : "Simon",
+        "given" : ["Camille"]
+      }],
+      "gender" : "female",
+      "birthDate" : "1945-07-04",
+      "address" : [{
+        "extension" : [{
+          "url" : "https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo",
+          "valueCode" : "75018"
+        },
+        {
+          "extension" : [{
+            "url" : "latitude",
+            "valueDecimal" : 48.8798
+          },
+          {
+            "url" : "longitude",
+            "valueDecimal" : 2.3474
+          }],
+          "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
+        }],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "751187209"
+          }]
+        }]
+      }],
+      "multipleBirthInteger" : 1
+    }

@@ -1,0 +1,47 @@
+{
+      "resourceType" : "Observation",
+      "id" : "140ba245-e129-44da-a782-cf19e82e1985",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/dm-observation-laboratory-generic"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://loinc.org",
+          "code" : "6690-2",
+          "display" : "Leucocytes"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3"
+      },
+      "encounter" : {
+        "reference" : "Encounter/f769e4e3-c30e-4348-87ad-388d151d63d7"
+      },
+      "effectiveDateTime" : "2024-01-12T07:29:19.180Z",
+      "valueQuantity" : {
+        "value" : 18,
+        "unit" : "g/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "g/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/L",
+          "value" : 4,
+          "unit" : "g/L"
+        },
+        "high" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "g/L",
+          "value" : 10,
+          "unit" : "g/L"
+        }
+      }]
+    }

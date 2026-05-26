@@ -1,0 +1,15 @@
+{
+  "resourceType": "ViewDefinition",
+  "name": "location",
+  "resource": "Patient",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "location_id" },
+        { "path": "id", "name": "person_id" },
+        { "path": "address.first().extension.where(url='http://hl7.org/fhir/StructureDefinition/geolocation').first().extension.where(url='latitude').first().valueDecimal", "name": "latitude" },
+        { "path": "address.first().extension.where(url='http://hl7.org/fhir/StructureDefinition/geolocation').first().extension.where(url='longitude').first().valueDecimal", "name": "longitude" }
+      ]
+    }
+  ]
+}

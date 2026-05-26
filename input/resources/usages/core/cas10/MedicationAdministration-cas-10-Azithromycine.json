@@ -1,0 +1,37 @@
+{
+      "resourceType" : "MedicationAdministration",
+      "id" : "5adf9d50-f4c5-4fc4-a5dc-7adafb425dde",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMMedicationAdministration"]
+      },
+      "status" : "completed",
+      "medicationCodeableConcept" : {
+        "coding" : [{"system" : "http://hl7.org/fhir/sid/icd-10",
+          "code" : "J01FA10",
+          "display" : "Azithromycine "
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/21f4ee98-4940-4d54-b573-523bc7718a6d"
+      },
+      "encounter" : {
+        "reference" : "Encounter/1306bf6d-5a47-401e-82a7-19b009f0ae0c"
+      },
+      "effectivePeriod" : {
+        "start" : "2024-01-16T07:12:14.557Z",
+        "end" : "2024-01-16T07:15:24.418Z"
+      },
+      "dosage" : {
+        "route" : {
+          "coding" : [{
+          "system" : "http://standardterms.edqm.eu",
+            "code" : "20053000",
+            "display" : "Voie Orale"
+          }]
+        },
+        "dose" : {
+          "value" : 250,
+          "unit" : "mg"
+        }
+      }
+    }

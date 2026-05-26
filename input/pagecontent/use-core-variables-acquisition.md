@@ -98,7 +98,3 @@ Exemples pour valider avec les experts le modèle conceptuel ... Ces exemples se
 #### Cas 10 : Exacerbation de BPCO
 
 {% include cas-10-synthese.md %}
-
-#### Cas 11 : Suivi diabète de type 2
-
-{% include cas-11-synthese.md %}

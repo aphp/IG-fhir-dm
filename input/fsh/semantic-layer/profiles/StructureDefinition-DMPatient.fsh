@@ -3,9 +3,6 @@ Parent: FRCorePatientProfile
 Title: "Patient"
 Description: "Profil Patient du socle commun des EDSH"
 
-* identifier[NSS] MS
-
-/*
 * identifier contains
     INS-NIR 0..*
 
@@ -17,12 +14,14 @@ Description: "Profil Patient du socle commun des EDSH"
 * identifier[INS-NIR].value 1..
 * identifier[INS-NIR] MS
 
+* identifier[NSS] MS
+
 * gender MS
 * gender from $fr-core-vs-patient-gender-INS (required)
 * gender ^short = "male | female | unknown"
 
 * birthDate MS
-*/
+
 * deceased[x] MS
 * deceased[x] 
   * extension contains

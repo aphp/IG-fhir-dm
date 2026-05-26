@@ -1,0 +1,47 @@
+{
+      "resourceType" : "Patient",
+      "id" : "00c2b477-4649-46af-aa82-2337558a1ec8",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DMPatient"]
+      },
+      "identifier" : [{
+        "type" : {
+          "coding" : [{
+            "system" : "http://interopsante.org/fhir/CodeSystem/fr-v2-0203",
+            "code" : "NIR"
+          }]
+        },
+        "system" : "urn:oid:1.2.250.1.213.1.4.8",
+        "value" : "285113498765123"
+      }],
+      "name" : [{
+        "family" : "Garcia",
+        "given" : ["Elena"]
+      }],
+      "gender" : "female",
+      "birthDate" : "1985-11-13",
+      "address" : [{
+        "extension" : [{
+          "url" : "https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo",
+          "valueCode" : "75009"
+        },
+        {
+          "extension" : [{
+            "url" : "latitude",
+            "valueDecimal" : 48.8867
+          },
+          {
+            "url" : "longitude",
+            "valueDecimal" : 2.3431
+          }],
+          "url" : "http://hl7.org/fhir/StructureDefinition/geolocation"
+        }],
+        "_line" : [{
+          "extension" : [{
+            "url" : "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+            "valueString" : "751093306"
+          }]
+        }]
+      }],
+      "multipleBirthInteger" : 1
+    }

@@ -1,0 +1,47 @@
+{
+      "resourceType" : "Observation",
+      "id" : "16c73437-4610-4c5d-915e-8371b11f1a80",
+      "meta" : {
+        "profile" : ["https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/dm-observation-laboratory-generic"]
+      },
+      "status" : "final",
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code" : "laboratory"
+        }]
+      }],
+      "code" : {
+        "coding" : [{"system" : "http://loinc.org",
+          "code" : "14682-9",
+          "display" : "Creatinine"
+        }]
+      },
+      "subject" : {
+        "reference" : "Patient/e569cdc5-6024-42bf-8e0f-7565583066b0"
+      },
+      "encounter" : {
+        "reference" : "Encounter/b16544a7-e91b-4e53-9a42-914e38c2727d"
+      },
+      "effectiveDateTime" : "2024-01-15T07:16:33.632Z",
+      "valueQuantity" : {
+        "value" : 60,
+        "unit" : "umol/L",
+        "system" : "http://unitsofmeasure.org",
+        "code" : "umol/L"
+      },
+      "referenceRange" : [{
+        "low" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "umol/L",
+          "value" : 62,
+          "unit" : "umol/L"
+        },
+        "high" : {
+          "system" : "http://unitsofmeasure.org",
+          "code" : "umol/L",
+          "value" : 106,
+          "unit" : "umol/L"
+        }
+      }]
+    }
