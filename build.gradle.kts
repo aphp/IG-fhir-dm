@@ -105,33 +105,6 @@ tasks.register<JavaExec>("igPublisherBuild") {
     )
 }
 
-tasks.register<JavaExec>("igPublisherBuildRapido") {
-    group = "build"
-
-    jvmArgs("-Dfile.encoding=UTF-8", "-Xmx2g")
-    classpath(igPublisherPath)
-    args = listOf(
-        "-validation-off",
-        "-generation-off",
-        "-no-sushi",
-        "-authorise-non-conformant-tx-servers",
-        "-ig",
-        "."
-    )
-    dependsOn(
-        igPublisherInstall
-    )
-}
-
-tasks.register<GradleBuild>("buildIG (Rapido mode)") {
-    group = "build"
-
-    tasks = listOf(
-        "sushiBuild",
-        "igPublisherBuildRapido"
-    )
-}
-
 tasks.register<GradleBuild>("buildIG") {
     group = "build"
 
