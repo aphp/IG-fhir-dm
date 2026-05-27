@@ -1,10 +1,10 @@
-Instance: OMOP-ConditionOccurrence-View
+Instance: omop-condition-occurrence
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Condition Occurrence View"
 Description: "ViewDefinition to transform FHIR Condition resources into OMOP Condition Occurrence table format"
 
-* name = "OMOP-ConditionOccurrence-View"
+* name = "OmopConditionOccurrence"
 * status = #draft
 * resource = #Condition
 * select[+]

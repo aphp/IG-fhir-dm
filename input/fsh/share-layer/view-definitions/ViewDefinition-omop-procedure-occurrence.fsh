@@ -1,10 +1,10 @@
-Instance: OMOP-ProcedureOccurrence-View
+Instance: omop-procedure-occurrence
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Procedure Occurrence View"
 Description: "ViewDefinition to transform FHIR Procedure resources into OMOP Procedure Occurrence table format"
 
-* name = "OMOP-ProcedureOccurrence-View"
+* name = "OmopProcedureOccurrence"
 * status = #draft
 * resource = #Procedure
 * select[0]

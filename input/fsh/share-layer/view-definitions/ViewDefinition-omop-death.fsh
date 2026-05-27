@@ -1,10 +1,10 @@
-Instance: OMOP-Death-View
+Instance: omop-death
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Death View"
 Description: "ViewDefinition to transform FHIR Observation resources (cause of death) into OMOP Death table format"
 
-* name = "OMOP-Death-View"
+* name = "OmopDeath"
 * status = #draft
 * resource = #Observation
 * where[+]

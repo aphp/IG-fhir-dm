@@ -1,10 +1,10 @@
-Instance: OMOP-Measurement-View
+Instance: omop-measurement
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Measurement View"
 Description: "ViewDefinition to transform FHIR Observation resources into OMOP Measurement table format"
 
-* name = "OMOP-Measurement-View"
+* name = "OmopMeasurement"
 * status = #draft
 * resource = #Observation
 * select[0]

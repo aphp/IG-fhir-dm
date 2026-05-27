@@ -1,10 +1,10 @@
-Instance: OMOP-CareSite-View
+Instance: omop-care-site
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Care Site View"
 Description: "ViewDefinition to transform FHIR Organization resources into OMOP Care Site table format"
 
-* name = "OMOP-CareSite-View"
+* name = "OmopCareSite"
 * status = #draft
 * resource = #Organization
 * select[0]

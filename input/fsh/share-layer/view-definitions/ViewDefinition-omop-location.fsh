@@ -1,10 +1,10 @@
-Instance: OMOP-Location-View
+Instance: omop-location
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Location View"
 Description: "ViewDefinition to transform FHIR Location resources into OMOP Location table format"
 
-* name = "OMOP-Location-View"
+* name = "OmopLocation"
 * status = #draft
 * resource = #Patient
 * select[0]

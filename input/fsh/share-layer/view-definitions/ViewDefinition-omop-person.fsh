@@ -1,10 +1,10 @@
-Instance: OMOP-Person-View
+Instance: omop-person
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Person View"
 Description: "ViewDefinition to transform FHIR Patient resources into OMOP Person table format"
 
-* name = "OMOP-Person-View"
+* name = "OmopPerson"
 * status = #draft
 * resource = #Patient
 * constant[0]

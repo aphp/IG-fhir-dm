@@ -1,10 +1,10 @@
-Instance: OMOP-DrugStrength-View
+Instance: omop-drug-strength
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Drug Strength View"
 Description: "ViewDefinition to transform FHIR Medication resources into OMOP Drug Strength table format"
 
-* name = "OMOP-DrugStrength-View"
+* name = "OmopDrugStrength"
 * status = #draft
 * resource = #Medication
 * select[+]

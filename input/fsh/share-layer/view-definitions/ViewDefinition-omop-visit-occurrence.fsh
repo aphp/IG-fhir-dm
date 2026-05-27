@@ -1,10 +1,10 @@
-Instance: OMOP-VisitOccurrence-View
+Instance: omop-visit-occurrence
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Visit Occurrence View"
 Description: "ViewDefinition to transform FHIR Encounter resources into OMOP Visit Occurrence table format"
 
-* name = "OMOP-VisitOccurrence-View"
+* name = "OmopVisitOccurrence"
 * status = #draft
 * resource = #Encounter
 * select[0]

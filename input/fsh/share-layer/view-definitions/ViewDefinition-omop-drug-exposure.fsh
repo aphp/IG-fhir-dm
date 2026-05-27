@@ -1,10 +1,10 @@
-Instance: OMOP-DrugExposure-View
+Instance: omop-drug-exposure
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Drug Exposure View"
 Description: "ViewDefinition to transform FHIR MedicationAdministration resources into OMOP Drug Exposure table format"
 
-* name = "OMOP-DrugExposure-View"
+* name = "OmopDrugExposure"
 * status = #draft
 * resource = #MedicationAdministration
 * select[0]

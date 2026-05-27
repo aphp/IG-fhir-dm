@@ -1,10 +1,10 @@
-Instance: OMOP-Provider-View
+Instance: omop-provider
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Provider View"
 Description: "ViewDefinition to transform FHIR Practitioner resources into OMOP Provider table format"
 
-* name = "OMOP-Provider-View"
+* name = "OmopProvider"
 * status = #draft
 * resource = #Practitioner
 * select[+]

@@ -1,10 +1,10 @@
-Instance: OMOP-Specimen-View
+Instance: omop-specimen
 InstanceOf: ViewDefinition
 Usage: #definition
 Title: "OMOP Specimen View"
 Description: "ViewDefinition to transform FHIR Specimen resources into OMOP Specimen table format"
 
-* name = "OMOP-Specimen-View"
+* name = "OmopSpecimen"
 * status = #draft
 * resource = #Specimen
 * select[0]
