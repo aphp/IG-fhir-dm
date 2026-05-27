@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "death_cause",
+  "status": "draft",
+  "name": "DeathCause",
+  "description": "Vue se rapprochant de la table OMOP death, pour la cause de décès",
   "resource": "Condition",
   "select": [
     {

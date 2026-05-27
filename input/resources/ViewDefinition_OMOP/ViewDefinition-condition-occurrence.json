@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "condition_occurrence",
+  "status": "draft",
+  "name": "ConditionOccurrence",
+  "description": "Vue se rapprochant de la table OMOP condition_occurrence",
   "resource": "Condition",
   "select": [
     {

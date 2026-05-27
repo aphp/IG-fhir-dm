@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "measurement_blood_pressure",
+  "status": "draft",
+  "name": "MeasurementBloodPressure",
+  "description": "Vue se rapprochant de la table OMOP measurement, pour les pressions artérielles",
   "resource": "Observation",
   "select": [
     {

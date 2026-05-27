@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "location",
+  "status": "draft",
+  "name": "Location",
+  "description": "Vue se rapprochant de la table OMOP location",
   "resource": "Patient",
   "select": [
     {

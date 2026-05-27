@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "drug_exposure_request",
+  "status": "draft",
+  "name": "DrugExposureRequest",
+  "description": "Vue se rapprochant de la table OMOP drug_exposure, pour les prescriptions",
   "resource": "MedicationRequest",
   "select": [
     {

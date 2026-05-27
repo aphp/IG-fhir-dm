@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "drug_exposure_administration",
+  "status": "draft",
+  "name": "DrugExposureAdministration",
+  "description": "Vue se rapprochant de la table OMOP drug_exposure, pour les administrations",
   "resource": "MedicationAdministration",
   "select": [
     {

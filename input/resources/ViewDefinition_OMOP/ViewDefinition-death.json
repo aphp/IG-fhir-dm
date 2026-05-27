@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "death",
+  "status": "draft",
+  "name": "Death",
+  "description": "Vue se rapprochant de la table OMOP death",
   "resource": "Patient",
   "select": [
     {

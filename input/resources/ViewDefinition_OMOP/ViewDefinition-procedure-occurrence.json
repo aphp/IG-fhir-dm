@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "procedure_occurrence",
+  "status": "draft",
+  "name": "ProcedureOccurrence",
+  "description": "Vue se rapprochant de la table OMOP procedure_occurrence",
   "resource": "Procedure",
   "select": [
     {

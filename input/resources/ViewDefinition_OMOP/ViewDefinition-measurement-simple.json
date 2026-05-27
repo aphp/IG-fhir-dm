@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "measurement_simple",
+  "status": "draft",
+  "name": "MeasurementSimple",
+  "description": "Vue se rapprochant de la table OMOP measurement, pour les analyses biologiques sanas component",
   "resource": "Observation",
   "select": [
     {

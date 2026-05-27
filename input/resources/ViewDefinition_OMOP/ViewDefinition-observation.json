@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "observation",
+  "status": "draft",
+  "name": "Observation",
+  "description": "Vue se rapprochant de la table OMOP observation",
   "resource": "Condition",
   "select": [
     {

@@ -1,6 +1,8 @@
 {
   "resourceType": "ViewDefinition",
-  "name": "person",
+  "status": "draft",
+  "name": "Person",
+  "description": "Vue se rapprochant de la table OMOP person",
   "resource": "Patient",
   "select": [
     {
