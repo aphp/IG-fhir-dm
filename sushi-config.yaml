@@ -20,6 +20,7 @@ dependencies:
   org.sql-on-fhir.ig: 2.0.0
   hl7.fhir.fr.core: 2.1.0
   ans.fhir.fr.annuaire: 1.1.0
+  aphp.fhir.fr.edsh : dev # 0.1.0
   #org.sql-on-fhir.ig:
   #  uri: https://sql-on-fhir.org/ig
   #  version: 2.0.0
@@ -27,22 +28,6 @@ dependencies:
 pages:
   index.md:
     title: Accueil
-  data-dictionary.md:
-    title: Dictionnaire des données
-  use-case.md:
-    title: Usages
-    use-core-variables.md:
-      title: Variables socles pour les EDSH
-      use-core-variables-process.md:
-        title: Standardisation de données au format FHIR
-        use-core-variables-acquisition.md:
-          title: Acquisition des variables
-        use-core-variables-formalization.md:
-          title: Formalisation des variables
-        use-core-variables-standardization.md:
-          title: Standardisation des variables
-      use-core-variables-evaluation.md:
-        title: Evaluation
   data-platform.md:
     title: Health Data Platform (démo)
     data-platform-functional-architecture.md:
@@ -68,11 +53,6 @@ pages:
 
 menu:
   Accueil: index.html
-  Dictionnaire des données: data-dictionary.html
-  Variables du socle commun:
-    Acquisition des variables: use-core-variables-acquisition.html
-    Formalisation des variables: use-core-variables-formalization.html
-    Standardisation des variables: use-core-variables-standardization.html
   Health Data Platform:
     Architecture fonctionnelle: data-platform-functional-architecture.html
     Raw layer: data-platform-raw-layer.html
@@ -95,7 +75,8 @@ parameters:  # see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-pa
   pin-canonicals: pin-multiples # Avoid raising many warnings when there are no version for URLs. "pin-multiples": pinning the canonical reference will only happen if there is multiple versions found in the package dependencies
   path-expansion-params: '../../input/data/expansion-params.json' # for using French SNOMED CT Extension
   path-resource:
-    - input/resources/usages/core
+    - input/fml
+    - input/fml/usages/core
     - input/resources/usages/core/cas1
     - input/resources/usages/core/cas2
     - input/resources/usages/core/cas3
@@ -106,10 +87,7 @@ parameters:  # see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-pa
     - input/resources/usages/core/cas8
     - input/resources/usages/core/cas9
     - input/resources/usages/core/cas10
-    - input/fml
-    - input/fml/usages/core
     - input/resources/ViewDefinition_OMOP
-    - input/resources/usages/core/View_definition
     
 # The instanceOptions property is used to configure certain aspects of how SUSHI processes instances.
 instanceOptions:
@@ -124,14 +102,6 @@ instanceOptions:
 #    - progress #progress: Overall progress messages
 
 resources:
-  Questionnaire/UsageCore:
-    name: Questionnaire usage Variables socles pour les EDSH
-    description: Formalisation de variables socles pour les EDSH
-    exampleBoolean: false
-  QuestionnaireResponse/cas-1-usage-core:
-    name: Patient 1 - Madame Dupont
-    description: Prise en charge d'un infarctus du myocarde
-    exampleBoolean: true
   Patient/73ed8b6d-e761-4f71-b69d-475a1be9f487:
     name: Patient 1 - Madame Dupont (Patient)
     description: Prise en charge d'un infarctus du myocarde
@@ -216,10 +186,6 @@ resources:
     name: Atorvastatine administré à Madame Dupont
     description: Représente la dose et le processus d'administration d'Atorvastatine au patient 1
     exampleBoolean: true  
-  QuestionnaireResponse/cas-2-usage-core:
-    name: Patient 2 - Monsieur Martin
-    description: Traitement d'un ulcère
-    exampleBoolean: true
   Patient/73285bbe-d64d-44b9-8cb6-864a376384c4:
     name: Patient 2 - Monsieur Martin (Patient)
     description: Prise en charge d'un ulcère
@@ -256,10 +222,6 @@ resources:
     name: Omeprazol administré à Monsieur Martin
     description: Représente la dose et le processus d'administration d'Omeprazol au patient 2
     exampleBoolean: true  
-  QuestionnaireResponse/cas-3-usage-core:
-    name: Patient 3 - Madame Leroy
-    description: Accouchement simple
-    exampleBoolean: true
   Patient/e569cdc5-6024-42bf-8e0f-7565583066b0:
     name: Patient 3 - Madame Leroy (Patient)
     description: Prise en charge d'un Accouchement simple
@@ -304,10 +266,6 @@ resources:
     name: Acide Folique administré à Madame Leroy
     description: Représente la dose et le processus d'administration d'Acide Folique au patient 3
     exampleBoolean: true    
-  QuestionnaireResponse/cas-4-usage-core:
-    name: Patient 4 - Monsieur Moreau
-    description: Choc cardiogénique en réanimation
-    exampleBoolean: true
   Patient/05584e1b-3435-415a-af33-aad1fca40fad:
     name: Patient 4 - Monsieur Moreau (Patient)
     description: Prise en charge d'un Choc cardiogénique en réanimation
@@ -392,10 +350,6 @@ resources:
     name: Noradrenaline administré à Monsieur Moreau
     description: Représente la dose et le processus d'administration de Noradrenaline au patient 4
     exampleBoolean: true  
-  QuestionnaireResponse/cas-5-usage-core:
-    name: Patient 5 - Madame Simon
-    description: Surveillance d'une fièvre avec altération de l'état général
-    exampleBoolean: true
   Patient/ee82429a-e183-409e-bcf6-d01fb7a4d2e3:
     name: Patient 5 - Madame Simon (Patient)
     description: Prise en charge d'une fièvre avec altération de l'état général
@@ -440,10 +394,6 @@ resources:
     name: Ceftriaxone administré à Madame Simon
     description: Représente la dose et le processus d'administration de Ceftriaxone au patient 5
     exampleBoolean: true 
-  QuestionnaireResponse/cas-6-usage-core:
-    name: Patient 6 - Monsieur Petit
-    description: Suivi de cardiopathie
-    exampleBoolean: true
   Patient/95ad2759-7eed-4146-8088-b74cc5ce847c:
     name: Patient 6 - Monsieur Petit (Patient)
     description: Prise en charge d'une cardiopathie
@@ -528,10 +478,6 @@ resources:
     name: Simvastatine administré à  Monsieur Petit
     description: Représente la dose et le processus d'administration d'Simvastatine au patient 6
     exampleBoolean: true  
-  QuestionnaireResponse/cas-7-usage-core:
-    name: Patient 7 - Madame Garcia 
-    description: État de mal migraineux
-    exampleBoolean: true
   Patient/00c2b477-4649-46af-aa82-2337558a1ec8:
     name: Patient 7 - Madame Garcia (Patient)
     description: Prise en charge de l'Etat de mal migraineux
@@ -576,10 +522,6 @@ resources:
     name: Ketoprofene administré à Madame Garcia
     description: Représente la dose et le processus d'administration de Ketoprofene au patient 7
     exampleBoolean: true 
-  QuestionnaireResponse/cas-8-usage-core:
-    name: Patient 8 - Monsieur Roux 
-    description: Chirurgie d'une fracture fémorale
-    exampleBoolean: true
   Patient/00d05edd-cffc-46e0-8ddb-91b7e801985a:
     name: Patient 8 - Monsieur Roux (Patient)
     description: Chirurgie d'une fracture fémorale
@@ -624,10 +566,6 @@ resources:
     name: Enoxaparine administré à Monsieur Roux
     description: Représente la dose et le processus d'administration de Enoxaparine au patient 8
     exampleBoolean: true  
-  QuestionnaireResponse/cas-9-usage-core:
-    name: Patient 9 - Madame Blanc
-    description: Patiente bénéficiant d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
-    exampleBoolean: true
   Patient/2d7c21fd-859a-493b-b20a-1a27237ea5ba:
     name: Patient 9 - Madame Blanc (Patient)
     description: Prise en charge d'une ponction d'ascite évacuatrice et d'exploration de sa cirrhose
@@ -688,10 +626,6 @@ resources:
     name: Albumine administré à Madame Blanc
     description: Représente la dose et le processus d'administration d'Albumine au patient 9
     exampleBoolean: true 
-  QuestionnaireResponse/cas-10-usage-core:
-    name: Patient 10 - Monsieur David
-    description: Insuffisance respiratoire sur BPCO
-    exampleBoolean: true
   Patient/21f4ee98-4940-4d54-b573-523bc7718a6d:
     name: Patient 10 - Monsieur David (Patient)
     description: Prise en charge d'une Insuffisance respiratoire sur BPCO
