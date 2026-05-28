@@ -1,0 +1,19 @@
+{
+  "resourceType": "ViewDefinition",
+  "status": "draft",
+  "name": "DeathCause",
+  "description": "Vue se rapprochant de la table OMOP death, pour la cause de décès",
+  "resource": "Condition",
+  "select": [
+    {
+      "column": [
+        {"path": "subject.reference","name": "person_id"},
+        {"path": "0","name": "cause_concept_id"},
+        {"path": "code.coding.first().display","name": "cause_source_value"},
+        {"path": "code.coding.first().code","name": "cause_source_concept_id"},
+        {"path": "code.coding.first().system","name": "cause_coding_source_system"}
+      ]
+    }
+  ],
+  "where": [{"path": "subject.reference = 'Patient/05584e1b-3435-415a-af33-aad1fca40fad' and category.first().coding.first().code = 'DP'"}]
+}

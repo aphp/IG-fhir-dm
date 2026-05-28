@@ -38,8 +38,8 @@ Pour supporter l'approche, plusieurs outils sont facilitant notamment :
 Le guide d'implémentation **Data Management with FHIR** s'appuie sur l'outil [HL7 FHIR IG Publisher](https://github.com/HL7/fhir-ig-publisher) impactant le rendu. Dans la barre de navigation où se trouve les entrées de premier niveau du guide. Les entrées sont :
 
 1. Accueil (cette page)
-2. [Variables socles pour les EDSH](use-core-variables.html) : présente notamment la standardisation des données au format **FHIR**
-3. [Health Data Platform (démo)](data-platform.html) : présente les éléments opérationnels
+2. [Health Data Platform (démo)](data-platform.html) : présente les différentes étapes pour transformer des données socles issues d'un DPI en [ressources FHIR standardisées](https://aphp.github.io/IG-FHIR-EDSH-SOCLE-COMMUN/index.html) ou pour transformer des données standardisées FHIR dans un autre format cible (par exemple OMOP CDM 5.4)
+3. Guide : propose plusieurs ressources d'aide
 4. [Ressources de conformité](artifacts.html) : présente tous les artefacts FHIR
 5. [Notes de version](changelog.html)
 6. Plus

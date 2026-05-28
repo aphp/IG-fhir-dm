@@ -1,6 +1,6 @@
 ValueSet: OMOPGender
 Title: "ValueSet of gender of OHDSI"
-Description: "ToDo"
+Description: "valeurs standards de person.gender_concept_id dans le CDM OMOP 5.4"
 
 * ^experimental = false
 * ^immutable = false

@@ -1,0 +1,28 @@
+{
+  "resourceType": "ViewDefinition",
+  "status": "draft",
+  "name": "VisitOccurrence",
+  "description": "Vue se rapprochant de la table OMOP visit_occurrence",
+  "resource": "Encounter",
+  "select": [
+    {
+      "column": [
+        { "path": "id", "name": "visit_occurrence_id" },
+        { "path": "subject.reference", "name": "person_id" },
+        { "path": "period.start", "name": "visit_start_date" },
+        { "path": "period.end", "name": "visit_end_date" },
+        { "path": "class.code.where($this = 'IMP').count() * 9201 + class.code.where($this = 'AMB').count() * 9202 + class.code.where($this = 'EMER').count() * 9203", "name": "visit_concept_id" },
+        { "path": "class.display", "name": "visit_source_value" },
+        { "path": "class.code", "name": "visit_source_concept_id" },
+        { "path": "class.system", "name": "visit_coding_source_system" },
+        { "path": "44818518", "name": "visit_type_concept_id" },
+        { "path": "hospitalization.admitSource.coding.first().code.where($this = 'emd').count() * 8870 + hospitalization.admitSource.coding.first().code.where($this = 'gp').count() * 8782 + hospitalization.admitSource.coding.first().code.where($this = 'other').count() * 8844", "name": "admitted_from_concept_id" },
+        { "path": "hospitalization.admitSource.coding.first().display", "name": "admitted_from_source_value" },
+        { "path": "hospitalization.admitSource.coding.first().code", "name": "admitted_from_source_concept_id" },
+        { "path": "hospitalization.dischargeDisposition.coding.first().code.where($this = 'home').count() * 8536 + hospitalization.dischargeDisposition.coding.first().code.where($this = 'exp').count() * 4216643", "name": "discharged_to_concept_id" },
+        { "path": "hospitalization.dischargeDisposition.coding.first().display", "name": "discharged_to_source_value" },
+        { "path": "hospitalization.dischargeDisposition.coding.first().code", "name": "discharged_to_source_concept_id" }
+      ]
+    }
+  ]
+}

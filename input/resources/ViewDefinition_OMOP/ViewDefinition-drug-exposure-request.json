@@ -1,0 +1,27 @@
+{
+  "resourceType": "ViewDefinition",
+  "status": "draft",
+  "name": "DrugExposureRequest",
+  "description": "Vue se rapprochant de la table OMOP drug_exposure, pour les prescriptions",
+  "resource": "MedicationRequest",
+  "select": [
+    {
+      "column": [
+        {"path": "id","name": "drug_exposure_id"},
+        {"path": "subject.reference","name": "person_id"},
+        { "path": "encounter.reference", "name": "visit_occurrence_id" },
+        { "path": "encounter.reference", "name": "visit_detail_id" },
+        {"path": "dosageInstruction.first().timing.repeat.bounds.ofType(Period).start","name": "drug_exposure_start_date"},
+        {"path": "dosageInstruction.first().timing.repeat.bounds.ofType(Period).end","name": "drug_exposure_end_date"},
+        {"path": "0","name": "drug_concept_id"},
+        {"path": "medication.ofType(CodeableConcept).coding.first().display","name": "drug_source_value"},
+        {"path": "medication.ofType(CodeableConcept).coding.first().code","name": "drug_source_concept_id"},
+        {"path": "medication.ofType(CodeableConcept).coding.first().system","name": "drug_coding_source_system"},
+        {"path": "38000177","name": "drug_type_concept_id"},
+        {"path": "dosageInstruction.first().route.coding.first().display","name": "route_source_value"},
+        {"path": "dosageInstruction.first().route.coding.first().code","name": "route_source_concept_id"},
+        {"path": "dosageInstruction.first().route.coding.first().system","name": "route_coding_source_system"}
+      ]
+    }
+  ]
+}

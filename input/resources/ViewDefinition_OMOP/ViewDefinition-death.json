@@ -1,0 +1,18 @@
+{
+  "resourceType": "ViewDefinition",
+  "status": "draft",
+  "name": "Death",
+  "description": "Vue se rapprochant de la table OMOP death",
+  "resource": "Patient",
+  "select": [
+    {
+      "column": [
+        {"path": "id","name": "person_id"},
+        {"path": "deceased.ofType(dateTime)","name": "death_date"},
+        {"path": "deceased.ofType(dateTime)","name": "death_datetime"},
+        {"path": "32817","name": "death_type_concept_id"}
+      ]
+    }
+  ],
+  "where": [{"path": "deceased.ofType(dateTime).exists()"}]
+}
