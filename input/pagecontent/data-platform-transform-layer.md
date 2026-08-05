@@ -61,7 +61,7 @@ group TransformPatient(source src, target tgt : Patient) {
   // Death information
   src.dateDeces as deathDate where deathDate.exists() -> tgt.deceased = cast(deathDate, 'dateTime') as deceasedDate then {
     src.sourceDeces as deathSource where deathSource.exists() -> deceasedDate.extension as DeathSourceExtension then {
-      deathSource -> DeathSourceExtension.url = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/DeathSource' "deathSourceUrl";
+      deathSource -> DeathSourceExtension.url = 'https://aphp.github.io/IG-fhir-dm/StructureDefinition/DeathSource' "deathSourceUrl";
       deathSource -> DeathSourceExtension.value = cast(deathSource, 'code') "deathSourceValue";
     } "deathSource";
   } "deathDate";
@@ -99,7 +99,7 @@ group setAddress(source src, target tgtPat : Patient) {
 //        irisExtension.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract', 
 //        irisExtension.value = (iif(%src.codeIris.exists() and %src.libelleIris.exists(), %src.codeIris & ' - ' & %src.libelleIris, %src.codeIris & %src.libelleIris)) "setIris";
       src.codeGeographiqueResidence as srcCodeGeographiqueResidence where src.codeGeographiqueResidence.exists() -> newAddress.extension as residencePmsiExtension, 
-        residencePmsiExtension.url = 'https://interop.aphp.fr/ig/fhir/dm/StructureDefinition/PmsiCodeGeo' ,
+        residencePmsiExtension.url = 'https://aphp.github.io/IG-fhir-dm/StructureDefinition/PmsiCodeGeo' ,
         residencePmsiExtension.value = cast(srcCodeGeographiqueResidence, 'code') "SetResidencePmsi";
       src.dateRecueil as dateRecueil -> newAddress.period as newAddressPeriod, newAddressPeriod.start = dateRecueil "setDateRecueil";
     } "createAddress" ;
@@ -260,7 +260,7 @@ group TransformProcedure(source src, target tgtProc : Procedure, source patient,
   // Code (CCAM)
   src.codeActe as code -> tgtProc.code as procedureCode then {
     code -> procedureCode.coding as coding,
-      coding.system = 'https://interop.aphp.fr/ig/fhir/dm/CodeSystem/Ccam',
+      coding.system = 'https://aphp.github.io/IG-fhir-dm/CodeSystem/Ccam',
       coding.code = code "procedure-coding";
     src.libelleActe as text -> procedureCode.text = text "code-text";
   } "procedure-code";

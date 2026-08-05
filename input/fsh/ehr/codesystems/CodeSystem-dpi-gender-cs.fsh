@@ -1,4 +1,5 @@
-CodeSystem: DpiGender
+CodeSystem: DpiGenderCs
+Id: dpi-gender-cs
 Title: "DPI Gender"
 Description: "Système de codage des sexes administratifs du patient"
 

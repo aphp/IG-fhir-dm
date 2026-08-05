@@ -1,4 +1,5 @@
-CodeSystem: DpiEncounterType
+CodeSystem: DpiEncounterTypeCs
+Id: dpi-encounter-type-cs
 Title: "DPI Type de séjour"
 Description: "CodeSystem des types de séjour"
 

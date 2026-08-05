@@ -1,4 +1,5 @@
-CodeSystem: DpiModeIn
+CodeSystem: DpiModeInCs
+Id: dpi-mode-in-cs
 Title: "Dpi Mode d'entrée"
 Description: "CodeSystem des modes d'entrée"
 

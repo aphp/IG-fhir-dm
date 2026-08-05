@@ -9,7 +9,7 @@
 // ========================================================================
 
 Logical: EHR
-Id: ehr
+Id: EHR
 Title: "Electronic Health Record Data Model"
 Description: """
 Comprehensive logical model representing the Electronic Health Record (EHR) data structure

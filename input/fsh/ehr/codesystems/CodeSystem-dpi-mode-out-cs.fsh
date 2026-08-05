@@ -1,4 +1,5 @@
-CodeSystem: DpiModeOut
+CodeSystem: DpiModeOutCs
+Id: dpi-mode-out-cs
 Title: "Dpi Mode de sortie"
 Description: "CodeSystem des modes de sortie"
 

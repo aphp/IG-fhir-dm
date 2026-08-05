@@ -8,10 +8,10 @@ Usage: #definition
 * experimental = false
 * status = #active
 * sourceCanonical = Canonical($fr-core-vs-patient-gender-INS)
-* targetCanonical = Canonical(OMOPGender)
+* targetCanonical = Canonical(OMOPGenderVs)
 * group[0]
   * source = Canonical($administrative-gender)
-  * target = Canonical(DMOmopCDMv20240229)
+  * target = Canonical(DMOmopCDMv20240229Cs)
   * element[0]
     * code = #male
     * display = "Male"
