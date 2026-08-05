@@ -7,10 +7,10 @@ Usage: #definition
 * name = "DpiEncounterType2FhirEncounterClass"
 * experimental = false
 * status = #active
-* sourceCanonical = Canonical(DpiEncounterTypeVS)
+* sourceCanonical = Canonical(DpiEncounterTypeVs)
 * targetCanonical = Canonical($vs-v3-ActEncounterCode)
 * group[0]
-  * source = Canonical(DpiEncounterType)
+  * source = Canonical(DpiEncounterTypeCs)
   * target = Canonical($cs-v3-ActCode)
   * element[0]
     * code = #1

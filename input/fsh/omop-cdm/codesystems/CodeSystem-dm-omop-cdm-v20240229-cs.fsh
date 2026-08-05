@@ -1,5 +1,5 @@
-CodeSystem: DMOmopCDMv20240229
-Id: dm-omop-cdm-v20240229
+CodeSystem: DMOmopCDMv20240229Cs
+Id: dm-omop-cdm-v20240229-cs
 Title: "Observational Medical Outcomes Partnership (OMOP)"
 Description: "Type de séjour"
 
