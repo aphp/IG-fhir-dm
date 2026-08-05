@@ -1,7 +1,7 @@
 Logical: LogicalBundle
 Parent: Base
 Id: LogicalBundle
-Title: "LogicalBundle"
+Title: "Logical Bundle"
 Description: """
 The BundleLogical has the same objective as the FHIR Bundle resource but allows for the grouping of logical models.
 """
