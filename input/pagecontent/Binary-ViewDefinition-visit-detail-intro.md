@@ -1,10 +1,13 @@
 
-Construite à partir de la ressource Encounter, cette vue alimente la table OMOP `visit_detail`. 
-Elle contient la référence vers le patient et vers le séjour, ainsi que les dates de début et de fin du détail de séjour. 
-Le type de séjour et les informations de provenance et de destination sont établis par un calcul qui multiplie chaque concept_id candidat par 1 si la modalité correspondante est vérifiée, et par 0 sinon, de sorte que seul le concept_id correspondant à la modalité réellement présente apparaît dans le résultat. 
-L'origine de la donnée est tracée par une constante (44818518).
-Cette viewdefinition vise à apporter un niveau de détail plus fin du séjour.
-Dans la version actuelle, le détail du séjour n'est pas distingué du séjour global : la référence vers le séjour reprend le même identifiant que le détail lui-même.
+Construite à partir de la ressource **`Encounter`**, cette vue prépare et structure les données en vue de leur chargement dans la table OMOP **`visit_detail`**.
+
+Elle contient la référence vers le `patient` et vers le `séjour`, ainsi que les `dates de début et de fin` du détail de séjour.
+
+Un calcul détermine le `concept_id` correspondant au type de séjour et aux informations de provenance et de destination : il multiplie chaque `concept_id` candidat par 1 si la modalité correspondante est vérifiée, et par 0 sinon, de sorte que seul le `concept_id` correspondant à la modalité réellement présente apparaît dans le résultat.
+
+L'origine de la donnée est tracée par une constante (`44818518`).
+
+Cette ViewDefinition vise à apporter un niveau de détail plus fin du séjour. Dans la version actuelle, le détail du séjour **n'est pas distingué** du séjour global : la référence vers le séjour reprend le même identifiant que le détail lui-même.
 
 | Colonne | Signification métier |
 |---|---|

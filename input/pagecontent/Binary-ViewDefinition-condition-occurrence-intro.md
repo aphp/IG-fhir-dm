@@ -1,10 +1,16 @@
 
-Construite à partir de la ressource Condition, qui représente un diagnostic, cette vue alimente la table OMOP condition_occurrence. 
-Elle contient la référence vers le patient et vers le séjour concernés, la date d'enregistrement du diagnostic, ainsi que son statut (principal ou associé), obtenu par un calcul qui multiplie chaque concept_id candidat par 1 si la modalité correspondante est vérifiée, et par 0 sinon, de sorte que seul le concept_id correspondant à la modalité réellement présente apparaît dans le résultat. 
-Le diagnostic n'est pas encore rattaché à un concept standard OMOP (la colonne correspondante est laissée à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
-L'origine de la donnée est tracée par une constante (32817). 
-Certains codes ne correspondant pas à un diagnostic actif (antécédents médicaux, style de vie ou informations administratives) sont volontairement exclus de cette vue par un filtre.
-Extraits de la même ressource Condition, ils sont pris en charge par une viewdefinition distincte alimentant la table `observation`.
+Construite à partir de la ressource **`Condition`**, cette vue prépare et structure les données en vue de leur chargement dans la table **`condition_occurrence`** du modèle OMOP.
+
+Elle contient la référence vers le `patient` et vers le `séjour` concernés, la `date d'enregistrement` du diagnostic, ainsi que son `statut` (principal ou associé). Un calcul détermine le `concept_id` correspondant au statut : il multiplie chaque `concept_id` candidat par 1 si la modalité correspondante est vérifiée, et par 0 sinon, de sorte que seul le `concept_id` correspondant à la modalité réellement présente apparaît dans le résultat.
+
+Le diagnostic **n'est pas rattaché** à un concept standard OMOP (la colonne correspondante est laissée à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
+
+L'origine de la donnée est tracée par une constante (`32817`).
+
+Certains codes ne correspondant pas à un diagnostic actif (antécédents médicaux, style de vie ou informations administratives): les inclure ici fausserait le contenu de la table **``condition_occurrence``** qui doit ne représenter que des diagnostics. 
+
+C'est pourquoi ils sont exclus par un filtre de cette vue, et pris en charge par une ViewDefinition distincte, destinée à la table **`observation`**.
+
 
 | Colonne | Signification métier |
 |---|---|

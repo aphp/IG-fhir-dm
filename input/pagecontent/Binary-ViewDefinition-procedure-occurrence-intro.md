@@ -1,8 +1,11 @@
 
-Construite à partir de la ressource Procedure, qui représente un acte réalisé, cette vue alimente la table OMOP `procedure_occurrence`. 
-Elle contient la référence vers le patient et vers le séjour concernés, la date et la nature de l'acte. 
-L'acte n'est pas encore rattaché à un concept standard (colonne à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
-L'origine de la donnée est tracée par une constante (38000275).
+Construite à partir de la ressource **`Procedure`**, qui représente un acte réalisé, cette vue prépare et structure les données en vue de leur chargement dans la table OMOP **`procedure_occurrence`**.
+
+Elle contient la référence vers le `patient` et vers le `séjour` concernés, la `date` et la `nature de l'acte`.
+
+L'acte **n'est pas rattaché** à un concept standard (colonne à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
+
+L'origine de la donnée est tracée par une constante (`38000275`).
 
 | Colonne | Signification métier |
 |---|---|

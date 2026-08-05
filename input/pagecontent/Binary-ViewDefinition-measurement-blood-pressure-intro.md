@@ -1,8 +1,12 @@
 
-Construite à partir de la ressource Observation, pour les résultats qui rassemblent plusieurs mesures liées (par exemple une pression artérielle associant une valeur systolique et une valeur diastolique), cette viewdefinition alimente elle aussi la table OMOP `measurement`. 
-Elle contient la référence vers le patient et vers le séjour concernés, ainsi que la date du résultat. 
-Chaque composant de la mesure donne lieu à une ligne distincte, plutôt que d'être condensé dans une seule ligne, grâce à un mécanisme qui répète la transformation pour chaque élément. 
-Comme pour les résultats à valeur unique, le résultat n'est pas encore rattaché à un concept standard (la colonne correspondante est laissée à 0), mais le code d'origine reste disponible dans une colonne source dédiée et l'origine de la donnée est tracée par la même constante (44818702). 
+Construite à partir de la ressource **`Observation`**, pour les résultats qui rassemblent plusieurs mesures liées (par exemple une pression artérielle associant une valeur systolique et une valeur diastolique), cette ViewDefinition prépare elle aussi les données en vue de leur chargement dans la table OMOP **`measurement`**.
+
+Elle contient la référence vers le `patient` et vers le `séjour` concernés, ainsi que la `date` du résultat.
+
+Une clause `forEach` répète la transformation pour chaque composant de la mesure, de sorte que chacun donne lieu à une ligne distincte, plutôt que d'être condensé dans une seule ligne.
+
+Comme pour les résultats à valeur unique, le résultat **n'est pas rattaché** à un concept standard (la colonne correspondante est laissée à 0), mais le code d'origine reste disponible dans une colonne source dédiée. L'origine de la donnée est tracée par la même constante (`44818702`).
+
 Un filtre restreint cette vue aux observations qui comportent effectivement plusieurs résultats liés.
 
 | Colonne | Signification métier |

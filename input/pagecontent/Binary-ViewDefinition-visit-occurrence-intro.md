@@ -1,8 +1,11 @@
 
-Construite à partir de la ressource Encounter, qui représente un séjour ou une prise en charge, cette vue alimente la table OMOP `visit_occurrence`. 
-Elle contient la référence vers le patient concerné, les dates de début et de fin du séjour, ainsi que le type de prise en charge (hospitalisation, consultation externe, urgences), obtenu par un calcul qui multiplie chaque concept_id candidat par 1 si la modalité correspondante est vérifiée, et par 0 sinon, de sorte que seul le concept_id correspondant à la modalité réellement présente apparaît dans le résultat. 
-La provenance du patient à l'entrée et sa destination à la sortie sont établies selon le même principe. 
-L'origine de cette information, est tracée par une constante (44818518) si elle est saisie dans le dossier patient.
+Construite à partir de la ressource **`Encounter`**, qui représente un séjour ou une prise en charge, cette vue prépare et structure les données en vue de leur chargement dans la table OMOP **`visit_occurrence`**.
+
+Elle contient la référence vers le `patient` concerné, les `dates de début et de fin` du séjour, ainsi que le `type de prise en charge` (hospitalisation, consultation externe, urgences). Un calcul détermine le `concept_id` correspondant : il multiplie chaque `concept_id` candidat par 1 si la modalité correspondante est vérifiée, et par 0 sinon, de sorte que seul le `concept_id` correspondant à la modalité réellement présente apparaît dans le résultat.
+
+La `provenance` du patient à l'entrée et sa `destination` à la sortie sont établies selon le même principe.
+
+L'origine de cette information est tracée par une constante (`44818518`) si elle est saisie dans le dossier patient.
 
 | Colonne | Signification métier |
 |---|---|

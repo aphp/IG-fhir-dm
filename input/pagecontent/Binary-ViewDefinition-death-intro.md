@@ -1,7 +1,9 @@
 
-Cette vue s'appuie sur les ressources Patient pour alimenter la table OMOP `death`. 
-Ce filtre n'inclut que les patients pour lesquels une date de décès est renseignée dans FHIR, et retient cette date. 
-L'origine de la donnée est tracée par une constante (32817).
+Cette vue s'appuie sur la ressource **`Patient`** et prépare les données en vue de leur chargement dans la table OMOP **`death`**.
+
+Un filtre est appliqué pour ne retenir que les patients pour lesquels une date de décès est renseignée dans FHIR, et pour conserver cette date. Elle contient la référence vers le `patient`.
+
+L'origine de la donnée est tracée par une constante (`32817`).
 
 | Colonne | Signification métier |
 |---|---|

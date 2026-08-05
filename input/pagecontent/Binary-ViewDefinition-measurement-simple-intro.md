@@ -1,9 +1,13 @@
 
-Construite à partir de la ressource Observation, pour les résultats ne portant qu'une seule valeur, par exemple une glycémie, cette vue alimente la table OMOP `measurement`.
-Elle contient la référence vers le patient et vers le séjour concernés, la date du résultat, sa valeur, son unité, ainsi que les bornes de normalité lorsqu'elles sont disponibles. 
-Le résultat n'est pas encore rattaché à un concept standard (colonne à 0) mais le code d'origine reste disponible dans une colonne source dédiée.
-L'origine de la donnée, un résultat de laboratoire, est tracée par une constante (44818702).
-Un filtre restreint cette viewdefinition aux observations qui ne comportent pas plusieurs résultats liés ; celles qui en comportent sont prises en charge par une seconde viewdefinition (Measurement (composite)), également destinée à la table `measurement`.
+Construite à partir de la ressource **`Observation`**, pour les résultats ne portant qu'une seule valeur, par exemple une glycémie, cette vue prépare et structure les données en vue de leur chargement dans la table OMOP **`measurement`**.
+
+Elle contient la référence vers le `patient` et vers le `séjour` concernés, la `date` du résultat, sa `valeur`, son `unité`, ainsi que les `bornes de normalité` lorsqu'elles sont disponibles.
+
+Le résultat **n'est pas rattaché** à un concept standard (colonne à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
+
+L'origine de la donnée, un résultat de laboratoire, est tracée par une constante (`44818702`).
+
+Un filtre restreint cette ViewDefinition aux observations qui ne comportent pas plusieurs résultats liés ; celles qui en comportent sont prises en charge par une seconde ViewDefinition (**`measurement-blood-pressure`**), également destinée à la table **`measurement`**.
 
 | Colonne | Signification métier |
 |---|---|

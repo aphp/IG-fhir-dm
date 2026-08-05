@@ -1,6 +1,7 @@
 
-Cette vue s'appuie également sur la ressource Patient, mais pour alimenter la table OMOP `location`. 
-Elle contient la latitude et la longitude du patient, lorsque ces coordonnées sont renseignées dans son adresse.
+Cette vue s'appuie également sur la ressource **`Patient`**, et prépare les données en vue de leur chargement dans la table OMOP **`location`**.
+
+Elle contient la `latitude` et la `longitude` du lieu de résidence du patient, lorsque ces coordonnées sont renseignées dans son adresse, ainsi que la référence vers le `patient`.
 
 | Colonne | Signification métier |
 |---|---|

@@ -1,8 +1,11 @@
 
-Construite à partir de la ressource MedicationAdministration, qui représente une administration effective de médicament, cette vue alimente elle aussi la table OMOP `drug_exposure`. 
-Elle contient la référence vers le patient et vers le séjour concernés, le médicament réellement administré, la période réelle, la voie et la dose. 
-Le médicament n'est pas encore rattaché à un concept standard (colonne à 0), mais le code d'origine reste disponible dans une colonne source dédiée. 
-L'origine de la donnée est ici tracée par une constante différente (38000180), qui distingue une administration effective d'une prescription.
+Construite à partir de la ressource **`MedicationAdministration`**, qui représente une administration effective de médicament, cette vue prépare et structure les données en vue de leur chargement dans la table OMOP **`drug_exposure`**.
+
+Elle contient la référence vers le `patient` et vers le `séjour` concernés, le `médicament` réellement administré, la `période` réelle, la `voie` et la `dose`.
+
+Le médicament **n'est pas rattaché** à un concept standard (colonne à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
+
+L'origine de la donnée est ici tracée par une constante différente de celle de la prescription (`38000180`).
 
 | Colonne | Signification métier |
 |---|---|

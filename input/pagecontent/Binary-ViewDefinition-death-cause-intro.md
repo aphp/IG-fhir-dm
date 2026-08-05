@@ -1,7 +1,9 @@
 
-Construite à partir de la ressource Condition, cette vue complète la table OMOP `death` avec la cause du décès. 
-Le diagnostic est sélectionné par un filtre qui, dans sa version actuelle, cible un patient déterminé (patient décédé).
-Le diagnostic n'est pas encore rattaché à un concept standard (colonne à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
+Construite à partir de la ressource **`Condition`**, cette vue complète la table OMOP **`death`** avec la cause du décès.
+
+Un filtre sélectionne le diagnostic. Dans sa version actuelle, la ViewDefinition cible un seul `patient` (patient décédé). Elle contient la référence vers le `patient`.
+
+Le diagnostic **n'est pas rattaché** à un concept standard (colonne à 0), mais le code d'origine reste disponible dans une colonne source dédiée.
 
 | Colonne | Signification métier |
 |---|---|
