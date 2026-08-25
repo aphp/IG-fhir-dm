@@ -1,0 +1,21 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ProcedureTypeCCAM",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ProcedureTypeCCAM",
+  "name": "ProcedureTypeCCAMOMOPMapping",
+  "title": "CCAM codes to OMOP (source_concept_id uniquement)",
+  "status": "active",
+  "description": "4 entrees verifiees via le vrai telechargement Athena/OHDSI (vocabulaire CCAM version 64). ATTENTION : ces concept_id CCAM n'ont AUCUNE relation 'Maps to' vers un concept standard dans cette version du vocabulaire (verifie directement dans CONCEPT_RELATIONSHIP.csv) - utilisables uniquement pour procedure_source_concept_id, PAS pour procedure_concept_id qui exige un concept standard. Distincte de ProcedureType.json (celle-la reste la version HL7 authentique SNOMED, non utilisee par nos donnees CCAM).",
+  "group": [
+    {
+      "source": "https://interop.aphp.fr/CodeSystem/ccam-atih",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "DDAF008", "target": [{ "code": "42787033", "display": "Intraluminal dilation of a coronary vessel with coronary arteriography, with stent grafting, by the transcutaneous arterial route", "equivalence": "equivalent" }] },
+        { "code": "DEQP003", "target": [{ "code": "42788350", "display": "Electrocardiography on at least 12 leads", "equivalence": "equivalent" }] },
+        { "code": "DZQM006", "target": [{ "code": "42789036", "display": "Transthoracic Doppler ultrasound of the heart and intrathoracic vessels", "equivalence": "equivalent" }] },
+        { "code": "GELD004", "target": [{ "code": "42790826", "display": "Tracheal intubation", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

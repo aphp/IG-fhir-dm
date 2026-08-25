@@ -1,0 +1,25 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/LocationMap'
+/// name = 'LocationMap'
+/// title = 'Mapping Location resource to Location OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR Location instances to OMOP Location Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Location" alias Location as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPLocation" alias LocationTable as target
+
+group LocationOccurrence(source src: Location, target tgt : LocationTable) {
+	src as s -> tgt then {
+		s.id as id -> tgt.location_id = id;
+	} "locationID";
+
+	src.position as pos -> tgt then {
+		pos.latitude as lat -> tgt.latitude = cast(lat, "decimal");
+		pos.longitude as lon -> tgt.longitude = cast(lon, "decimal");
+	};
+
+	src.address as addr -> tgt then {
+		addr.extension as ext where (ext.url = 'https://aphp.github.io/IG-fhir-dm/StructureDefinition/edsh-pmsi-code-geo') -> tgt then {
+			ext.value : code as vc -> tgt.zip = vc;
+		} "zipRule";
+	};
+}

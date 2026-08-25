@@ -1,0 +1,58 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/AllergyMap'
+/// name = 'AllergyMap'
+/// title = 'Mapping Allergy resource to Observation OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR AllergyIntolerance instances to OMOP Observation Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/AllergyIntolerance" alias Allergy as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPObservation" alias ObservationTable as target
+
+group Allergy(source src: Allergy, target tgt : ObservationTable) {
+
+	src as s -> tgt then {
+		s.id as id -> tgt.observation_id = id;
+		src as s2 where(src.id.empty()) then {
+			s2.identifier as i -> tgt then {
+				i.value as id2 -> tgt.observation_id = id2;
+			};
+		} "allergyIdFromIdentifier";
+	} "allergyId";
+
+	src.patient as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	src.encounter as encounter -> tgt then {
+		encounter.reference as e -> tgt.visit_occurrence_id = create('Reference') as ref2 then {
+			e as refVal2 -> ref2.reference = refVal2 "visitRefValRule";
+		} "visitRefRule";
+	};
+
+	src.type as typeCode -> tgt then {
+		typeCode where(typeCode = 'allergy') then {
+			src.category as category -> tgt.observation_concept_id = create('Reference') as ref3 then {
+				category as refVal3 -> ref3.reference = translate(refVal3, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/AllergyType', 'code') "allergyRefValRule";
+			} "allergyRefRule";
+		} "allergyTypeRule";
+		typeCode where(typeCode = 'intolerance') then {
+			src.category as category2 -> tgt.observation_concept_id = create('Reference') as ref4 then {
+				category2 as refVal4 -> ref4.reference = translate(refVal4, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/IntoleranceType', 'code') "intoleranceRefValRule";
+			} "intoleranceRefRule";
+		} "intoleranceTypeRule";
+	};
+
+	src.code as s -> tgt then {
+		s.coding as sc -> tgt then {
+			sc.system as sys where (sys='http://snomed.info/sct') then {
+				sc.code as code -> tgt.value_as_concept_id = create('Reference') as ref5 then {
+					code as refVal5 -> ref5.reference = translate(refVal5, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/AllergySubstanceType', 'code') "substanceRefValRule";
+				} "substanceRefRule";
+				sc.display as display -> tgt.value_as_string = display "displayRule";
+			};
+		};
+	};
+
+	src.recordedDate as osd -> tgt.observation_date = (%osd.toString().substring(0, 10)), tgt.observation_datetime = osd "recordedDateRule";
+}

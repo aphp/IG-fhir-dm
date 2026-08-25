@@ -1,0 +1,18 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "VisitDetailType",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/VisitDetailType",
+  "name": "VisitDetailTypeOMOPMapping",
+  "title": "Visit Detail location/ward codes to OMOP",
+  "status": "draft",
+  "description": "PLACEHOLDER - une seule entree factice pour respecter le schema R4 (element minimum 1). Construction maison, aucune source HL7. A completer sans modifier VisitDetailMap.fml.",
+  "group": [
+    {
+      "source": "urn:placeholder:no-real-vocabulary-yet",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "PLACEHOLDER-NE-CORRESPOND-JAMAIS", "target": [{ "code": "0", "display": "Placeholder - aucune vraie correspondance", "equivalence": "unmatched" }] }
+      ]
+    }
+  ]
+}

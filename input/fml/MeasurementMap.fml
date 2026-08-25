@@ -1,0 +1,69 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/MeasurementMap'
+/// name = 'MeasurementMap'
+/// title = 'Mapping Observation resource to Measurement OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR Observation instances that are considered measurements to OMOP Measurement Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPMeasurement" alias MeasureTable as target
+
+group Measures(source src : Observation, target tgt : MeasureTable) {
+	src where (src.category.coding.code contains 'laboratory') then {
+		src as s -> tgt then {
+			s.id as id -> tgt.measurement_id = cast(id, "code");
+		} "measureID";
+
+		src.subject as subject -> tgt then {
+			subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+				s as refVal -> ref.reference = refVal "personRefValRule";
+			} "personRefRule";
+		};
+
+		src.encounter as encounter -> tgt then {
+			encounter.reference as e -> tgt.visit_occurrence_id = create('Reference') as ref2 then {
+				e as refVal2 -> ref2.reference = refVal2 "visitRefValRule";
+			} "visitRefRule";
+		};
+
+		src.code as s -> tgt then {
+			s.coding as sc -> tgt then {
+				sc.code as a -> tgt.measurement_source_value = a "sourceValueRule";
+				sc.code as a2 -> tgt.measurement_concept_id = create('Reference') as ref6 then {
+					a2 as refVal6 -> ref6.reference = translate(refVal6, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/LabConcepts', 'code') "conceptRefValRule";
+				} "conceptRefRule";
+			};
+		} "MeasurementConcept";
+
+		src.effective : dateTime as edt -> tgt.measurement_datetime = edt, tgt.measurement_date = (%edt.toString().substring(0, 10)) "effectiveDateTimeRule";
+		src.effective : instant as einst -> tgt.measurement_datetime = einst, tgt.measurement_date = (%einst.toString().substring(0, 10)) "effectiveInstantRule";
+		src.effective : Period as s -> tgt then {
+			s.start as eps -> tgt.measurement_datetime = eps, tgt.measurement_date = (%eps.toString().substring(0, 10)) "effectivePeriodRule";
+		} "MeasurementDate";
+
+		src -> tgt.measurement_type_concept_id = create('Reference') as reftype then {
+			src -> reftype.reference = '32817' "typeRefValRule";
+		} "typeRefRule";
+
+		src.performer as performer -> tgt then {
+			performer.reference as p -> tgt.provider_id = create('Reference') as ref4 then {
+				p as refVal4 -> ref4.reference = refVal4 "providerRefValRule";
+			} "providerRefRule";
+		};
+
+		src.value : Quantity as s -> tgt then {
+			s.value as a -> tgt.value_as_number = a "valueNumberRule";
+			s.unit as b -> tgt.unit_source_value = b "unitSourceValueRule";
+			s.unit as b2 -> tgt.unit_concept_id = create('Reference') as ref5 then {
+				b2 as refVal5 -> ref5.reference = translate(refVal5, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/UCUM', 'code') "unitRefValRule";
+			} "unitRefRule";
+		} "QuantityValue";
+
+		src.value : CodeableConcept as s -> tgt then {
+			s.coding as sc -> tgt then {
+				sc.code as a -> tgt.value_source_value = a "valueCodeableSourceRule";
+			};
+		} "CodeableConceptValue";
+
+		src.value : string as b -> tgt.value_source_value = b "valueStringRule";
+	} "OnlyMeasures";
+}

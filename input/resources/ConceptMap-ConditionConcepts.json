@@ -1,0 +1,30 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ConditionConcepts",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ConditionConcepts",
+  "name": "ClinicalFindingsOMOPMapping",
+  "title": "Clinical Findings codes to OMOP",
+  "status": "active",
+  "experimental": true,
+  "description": "An example mapping of SNOMED Clinical Findings codes to OMOP concept ids - copie fidele du fichier FSH source HL7 fhir-omop-ig (12 entrees). SNOMED uniquement - ne couvre PAS les codes ICD-10/11 du projet EDSH.",
+  "group": [
+    {
+      "source": "http://snomed.info/sct",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "258710007", "target": [{ "code": "586323", "display": "degree Celsius", "equivalence": "equivalent" }] },
+        { "code": "386661006", "target": [{ "code": "437663", "display": "Fever", "equivalence": "equivalent" }] },
+        { "code": "36225005", "target": [{ "code": "4264681", "display": "Acute renal failure due to procedure", "equivalence": "equivalent" }] },
+        { "code": "363346000", "target": [{ "code": "443392", "display": "Malignant neoplastic disease", "equivalence": "equivalent" }] },
+        { "code": "87628006", "target": [{ "code": "432545", "display": "Bacterial infectious disease", "equivalence": "equivalent" }] },
+        { "code": "368009", "target": [{ "code": "4281749", "display": "Heart valve disorder", "equivalence": "equivalent" }] },
+        { "code": "254637007", "target": [{ "code": "4115276", "display": "Non-small cell lung cancer", "equivalence": "equivalent" }] },
+        { "code": "18099001", "target": [{ "code": "437580", "display": "Retropharyngeal abscess", "equivalence": "equivalent" }] },
+        { "code": "422504002", "target": [{ "code": "4310996", "display": "Ischemic stroke", "equivalence": "equivalent" }] },
+        { "code": "312824007", "target": [{ "code": "4195970", "display": "Family history of cancer of colon", "equivalence": "equivalent" }] },
+        { "code": "90560007", "target": [{ "code": "440674", "display": "Gout", "equivalence": "equivalent" }] },
+        { "code": "962000", "target": [{ "code": "4319729", "display": "Disability evaluation disability 6 percent", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

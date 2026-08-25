@@ -1,0 +1,48 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/RecordSetMap'
+/// name = 'RecordSetMap'
+/// title = 'Mapping a Bundle to OMOP domains collected in a RecordSet resource'
+/// status = 'active'
+/// description = "This mapping maps a FHIR Bundle to a set of OMOP records collected in a RecordSet resource."
+
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/RecordSet" alias RecordSetTable as target
+
+imports "https://aphp.github.io/IG-fhir-dm/StructureMap/AllergyMap"
+imports "https://aphp.github.io/IG-fhir-dm/StructureMap/ConditionMap"
+imports "https://aphp.github.io/IG-fhir-dm/StructureMap/EncounterVisitMap"
+imports "https://aphp.github.io/IG-fhir-dm/StructureMap/MeasurementMap"
+imports "https://aphp.github.io/IG-fhir-dm/StructureMap/PersonMap"
+imports "https://aphp.github.io/IG-fhir-dm/StructureMap/ProcedureMap"
+imports "https://aphp.github.io/IG-fhir-dm/StructureMap/SimpleVitalSignsMap"
+
+group RecordSet(source src : Bundle, target tgt : RecordSetTable) {
+	src as s -> tgt then {
+		s.id as id -> tgt.record_id = id;
+	} "recordSetID";
+
+	src.timestamp as ts -> tgt.record_set_timestamp = ts "timestampRule";
+
+	src.entry as entry -> tgt then {
+		entry.resource : AllergyIntolerance as a -> tgt then {
+			a -> tgt.allergy as allergy then Allergy(a, allergy) "allergyEntry";
+		} "allergyIntoleranceEntry";
+		entry.resource : Condition as condition -> tgt then {
+			condition -> tgt.condition as conditionOccurrence then ConditionOccurrence(condition, conditionOccurrence) "conditionEntry";
+		} "conditionOccurenceEntry";
+		entry.resource : Encounter as encounter -> tgt then {
+			encounter -> tgt.visitOccurrence as visitOccurrence then VisitOccurrence(encounter, visitOccurrence) "encounterEntry";
+		} "visitOccurrenceEntry";
+		entry.resource : Observation as observation -> tgt then {
+			observation -> tgt.measurement as measurement then Measures(observation, measurement) "measurementEntry";
+			observation -> tgt.measurement as vitalSign then VitalSigns(observation, vitalSign) "simpleVitalSignEntry";
+		} "observationEntry";
+		entry.resource : Patient as patient -> tgt then {
+			patient as s2 -> tgt then {
+				s2.id as id2 -> tgt.patient_id = id2;
+			} "personIDRule";
+		} "patientEntry";
+		entry.resource : Procedure as procedure -> tgt then {
+			procedure -> tgt.procedure as procedureOccurrence then ProcedureOccurrence(procedure, procedureOccurrence) "procedureEntry";
+		} "procedureOccurrenceEntry";
+	} "bundleEntry";
+}

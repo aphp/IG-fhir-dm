@@ -89,7 +89,7 @@ instanceOptions:
 #    - progress #progress: Overall progress messages
 
 resources:
-  Binary/ViewDefinition-death:
+  Binary/ViewDefinition-DeathMap:
     name: ViewDefinition Patient to Death Table
     description: Représente la dose et le processus d'administration d'Azithromycine au patient 10
-    exampleBoolean: false  
+    exampleBoolean: false

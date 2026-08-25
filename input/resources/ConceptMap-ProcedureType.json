@@ -1,0 +1,21 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ProcedureType",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ProcedureType",
+  "name": "ProcedureTypeOMOPMapping",
+  "title": "Procedure type codes to OMOP",
+  "status": "active",
+  "experimental": true,
+  "description": "An example mapping of FHIR Procedure type codes to OMOP concept ids - copie fidele du fichier FSH source HL7 fhir-omop-ig. SNOMED uniquement (source = http://snomed.info/sct) - ne couvre PAS les codes CCAM du projet EDSH (ex: DDAF008).",
+  "group": [
+    {
+      "source": "http://snomed.info/sct",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "233404000", "target": [{ "code": "4051039", "display": "Insertion of arterial stent", "equivalence": "equivalent" }] },
+        { "code": "233258006", "target": [{ "code": "4050128", "display": "Fluoroscopy guided angioplasty of artery with contrast", "equivalence": "equivalent" }] },
+        { "code": "no-known-procedures", "target": [{ "code": "37204085", "display": "No known procedures", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

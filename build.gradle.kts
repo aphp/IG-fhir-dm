@@ -92,7 +92,7 @@ val igPublisherInstall = installRemoteJar(
 tasks.register<JavaExec>("igPublisherBuild") {
     group = "build"
 
-    jvmArgs("-Dfile.encoding=UTF-8", "-Xmx2g")
+    jvmArgs("-Dfile.encoding=UTF-8", "-Xmx4g")
     classpath(igPublisherPath)
     args = listOf(
         "-no-sushi",

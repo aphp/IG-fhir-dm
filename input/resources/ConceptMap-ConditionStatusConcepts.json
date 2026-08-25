@@ -1,0 +1,19 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ConditionStatusConcepts",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ConditionStatusConcepts",
+  "name": "ConditionStatusOMOPMapping",
+  "title": "Condition status codes to OMOP",
+  "status": "active",
+  "experimental": true,
+  "description": "Copie fidele du fichier FSH source HL7 fhir-omop-ig. Source = Condition.clinicalStatus, PAS Condition.category (DP/DA du projet EDSH, concept different).",
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "resolved", "target": [{ "code": "32906", "display": "Resolved condition", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

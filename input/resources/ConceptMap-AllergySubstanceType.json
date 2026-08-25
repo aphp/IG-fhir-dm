@@ -1,0 +1,63 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "AllergySubstanceType",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/AllergySubstanceType",
+  "name": "AllergySubstanceTypeOMOPMapping",
+  "title": "AllergyIntolerance substance codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig, verifiee le 07/08/2026 - sparse, exemples de test uniquement",
+  "group": [
+    {
+      "source": "http://snomed.info/sct",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "227493005",
+          "target": [
+            {
+              "code": "4026477",
+              "display": "Cashew nut",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "323389000",
+          "target": [
+            {
+              "code": "1728416",
+              "display": "benzylpenicillin",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "91936005",
+          "target": [
+            {
+              "code": "4240903",
+              "display": "Allergy to penicillin",
+              "equivalence": "equivalent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "7980",
+          "target": [
+            {
+              "code": "1728416",
+              "display": "benzylpenicillin",
+              "equivalence": "equivalent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

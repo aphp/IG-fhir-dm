@@ -4,7 +4,7 @@ Characteristics: #can-be-target
 Title: "Visit Detail OMOP Table"
 Description: "The VISIT_DETAIL table is an optional table used to represents details of each record in the parent VISIT_OCCURRENCE table. A good example of this would be the movement between units in a hospital during an inpatient stay or claim lines associated with a one insurance claim. For every record in the VISIT_OCCURRENCE table there may be 0 or more records in the VISIT_DETAIL table with a 1:n relationship where n may be 0. The VISIT_DETAIL table is structurally very similar to VISIT_OCCURRENCE table and belongs to the visit domain."
 
-* visit_detail_id	1..1	integer "Visit Detail Identifier" "Use this to identify unique interactions between a person and the health care system. This identifier links across the other CDM event tables to associate events with a visit detail."
+* visit_detail_id	1..1	string "Visit Detail Identifier" "Use this to identify unique interactions between a person and the health care system. This identifier links across the other CDM event tables to associate events with a visit detail."
 * person_id	1..1	Reference(OMOPPerson) "Person" ""
 * visit_detail_concept_id 1..1	Reference(OMOPConcept)	"Visit Detail" "This field contains a concept id representing the kind of visit detail, like inpatient or outpatient. All concepts in this field should be standard and belong to the Visit domain."
 * visit_detail_start_date	1..1	date	"Visit Detail Start Date" "This is the date of the start of the encounter. This may or may not be equal to the date of the Visit the Visit Detail is associated with."

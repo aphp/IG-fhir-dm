@@ -1,0 +1,27 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/PersonMap'
+/// name = 'PersonMap'
+/// title = 'Mapping Patient resource to Person OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR Patient instances to OMOP Person Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPPerson" alias PersonTable as target
+
+
+
+group Person(source src: Patient, target tgt : PersonTable) {
+	 // OMOP person ID would be a map from FHIR ID to an external key
+	src as s -> tgt then {
+		s.id as id -> tgt.person_source_value, tgt.person_id = id;
+	} "personID";
+
+	src.gender as gender -> tgt.gender_concept_id = translate(gender, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/GenderClass', 'code'), tgt.gender_source_value = gender "genderRule";
+	src where(src.gender.empty()) -> tgt.gender_concept_id = 0, tgt.gender_source_value = "unknown" "nogender";
+
+	src.birthDate as bdSrc then {
+		bdSrc -> tgt.birth_datetime = bdSrc "dateTime";
+		bdSrc -> tgt.year_of_birth = (%bdSrc.toString().substring(0,4).toInteger()) "year";
+		bdSrc -> tgt.month_of_birth = (%bdSrc.toString().substring(5,2).toInteger()) "month";
+		bdSrc -> tgt.day_of_birth = (%bdSrc.toString().substring(8,2).toInteger()) "day";
+	} "birthDate";
+}

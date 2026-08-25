@@ -1,0 +1,59 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "IntoleranceType",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/IntoleranceType",
+  "name": "IntoleranceTypeOMOPMapping",
+  "title": "AllergyIntolerance intolerance category codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig, verifiee precedemment. Non applicable au projet (pas de ressource AllergyIntolerance).",
+  "group": [
+    {
+      "source": "http://hl7.org/fhir/allergy-intolerance-category",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "food",
+          "target": [
+            {
+              "code": "4340252",
+              "display": "Intolerance to food",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "medication",
+          "target": [
+            {
+              "code": "4240582",
+              "display": "Intolerance to drug",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "environment",
+          "target": [
+            {
+              "code": "4172024",
+              "display": "Propensity to adverse reaction",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "biologic",
+          "target": [
+            {
+              "code": "36684107",
+              "display": "Intolerance to substance",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/VisitDetailMap'
+/// name = 'VisitDetailMap'
+/// title = 'Mapping Encounter.location to VisitDetail OMOP Domain'
+/// status = 'draft'
+/// description = "CONSTRUCTION MAISON - aucune VisitDetailMap n'existe dans le guide HL7 officiel. Source = Encounter.location[0], conformement a la description du champ OMOP (mouvement entre unites pendant un sejour)."
+
+uses "http://hl7.org/fhir/StructureDefinition/Encounter" alias Encounter as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPVisitDetail" alias VisitDetailTable as target
+
+group VisitDetail(source src : Encounter, target tgt : VisitDetailTable) {
+	src as s -> tgt then {
+		s.id as id -> tgt.visit_detail_id = id;
+	} "visitDetailID";
+
+	src.subject as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	src as s -> tgt then {
+		s.id as id -> tgt.visit_occurrence_id = create('Reference') as ref2 then {
+			id as refVal2 -> ref2.reference = refVal2 "visitOccRefValRule";
+		} "visitOccRefRule";
+	} "visitOccRule";
+
+	src.period as s -> tgt then {
+		s.start as st -> tgt.visit_detail_start_date = (%st.toString().substring(0, 10)), tgt.visit_detail_start_datetime = st "startRule";
+		s.end as ed -> tgt.visit_detail_end_date = (%ed.toString().substring(0, 10)), tgt.visit_detail_end_datetime = ed "endRule";
+	};
+
+	src -> tgt.visit_detail_type_concept_id = create('Reference') as ref3 then {
+		src -> ref3.reference = '32817' "typeRefValRule";
+	} "typeRefRule";
+
+	src.location as loc -> tgt then {
+		loc.location as locRef -> tgt then {
+			locRef.display as d -> tgt.visit_detail_source_value = d "sourceValueRule";
+		};
+		loc.location as locRef2 -> tgt then {
+			locRef2.reference as r -> tgt.visit_detail_concept_id = create('Reference') as ref4 then {
+				r as refVal4 -> ref4.reference = translate(refVal4, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/VisitDetailType', 'code') "conceptRefValRule";
+			} "conceptRefRule";
+		};
+	} "locationRule";
+}

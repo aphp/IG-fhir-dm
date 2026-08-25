@@ -1,0 +1,77 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ImmunizationRoute",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ImmunizationRoute",
+  "name": "ImmunizationRouteOMOPMapping",
+  "title": "Immunization route codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig, verifiee le 07/08/2026 - source = v3-RouteOfAdministration, different des codes EDQM (route.coding.code) du projet EDSH",
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "IDINJ",
+          "target": [
+            {
+              "code": "4156706",
+              "display": "Intradermal",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "IM",
+          "target": [
+            {
+              "code": "4302612",
+              "display": "Intramuscular",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "IVINJ",
+          "target": [
+            {
+              "code": "4171047",
+              "display": "Intravenous",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "PO",
+          "target": [
+            {
+              "code": "4132161",
+              "display": "Oral",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "SQ",
+          "target": [
+            {
+              "code": "4142048",
+              "display": "Subcutaneous",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "TRNSDERM",
+          "target": [
+            {
+              "code": "4262099",
+              "display": "Transdermal",
+              "equivalence": "equivalent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

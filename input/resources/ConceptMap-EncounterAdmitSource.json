@@ -1,0 +1,129 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "EncounterAdmitSource",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/EncounterAdmitSource",
+  "name": "EncounterAdmitSourceOMOPMapping",
+  "title": "Encounter Admission Source codes to OMOP",
+  "status": "active",
+  "description": "Contenu HL7 fhir-omop-ig officiel (codes mnemoniques emd/gp/etc) + AJOUT PROJET EDSH : code '8' = urgence, absent du fichier HL7 original, ajoute sur la base de la confirmation du 07/08/2026 (mode d'entree PMSI). A faire valider avec le referentiel PMSI officiel.",
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/admit-source",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "hosp-trans",
+          "target": [
+            {
+              "code": "38004515",
+              "display": "Hospital",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "emd",
+          "target": [
+            {
+              "code": "8870",
+              "display": "Emergency Room - Hospital",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "outp",
+          "target": [
+            {
+              "code": "8756",
+              "display": "Outpatient Hospital",
+              "equivalence": "wider",
+              "comment": "Correspondance approximative (wider), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "born",
+          "target": [
+            {
+              "code": "38004515",
+              "display": "Hospital",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "gp",
+          "target": [
+            {
+              "code": "8940",
+              "display": "Office",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "mp",
+          "target": [
+            {
+              "code": "8940",
+              "display": "Office",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "nursing",
+          "target": [
+            {
+              "code": "8676",
+              "display": "Nursing Facility",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "psych",
+          "target": [
+            {
+              "code": "8971",
+              "display": "Inpatient Psychiatric Facility",
+              "equivalence": "wider",
+              "comment": "Correspondance approximative (wider), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "rehab",
+          "target": [
+            {
+              "code": "38004254",
+              "display": "Rehabilitation Clinic/Center",
+              "equivalence": "equivalent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "https://interop.aphp.fr/CodeSystem/pmsi-mode",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "8",
+          "target": [
+            {
+              "code": "8870",
+              "display": "Emergency Room - Hospital",
+              "equivalence": "equivalent",
+              "comment": "AJOUT PROJET EDSH - pas dans le fichier HL7 original - code PMSI mode d'entree, confirme = urgence"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

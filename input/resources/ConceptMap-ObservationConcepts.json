@@ -1,0 +1,18 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ObservationConcepts",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ObservationConcepts",
+  "name": "ObservationConceptsOMOPMapping",
+  "title": "Observation (non-mesure) codes to OMOP",
+  "status": "draft",
+  "description": "PLACEHOLDER - une seule entree factice pour respecter le schema R4 (element minimum 1). A completer avec de vraies correspondances sans modifier ObservationMap.fml.",
+  "group": [
+    {
+      "source": "urn:placeholder:no-real-vocabulary-yet",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "PLACEHOLDER-NE-CORRESPOND-JAMAIS", "target": [{ "code": "0", "display": "Placeholder - aucune vraie correspondance", "equivalence": "unmatched" }] }
+      ]
+    }
+  ]
+}

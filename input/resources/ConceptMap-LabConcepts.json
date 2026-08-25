@@ -1,0 +1,20 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "LabConcepts",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/LabConcepts",
+  "name": "LabConceptsOMOPMapping",
+  "title": "Laboratory (LOINC) codes to OMOP",
+  "status": "active",
+  "description": "3 entrees verifiees via le vrai telechargement Athena/OHDSI (vocabulaire LOINC 2.80, CONCEPT.csv) - ALAT, hemoglobine, creatinine. A completer au fur et a mesure des nouveaux codes rencontres.",
+  "group": [
+    {
+      "source": "http://loinc.org",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "1742-6", "target": [{ "code": "3006923", "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma", "equivalence": "equivalent" }] },
+        { "code": "718-7", "target": [{ "code": "3000963", "display": "Hemoglobin [Mass/volume] in Blood", "equivalence": "equivalent" }] },
+        { "code": "14682-9", "target": [{ "code": "3020564", "display": "Creatinine [Moles/volume] in Serum or Plasma", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/ProcedureMap'
+/// name = 'ProcedureMap'
+/// title = 'Mapping Procedure resource to Procedure Occurrence OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR Procedure instances to OMOP Procedure Occurrence Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Procedure" alias Procedure as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPProcedureOccurrence" alias ProcedureTable as target
+
+group ProcedureOccurrence(source src : Procedure, target tgt : ProcedureTable) {
+
+	src as s -> tgt then {
+		s.id as id -> tgt.procedure_occurrence_id = id;
+	} "procedureID";
+
+	src.subject as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "refValRule";
+		} "personRefRule";
+	};
+
+	src.code as s -> tgt then {
+		s.coding as sc -> tgt then {
+			sc.code as a -> tgt.procedure_source_value = a "sourceValueRule";
+			sc.code as a2 -> tgt.procedure_concept_id = create('Reference') as ref2 then {
+				a2 as refVal2 -> ref2.reference = translate(refVal2, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/ProcedureType', 'code') "refVal2Rule";
+			} "conceptRefRule";
+			sc.code as a3 -> tgt.procedure_source_concept_id = create('Reference') as ref4 then {
+				a3 as refVal4 -> ref4.reference = translate(refVal4, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/ProcedureTypeCCAM', 'code') "sourceConceptRefValRule";
+			} "sourceConceptRefRule";
+		};
+	};
+
+	src.performed : dateTime as edt -> tgt.procedure_datetime = edt, tgt.procedure_date = (%edt.toString().substring(0, 10)) "performedDateTimeRule";
+	src.performed : Period as s -> tgt then {
+		s.start as pstart -> tgt.procedure_datetime = pstart, tgt.procedure_date = (%pstart.toString().substring(0, 10)) "performedStartRule";
+		s.end as pend -> tgt.procedure_end_datetime = pend, tgt.procedure_end_date = (%pend.toString().substring(0, 10)) "performedEndRule";
+	};
+
+	src.encounter as encounter -> tgt then {
+		encounter.reference as e -> tgt.visit_occurrence_id = create('Reference') as ref3 then {
+			e as refVal3 -> ref3.reference = refVal3 "refVal3Rule";
+		} "visitRefRule";
+	};
+}

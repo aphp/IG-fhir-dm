@@ -1,0 +1,51 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/ConditionMap'
+/// name = 'ConditionMap'
+/// title = 'Mapping Condition resource to Condition Occurrence OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR Condition instances to OMOP Condition Occurence Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Condition" alias Condition as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPConditionOccurrence" alias ConOccTable as target
+
+group ConditionOccurrence(source src : Condition, target tgt : ConOccTable) {
+	src as s -> tgt then {
+		s.id as id -> tgt.condition_occurrence_id = id;
+	} "conditionID";
+
+	src.subject as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	src.encounter as encounter -> tgt then {
+		encounter.reference as e -> tgt.visit_occurrence_id = create('Reference') as ref2 then {
+			e as refVal2 -> ref2.reference = refVal2 "visitRefValRule";
+		} "visitRefRule";
+	};
+
+	src.recordedDate as rd -> tgt.condition_start_date = (%rd.toString().substring(0, 10)), tgt.condition_start_datetime = rd "recordedDateRule";
+
+	src.code as cc -> tgt then {
+		cc.coding as coding -> tgt then {
+			coding.code as c1 -> tgt.condition_source_value = c1 "sourceValueRule";
+			coding.code as c2 -> tgt.condition_source_concept_id = create('Reference') as ref3 then {
+				c2 as refVal3 -> ref3.reference = translate(refVal3, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/ConditionConceptsCIM10', 'code') "conceptRefValRule";
+			} "conceptRefRule";
+		};
+	};
+
+	src.category as cat -> tgt then {
+		cat.coding as catCoding -> tgt then {
+			catCoding.code as cc1 where (cc1 = "DP") -> tgt.condition_type_concept_id = create('Reference') as ref4 then {
+				cc1 as refVal4 -> ref4.reference = '32902' "typeDPRefValRule";
+			} "typeDPRule";
+			catCoding.code as cc1b where (cc1b = "DP") -> tgt.condition_status_source_value = cc1b "statusDPRule";
+
+			catCoding.code as cc2 where (cc2 = "DA") -> tgt.condition_type_concept_id = create('Reference') as ref5 then {
+				cc2 as refVal5 -> ref5.reference = '32908' "typeDARefValRule";
+			} "typeDARule";
+			catCoding.code as cc2b where (cc2b = "DA") -> tgt.condition_status_source_value = cc2b "statusDARule";
+		};
+	};
+}

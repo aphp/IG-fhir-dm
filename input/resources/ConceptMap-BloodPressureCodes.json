@@ -1,0 +1,21 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "BloodPressureCodes",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/BloodPressureCodes",
+  "name": "BloodPressureOMOPMapping",
+  "title": "Blood Pressure codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig, verifiee le 07/08/2026",
+  "group": [
+    {
+      "source": "http://loinc.org",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "85354-9", "target": [{ "code": "36203185", "display": "Blood pressure panel with all children optional", "equivalence": "equivalent" }] },
+        { "code": "8480-6", "target": [{ "code": "3004249", "display": "Systolic blood pressure", "equivalence": "equivalent" }] },
+        { "code": "8462-4", "target": [{ "code": "3012888", "display": "Diastolic blood pressure", "equivalence": "equivalent" }] },
+        { "code": "8478-0", "target": [{ "code": "3027598", "display": "Mean blood pressure", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

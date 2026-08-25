@@ -1,0 +1,38 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/MedRequestMap'
+/// name = 'MedRequestMap'
+/// title = 'Mapping MedicationRequest to DrugExposure OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR MedicationRequest instances to OMOP Drug Exposure Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/MedicationRequest" alias MedReq as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPDrugExposure" alias DrugExpTable as target
+
+group MedRequestExposure(source src : MedReq, target tgt : DrugExpTable) {
+	src as s -> tgt then {
+		s.id as id -> tgt.drug_exposure_id = id;
+	} "medReqID";
+
+	src.subject as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	src.medication : CodeableConcept as s -> tgt then {
+		s.coding as sc -> tgt then {
+			sc.code as a -> tgt.drug_source_value = a "drugSourceValueRule";
+		};
+	};
+
+	src.dosageInstruction as di -> tgt then {
+		di.route as r -> tgt then {
+			r.coding as rc -> tgt then {
+				rc.code as a -> tgt.route_source_value = a "routeSourceValueRule";
+			};
+		};
+	};
+
+	src -> tgt.drug_type_concept_id = create('Reference') as ref2 then {
+		src -> ref2.reference = '38000177' "typeReqRefValRule";
+	} "typeReqRefRule";
+}

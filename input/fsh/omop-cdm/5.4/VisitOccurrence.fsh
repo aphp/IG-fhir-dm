@@ -4,7 +4,7 @@ Characteristics: #can-be-target
 Title: "Visit Occurrence OMOP Table"
 Description: "This table contains Events where Persons engage with the healthcare system for a duration of time. They are often also called \"Encounters\". Visits are defined by a configuration of circumstances under which they occur, such as (i) whether the patient comes to a healthcare institution, the other way around, or the interaction is remote, (ii) whether and what kind of trained medical staff is delivering the service during the Visit, and (iii) whether the Visit is transient or for a longer period involving a stay in bed."
 
-* visit_occurrence_id	1..1	integer	"Visit Occurrence Identifier" "Use this to identify unique interactions between a person and the health care system. This identifier links across the other CDM event tables to associate events with a visit."
+* visit_occurrence_id	1..1	string	"Visit Occurrence Identifier" "Use this to identify unique interactions between a person and the health care system. This identifier links across the other CDM event tables to associate events with a visit."
 * person_id	1..1	Reference(OMOPPerson) "Person" ""
 * visit_concept_id	1..1	Reference(OMOPConcept)	"Visit" "This field contains a concept id representing the kind of visit, like inpatient or outpatient. All concepts in this field should be standard and belong to the Visit domain."
 * visit_start_date	1..1	date	"Start Date" "For inpatient visits, the start date is typically the admission date. For outpatient visits the start date and end date will be the same."

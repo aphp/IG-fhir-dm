@@ -1,0 +1,63 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/ObservationMap'
+/// name = 'ObservationMap'
+/// title = 'Mapping Observation resource to Observation OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR Observation instances that are NOT considered measurements to OMOP Observation Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias Observation as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPObservation" alias ObsTable as target
+
+group Observe(source src : Observation, target tgt : ObsTable) {
+	src where (src.category.coding.code contains 'social-history' | 'imaging' | 'survey' | 'exam' | 'therapy' | 'activity' | 'procedure') then {
+		src where (src.effective.empty().not()) then {
+
+			src as s -> tgt then {
+				s.id as id -> tgt.observation_id = id;
+			} "observationID";
+
+			src.code as s -> tgt then {
+				s.coding as sc -> tgt then {
+					sc.code as a -> tgt.observation_source_value = a "sourceValueRule";
+					sc.code as a2 -> tgt.observation_concept_id = create('Reference') as ref4 then {
+						a2 as refVal4 -> ref4.reference = translate(refVal4, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/ObservationConcepts', 'code') "conceptRefValRule";
+					} "conceptRefRule";
+				};
+			};
+
+			src.subject as subject -> tgt then {
+				subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+					s as refVal -> ref.reference = refVal "personRefValRule";
+				} "personRefRule";
+			};
+
+			src.encounter as encounter -> tgt then {
+				encounter.reference as e -> tgt.visit_occurrence_id = create('Reference') as ref2 then {
+					e as refVal2 -> ref2.reference = refVal2 "visitRefValRule";
+				} "visitRefRule";
+			};
+
+			src.effective : dateTime as a -> tgt.observation_datetime = a, tgt.observation_date = (%a.toString().substring(0, 10)) "effectiveDateTimeRule";
+			src.effective : instant as einst -> tgt.observation_datetime = einst, tgt.observation_date = (%einst.toString().substring(0, 10)) "effectiveInstantRule";
+			src.effective : Period as s -> tgt then {
+				s.start as ss -> tgt.observation_datetime = ss, tgt.observation_date = (%ss.toString().substring(0, 10)) "effectivePeriodRule";
+			};
+
+			src -> tgt.observation_type_concept_id = create('Reference') as ref3 then {
+				src -> ref3.reference = '32817' "typeRefValRule";
+			} "typeRefRule";
+
+			src.value : Quantity as s -> tgt then {
+				s.value as a -> tgt.value_as_number = a "valueNumberRule";
+			};
+
+			src.value : CodeableConcept as s -> tgt then {
+				s.coding as sc -> tgt then {
+					sc.code as a -> tgt.value_as_string = a "valueCodeableRule";
+				};
+			};
+
+			src.value : string as b -> tgt.value_as_string = b "valueStringRule";
+
+		} "observationMap";
+	} "OnlyObs";
+}

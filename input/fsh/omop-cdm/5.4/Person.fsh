@@ -4,7 +4,7 @@ Characteristics: #can-be-target
 Title: "Person OMOP Table"
 Description: "This table serves as the central identity management for all Persons in the database. It contains records that uniquely identify each person or patient, and some demographic information."
 
-* person_id 1..1 integer "Person Identifier" "It is assumed that every person with a different unique identifier is in fact a different person and should be treated independently."
+* person_id 1..1 string "Person Identifier" "It is assumed that every person with a different unique identifier is in fact a different person and should be treated independently."
 * gender_concept_id 1..1 Reference(OMOPConcept) "Gender" "This field is meant to capture the biological sex at birth of the Person. This field should not be used to study gender identity issues."
 * year_of_birth 1..1 integer "Year of Birth" "Compute age using year_of_birth."
 * month_of_birth 0..1 integer "Month of Birth"

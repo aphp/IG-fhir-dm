@@ -4,7 +4,7 @@ Characteristics: #can-be-target
 Title: "Observation OMOP Table"
 Description: "The OBSERVATION table captures clinical facts about a Person obtained in the context of examination, questioning or a procedure. Any data that cannot be represented by any other domains, such as social and lifestyle facts, medical history, family history, etc. are recorded here."
 
-* observation_id 1..1 integer "Observation Identifier" 
+* observation_id 1..1 string "Observation Identifier" 
 * person_id 1..1 Reference(OMOPPerson) "Person" "The PERSON_ID of the Person for whom the Observation is recorded. This may be a system generated code."
 * observation_concept_id 1..1 Reference(OMOPConcept) "Observation" "The OBSERVATION_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies."
 * observation_date 1..1 date "Observation Date" "The date of the Observation. Depending on what the Observation represents this could be the date of a lab test, the date of a survey, or the date a patient's family history was taken."

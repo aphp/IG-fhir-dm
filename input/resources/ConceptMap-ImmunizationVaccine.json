@@ -1,0 +1,27 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ImmunizationVaccine",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ImmunizationVaccine",
+  "name": "ImmunizationVaccineOMOPMapping",
+  "title": "Immunization vaccine codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig, verifiee le 07/08/2026 - non applicable au projet EDSH (pas de ressource Immunization); tres sparse (1 seul code)",
+  "group": [
+    {
+      "source": "http://hl7.org/fhir/sid/cvx",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "171",
+          "target": [
+            {
+              "code": "40213143",
+              "display": "Influenza, Madin Darby Canine Kidney, subunit, quadrivalent, injectable, preservative free",
+              "equivalence": "equivalent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

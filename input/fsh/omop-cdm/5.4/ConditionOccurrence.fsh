@@ -4,7 +4,7 @@ Characteristics: #can-be-target
 Title: "Condition Occurrence OMOP Table"
 Description: "This table contains records of Events of a Person suggesting the presence of a disease or medical condition stated as a diagnosis, a sign, or a symptom, which is either observed by a Provider or reported by the patient."
 
-* condition_occurrence_id 1..1 integer "Condition Occurence Identifier" "The unique key given to a condition record for a person. Refer to the ETL for how duplicate conditions during the same visit were handled."
+* condition_occurrence_id 1..1 string "Condition Occurence Identifier" "The unique key given to a condition record for a person. Refer to the ETL for how duplicate conditions during the same visit were handled."
 * person_id 1..1 Reference(OMOPPerson) "Person" "The PERSON_ID of the PERSON for whom the condition is recorded."
 * condition_concept_id 1..1 Reference(OMOPConcept) "Condition" "The CONDITION_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source value which represents a condition"
 * condition_start_date 1..1 date "Condition Start Date" "Use this date to determine the start date of the condition"

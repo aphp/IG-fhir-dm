@@ -1,0 +1,56 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/ImmunizationMap'
+/// name = 'ImmunizationMap'
+/// title = 'Mapping Immunization resource to Drug Exposure OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps FHIR Immunization instances to OMOP Drug Exposure Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Immunization" alias Immunization as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPDrugExposure" alias DrugExposureTable as target
+
+group DrugExposure(source src : Immunization, target tgt : DrugExposureTable) {
+	src as s -> tgt then {
+		s.id as id -> tgt.drug_exposure_id = id;
+	} "immunizationID";
+
+	src.patient as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	src.encounter as encounter -> tgt then {
+		encounter.reference as e -> tgt.visit_occurrence_id = create('Reference') as ref2 then {
+			e as refVal2 -> ref2.reference = refVal2 "visitRefValRule";
+		} "visitRefRule";
+	};
+
+	src.vaccineCode as s -> tgt then {
+		s.coding as sc -> tgt then {
+			sc.code as c -> tgt.drug_concept_id = create('Reference') as ref3 then {
+				c as refVal3 -> ref3.reference = translate(refVal3, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/ImmunizationVaccine', 'code') "vaccineRefValRule";
+			} "vaccineRefRule";
+			sc.code as c2 -> tgt.drug_source_value = c2 "vaccineSourceRule";
+		};
+	};
+
+	src.doseQuantity as s -> tgt then {
+		s.value as v -> tgt.quantity = v "doseValueRule";
+	};
+
+	src.route as s -> tgt then {
+		s.coding as sc -> tgt then {
+			sc.code as c -> tgt.route_source_value = c "routeSourceRule";
+			sc.code as c2 -> tgt.route_concept_id = create('Reference') as ref4 then {
+				c2 as refVal4 -> ref4.reference = translate(refVal4, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/ImmunizationRoute', 'code') "routeRefValRule";
+			} "routeRefRule";
+		};
+	};
+
+	src -> tgt.drug_type_concept_id = create('Reference') as ref5 then {
+		src -> ref5.reference = '32818' "typeRefValRule";
+	} "typeRefRule";
+
+	src.occurrence : dateTime as odt -> tgt.drug_exposure_start_datetime = odt, tgt.drug_exposure_start_date = (%odt.toString().substring(0, 10)), tgt.drug_exposure_end_datetime = odt, tgt.drug_exposure_end_date = (%odt.toString().substring(0, 10)) "occurrenceRule";
+
+	src.lotNumber as ln -> tgt.lot_number = ln "lotNumberRule";
+}

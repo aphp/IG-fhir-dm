@@ -1,0 +1,60 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ImmunizationSource",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ImmunizationSource",
+  "name": "ImmunizationSourceOMOPMapping",
+  "title": "Immunization information source codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig, verifiee precedemment. Non applicable au projet.",
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/immunization-origin",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "recall",
+          "target": [
+            {
+              "code": "32865",
+              "display": "Patient self-report",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "record",
+          "target": [
+            {
+              "code": "32848",
+              "display": "Government report",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "school",
+          "target": [
+            {
+              "code": "32848",
+              "display": "Government report",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "provider",
+          "target": [
+            {
+              "code": "32818",
+              "display": "EHR administration record",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

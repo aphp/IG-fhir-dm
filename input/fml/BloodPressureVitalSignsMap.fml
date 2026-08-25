@@ -1,0 +1,98 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/BloodPressureVitalSignsMap'
+/// name = 'BloodPressureVitalSignsMap'
+/// title = 'Mapping Blood Pressure Vital Signs to Measurement OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps blood pressure FHIR Vital Signs instances to OMOP Measurement Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias BloodPressure as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/RecordSet" alias BPRecord as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPMeasurement" alias Measurement as target
+
+group BloodPressure(source src : BloodPressure, target recordSet : BPRecord) {
+	src where (src.category.coding.code contains 'vital-signs') then {
+		src.code as s -> recordSet then {
+			s.coding as sc -> recordSet then {
+				sc.code as a where (a in ('85354-9' | '8478-0')) -> recordSet then {
+					src as parent -> recordSet.measurement as measurement then parentTable(parent, measurement) "bpMeasurement";
+					src.component as comp -> recordSet then {
+						comp where (comp.code.coding.code = '8480-6') -> recordSet.measurement as measurement then Systolic(src, comp, measurement) "systolicMeasurement";
+						comp where (comp.code.coding.code = '8462-4') -> recordSet.measurement as measurement then Diastolic(src, comp, measurement) "diastolicMeasurement";
+					};
+				};
+			};
+		};
+	} "bpComponentEntries";
+}
+
+group parentTable(source src: BloodPressure, target tgt: Measurement) {
+	src.id as id -> tgt.measurement_id = cast(id, "code");
+
+	src.subject as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	src.code as s -> tgt then {
+		s.coding as sc -> tgt then {
+			sc.code as a -> tgt.measurement_concept_id = create('Reference') as ref2 then {
+				a as refVal2 -> ref2.reference = translate(refVal2, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/BloodPressureCodes', 'code') "conceptRefValRule";
+			} "conceptRefRule";
+		};
+	};
+
+	src -> tgt.measurement_type_concept_id = create('Reference') as ref3 then {
+		src -> ref3.reference = '32817' "typeRefValRule";
+	} "typeRefRule";
+
+	src.effective : dateTime as edt -> tgt.measurement_datetime = edt, tgt.measurement_date = (%edt.toString().substring(0,10)) "effectiveDateTimeRule";
+	src.effective : instant as einst -> tgt.measurement_datetime = einst, tgt.measurement_date = (%einst.toString().substring(0,10)) "effectiveInstantRule";
+	src.effective : Period as s -> tgt then {
+		s.start as eps -> tgt.measurement_datetime = eps, tgt.measurement_date = (%eps.toString().substring(0,10)) "effectivePeriodRule";
+	} "MeasurementDate";
+}
+
+group Systolic(source parent : BloodPressure, source comp, target tgt : Measurement) {
+	parent.subject as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	parent.effective : dateTime as edt -> tgt.measurement_datetime = edt, tgt.measurement_date = (%edt.toString().substring(0,10)) "effectiveDateTimeRule";
+	parent.effective : instant as einst -> tgt.measurement_datetime = einst, tgt.measurement_date = (%einst.toString().substring(0,10)) "effectiveInstantRule";
+	parent.effective : Period as s -> tgt then {
+		s.start as eps -> tgt.measurement_datetime = eps, tgt.measurement_date = (%eps.toString().substring(0,10)) "effectivePeriodRule";
+	} "MeasurementDate";
+
+	comp.value : Quantity as s -> tgt then {
+		s.value as a -> tgt.value_as_number = a "valueNumberRule";
+		s.unit as b -> tgt.unit_source_value = b "unitSourceValueRule";
+		s.unit as b2 -> tgt.unit_concept_id = create('Reference') as ref4 then {
+			b2 as refVal4 -> ref4.reference = translate(refVal4, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/UCUM', 'code') "unitRefValRule";
+		} "unitRefRule";
+	} "QuantityValue";
+}
+
+group Diastolic(source parent : BloodPressure, source comp, target tgt : Measurement) {
+	parent.subject as subject -> tgt then {
+		subject.reference as s -> tgt.person_id = create('Reference') as ref then {
+			s as refVal -> ref.reference = refVal "personRefValRule";
+		} "personRefRule";
+	};
+
+	parent.effective : dateTime as edt -> tgt.measurement_datetime = edt, tgt.measurement_date = (%edt.toString().substring(0,10)) "effectiveDateTimeRule";
+	parent.effective : instant as einst -> tgt.measurement_datetime = einst, tgt.measurement_date = (%einst.toString().substring(0,10)) "effectiveInstantRule";
+	parent.effective : Period as s -> tgt then {
+		s.start as eps -> tgt.measurement_datetime = eps, tgt.measurement_date = (%eps.toString().substring(0,10)) "effectivePeriodRule";
+	} "MeasurementDate";
+
+	comp.value : Quantity as s -> tgt then {
+		s.value as a -> tgt.value_as_number = a "valueNumberRule";
+		s.value as a2 -> tgt.value_source_value = a2 "valueSourceValueRule";
+		s.unit as b -> tgt.unit_source_value = b "unitSourceValueRule";
+		s.unit as b2 -> tgt.unit_concept_id = create('Reference') as ref5 then {
+			b2 as refVal5 -> ref5.reference = translate(refVal5, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/UCUM', 'code') "unitRefValRule";
+		} "unitRefRule";
+	} "QuantityValue";
+}

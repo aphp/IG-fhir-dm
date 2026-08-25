@@ -1,0 +1,21 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "UCUM",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/UCUM",
+  "name": "UCUMOMOPMapping",
+  "title": "UCUM unit codes to OMOP",
+  "status": "active",
+  "description": "4 entrees verifiees via le vrai telechargement Athena/OHDSI (vocabulaire UCUM v1.8.2, CONCEPT.csv). ATTENTION : le code UCUM standard pour UI/L est '[iU]/L', pas 'UI/L' litteralement - verifier le champ .code (pas .unit) des ressources Observation sources.",
+  "group": [
+    {
+      "source": "http://unitsofmeasure.org",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "mm[Hg]", "target": [{ "code": "8876", "display": "millimeter mercury column", "equivalence": "equivalent" }] },
+        { "code": "umol/L", "target": [{ "code": "8749", "display": "micromole per liter", "equivalence": "equivalent" }] },
+        { "code": "g/dL", "target": [{ "code": "8713", "display": "gram per deciliter", "equivalence": "equivalent" }] },
+        { "code": "[iU]/L", "target": [{ "code": "8923", "display": "international unit per liter", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

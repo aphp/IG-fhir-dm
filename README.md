@@ -30,7 +30,7 @@ Exécutez ensuite cette commande :
 
 Ce script fera automatiquement deux choses pour vous :
 
-1. Exécuter [SUSHI](https://fshschool.org/docs/sushi/). L'IG AP-HP - EDS est développé en [FHIR Shorthand (FSH)](http://build.fhir.org/ig/HL7/fhir-shorthand/),
+1. Exécuter [SUSHI](https://fshschool.org/docs/sushi/). L'IG AP-HP - DM est développé en [FHIR Shorthand (FSH)](http://build.fhir.org/ig/HL7/fhir-shorthand/),
    un langage spécifique de domaine (DSL) permettant de définir le contenu des FHIR IG. SUSHI transpile les fichiers FSH en
    fichiers JSON attendus par IG Publisher
 2. Exécuter IG Publisher
@@ -156,7 +156,7 @@ APHP — Direction des Services Numériques (Domaine MSD/DSN)
 
 Chaque opération Pathling (import, ViewDefinition, export) porte toujours sur **un seul type de ressource FHIR à la fois** — impossible de croiser deux ressources (par exemple `Patient` et `Condition`) en une seule opération ; cette limite est détaillée en §8.
 
-Dans ce projet, Pathling est utilisé pour transformer les ressources `Patient`, `Encounter`, `Condition`, `Observation`, `Procedure`, `MedicationRequest` et `MedicationAdministration` (profils APHP) en tables OMOP (`person`, `visit_occurrence`, `condition_occurrence`, `measurement`, `procedure_occurrence`, `drug_exposure`, `death`, `location`, `observation`). Les règles de transformation projettent directement les ressources FHIR vers le schéma OMOP : les colonnes de sortie portent déjà les noms des champs OMOP cibles (`person_id`, `gender_concept_id`, etc.), et les codes OMOP connus (`concept_id`) sont calculés directement pendant la transformation.
+Dans ce projet, Pathling est utilisé pour transformer les ressources `Patient`, `Encounter`, `Condition`, `Observation`, `Procedure`, `MedicationRequest` et `MedicationAdministration` (profils APHP) en tables OMOP (`person`, `visit_occurrence`, `visit_detail`, `condition_occurrence`, `measurement`, `procedure_occurrence`, `drug_exposure`, `death`, `location`, `observation`). Les règles de transformation projettent directement les ressources FHIR vers le schéma OMOP : les colonnes de sortie portent déjà les noms des champs OMOP cibles (`person_id`, `gender_concept_id`, etc.), et les codes OMOP connus (`concept_id`) sont calculés directement pendant la transformation.
 
 Objectif du projet : mesurer les écarts structurels et sémantiques entre FHIR et OMOP, identifier les contraintes techniques de la transformation, et déterminer les conditions d'industrialisation du mapping pour l'usage secondaire des données de santé.
 
@@ -428,7 +428,7 @@ Certains écarts entre les deux modèles sont structurels : ils tiennent à des 
 
 #### Tables OMOP hors périmètre du projet
 
-Le projet vise un ensemble précis de tables OMOP, déterminé par les 51 variables du socle de la PDS (Plateforme de Données de Snaté) : `person`, `location`, `visit_occurrence`, `visit_detail`, `condition_occurrence`, `observation`, `measurement`, `procedure_occurrence`, `drug_exposure`, `death`. Plusieurs autres tables du modèle OMOP CDM v5.4  `observation_period`, `condition_era`, `drug_era`, `dose_era`, `fact_relationship`, `device_exposure`, `note` **n'ont jamais fait partie de ce périmètre** : elles ne correspondent à aucune des 51 variables socle et n'ont donc pas été produites, ce qui n'est pas un blocage rencontré en cours de projet mais un choix de cadrage initial.
+Le projet vise un ensemble précis de tables OMOP, déterminé par les 51 variables du socle de la PDS (Plateforme de Données de Santé) : `person`, `location`, `visit_occurrence`, `visit_detail`, `condition_occurrence`, `observation`, `measurement`, `procedure_occurrence`, `drug_exposure`, `death`. Plusieurs autres tables du modèle OMOP CDM v5.4  `observation_period`, `condition_era`, `drug_era`, `dose_era`, `fact_relationship`, `device_exposure`, `note` **n'ont jamais fait partie de ce périmètre** : elles ne correspondent à aucune des 51 variables socle et n'ont donc pas été produites, ce qui n'est pas un blocage rencontré en cours de projet mais un choix de cadrage initial.
 
 À titre indicatif seulement, si ces tables devaient un jour être ajoutées au périmètre, deux natures d'obstacle sont à anticiper. `observation_period`, `condition_era`, `drug_era` et `dose_era` nécessitent des regroupements par patient (`MIN`/`MAX` de dates, algorithmes ERA de l'écosystème OHDSI) qui dépassent ce qu'une seule ViewDefinition peut produire (§8) et demanderaient un traitement SQL après export ; `fact_relationship` nécessite de relier plusieurs tables entre elles, même limitation. `device_exposure` et `note`, en revanche, ne pourraient être produites dans aucun cas avec les données actuelles : aucune ressource FHIR `Device` ou `DocumentReference` n'existe dans le corpus source, quel que soit le périmètre retenu.
 
@@ -464,6 +464,125 @@ Les liens ci-dessous pointent vers la documentation officielle consultée pour r
 | Profils APHP/EDSH — IG EDSH socle commun | `https://interop.aphp.fr/ig/fhir/dm/` |
 {: .grid}
 
+
+
+## Test de FHIR Mapping Language (FML) pour la transformation FHIR → OMOP
+
+Après avoir développé une approche déclarative avec **Pathling + SQL-on-FHIR v2 ViewDefinitions**, ce document couvre l'évaluation comparative de **FHIR Mapping Language (FML)** comme approche alternative, testée sur les 10 cas cliniques synthétiques du corpus EDSH (`cas1` à `cas10`).
+
+Les tests ont été exécutés avec l'extension VSCode **aphp.fhir-mapbuilder** (v1.4.0), qui embarque **Matchbox 4.1.1** (moteur `org.hl7.fhir.core` 6.9.4) comme serveur FML local. Le pipeline final validé est dans ce projet **`IG-fhir-dm`**, qui dispose nativement de modèles logiques `OMOP*` complets pour les 26 tables du CDM v5.4, avec un préfixe `OMOP` systématique (par exemple `OMOPPerson`, `OMOPConditionOccurrence`).
+
+### Source des `StructureMap` (.fml)
+
+Le point de départ est le travail officiel de HL7/Vulcan, l'IG **FHIR to OMOP** (`hl7.fhir.uv.omop`, v2.0.0-ballot) :
+- Dépôt source : https://github.com/HL7/fhir-omop-ig
+- Build continu : https://build.fhir.org/ig/HL7/fhir-omop-ig
+- **FHIR R5**, `fhirVersion: 5.0.0` confirmé dans le `sushi-config.yaml` du dépôt. Nos ressources sources étant en **FHIR R4**, chaque fichier a nécessité une adaptation.
+
+#### Différences structurelles R5 → R4 identifiées et corrigées
+
+| Champ R5 (HL7 original) | Équivalent R4 (EDSH) |
+|---|---|
+| `Encounter.actualPeriod` | `Encounter.period` |
+| `Encounter.admission.admitSource` / `.dischargeDisposition` | `Encounter.hospitalization.admitSource` / `.dischargeDisposition` |
+| `Encounter.class` (liste `CodeableConcept`) | `Encounter.class` (un seul `Coding`, pas de `.coding` intermédiaire) |
+| `Procedure.occurrence[x]` (choice type) | `Procedure.performedDateTime` / `performedPeriod` |
+| `MedicationStatement.medication : CodeableReference` | `MedicationAdministration.medicationCodeableConcept` / `MedicationRequest.medicationCodeableConcept` (champs directs) |
+{: .grid}
+
+#### Statut de chaque fichier
+
+| Fichier | Groupe(s) | Statut | Donnée testée |
+|---|---|---|---|
+| `PersonMap.fml` | `Person` | Validé | `Patient-cas1-pat-01` |
+| `LocationMap.fml` | `LocationOccurrence` | Validé | `Location-cas1-*` |
+| `EncounterVisitMap.fml` | `VisitOccurrence` | Validé | `Encounter-cas1-sej-01` |
+| `ConditionMap.fml` | `ConditionOccurrence` | Validé | `Condition-cas1-diag-01` |
+| `ProcedureMap.fml` | `ProcedureOccurrence` | Validé | `Procedure-cas1-acte-*` |
+| `MeasurementMap.fml` | `Measures` | Validé | `Observation-cas*-bio-*` (labo) |
+| `BloodPressureVitalSignsMap.fml` | `BloodPressure`, `parentTable`, `Systolic`, `Diastolic` | Validé | `Observation-cas1-exam-tas-01-*` |
+| `SimpleVitalSignsMap.fml` | `VitalSigns` | Validé | Signes vitaux (poids/taille) |
+| `VisitDetailMap.fml` | `VisitDetail` | Validé, construction maison (voir note) | `Encounter-cas10-sej-01` |
+| `MedAdminMap.fml` | `MedAdminExposure` | Validé | `MedicationAdministration-cas1-*` |
+| `MedRequestMap.fml` | `MedRequestExposure` | Validé | `MedicationRequest-cas1-*` |
+| `RecordSetMap.fml` | `RecordSet` (orchestrateur) | Validé | `Bundle-cas1-recordset` (29 ressources assemblées) |
+| `AllergyMap.fml` | `Allergy` | Non testable | Pas de ressource `AllergyIntolerance` dans le corpus, les allergies sont modélisées comme `Condition` |
+| `ObservationMap.fml` | `Observe` | Non testable | Corpus limité aux catégories `laboratory` et `vital-signs` ; les actes type échographie sont modélisés en `Procedure`, pas en `Observation` catégorisée `exam` |
+| `ImmunizationMap.fml` | `DrugExposure` | Non applicable | Pas de ressource `Immunization` dans le corpus ; le fichier HL7 original contenait une erreur de syntaxe (`.first()` chaîné, cf. enseignement technique n°2) corrigée lors de l'adaptation R4, mais le fichier reste non testable faute de donnée |
+{: .grid}
+
+### `ConceptMap`, deux niveaux de fiabilité
+
+##### Contenu vérifié (HL7 officiel authentique ou vrai vocabulaire OHDSI)
+
+Deux origines possibles pour ce contenu vérifié. D'une part le contenu HL7 officiel authentique, copié verbatim depuis les fichiers `.fsh` ou pages du dépôt HL7/Vulcan, seule l'URL de domaine étant adaptée. D'autre part le contenu construit depuis le vrai vocabulaire OHDSI, suite au téléchargement réel du vocabulaire OMOP standardisé (`athena.ohdsi.org`, vocabulaire v5.0 27-FEB-26, incluant `CIM10` édition française ATIH, `CCAM` ATIH, `LOINC` 2.80 et `UCUM` 1.8.2), où les fichiers `CONCEPT.csv` et `CONCEPT_RELATIONSHIP.csv` ont été interrogés directement pour extraire les vrais `concept_id`.
+
+| Fichier | Origine | Source vérifiée | Couverture réelle sur le corpus | Utilisée par (`translate()` dans les `.fml`) |
+|---|---|---|---|---|
+| `GenderClass` | HL7 officiel | `ConceptMap-GenderClass.ttl.html`, non listée dans l'index principal, retrouvée par URL directe | Complète | `PersonMap.fml` |
+| `EncounterClass` | HL7 officiel | `ConceptMap-EncounterClass.html` | Complète (`IMP`, `AMB`, `EMER`) | `EncounterVisitMap.fml` |
+| `EncounterAdmitSource` / `EncounterDischargeDisposition` | HL7 officiel | Pages HL7 officielles, avec un ajout non-HL7 du code `"8"` confirmé par l'équipe comme signifiant urgence / domicile | Codes HL7 non utilisés par EDSH ; le code `"8"` est notre propre ajout documenté | `EncounterVisitMap.fml` |
+| `BloodPressureCodes` | HL7 officiel | `ConceptMap-BloodPressureCodes.html` | Complète | `BloodPressureVitalSignsMap.fml` |
+| `VitalSignsCodes` | HL7 officiel | `ConceptMap-VitalSignsCodes.html` | Partielle selon signes vitaux du corpus | `SimpleVitalSignsMap.fml` |
+| `ConditionConcepts` | HL7 officiel | Fichier `.fsh` source (12 entrées SNOMED) | Aucune, il s'agit de SNOMED, pas de CIM-10 | Aucune, non appelée par un `translate()` |
+| `ProcedureType` | HL7 officiel | Fichier `.fsh` source (3 entrées SNOMED), non listée dans l'index principal | Aucune, il s'agit de SNOMED, pas de CCAM | `ProcedureMap.fml` |
+| `ConditionStatusConcepts` | HL7 officiel | Fichier `.fsh` source (1 entrée) | Non applicable, EDSH utilise `category`, pas `clinicalStatus` | Aucune, non appelée par un `translate()` |
+| `AllergyType`, `IntoleranceType`, `AllergySubstanceType` | HL7 officiel | Fichiers `.fsh` sources | Non applicable, type de ressource (`AllergyIntolerance`) absent du corpus | `AllergyMap.fml` |
+| `ImmunizationVaccine`, `ImmunizationRoute` | HL7 officiel | Fichiers `.fsh` sources | Non applicable, type de ressource (`Immunization`) absent du corpus | `ImmunizationMap.fml` |
+| `ImmunizationSource` | HL7 officiel | Fichier `.fsh` source | Non applicable, type de ressource (`Immunization`) absent du corpus | Aucune, non appelée par un `translate()` |
+| `UCUM` | Vocabulaire OHDSI réel | `CONCEPT.csv`, 4 unités : `mm[Hg]` vers 8876, `umol/L` vers 8749, `g/dL` vers 8713, `[iU]/L` vers 8923 | Concepts standards vérifiés, `translate()` pleinement fonctionnel | `BloodPressureVitalSignsMap.fml`, `MeasurementMap.fml` |
+| `LabConcepts` | Vocabulaire OHDSI réel | `CONCEPT.csv`, 3 codes LOINC : ALAT vers 3006923, hémoglobine vers 3000963, créatinine vers 3020564 | Concepts standards vérifiés, `translate()` pleinement fonctionnel | `MeasurementMap.fml` |
+| `ConditionConceptsCIM10` | Vocabulaire OHDSI réel | `CONCEPT.csv`, 23 codes CIM-10 réels du corpus (les 10 cas), tous vérifiés | Utilisable uniquement pour `condition_source_concept_id`. Aucune relation `Maps to` vers un concept standard n'existe pour le vocabulaire CIM10 édition française dans cette version d'Athena, vérifié exhaustivement | `ConditionMap.fml` |
+| `ProcedureTypeCCAM` | Vocabulaire OHDSI réel | `CONCEPT.csv`, 4 codes CCAM réels du corpus, tous vérifiés | Utilisable uniquement pour `procedure_source_concept_id`. 0 relation `Maps to` sur les 10 206 concepts CCAM du vocabulaire, vérification exhaustive, pas un vide partiel | `ProcedureMap.fml` |
+{: .grid}
+
+##### Placeholders vides (structure valide, aucune entrée)
+
+Ces fichiers permettent à `translate()` de se résoudre sans erreur bloquante, en attendant un futur enrichissement, sans jamais retoucher le `.fml` associé.
+
+| Fichier | Champ concerné | Utilisée par (`translate()` dans les `.fml`) |
+|---|---|---|
+| `ObservationConcepts` | `observation_concept_id`, aucune ConceptMap générique disponible pour les catégories non mesurables | `ObservationMap.fml` |
+| `VisitDetailType` | `visit_detail_concept_id`, construction maison, aucune référence HL7 | `VisitDetailMap.fml` |
+{: .grid}
+
+### Modèles logiques (`StructureDefinition`)
+
+Tous les modèles OMOP utilisés sont les modèles natifs du projet `IG-fhir-dm` (`OMOPPerson`, `OMOPLocation`, `OMOPConditionOccurrence`, `OMOPProcedureOccurrence`, `OMOPMeasurement`, `OMOPDrugExposure`, `OMOPVisitOccurrence`, `OMOPVisitDetail`, `OMOPObservation`), déjà présents dans le projet avant ce travail.
+
+Un seul modèle logique a dû être construit spécifiquement : `RecordSet`, un conteneur intermédiaire sans équivalent natif, utilisé par `BloodPressureVitalSignsMap.fml` (routage vers plusieurs `Measurement` indépendants) et `RecordSetMap.fml` (orchestrateur `Bundle` vers plusieurs tables OMOP).
+
+> **Point de modélisation confirmé par la pratique** : les champs de composition de `RecordSet` (`measurement`, `condition`, `allergy`, `visitOccurrence`, `procedure`) doivent être typés en composition directe (`OMOPMeasurement`) et non en `Reference(OMOPMeasurement)`. L'usage de `Reference()` provoque l'erreur `Cannot set property measurement_id on measurement`.
+
+### Enseignements techniques sur le moteur FML (Matchbox 4.1.1)
+
+Ces observations sont issues de l'expérimentation directe, pas de la documentation officielle. Elles sont à revérifier en cas de changement de moteur FML.
+
+1. **Deux règles de structure à respecter systématiquement.** D'une part, toute règle à cibles multiples séparées par une virgule doit porter un nom explicite (`"nom_regle"`), sous peine d'erreur `Complex rules must have an explicit name`. D'autre part, le pattern `src.a as x, x.b as y -> ...` (deux sources liées au même niveau, séparées par une virgule) échoue à l'exécution avec `Rule "...": not handled yet` ; il faut systématiquement lui préférer le pattern imbriqué `src.a as x -> tgt then { x.b as y -> ... }`.
+2. **`.first()` chaîné directement sur une variable déjà liée** (`variable.first() as X`) casse le parsing avec `Found "(" expecting ";"`. La correction consiste à accéder directement au champ sur la variable liée (`variable.champ as X`), fiable car les données EDSH n'ont jamais qu'un seul élément par collection en pratique.
+3. **`cast(valeur, "date")` sur un `dateTime` complet** (avec heure et millisecondes) échoue avec `Invalid date/time string ... does not support MILLI precision`. La correction consiste à extraire manuellement la date via `(valeur.toString().substring(0, 10))`, sans `cast()`.
+4. **`cast(id, "integer")` sur un id non numérique** échoue avec `NumberFormatException`. Ce n'est pas une limitation du moteur FML en tant que telle : les identifiants hospitaliers réels (NDA, IPP) sont habituellement numériques, et `cast()` fonctionnerait probablement sans problème sur de vraies données de production. C'est le format lisible choisi pour le corpus de test synthétique (`cas1-pat-01`, `cas1-sej-01`, etc., plutôt que des entiers) qui provoque l'échec ici. Sur ce corpus précis, il faut donc toujours assigner l'id directement, sans `cast()`.
+5. **Les champs `*_concept_id` et `*_id` (clés étrangères) du modèle `IG-fhir-dm` natif sont typés `Reference(OMOPXxx)`**, pas `string` ni `integer`. Cela nécessite la construction explicite d'une structure `Reference` via `create('Reference') as ref then { valeur as v -> ref.reference = v; }`, faute de quoi le champ reste silencieusement vide, sans erreur levée.
+6. **Les blocs de commentaires `///` trop longs** (plusieurs lignes numérotées) provoquent une erreur de parsing (`Unrecognised name /// on StructureMap`). Il faut garder les en-têtes courts, cinq lignes maximum, et documenter les décisions ailleurs.
+7. **Une expression chaînée utilisée directement comme argument d'une fonction** (`translate(code.valeur, ...)`, `cast(x.toString().substring(...), ...)`) casse le parsing. Il faut toujours lier l'expression à sa propre variable via `as` avant de l'utiliser en argument.
+
+### Références
+
+- IG FHIR to OMOP (HL7/Vulcan) : https://build.fhir.org/ig/HL7/fhir-omop-ig
+- Dépôt source : https://github.com/HL7/fhir-omop-ig
+- Portail vocabulaire OHDSI (Athena) : https://athena.ohdsi.org
+- Extension VSCode utilisée : `aphp.fhir-mapbuilder`, avec Matchbox 4.1.1 embarqué
+- IG EDSH socle commun (corpus source des 10 cas cliniques) : https://aphp.github.io/IG-FHIR-EDSH-SOCLE-COMMUN
+
+## Comparaison synthétique avec Pathling
+
+| Aspect | Pathling / SQL-on-FHIR | FML |
+|---|---|---|
+| Modélisation cible OMOP | Aucune, juste des noms de colonnes | `StructureDefinition` de type `kind: logical` obligatoire, résolue par le moteur avant exécution |
+| `forEach` sur un tableau, par exemple `Observation.component` | Natif (`forEach: component`) | Non supporté, limitation confirmée aussi par le papier TermX (Frontiers, 2026). Nécessite plusieurs groupes indépendants (`Systolic`/`Diastolic`) reliés a posteriori par `measurement_event_id` |
+| Conversion d'un id en entier | Non testé avec des id numériques réels (le corpus source utilise des id lisibles type `cas1-pat-01`) | `cast(id,'integer')` échoue sur ce corpus précis, id non numériques. À revérifier sur de vraies données de production avec des identifiants numériques (NDA, IPP) |
+| Terminologie (CIM-10, CCAM vers OMOP) | `%terminologies.translate()` non disponible en pratique | `translate()` et `ConceptMap` fonctionnels, mais dépendent entièrement de la disponibilité réelle des correspondances dans le vocabulaire OHDSI, très incomplet pour la CIM-10 et la CCAM à ce jour |
+{: .grid}
 
 
 *Document technique — pipeline FHIR R4 → OMOP CDM v5.4, projet APHP DSN (Domaine MSD/DSN).*

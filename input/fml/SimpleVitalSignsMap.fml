@@ -1,0 +1,58 @@
+/// url = 'https://aphp.github.io/IG-fhir-dm/StructureMap/SimpleVitalSignsMap'
+/// name = 'SimpleVitalSignsMap'
+/// title = 'Mapping Vital Signs to Measurement OMOP Domain'
+/// status = 'active'
+/// description = "This mapping maps simple FHIR Vital Signs instances to OMOP Measurement Table objects."
+
+uses "http://hl7.org/fhir/StructureDefinition/Observation" alias VitalSigns as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPMeasurement" alias MeasureTable as target
+
+group VitalSigns(source src : VitalSigns, target tgt : MeasureTable) {
+	src where (src.category.coding.code contains 'vital-signs') then {
+		src.code as s -> tgt then {
+			s.coding as sc -> tgt then {
+				sc.code as a where ((a in ('85354-9' | '8480-6' | '8462-4' | '8478-0')).not()) then {
+
+					src as ss -> tgt then {
+						ss.id as id -> tgt.measurement_id = id;
+					} "measureID";
+
+					src.subject as subject -> tgt then {
+						subject.reference as s2 -> tgt.person_id = create('Reference') as ref then {
+							s2 as refVal -> ref.reference = refVal "personRefValRule";
+						} "personRefRule";
+					};
+
+					a as code -> tgt.measurement_concept_id = create('Reference') as ref2 then {
+						code as refVal2 -> ref2.reference = translate(refVal2, 'https://aphp.github.io/IG-fhir-dm/ConceptMap/VitalSignsCodes', 'code') "conceptRefValRule";
+					} "conceptRefRule";
+
+					src -> tgt.measurement_type_concept_id = create('Reference') as ref3 then {
+						src -> ref3.reference = '32817' "typeRefValRule";
+					} "typeRefRule";
+
+					src.effective : dateTime as edt -> tgt.measurement_datetime = edt, tgt.measurement_date = (%edt.toString().substring(0, 10)) "effectiveDateTimeRule";
+					src.effective : instant as einst -> tgt.measurement_datetime = einst, tgt.measurement_date = (%einst.toString().substring(0, 10)) "effectiveInstantRule";
+					src.effective : Period as s3 -> tgt then {
+						s3.start as eps -> tgt.measurement_datetime = eps, tgt.measurement_date = (%eps.toString().substring(0, 10)) "effectivePeriodRule";
+					};
+
+					src.value : Quantity as s4 -> tgt then {
+						s4.value as v -> tgt.value_as_number = v "valueNumberRule";
+						s4.unit as u -> tgt.unit_source_value = u "unitSourceValueRule";
+					};
+					src.value : CodeableConcept as s5 -> tgt then {
+						s5.coding as sc2 -> tgt then {
+							sc2.code as vc -> tgt.value_source_value = vc "valueCodeableRule";
+						};
+					};
+					src.value : string as vs -> tgt.value_source_value = vs "valueStringRule";
+
+					src.note as n -> tgt then {
+						n.text as t -> tgt.measurement_source_value = t "noteRule";
+					};
+				} "onlyVitalSigns";
+			};
+		};
+	} "OnlyMeasures";
+}

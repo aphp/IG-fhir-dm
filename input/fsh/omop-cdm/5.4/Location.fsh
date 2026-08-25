@@ -4,7 +4,7 @@ Characteristics: #can-be-target
 Title: "Location OMOP Table"
 Description: "The LOCATION table represents a generic way to capture physical location or address information of Persons and Care Sites."
 
-* location_id	1..1	integer	"Location Identifier" "The unique key given to a unique Location."
+* location_id	1..1	string	"Location Identifier" "The unique key given to a unique Location."
 * address_1	0..1	string	"Address Line 1" "This is the first line of the address."
 * address_2	0..1	string	"Address Line 2" "This is the second line of the address"
 * city	0..1	string	"City"	""

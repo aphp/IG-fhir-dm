@@ -43,19 +43,19 @@ Des ViewDefinitions SQL-on-FHIR v2 dont les colonnes sont nommées d'après le s
 
 Les projections ont été définies pour les tables :
 
-- [Person](Binary-ViewDefinition-person.html)
-- [Location](Binary-ViewDefinition-location.html)
-- [Visit_Occurrence](Binary-ViewDefinition-visit-occurrence.html)
-- [Condition_Occurrence](Binary-ViewDefinition-condition-occurrence.html)
-- [Procedure_Occurrence](Binary-ViewDefinition-procedure-occurrence.html)
-- [Observation](Binary-ViewDefinition-observation.html)
-- [Measurement_Simple](Binary-ViewDefinition-measurement-simple.html)
-- [Measurement_Blood_Pressure](Binary-ViewDefinition-measurement-blood-pressure.html)
-- [Drug_Exposure_Request](Binary-ViewDefinition-drug-exposure-request.html)
-- [Drug_Exposure_Administration](Binary-ViewDefinition-drug-exposure-administration.html)
-- [Death](Binary-ViewDefinition-death.html)
-- [Death_Cause](Binary-ViewDefinition-death-cause.html)
-- [Visit_detail](Binary-ViewDefinition-visit-detail.html)
+- [Person](Binary-ViewDefinition-PersonMap.html)
+- [Location](Binary-ViewDefinition-LocationMap.html)
+- [Visit_Occurrence](Binary-ViewDefinition-Visit-occurrenceMap.html)
+- [Condition_Occurrence](Binary-ViewDefinition-Condition-occurrenceMap.html)
+- [Procedure_Occurrence](Binary-ViewDefinition-Procedure-occurrenceMap.html)
+- [Observation](Binary-ViewDefinition-ObservationMap.html)
+- [Measurement_Simple](Binary-ViewDefinition-Measurement-simpleMap.html)
+- [Measurement_Blood_Pressure](Binary-ViewDefinition-Measurement-blood-pressureMap.html)
+- [Drug_Exposure_Request](Binary-ViewDefinition-Drug-exposure-requestMap.html)
+- [Drug_Exposure_Administration](Binary-ViewDefinition-Drug-exposure-administrationMap.html)
+- [Death](Binary-ViewDefinition-DeathMap.html)
+- [Death_Cause](Binary-ViewDefinition-Death-causeMap.html)
+- [Visit_detail](Binary-ViewDefinition-Visit-detailMap.html)
 
 Pour les `concept_id` dont les valeurs sont connues et stables (codes FHIR standard universellement reconnus, modalités restraintes et fixes), la technique `count() × concept_id` contourne l'absence de `iif()` dans Pathling : chaque terme vaut 0 ou 1 selon la condition, un seul terme non nul étant sommé au résultat final.
 

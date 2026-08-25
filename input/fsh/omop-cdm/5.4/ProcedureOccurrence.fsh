@@ -4,7 +4,7 @@ Characteristics: #can-be-target
 Title: "Procedure Occurrence OMOP Table"
 Description: "This table contains records of activities or processes ordered by, or carried out by, a healthcare provider on the patient with a diagnostic or therapeutic purpose."
 
-* procedure_occurrence_id 1..1 integer "Procedure Occurrence Identifier" "The unique key given to a procedure record for a person. Refer to the ETL for how duplicate procedures during the same visit were handled."
+* procedure_occurrence_id 1..1 string "Procedure Occurrence Identifier" "The unique key given to a procedure record for a person. Refer to the ETL for how duplicate procedures during the same visit were handled."
 * person_id 1..1 Reference(OMOPPerson) "Person" "The PERSON_ID of the PERSON for whom the procedure is recorded. This may be a system generated code."
 * procedure_concept_id 1..1 Reference(OMOPConcept) "Procedure" "The PROCEDURE_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source value which represents a procedure"
 * procedure_date 1..1 date "Procedure Date" "Use this date to determine the date the procedure started."

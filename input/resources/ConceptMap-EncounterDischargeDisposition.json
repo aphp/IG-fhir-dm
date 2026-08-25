@@ -1,0 +1,138 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "EncounterDischargeDisposition",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/EncounterDischargeDisposition",
+  "name": "EncounterDischargeDispositionOMOPMapping",
+  "title": "Encounter Discharge Disposition codes to OMOP",
+  "status": "active",
+  "description": "Contenu HL7 fhir-omop-ig officiel (codes mnemoniques home/exp/etc) + AJOUT PROJET EDSH : code '8' = domicile/maison, absent du fichier HL7 original, ajoute sur la base de la confirmation du 07/08/2026 (mode de sortie PMSI). A faire valider avec le referentiel PMSI officiel.",
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/discharge-disposition",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "home",
+          "target": [
+            {
+              "code": "8536",
+              "display": "Home",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "alt-home",
+          "target": [
+            {
+              "code": "8536",
+              "display": "Home",
+              "equivalence": "narrower",
+              "comment": "Correspondance approximative (narrower), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "other-hcf",
+          "target": [
+            {
+              "code": "33007",
+              "display": "Alternate care site (ACS)",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "hosp",
+          "target": [
+            {
+              "code": "8546",
+              "display": "Hospice",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "long",
+          "target": [
+            {
+              "code": "38004277",
+              "display": "Long Term Care Hospital",
+              "equivalence": "wider",
+              "comment": "Correspondance approximative (wider), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "aadvice",
+          "target": [
+            {
+              "code": "32216",
+              "display": "Left against medical advice or discontinued care.",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "exp",
+          "target": [
+            {
+              "code": "32218",
+              "display": "Expired",
+              "equivalence": "equivalent"
+            }
+          ]
+        },
+        {
+          "code": "psy",
+          "target": [
+            {
+              "code": "8971",
+              "display": "Inpatient Psychiatric Facility",
+              "equivalence": "wider",
+              "comment": "Correspondance approximative (wider), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "rehab",
+          "target": [
+            {
+              "code": "32266",
+              "display": "Clinic-Outpatient Rehab Facility (ORF)",
+              "equivalence": "wider",
+              "comment": "Correspondance approximative (wider), verifiee via copie HL7 fhir-omop-ig ou ajout projet EDSH documente."
+            }
+          ]
+        },
+        {
+          "code": "snf",
+          "target": [
+            {
+              "code": "8863",
+              "display": "Skilled Nursing Facility",
+              "equivalence": "equivalent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "https://interop.aphp.fr/CodeSystem/pmsi-mode",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        {
+          "code": "8",
+          "target": [
+            {
+              "code": "8536",
+              "display": "Home",
+              "equivalence": "equivalent",
+              "comment": "AJOUT PROJET EDSH - pas dans le fichier HL7 original - code PMSI mode de sortie, confirme = domicile/maison"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "GenderClass",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/GenderClass",
+  "name": "AdministrativeGenderOMOPMapping",
+  "title": "AdministrativeGender codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig (Experimental v2.0.0-ballot), verifiee le 07/08/2026",
+  "group": [
+    {
+      "source": "http://hl7.org/fhir/administrative-gender",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "male", "target": [{ "code": "8507", "display": "Male", "equivalence": "equivalent" }] },
+        { "code": "female", "target": [{ "code": "8532", "display": "Female", "equivalence": "equivalent" }] },
+        { "code": "other", "target": [{ "code": "44814653", "display": "Other", "equivalence": "equivalent" }] },
+        { "code": "unknown", "target": [{ "code": "8551", "display": "Unknown", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

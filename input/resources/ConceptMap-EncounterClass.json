@@ -1,0 +1,23 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "EncounterClass",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/EncounterClass",
+  "name": "EncounterClassOMOPMapping",
+  "title": "Encounter Class codes to OMOP",
+  "status": "active",
+  "description": "Copie officielle HL7 fhir-omop-ig (Experimental v2.0.0-ballot), verifiee le 07/08/2026",
+  "group": [
+    {
+      "source": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "IMP", "target": [{ "code": "9201", "display": "Inpatient Visit", "equivalence": "equivalent" }] },
+        { "code": "AMB", "target": [{ "code": "9202", "display": "Outpatient Visit", "equivalence": "equivalent" }] },
+        { "code": "OBSENC", "target": [{ "code": "262", "display": "Emergency Room and Inpatient Visit", "equivalence": "wider" }] },
+        { "code": "EMER", "target": [{ "code": "9203", "display": "Emergency Room Visit", "equivalence": "equivalent" }] },
+        { "code": "VR", "target": [{ "code": "722455", "display": "Telehealth", "equivalence": "equivalent" }] },
+        { "code": "HH", "target": [{ "code": "581476", "display": "Home Visit", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "ConditionConceptsCIM10",
+  "url": "https://aphp.github.io/IG-fhir-dm/ConceptMap/ConditionConceptsCIM10",
+  "name": "ConditionConceptsCIM10OMOPMapping",
+  "title": "CIM-10 codes to OMOP (source_concept_id uniquement)",
+  "status": "active",
+  "description": "23 entrees verifiees via le vrai telechargement Athena/OHDSI (vocabulaire CIM10 edition francaise ATIH), couvrant tous les codes CIM-10 reels du corpus EDSH (10 cas). ATTENTION : aucune relation Maps to vers un concept standard - utilisable uniquement pour condition_source_concept_id. 4 codes CIM-11 (BA40.0, GB51, MG4A, XH84Q4, cas4) absents, vocabulaire ICD11 non inclus dans ce telechargement. Z87.2/Z88.0 ont domain_id=Observation dans le vocabulaire officiel.",
+  "group": [
+    {
+      "source": "https://interop.aphp.fr/CodeSystem/cim10-atih",
+      "target": "https://fhir-terminology.ohdsi.org",
+      "element": [
+        { "code": "D50.8", "target": [{ "code": "37614223", "display": "Other iron deficiency anaemias", "equivalence": "equivalent" }] },
+        { "code": "D64.9", "target": [{ "code": "37613181", "display": "Anaemia, unspecified", "equivalence": "equivalent" }] },
+        { "code": "E11", "target": [{ "code": "37614313", "display": "Type 2 diabetes mellitus", "equivalence": "equivalent" }] },
+        { "code": "E78.0", "target": [{ "code": "37608194", "display": "Pure hypercholesterolaemia", "equivalence": "equivalent" }] },
+        { "code": "G43.2", "target": [{ "code": "37613370", "display": "Status migrainosus", "equivalence": "equivalent" }] },
+        { "code": "G43.9", "target": [{ "code": "37612749", "display": "Migraine, unspecified", "equivalence": "equivalent" }] },
+        { "code": "I10", "target": [{ "code": "37609626", "display": "Essential (primary) hypertension", "equivalence": "equivalent" }] },
+        { "code": "I21", "target": [{ "code": "37605728", "display": "Acute myocardial infarction", "equivalence": "equivalent" }] },
+        { "code": "I21.9", "target": [{ "code": "37610989", "display": "Acute myocardial infarction, unspecified", "equivalence": "equivalent" }] },
+        { "code": "I25.1", "target": [{ "code": "37613024", "display": "Atherosclerotic heart disease", "equivalence": "equivalent" }] },
+        { "code": "J44.1", "target": [{ "code": "37613260", "display": "Chronic obstructive pulmonary disease with acute exacerbation, unspecified", "equivalence": "equivalent" }] },
+        { "code": "J80", "target": [{ "code": "37607942", "display": "Adult respiratory distress syndrome", "equivalence": "equivalent" }] },
+        { "code": "K25", "target": [{ "code": "37613430", "display": "Gastric ulcer", "equivalence": "equivalent" }] },
+        { "code": "K70.3", "target": [{ "code": "37613537", "display": "Alcoholic cirrhosis of liver", "equivalence": "equivalent" }] },
+        { "code": "K92.1", "target": [{ "code": "37606517", "display": "Melaena", "equivalence": "equivalent" }] },
+        { "code": "N17", "target": [{ "code": "37613288", "display": "Acute renal failure", "equivalence": "equivalent" }] },
+        { "code": "O80.0", "target": [{ "code": "37614687", "display": "Spontaneous vertex delivery", "equivalence": "equivalent" }] },
+        { "code": "R18", "target": [{ "code": "37607096", "display": "Ascites", "equivalence": "equivalent" }] },
+        { "code": "R57.0", "target": [{ "code": "37608931", "display": "Cardiogenic shock", "equivalence": "equivalent" }] },
+        { "code": "S72.1", "target": [{ "code": "37614827", "display": "Pertrochanteric fracture", "equivalence": "equivalent" }] },
+        { "code": "Z37.0", "target": [{ "code": "37614806", "display": "Single live birth", "equivalence": "equivalent" }] },
+        { "code": "Z87.2", "target": [{ "code": "37606600", "display": "Personal history of diseases of the skin and subcutaneous tissue", "equivalence": "equivalent" }] },
+        { "code": "Z88.0", "target": [{ "code": "37609463", "display": "Personal history of allergy to penicillin", "equivalence": "equivalent" }] }
+      ]
+    }
+  ]
+}
