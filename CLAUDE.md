@@ -99,3 +99,17 @@ Two more top-level directories, outside `input`, matter for this repo:
 - Provide clear and intuitive navigation (menu, search)
 - Offer progressive reading: business scenario → technical constraints → profiles → examples
 - Add "Implementation Notes" to help developers understand quickly
+
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked in GitHub Issues on `aphp/IG-fhir-dm` (via the `gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
