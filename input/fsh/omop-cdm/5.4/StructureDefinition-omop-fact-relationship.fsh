@@ -1,4 +1,5 @@
 Logical: OMOPFactRelationship
+Id: omop-fact-relationship
 Parent: Base
 Characteristics: #can-be-target
 Title: "Fact Relationship OMOP Table"

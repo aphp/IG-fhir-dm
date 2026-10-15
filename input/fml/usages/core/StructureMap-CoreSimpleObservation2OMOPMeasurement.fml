@@ -5,7 +5,7 @@ map "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreSimpleObservation2OMOPMe
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias LabObs as source
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPMeasurement" alias MeasurementTable as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/omop-measurement" alias MeasurementTable as target
 
 group SimpleObservation(source src: LabObs, target tgt : MeasurementTable) {
     src.subject as srcSubject -> tgt.person_id = srcSubject "setSubject"; // reference impropre dans le monde OMOP mais permet d'illustrer l'information qui doit être utilisée pour retrouver la bonne OMOPPerson

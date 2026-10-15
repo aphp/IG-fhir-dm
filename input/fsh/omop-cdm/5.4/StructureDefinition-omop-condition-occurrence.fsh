@@ -1,4 +1,5 @@
 Logical: OMOPConditionOccurrence
+Id: omop-condition-occurrence
 Parent: Base
 Characteristics: #can-be-target
 Title: "Condition Occurrence OMOP Table"

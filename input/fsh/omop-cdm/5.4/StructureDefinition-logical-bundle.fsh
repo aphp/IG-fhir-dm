@@ -1,6 +1,6 @@
 Logical: LogicalBundle
 Parent: Base
-Id: LogicalBundle
+Id: logical-bundle
 Title: "Logical Bundle"
 Description: """
 The BundleLogical has the same objective as the FHIR Bundle resource but allows for the grouping of logical models.
@@ -22,3 +22,18 @@ It's possible to use a bundle for other purposes (e.g. a document can be accepte
   * death ^short = "A death in the bundle"
   * measurement 0..* OMOPMeasurement "Measurement for the entry. The purpose/meaning of the measurements is determined by the Bundle.type."
   * measurement ^short = "Measurement(s) in the bundle"
+
+Instance: be35214d-25ff-4e90-8898-9ef1e067549a
+InstanceOf: Provenance
+Title: "Fix LogicalBundle Title"
+Description: """Fix LogicalBundle Title to a human-readable form"""
+Usage: #definition
+
+* target[0] = Reference(LogicalBundle)
+* occurredDateTime = "2026-08-05"
+* reason.text = """Title was "LogicalBundle" (the raw FSH name), not a human-readable title. resource-templates.md's Logical Model entry defines title as a human-readable label; changed to "Logical Bundle"."""
+* activity = $v3-DataOperation#UPDATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "David Ouagne"
+* recorded = "2026-08-05T12:00:00.000+02:00"

@@ -1,4 +1,5 @@
 Logical: OMOPConcept
+Id: omop-concept
 Parent: Base
 Characteristics: #can-be-target
 Title: "Concept OMOP Table"

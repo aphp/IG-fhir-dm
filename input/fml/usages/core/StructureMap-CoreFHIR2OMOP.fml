@@ -6,7 +6,7 @@ map "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIR2OMOP" = "CoreFHIR2O
 
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as source
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/logical-bundle" alias LogicalBundle as target
 
 imports "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIRPatient2OMOP"
 

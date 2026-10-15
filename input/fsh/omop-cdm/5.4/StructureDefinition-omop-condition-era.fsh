@@ -1,4 +1,5 @@
 Logical: OMOPConditionEra
+Id: omop-condition-era
 Parent: Base
 Characteristics: #can-be-target
 Title: "Condition Era OMOP Table"

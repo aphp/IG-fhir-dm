@@ -4,7 +4,7 @@
 /// status = 'draft'
 /// description = 'Transforms EHR logical model data to FHIR Semantic Layer resources using Bundle as container'
 
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/EHR" alias EHR as source
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/ehr" alias EHR as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
 
 group EHR2FSL(source src : EHR, target bundle : Bundle) {

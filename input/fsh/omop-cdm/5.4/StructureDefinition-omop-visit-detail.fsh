@@ -1,4 +1,5 @@
 Logical: OMOPVisitDetail
+Id: omop-visit-detail
 Parent: Base
 Characteristics: #can-be-target
 Title: "Visit Detail OMOP Table"

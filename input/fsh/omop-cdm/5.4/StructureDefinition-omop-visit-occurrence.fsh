@@ -1,4 +1,5 @@
 Logical: OMOPVisitOccurrence
+Id: omop-visit-occurrence
 Parent: Base
 Characteristics: #can-be-target
 Title: "Visit Occurrence OMOP Table"

@@ -1,4 +1,5 @@
 Logical: OMOPEpisode
+Id: omop-episode
 Parent: Base
 Characteristics: #can-be-target
 Title: "Episode OMOP Table"

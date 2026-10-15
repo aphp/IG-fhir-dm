@@ -5,7 +5,7 @@ map "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIR2OMOPPerson" = "Core
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPPerson" alias PersonTable as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/omop-person" alias PersonTable as target
 
 group Person(source src: Patient, target tgt : PersonTable) {
 	src.id as srcId -> tgt.person_source_value = srcId;

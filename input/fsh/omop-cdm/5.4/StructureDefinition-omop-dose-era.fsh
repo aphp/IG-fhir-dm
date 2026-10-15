@@ -1,4 +1,5 @@
 Logical: OMOPDoseEra
+Id: omop-dose-era
 Parent: Base
 Characteristics: #can-be-target
 Title: "Dose Era OMOP Table"

@@ -1,4 +1,5 @@
 Logical: OMOPNoteNLP
+Id: omop-note-nlp
 Parent: Base
 Characteristics: #can-be-target
 Title: "Note NLP OMOP Table"

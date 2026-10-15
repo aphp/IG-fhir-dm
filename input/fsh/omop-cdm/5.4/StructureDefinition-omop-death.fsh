@@ -1,4 +1,5 @@
 Logical: OMOPDeath
+Id: omop-death
 Parent: Base
 Characteristics: #can-be-target
 Title: "Death OMOP Table"

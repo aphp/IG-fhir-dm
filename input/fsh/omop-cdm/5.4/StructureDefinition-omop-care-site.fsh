@@ -1,4 +1,5 @@
 Logical: OMOPCareSite
+Id: omop-care-site
 Parent: Base
 Characteristics: #can-be-target
 Title: "CareSite OMOP Table"

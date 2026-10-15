@@ -1,4 +1,5 @@
 Logical: OMOPDrugExposure
+Id: omop-drug-exposure
 Parent: Base
 Characteristics: #can-be-target
 Title: "Drug Occurrence OMOP Table"

@@ -1,4 +1,5 @@
 Logical: OMOPCost
+Id: omop-cost
 Parent: Base
 Characteristics: #can-be-target
 Title: "Cost OMOP Table"

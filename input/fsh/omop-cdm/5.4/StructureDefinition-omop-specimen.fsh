@@ -1,4 +1,5 @@
 Logical: OMOPSpecimen
+Id: omop-specimen
 Parent: Base
 Characteristics: #can-be-target
 Title: "Specimen OMOP Table"

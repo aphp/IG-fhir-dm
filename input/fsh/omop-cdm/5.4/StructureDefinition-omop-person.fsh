@@ -1,4 +1,5 @@
 Logical: OMOPPerson
+Id: omop-person
 Parent: Base
 Characteristics: #can-be-target
 Title: "Person OMOP Table"

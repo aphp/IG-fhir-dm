@@ -5,7 +5,7 @@ map "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIR2OMOPDeath" = "CoreF
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPDeath" alias DeathTable as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/omop-death" alias DeathTable as target
 
 group Death(source src: Patient, target tgt: DeathTable) {
   src.deceased : dateTime as srcDeceased then {

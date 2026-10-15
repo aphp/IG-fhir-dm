@@ -1,4 +1,5 @@
 Logical: OMOPProcedureOccurrence
+Id: omop-procedure-occurrence
 Parent: Base
 Characteristics: #can-be-target
 Title: "Procedure Occurrence OMOP Table"

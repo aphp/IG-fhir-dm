@@ -16,7 +16,7 @@ Create an instance of StructureDefinitition king logical EHR to test StructreMap
 </tasks>
 
 <input>
-The reference EHR logical model is input/fsh/applications/ehr/logicals/StructureDefinition-EHR.fsh
+The reference EHR logical model is input/fsh/applications/ehr/logicals/StructureDefinition-ehr.fsh
 A QuestionnaireResponse source of to convert into instance of EHR logical model is input/resources/usages/core/QuestionnaireResponse-test-usage-core.json.
 </input>
 

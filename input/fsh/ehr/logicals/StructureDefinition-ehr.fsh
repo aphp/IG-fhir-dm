@@ -9,7 +9,7 @@
 // ========================================================================
 
 Logical: EHR
-Id: EHR
+Id: ehr
 Title: "Electronic Health Record Data Model"
 Description: """
 Comprehensive logical model representing the Electronic Health Record (EHR) data structure
@@ -250,3 +250,18 @@ Based on linkId: 1693164086678. Maps to SQL table: style_vie
   * dateRecueil 0..1 date "Collection Date" "Date recueil (date_recueil)"
   * createdAt 1..1 dateTime "Created At" "Record creation timestamp (created_at)"
   * updatedAt 1..1 dateTime "Updated At" "Record update timestamp (updated_at)"
+
+Instance: ff2c79ce-8a97-4f4e-b830-710a12780fb0
+InstanceOf: Provenance
+Title: "Create EHR Logical Model"
+Description: """Create the EHR Logical Model"""
+Usage: #definition
+
+* target[0] = Reference(EHR)
+* occurredDateTime = "2025-08-31"
+* reason.text = """Backfilled retrospectively (2026-08-05 compliance remediation): the EHR Logical Model, generated from input/sql/applications/ehr/questionnaire-core-ddl.sql, first committed 2025-08-31 per git history. Represents the comprehensive EDSH core-variable EHR data structure that StructureMap-EHR2FSL.fml transforms into the FHIR Semantic Layer."""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "David Ouagne"
+* recorded = "2026-08-05T12:00:00.000+02:00"

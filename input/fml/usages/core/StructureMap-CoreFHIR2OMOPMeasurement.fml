@@ -5,8 +5,8 @@ map "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIR2OMOPMeasurement" = 
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Observation" alias LabObs as source
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPMeasurement" alias MeasurementTable as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/logical-bundle" alias LogicalBundle as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/omop-measurement" alias MeasurementTable as target
 
 imports "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreSimpleObservation2OMOPMeasurement"
 // imports "https://aphp.github.io/IG-fhir-dm/StructureMap/ComplexMeasurement"

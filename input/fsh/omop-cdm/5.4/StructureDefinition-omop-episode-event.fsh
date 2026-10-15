@@ -1,4 +1,5 @@
 Logical: OMOPEpisodeEvent
+Id: omop-episode-event
 Parent: Base
 Characteristics: #can-be-target
 Title: "Episode Event OMOP Table"

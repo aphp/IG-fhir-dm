@@ -1,4 +1,5 @@
 Logical: OMOPObservationPeriod
+Id: omop-observation-period
 Parent: Base
 Characteristics: #can-be-target
 Title: "Observation Period OMOP Table"

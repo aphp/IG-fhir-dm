@@ -6,10 +6,10 @@ map "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIRPatient2OMOP" = "Cor
 /// status = 'draft'
 
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/LogicalBundle" alias LogicalBundle as target
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPPerson" alias PersonTable as target
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPLocation" alias LocationTable as target
-uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/OMOPDeath" alias DeathTable as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/logical-bundle" alias LogicalBundle as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/omop-person" alias PersonTable as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/omop-location" alias LocationTable as target
+uses "https://aphp.github.io/IG-fhir-dm/StructureDefinition/omop-death" alias DeathTable as target
 
 imports "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIR2OMOPPerson"
 imports "https://aphp.github.io/IG-fhir-dm/StructureMap/CoreFHIR2OMOPLocation"

@@ -1,4 +1,5 @@
 Logical: OMOPObservation
+Id: omop-observation
 Parent: Base
 Characteristics: #can-be-target
 Title: "Observation OMOP Table"

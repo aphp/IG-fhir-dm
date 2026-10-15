@@ -1,4 +1,5 @@
 Logical: OMOPNote
+Id: omop-note
 Parent: Base
 Characteristics: #can-be-target
 Title: "Note OMOP Table"

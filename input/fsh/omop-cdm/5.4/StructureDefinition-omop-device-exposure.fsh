@@ -1,4 +1,5 @@
 Logical: OMOPDeviceExposure
+Id: omop-device-exposure
 Parent: Base
 Characteristics: #can-be-target
 Title: "Device Exposure OMOP Table"

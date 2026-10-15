@@ -1,4 +1,5 @@
 Logical: OMOPProvider
+Id: omop-provider
 Parent: Base
 Characteristics: #can-be-target
 Title: "Provider OMOP Table"

@@ -1,4 +1,5 @@
 Logical: OMOPLocation
+Id: omop-location
 Parent: Base
 Characteristics: #can-be-target
 Title: "Location OMOP Table"

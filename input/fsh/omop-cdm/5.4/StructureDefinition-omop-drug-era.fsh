@@ -1,4 +1,5 @@
 Logical: OMOPDrugEra
+Id: omop-drug-era
 Parent: Base
 Characteristics: #can-be-target
 Title: "Drug Era OMOP Table"

@@ -1,4 +1,5 @@
 Logical: OMOPPayerPlanPeriod
+Id: omop-payer-plan-period
 Parent: Base
 Characteristics: #can-be-target
 Title: "Payer Plan Period OMOP Table"

@@ -1,4 +1,5 @@
 Logical: OMOPMeasurement
+Id: omop-measurement
 Parent: Base
 Characteristics: #can-be-target
 Title: "Measurement OMOP Table"
