@@ -1,10 +1,8 @@
 {
-  "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
-  "url": "https://interop.aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-DrugStrength-View",
-  "title": "OMOP Drug Strength View",
-  "description": "ViewDefinition to transform FHIR Medication resources into OMOP Drug Strength table format",
-  "name": "OMOP-DrugStrength-View",
+  "resourceType": "ViewDefinition",
   "status": "draft",
+  "name": "DrugStrength",
+  "description": "Vue se rapprochant de la table OMOP drug_strength",
   "resource": "Medication",
   "select": [
     {

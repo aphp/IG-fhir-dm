@@ -1,10 +1,8 @@
 {
-  "resourceType": "https://sql-on-fhir.org/ig/StructureDefinition/ViewDefinition",
-  "url": "https://interop.aphp.fr/ig/fhir/dm/ViewDefinition/OMOP-Specimen-View",
-  "title": "OMOP Specimen View",
-  "description": "ViewDefinition to transform FHIR Specimen resources into OMOP Specimen table format",
-  "name": "OMOP-Specimen-View",
+  "resourceType": "ViewDefinition",
   "status": "draft",
+  "name": "Specimen",
+  "description": "Vue se rapprochant de la table OMOP specimen",
   "resource": "Specimen",
   "select": [
     {

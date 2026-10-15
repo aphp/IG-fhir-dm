@@ -57,6 +57,13 @@ Les projections ont été définies pour les tables :
 - [Death_Cause](Binary-ViewDefinition-death-cause.html)
 - [Visit_detail](Binary-ViewDefinition-visit-detail.html)
 
+Quatre autres projections, reprises de l'ancien module d'export Python de la plateforme, couvrent des tables hors du socle de variables. Elles n'ont pas encore été testées sur le corpus de la PDS :
+
+- [Care_Site](Binary-ViewDefinition-care-site.html)
+- [Provider](Binary-ViewDefinition-provider.html)
+- [Specimen](Binary-ViewDefinition-specimen.html)
+- [Drug_Strength](Binary-ViewDefinition-drug-strength.html)
+
 Pour les `concept_id` dont les valeurs sont connues et stables (codes FHIR standard universellement reconnus, modalités restraintes et fixes), la technique `count() × concept_id` contourne l'absence de `iif()` dans Pathling : chaque terme vaut 0 ou 1 selon la condition, un seul terme non nul étant sommé au résultat final.
 
 ```
