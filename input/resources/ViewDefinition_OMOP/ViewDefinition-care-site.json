@@ -2,8 +2,7 @@
   "resourceType": "ViewDefinition",
   "status": "draft",
   "name": "CareSite",
-  "title": "OMOP Care Site View",
-  "description": "Vue se rapprochant de la table OMOP care_site, à partir de la ressource Organization",
+  "description": "Vue se rapprochant de la table OMOP care_site",
   "resource": "Organization",
   "select": [
     {

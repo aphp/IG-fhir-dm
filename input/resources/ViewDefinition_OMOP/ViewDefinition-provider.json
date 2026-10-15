@@ -2,8 +2,7 @@
   "resourceType": "ViewDefinition",
   "status": "draft",
   "name": "Provider",
-  "title": "OMOP Provider View",
-  "description": "Vue se rapprochant de la table OMOP provider, à partir de la ressource Practitioner",
+  "description": "Vue se rapprochant de la table OMOP provider",
   "resource": "Practitioner",
   "select": [
     {

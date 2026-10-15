@@ -2,8 +2,7 @@
   "resourceType": "ViewDefinition",
   "status": "draft",
   "name": "DrugStrength",
-  "title": "OMOP Drug Strength View",
-  "description": "Vue se rapprochant de la table OMOP drug_strength, à partir de la ressource Medication",
+  "description": "Vue se rapprochant de la table OMOP drug_strength",
   "resource": "Medication",
   "select": [
     {

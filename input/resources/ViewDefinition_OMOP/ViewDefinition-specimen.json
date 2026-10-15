@@ -2,8 +2,7 @@
   "resourceType": "ViewDefinition",
   "status": "draft",
   "name": "Specimen",
-  "title": "OMOP Specimen View",
-  "description": "Vue se rapprochant de la table OMOP specimen, à partir de la ressource Specimen",
+  "description": "Vue se rapprochant de la table OMOP specimen",
   "resource": "Specimen",
   "select": [
     {

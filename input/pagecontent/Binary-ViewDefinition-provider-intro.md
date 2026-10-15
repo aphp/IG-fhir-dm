@@ -3,7 +3,7 @@ Construite à partir de la ressource **`Practitioner`**, cette vue prépare et s
 
 Elle contient l'identifiant et le nom du professionnel de santé, sa spécialité, son rattachement à une unité de soins, son année de naissance et son sexe.
 
-> Cette ViewDefinition provient de l'ancien module d'export Python de la plateforme (`data-exporter`). Elle n'a pas encore été testée sur le corpus de la plateforme de données de santé (PDS). Les colonnes `npi` et `dea` lisent des identifiants américains (`us-npi`, `us-dea-number`). Dans un contexte français, il faudrait plutôt lire le RPPS ou l'ADELI.
+> Cette ViewDefinition provient de l'ancien module d'export Python de la plateforme (`data-exporter`). Elle n'a pas encore été testée sur le corpus de la plateforme de données de santé (PDS). Les colonnes `npi` et `dea` lisent des identifiants américains (`us-npi`, `us-dea-number`). Dans un contexte français, il faudrait plutôt lire le RPPS ou l'ADELI. Les colonnes `specialty_concept_id` et `gender_concept_id` contiennent les codes sources, sans traduction vers le vocabulaire standard OMOP.
 
 | Colonne | Signification métier |
 |---|---|
