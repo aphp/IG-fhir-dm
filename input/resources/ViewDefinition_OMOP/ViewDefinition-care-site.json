@@ -1,0 +1,44 @@
+{
+  "resourceType": "ViewDefinition",
+  "status": "draft",
+  "name": "CareSite",
+  "title": "OMOP Care Site View",
+  "description": "Vue se rapprochant de la table OMOP care_site, à partir de la ressource Organization",
+  "resource": "Organization",
+  "select": [
+    {
+      "column": [
+        {
+          "name": "care_site_id",
+          "path": "getResourceKey()",
+          "description": "Unique identifier for the care site",
+          "type": "integer"
+        },
+        {
+          "name": "care_site_name",
+          "path": "Organization.name",
+          "description": "Name of the care site",
+          "type": "string"
+        },
+        {
+          "name": "location_id",
+          "path": "Organization.address.first().id",
+          "description": "Location identifier from primary address",
+          "type": "integer"
+        },
+        {
+          "name": "care_site_source_value",
+          "path": "Organization.meta.source",
+          "description": "Source value for care site",
+          "type": "string"
+        },
+        {
+          "name": "place_of_service_source_value",
+          "path": "Organization.type.first().text",
+          "description": "Source value for place of service",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

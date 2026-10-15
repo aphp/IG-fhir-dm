@@ -16,6 +16,26 @@
 // entry was written.
 // ============================================================================
 
+// --- CREATE entries ---
+
+Instance: 7c1e4b9a-3d52-4e8f-a6b1-0f9d2c84e317
+InstanceOf: Provenance
+Title: "Move the data-exporter-only ViewDefinitions into the IG"
+Description: """Add the care_site, provider, specimen and drug_strength ViewDefinitions, moved from the retired data-exporter"""
+Usage: #definition
+
+* target[0].display = "ViewDefinition-care-site (input/resources/ViewDefinition_OMOP)"
+* target[+].display = "ViewDefinition-provider (input/resources/ViewDefinition_OMOP)"
+* target[+].display = "ViewDefinition-specimen (input/resources/ViewDefinition_OMOP)"
+* target[+].display = "ViewDefinition-drug-strength (input/resources/ViewDefinition_OMOP)"
+* occurredDateTime = "2026-10-15"
+* reason.text = """The Python data-exporter (data-platform/share-layer/data-exporter, first committed 2025-09-14) held its own 12 OMOP ViewDefinitions under the former canonical base. This IG keeps only the FHIR artifacts in input/, so the data-exporter was retired. These four tables had no counterpart in input/resources/ViewDefinition_OMOP: their ViewDefinitions were moved here unchanged in their select/column content, with the IG's header conventions (no url, PascalCase name, French description). For the eight tables both sets covered (person, location, visit_occurrence, condition_occurrence, procedure_occurrence, measurement, drug_exposure, death), the IG's own ViewDefinitions remain authoritative; the data-exporter variants stay in git history only. Targets carry a display only: the IG does not yet resolve its ViewDefinitions as Binary resources."""
+* activity = $v3-DataOperation#CREATE
+* agent
+  * type = $provenance-participant-type#author
+  * who.display = "David Ouagne"
+* recorded = "2026-10-15T12:00:00.000+02:00"
+
 // --- UPDATE entries ---
 
 Instance: 0d3f6c2e-5b8a-4f1d-9c7e-2a4b6d8e1f30
