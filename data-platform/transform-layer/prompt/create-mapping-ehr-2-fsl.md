@@ -18,7 +18,7 @@ Create a StructureMap in FHIR Mapping Language (FML) format beetwen EHR Structur
 </tasks>
 
 <source>
-A source of EHR StructureDefinition is into input/fsh/applications/ehr/logicals/StructureDefinition-EHR.fsh
+A source of EHR StructureDefinition is into input/fsh/applications/ehr/logicals/StructureDefinition-ehr.fsh
 </source>
 
 <profile>

@@ -3,7 +3,7 @@ Convert examples from the logical EHR model format into CSV compliant with the S
 </goal>
 
 <input-logic>
-input\fsh\ehr\logicals\StructureDefinition-EHR.fsh
+input\fsh\ehr\logicals\StructureDefinition-ehr.fsh
 </input-logic>
 
 <input>
